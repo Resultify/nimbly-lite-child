@@ -106,7 +106,7 @@
         "locked": false,
         "required": false,
         "default": {
-          "color": "#593299"
+          "color": "#0066cc"
         }
       },
       {
