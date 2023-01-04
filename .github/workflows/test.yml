@@ -5,6 +5,7 @@ on: [push, pull_request]
 jobs:
 
   build:
+    name: Node
     runs-on: ubuntu-latest
     strategy:
       matrix:
