@@ -8,10 +8,9 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
-    "lint-src-css": "stylelint 'src/css/**/*.css' 'theme/css/base/**/*.css' 'theme/modules/**/*.css' ",
-    "lint-theme-modules-css": "stylelint 'theme/modules/**/*.css'",
+    "lint-src-css": "stylelint --allow-empty-input 'src/css/**/*.css' 'theme/modules/**/*.css' ",
     "lint-js": "standard -v 'src/js/**/*.js build/**/*.js theme/**/*.js'",
-    "lint-all": "npm run lint-src-css && npm run lint-theme-modules-css && npm run lint-js",
+    "lint-all": "npm run lint-src-css && npm run lint-js",
     "test": "npm run lint-all",
     "build": "node build/build.js",
     "upload": "node build/upload.js",
