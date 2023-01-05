@@ -3,7 +3,7 @@ name: Upload theme to Hubspot
 on:
   push:
     branches:
-    - master
+    - testgaupload
 
 jobs:
   upload:
