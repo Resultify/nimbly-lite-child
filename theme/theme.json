@@ -5,7 +5,7 @@
   "screenshot_path": "./images/template-previews/home.png",
   "enable_domain_stylesheets": false,
   "is_available_for_new_content": true,
-  "extends": "nimbly-lite",
+  "extends": "@marketplace/Resultify/Nimbly_Lite",
   "responsive_breakpoints": [
     {
       "name": "mobile",
