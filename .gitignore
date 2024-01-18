@@ -1,15 +1,21 @@
-# HubSpot configs
+# HubSpot ignore configs
 hubspot.config.yaml
 hubspot.config.yml
+theme/assets/*
 
+# IDE ignore config
 .vscode/*
 !.vscode/settings.json
+!.vscode/extensions.json
+.idea
+*.sublime-*
 
-theme/assets/*
-src/tmp/*
-
-node_modules
+# global ignore config
 .env
 .env*
-.idea
+.tmp
+temp
 .DS_Store
+node_modules
+npm-debug.log
+validation-status.json
