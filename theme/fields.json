@@ -8,6 +8,7 @@
         "label": "Primary color",
         "name": "primary",
         "type": "color",
+        "alternate_names": ["primary_color"],
         "inline_help_text": "Primary Brand color, Primary button color, Primary Icon color, Border color and hover background for Secondary2-3 buttons",
         "visibility": {
           "hidden_subfields": {
@@ -19,7 +20,7 @@
         "required": false,
         "inherited_value": {
           "property_value_paths": {
-            "color": "brandSettings.primaryColor"
+            "color": "brand_settings.primaryColor"
           }
         },
         "default": {
@@ -30,6 +31,7 @@
         "label": "Secondary color 1",
         "name": "secondary1",
         "type": "color",
+        "alternate_names": ["secondary_color"],
         "inline_help_text": "Secondary 1 Brand color, Secondary 1 button color, Secondary Icon color",
         "visibility": {
           "hidden_subfields": {
@@ -41,7 +43,7 @@
         "required": false,
         "inherited_value": {
           "property_value_paths": {
-            "color": "brandSettings.colors[1]"
+            "color": "brand_settings.colors[1]"
           }
         },
         "default": {
@@ -63,7 +65,7 @@
         "required": false,
         "inherited_value": {
           "property_value_paths": {
-            "color": "brandSettings.colors[2]"
+            "color": "brand_settings.colors[2]"
           }
         },
         "default": {
@@ -85,7 +87,7 @@
         "required": false,
         "inherited_value": {
           "property_value_paths": {
-            "color": "brandSettings.colors[3]"
+            "color": "brand_settings.colors[3]"
           }
         },
         "default": {
@@ -200,6 +202,7 @@
             "label": "Font",
             "name": "font",
             "type": "font",
+            "alternate_names": ["body_font"],
             "inline_help_text": "If no font is selected, the system font will be used",
             "help_text": "Instead of (slowly) downloading external fonts that sometimes don’t take advantage of newer, high DPI screens or dynamic font rendering, just skip this option and we will serve the best system font possible based on your operating system or device.",
             "visibility": {
@@ -218,6 +221,35 @@
               "size_unit": "px",
               "color": "#1d1d1d"
             }
+          },
+          {
+            "label": "Secondary global font",
+            "name": "secondary_global_font",
+            "type": "font",
+            "help_text": "Use it to add a 'bold' variant for the global font to use the 'bold' style in the RTE module.",
+            "inline_help_text": "Use it only if the main font is external.",
+            "visibility": {
+              "hidden_subfields": {
+                "size": true,
+                "color": true,
+                "italic": true,
+                "underline": true,
+                "bold": true
+              }
+            },
+            "default": {
+              "variant": "700"
+            },
+            "inherited_value": {
+              "property_value_paths": {
+                "font": "theme.typography.text.font.font",
+                "font_set": "theme.typography.text.font.font_set"
+              }
+            },
+            "display_width": null,
+            "load_external_fonts": true,
+            "locked": true,
+            "required": false
           }
         ],
         "display_width": null,
@@ -235,6 +267,7 @@
             "label": "Font",
             "name": "font",
             "type": "font",
+            "alternate_names": ["heading_font"],
             "inline_help_text": "If no font is selected, the system font will be used",
             "help_text": "Instead of (slowly) downloading external fonts that sometimes don’t take advantage of newer, high DPI screens or dynamic font rendering, just skip this option and we will serve the best system font possible based on your operating system or device.",
             "visibility": {

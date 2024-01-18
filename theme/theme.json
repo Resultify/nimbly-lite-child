@@ -2,7 +2,7 @@
   "label": "Nimbly Lite Child",
   "name": "nimbly-lite-child",
   "preview_path": "./templates/home.html",
-  "screenshot_path": "./images/template-previews/home.png",
+  "screenshot_path": "./images/template-previews/home.jpg",
   "enable_domain_stylesheets": false,
   "is_available_for_new_content": true,
   "extends": "@marketplace/Resultify/Nimbly_Lite",
@@ -14,5 +14,18 @@
         "value": 720
       }
     }
+  ],
+  "hidden_modules": [
+    "@hubspot/rich_text",
+    "@hubspot/button",
+    "@hubspot/form",
+    "@hubspot/linked_image",
+    "@hubspot/icon",
+    "@hubspot/divider",
+    "@hubspot/horizontal_spacer",
+    "@hubspot/text",
+    "@hubspot/page_footer",
+    "@hubspot/section_header",
+    "@hubspot/header"
   ]
 }
