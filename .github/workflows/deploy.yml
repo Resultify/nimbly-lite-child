@@ -1,0 +1,49 @@
+name: Deploy theme to Hubspot
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy:
+    name: Upload and publish theme to main account
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js v${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+
+      - name: Upload theme to CI account
+        env:
+          HUBSPOT_PORTAL_ID: ${{ secrets.HUBSPOT_CI_PORTAL_ID }}
+          HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.HUBSPOT_CI_PERSONAL_ACCESS_KEY }}
+        run: npm run upload
+
+      - name: Marketplace validation
+        env:
+          HUBSPOT_PORTAL_ID: ${{ secrets.HUBSPOT_CI_PORTAL_ID }}
+          HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.HUBSPOT_CI_PERSONAL_ACCESS_KEY }}
+        run: npm run validate
+
+      - name: Lighthouse test
+        env:
+          HUBSPOT_PORTAL_ID: ${{ secrets.HUBSPOT_CI_PORTAL_ID }}
+          HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.HUBSPOT_CI_PERSONAL_ACCESS_KEY }}
+        run: npm run lighthouse
+
+      - name: Upload to production account
+        env:
+          HUBSPOT_PORTAL_ID: ${{ secrets.HUBSPOT_PORTAL_ID }}
+          HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}
+        run: npm run upload
+
+      - name: PKG versions
+        run: |
+          node -v
+          npm -v

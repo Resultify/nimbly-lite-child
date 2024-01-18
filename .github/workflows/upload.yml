@@ -1,13 +1,13 @@
-name: Upload theme to Hubspot
+name: Deploy theme to Hubspot
 
 on:
   push:
     branches:
-    - master
+    - matseriks
 
 jobs:
-  upload:
-    name: Upload theme to Hubspot
+  deploy:
+    name: Upload and publish theme to main account
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -15,15 +15,15 @@ jobs:
       - name: Setup Node.js v${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
           cache: 'npm'
       - run: npm ci
 
-      - name: Run npm upload
+      - name: Upload to production account
         env:
           HUBSPOT_PORTAL_ID: ${{ secrets.HUBSPOT_PORTAL_ID }}
           HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}
-        run: npm run upload -- --themeConfirm=true
+        run: npm run upload
 
       - name: PKG versions
         run: |
