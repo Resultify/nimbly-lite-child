@@ -1,3 +1,17 @@
+### v2.0.0 `February 15, 2024`
+* **[TEST]** update github actions, use node 20, use new cmd-s from @resultify/hubspot-cms-lib [`bf761ef`](https://github.com/Resultify/nimbly-lite-child/commit/bf761ef) (dmh)
+* **[TASK]** fix small issues to align child with parent theme [`4119b28`](https://github.com/Resultify/nimbly-lite-child/commit/4119b28) (dmh)
+* **[TASK]** remove base.html layout since sticky header fixed in nimbly light [`891558c`](https://github.com/Resultify/nimbly-lite-child/commit/891558c) (dmh)
+* **[TASK]** update @resultify/hubspot-cms-lib to v3.1.1, update npm deps [`7c46898`](https://github.com/Resultify/nimbly-lite-child/commit/7c46898) (dmh)
+* **[TASK]** uprate compatible browsers list, update gitignore-editorconfig-jsconfig settings [`0630d9e`](https://github.com/Resultify/nimbly-lite-child/commit/0630d9e) (dmh)
+* **[BUGFIX]** Update NPM packages (#5) [`8b46a93`](https://github.com/Resultify/nimbly-lite-child/commit/8b46a93) (Mattias Nilsson)
+* **[TASK]** Update update-browserslist-db@latest (#6) [`a6692a2`](https://github.com/Resultify/nimbly-lite-child/commit/a6692a2) (Mattias Nilsson)
+* **[TASK]** add templates to fix sticky header (#4) [`5d0024f`](https://github.com/Resultify/nimbly-lite-child/commit/5d0024f) (pxamike)
+* **[TASK]** add 30m timeout for all github actions, other small changes [`8ab22fa`](https://github.com/Resultify/nimbly-lite-child/commit/8ab22fa) (dmh)
+* **[BUGFIX]** change path for parent theme (#3) [`fcf0bb3`](https://github.com/Resultify/nimbly-lite-child/commit/fcf0bb3) (Mosa)
+
+***
+
 
 #### v1.0.0 `January 6, 2023`
 
