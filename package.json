@@ -7,7 +7,7 @@
   "repository": "resultify/nimbly-lite-child",
   "type": "module",
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "lint-css": "stylelint --allow-empty-input 'src/css/**/*.css' 'theme/modules/**/*.css' ",
     "lint-js": "standard -v 'src/js/**/*.js build/**/*.js theme/**/*.js'",
     "check-js": "tsc -p jsconfig.json --maxNodeModuleJsDepth 0",
@@ -18,6 +18,7 @@
     "fetch": "cmslib --fetch",
     "fetchModules": "cmslib --fetchModules",
     "upload": "cmslib --upload",
+    "cleanUpload": "cmslib --cleanUpload",
     "validate": "cmslib --validate",
     "lighthouse": "cmslib --lighthouse",
     "fields": "cmslib --fields",
@@ -29,13 +30,13 @@
     "simplelightbox": "~2.11.0"
   },
   "devDependencies": {
-    "@resultify/hubspot-cms-lib": "~3.1.2",
-    "browserslist": "~4.22.2",
-    "husky": "~8.0.3",
+    "@resultify/hubspot-cms-lib": "~3.2.0",
+    "browserslist": "~4.23.0",
+    "husky": "~9.0.11",
     "standard": "~17.1.0",
-    "stylelint": "~16.1.0",
+    "stylelint": "~16.2.1",
     "stylelint-config-recommended": "~14.0.0",
-    "stylelint-no-unsupported-browser-features": "~8.0.0",
+    "stylelint-no-unsupported-browser-features": "~8.0.1",
     "typescript": "~5.3.3"
   },
   "engines": {
