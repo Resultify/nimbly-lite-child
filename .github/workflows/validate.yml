@@ -1,13 +1,12 @@
-name: Deploy theme to Hubspot
+name: Validate theme
 
 on:
-  push:
-    branches:
-    - master
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
-  deploy:
-    name: Upload and publish theme to main account
+  validate:
+    name: Validate theme
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -36,12 +35,6 @@ jobs:
           HUBSPOT_PORTAL_ID: ${{ secrets.HUBSPOT_CI_PORTAL_ID }}
           HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.HUBSPOT_CI_PERSONAL_ACCESS_KEY }}
         run: npm run lighthouse
-
-      - name: Upload to production account
-        env:
-          HUBSPOT_PORTAL_ID: ${{ secrets.HUBSPOT_PORTAL_ID }}
-          HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}
-        run: npm run upload
 
       - name: PKG versions
         run: |
