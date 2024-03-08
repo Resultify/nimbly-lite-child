@@ -14,3 +14,4 @@
 1. `npm install` - install all development dependencies
 2. Add to `.env` file your portal name and `PERSONAL_ACCESS_KEY` [Read more](https://github.com/Resultify/hubspot-cms-lib?tab=readme-ov-file#custom-multi-account-authentication)
 3. `npm run upload` - upload all local changes to remote HubSpot portal [check more commands](https://github.com/Resultify/hubspot-cms-lib?tab=readme-ov-file#whats-inside)
+test
