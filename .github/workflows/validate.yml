@@ -37,5 +37,5 @@ jobs:
 
       - name: PKG versions
         run: |
-          node -v
+          node -vd
           npm -v
