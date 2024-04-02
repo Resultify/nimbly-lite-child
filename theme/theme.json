@@ -9,9 +9,9 @@
   "responsive_breakpoints": [
     {
       "name": "mobile",
-      "mediaQuery": "@media (max-width: 991.98px)",
+      "mediaQuery": "@media (max-width: 767px)",
       "previewWidth": {
-        "value": 720
+        "value": 500
       }
     }
   ],

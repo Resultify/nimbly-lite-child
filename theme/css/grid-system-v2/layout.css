@@ -1,0 +1,135 @@
+/* Grid / DND area */
+{% if theme.layout.maximum_content_width == 'custom' %}
+  {% set container_width = theme.layout.custom_maximum_content_width %}
+{% else %}
+  {% set container_width = theme.layout.maximum_content_width %}
+{% endif %}
+{% set vertical_spacing = theme.layout.vertical_spacing %}
+
+
+:root {
+  --gap: 24px;
+  --max-width: {{container_width ~ 'px'}};
+  --section-vertical-spacing: {{vertical_spacing ~ 'px'}};
+  --section-horizontal-spacing: 60px;
+  --section-horizontal-spacing-mobile: 20px;
+  --min-content-width: 240px;
+}
+
+.dnd-section>.row-fluid,
+.custom-section,
+.blog-post-section,
+.system-page {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: var(--max-width);
+}
+
+/* section spacing on mobile */
+.dnd-section {
+  padding-top: calc(var(--section-vertical-spacing)/2);
+  padding-bottom: calc(var(--section-vertical-spacing)/2);
+}
+.dnd-section:not([class*="force-full-width-section"]) {
+  padding-left: var(--section-horizontal-spacing-mobile);
+  padding-right: var(--section-horizontal-spacing-mobile);
+}
+
+/* section spacing on tablet (vertical position) */
+@media (min-width: 540px) {
+  .dnd-section:not([class*="force-full-width-section"]) {
+    padding-left: calc(var(--section-horizontal-spacing));
+    padding-right: calc(var(--section-horizontal-spacing));
+  }
+}
+@media (min-width: 640px) {
+  .dnd-section:not([class*="force-full-width-section"]) {
+    padding-left: calc(var(--section-horizontal-spacing)/2);
+    padding-right: calc(var(--section-horizontal-spacing)/2);
+  }
+}
+
+/* section spacing on desktop */
+@media (min-width: 1024px) {
+  .dnd-section {
+    padding-bottom: var(--section-vertical-spacing);
+    padding-top: var(--section-vertical-spacing);
+  }
+  .dnd-section:not([class*="force-full-width-section"]) {
+    padding-left: var(--section-horizontal-spacing);
+    padding-right: var(--section-horizontal-spacing);
+  }
+}
+
+[class*="vertical-alignment"].dnd-section > .row-fluid,
+.dnd-section [class*="vertical-alignment"].dnd-row > .row-fluid {
+  display: grid !important;
+}
+
+.dnd-section .row-fluid {
+  gap: var(--gap);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--min-content-width), 1fr));
+  height: 100%;
+}
+
+.row-fluid > [class*="span"] {
+  min-height: 1px;
+}
+.row-fluid > [class*="span"]:not(.span12) {
+  display: grid;
+}
+
+/* general grid setup on 992px and above */
+@media (min-width: 992px) {
+  .dnd-section .row-fluid {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  }
+
+  .row-fluid > .span1 {
+    grid-column: span 1;
+  }
+
+  .row-fluid > .span2 {
+    grid-column: span 2;
+  }
+
+  .row-fluid > .span3 {
+    grid-column: span 3;
+  }
+
+  .row-fluid > .span4 {
+    grid-column: span 4;
+  }
+
+  .row-fluid > .span5 {
+    grid-column: span 5;
+  }
+
+  .row-fluid > .span6 {
+    grid-column: span 6;
+  }
+
+  .row-fluid > .span7 {
+    grid-column: span 7;
+  }
+
+  .row-fluid > .span8 {
+    grid-column: span 8;
+  }
+
+  .row-fluid > .span9 {
+    grid-column: span 9;
+  }
+
+  .row-fluid > .span10 {
+    grid-column: span 10;
+  }
+  .row-fluid > .span11 {
+    grid-column: span 11;
+  }
+}
+
+.dnd-module .hs_cos_wrapper_type_module {
+  height: 100%
+}
