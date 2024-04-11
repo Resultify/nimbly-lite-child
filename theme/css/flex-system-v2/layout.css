@@ -93,6 +93,10 @@
   flex-direction: column;
 }
 
+.widget-span:not(.dnd-module) {
+  position: relative;
+}
+
 .dnd-section .row-fluid [class*="span"]:not([class*="vertical-alignment"]) > .dnd-row {
   flex-grow: 1;
 }

@@ -2,6 +2,7 @@
 hubspot.config.yaml
 hubspot.config.yml
 theme/assets/*
+theme/modules/card2.module/fields.json
 
 # IDE ignore config
 .vscode/*
