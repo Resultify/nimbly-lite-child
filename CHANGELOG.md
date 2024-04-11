@@ -1,3 +1,15 @@
+### v3.0.0 `April 11, 2024`
+* **[TASK]** add card v2 module concept [`04b0883`](https://github.com/Resultify/nimbly-lite-child/commit/04b0883) (dmh)
+* **[TASK]** add new grid options flex-system-v2 and grid-system-v2 [`3f0d03f`](https://github.com/Resultify/nimbly-lite-child/commit/3f0d03f) (dmh)
+* **[TEST]** do not trigger test github action on edited PR event (#10) [`78a0fb0`](https://github.com/Resultify/nimbly-lite-child/commit/78a0fb0) (Dmytro Hrynevych)
+* **[TEST]** do not trigger validate github action on edited PR event (#9) [`a9e337d`](https://github.com/Resultify/nimbly-lite-child/commit/a9e337d) (Dmytro Hrynevych)
+* **[TASK]** update @resultify/hubspot-cms-lib and other npm deps [`81d7bd0`](https://github.com/Resultify/nimbly-lite-child/commit/81d7bd0) (dmh)
+* **[TEST]** update github actions/setup-node and actions/checkout to v4 (#7) [`ab242a3`](https://github.com/Resultify/nimbly-lite-child/commit/ab242a3) (Dmytro Hrynevych)
+* **[TEST]** add cleanUpload cmd to upload theme to CI account [`0304390`](https://github.com/Resultify/nimbly-lite-child/commit/0304390) (dmh)
+* **[TASK]** update @resultify/hubspot-cms-lib, update npm deps [`6543fd0`](https://github.com/Resultify/nimbly-lite-child/commit/6543fd0) (dmh)
+
+***
+
 ### v2.0.0 `February 15, 2024`
 * **[TEST]** update github actions, use node 20, use new cmd-s from @resultify/hubspot-cms-lib [`bf761ef`](https://github.com/Resultify/nimbly-lite-child/commit/bf761ef) (dmh)
 * **[TASK]** fix small issues to align child with parent theme [`4119b28`](https://github.com/Resultify/nimbly-lite-child/commit/4119b28) (dmh)
