@@ -1,4 +1,14 @@
 {% import '../../macros/buttons.html' as buttons %}
+{% import '../../macros/heading.html' as heading %}
+{% import '../../macros/subheading.html' as subheading %}
+{% import '../../macros/text.html' as text %}
+{% import '../../macros/richtext.html' as richtext %}
+{% import '../../macros/full-width-image.html' as fullWidthImage %}
+{% import '../../macros/icon.html' as icon %}
+{% import '../../macros/lottie.html' as lottie %}
+{% import '../../macros/simple-image.html' as simpleImage %}
+
+
 
 {% macro horizontal_alignment_flexbox(data) %}
   {% if data == 'LEFT' %}
@@ -14,27 +24,25 @@
 <style>
   {% scope_css %}
     .card2-module {
-      --aspect-ratio: {{module.aspect_ratio}};
       --richtext-alignment: {{module.style.general.alignment.horizontal_align|lower}};
       --card-alignment: {{horizontal_alignment_flexbox(module.style.general.alignment.horizontal_align)}};
       --text-color: {{module.style.general.text_color.css}};
-      --stretched-link-overlay-color: {{module.style.general.overlay_color.css}};
+      {# --stretched-link-overlay-color: {{module.style.general.overlay_color.css}}; #}
       --card-gap: {{module.style.general.card_gap}}px;
-    }
-    .card2-module-text > span {
-      {% if module.style.text.font.color %}
-        color: {{module.style.text.font.color}};
+
+      box-shadow:{{module.style.general.card_shadow}};
+      {{module.style.general.border.css}}
+      {{module.style.general.spacing.css}}
+      {% if module.style.general.border_radius > 0 %}
+        border-radius: {{module.style.general.border_radius ~ 'px'}};
       {% endif %}
-      {% if module.style.text.background.color %}
-        background-color: {{module.style.text.background.color}};
+      {% if module.style.general.background_type == 'background_color' %}
+        background-color: {{module.style.general.background_color.css}};
+      {% elif module.style.general.background_type == 'background_image' %}
+        {{module.style.general.background_image.css}}
+      {% elif module.style.general.background_type == 'background_gradient' %}
+        background: {{module.style.general.background_gradient.css}};
       {% endif %}
-      {% if module.style.text.font.size %}
-        font-size: {{module.style.text.font.size ~ 'px'}};
-      {% endif %}
-      {% if module.style.text.font.style %}
-        {{module.style.text.font.style}};
-      {% endif %}
-      {{module.style.text.spacing.css}}
     }
   {% end_scope_css %}
 </style>
@@ -48,102 +56,38 @@
 
 {%- macro render_image() -%}
   {% if module.image_type == 'full_width' %}
-    {% if module.full_width_image.src %}
-      <img class="card2-image full-width-image"
-        alt="{{module.full_width_image.alt}}"
-        src="{{module.full_width_image.src}}"
-        width="{{module.full_width_image.width}}"
-        height="{{module.full_width_image.height}}"
-        loading="lazy">
-    {% endif %}
+    {{fullWidthImage.render(module.full_width)}}
   {% elif module.image_type == 'image' %}
-    {% if module.image.src %}
-      <img class="card2-image image"
-        alt="{{module.image.alt}}"
-        src="{{module.image.src}}"
-        width="{{module.image.width}}"
-        height="{{module.image.height}}"
-        loading="lazy">
-    {% endif %}
+    {{simpleImage.render(module.image)}}
   {% elif module.image_type == 'icon' %}
-    {% if module.icon.name %}
-      {% icon
-        extra_classes="card2-image icon-wrp icon--{{module.icon_style}} icon--{{module.icon_size}}"
-        name="{{module.icon.name}}"
-        style="{{module.icon.type}}"
-        unicode="{{module.icon.unicode}}"
-        icon_set="{{module.icon.icon_set}}"
-        purpose="decorative"
-      %}
-
-    {% endif %}
+    {{icon.render(module.icon)}}
+  {% elif module.image_type == 'lottie' %}
+    {{lottie.render(module.lottie, module)}}
   {% endif %}
 {%- endmacro -%}
 
-
-{%- macro render_heading() -%}
-  {% if module.heading %}
-    <{{module.heading_tag}} class="{{module.heading_style}} card2-module-heading">
-      {%- if module.heading_link.url.href and module.enable_heading_link -%}
-        <a href="{{module.heading_link.url.href}}" class="heading-link {{"stretched-link" if heading_stretched_link}}"
-        {% if module.heading_link.open_in_new_tab %} target="_blank" {% endif %}
-        {{module.heading_link.rel}}>
-          {{module.heading}}
-        </a>
-      {%- else -%}
-        {{module.heading}}
-      {%- endif -%}
-    </{{module.heading_tag}}>
-  {% endif %}
-{%- endmacro -%}
-
-{%- macro render_subheading() -%}
-  {% if module.subheading %}
-    <{{module.subheading_tag}} class="{{module.subheading_style}} card2-module-subheading">
-      {{module.subheading}}
-    </{{module.subheading_tag}}>
-  {% endif %}
-{%- endmacro -%}
-
-{%- macro render_text() -%}
-  {% if module.text %}
-      <div class="card2-module-text">
-        <span>{{module.text}}</span>
-      </div>
-  {% endif %}
-{%- endmacro -%}
-
-{%- macro render_richtext() -%}
-  {% if module.richtext %}
-    <div class="card2-module-richtext">
-      {{module.richtext|sanitize_html}}
-    </div>
-  {% endif %}
-{%- endmacro -%}
-
-<div class="card2-module {{module_id}}">
-  <div class="block-start">
+<div class="card2-module {{module_id}} {{module.style.general.card_shadow if module.style.general.card_shadow is containing 'custom'}} {{module.style.general.animation}}">
+  <div class="block-top">
     {% for item in module.components %}
       {% if item.component|lower == 'image' %}
         {{render_image()}}
       {% elif item.component|lower == 'heading' %}
-        {{render_heading()}}
+        {{heading.render(module)}}
       {% elif item.component|lower == 'subheading' %}
-        {{render_subheading()}}
+        {{subheading.render(module)}}
       {% elif item.component|lower == 'text' %}
-        {{render_text()}}
+        {{text.render(module)}}
       {% elif item.component|cut(" ")|lower == 'richtext' %}
-        {{render_richtext()}}
+        {{richtext.render(module)}}
       {% elif item.component|lower == 'separator' %}
         </div>
-        <div class="block-end">
+        <div class="block-bottom">
       {% elif item.component|lower == 'buttons' %}
         {{buttons.render(module.buttons, module.style, module)}}
       {% elif item.component|cut(" ")|lower == 'additionalimages' %}
       {% endif %}
     {% endfor %}
   </div>
-
 </div>
 
 {# add base styles to module previewer #}

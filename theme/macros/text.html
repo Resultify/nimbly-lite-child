@@ -1,0 +1,38 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{%- macro render(module) -%}
+  {%- if module.text -%}
+    {% require_css %}
+      <style>
+        .text-macro {
+          display: inline-block;
+        }
+      </style>
+    {% end_require_css %}
+    <style>
+      {% scope_css %}
+        .text-macro {
+          {% if module.style.text.font.color %}
+            color: {{module.style.text.font.color}};
+          {% endif %}
+          {% if module.style.text.background.color %}
+            background-color: {{module.style.text.background.color}};
+          {% endif %}
+          {% if module.style.text.font.size %}
+            font-size: {{module.style.text.font.size ~ 'px'}};
+          {% endif %}
+          {% if module.style.text.font.style %}
+            {{module.style.text.font.style}};
+          {% endif %}
+          {{module.style.text.spacing.css}}
+        }
+      {% end_scope_css %}
+    </style>
+    <div class="text-macro-wrp">
+      <span class="text-macro">{{module.text}}</span>
+    </div>
+  {%- endif -%}
+{%- endmacro -%}

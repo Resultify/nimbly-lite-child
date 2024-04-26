@@ -1,0 +1,28 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{%- macro render(module) -%}
+  {% if- module.richtext -%}
+    {% require_css %}
+      <style>
+        .richtext-macro-wrp > *:first-child {
+          margin-top: 0;
+          padding-top: 0;
+        }
+        .richtext-macro-wrp > *:last-child {
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+      </style>
+    {% end_require_css %}
+    <style>
+      {% scope_css %}
+      {% end_scope_css %}
+    </style>
+    <div class="richtext-macro-wrp">
+      {{module.richtext|sanitize_html}}
+    </div>
+  {%- endif -%}
+{%- endmacro -%}

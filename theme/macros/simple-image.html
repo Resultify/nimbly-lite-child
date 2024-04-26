@@ -1,0 +1,24 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{%- macro render(module) -%}
+  {%- if module.image.src -%}
+    {% require_css %}
+      <style>
+        .simple-image-macro {
+          display: block;
+          max-width: 100%;
+          height: auto;
+        }
+      </style>
+    {% end_require_css %}
+    <img class="simple-image-macro"
+      alt="{{module.image.alt}}"
+      src="{{module.image.src}}"
+      width="{{module.image.width}}"
+      height="{{module.image.height}}"
+      loading="lazy">
+  {%- endif -%}
+{%- endmacro -%}

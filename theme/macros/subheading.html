@@ -1,0 +1,12 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{%- macro render(module) -%}
+  {%- if module.subheading -%}
+    <{{module.subheading_tag}} class="{{module.subheading_style}} subheading-macro">
+      {{module.subheading}}
+    </{{module.subheading_tag}}>
+  {%- endif -%}
+{%- endmacro -%}

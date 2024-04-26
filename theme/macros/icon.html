@@ -1,0 +1,20 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{%- macro render(module) -%}
+
+  {%- if module.icon.name -%}
+    {% icon
+      extra_classes="icon-macro-wrp"
+      name="{{module.icon.name}}"
+      style="{{module.icon.type}}"
+      unicode="{{module.icon.unicode}}"
+      icon_set="{{module.icon.icon_set}}"
+      purpose="decorative"
+    %}
+  {%- endif -%}
+
+
+{%- endmacro -%}

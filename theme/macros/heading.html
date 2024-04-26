@@ -1,0 +1,31 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{%- macro render(module) -%}
+  {%- if module.heading.heading -%}
+    {% set href = module.link_field.url.href %}
+      {% if module.link_field.url.type is equalto "EMAIL_ADDRESS" %}
+        {% set href = "mailto:" + href %}
+      {% endif %}
+    <{{module.heading.heading_tag}} class="{{module.heading.heading_style}} heading-macro">
+      {%- if module.heading.heading_link.url.href and module.heading.enable_heading_link -%}
+        {% set href = module.heading.heading_link.url.href %}
+        {%- if module.heading.heading_link.url.type is equalto "EMAIL_ADDRESS" -%}
+          {% set href = "mailto:" + href %}
+        {%- endif -%}
+        {%- if module.heading.heading_link.url.type is equalto "PHONE_NUMBER" -%}
+          {% set href = "tel:" + href %}
+        {%- endif -%}
+        <a href="{{href}}" class="heading-link {{"stretched-link" if heading_stretched_link}}"
+        {{'target="_blank"' if module.heading.heading_link.open_in_new_tab}}
+        {{module.heading.heading_link.rel}}>
+          {{module.heading.heading}}
+        </a>
+      {%- else -%}
+        {{module.heading.heading}}
+      {%- endif -%}
+    </{{module.heading.heading_tag}}>
+  {%- endif -%}
+{%- endmacro -%}

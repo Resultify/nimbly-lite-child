@@ -26,14 +26,6 @@
   display: block;
 }
 
-.card2-module-richtext > *:first-child {
-  margin-top: 0;
-  padding-top: 0;
-}
-.card2-module-richtext > *:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
 
 .card2-module .buttons-wrp {
   display: flex;
@@ -57,21 +49,6 @@
   align-items: center;
 }
 
-.card2-module :where(.full-width-image, .image) {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-.card2-module .full-width-image {
-  object-fit: cover;
-  aspect-ratio: var(--aspect-ratio);
-  width: 100%;
-}
-
-.card2-module-text > span {
-  display: inline-block;
-}
 
 /* text color */
 .card2-module,
