@@ -113,14 +113,6 @@ init(
         display_width: 'half_width',
         help_text: 'General gap between all card components'
       }),
-      // fi.color('Overlay color', 'overlay_color', {
-      //   help_text: 'Whole area link overlay color on hover',
-      //   visibility: {
-      //     controlling_field_path: 'whole_area_link',
-      //     operator: 'EQUAL',
-      //     controlling_value_regex: 'true'
-      //   }
-      // }),
       fi.choice('Background type', 'background_type', {
         display_width: 'half_width',
         choices: [
@@ -156,103 +148,76 @@ init(
         suffix: 'px',
         display_width: 'half_width'
       }),
-      fi.choice('Card shadow', 'card_shadow', {
-        display_width: 'half_width',
-        choices: [
-          ['shadow-sm', 'Shadow small'],
-          ['shadow-md', 'Shadow medium'],
-          ['shadow-lg', 'Shadow large'],
-          ['shadow-xlg', 'Shadow xlarge'],
-          ['shadow-2xlg', 'Shadow 2xlarge'],
-          ['shadow-3xlg', 'Shadow 3xlarge'],
-          ['custom-shadow1', 'Custom-shadow 1'],
-          ['custom-shadow2', 'Custom-shadow 2'],
-          ['custom-shadow3', 'Custom-shadow 3']
-        ]
+      partial.shadowList(),
+      fi.spacing('Spacing', 'spacing')
+    ),
+    fi.boolean('Card content block styles', 'content_block_styles'),
+    fi.number('Content blocks gap', 'content_blocks_gap', {
+      suffix: 'px',
+      inherited_value: {
+        default_value_path: 'module.style.general.content_gap'
+      },
+      visibility: {
+        controlling_field_path: 'style.content_block_styles',
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
+      }
+    }),
+    group('Top content block', 'top_content_block',
+      {
+        visibility: {
+          controlling_field_path: 'style.content_block_styles',
+          operator: 'EQUAL',
+          controlling_value_regex: 'true'
+        }
+      },
+      fi.color('Background color', 'background_color'),
+      fi.border('Border', 'border'),
+      fi.number('Border radius', 'border_radius', {
+        suffix: 'px'
       }),
-      fi.spacing('Spacing', 'spacing'),
-      fi.boolean('Content block styles', 'content_block_styles'),
-      group('Top content block', 'top_content_block',
-        {
-          visibility: {
-            controlling_field_path: 'style.general.content_block_styles',
-            operator: 'EQUAL',
-            controlling_value_regex: 'true'
+      fi.spacing('Spacing', 'spacing', {
+        visibility: {
+          hidden_subfields: {
+            margin: true
           }
-        },
-        fi.color('Background color', 'content_block_background_color'),
-        fi.border('Border', 'content_block_border'),
-        fi.number('Border radius', 'content_block_border_radius', {
-          suffix: 'px'
-        }),
-        fi.spacing('Spacing', 'content_block_spacing', {
-          visibility: {
-            hidden_subfields: {
-              margin: true
-            }
+        }
+      })
+    ),
+    group('Bottom content block', 'bottom_content_block',
+      {
+        visibility: {
+          controlling_field_path: 'style.content_block_styles',
+          operator: 'EQUAL',
+          controlling_value_regex: 'true'
+        }
+      },
+      fi.color('Background color', 'background_color'),
+      fi.border('Border', 'border'),
+      fi.number('Border radius', 'border_radius', {
+        suffix: 'px'
+      }),
+      fi.spacing('Spacing', 'spacing', {
+        visibility: {
+          hidden_subfields: {
+            margin: true
           }
-        })
-      ),
-      group('Bottom content block', 'bottom_content_block',
-        {
-          visibility: {
-            controlling_field_path: 'style.general.content_block_styles',
-            operator: 'EQUAL',
-            controlling_value_regex: 'true'
-          }
-        },
-        fi.color('Background color', 'bottom_content_block_background_color'),
-        fi.border('Border', 'bottom_content_block_border'),
-        fi.number('Border radius', 'bottom_content_block_border_radius', {
-          suffix: 'px'
-        }),
-        fi.spacing('Spacing', 'bottom_content_block_spacing', {
-          visibility: {
-            hidden_subfields: {
-              margin: true
-            }
-          }
-        })
-      ),
-      fi.boolean('Hover effects', 'hover_effects'),
-      group('Hover', 'hover',
-        {
-          expanded: true,
-          visibility: {
-            controlling_field_path: 'style.general.hover_effects',
-            operator: 'EQUAL',
-            controlling_value_regex: 'true'
-          }
-        },
-        fi.color('Overlay color', 'overlay_color'),
-        fi.choice('Card shadow', 'card_shadow', {
-          display_width: 'half_width',
-          choices: [
-            ['shadow-sm-on-hover', 'Shadow small'],
-            ['shadow-md-on-hover', 'Shadow medium'],
-            ['shadow-lg-on-hover', 'Shadow large'],
-            ['shadow-xlg-on-hover', 'Shadow xlarge'],
-            ['shadow-2xlg-on-hover', 'Shadow 2xlarge'],
-            ['shadow-3xlg-on-hover', 'Shadow 3xlarge'],
-            ['custom-shadow1-on-hover', 'Custom-shadow 1'],
-            ['custom-shadow2-on-hover', 'Custom-shadow 2'],
-            ['custom-shadow3-on-hover', 'Custom-shadow 3']
-          ]
-        }),
-        fi.choice('Animation', 'animation', {
-          display_width: 'half_width',
-          choices: [
-            ['scale1x-on-hover', 'Scale 1x'],
-            ['scale2x-on-hover', 'Scale 2x'],
-            ['scale3x-on-hover', 'Scale 3x'],
-            ['slideup1x-on-hover', 'Slide Up 1x'],
-            ['slideup2x-on-hover', 'Slide Up 2x'],
-            ['custom-animation1-on-hover', 'Custom animation 1'],
-            ['custom-animation2-on-hover', 'Custom animation 2'],
-            ['custom-animation3-on-hover', 'Custom animation 3']
-          ]
-        })
-      )
+        }
+      })
+    ),
+    fi.boolean('Card hover effects', 'hover_effects'),
+    group('Hover', 'hover',
+      {
+        expanded: true,
+        visibility: {
+          controlling_field_path: 'style.hover_effects',
+          operator: 'EQUAL',
+          controlling_value_regex: 'true'
+        }
+      },
+      fi.color('Overlay color', 'overlay_color'),
+      partial.shadowList(),
+      partial.animationList()
     ),
     partial.textStyle(),
     partial.iconStyle('icon'),

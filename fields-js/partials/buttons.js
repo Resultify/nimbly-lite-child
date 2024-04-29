@@ -8,7 +8,7 @@ const buttons = [
     {
       occurrence: {
         min: 0,
-        max: 5,
+        max: 15,
         sorting_label_field: 'buttons.button_text'
       }
     },

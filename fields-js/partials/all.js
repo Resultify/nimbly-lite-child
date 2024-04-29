@@ -7,6 +7,8 @@ import * as order from './order.js'
 import * as lottie from './lottie.js'
 import * as icon from './icon.js'
 import * as fullWidthImage from './full-width-image.js'
+import * as animationList from './animation-list.js'
+import * as shadowList from './shadow-list.js'
 
 /**
  * #### component partials entry point
@@ -22,7 +24,9 @@ const partial = {
   ...order,
   ...lottie,
   ...icon,
-  ...fullWidthImage
+  ...fullWidthImage,
+  ...animationList,
+  ...shadowList
 }
 
 export { partial }

@@ -60,14 +60,6 @@ const heading = (parent = '') => {
           operator: 'NOT_EMPTY'
         }
       }),
-      fi.boolean('Heading icon', 'enable_heading_icon', {
-        display_width: 'half_width',
-        locked: true,
-        visibility: {
-          controlling_field_path: `${parent}heading.heading`,
-          operator: 'NOT_EMPTY'
-        }
-      }),
       fi.link('', 'heading_link', {
         visibility_rules: 'ADVANCED',
         supported_types: ['BLOG', 'CALL_TO_ACTION', 'CONTENT', 'EMAIL_ADDRESS', 'FILE', 'EXTERNAL', 'PAYMENT', 'PHONE_NUMBER', 'WHATSAPP_NUMBER'],
@@ -84,6 +76,88 @@ const heading = (parent = '') => {
               operator: 'NOT_EMPTY'
             }
           ]
+        }
+      }),
+      fi.boolean('Heading icon', 'enable_heading_icon', {
+        display_width: 'half_width',
+        visibility: {
+          controlling_field_path: `${parent}heading.heading`,
+          operator: 'NOT_EMPTY'
+        }
+      }),
+      fi.choice('Icon type', 'icon_type', {
+        display_width: 'half_width',
+        required: true,
+        default: 'fontawesome',
+        choices: [
+          ['fontawesome', 'Fontawesome 6'],
+          ['svg', 'SVG']
+        ],
+        visibility: {
+          controlling_field_path: `${parent}heading.enable_heading_icon`,
+          operator: 'EQUAL',
+          controlling_value_regex: 'true'
+        }
+      }),
+      fi.choice('Alignment', 'icon_alignment', {
+        choices: [
+          ['left', 'Left'],
+          ['right', 'Right'],
+          ['left-space-between', 'Left space between'],
+          ['right-space-between', 'Right space between']
+        ],
+        default: 'left',
+        display_width: 'half_width',
+        required: true,
+        visibility: {
+          controlling_field_path: `${parent}heading.enable_heading_icon`,
+          operator: 'EQUAL',
+          controlling_value_regex: 'true'
+        }
+      }),
+      fi.icon('Icon', 'icon', {
+        set: 'fontawesome-6.4.2',
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}heading.icon_type`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'fontawesome'
+            },
+            {
+              controlling_field_path: `${parent}heading.enable_heading_icon`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        }
+      }),
+      fi.text('SVG', 'svg', {
+        allow_new_line: true,
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}heading.icon_type`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'svg'
+            },
+            {
+              controlling_field_path: `${parent}heading.enable_heading_icon`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        }
+      }),
+      fi.color('Icon color', 'icon_color', {
+        visibility: {
+          controlling_field_path: `${parent}heading.enable_heading_icon`,
+          operator: 'EQUAL',
+          controlling_value_regex: 'true'
         }
       })
     )

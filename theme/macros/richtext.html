@@ -4,7 +4,7 @@
 -->
 
 {%- macro render(module) -%}
-  {% if- module.richtext -%}
+  {%- if module.richtext -%}
     {% require_css %}
       <style>
         .richtext-macro-wrp > *:first-child {
@@ -17,10 +17,7 @@
         }
       </style>
     {% end_require_css %}
-    <style>
-      {% scope_css %}
-      {% end_scope_css %}
-    </style>
+
     <div class="richtext-macro-wrp">
       {{module.richtext|sanitize_html}}
     </div>

@@ -5,10 +5,6 @@
 
 {%- macro render(module) -%}
   {%- if module.heading.heading -%}
-    {% set href = module.link_field.url.href %}
-      {% if module.link_field.url.type is equalto "EMAIL_ADDRESS" %}
-        {% set href = "mailto:" + href %}
-      {% endif %}
     <{{module.heading.heading_tag}} class="{{module.heading.heading_style}} heading-macro">
       {%- if module.heading.heading_link.url.href and module.heading.enable_heading_link -%}
         {% set href = module.heading.heading_link.url.href %}

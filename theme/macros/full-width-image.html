@@ -4,12 +4,11 @@
 -->
 
 {%- macro render(module) -%}
-{%- if module.full_width_image.src -%}
+  {%- if module.full_width_image.src -%}
     {% require_css %}
       <style>
         .full-width-image-macro {
           object-fit: cover;
-          aspect-ratio: var(--aspect-ratio);
           width: 100%;
           display: block;
           max-width: 100%;
@@ -17,14 +16,9 @@
         }
       </style>
     {% end_require_css %}
-    <style>
-      {% scope_css %}
-        .full-width-image-macro {
-          --aspect-ratio: {{module.aspect_ratio}};
-        }
-      {% end_scope_css %}
-    </style>
+
     <img class="full-width-image-macro"
+      style="aspect-ratio: {{module.aspect_ratio}}"
       alt="{{module.full_width_image.alt}}"
       src="{{module.full_width_image.src}}"
       width="{{module.full_width_image.width}}"

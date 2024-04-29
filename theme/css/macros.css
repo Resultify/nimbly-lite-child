@@ -1,0 +1,36 @@
+{%- macro horizontal_alignment_flexbox(data) -%}
+  {%- if data == 'LEFT' -%}
+    start
+  {%- elif data == 'CENTER' -%}
+    center
+  {%- elif data == 'RIGHT' -%}
+    end
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro padding(data) -%}
+  {%- if data.padding.top.value -%}
+    {% set padding_top = data.padding.top.value ~ data.padding.top.units %}
+  {%- else -%}
+    {% set padding_top = 0 %}
+  {%- endif -%}
+
+  {%- if data.padding.right.value -%}
+    {% set padding_right = data.padding.right.value ~ data.padding.right.units %}
+  {%- else -%}
+    {% set padding_right = 0 %}
+  {%- endif -%}
+
+  {%- if data.padding.bottom.value -%}
+    {% set padding_bottom = data.padding.bottom.value ~ data.padding.bottom.units %}
+  {%- else -%}
+    {% set padding_bottom = 0 %}
+  {%- endif -%}
+
+  {%- if data.padding.left.value -%}
+    {% set padding_left = data.padding.left.value ~ data.padding.left.units %}
+  {%- else -%}
+    {% set padding_left = 0 %}
+  {%- endif -%}
+  {{padding_top}} {{padding_right}} {{padding_bottom}} {{padding_left}}
+{%- endmacro -%}

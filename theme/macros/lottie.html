@@ -34,13 +34,13 @@
         }
       </script>
     {% end_require_js %}
-    {% if global.style.general.alignment.horizontal_align == 'LEFT' %}
+    {%- if global.style.general.alignment.horizontal_align == 'LEFT' -%}
       {% set lottie_alignment = '0,0.5' %}
-    {% elif global.style.general.alignment.horizontal_align == 'CENTER' %}
+    {%- elif global.style.general.alignment.horizontal_align == 'CENTER' -%}
       {% set lottie_alignment = '0.5,0.5' %}
-    {% elif global.style.general.alignment.horizontal_align == 'RIGHT' %}
+    {%- elif global.style.general.alignment.horizontal_align == 'RIGHT' -%}
       {% set lottie_alignment = '1,0.5' %}
-    {% endif %}
+    {%- endif -%}
     <canvas class="lottie-macro dotlottie-canvas"
       data-lottie-src="{{module.lottie_file}}"
       data-speed="{{module.lottie_speed}}"

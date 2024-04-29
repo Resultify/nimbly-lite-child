@@ -14,33 +14,13 @@ const icon = (parent = '') => {
       default: 'fontawesome',
       choices: [
         ['fontawesome', 'Fontawesome 6'],
-        ['svg_list', 'SVG list'],
         ['svg', 'SVG']
       ]
     }),
-    fi.number('Icon size (px)', 'icon_size_px', {
+    fi.number('Icon size', 'icon_size', {
       display_width: 'half_width',
       default: 80,
       suffix: 'px'
-    }),
-    fi.choice('SVG icon', 'svg_icon', {
-      visibility: {
-        controlling_field_path: `${parent}icon_type`,
-        operator: 'EQUAL',
-        controlling_value_regex: 'svg_list'
-      },
-      choices: [
-        ['icon1', 'Icon 1'],
-        ['icon2', 'Icon 2'],
-        ['icon3', 'Icon 3'],
-        ['icon4', 'Icon 4'],
-        ['icon5', 'Icon 5'],
-        ['icon6', 'Icon 6'],
-        ['icon7', 'Icon 7'],
-        ['icon8', 'Icon 8'],
-        ['icon9', 'Icon 9'],
-        ['icon10', 'Icon 10']
-      ]
     }),
     fi.icon('Icon', 'icon', {
       set: 'fontawesome-6.4.2',
@@ -79,10 +59,6 @@ const iconStyle = (parent = '') => {
             },
             {
               controlling_field_path: `${parent}svg`,
-              operator: 'NOT_EMPTY'
-            },
-            {
-              controlling_field_path: `${parent}svg_icon`,
               operator: 'NOT_EMPTY'
             }
           ]

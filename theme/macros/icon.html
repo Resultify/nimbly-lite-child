@@ -3,18 +3,52 @@
   isAvailableForNewContent: false
 -->
 
-{%- macro render(module) -%}
+{%- macro render(module, global) -%}
+  {% require_css %}
+    <style>
+      .icon-macro-wrp {
+        display: inline-flex;
+      }
+      .icon-macro-wrp > svg {
+        width: {{module.icon_size ~ 'px'}};
+        height: {{module.icon_size ~ 'px'}};
+      }
+    </style>
+  {% end_require_css %}
+  {% if global.style.icon_style.icon_bg_color.css or global.style.icon_style.icon_border_radius_px > 0 or global.style.icon_style.icon_border.css or global.style.icon_style.icon_spacing.css or global.style.icon_style.icon_color.css %}
+    <style>
+      {% scope_css %}
+        .icon-macro-wrp {
+          {% if global.style.icon_style.icon_bg_color.css %}
+            background-color: {{global.style.icon_style.icon_bg_color.css}};
+          {% endif %}
+          {% if global.style.icon_style.icon_border_radius_px > 0 %}
+            border-radius: {{global.style.icon_style.icon_border_radius_px ~ '%'}};
+          {% endif %}
+          {{global.style.icon_style.icon_border.css}}
+          {{global.style.icon_style.icon_spacing.css}}
+        }
+        .icon-macro-wrp > svg {
+          {% if global.style.icon_style.icon_color.css %}
+            fill: {{global.style.icon_style.icon_color.css}};
+          {% endif %}
+        }
+      {% end_scope_css %}
+    </style>
+  {% endif %}
 
-  {%- if module.icon.name -%}
-    {% icon
-      extra_classes="icon-macro-wrp"
-      name="{{module.icon.name}}"
-      style="{{module.icon.type}}"
-      unicode="{{module.icon.unicode}}"
-      icon_set="{{module.icon.icon_set}}"
-      purpose="decorative"
-    %}
+  {%- if module.icon_type == 'fontawesome' -%}
+    {%- if module.icon.name -%}
+      {% icon
+        extra_classes="icon-macro-wrp"
+        name="{{module.icon.name}}"
+        style="{{module.icon.type}}"
+        unicode="{{module.icon.unicode}}"
+        icon_set="{{module.icon.icon_set}}"
+        purpose="decorative"
+      %}
+    {%- endif -%}
+  {%- elif module.icon_type == 'svg' -%}
+    <div class="icon-macro-wrp">{{module.svg}}</div>
   {%- endif -%}
-
-
 {%- endmacro -%}
