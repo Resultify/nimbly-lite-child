@@ -2,7 +2,6 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-
 {%- macro render(module) -%}
   {%- if module.image.src -%}
     {% require_css %}
@@ -14,7 +13,6 @@
         }
       </style>
     {% end_require_css %}
-
     <img class="simple-image-macro"
       alt="{{module.image.alt}}"
       src="{{module.image.src}}"

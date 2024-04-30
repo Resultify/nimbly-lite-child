@@ -1,6 +1,6 @@
 .card2-module {
-  color: var(--card-color);
-  fill: var(--card-color);
+  color: var(--module-color);
+  fill: var(--module-color);
   background-color: var(--card-background);
   border: var(--card-border);
   border-radius: var(--card-border-radius);
@@ -50,52 +50,15 @@
 /* general card alignment */
 .card2-module .content-block-top,
 .card2-module .content-block-bottom {
-  align-items: var(--card-alignment);
+  align-items: var(--module-alignment);
 }
-.card2-module .buttons-wrp,
-.card2-module .btn-block-wrp,
-.card2-module .additional-images {
-  justify-content: var(--card-alignment);
-}
-
-
-
-
-
-
-
-
-/* card buttons styles */
-.card2-module .buttons-wrp {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  width: 100%;
-}
-.card2-module .btn-full-width {
-  width: 100%;
-}
-.card2-module .btn-block-wrp {
-  flex-basis: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-
-
-
 
 .card2-module .additional-images {
+  justify-content: var(--module-alignment);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-
-
-
-
-
 
 /* hover styles */
 @media (any-hover: hover) {
@@ -107,4 +70,4 @@
 }
 
 /* todo */
-/* image radius */
+/* image radius??? */

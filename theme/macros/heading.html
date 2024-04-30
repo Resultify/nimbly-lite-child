@@ -2,9 +2,7 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-
 {%- macro render(module) -%}
-
   {%- macro icon(module, alignment) -%}
     {%- if module.heading.enable_heading_icon -%}
       {%- if module.heading.icon_alignment is containing alignment -%}
@@ -30,7 +28,6 @@
       {%- endif -%}
     {%- endif -%}
   {%- endmacro -%}
-
   {%- if module.heading.heading -%}
     {% require_css %}
       <style>
@@ -43,35 +40,30 @@
           align-items: center;
           gap: 0.3ch;
           margin: 0;
+          text-align: var(--module-alignment);
+          color: var(--module-color);
         }
-        .heading-macro > svg,
-        .heading-macro > a > svg {
+        .heading-macro svg,
+        .heading-macro .heading-image {
           width: auto;
           height: 1.8ex;
           fill: currentcolor;
         }
-        .heading-macro > .heading-image,
-        .heading-macro > a > .heading-image {
-          width: auto;
-          height: 1.8ex;
-        }
       </style>
     {% end_require_css %}
-
-    {% if module.heading.icon_color.css %}
+    {%- if module.heading.icon_color.css -%}
       <style>
-        {% scope_css %}
+        {%- scope_css -%}
           .heading-macro > svg,
           .heading-macro > a > svg {
             fill: {{module.heading.icon_color.css}};
           }
-        {% end_scope_css %}
+        {%- end_scope_css -%}
       </style>
-    {% endif %}
-
+    {%- endif -%}
     <{{module.heading.heading_tag}}
       class="{{module.heading.heading_style}} heading-macro"
-      style="text-align:var(--card-alignment);color:var(--text-color);{{'justify-content:space-between;width:100%;' if module.heading.icon_alignment is containing 'space' and module.heading.enable_heading_icon}}">
+      {{'style="justify-content:space-between;width:100%;"' if module.heading.icon_alignment is containing 'space' and module.heading.enable_heading_icon}}>
       {%- if module.heading.heading_link.url.href and module.heading.enable_heading_link -%}
         {% set href = module.heading.heading_link.url.href %}
         {%- if module.heading.heading_link.url.type is equalto "EMAIL_ADDRESS" -%}

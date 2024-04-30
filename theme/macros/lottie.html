@@ -2,7 +2,6 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-
 {%- macro render(module, global) -%}
   {%- if module.lottie_file -%}
     {{require_js(get_asset_url('../assets/js/dotlottie.js'), {defer: true})}}

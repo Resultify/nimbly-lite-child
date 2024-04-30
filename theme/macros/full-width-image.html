@@ -2,7 +2,6 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-
 {%- macro render(module) -%}
   {%- if module.full_width_image.src -%}
     {% require_css %}
@@ -16,7 +15,6 @@
         }
       </style>
     {% end_require_css %}
-
     <img class="full-width-image-macro"
       style="aspect-ratio: {{module.aspect_ratio}}"
       alt="{{module.full_width_image.alt}}"

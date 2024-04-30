@@ -263,7 +263,13 @@ const buttonsStyle = [
         controlling_value_regex: 'true'
       }
     },
-    fi.spacing('Spacing', 'spacing'),
+    fi.spacing('Spacing', 'spacing', {
+      visibility: {
+        hidden_subfields: {
+          margin: true
+        }
+      }
+    }),
     fi.color('Background', 'background'),
     fi.font('Font', 'font'),
     fi.border('Border', 'border'),
@@ -284,7 +290,13 @@ const buttonsStyle = [
         controlling_value_regex: 'true'
       }
     },
-    fi.spacing('Spacing', 'spacing'),
+    fi.spacing('Spacing', 'spacing', {
+      visibility: {
+        hidden_subfields: {
+          margin: true
+        }
+      }
+    }),
     fi.color('Background', 'background'),
     fi.font('Font', 'font'),
     fi.border('Border', 'border'),

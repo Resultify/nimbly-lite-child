@@ -2,7 +2,6 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-
 {%- macro render(module) -%}
 {%- if module.subheading -%}
     {% require_css %}
@@ -13,13 +12,12 @@
           -webkit-hyphens: auto; /* for Safari */
           hyphens: auto;
           margin: 0;
+          text-align: var(--module-alignment);
+          color: var(--module-color);
         }
       </style>
     {% end_require_css %}
-
-    <{{module.subheading_tag}}
-      class="{{module.subheading_style}} subheading-macro"
-      style="text-align:var(--card-alignment);color:var(--text-color);">
+    <{{module.subheading_tag}} class="{{module.subheading_style}} subheading-macro">
       {{module.subheading}}
     </{{module.subheading_tag}}>
   {%- endif -%}

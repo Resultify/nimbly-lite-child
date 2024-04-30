@@ -30,7 +30,7 @@ init(
   ),
   group('Image', 'image',
     {
-      expanded: false,
+      expanded: true,
       visibility: {
         controlling_field_path: 'image_type',
         operator: 'EQUAL',
