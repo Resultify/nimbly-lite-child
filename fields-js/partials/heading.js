@@ -90,8 +90,9 @@ const heading = (parent = '') => {
         required: true,
         default: 'fontawesome',
         choices: [
-          ['fontawesome', 'Fontawesome 6'],
-          ['svg', 'SVG']
+          ['fontawesome', 'Fontawesome'],
+          ['inline_svg', 'Inline SVG'],
+          ['image', 'Image']
         ],
         visibility: {
           controlling_field_path: `${parent}heading.enable_heading_icon`,
@@ -134,7 +135,7 @@ const heading = (parent = '') => {
           ]
         }
       }),
-      fi.text('SVG', 'svg', {
+      fi.text('Inline SVG', 'inline_svg', {
         allow_new_line: true,
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
@@ -143,7 +144,28 @@ const heading = (parent = '') => {
             {
               controlling_field_path: `${parent}heading.icon_type`,
               operator: 'EQUAL',
-              controlling_value_regex: 'svg'
+              controlling_value_regex: 'inline_svg'
+            },
+            {
+              controlling_field_path: `${parent}heading.enable_heading_icon`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        }
+      }),
+      fi.image('Image', 'image', {
+        resizable: false,
+        show_loading: false,
+        responsive: false,
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}heading.icon_type`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'image'
             },
             {
               controlling_field_path: `${parent}heading.enable_heading_icon`,
@@ -154,10 +176,21 @@ const heading = (parent = '') => {
         }
       }),
       fi.color('Icon color', 'icon_color', {
-        visibility: {
-          controlling_field_path: `${parent}heading.enable_heading_icon`,
-          operator: 'EQUAL',
-          controlling_value_regex: 'true'
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}heading.enable_heading_icon`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            },
+            {
+              controlling_field_path: `${parent}heading.icon_type`,
+              operator: 'NOT_EQUAL',
+              controlling_value_regex: 'image'
+            }
+          ]
         }
       })
     )

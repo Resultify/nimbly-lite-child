@@ -18,17 +18,17 @@
       --card-content-gap: {{module.style.general.content_gap is truthy ? module.style.general.content_gap ~ 'px' : 0 }};
       --card-border: {{module.style.general.border.css && module.style.general.border.top.width.value is truthy ? module.style.general.border.css|cut('border:') : 'none' }};
       --card-border-radius: {{module.style.general.border_radius is truthy ? module.style.general.border_radius ~ "px" : 0 }};
-      --card-shadow: {{module.style.general.shadow is truthy ? 'var(--' ~ module.style.general.shadow ~ ')' : 'none' }};
+      --card-shadow: {{module.style.general.shadow is truthy ? 'var(--' ~ module.style.general.shadow ~ ')' : 'var(--shadow-)' }};
       --card-margin-top: {{module.style.general.spacing.margin.top.value is truthy ? module.style.general.spacing.margin.top.value ~ module.style.general.spacing.margin.top.units : 0 }};
       --card-margin-bottom: {{ module.style.general.spacing.margin.bottom.value is truthy ? module.style.general.spacing.margin.bottom.value ~ module.style.general.spacing.margin.bottom.units : 0 }};
       --card-padding: {{padding(module.style.general.spacing)}};
 
       --card-hover-overlay: {{module.style.hover.overlay_color.css && module.style.hover_effects is truthy ? module.style.hover.overlay_color.css : 'var(--card-background)' }};
       --card-hover-shadow: {{module.style.hover.shadow && module.style.hover_effects is truthy ? 'var(--' ~ module.style.hover.shadow ~ ')' : 'var(--card-shadow)' }};
-      --card-hover-animation: {{module.style.hover.animation && module.style.hover_effects is truthy ? 'var(--' ~ module.style.hover.animation ~ ')' : 'none' }};
+      --card-hover-animation: {{module.style.hover.animation && module.style.hover_effects is truthy ? 'var(--' ~ module.style.hover.animation ~ ')' : 'var(--ani-)' }};
 
       /* card-content-blocks */
-      --card-content-block-gap: {{module.style.content_block_styles && module.style.content_blocks_gap is truthy ? module.style.content_blocks_gap ~ 'px' : 'var(--card-content-gap)'}};
+      --card-content-separator-gap: {{module.style.content_block_styles && module.style.content_separator_gap is truthy ? module.style.content_separator_gap ~ 'px' : 'var(--card-content-gap)'}};
 
       --card-top-block-background: {{module.style.content_block_styles && module.style.top_content_block.background_color.css is truthy ? module.style.top_content_block.background_color.css : 'initial'}};
       --card-top-block-border: {{module.style.content_block_styles && module.style.top_content_block.border.css && module.style.top_content_block.border.top.width.value is truthy ? module.style.top_content_block.border.css|cut('border:') : 'none'}};
@@ -71,23 +71,39 @@
 <div class="card2-module">
   <div class="content-block-top">
     {% for item in module.components %}
-      {% if item.component|lower == 'image' %}
+
+      {% if item.component|lower == 'image' and !item.hide %}
         {{render_image()}}
-      {% elif item.component|lower == 'heading' %}
+
+      {% elif item.component|lower == 'heading' and !item.hide %}
         {{heading.render(module)}}
-      {% elif item.component|lower == 'subheading' %}
+
+      {% elif item.component|lower == 'subheading' and !item.hide %}
         {{subheading.render(module)}}
-      {% elif item.component|lower == 'text' %}
+
+      {% elif item.component|lower == 'text' and !item.hide %}
         {{text.render(module)}}
-      {% elif item.component|cut(" ")|lower == 'richtext' %}
+
+      {% elif item.component|cut(" ")|lower == 'richtext' and !item.hide %}
         {{richtext.render(module)}}
-      {% elif item.component|lower == 'separator' %}
+
+      {% elif item.component|lower == 'separator' and !item.hide %}
         </div>
         <div class="content-block-bottom">
-      {% elif item.component|lower == 'buttons' %}
+
+      {% elif item.component|lower == 'buttons' and !item.hide %}
         {{buttons.render(module.buttons, module.style, module)}}
-      {% elif item.component|cut(" ")|lower == 'additionalimages' %}
+
+      {% elif item.component|cut(" ")|lower == 'additionalimages' and !item.hide %}
+        {% if module.additional_images|length > 0 %}
+          <div class="additional-images">
+            {% for image in module.additional_images %}
+              {{simpleImage.render(image)}}
+            {% endfor %}
+          </div>
+        {% endif %}
       {% endif %}
+
     {% endfor %}
   </div>
 </div>

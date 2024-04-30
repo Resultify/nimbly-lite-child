@@ -15,9 +15,9 @@ const shadowList = (parent = '') => {
         ['shadow-lg', 'Shadow large'],
         ['shadow-xl', 'Shadow xl'],
         ['shadow-2xl', 'Shadow 2xl'],
-        ['custom-shadow1', 'Custom-shadow 1'],
-        ['custom-shadow2', 'Custom-shadow 2'],
-        ['custom-shadow3', 'Custom-shadow 3']
+        ['shadow-custom1', 'Custom-shadow 1'],
+        ['shadow-custom2', 'Custom-shadow 2'],
+        ['shadow-custom3', 'Custom-shadow 3']
       ]
     })
   ]

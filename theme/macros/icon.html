@@ -4,37 +4,40 @@
 -->
 
 {%- macro render(module, global) -%}
-  {% require_css %}
-    <style>
-      .icon-macro-wrp {
-        display: inline-flex;
-      }
-      .icon-macro-wrp > svg {
-        width: {{module.icon_size ~ 'px'}};
-        height: {{module.icon_size ~ 'px'}};
-      }
-    </style>
-  {% end_require_css %}
-  {% if global.style.icon_style.icon_bg_color.css or global.style.icon_style.icon_border_radius_px > 0 or global.style.icon_style.icon_border.css or global.style.icon_style.icon_spacing.css or global.style.icon_style.icon_color.css %}
-    <style>
-      {% scope_css %}
+  {%- if module.icon.inline_svg and module.icon.name -%}
+    {% require_css %}
+      <style>
         .icon-macro-wrp {
-          {% if global.style.icon_style.icon_bg_color.css %}
-            background-color: {{global.style.icon_style.icon_bg_color.css}};
-          {% endif %}
-          {% if global.style.icon_style.icon_border_radius_px > 0 %}
-            border-radius: {{global.style.icon_style.icon_border_radius_px ~ '%'}};
-          {% endif %}
-          {{global.style.icon_style.icon_border.css}}
-          {{global.style.icon_style.icon_spacing.css}}
+          display: inline-flex;
         }
         .icon-macro-wrp > svg {
-          {% if global.style.icon_style.icon_color.css %}
-            fill: {{global.style.icon_style.icon_color.css}};
-          {% endif %}
+          width: {{module.icon_size ~ 'px'}};
+          height: {{module.icon_size ~ 'px'}};
         }
-      {% end_scope_css %}
-    </style>
+      </style>
+    {% end_require_css %}
+
+    {% if global.style.icon_style.icon_bg_color.css or global.style.icon_style.icon_border_radius_px > 0 or global.style.icon_style.icon_border.css or global.style.icon_style.icon_spacing.css or global.style.icon_style.icon_color.css %}
+      <style>
+        {% scope_css %}
+          .icon-macro-wrp {
+            {% if global.style.icon_style.icon_bg_color.css %}
+              background-color: {{global.style.icon_style.icon_bg_color.css}};
+            {% endif %}
+            {% if global.style.icon_style.icon_border_radius_px > 0 %}
+              border-radius: {{global.style.icon_style.icon_border_radius_px ~ '%'}};
+            {% endif %}
+            {{global.style.icon_style.icon_border.css}}
+            {{global.style.icon_style.icon_spacing.css}}
+          }
+          .icon-macro-wrp > svg {
+            {% if global.style.icon_style.icon_color.css %}
+              fill: {{global.style.icon_style.icon_color.css}};
+            {% endif %}
+          }
+        {% end_scope_css %}
+      </style>
+    {% endif %}
   {% endif %}
 
   {%- if module.icon_type == 'fontawesome' -%}
@@ -48,7 +51,9 @@
         purpose="decorative"
       %}
     {%- endif -%}
-  {%- elif module.icon_type == 'svg' -%}
-    <div class="icon-macro-wrp">{{module.svg}}</div>
+  {%- elif module.icon_type == 'inline_svg' -%}
+    {%- if module.icon.inline_svg -%}
+      <div class="icon-macro-wrp">{{module.inline_svg}}</div>
+    {%- endif -%}
   {%- endif -%}
 {%- endmacro -%}

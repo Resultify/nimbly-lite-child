@@ -152,7 +152,7 @@ init(
       fi.spacing('Spacing', 'spacing')
     ),
     fi.boolean('Card content block styles', 'content_block_styles'),
-    fi.number('Content blocks gap', 'content_blocks_gap', {
+    fi.number('Content separator gap', 'content_separator_gap', {
       suffix: 'px',
       inherited_value: {
         default_value_path: 'module.style.general.content_gap'

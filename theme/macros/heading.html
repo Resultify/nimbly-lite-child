@@ -4,8 +4,74 @@
 -->
 
 {%- macro render(module) -%}
+
+  {%- macro icon(module, alignment) -%}
+    {%- if module.heading.enable_heading_icon -%}
+      {%- if module.heading.icon_alignment is containing alignment -%}
+        {%- if module.heading.icon_type == 'fontawesome' -%}
+          {%- if module.heading.icon.name -%}
+            {% icon
+              name="{{module.heading.icon.name}}"
+              style="{{module.heading.icon.type}}"
+              unicode="{{module.heading.icon.unicode}}"
+              icon_set="{{module.heading.icon.icon_set}}"
+              purpose="decorative",
+              no_wrapper=true
+            %}
+          {%- endif -%}
+        {%- elif module.heading.icon_type == 'inline_svg' -%}
+          {{module.heading.inline_svg}}
+        {%- elif module.heading.icon_type == 'image' -%}
+          <img class="heading-image"
+            alt=""
+            src="{{module.heading.image.src}}"
+            loading="lazy">
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endmacro -%}
+
   {%- if module.heading.heading -%}
-    <{{module.heading.heading_tag}} class="{{module.heading.heading_style}} heading-macro">
+    {% require_css %}
+      <style>
+        .heading-macro {
+          text-wrap: balance;
+          overflow-wrap: break-word;
+          -webkit-hyphens: auto; /* for Safari */
+          hyphens: auto;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3ch;
+          margin: 0;
+        }
+        .heading-macro > svg,
+        .heading-macro > a > svg {
+          width: auto;
+          height: 1.8ex;
+          fill: currentcolor;
+        }
+        .heading-macro > .heading-image,
+        .heading-macro > a > .heading-image {
+          width: auto;
+          height: 1.8ex;
+        }
+      </style>
+    {% end_require_css %}
+
+    {% if module.heading.icon_color.css %}
+      <style>
+        {% scope_css %}
+          .heading-macro > svg,
+          .heading-macro > a > svg {
+            fill: {{module.heading.icon_color.css}};
+          }
+        {% end_scope_css %}
+      </style>
+    {% endif %}
+
+    <{{module.heading.heading_tag}}
+      class="{{module.heading.heading_style}} heading-macro"
+      style="text-align:var(--card-alignment);color:var(--text-color);{{'justify-content:space-between;width:100%;' if module.heading.icon_alignment is containing 'space' and module.heading.enable_heading_icon}}">
       {%- if module.heading.heading_link.url.href and module.heading.enable_heading_link -%}
         {% set href = module.heading.heading_link.url.href %}
         {%- if module.heading.heading_link.url.type is equalto "EMAIL_ADDRESS" -%}
@@ -17,10 +83,14 @@
         <a href="{{href}}" class="heading-link {{"stretched-link" if heading_stretched_link}}"
         {{'target="_blank"' if module.heading.heading_link.open_in_new_tab}}
         {{module.heading.heading_link.rel}}>
+          {{icon(module, 'left')}}
           {{module.heading.heading}}
+          {{icon(module, 'right')}}
         </a>
       {%- else -%}
+        {{icon(module, 'left')}}
         {{module.heading.heading}}
+        {{icon(module, 'right')}}
       {%- endif -%}
     </{{module.heading.heading_tag}}>
   {%- endif -%}

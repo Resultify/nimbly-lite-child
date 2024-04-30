@@ -13,8 +13,8 @@ const icon = (parent = '') => {
       required: true,
       default: 'fontawesome',
       choices: [
-        ['fontawesome', 'Fontawesome 6'],
-        ['svg', 'SVG']
+        ['fontawesome', 'Fontawesome'],
+        ['inline_svg', 'Inline SVG']
       ]
     }),
     fi.number('Icon size', 'icon_size', {
@@ -30,12 +30,12 @@ const icon = (parent = '') => {
         controlling_value_regex: 'fontawesome'
       }
     }),
-    fi.text('SVG', 'svg', {
+    fi.text('Inline SVG', 'inline_svg', {
       allow_new_line: true,
       visibility: {
         controlling_field_path: `${parent}icon_type`,
         operator: 'EQUAL',
-        controlling_value_regex: 'svg'
+        controlling_value_regex: 'inline_svg'
       }
     })
   ]
@@ -58,7 +58,7 @@ const iconStyle = (parent = '') => {
               property: 'name'
             },
             {
-              controlling_field_path: `${parent}svg`,
+              controlling_field_path: `${parent}inline_svg`,
               operator: 'NOT_EMPTY'
             }
           ]

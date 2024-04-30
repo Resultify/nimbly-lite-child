@@ -21,7 +21,7 @@ const order = (components = []) => {
       fi.text('Component', 'component', {
         locked: true
       }),
-      fi.text('Note', 'note')
+      fi.boolean('Hide', 'hide')
     )
   ]
 }

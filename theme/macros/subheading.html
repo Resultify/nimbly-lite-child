@@ -4,8 +4,22 @@
 -->
 
 {%- macro render(module) -%}
-  {%- if module.subheading -%}
-    <{{module.subheading_tag}} class="{{module.subheading_style}} subheading-macro">
+{%- if module.subheading -%}
+    {% require_css %}
+      <style>
+        .subheading-macro {
+          text-wrap: balance;
+          overflow-wrap: break-word;
+          -webkit-hyphens: auto; /* for Safari */
+          hyphens: auto;
+          margin: 0;
+        }
+      </style>
+    {% end_require_css %}
+
+    <{{module.subheading_tag}}
+      class="{{module.subheading_style}} subheading-macro"
+      style="text-align:var(--card-alignment);color:var(--text-color);">
       {{module.subheading}}
     </{{module.subheading_tag}}>
   {%- endif -%}

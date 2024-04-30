@@ -7,7 +7,7 @@
   box-shadow: var(--card-shadow);
   margin-top: var(--card-margin-top);
   margin-bottom: var(--card-margin-bottom);
-  gap: var(--card-content-block-gap);
+  gap: var(--card-content-separator-gap);
   padding: var(--card-padding);
   justify-content: space-between;
   min-height: 100%;
@@ -15,8 +15,8 @@
   flex-direction: column;
   position: relative;
   transition-property: box-shadow, transform, background-color;
-  transition-duration: 300ms;
-  transition-timing-function: ease-in-out;
+  transition-duration: var(--root-transition-duration, 300ms);
+  transition-timing-function: var(--root-transition-timing-function, cubic-bezier(0.5,0.05,0.2,1.5));
   transform: translateZ(0);
 }
 
@@ -39,37 +39,33 @@
   padding: var(--card-bottom-block-padding);
 }
 
-/* generaral components flexbox gap */
+/* generaral card components flexbox gap */
 .card2-module .content-block-top,
 .card2-module .content-block-bottom,
-.card2-module .buttons-wrp {
+.card2-module .buttons-wrp,
+.card2-module .additional-images {
   gap: var(--card-content-gap);
 }
 
-/* general alignment */
+/* general card alignment */
 .card2-module .content-block-top,
 .card2-module .content-block-bottom {
   align-items: var(--card-alignment);
 }
-.card2-module :where(.heading-macro, .subheading-macro, .text-macro-wrp, .richtext-macro-wrp) {
-  text-align: var(--card-alignment);
-}
 .card2-module .buttons-wrp,
-.card2-module .btn-block-wrp {
+.card2-module .btn-block-wrp,
+.card2-module .additional-images {
   justify-content: var(--card-alignment);
 }
 
-/* general heading styles */
-.card2-module :where(h1,h2,h3,h4,h5,h6) {
-  margin: 0;
-  text-wrap: balance;
-  overflow-wrap: break-word;
-  -webkit-hyphens: auto; /* for Safari */
-  hyphens: auto;
-  color: var(--text-color);
-}
 
-/* general buttons styles */
+
+
+
+
+
+
+/* card buttons styles */
 .card2-module .buttons-wrp {
   display: flex;
   flex-direction: row;
@@ -85,6 +81,20 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+
+
+
+
+.card2-module .additional-images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+
+
 
 
 /* hover styles */
