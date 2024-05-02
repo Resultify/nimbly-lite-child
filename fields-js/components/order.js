@@ -7,6 +7,7 @@ const order = (components = []) => {
   return [
     group('Components', 'components',
       {
+        help_text: 'To hide a separator, move it to the bottom of the list.',
         occurrence: {
           min: components.length,
           max: components.length,
@@ -21,7 +22,7 @@ const order = (components = []) => {
       fi.text('Component', 'component', {
         locked: true
       }),
-      fi.boolean('Hide', 'hide')
+      fi.text('Note', 'note')
     )
   ]
 }

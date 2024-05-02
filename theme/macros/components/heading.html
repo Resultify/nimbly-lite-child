@@ -1,0 +1,111 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% import '../partials/link-attributes.html' %}
+{%- macro render(module) -%}
+  {%- macro icon(module, alignment) -%}
+    {%- if module.enable_heading_icon and module.heading_link_type != 'anchor' -%}
+      {%- if module.icon_alignment is containing alignment -%}
+        {%- if module.icon_type == 'fontawesome' -%}
+          {%- if module.icon.name -%}
+            {% icon
+              name="{{module.icon.name}}"
+              style="{{module.icon.type}}"
+              unicode="{{module.icon.unicode}}"
+              icon_set="{{module.icon.icon_set}}"
+              purpose="decorative",
+              no_wrapper=true
+            %}
+          {%- endif -%}
+        {%- elif module.icon_type == 'inline_svg' -%}
+          {{module.inline_svg}}
+        {%- elif module.icon_type == 'image' -%}
+          <img class="heading-image"
+            alt=""
+            src="{{module.image.src}}"
+            loading="lazy">
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endmacro -%}
+
+  {%- macro heading_text(module) -%}
+    {{icon(module, 'left')}}
+    {{module.heading}}
+    {{icon(module, 'right')}}
+  {%- endmacro -%}
+
+  {%- if module.heading -%}
+    {% require_css %}
+      <style>
+        .heading-macro {
+          text-wrap: balance;
+          overflow-wrap: break-word;
+          -webkit-hyphens: auto; /* for Safari */
+          hyphens: auto;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3ch;
+          margin: 0;
+          text-align: var(--module-alignment);
+          color: var(--module-color);
+        }
+        .heading-macro svg,
+        .heading-macro .heading-image {
+          width: auto;
+          height: 1.7ex;
+          fill: currentcolor;
+        }
+        .heading-link {
+          transition: color 0.25s ease;
+          gap: 0.3ch;
+        }
+        .anchor-heading-link {
+          display: block;
+        }
+        .anchor-heading-link svg.anchor-icon {
+          height: 1.4ex;
+          display: inline-block;
+          vertical-align: -.125em;
+          opacity: 0;
+          transition: opacity 0.25s ease;
+        }
+        .anchor-heading-link:hover svg.anchor-icon {
+          opacity: 0.5;
+        }
+      </style>
+    {% end_require_css %}
+    {%- if module.icon_color.css and module.heading_link_type != 'link' and module.heading_link_type != 'anchor' -%}
+      <style>
+        {%- scope_css -%}
+          .heading-macro > svg,
+          .heading-macro > a > svg:not(.anchor-icon) {
+            fill: {{module.icon_color.css}};
+          }
+        {%- end_scope_css -%}
+      </style>
+    {%- endif -%}
+    <{{module.heading_tag}}
+      class="{{module.heading_style}} heading-macro"
+      {{'style="justify-content:space-between;width:100%;"' if module.icon_alignment is containing 'space' and module.enable_heading_icon}}
+      {{'id="{{module.heading|lower|replace(" ", "-")|urlencode}}"' if module.heading_link_type == 'anchor'}}>
+      {%- if module.heading_link.url.href and module.heading_link_type == 'link' -%}
+        <a {{link_attributes(module.heading_link)}} class="heading-link {{"stretched-link" if heading_stretched_link}}">
+          {{icon(module, 'left')}}
+          {{module.heading}}
+          {{icon(module, 'right')}}
+        </a>
+      {%- elif module.heading_link_type == 'anchor' -%}
+        <a href="#{{module.heading|lower|replace(" ", "-")|urlencode}}" class="heading-link anchor-heading-link">
+          <span>{{module.heading}}</span>
+          <svg version="1.0" class="anchor-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true"><g><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"></path></g></svg>
+        </a>
+      {%- else -%}
+        {{icon(module, 'left')}}
+        {{module.heading}}
+        {{icon(module, 'right')}}
+      {%- endif -%}
+    </{{module.heading_tag}}>
+  {%- endif -%}
+{%- endmacro -%}

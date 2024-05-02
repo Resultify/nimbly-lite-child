@@ -504,6 +504,56 @@
     "description" : "",
     "placeholders" : null
   },
+  "field_group.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "field_group.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "field_group.label" : {
+    "message" : "Field group",
+    "description" : null,
+    "placeholders" : null
+  },
+  "field_group.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "field_group.text.default" : {
+    "message" : "Default text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "field_group.text.help_text" : {
+    "message" : "This is a text field",
+    "description" : "",
+    "placeholders" : null
+  },
+  "field_group.text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "field_group.text.label" : {
+    "message" : "Text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "field_group.text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "field_group.text.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
   "full_width_image.default.alt" : {
     "message" : "",
     "description" : "",
@@ -1075,36 +1125,6 @@
     "placeholders" : null
   },
   "subheading_tag.placeholder" : {
-    "message" : "",
-    "description" : "",
-    "placeholders" : null
-  },
-  "text.default" : {
-    "message" : "",
-    "description" : "",
-    "placeholders" : null
-  },
-  "text.help_text" : {
-    "message" : "",
-    "description" : "",
-    "placeholders" : null
-  },
-  "text.inline_help_text" : {
-    "message" : "",
-    "description" : "",
-    "placeholders" : null
-  },
-  "text.label" : {
-    "message" : "Text",
-    "description" : "",
-    "placeholders" : null
-  },
-  "text.placeholder" : {
-    "message" : "",
-    "description" : "",
-    "placeholders" : null
-  },
-  "text.validation_regex" : {
     "message" : "",
     "description" : "",
     "placeholders" : null

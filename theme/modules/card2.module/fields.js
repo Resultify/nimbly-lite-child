@@ -5,6 +5,7 @@ import {
   init,
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
+import { component } from '../../../fields-js/components/all.js'
 import { partial } from '../../../fields-js/partials/all.js'
 
 init(
@@ -26,18 +27,18 @@ init(
         controlling_value_regex: 'full_width'
       }
     },
-    partial.fullWidthImage('full_width')
+    component.fullWidthImage('full_width')
   ),
   group('Image', 'image',
     {
-      expanded: true,
+      expanded: false,
       visibility: {
         controlling_field_path: 'image_type',
         operator: 'EQUAL',
         controlling_value_regex: 'image'
       }
     },
-    partial.simpleImage('image')
+    component.simpleImage('image')
   ),
   group('Icon', 'icon',
     {
@@ -48,7 +49,7 @@ init(
         controlling_value_regex: 'icon'
       }
     },
-    partial.icon('icon')
+    component.icon('icon')
   ),
   group('Lottie animation', 'lottie',
     {
@@ -59,13 +60,15 @@ init(
         controlling_value_regex: 'lottie'
       }
     },
-    partial.lottie('lottie')
+    component.lottie('lottie')
   ),
-  partial.heading(),
-  partial.subheading(),
-  partial.text(),
+  group('Heading', 'heading', { expanded: true },
+    component.heading('heading')
+  ),
+  component.subheading(),
   fi.richtext('Rich text', 'richtext'),
-  partial.buttons,
+  component.text(),
+  component.buttons,
   group('Additional images', 'additional_images',
     {
       occurrence: {
@@ -74,14 +77,14 @@ init(
         sorting_label_field: 'additional_images.image.alt'
       }
     },
-    partial.simpleImage('additional_images')
+    component.simpleImage('additional_images')
   ),
-  partial.order([
+  component.order([
     'Image',
     'Heading',
     'Subheading',
-    'Text',
     'Rich text',
+    'Text',
     'Separator',
     'Buttons',
     'Additional images'
@@ -219,8 +222,8 @@ init(
       partial.shadowList(),
       partial.animationList()
     ),
-    partial.textStyle(),
-    partial.iconStyle('icon'),
-    partial.buttonsStyle
+    component.textStyle(),
+    component.iconStyle('icon'),
+    component.buttonsStyle
   )
 )
