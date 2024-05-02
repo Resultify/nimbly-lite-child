@@ -1,6 +1,5 @@
 import {
-  moduleFields as fi,
-  group
+  moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
 const icon = (parent = '') => {
@@ -37,43 +36,43 @@ const icon = (parent = '') => {
         operator: 'EQUAL',
         controlling_value_regex: 'inline_svg'
       }
+    }),
+    fi.boolean('Show/hide icon customization option', 'customize_icon'),
+    fi.color('Color', 'icon_color', {
+      visibility: {
+        controlling_field_path: `${parent}customize_icon`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
+      }
+    }),
+    fi.color('Background', 'icon_bg_color', {
+      visibility: {
+        controlling_field_path: `${parent}customize_icon`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
+      }
+    }),
+    fi.number('Border radius', 'icon_border_radius', {
+      default: 0,
+      suffix: '%',
+      display_width: 'half_width',
+      visibility: {
+        controlling_field_path: `${parent}customize_icon`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
+      }
+    }),
+    fi.number('Padding', 'icon_padding', {
+      default: 0,
+      suffix: 'px',
+      display_width: 'half_width',
+      visibility: {
+        controlling_field_path: `${parent}customize_icon`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
+      }
     })
   ]
 }
 
-const iconStyle = (parent = '') => {
-  if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
-  }
-  return [
-    group('Icon', 'icon_style',
-      {
-        visibility_rules: 'ADVANCED',
-        advanced_visibility: {
-          boolean_operator: 'OR',
-          criteria: [
-            {
-              controlling_field_path: `${parent}icon`,
-              operator: 'NOT_EMPTY',
-              property: 'name'
-            },
-            {
-              controlling_field_path: `${parent}inline_svg`,
-              operator: 'NOT_EMPTY'
-            }
-          ]
-        }
-      },
-      fi.color('Color', 'icon_color'),
-      fi.color('Background', 'icon_bg_color'),
-      fi.border('Border', 'icon_border'),
-      fi.number('Border radius (px)', 'icon_border_radius_px', {
-        default: 0,
-        suffix: '%'
-      }),
-      fi.spacing('Spacing', 'icon_spacing')
-    )
-  ]
-}
-
-export { icon, iconStyle }
+export { icon }

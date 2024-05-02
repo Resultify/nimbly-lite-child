@@ -18,18 +18,19 @@
           height: {{module.icon_size ~ 'px'}};
         }
         .icon-macro-wrp {
-          {%- if global.style.icon_style.icon_bg_color.css -%}
-            background-color: {{global.style.icon_style.icon_bg_color.css}};
+          {%- if module.icon_bg_color.css -%}
+            background-color: {{module.icon_bg_color.css}};
           {%- endif -%}
-          {% if global.style.icon_style.icon_border_radius_px > 0 %}
-            border-radius: {{global.style.icon_style.icon_border_radius_px ~ '%'}};
+          {% if module.icon_border_radius > 0 %}
+            border-radius: {{module.icon_border_radius ~ '%'}};
           {%- endif -%}
-          {{global.style.icon_style.icon_border.css}}
-          {{global.style.icon_style.icon_spacing.css}}
+          {% if module.icon_padding > 0 %}
+            padding: {{module.icon_padding ~ 'px'}};
+          {%- endif -%}
         }
-        {%- if global.style.icon_style.icon_color.css -%}
+        {%- if module.icon_color.css -%}
           .icon-macro-wrp > svg {
-            fill: {{global.style.icon_style.icon_color.css}};
+            fill: {{module.icon_color.css}};
           }
         {%- endif -%}
       {%- end_scope_css -%}

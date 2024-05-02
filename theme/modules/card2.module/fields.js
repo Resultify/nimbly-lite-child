@@ -20,7 +20,7 @@ init(
   }),
   group('Full width image', 'full_width',
     {
-      expanded: false,
+      expanded: true,
       visibility: {
         controlling_field_path: 'image_type',
         operator: 'EQUAL',
@@ -31,7 +31,7 @@ init(
   ),
   group('Image', 'image',
     {
-      expanded: false,
+      expanded: true,
       visibility: {
         controlling_field_path: 'image_type',
         operator: 'EQUAL',
@@ -42,7 +42,7 @@ init(
   ),
   group('Icon', 'icon',
     {
-      expanded: false,
+      expanded: true,
       visibility: {
         controlling_field_path: 'image_type',
         operator: 'EQUAL',
@@ -53,7 +53,7 @@ init(
   ),
   group('Lottie animation', 'lottie',
     {
-      expanded: false,
+      expanded: true,
       visibility: {
         controlling_field_path: 'image_type',
         operator: 'EQUAL',
@@ -223,7 +223,6 @@ init(
       partial.animationList()
     ),
     component.textStyle(),
-    component.iconStyle('icon'),
     component.buttonsStyle
   )
 )
