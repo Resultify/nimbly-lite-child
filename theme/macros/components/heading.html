@@ -58,7 +58,9 @@
           fill: currentcolor;
         }
         .heading-link {
-          transition: color 0.25s ease;
+          transition-property: color;
+          transition-duration: var(--root-transition-duration);
+          transition-timing-function: var(--root-transition-timing-function);
           gap: 0.3ch;
         }
         .anchor-heading-link {
@@ -69,7 +71,9 @@
           display: inline-block;
           vertical-align: -.125em;
           opacity: 0;
-          transition: opacity 0.25s ease;
+          transition-property: opacity;
+          transition-duration: var(--root-transition-duration);
+          transition-timing-function: var(--root-transition-timing-function);
         }
         .anchor-heading-link:hover svg.anchor-icon {
           opacity: 0.5;

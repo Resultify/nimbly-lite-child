@@ -14,27 +14,6 @@
         }
       </style>
     {% end_require_css %}
-    {%- if module.style.text.spacing.css or module.style.text.font.style or module.style.text.font.size or module.style.text.background.color or module.style.text.font.color -%}
-      <style>
-        {%- scope_css -%}
-          .text-macro {
-            {% if module.style.text.font.color %}
-              color: {{module.style.text.font.color}};
-            {% endif %}
-            {% if module.style.text.background.color %}
-              background-color: {{module.style.text.background.color}};
-            {% endif %}
-            {% if module.style.text.font.size %}
-              font-size: {{module.style.text.font.size ~ 'px'}};
-            {% endif %}
-            {% if module.style.text.font.style %}
-              {{module.style.text.font.style}};
-            {% endif %}
-            {{module.style.text.spacing.css}}
-          }
-        {%- end_scope_css -%}
-      </style>
-    {%- endif -%}
     <div class="text-macro-wrp">
       <span class="text-macro">{{module.text}}</span>
     </div>

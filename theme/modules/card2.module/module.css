@@ -1,7 +1,7 @@
 .card2-module {
   color: var(--module-color);
   fill: var(--module-color);
-  background-color: var(--card-background);
+  background-color: var(--module-background);
   border: var(--card-border);
   border-radius: var(--module-border-radius);
   box-shadow: var(--card-shadow);
@@ -15,8 +15,8 @@
   flex-direction: column;
   position: relative;
   transition-property: box-shadow, transform, background-color, color, fill;
-  transition-duration: var(--root-transition-duration, 300ms);
-  transition-timing-function: var(--root-transition-timing-function, ease-in-out);
+  transition-duration: var(--root-transition-duration);
+  transition-timing-function: var(--root-transition-timing-function);
   transform: translateZ(0);
   will-change: transform;
 }
