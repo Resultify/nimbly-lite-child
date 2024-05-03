@@ -1,6 +1,5 @@
 import {
-  moduleFields as fi,
-  group
+  moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
 const text = (parent = '') => {
@@ -14,26 +13,4 @@ const text = (parent = '') => {
   ]
 }
 
-const textStyle = (parent = '') => {
-  if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
-  }
-  return [
-    group('Text', 'text',
-      {
-        visibility: {
-          controlling_field_path: `${parent}text`,
-          operator: 'NOT_EMPTY'
-        }
-      },
-      fi.spacing('Spacing', 'spacing'),
-      fi.color('Background', 'background'),
-      fi.font('Font', 'font')
-    )
-  ]
-}
-
-export {
-  text,
-  textStyle
-}
+export { text }

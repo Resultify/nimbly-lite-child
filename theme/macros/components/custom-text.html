@@ -1,0 +1,48 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{%- macro render(module) -%}
+  {%- if module.custom_text|length > 0 -%}
+    {% require_css %}
+      <style>
+        .custom-text-macro-wrp {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 0.5ch;
+        }
+        .custom-text-macro {
+          display: block;
+        }
+      </style>
+    {% end_require_css %}
+    <div class="custom-text-macro-wrp">
+      {%- for item in module.custom_text -%}
+        {%- if item.text -%}
+          <style>
+            {%- scope_css -%}
+              .custom-text-macro{{loop.index}} {
+                {%- if item.border_radius > 0 -%}
+                  border-radius: {{item.border_radius ~ 'px'}};
+                {%- endif -%}
+                {%- if item.background.css -%}
+                  background-color: {{item.background.css}};
+                {%- endif -%}
+                {{item.font.css}}
+                {%- if item.text_gradient.css -%}
+                  -webkit-text-fill-color: transparent;
+                  background-clip: text;
+                  -webkit-background-clip: text;
+                  background-image: {{item.text_gradient.css}};
+                {%- endif -%}
+                {{item.spacing.css}}
+              }
+            {%- end_scope_css -%}
+          </style>
+          <span class="custom-text-macro custom-text-macro{{loop.index}}">{{item.text}}</span>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+{%- endmacro -%}

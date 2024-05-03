@@ -13,7 +13,7 @@ const icon = (parent = '') => {
       default: 'fontawesome',
       choices: [
         ['fontawesome', 'Fontawesome'],
-        ['inline_svg', 'Inline SVG']
+        ['icon_inline_svg', 'Inline SVG']
       ]
     }),
     fi.number('Icon size', 'icon_size', {
@@ -29,25 +29,27 @@ const icon = (parent = '') => {
         controlling_value_regex: 'fontawesome'
       }
     }),
-    fi.text('Inline SVG', 'inline_svg', {
+    fi.text('Inline SVG', 'icon_inline_svg', {
       allow_new_line: true,
       visibility: {
         controlling_field_path: `${parent}icon_type`,
         operator: 'EQUAL',
-        controlling_value_regex: 'inline_svg'
+        controlling_value_regex: 'icon_inline_svg'
       }
     }),
-    fi.boolean('Show/hide icon customization option', 'customize_icon'),
+    fi.boolean('Customization', 'icon_customization', {
+      help_text: 'Show/hide customization options.'
+    }),
     fi.color('Color', 'icon_color', {
       visibility: {
-        controlling_field_path: `${parent}customize_icon`,
+        controlling_field_path: `${parent}icon_customization`,
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }
     }),
     fi.color('Background', 'icon_bg_color', {
       visibility: {
-        controlling_field_path: `${parent}customize_icon`,
+        controlling_field_path: `${parent}icon_customization`,
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }
@@ -57,7 +59,7 @@ const icon = (parent = '') => {
       suffix: '%',
       display_width: 'half_width',
       visibility: {
-        controlling_field_path: `${parent}customize_icon`,
+        controlling_field_path: `${parent}icon_customization`,
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }
@@ -67,7 +69,7 @@ const icon = (parent = '') => {
       suffix: 'px',
       display_width: 'half_width',
       visibility: {
-        controlling_field_path: `${parent}customize_icon`,
+        controlling_field_path: `${parent}icon_customization`,
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }

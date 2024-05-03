@@ -67,8 +67,8 @@ init(
   ),
   component.subheading(),
   fi.richtext('Rich text', 'richtext'),
-  component.text(),
   component.buttons,
+  component.customText(),
   group('Additional images', 'additional_images',
     {
       occurrence: {
@@ -84,10 +84,10 @@ init(
     'Heading',
     'Subheading',
     'Rich text',
-    'Text',
-    'Separator',
     'Buttons',
-    'Additional images'
+    'Custom text',
+    'Additional images',
+    'Separator'
   ]),
   fi.boolean('Whole area link', 'whole_area_link', {
     display: 'toggle',
@@ -166,48 +166,48 @@ init(
         controlling_value_regex: 'true'
       }
     }),
-    group('Top content block', 'top_content_block',
-      {
-        visibility: {
-          controlling_field_path: 'style.content_block_styles',
-          operator: 'EQUAL',
-          controlling_value_regex: 'true'
-        }
-      },
-      fi.color('Background color', 'background_color'),
-      fi.border('Border', 'border'),
-      fi.number('Border radius', 'border_radius', {
-        suffix: 'px'
-      }),
-      fi.spacing('Spacing', 'spacing', {
-        visibility: {
-          hidden_subfields: {
-            margin: true
-          }
-        }
-      })
-    ),
-    group('Bottom content block', 'bottom_content_block',
-      {
-        visibility: {
-          controlling_field_path: 'style.content_block_styles',
-          operator: 'EQUAL',
-          controlling_value_regex: 'true'
-        }
-      },
-      fi.color('Background color', 'background_color'),
-      fi.border('Border', 'border'),
-      fi.number('Border radius', 'border_radius', {
-        suffix: 'px'
-      }),
-      fi.spacing('Spacing', 'spacing', {
-        visibility: {
-          hidden_subfields: {
-            margin: true
-          }
-        }
-      })
-    ),
+    // group('Top content block', 'top_content_block',
+    //   {
+    //     visibility: {
+    //       controlling_field_path: 'style.content_block_styles',
+    //       operator: 'EQUAL',
+    //       controlling_value_regex: 'true'
+    //     }
+    //   },
+    //   fi.color('Background color', 'background_color'),
+    //   fi.border('Border', 'border'),
+    //   fi.number('Border radius', 'border_radius', {
+    //     suffix: 'px'
+    //   }),
+    //   fi.spacing('Spacing', 'spacing', {
+    //     visibility: {
+    //       hidden_subfields: {
+    //         margin: true
+    //       }
+    //     }
+    //   })
+    // ),
+    // group('Bottom content block', 'bottom_content_block',
+    //   {
+    //     visibility: {
+    //       controlling_field_path: 'style.content_block_styles',
+    //       operator: 'EQUAL',
+    //       controlling_value_regex: 'true'
+    //     }
+    //   },
+    //   fi.color('Background color', 'background_color'),
+    //   fi.border('Border', 'border'),
+    //   fi.number('Border radius', 'border_radius', {
+    //     suffix: 'px'
+    //   }),
+    //   fi.spacing('Spacing', 'spacing', {
+    //     visibility: {
+    //       hidden_subfields: {
+    //         margin: true
+    //       }
+    //     }
+    //   })
+    // ),
     fi.boolean('Card hover effects', 'hover_effects'),
     group('Hover', 'hover',
       {
@@ -218,11 +218,11 @@ init(
           controlling_value_regex: 'true'
         }
       },
-      fi.color('Overlay color', 'overlay_color'),
+      fi.color('Text color', 'text_color'),
+      fi.color('Background color', 'background_color'),
       partial.shadowList(),
       partial.animationList()
     ),
-    component.textStyle(),
     component.buttonsStyle
   )
 )

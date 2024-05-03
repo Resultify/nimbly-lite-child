@@ -2,9 +2,9 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(module) -%}
+{%- macro render(module, first, last) -%}
   {%- if module.full_width_image.src -%}
-    {% require_css %}
+    {%- require_css -%}
       <style>
         .full-width-image-macro-wrp {
           width: 100%;
@@ -15,13 +15,45 @@
           display: block;
           max-width: 100%;
           height: auto;
-          position: absolute;
-          top: 0;
-          left: 0;
         }
       </style>
-    {% end_require_css %}
-    <div class="full-width-image-macro-wrp" style="aspect-ratio: {{module.aspect_ratio}}">
+    {%- end_require_css -%}
+    {%- if module.force_full_width -%}
+      <style>
+        {%- scope_css -%}
+          .full-width-image-macro-wrp {
+            margin-left: calc(var(--module-padding-left) * -1);
+            margin-right: calc(var(--module-padding-right) * -1);
+            width: calc(100% + var(--module-padding-left) + var(--module-padding-right));
+            {%- if module.force_full_width and first -%}
+              margin-top: calc(var(--module-padding-top) * -1);
+              margin-bottom: 0.8rem;
+            {%- elif module.force_full_width and last -%}
+              margin-bottom: calc(var(--module-padding-bottom) * -1);
+            {%- endif -%}
+          }
+          .full-width-image-macro {
+            {%- if module.force_full_width and first -%}
+              border-top-left-radius: var(--module-border-radius);
+              border-top-right-radius: var(--module-border-radius);
+            {%- elif module.force_full_width and last -%}
+              border-bottom-left-radius: var(--module-border-radius);
+              border-bottom-right-radius: var(--module-border-radius);
+            {%- endif -%}
+          }
+        {%- end_scope_css -%}
+      </style>
+    {%- endif -%}
+    {%- if module.border_radius > 0 and module.force_full_width != 'true' -%}
+      <style>
+        {%- scope_css -%}
+          .full-width-image-macro {
+            border-radius: {{module.border_radius ~ 'px'}};
+          }
+        {%- end_scope_css -%}
+      </style>
+    {%- endif -%}
+    <div class="full-width-image-macro-wrp">
       <img class="full-width-image-macro"
         style="aspect-ratio: {{module.aspect_ratio}}"
         alt="{{module.full_width_image.alt}}"

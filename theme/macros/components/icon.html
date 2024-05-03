@@ -3,7 +3,7 @@
   isAvailableForNewContent: false
 -->
 {%- macro render(module, global) -%}
-  {%- if module.icon.inline_svg or module.icon.name -%}
+  {%- if module.icon.icon_inline_svg or module.icon.name -%}
     {% require_css %}
       <style>
         .icon-macro-wrp {
@@ -47,9 +47,9 @@
         purpose="decorative"
       %}
     {%- endif -%}
-  {%- elif module.icon_type == 'inline_svg' -%}
-    {%- if module.inline_svg -%}
-      <div class="icon-macro-wrp">{{module.inline_svg}}</div>
+  {%- elif module.icon_type == 'icon_inline_svg' -%}
+    {%- if module.icon_inline_svg -%}
+      <div class="icon-macro-wrp">{{module.icon_inline_svg}}</div>
     {%- endif -%}
   {%- endif -%}
 {%- endmacro -%}

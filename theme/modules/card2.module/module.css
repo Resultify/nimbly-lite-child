@@ -3,7 +3,7 @@
   fill: var(--module-color);
   background-color: var(--card-background);
   border: var(--card-border);
-  border-radius: var(--card-border-radius);
+  border-radius: var(--module-border-radius);
   box-shadow: var(--card-shadow);
   margin-top: var(--card-margin-top);
   margin-bottom: var(--card-margin-bottom);
@@ -14,10 +14,11 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  transition-property: box-shadow, transform, background-color;
+  transition-property: box-shadow, transform, background-color, color, fill;
   transition-duration: var(--root-transition-duration, 300ms);
-  transition-timing-function: var(--root-transition-timing-function, cubic-bezier(0.5,0.05,0.2,1.5));
+  transition-timing-function: var(--root-transition-timing-function, ease-in-out);
   transform: translateZ(0);
+  will-change: transform;
 }
 
 /* content blocks styles */
@@ -44,7 +45,7 @@
 .card2-module .content-block-bottom,
 .card2-module .buttons-wrp,
 .card2-module .additional-images {
-  gap: var(--card-content-gap);
+  gap: var(--module-content-gap);
 }
 
 /* general card alignment */
@@ -63,7 +64,9 @@
 /* hover styles */
 @media (any-hover: hover) {
   .card2-module:hover {
-    background-color: var(--card-hover-overlay);
+    color: var(--card-hover-color);
+    fill: var(--card-hover-color);
+    background-color: var(--card-hover-background);
     box-shadow: var(--card-hover-shadow);
     transform: var(--card-hover-animation);
   }

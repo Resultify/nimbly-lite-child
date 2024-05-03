@@ -12,11 +12,20 @@ const fullWidthImage = (parent = '') => {
       show_loading: false,
       responsive: true
     }),
+    fi.boolean('Force full width', 'force_full_width', {
+      help_text: 'This image is already full-width, but with the <strong>Force full width</strong> option enabled, it will take the full width of the parent element, even if there is extra padding around it.',
+      display_width: 'half_width',
+      default: false,
+      visibility: {
+        controlling_field_path: `${parent}full_width_image`,
+        operator: 'NOT_EMPTY',
+        property: 'src'
+      }
+    }),
     fi.choice('Aspect ratio', 'aspect_ratio', {
       display_width: 'half_width',
       required: true,
       default: '16/9',
-      visibility_rules: 'ADVANCED',
       visibility: {
         controlling_field_path: `${parent}full_width_image`,
         operator: 'NOT_EMPTY',
@@ -34,6 +43,37 @@ const fullWidthImage = (parent = '') => {
         ['9/16', '9/16'],
         ['16/9', '16/9']
       ]
+    }),
+    fi.boolean('Hover effects', 'hover', {
+      help_text: 'Show/hide hover effects.',
+      display_width: 'half_width',
+      default: false,
+      visibility: {
+        controlling_field_path: `${parent}full_width_image`,
+        operator: 'NOT_EMPTY',
+        property: 'src'
+      }
+    }),
+    fi.number('Border radius', 'border_radius', {
+      display_width: 'half_width',
+      default: 0,
+      suffix: 'px',
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: `${parent}full_width_image`,
+            operator: 'NOT_EMPTY',
+            property: 'src'
+          },
+          {
+            controlling_field_path: `${parent}force_full_width`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'false'
+          }
+        ]
+      }
     })
   ]
 }

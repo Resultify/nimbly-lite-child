@@ -1,6 +1,7 @@
 import * as heading from './heading.js'
 import * as subheading from './subheading.js'
 import * as text from './text.js'
+import * as customText from './custom-text.js'
 import * as button from './buttons.js'
 import * as simpleImage from './simple-image.js'
 import * as order from './order.js'
@@ -17,7 +18,8 @@ const component = {
   ...order,
   ...lottie,
   ...icon,
-  ...fullWidthImage
+  ...fullWidthImage,
+  ...customText
 }
 
 export { component }

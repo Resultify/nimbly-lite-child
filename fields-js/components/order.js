@@ -22,7 +22,7 @@ const order = (components = []) => {
       fi.text('Component', 'component', {
         locked: true
       }),
-      fi.text('Note', 'note')
+      fi.text('Note', 'note', { allow_new_line: true })
     )
   ]
 }

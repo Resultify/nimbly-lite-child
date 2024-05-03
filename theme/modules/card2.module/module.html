@@ -7,7 +7,7 @@
 {% import '../../macros/components/buttons.html' as buttons %}
 {% import '../../macros/components/heading.html' as heading %}
 {% import '../../macros/components/subheading.html' as subheading %}
-{% import '../../macros/components/text.html' as text %}
+{% import '../../macros/components/custom-text.html' as customText %}
 {% import '../../macros/components/richtext.html' as richtext %}
 {% import '../../macros/components/full-width-image.html' as fullWidthImage %}
 {% import '../../macros/components/icon.html' as icon %}
@@ -20,23 +20,29 @@
     .card2-module {
       --module-color: {{module.style.general.text_color.css is truthy ? module.style.general.text_color.css : 'initial' }};
       --module-alignment: {{horizontal_alignment_flexbox(module.style.general.alignment.horizontal_align)}};
+      --module-border-radius: {{module.style.general.border_radius is truthy ? module.style.general.border_radius ~ "px" : 0 }};
       --card-background: {{module.style.general.background_type == 'background_color' && module.style.general.background_color.css is truthy ? module.style.general.background_color.css : 'initial' }};
-      --card-content-gap: {{module.style.general.content_gap is truthy ? module.style.general.content_gap ~ 'px' : 0 }};
+      --module-content-gap: {{module.style.general.content_gap is truthy ? module.style.general.content_gap ~ 'px' : 0 }};
       --card-border: {{module.style.general.border.css && module.style.general.border.top.width.value is truthy ? module.style.general.border.css|cut('border:') : 'none' }};
-      --card-border-radius: {{module.style.general.border_radius is truthy ? module.style.general.border_radius ~ "px" : 0 }};
       --card-shadow: {{module.style.general.shadow is truthy ? 'var(--' ~ module.style.general.shadow ~ ')' : 'var(--shadow-)' }};
       --card-margin-top: {{module.style.general.spacing.margin.top.value is truthy ? module.style.general.spacing.margin.top.value ~ module.style.general.spacing.margin.top.units : 0 }};
       --card-margin-bottom: {{ module.style.general.spacing.margin.bottom.value is truthy ? module.style.general.spacing.margin.bottom.value ~ module.style.general.spacing.margin.bottom.units : 0 }};
-      --card-padding: {{padding(module.style.general.spacing)}};
+      {# --card-padding: {{padding(module.style.general.spacing)}}; #}
 
-      --card-hover-overlay: {{module.style.hover.overlay_color.css && module.style.hover_effects is truthy ? module.style.hover.overlay_color.css : 'var(--card-background)' }};
+      --module-padding-top: {{module.style.general.spacing.padding.top.value is truthy ? module.style.general.spacing.padding.top.value ~ module.style.general.spacing.padding.top.units : 0 }};
+      --module-padding-bottom: {{module.style.general.spacing.padding.bottom.value is truthy ? module.style.general.spacing.padding.bottom.value ~ module.style.general.spacing.padding.bottom.units : 0 }};
+      --module-padding-left: {{module.style.general.spacing.padding.left.value is truthy ? module.style.general.spacing.padding.left.value ~ module.style.general.spacing.padding.left.units : 0 }};
+      --module-padding-right: {{module.style.general.spacing.padding.right.value is truthy ? module.style.general.spacing.padding.right.value ~ module.style.general.spacing.padding.right.units : 0 }};
+
+      --card-hover-color: {{module.style.hover.text_color.css && module.style.hover_effects is truthy ? module.style.hover.text_color.css : 'var(--module-color)' }};
+      --card-hover-background: {{module.style.hover.background_color.css && module.style.hover_effects is truthy ? module.style.hover.background_color.css : 'var(--card-background)' }};
       --card-hover-shadow: {{module.style.hover.shadow && module.style.hover_effects is truthy ? 'var(--' ~ module.style.hover.shadow ~ ')' : 'var(--card-shadow)' }};
       --card-hover-animation: {{module.style.hover.animation && module.style.hover_effects is truthy ? 'var(--' ~ module.style.hover.animation ~ ')' : 'var(--ani-)' }};
 
       /* card-content-blocks */
-      --card-content-separator-gap: {{module.style.content_block_styles && module.style.content_separator_gap is truthy ? module.style.content_separator_gap ~ 'px' : 'var(--card-content-gap)'}};
+      {# --card-content-separator-gap: {{module.style.content_block_styles && module.style.content_separator_gap is truthy ? module.style.content_separator_gap ~ 'px' : 'var(--module-content-gap)'}}; #}
 
-      --card-top-block-background: {{module.style.content_block_styles && module.style.top_content_block.background_color.css is truthy ? module.style.top_content_block.background_color.css : 'initial'}};
+      {# --card-top-block-background: {{module.style.content_block_styles && module.style.top_content_block.background_color.css is truthy ? module.style.top_content_block.background_color.css : 'initial'}};
       --card-top-block-border: {{module.style.content_block_styles && module.style.top_content_block.border.css && module.style.top_content_block.border.top.width.value is truthy ? module.style.top_content_block.border.css|cut('border:') : 'none'}};
       --card-top-block-border-radius: {{module.style.content_block_styles && module.style.top_content_block.border_radius is truthy ? module.style.top_content_block.border_radius ~ "px" : 0}};
       --card-top-block-padding: {{module.style.content_block_styles && module.style.top_content_block.spacing.css is truthy ? padding(module.style.top_content_block.spacing) : 0}};
@@ -44,7 +50,7 @@
       --card-bottom-block-background: {{module.style.content_block_styles && module.style.bottom_content_block.background_color.css is truthy ? module.style.bottom_content_block.background_color.css : 'initial'}};
       --card-bottom-block-border: {{module.style.content_block_styles && module.style.bottom_content_block.border.css && module.style.bottom_content_block.border.top.width.value is truthy ? module.style.bottom_content_block.border.css|cut('border:') : 'none'}};
       --card-bottom-block-border-radius: {{module.style.content_block_styles && module.style.bottom_content_block.border_radius is truthy ? module.style.bottom_content_block.border_radius ~ "px" : 0}};
-      --card-bottom-block-padding: {{module.style.content_block_styles && module.style.bottom_content_block.spacing.css is truthy ? padding(module.style.bottom_content_block.spacing) : 0}};
+      --card-bottom-block-padding: {{module.style.content_block_styles && module.style.bottom_content_block.spacing.css is truthy ? padding(module.style.bottom_content_block.spacing) : 0}}; #}
 
       {% if module.style.general.background_type == 'background_image'  %}
         {{module.style.general.background_image.css}}
@@ -62,9 +68,9 @@
   {% set btn_stretched_link = true %}
 {% endif %}
 
-{%- macro render_image() -%}
+{%- macro render_image(isfirst, islast) -%}
   {% if module.image_type == 'full_width' %}
-    {{fullWidthImage.render(module.full_width)}}
+    {{fullWidthImage.render(module.full_width, isfirst, islast)}}
   {% elif module.image_type == 'image' %}
     {{simpleImage.render(module.image)}}
   {% elif module.image_type == 'icon' %}
@@ -77,9 +83,8 @@
 <div class="card2-module">
   <div class="content-block-top">
     {% for item in module.components %}
-
       {% if item.component|lower == 'image' %}
-        {{render_image()}}
+        {{render_image(loop.first, loop.last)}}
 
       {% elif item.component|lower == 'heading' %}
         {{heading.render(module.heading)}}
@@ -87,18 +92,14 @@
       {% elif item.component|lower == 'subheading' %}
         {{subheading.render(module)}}
 
-      {% elif item.component|lower == 'text' %}
-        {{text.render(module)}}
+      {% elif item.component|cut(" ")|lower == 'customtext' %}
+        {{customText.render(module)}}
 
       {% elif item.component|cut(" ")|lower == 'richtext' %}
         {{richtext.render(module)}}
 
-      {% elif item.component|lower == 'separator' and !loop.last %}
-        </div>
-        <div class="content-block-bottom">
-
       {% elif item.component|lower == 'buttons' %}
-        {{buttons.render(module.buttons, module.style, module)}}
+        {{buttons.render(module, module.style, module)}}
 
       {% elif item.component|cut(" ")|lower == 'additionalimages' %}
         {% if module.additional_images|length > 0 %}
@@ -108,6 +109,11 @@
             {% endfor %}
           </div>
         {% endif %}
+
+      {% elif item.component|lower == 'separator' and !loop.last %}
+        </div>
+        <div class="content-block-bottom">
+
       {% endif %}
 
     {% endfor %}
