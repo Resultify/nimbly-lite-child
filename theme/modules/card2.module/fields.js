@@ -95,70 +95,65 @@ init(
     display_width: 'half_width'
   }),
   styleGroup(
-    group('General', 'general',
+    fi.color('Text color', 'text_color', {
+      show_opacity: false
+    }),
+    fi.alignment('Alignment', 'alignment',
       {
-        expanded: true
-      },
-      fi.color('Text color', 'text_color', {
-        show_opacity: false
-      }),
-      fi.alignment('Alignment', 'alignment',
-        {
-          default: {
-            horizontal_align: 'LEFT'
-          },
-          alignment_direction: 'HORIZONTAL'
-        }
-      ),
-      fi.number('Content gap', 'content_gap', {
-        suffix: 'px',
-        default: 12,
-        display_width: 'half_width',
-        help_text: 'General gap between all card components'
-      }),
-      fi.choice('Background type', 'background_type', {
-        display_width: 'half_width',
-        choices: [
-          ['background_color', 'Background color'],
-          ['background_image', 'Background image'],
-          ['background_gradient', 'Background gradient']
-        ]
-      }),
-      fi.color('Background color', 'background_color', {
-        visibility: {
-          controlling_field_path: 'style.general.background_type',
-          operator: 'EQUAL',
-          controlling_value_regex: 'background_color'
-        }
-      }),
-      fi.backgroundimage('Background image', 'background_image', {
-        visibility: {
-          controlling_field_path: 'style.general.background_type',
-          operator: 'EQUAL',
-          controlling_value_regex: 'background_image'
-        }
-      }),
-      fi.gradient('Background gradient', 'background_gradient', {
-        visibility: {
-          controlling_field_path: 'style.general.background_type',
-          operator: 'EQUAL',
-          controlling_value_regex: 'background_gradient'
-        }
-      }),
-      fi.border('Border', 'border'),
-      fi.number('Border radius', 'border_radius', {
-        default: 0,
-        suffix: 'px',
-        display_width: 'half_width'
-      }),
-      partial.shadowList(),
-      fi.spacing('Spacing', 'spacing')
+        default: {
+          horizontal_align: 'LEFT'
+        },
+        alignment_direction: 'HORIZONTAL'
+      }
     ),
+    fi.number('Content gap', 'content_gap', {
+      suffix: 'px',
+      default: 12,
+      display_width: 'half_width',
+      help_text: 'General gap between all card components'
+    }),
+    fi.choice('Background type', 'background_type', {
+      display_width: 'half_width',
+      choices: [
+        ['background_color', 'Background color'],
+        ['background_image', 'Background image'],
+        ['background_gradient', 'Background gradient']
+      ]
+    }),
+    fi.color('Background color', 'background_color', {
+      visibility: {
+        controlling_field_path: 'style.background_type',
+        operator: 'EQUAL',
+        controlling_value_regex: 'background_color'
+      }
+    }),
+    fi.backgroundimage('Background image', 'background_image', {
+      visibility: {
+        controlling_field_path: 'style.background_type',
+        operator: 'EQUAL',
+        controlling_value_regex: 'background_image'
+      }
+    }),
+    fi.gradient('Background gradient', 'background_gradient', {
+      visibility: {
+        controlling_field_path: 'style.background_type',
+        operator: 'EQUAL',
+        controlling_value_regex: 'background_gradient'
+      }
+    }),
+    fi.border('Border', 'border'),
+    fi.number('Border radius', 'border_radius', {
+      default: 0,
+      suffix: 'px',
+      display_width: 'half_width'
+    }),
+    partial.shadowList(),
+    fi.spacing('Spacing', 'spacing'),
     fi.boolean('Card content block styles', 'content_block_styles'),
     fi.number('Content separator gap', 'content_separator_gap', {
       suffix: 'px',
       inherited_value: {
-        default_value_path: 'module.style.general.content_gap'
+        default_value_path: 'module.style.content_gap'
       },
       visibility: {
         controlling_field_path: 'style.content_block_styles',
