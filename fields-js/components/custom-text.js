@@ -21,13 +21,7 @@ const customText = (parent = '') => {
         allow_new_line: true
       }),
       fi.font('Font', 'font'),
-      fi.color('Background', 'background', {
-        visibility: {
-          controlling_field_path: 'custom_text.text_gradient',
-          operator: 'EMPTY',
-          property: 'colors'
-        }
-      }),
+      fi.color('Background', 'background'),
       fi.spacing('', 'spacing', {
         visibility: {
           hidden_subfields: {
