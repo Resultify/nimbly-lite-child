@@ -55,7 +55,6 @@ const icon = (parent = '') => {
       }
     }),
     fi.number('Border radius', 'icon_border_radius', {
-      default: 0,
       suffix: '%',
       display_width: 'half_width',
       visibility: {

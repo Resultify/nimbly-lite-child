@@ -3,7 +3,7 @@
   isAvailableForNewContent: false
 -->
 {% import '../partials/link-attributes.html' %}
-{%- macro render(module, style) -%}
+{%- macro render(module) -%}
   {%- if module.buttons|length > 0 -%}
     {% require_css %}
       <style>

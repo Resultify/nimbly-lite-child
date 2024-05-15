@@ -143,7 +143,6 @@ init(
     }),
     fi.border('Border', 'border'),
     fi.number('Border radius', 'border_radius', {
-      default: 0,
       suffix: 'px',
       display_width: 'half_width'
     }),

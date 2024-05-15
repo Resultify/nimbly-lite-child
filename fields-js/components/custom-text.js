@@ -31,7 +31,6 @@ const customText = (parent = '') => {
       }),
       fi.number('Border radius', 'border_radius', {
         display_width: 'half_width',
-        default: 0,
         suffix: 'px'
       }),
       fi.gradient('Text gradient', 'text_gradient')

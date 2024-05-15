@@ -2,7 +2,7 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(module, global) -%}
+{%- macro render(module) -%}
   {%- if module.icon.icon_inline_svg or module.icon.name -%}
     {% require_css %}
       <style>

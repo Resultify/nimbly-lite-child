@@ -68,6 +68,7 @@ const buttons = [
       }
     }),
     fi.link('', 'button_link', {
+      supported_types: ['BLOG', 'CALL_TO_ACTION', 'CONTENT', 'EMAIL_ADDRESS', 'FILE', 'EXTERNAL', 'PAYMENT', 'PHONE_NUMBER', 'WHATSAPP_NUMBER'],
       visibility: {
         controlling_field_path: 'buttons.button_style',
         operator: 'NOT_EQUAL',
