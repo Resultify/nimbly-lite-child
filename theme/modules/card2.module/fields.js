@@ -134,6 +134,13 @@ init(
         controlling_value_regex: 'background_image'
       }
     }),
+    fi.color('Background image overlay', 'background_image_overlay', {
+      visibility: {
+        controlling_field_path: 'style.background_type',
+        operator: 'EQUAL',
+        controlling_value_regex: 'background_image'
+      }
+    }),
     fi.gradient('Background gradient', 'background_gradient', {
       visibility: {
         controlling_field_path: 'style.background_type',

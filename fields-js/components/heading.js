@@ -51,13 +51,6 @@ const heading = (parent = '') => {
         operator: 'NOT_EMPTY'
       }
     }),
-    // fi.boolean('Heading link', 'enable_heading_link', {
-    //   display_width: 'half_width',
-    //   visibility: {
-    //     controlling_field_path: `${parent}heading`,
-    //     operator: 'NOT_EMPTY'
-    //   }
-    // }),
     fi.choice('Link type', 'heading_link_type', {
       choices: [
         ['link', 'Link'],
