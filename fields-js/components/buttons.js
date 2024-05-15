@@ -22,8 +22,7 @@ const buttons = [
         ['linkonly', 'Link'],
         ['cta', 'CTA'],
         ['customlink', 'Custom link'],
-        ['custom1', 'Custom Button 1'],
-        ['custom2', 'Custom Button 2']
+        ['custombutton', 'Custom Button']
       ],
       required: true,
       display_width: 'half_width'
@@ -101,6 +100,11 @@ const buttons = [
           {
             controlling_field_path: 'buttons.button_style',
             operator: 'NOT_EQUAL',
+            controlling_value_regex: 'customlink'
+          },
+          {
+            controlling_field_path: 'buttons.button_style',
+            operator: 'NOT_EQUAL',
             controlling_value_regex: 'cta'
           }
         ]
@@ -165,6 +169,7 @@ const buttons = [
       }
     }),
     fi.choice('Icon position', 'icon_position', {
+      display_width: 'half_width',
       choices: [
         ['left', 'Left'],
         ['right', 'Right']
@@ -216,35 +221,141 @@ const buttons = [
           }
         ]
       }
-    })
-  )
-]
-
-const buttonsStyle = [
-  fi.boolean('Show custom button style options', 'show_custom_button_style_options'),
-  group('Custom link', 'custom_link',
-    {
-      visibility: {
-        controlling_field_path: 'style.show_custom_button_style_options',
-        operator: 'EQUAL',
-        controlling_value_regex: 'true'
+    }),
+    fi.boolean('Hide text', 'hide_text', {
+      help_text: 'Hide the button text and only show the icon or image',
+      display_width: 'half_width',
+      default: false,
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        children: [
+          {
+            boolean_operator: 'AND',
+            criteria: [
+              {
+                controlling_field_path: 'buttons.button_text',
+                operator: 'NOT_EMPTY'
+              }
+            ]
+          },
+          {
+            boolean_operator: 'OR',
+            criteria: [
+              {
+                controlling_field_path: 'buttons.add_icon_or_image',
+                operator: 'EQUAL',
+                controlling_value_regex: 'icon'
+              },
+              {
+                controlling_field_path: 'buttons.add_icon_or_image',
+                operator: 'EQUAL',
+                controlling_value_regex: 'image'
+              }
+            ]
+          },
+          {
+            boolean_operator: 'OR',
+            criteria: [
+              {
+                controlling_field_path: 'buttons.btn_icon',
+                operator: 'NOT_EMPTY',
+                property: 'name'
+              },
+              {
+                controlling_field_path: 'buttons.btn_image',
+                operator: 'NOT_EMPTY',
+                property: 'src'
+              }
+            ]
+          }
+        ]
       }
-    },
-    fi.font('Font', 'font', {
+    }),
+    fi.boolean('Custom style', 'custom_style', {
+      default: false,
+      display_width: 'half_width',
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: 'buttons.button_style',
+            operator: 'MATCHES_REGEX',
+            controlling_value_regex: 'custom'
+          },
+          {
+            controlling_field_path: 'buttons.button_text',
+            operator: 'NOT_EMPTY'
+          }
+        ]
+      }
+    }),
+    fi.font('Font', 'link_font', {
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: 'buttons.button_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'customlink'
+          },
+          {
+            controlling_field_path: 'buttons.custom_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
+          }
+        ]
+      },
       visibility: {
         hidden_subfields: {
           underline: true
         }
       }
     }),
-    fi.choice('Underline', 'underline', {
+    fi.choice('Underline', 'link_underline', {
       display: 'radio',
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: 'buttons.button_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'customlink'
+          },
+          {
+            controlling_field_path: 'buttons.custom_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
+          }
+        ]
+      },
       choices: [
         ['underline', 'Underline'],
         ['none', 'None']
       ]
     }),
-    group('Hover', 'hover', {},
+    group('Hover', 'link_hover',
+      {
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: 'buttons.button_style',
+              operator: 'EQUAL',
+              controlling_value_regex: 'customlink'
+            },
+            {
+              controlling_field_path: 'buttons.custom_style',
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        }
+      },
       fi.color('Color', 'color'),
       fi.choice('Underline', 'underline', {
         display: 'radio',
@@ -253,57 +364,123 @@ const buttonsStyle = [
           ['none', 'None']
         ]
       })
-    )
-  ),
-  group('Custom button 1', 'custom_button_1',
-    {
-      visibility: {
-        controlling_field_path: 'style.show_custom_button_style_options',
-        operator: 'EQUAL',
-        controlling_value_regex: 'true'
-      }
-    },
-    fi.spacing('Spacing', 'spacing', {
-      visibility: {
-        hidden_subfields: {
-          margin: true
-        }
-      }
-    }),
-    fi.color('Background', 'background'),
-    fi.font('Font', 'font'),
-    fi.border('Border', 'border'),
-    fi.number('Border radius', 'border_radius', {
-      suffix: 'px'
-    }),
-    group('Hover', 'hover', {},
-      fi.color('Background', 'background'),
-      fi.color('Color', 'color'),
-      fi.color('Border color', 'border_color')
-    )
-  ),
-  group('Custom button 2', 'custom_button_2',
-    {
-      visibility: {
-        controlling_field_path: 'style.show_custom_button_style_options',
-        operator: 'EQUAL',
-        controlling_value_regex: 'true'
-      }
-    },
-    fi.spacing('Spacing', 'spacing', {
+    ),
+
+    fi.spacing('Spacing', 'button_spacing', {
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: 'buttons.button_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'custombutton'
+          },
+          {
+            controlling_field_path: 'buttons.custom_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
+          }
+        ]
+      },
       visibility: {
         hidden_subfields: {
           margin: true
         }
       }
     }),
-    fi.color('Background', 'background'),
-    fi.font('Font', 'font'),
-    fi.border('Border', 'border'),
-    fi.number('Border radius', 'border_radius', {
-      suffix: 'px'
+    fi.color('Background', 'button_background', {
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: 'buttons.button_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'custombutton'
+          },
+          {
+            controlling_field_path: 'buttons.custom_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
+          }
+        ]
+      }
     }),
-    group('Hover', 'hover', {},
+    fi.font('Font', 'button_font', {
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: 'buttons.button_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'custombutton'
+          },
+          {
+            controlling_field_path: 'buttons.custom_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
+          }
+        ]
+      }
+    }),
+    fi.border('Border', 'button_border', {
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: 'buttons.button_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'custombutton'
+          },
+          {
+            controlling_field_path: 'buttons.custom_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
+          }
+        ]
+      }
+    }),
+    fi.number('Border radius', 'button_border_radius', {
+      suffix: 'px',
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: 'buttons.button_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'custombutton'
+          },
+          {
+            controlling_field_path: 'buttons.custom_style',
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
+          }
+        ]
+      }
+    }),
+    group('Hover', 'button_hover',
+      {
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: 'buttons.button_style',
+              operator: 'EQUAL',
+              controlling_value_regex: 'custombutton'
+            },
+            {
+              controlling_field_path: 'buttons.custom_style',
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        }
+      },
       fi.color('Background', 'background'),
       fi.color('Color', 'color'),
       fi.color('Border color', 'border_color')
@@ -312,6 +489,5 @@ const buttonsStyle = [
 ]
 
 export {
-  buttons,
-  buttonsStyle
+  buttons
 }

@@ -2,8 +2,8 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(buttons, style) -%}
-  {%- if buttons|length > 0 -%}
+{%- macro render(module, style) -%}
+  {%- if module.buttons|length > 0 -%}
     {% require_css %}
       <style>
         .buttons-wrp {
@@ -25,120 +25,27 @@
         .btn-full-width {
           width: 100%;
         }
-        .buttons-wrp svg,
-        .buttons-wrp .button-image {
+        .btn {
+          line-height: 1;
+          gap: .6ch;
+        }
+        .btn > svg,
+        .btn > .button-image {
           width: auto;
-          height: 1.8ex;
+          height: 1lh;
           fill: currentcolor;
         }
       </style>
     {% end_require_css %}
-    <style>
-      {%- scope_css -%}
-        {%- if style.custom_button_1.border_radius or style.custom_button_1.font.color or style.custom_button_1.font.size or style.custom_button_1.background.css or style.custom_button_1.font.style or style.custom_button_1.border.css or style.custom_button_1.spacing.css -%}
-          .btn-custom1 {
-            {%- if style.custom_button_1.border_radius and style.custom_button_1.border.top.width.value -%}
-              --border-radius: {{style.custom_button_1.border_radius ~ 'px'}};
-            {%- endif -%}
-            {%- if style.custom_button_1.font.color -%}
-              --color: {{style.custom_button_1.font.color}};
-            {%- endif -%}
-            {%- if style.custom_button_1.font.size -%}
-              font-size: {{style.custom_button_1.font.size ~ 'px'}};
-            {%- endif -%}
-            {%- if style.custom_button_1.background.css -%}
-              --bg: {{style.custom_button_1.background.css}};
-            {%- endif -%}
-            {%- if style.custom_button_1.font.style -%}
-              {{style.custom_button_1.font.style}};
-            {%- endif -%}
-            {{style.custom_button_1.border.css}}
-            {{style.custom_button_1.spacing.css}}
-          }
-        {%- endif -%}
-        {%- if style.custom_button_1.hover.background.css or style.custom_button_1.hover.color.css or style.custom_button_1.hover.border_color.css -%}
-          .btn-custom1:hover {
-            {%- if style.custom_button_1.hover.background.css -%}
-              --hover-bg: {{style.custom_button_1.hover.background.color}};
-            {%- endif -%}
-            {%- if style.custom_button_1.hover.color.css -%}
-              --hover-color: {{style.custom_button_1.hover.color.css}};
-            {%- endif -%}
-            {%- if style.custom_button_1.hover.border_color.css -%}
-              --hover-border: {{style.custom_button_1.hover.border_color.css}};
-            {%- endif -%}
-          }
-        {%- endif -%}
-        {%- if style.custom_button_2.border_radius or style.custom_button_2.font.color or style.custom_button_2.font.size or style.custom_button_2.background.css or style.custom_button_2.font.style or style.custom_button_2.border.css or style.custom_button_2.spacing.css -%}
-          .btn-custom2 {
-            {%- if style.custom_button_2.border_radius and style.custom_button_2.border.top.width.value -%}
-              --border-radius: {{style.custom_button_2.border_radius ~ 'px'}};
-            {%- endif -%}
-            {%- if style.custom_button_2.font.color -%}
-              --color: {{style.custom_button_2.font.color}};
-            {%- endif -%}
-            {%- if style.custom_button_2.font.size -%}
-              font-size: {{style.custom_button_2.font.size ~ 'px'}};
-            {%- endif -%}
-            {%- if style.custom_button_2.background.css -%}
-              --bg: {{style.custom_button_2.background.css}};
-            {%- endif -%}
-            {%- if style.custom_button_2.font.style -%}
-              {{style.custom_button_2.font.style}};
-            {%- endif -%}
-            {{style.custom_button_2.border.css}}
-            {{style.custom_button_2.spacing.css}}
-          }
-        {%- endif -%}
-        {%- if style.custom_button_2.hover.background.css or style.custom_button_2.hover.color.css or style.custom_button_2.hover.border_color.css -%}
-          .btn-custom2:hover {
-            {%- if style.custom_button_2.hover.background.css -%}
-              --hover-bg: {{style.custom_button_2.hover.background.color}};
-            {%- endif -%}
-            {%- if style.custom_button_2.hover.color.css -%}
-              --hover-color: {{style.custom_button_2.hover.color.css}};
-            {%- endif -%}
-            {%- if style.custom_button_2.hover.border_color.css -%}
-              --hover-border: {{style.custom_button_2.hover.border_color.css}};
-            {%- endif -%}
-          }
-        {%- endif -%}
-        {%- if style.custom_link.font.style or style.custom_link.font.size or style.custom_link.font.color or style.custom_link.underline -%}
-          .btn-customlink {
-            {%- if style.custom_link.font.style -%}
-              {{style.custom_link.font.style}};
-            {%- endif -%}
-            {%- if style.custom_link.font.size -%}
-              font-size: {{style.custom_link.font.size ~ 'px'}};
-            {%- endif -%}
-            {%- if style.custom_link.font.color -%}
-              --color: {{style.custom_link.font.color}};
-            {%- endif -%}
-            {%- if style.custom_link.underline -%}
-              text-decoration: {{style.custom_link.underline}};
-            {%- endif -%}
-          }
-        {%- endif -%}
-        {%- if style.custom_link.hover.color.css or style.custom_link.hover.underline -%}
-          .btn-customlink:hover {
-            {%- if style.custom_link.hover.color.css -%}
-              --hover-color: {{style.custom_link.hover.color.css}};
-            {%- endif -%}
-            {%- if style.custom_link.hover.underline -%}
-              text-decoration: {{style.custom_link.hover.underline}};
-            {%- endif -%}
-          }
-        {%- endif -%}
-      {%- end_scope_css -%}
-    </style>
+
     {%- macro render_button_icon(item, position) -%}
       {%- if item.icon_position == position -%}
-        {%- if item.add_icon_or_image == "image" -%}
+        {%- if item.add_icon_or_image == "image" and item.btn_image.src -%}
           <img class="button-image"
             alt=""
             src="{{item.btn_image.src}}"
             loading="lazy">
-        {%- elif item.add_icon_or_image == "icon" -%}
+        {%- elif item.add_icon_or_image == "icon" and item.btn_icon.name -%}
           {% icon
             name="{{item.btn_icon.name}}"
             style="{{item.btn_icon.type}}"
@@ -151,7 +58,60 @@
       {%- endif -%}
     {%- endmacro -%}
     <div class="buttons-wrp">
-      {%- for item in buttons -%}
+      {%- for item in module.buttons -%}
+        {%- if item.button_style is containing 'custom' -%}
+          <style>
+            {%- scope_css -%}
+              {%- if item.button_style == "custombutton" and item.custom_style -%}
+                .btn-{{item.button_style}}{{loop.index}} {
+                  {%- if item.button_border_radius > 0 -%}
+                    --border-radius: {{item.button_border_radius ~ 'px'}};
+                  {%- endif -%}
+                  {{item.button_font.css}}
+                  color: var(--hover-color, var(--_color));
+                  {%- if item.button_font.color -%}
+                    --color: {{item.button_font.color}};
+                  {%- endif -%}
+                  {%- if item.button_background.css -%}
+                    --bg: {{item.button_background.css}};
+                  {%- endif -%}
+                  {{item.button_border.css}}
+                  {{item.button_spacing.css}}
+                }
+                .btn-{{item.button_style}}{{loop.index}}:hover {
+                  {%- if item.button_hover.background.css -%}
+                    --hover-bg: {{item.button_hover.background.color}};
+                  {%- endif -%}
+                  {%- if item.button_hover.color.css -%}
+                    --hover-color: {{item.button_hover.color.css}};
+                  {%- endif -%}
+                  {%- if item.button_hover.border_color.css -%}
+                    --hover-border: {{item.button_hover.border_color.css}};
+                  {%- endif -%}
+                }
+              {%- elif item.button_style == "customlink" and item.custom_style -%}
+                .btn-{{item.button_style}}{{loop.index}} {
+                  {{item.link_font.css}}
+                  color: var(--hover-color, var(--_color));
+                  {%- if item.link_font.color -%}
+                    --color: {{item.link_font.color}};
+                  {%- endif -%}
+                  {%- if item.link_underline -%}
+                    text-decoration: {{item.link_underline}};
+                  {%- endif -%}
+                }
+                .btn-{{item.button_style}}{{loop.index}}:hover {
+                  {%- if item.link_hover.color.css -%}
+                    --hover-color: {{item.link_hover.color.css}};
+                  {%- endif -%}
+                  {%- if item.link_hover.underline -%}
+                    text-decoration: {{item.link_hover.underline}};
+                  {%- endif -%}
+                }
+              {%- endif -%}
+            {%- end_scope_css -%}
+          </style>
+        {%- endif -%}
         {# render CTA button #}
         {%- if item.button_style == 'cta' -%}
             {%- if item.inline ne true -%}
@@ -164,10 +124,14 @@
         {# render regular button #}
         {%- else -%}
           {%- if item.button_text -%}
-            {%- if item.button_style ne "linkonly" and item.button_style ne "customlink" -%}
-              {% set btn_link_class = "btn-link btn-{{item.button_style}} btn-{{item.button_size}} {{'btn-full-width' if item.button_full_width}}" %}
+            {%- if item.button_style == "customlink" -%}
+              {% set btn_link_class = "btn btn-{{item.button_style}}{{loop.index}}" %}
+            {%- elif item.button_style == "linkonly"-%}
+              {% set btn_link_class = "btn btn-{{item.button_style}}" %}
+            {%- elif item.button_style == "custombutton"-%}
+              {% set btn_link_class = "btn btn-link btn-{{item.button_style}}{{loop.index}} btn-{{item.button_size}} {{'btn-full-width' if item.button_full_width}}" %}
             {%- else -%}
-              {% set btn_link_class = "btn-{{item.button_style}}" %}
+              {% set btn_link_class = "btn btn-link btn-{{item.button_style}} btn-{{item.button_size}} {{'btn-full-width' if item.button_full_width}}" %}
             {%- endif -%}
             {%- if item.button.rel -%}
               {% set rel = 'rel="{{item.button.rel}}"' %}
@@ -187,7 +151,9 @@
               {{"stretched-link" if btn_stretched_link}}"
               {% if item.button.open_in_new_tab %} target="_blank" {% endif %} {{rel}}>
               {{render_button_icon(item, "left")}}
-              {{item.button_text}}
+              <span {{'class="visually-hidden"' if item.hide_text and item.btn_image.src and item.add_icon_or_image == "image" or item.hide_text and item.btn_icon.name and item.add_icon_or_image == "icon"}}>
+                {{item.button_text}}
+              </span>
               {{render_button_icon(item, "right")}}
             </a>
             {%- if item.inline ne true -%}

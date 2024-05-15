@@ -222,7 +222,6 @@ init(
       fi.color('Background color', 'background_color'),
       partial.shadowList(),
       partial.animationList()
-    ),
-    component.buttonsStyle
+    )
   )
 )
