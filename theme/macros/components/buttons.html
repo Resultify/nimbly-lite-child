@@ -2,6 +2,7 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
+{% import '../partials/link-attributes.html' %}
 {%- macro render(module, style) -%}
   {%- if module.buttons|length > 0 -%}
     {% require_css %}
@@ -133,23 +134,10 @@
             {%- else -%}
               {% set btn_link_class = "btn btn-link btn-{{item.button_style}} btn-{{item.button_size}} {{'btn-full-width' if item.button_full_width}}" %}
             {%- endif -%}
-            {%- if item.button.rel -%}
-              {% set rel = 'rel="{{item.button.rel}}"' %}
-            {%- endif -%}
-            {% set href = item.button.url.href %}
-            {%- if item.button.url.type is equalto 'EMAIL_ADDRESS' -%}
-              {% set href = 'mailto:' + href %}
-            {%- endif -%}
-            {%- if item.button.url.type is equalto 'PHONE_NUMBER' -%}
-              {% set href = 'tel:' + href %}
-            {%- endif -%}
             {%- if item.inline ne true -%}
               <div class="btn-block-wrp">
             {%- endif -%}
-            <a href="{{href}}"
-              class="{{btn_link_class}}
-              {{"stretched-link" if btn_stretched_link}}"
-              {% if item.button.open_in_new_tab %} target="_blank" {% endif %} {{rel}}>
+            <a {{link_attributes(item.button_link)}} class="{{btn_link_class}} {{"stretched-link" if btn_stretched_link}}">
               {{render_button_icon(item, "left")}}
               <span {{'class="visually-hidden"' if item.hide_text and item.btn_image.src and item.add_icon_or_image == "image" or item.hide_text and item.btn_icon.name and item.add_icon_or_image == "icon"}}>
                 {{item.button_text}}

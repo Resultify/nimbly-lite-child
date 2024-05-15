@@ -67,7 +67,7 @@ const buttons = [
         controlling_value_regex: 'cta'
       }
     }),
-    fi.link('', 'button', {
+    fi.link('', 'button_link', {
       visibility: {
         controlling_field_path: 'buttons.button_style',
         operator: 'NOT_EQUAL',
