@@ -12,7 +12,7 @@ const fullWidthImage = (parent = '', hideForceFullWidth = false) => {
       show_loading: false,
       responsive: true
     }),
-    fi.choice('Aspect ratio', 'aspect_ratio', {
+    fi.choice('Aspect ratio', 'full_width_image_aspect_ratio', {
       display_width: 'half_width',
       required: true,
       default: '16/9',
@@ -34,7 +34,7 @@ const fullWidthImage = (parent = '', hideForceFullWidth = false) => {
         ['16/9', '16/9']
       ]
     }),
-    fi.boolean('Force full width', 'force_full_width', {
+    fi.boolean('Force full width', 'force_full_width_image', {
       help_text: 'This image is already full-width, but with the <strong>Force full width</strong> option enabled, it will take the full width of the parent element, even if there is extra padding around it.',
       display_width: 'half_width',
       locked: hideForceFullWidth,
@@ -45,7 +45,7 @@ const fullWidthImage = (parent = '', hideForceFullWidth = false) => {
         property: 'src'
       }
     }),
-    fi.number('Border radius', 'border_radius', {
+    fi.number('Border radius', 'full_width_image_border_radius', {
       display_width: 'half_width',
       suffix: 'px',
       visibility_rules: 'ADVANCED',
@@ -58,7 +58,7 @@ const fullWidthImage = (parent = '', hideForceFullWidth = false) => {
             property: 'src'
           },
           {
-            controlling_field_path: `${parent}force_full_width`,
+            controlling_field_path: `${parent}force_full_width_image`,
             operator: 'EQUAL',
             controlling_value_regex: 'false'
           }

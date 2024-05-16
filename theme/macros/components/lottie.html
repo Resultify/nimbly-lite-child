@@ -2,7 +2,7 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(module, global) -%}
+{%- macro render(module) -%}
   {%- if module.lottie_file -%}
     {{require_js(get_asset_url('../../assets/js/dotlottie.js'), {defer: true})}}
     {% require_js %}
@@ -11,6 +11,16 @@
           const dotLottieCanvas = document.getElementsByClassName('dotlottie-canvas')
           if (!dotLottieCanvas) return
           for (const item of dotLottieCanvas) {
+            let lottieAlignment = getComputedStyle(item.closest('[class*="module"]')).getPropertyValue('--module-alignment')
+            if (lottieAlignment === 'start') {
+            lottieAlignment = [0, 0.5]
+            } else if (lottieAlignment === 'center') {
+              lottieAlignment = [0.5, 0.5]
+            } else if (lottieAlignment === 'end') {
+              lottieAlignment = [1, 0.5]
+            } else {
+              lottieAlignment = [0, 0.5]
+            }
             const dotLottie = new window.DotLottie({ // eslint-disable-line
               autoplay: true,
               loop: item.hasAttribute('data-loop'),
@@ -18,12 +28,11 @@
               mode: item.dataset.mode,
               layout: {
                 fit: item.dataset.fit,
-                align: item.dataset.align.split(',')
+                align: lottieAlignment
               },
               canvas: item,
               src: item.dataset.lottieSrc
             })
-            dotLottie.setLayout({ align: [0, 0.5] })
           }
         }
         if (document.readyState === 'loading') {
@@ -33,19 +42,11 @@
         }
       </script>
     {% end_require_js %}
-    {%- if global.style.general.alignment.horizontal_align == 'LEFT' -%}
-      {% set lottie_alignment = '0,0.5' %}
-    {%- elif global.style.general.alignment.horizontal_align == 'CENTER' -%}
-      {% set lottie_alignment = '0.5,0.5' %}
-    {%- elif global.style.general.alignment.horizontal_align == 'RIGHT' -%}
-      {% set lottie_alignment = '1,0.5' %}
-    {%- endif -%}
     <canvas class="lottie-macro dotlottie-canvas"
       data-lottie-src="{{module.lottie_file}}"
       data-speed="{{module.lottie_speed}}"
       data-mode="{{module.lottie_mode}}"
       data-fit="{{module.lottie_fit}}"
-      data-align="{{lottie_alignment}}"
       {{"data-loop" if module.lottie_loop}}
       >
     </canvas>

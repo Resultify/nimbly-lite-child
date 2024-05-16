@@ -17,21 +17,23 @@
           width: {{module.icon_size ~ 'px'}};
           height: {{module.icon_size ~ 'px'}};
         }
-        .icon-macro-wrp {
-          {%- if module.icon_bg_color.css -%}
-            background-color: {{module.icon_bg_color.css}};
-          {%- endif -%}
-          {% if module.icon_border_radius > 0 %}
-            border-radius: {{module.icon_border_radius ~ '%'}};
-          {%- endif -%}
-          {% if module.icon_padding > 0 %}
-            padding: {{module.icon_padding ~ 'px'}};
-          {%- endif -%}
-        }
-        {%- if module.icon_color.css -%}
-          .icon-macro-wrp > svg {
-            fill: {{module.icon_color.css}};
+        {%- if module.icon_additional_customization -%}
+          .icon-macro-wrp {
+            {%- if module.icon_background.css -%}
+              background-color: {{module.icon_background.css}};
+            {%- endif -%}
+            {% if module.icon_border_radius > 0 %}
+              border-radius: {{module.icon_border_radius ~ '%'}};
+            {%- endif -%}
+            {% if module.icon_padding > 0 %}
+              padding: {{module.icon_padding ~ 'px'}};
+            {%- endif -%}
           }
+          {%- if module.icon_color.css -%}
+            .icon-macro-wrp > svg {
+              fill: {{module.icon_color.css}};
+            }
+          {%- endif -%}
         {%- endif -%}
       {%- end_scope_css -%}
     </style>
@@ -47,7 +49,7 @@
         purpose="decorative"
       %}
     {%- endif -%}
-  {%- elif module.icon_type == 'icon_inline_svg' -%}
+  {%- elif module.icon_type == 'inline_svg' -%}
     {%- if module.icon_inline_svg -%}
       <div class="icon-macro-wrp">{{module.icon_inline_svg}}</div>
     {%- endif -%}

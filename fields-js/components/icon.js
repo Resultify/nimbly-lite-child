@@ -13,7 +13,7 @@ const icon = (parent = '') => {
       default: 'fontawesome',
       choices: [
         ['fontawesome', 'Fontawesome'],
-        ['icon_inline_svg', 'Inline SVG']
+        ['inline_svg', 'Inline SVG']
       ]
     }),
     fi.number('Icon size', 'icon_size', {
@@ -34,22 +34,22 @@ const icon = (parent = '') => {
       visibility: {
         controlling_field_path: `${parent}icon_type`,
         operator: 'EQUAL',
-        controlling_value_regex: 'icon_inline_svg'
+        controlling_value_regex: 'inline_svg'
       }
     }),
-    fi.boolean('Customization', 'icon_customization', {
-      help_text: 'Show/hide customization options.'
+    fi.boolean('Additional customization', 'icon_additional_customization', {
+      help_text: 'Enable additional style customization options'
     }),
     fi.color('Color', 'icon_color', {
       visibility: {
-        controlling_field_path: `${parent}icon_customization`,
+        controlling_field_path: `${parent}icon_additional_customization`,
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }
     }),
-    fi.color('Background', 'icon_bg_color', {
+    fi.color('Background', 'icon_background', {
       visibility: {
-        controlling_field_path: `${parent}icon_customization`,
+        controlling_field_path: `${parent}icon_additional_customization`,
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }
@@ -58,17 +58,16 @@ const icon = (parent = '') => {
       suffix: '%',
       display_width: 'half_width',
       visibility: {
-        controlling_field_path: `${parent}icon_customization`,
+        controlling_field_path: `${parent}icon_additional_customization`,
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }
     }),
     fi.number('Padding', 'icon_padding', {
-      default: 0,
       suffix: 'px',
       display_width: 'half_width',
       visibility: {
-        controlling_field_path: `${parent}icon_customization`,
+        controlling_field_path: `${parent}icon_additional_customization`,
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }

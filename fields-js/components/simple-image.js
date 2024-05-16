@@ -7,7 +7,7 @@ const simpleImage = (parent = '') => {
     parent = `${parent}.`
   }
   return [
-    fi.image('Image', 'image', {
+    fi.image('Simple image', 'simple_image', {
       resizable: false,
       show_loading: false,
       responsive: false

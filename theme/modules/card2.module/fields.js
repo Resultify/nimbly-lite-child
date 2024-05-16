@@ -10,37 +10,36 @@ import { partial } from '../../../fields-js/partials/all.js'
 
 init(
   fi.choice('Image type', 'image_type', {
-    display_width: 'half_width',
     choices: [
-      ['full_width', 'Full width'],
-      ['image', 'Image'],
+      ['full_width_image', 'Full width image'],
+      ['simple_image', 'Simple image'],
       ['icon', 'Icon'],
       ['lottie', 'Lottie Animation']
     ]
   }),
-  group('Full width image', 'full_width',
+  group('Full width image', 'full_width_image_group',
     {
       expanded: true,
       visibility: {
         controlling_field_path: 'image_type',
         operator: 'EQUAL',
-        controlling_value_regex: 'full_width'
+        controlling_value_regex: 'full_width_image'
       }
     },
-    component.fullWidthImage('full_width')
+    component.fullWidthImage('full_width_image_group')
   ),
-  group('Image', 'image',
+  group('Simple image', 'simple_image_group',
     {
       expanded: true,
       visibility: {
         controlling_field_path: 'image_type',
         operator: 'EQUAL',
-        controlling_value_regex: 'image'
+        controlling_value_regex: 'simple_image'
       }
     },
-    component.simpleImage('image')
+    component.simpleImage('simple_image_group')
   ),
-  group('Icon', 'icon',
+  group('Icon', 'icon_group',
     {
       expanded: true,
       visibility: {
@@ -49,9 +48,9 @@ init(
         controlling_value_regex: 'icon'
       }
     },
-    component.icon('icon')
+    component.icon('icon_group')
   ),
-  group('Lottie animation', 'lottie',
+  group('Lottie animation', 'lottie_group',
     {
       expanded: true,
       visibility: {
@@ -60,7 +59,7 @@ init(
         controlling_value_regex: 'lottie'
       }
     },
-    component.lottie('lottie')
+    component.lottie('lottie_group')
   ),
   group('Heading', 'heading', { expanded: true },
     component.heading('heading')

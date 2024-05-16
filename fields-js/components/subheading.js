@@ -7,7 +7,7 @@ const subheading = (parent = '') => {
     parent = `${parent}.`
   }
   return [
-    fi.text('Subheading', 'subheading', {
+    fi.text('Subheading', 'subheading_text', {
       allow_new_line: true
     }),
     fi.choice('Tag', 'subheading_tag', {
@@ -24,7 +24,7 @@ const subheading = (parent = '') => {
       help_text: 'Semantic heading tag (h1-h6)',
       display_width: 'half_width',
       visibility: {
-        controlling_field_path: `${parent}subheading`,
+        controlling_field_path: `${parent}subheading_text`,
         operator: 'NOT_EMPTY'
       }
     }),
@@ -46,7 +46,7 @@ const subheading = (parent = '') => {
       help_text: 'Display different heading styles not related to semantic heading type (tag h1-h6)',
       display_width: 'half_width',
       visibility: {
-        controlling_field_path: `${parent}subheading`,
+        controlling_field_path: `${parent}subheading_text`,
         operator: 'NOT_EMPTY'
       }
     })

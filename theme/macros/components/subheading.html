@@ -3,7 +3,7 @@
   isAvailableForNewContent: false
 -->
 {%- macro render(module) -%}
-{%- if module.subheading -%}
+{%- if module.subheading_text -%}
     {% require_css %}
       <style>
         .subheading-macro {
@@ -18,7 +18,7 @@
       </style>
     {% end_require_css %}
     <{{module.subheading_tag}} class="{{module.subheading_style}} subheading-macro">
-      {{module.subheading}}
+      {{module.subheading_text}}
     </{{module.subheading_tag}}>
   {%- endif -%}
 {%- endmacro -%}
