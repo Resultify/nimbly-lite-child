@@ -277,6 +277,34 @@ const heading = (parent = '') => {
           }
         ]
       }
+    }),
+    fi.boolean('Advanced customization ', 'heading_advanced_customization', {
+      help_text: 'Enable advanced style customization options'
+    }),
+    fi.font('Font', 'heading_custom_font', {
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: `${parent}heading_advanced_customization`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
+          },
+          {
+            controlling_field_path: `${parent}heading`,
+            operator: 'NOT_EMPTY'
+          }
+        ]
+      },
+      visibility: {
+        hidden_subfields: {
+          size: true,
+          bold: true,
+          italic: true,
+          underline: true
+        }
+      }
     })
   ]
 }

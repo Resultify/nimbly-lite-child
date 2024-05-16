@@ -5,9 +5,7 @@
   border: var(--module-border);
   border-radius: var(--module-border-radius);
   box-shadow: var(--module-shadow);
-  gap: var(--card-content-separator-gap);
-  margin-top: var(--module-margin-top);
-  margin-bottom: var(--module-margin-bottom);
+  gap: var(--module-content-gap);
   padding-left: var(--module-padding-left);
   padding-right: var(--module-padding-right);
   padding-top: var(--module-padding-top);
@@ -28,19 +26,21 @@
 .card2-module .content-block-top {
   display: flex;
   flex-direction: column;
-  background-color: var(--card-top-block-background);
-  border: var(--card-top-block-border);
-  border-radius: var(--card-top-block-border-radius);
-  padding: var(--card-top-block-padding);
+  margin-top: var(--module-margin-top);
+  margin-bottom: var(--module-margin-bottom);
+  /* background-color: var(--card-top-block-background); */
+  /* border: var(--card-top-block-border); */
+  /* border-radius: var(--card-top-block-border-radius); */
+  /* padding: var(--card-top-block-padding); */
 }
 
 .card2-module .content-block-bottom {
   display: flex;
   flex-direction: column;
-  background-color: var(--card-bottom-block-background);
-  border: var(--card-bottom-block-border);
-  border-radius: var(--card-bottom-block-border-radius);
-  padding: var(--card-bottom-block-padding);
+  /* background-color: var(--card-bottom-block-background); */
+  /* border: var(--card-bottom-block-border); */
+  /* border-radius: var(--card-bottom-block-border-radius); */
+  /* padding: var(--card-bottom-block-padding); */
 }
 
 /* generaral card components flexbox gap */

@@ -29,13 +29,11 @@
       {%- endif -%}
     {%- endif -%}
   {%- endmacro -%}
-
   {%- macro heading_text(module) -%}
     {{icon(module, 'left')}}
     {{module.heading}}
     {{icon(module, 'right')}}
   {%- endmacro -%}
-
   {%- if module.heading -%}
     {% require_css %}
       <style>
@@ -46,7 +44,7 @@
           hyphens: auto;
           display: inline-flex;
           align-items: center;
-          gap: 0.3ch;
+          gap: var(--root-heading-icon-gap, .3ch);
           margin: 0;
           text-align: var(--module-alignment);
           color: var(--module-color);
@@ -54,14 +52,14 @@
         .heading-macro svg,
         .heading-macro .heading-image {
           width: auto;
-          height: 0.8lh;
+          height: var(--root-heading-icon-size, 0.8lh);
           fill: currentcolor;
         }
         .heading-link {
           transition-property: color;
           transition-duration: var(--root-transition-duration);
           transition-timing-function: var(--root-transition-timing-function);
-          gap: 0.3ch;
+          gap: var(--root-heading-icon-gap, .3ch);
         }
         .anchor-heading-link svg.anchor-icon {
           height: 0.6lh;
@@ -84,6 +82,15 @@
           }
         {%- end_scope_css -%}
       </style>
+    {%- endif -%}
+    {%- if module.heading_custom_font.css and module.heading_advanced_customization -%}
+      <style>
+      {%- scope_css -%}
+        .heading-macro {
+          {{module.heading_custom_font.css}}
+        }
+      {%- end_scope_css -%}
+    </style>
     {%- endif -%}
     <{{module.heading_tag}}
       class="{{module.heading_style}} heading-macro"

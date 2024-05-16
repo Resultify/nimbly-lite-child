@@ -111,6 +111,31 @@ const buttons = [
         ]
       }
     }),
+    fi.alignment('Alignment', 'button_alignment',
+      {
+        alignment_direction: 'HORIZONTAL',
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: 'buttons.button_text',
+              operator: 'NOT_EMPTY'
+            },
+            {
+              controlling_field_path: 'buttons.button_full_width',
+              operator: 'EQUAL',
+              controlling_value_regex: 'false'
+            },
+            {
+              controlling_field_path: 'buttons.inline',
+              operator: 'EQUAL',
+              controlling_value_regex: 'false'
+            }
+          ]
+        }
+      }
+    ),
     fi.choice('Add icon or image', 'add_icon_or_image', {
       visibility_rules: 'ADVANCED',
       advanced_visibility: {

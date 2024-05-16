@@ -155,18 +155,18 @@ init(
     }),
     partial.shadowList(),
     fi.spacing('Spacing', 'spacing'),
-    fi.boolean('Card content block styles', 'content_block_styles'),
-    fi.number('Content separator gap', 'content_separator_gap', {
-      suffix: 'px',
-      inherited_value: {
-        default_value_path: 'module.style.content_gap'
-      },
-      visibility: {
-        controlling_field_path: 'style.content_block_styles',
-        operator: 'EQUAL',
-        controlling_value_regex: 'true'
-      }
-    }),
+    // fi.boolean('Card content block styles', 'content_block_styles'),
+    // fi.number('Content separator gap', 'content_separator_gap', {
+    //   suffix: 'px',
+    //   inherited_value: {
+    //     default_value_path: 'module.style.content_gap'
+    //   },
+    //   visibility: {
+    //     controlling_field_path: 'style.content_block_styles',
+    //     operator: 'EQUAL',
+    //     controlling_value_regex: 'true'
+    //   }
+    // }),
     // group('Top content block', 'top_content_block',
     //   {
     //     visibility: {
@@ -197,14 +197,14 @@ init(
     //     }
     //   },
     //   fi.color('Background color', 'background_color'),
-    //   fi.border('Border', 'border'),
+    //   // fi.border('Border', 'border'),
     //   fi.number('Border radius', 'border_radius', {
     //     suffix: 'px'
     //   }),
     //   fi.spacing('Spacing', 'spacing', {
     //     visibility: {
     //       hidden_subfields: {
-    //         margin: true
+    //         // margin: true
     //       }
     //     }
     //   })

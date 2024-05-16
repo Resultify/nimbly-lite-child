@@ -70,15 +70,15 @@
       /* card-content-blocks */
       {# --card-content-separator-gap: {{module.style.content_block_styles and module.style.content_separator_gap is truthy ? module.style.content_separator_gap ~ 'px' : 'var(--module-content-gap)'}}; #}
 
-      {# --card-top-block-background: {{module.style.content_block_styles and module.style.top_content_block.background_color.css is truthy ? module.style.top_content_block.background_color.css : 'initial'}};
-      --card-top-block-border: {{module.style.content_block_styles and module.style.top_content_block.border.css and module.style.top_content_block.border.top.width.value is truthy ? module.style.top_content_block.border.css|cut('border:') : 'none'}};
-      --card-top-block-border-radius: {{module.style.content_block_styles and module.style.top_content_block.border_radius is truthy ? module.style.top_content_block.border_radius ~ "px" : 0}};
-      --card-top-block-padding: {{module.style.content_block_styles and module.style.top_content_block.spacing.css is truthy ? padding(module.style.top_content_block.spacing) : 0}};
+      {# --card-top-block-background: {{module.style.content_block_styles and module.style.top_content_block.background_color.css is truthy ? module.style.top_content_block.background_color.css : 'initial'}}; #}
+      {# --card-top-block-border: {{module.style.content_block_styles and module.style.top_content_block.border.css and module.style.top_content_block.border.top.width.value is truthy ? module.style.top_content_block.border.css|cut('border:') : 'none'}}; #}
+      {# --card-top-block-border-radius: {{module.style.content_block_styles and module.style.top_content_block.border_radius is truthy ? module.style.top_content_block.border_radius ~ "px" : 0}}; #}
+      {# --card-top-block-padding: {{module.style.content_block_styles and module.style.top_content_block.spacing.css is truthy ? padding(module.style.top_content_block.spacing) : 0}}; #}
 
-      --card-bottom-block-background: {{module.style.content_block_styles and module.style.bottom_content_block.background_color.css is truthy ? module.style.bottom_content_block.background_color.css : 'initial'}};
-      --card-bottom-block-border: {{module.style.content_block_styles and module.style.bottom_content_block.border.css and module.style.bottom_content_block.border.top.width.value is truthy ? module.style.bottom_content_block.border.css|cut('border:') : 'none'}};
-      --card-bottom-block-border-radius: {{module.style.content_block_styles and module.style.bottom_content_block.border_radius is truthy ? module.style.bottom_content_block.border_radius ~ "px" : 0}};
-      --card-bottom-block-padding: {{module.style.content_block_styles and module.style.bottom_content_block.spacing.css is truthy ? padding(module.style.bottom_content_block.spacing) : 0}}; #}
+      {# --card-bottom-block-background: {{module.style.content_block_styles and module.style.bottom_content_block.background_color.css is truthy ? module.style.bottom_content_block.background_color.css : 'initial'}}; #}
+      {# --card-bottom-block-border: {{module.style.content_block_styles and module.style.bottom_content_block.border.css and module.style.bottom_content_block.border.top.width.value is truthy ? module.style.bottom_content_block.border.css|cut('border:') : 'none'}}; #}
+      {# --card-bottom-block-border-radius: {{module.style.content_block_styles and module.style.bottom_content_block.border_radius is truthy ? module.style.bottom_content_block.border_radius ~ "px" : 0}}; #}
+      {# --card-bottom-block-padding: {{module.style.content_block_styles and module.style.bottom_content_block.spacing.css is truthy ? padding(module.style.bottom_content_block.spacing) : 0}}; #}
       }
 
       {% if module.style.background_type == 'background_image' and module.style.background_image_overlay.css %}

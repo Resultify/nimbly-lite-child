@@ -8,32 +8,53 @@ const customText = (parent = '') => {
     parent = `${parent}.`
   }
   return [
-    group('Custom text', 'custom_text',
+    group('Custom text', 'custom_text_group',
       {
         help_text: 'Customizable text. Text that can be used for badges or some unusual typography style.',
         occurrence: {
           min: 0,
           max: 10,
-          sorting_label_field: 'custom_text.text'
+          sorting_label_field: 'custom_text_group.text'
         }
       },
-      fi.text('Text', 'text', {
+      fi.text('Text', 'custom_text', {
         allow_new_line: true
       }),
-      fi.font('Font', 'font'),
-      fi.color('Background', 'background'),
-      fi.spacing('', 'spacing', {
+      fi.font('Font', 'custom_text_font', {
         visibility: {
+          controlling_field_path: `${parent}custom_text_group.custom_text`,
+          operator: 'NOT_EMPTY'
+        }
+      }),
+      fi.gradient('Text color gradient', 'custom_text_color_gradient', {
+        visibility: {
+          controlling_field_path: `${parent}custom_text_group.custom_text`,
+          operator: 'NOT_EMPTY'
+        }
+      }),
+      fi.color('Background', 'custom_text_background', {
+        visibility: {
+          controlling_field_path: `${parent}custom_text_group.custom_text`,
+          operator: 'NOT_EMPTY'
+        }
+      }),
+      fi.spacing('', 'custom_text_spacing', {
+        visibility: {
+          controlling_field_path: `${parent}custom_text_group.custom_text`,
+          operator: 'NOT_EMPTY',
           hidden_subfields: {
             margin: true
           }
         }
       }),
-      fi.number('Border radius', 'border_radius', {
+      fi.number('Border radius', 'custom_text_border_radius', {
+        visibility: {
+          controlling_field_path: `${parent}custom_text_group.custom_text`,
+          operator: 'NOT_EMPTY'
+        },
         display_width: 'half_width',
         suffix: 'px'
-      }),
-      fi.gradient('Text gradient', 'text_gradient')
+      })
     )
   ]
 }

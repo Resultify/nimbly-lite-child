@@ -3,10 +3,15 @@
   isAvailableForNewContent: false
 -->
 {% import '../partials/link-attributes.html' %}
+{% import '../../css/macros.css' %}
 {%- macro render(module) -%}
   {%- if module.buttons|length > 0 -%}
     {% require_css %}
       <style>
+        .buttons-wrp,
+        .btn-block-wrp {
+          justify-content: var(--module-alignment);
+        }
         .buttons-wrp {
           display: flex;
           flex-direction: row;
@@ -19,26 +24,21 @@
           display: flex;
           flex-wrap: wrap;
         }
-        .buttons-wrp,
-        .btn-block-wrp {
-          justify-content: var(--module-alignment);
-        }
         .btn-full-width {
           width: 100%;
         }
         .btn {
           line-height: 1;
-          gap: .6ch;
+          gap: var(--root-button-icon-gap, .6ch);
         }
         .btn > svg,
         .btn > .button-image {
           width: auto;
-          height: 1lh;
+          height: var(--root-button-icon-size, 1lh);
           fill: currentcolor;
         }
       </style>
     {% end_require_css %}
-
     {%- macro render_button_icon(item, position) -%}
       {%- if item.icon_position == position -%}
         {%- if item.add_icon_or_image == "image" and item.btn_image.src -%}
@@ -113,15 +113,24 @@
             {%- end_scope_css -%}
           </style>
         {%- endif -%}
+        {%- if item.button_full_width != true and item.inline != true -%}
+          <style>
+            {%- scope_css -%}
+              .btn-block-wrp{{loop.index}} {
+                justify-content: {{horizontal_alignment_flexbox(item.button_alignment.horizontal_align)}};
+              }
+            {%- end_scope_css -%}
+          </style>
+        {%- endif -%}
         {# render CTA button #}
         {%- if item.button_style == 'cta' -%}
-            {%- if item.inline ne true -%}
-              <div class="btn-block-wrp">
-            {%- endif -%}
-            {% cta guid="{{item.cta}}" extra_classes="btn-cta" %}
-            {%- if item.inline ne true -%}
-              </div>
-            {%- endif -%}
+          {%- if item.inline ne true -%}
+            <div class="btn-block-wrp">
+          {%- endif -%}
+          {% cta guid="{{item.cta}}" extra_classes="btn-cta" %}
+          {%- if item.inline ne true -%}
+            </div>
+          {%- endif -%}
         {# render regular button #}
         {%- else -%}
           {%- if item.button_text -%}
@@ -135,7 +144,7 @@
               {% set btn_link_class = "btn btn-link btn-{{item.button_style}} btn-{{item.button_size}} {{'btn-full-width' if item.button_full_width}}" %}
             {%- endif -%}
             {%- if item.inline ne true -%}
-              <div class="btn-block-wrp">
+              <div class="btn-block-wrp btn-block-wrp{{loop.index}}">
             {%- endif -%}
             <a {{link_attributes(item.button_link)}} class="{{btn_link_class}} {{"stretched-link" if btn_stretched_link}}">
               {{render_button_icon(item, "left")}}
