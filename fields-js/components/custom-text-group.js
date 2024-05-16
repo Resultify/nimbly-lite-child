@@ -3,7 +3,7 @@ import {
   group
 } from '@resultify/hubspot-fields-js'
 
-const customText = (parent = '') => {
+const customTextGroup = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}.`
   }
@@ -38,6 +38,14 @@ const customText = (parent = '') => {
           operator: 'NOT_EMPTY'
         }
       }),
+      fi.number('Border radius', 'custom_text_border_radius', {
+        visibility: {
+          controlling_field_path: `${parent}custom_text_group.custom_text`,
+          operator: 'NOT_EMPTY'
+        },
+        display_width: 'half_width',
+        suffix: 'px'
+      }),
       fi.spacing('', 'custom_text_spacing', {
         visibility: {
           controlling_field_path: `${parent}custom_text_group.custom_text`,
@@ -46,19 +54,11 @@ const customText = (parent = '') => {
             margin: true
           }
         }
-      }),
-      fi.number('Border radius', 'custom_text_border_radius', {
-        visibility: {
-          controlling_field_path: `${parent}custom_text_group.custom_text`,
-          operator: 'NOT_EMPTY'
-        },
-        display_width: 'half_width',
-        suffix: 'px'
       })
     )
   ]
 }
 
 export {
-  customText
+  customTextGroup
 }

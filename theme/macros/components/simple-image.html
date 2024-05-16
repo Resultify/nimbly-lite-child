@@ -3,7 +3,7 @@
   isAvailableForNewContent: false
 -->
 {%- macro render(module) -%}
-  {%- if module.image.src -%}
+  {%- if module.simple_image.src -%}
     {% require_css %}
       <style>
         .simple-image-macro {

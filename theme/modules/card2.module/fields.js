@@ -66,17 +66,16 @@ init(
   ),
   component.subheading(),
   fi.richtext('Rich text', 'richtext'),
-  component.buttons,
-  component.customText(),
-  group('Additional images', 'additional_images',
+  component.buttonGroup(),
+  component.customTextGroup(),
+  group('Additional images', 'additional_images_group',
     {
       occurrence: {
         min: 0,
-        max: 20,
-        sorting_label_field: 'additional_images.image.alt'
+        max: 20
       }
     },
-    component.simpleImage('additional_images')
+    component.simpleImage('additional_images_group')
   ),
   component.order([
     'Image',
