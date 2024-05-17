@@ -137,9 +137,9 @@
         {{buttons.render(module)}}
 
       {% elif item.component|cut(" ")|lower == 'additionalimages' %}
-        {% if module.additional_images|length > 0 %}
+        {% if module.additional_images_group|length > 0 %}
           <div class="additional-images">
-            {% for image in module.additional_images %}
+            {% for image in module.additional_images_group %}
               {{simpleImage.render(image)}}
             {% endfor %}
           </div>

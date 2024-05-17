@@ -115,9 +115,14 @@ const buttonGroup = (parent = '') => {
           ]
         }
       }),
-      fi.alignment('Alignment', 'button_alignment',
+      fi.choice('Alignment', 'button_alignment',
         {
-          alignment_direction: 'HORIZONTAL',
+          display_width: 'half_width',
+          choices: [
+            ['start', 'Left'],
+            ['center', 'Center'],
+            ['end', 'Right']
+          ],
           visibility_rules: 'ADVANCED',
           advanced_visibility: {
             boolean_operator: 'AND',
@@ -141,6 +146,7 @@ const buttonGroup = (parent = '') => {
         }
       ),
       fi.choice('Add Icon', 'add_button_icon', {
+        display_width: 'half_width',
         help_text: 'Add an icon to the button',
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
@@ -446,44 +452,7 @@ const buttonGroup = (parent = '') => {
           ]
         }
       }),
-      fi.border('Border', 'custom_button_border', {
-        visibility_rules: 'ADVANCED',
-        advanced_visibility: {
-          boolean_operator: 'AND',
-          criteria: [
-            {
-              controlling_field_path: `${parent}button_group.button_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'custombutton'
-            },
-            {
-              controlling_field_path: `${parent}button_group.button_custom_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'true'
-            }
-          ]
-        }
-      }),
-      fi.number('Border radius', 'custom_button_border_radius', {
-        suffix: 'px',
-        visibility_rules: 'ADVANCED',
-        advanced_visibility: {
-          boolean_operator: 'AND',
-          criteria: [
-            {
-              controlling_field_path: `${parent}button_group.button_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'custombutton'
-            },
-            {
-              controlling_field_path: `${parent}button_group.button_custom_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'true'
-            }
-          ]
-        }
-      }),
-      fi.spacing('', 'custom_button_spacing', {
+      fi.number('Vertical spacing', 'custom_button_vertical_spacing', {
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
@@ -500,10 +469,85 @@ const buttonGroup = (parent = '') => {
             }
           ]
         },
-        visibility: {
-          hidden_subfields: {
-            margin: true
-          }
+        display_width: 'half_width',
+        suffix: 'px'
+      }),
+      fi.number('Horizontal', 'custom_button_horizontal_spacing', {
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'custombutton'
+            },
+            {
+              controlling_field_path: `${parent}button_group.button_custom_style`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        },
+        display_width: 'half_width',
+        suffix: 'px'
+      }),
+      fi.number('Border width', 'custom_button_border_width', {
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'custombutton'
+            },
+            {
+              controlling_field_path: `${parent}button_group.button_custom_style`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        },
+        display_width: 'half_width',
+        suffix: 'px'
+      }),
+      fi.number('Border radius', 'custom_button_border_radius', {
+        suffix: 'px',
+        display_width: 'half_width',
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'custombutton'
+            },
+            {
+              controlling_field_path: `${parent}button_group.button_custom_style`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        }
+      }),
+      fi.color('Border color', 'custom_button_border_color', {
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'custombutton'
+            },
+            {
+              controlling_field_path: `${parent}button_group.button_custom_style`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
         }
       }),
       group('Hover effects', 'custom_button_hover',

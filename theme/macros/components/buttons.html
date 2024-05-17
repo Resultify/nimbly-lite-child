@@ -76,8 +76,20 @@
                   {%- if item.custom_button_background.css -%}
                     --bg: {{item.custom_button_background.css}};
                   {%- endif -%}
-                  {{item.custom_button_border.css}}
-                  {{item.custom_button_spacing.css}}
+                  {% if item.custom_button_vertical_spacing %}
+                    padding-top: {{item.custom_button_vertical_spacing ~ 'px'}};
+                    padding-bottom: {{item.custom_button_vertical_spacing ~ 'px'}};
+                  {% endif %}
+                  {% if item.custom_button_horizontal_spacing %}
+                    padding-left: {{item.custom_button_horizontal_spacing ~ 'px'}};
+                    padding-right: {{item.custom_button_horizontal_spacing ~ 'px'}};
+                  {% endif %}
+                  {%- if item.custom_button_border_width > 0 -%}
+                    border-width: {{item.custom_button_border_width ~ 'px'}};
+                  {%- endif -%}
+                  {%- if item.custom_button_border_color.css -%}
+                    border-color: {{item.custom_button_border_color.css}};
+                  {%- endif -%}
                 }
                 .btn{{loop.index}}:not(:active):hover {
                   color: var(--hover-color, var(--_color));
@@ -118,7 +130,7 @@
           <style>
             {%- scope_css -%}
               .btn-block-wrp{{loop.index}} {
-                justify-content: {{horizontal_alignment_flexbox(item.button_alignment.horizontal_align)}};
+                justify-content: {{item.button_alignment}};
               }
             {%- end_scope_css -%}
           </style>
