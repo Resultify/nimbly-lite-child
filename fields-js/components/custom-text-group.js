@@ -33,7 +33,7 @@ const customTextGroup = (parent = '') => {
           operator: 'NOT_EMPTY'
         }
       }),
-      fi.number('Border radius', 'custom_text_border_radius', {
+      fi.number('Spacing', 'custom_text_spacing', {
         visibility: {
           controlling_field_path: `${parent}custom_text_group.custom_text`,
           operator: 'NOT_EMPTY'
@@ -41,7 +41,7 @@ const customTextGroup = (parent = '') => {
         display_width: 'half_width',
         suffix: 'px'
       }),
-      fi.number('Spacing', 'custom_text_spacing', {
+      fi.number('Border radius', 'custom_text_border_radius', {
         visibility: {
           controlling_field_path: `${parent}custom_text_group.custom_text`,
           operator: 'NOT_EMPTY'

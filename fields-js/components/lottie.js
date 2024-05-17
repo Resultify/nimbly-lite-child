@@ -7,13 +7,7 @@ const lottie = (parent = '') => {
     parent = `${parent}.`
   }
   return [
-    fi.file('Lottie file', 'lottie_file', {
-      visibility: {
-        controlling_field_path: 'image_type',
-        operator: 'EQUAL',
-        controlling_value_regex: 'lottie'
-      }
-    }),
+    fi.file('Lottie file', 'lottie_file'),
     fi.boolean('Loop', 'lottie_loop', {
       display_width: 'half_width',
       default: true,

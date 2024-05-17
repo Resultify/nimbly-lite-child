@@ -54,8 +54,8 @@ const icon = (parent = '') => {
         controlling_value_regex: 'true'
       }
     }),
-    fi.number('Border radius', 'icon_border_radius', {
-      suffix: '%',
+    fi.number('Spacing', 'icon_spacing', {
+      suffix: 'px',
       display_width: 'half_width',
       visibility: {
         controlling_field_path: `${parent}icon_additional_customization`,
@@ -63,8 +63,8 @@ const icon = (parent = '') => {
         controlling_value_regex: 'true'
       }
     }),
-    fi.number('Padding', 'icon_padding', {
-      suffix: 'px',
+    fi.number('Border radius', 'icon_border_radius', {
+      suffix: '%',
       display_width: 'half_width',
       visibility: {
         controlling_field_path: `${parent}icon_additional_customization`,

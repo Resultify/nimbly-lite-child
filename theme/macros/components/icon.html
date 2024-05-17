@@ -25,8 +25,8 @@
             {% if module.icon_border_radius > 0 %}
               border-radius: {{module.icon_border_radius ~ '%'}};
             {%- endif -%}
-            {% if module.icon_padding > 0 %}
-              padding: {{module.icon_padding ~ 'px'}};
+            {% if module.icon_spacing > 0 %}
+              padding: {{module.icon_spacing ~ 'px'}};
             {%- endif -%}
           }
           {%- if module.icon_color.css -%}

@@ -9,19 +9,20 @@ import { component } from '../../../fields-js/components/all.js'
 import { partial } from '../../../fields-js/partials/all.js'
 
 init(
-  fi.choice('Image type', 'image_type', {
+  fi.choice('Media type', 'media_type', {
     choices: [
       ['full_width_image', 'Full width image'],
       ['simple_image', 'Simple image'],
       ['icon', 'Icon'],
       ['lottie', 'Lottie Animation']
+      // ['video', 'Video']
     ]
   }),
   group('Full width image', 'full_width_image_group',
     {
       expanded: true,
       visibility: {
-        controlling_field_path: 'image_type',
+        controlling_field_path: 'media_type',
         operator: 'EQUAL',
         controlling_value_regex: 'full_width_image'
       }
@@ -32,7 +33,7 @@ init(
     {
       expanded: true,
       visibility: {
-        controlling_field_path: 'image_type',
+        controlling_field_path: 'media_type',
         operator: 'EQUAL',
         controlling_value_regex: 'simple_image'
       }
@@ -43,7 +44,7 @@ init(
     {
       expanded: true,
       visibility: {
-        controlling_field_path: 'image_type',
+        controlling_field_path: 'media_type',
         operator: 'EQUAL',
         controlling_value_regex: 'icon'
       }
@@ -54,7 +55,7 @@ init(
     {
       expanded: true,
       visibility: {
-        controlling_field_path: 'image_type',
+        controlling_field_path: 'media_type',
         operator: 'EQUAL',
         controlling_value_regex: 'lottie'
       }
@@ -146,13 +147,13 @@ init(
         controlling_value_regex: 'background_gradient'
       }
     }),
+    fi.spacing('Spacing', 'spacing'),
     fi.border('Border', 'border'),
     fi.number('Border radius', 'border_radius', {
       suffix: 'px',
       display_width: 'half_width'
     }),
     partial.shadowList(),
-    fi.spacing('Spacing', 'spacing'),
     // fi.boolean('Card content block styles', 'content_block_styles'),
     // fi.number('Content separator gap', 'content_separator_gap', {
     //   suffix: 'px',
