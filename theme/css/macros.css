@@ -7,3 +7,12 @@
     end
   {%- endif -%}
 {%- endmacro -%}
+
+{%- macro gradient(data) -%}
+  {%- if data.gradient_direction -%}
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient({{data.gradient_direction}}, {{data.gradient_color|map('css')|join(',')}});
+  {%- endif -%}
+{%- endmacro -%}

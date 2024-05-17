@@ -2,6 +2,7 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
+{% import '../../css/macros.css' %}
 {%- macro render(module) -%}
   {%- if module.custom_text_group|length > 0 -%}
     {% require_css %}
@@ -31,13 +32,10 @@
                   background-color: {{item.custom_text_background.css}};
                 {%- endif -%}
                 {{item.custom_text_font.css}}
-                {%- if item.custom_text_color_gradient.css -%}
-                  -webkit-text-fill-color: transparent;
-                  background-clip: text;
-                  -webkit-background-clip: text;
-                  background-image: {{item.custom_text_color_gradient.css}};
+                {{gradient(item)}}
+                {%- if item.custom_text_spacing > 0 -%}
+                  padding: {{item.custom_text_spacing ~ 'px'}};
                 {%- endif -%}
-                {{item.custom_text_spacing.css}}
               }
               {%- if item.custom_text_color_gradient.css and item.custom_text_background.css -%}
                 .custom-text-macro{{loop.index}}:after {

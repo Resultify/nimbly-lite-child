@@ -14,7 +14,7 @@
   "categories" : [ "TEXT" ],
   "icon" : "fontawesome-5.14.0:Alternate%20File",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
-  "module_id" : 98700032736,
+  "module_id" : 103152805073,
   "label" : "Card v2",
   "is_available_for_new_content" : true
 }

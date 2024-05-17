@@ -9,7 +9,7 @@ const heading = (parent = '') => {
   return [
     fi.text('Heading', 'heading_text', {
       allow_new_line: true,
-      default: 'Heading'
+      default: 'Card heading'
     }),
     fi.choice('Tag', 'heading_tag', {
       choices: [

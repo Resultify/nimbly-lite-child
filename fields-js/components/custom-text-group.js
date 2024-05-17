@@ -2,6 +2,7 @@ import {
   moduleFields as fi,
   group
 } from '@resultify/hubspot-fields-js'
+import { customGradient } from '../partials/custom-gradient.js'
 
 const customTextGroup = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
@@ -26,12 +27,6 @@ const customTextGroup = (parent = '') => {
           operator: 'NOT_EMPTY'
         }
       }),
-      fi.gradient('Text color gradient', 'custom_text_color_gradient', {
-        visibility: {
-          controlling_field_path: `${parent}custom_text_group.custom_text`,
-          operator: 'NOT_EMPTY'
-        }
-      }),
       fi.color('Background', 'custom_text_background', {
         visibility: {
           controlling_field_path: `${parent}custom_text_group.custom_text`,
@@ -46,15 +41,15 @@ const customTextGroup = (parent = '') => {
         display_width: 'half_width',
         suffix: 'px'
       }),
-      fi.spacing('', 'custom_text_spacing', {
+      fi.number('Spacing', 'custom_text_spacing', {
         visibility: {
           controlling_field_path: `${parent}custom_text_group.custom_text`,
-          operator: 'NOT_EMPTY',
-          hidden_subfields: {
-            margin: true
-          }
-        }
-      })
+          operator: 'NOT_EMPTY'
+        },
+        display_width: 'half_width',
+        suffix: 'px'
+      }),
+      customGradient(`${parent}custom_text_group`)
     )
   ]
 }

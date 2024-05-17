@@ -484,6 +484,36 @@
     "description" : "",
     "placeholders" : null
   },
+  "custom_text_group.custom_text.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "custom_text_group.custom_text.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "custom_text_group.custom_text.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "custom_text_group.custom_text.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "custom_text_group.custom_text.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "custom_text_group.custom_text.validation_regex" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "enable_heading_link.help_text" : {
     "message" : "",
     "description" : "",
@@ -889,9 +919,14 @@
     "description" : "",
     "placeholders" : null
   },
+  "image_type.choices.full_width_image" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "image_type.choices.icon" : {
     "message" : "Icon",
-    "description" : "",
+    "description" : null,
     "placeholders" : null
   },
   "image_type.choices.image" : {
@@ -899,24 +934,39 @@
     "description" : "",
     "placeholders" : null
   },
+  "image_type.choices.lottie" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "image_type.choices.simple_image" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "image_type.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "image_type.help_text" : {
     "message" : "bla",
-    "description" : "",
+    "description" : null,
     "placeholders" : null
   },
   "image_type.inline_help_text" : {
     "message" : "",
-    "description" : "",
+    "description" : null,
     "placeholders" : null
   },
   "image_type.label" : {
     "message" : "Image type",
-    "description" : "",
+    "description" : null,
     "placeholders" : null
   },
   "image_type.placeholder" : {
     "message" : "",
-    "description" : "",
+    "description" : null,
     "placeholders" : null
   },
   "name" : {

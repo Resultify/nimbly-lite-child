@@ -104,9 +104,9 @@
 {% endif %}
 
 {%- macro render_image(isfirst, islast) -%}
-  {% if module.image_type == 'full_width' %}
+  {% if module.image_type == 'full_width_image' %}
     {{fullWidthImage.render(module.full_width_image_group, isfirst, islast)}}
-  {% elif module.image_type == 'image' %}
+  {% elif module.image_type == 'simple_image' %}
     {{simpleImage.render(module.simple_image_group)}}
   {% elif module.image_type == 'icon' %}
     {{icon.render(module.icon_group)}}
