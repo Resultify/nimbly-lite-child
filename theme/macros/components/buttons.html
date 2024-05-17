@@ -28,6 +28,7 @@
           width: 100%;
         }
         .btn {
+          font-weight: initial;
           line-height: 1;
           gap: var(--root-button-icon-gap, .6ch);
         }
@@ -64,12 +65,11 @@
           <style>
             {%- scope_css -%}
               {%- if item.button_style == "custombutton" and item.button_custom_style -%}
-                .btn-{{item.button_style}}{{loop.index}} {
+                .btn{{loop.index}} {
                   {%- if item.custom_button_border_radius > 0 -%}
                     --border-radius: {{item.custom_button_border_radius ~ 'px'}};
                   {%- endif -%}
                   {{item.custom_button_font.css}}
-                  color: var(--hover-color, var(--_color));
                   {%- if item.custom_button_font.color -%}
                     --color: {{item.custom_button_font.color}};
                   {%- endif -%}
@@ -79,7 +79,8 @@
                   {{item.custom_button_border.css}}
                   {{item.custom_button_spacing.css}}
                 }
-                .btn-{{item.button_style}}{{loop.index}}:hover {
+                .btn{{loop.index}}:not(:active):hover {
+                  color: var(--hover-color, var(--_color));
                   {%- if item.custom_button_hover.background.css -%}
                     --hover-bg: {{item.custom_button_hover.background.color}};
                   {%- endif -%}
@@ -91,9 +92,8 @@
                   {%- endif -%}
                 }
               {%- elif item.button_style == "customlink" and item.button_custom_style -%}
-                .btn-{{item.button_style}}{{loop.index}} {
+                .btn{{loop.index}} {
                   {{item.custom_link_font.css}}
-                  color: var(--hover-color, var(--_color));
                   {%- if item.custom_link_font.color -%}
                     --color: {{item.custom_link_font.color}};
                   {%- endif -%}
@@ -101,7 +101,8 @@
                     text-decoration: {{item.custom_link_underline}};
                   {%- endif -%}
                 }
-                .btn-{{item.button_style}}{{loop.index}}:hover {
+                .btn{{loop.index}}:hover {
+                  color: var(--hover-color, var(--_color));
                   {%- if item.custom_link_hover.color.css -%}
                     --hover-color: {{item.custom_link_hover.color.css}};
                   {%- endif -%}
@@ -122,10 +123,19 @@
             {%- end_scope_css -%}
           </style>
         {%- endif -%}
+        {%- if item.button_hide_text and item.button_image.src and item.add_button_icon == "image" or item.button_hide_text and item.button_icon.name and item.add_button_icon == "icon" -%}
+          <style>
+            {%- scope_css -%}
+              .btn{{loop.index}} {
+                min-width: 0;
+              }
+            {%- end_scope_css -%}
+          </style>
+        {%- endif -%}
         {# render CTA button #}
         {%- if item.button_style == 'cta' -%}
           {%- if item.button_inline ne true -%}
-            <div class="btn-block-wrp">
+            <div class="btn-block-wrp btn-block-wrp{{loop.index}}">
           {%- endif -%}
           {% cta guid="{{item.button_cta}}" extra_classes="btn-cta" %}
           {%- if item.button_inline ne true -%}
@@ -134,21 +144,20 @@
         {# render regular button #}
         {%- else -%}
           {%- if item.button_text -%}
-            {%- if item.button_style == "customlink" -%}
-              {% set button_link_class = "btn btn-{{item.button_style}}{{loop.index}}" %}
-            {%- elif item.button_style == "linkonly"-%}
-              {% set button_link_class = "btn btn-{{item.button_style}}" %}
-            {%- elif item.button_style == "custombutton"-%}
-              {% set button_link_class = "btn btn-link btn-{{item.button_style}}{{loop.index}} btn-{{item.button_size}} {{'btn-full-width' if item.button_full_width}}" %}
+            {%- if item.button_style == "customlink" or item.button_style == "linkonly" -%}
+              {% set button_link_class = "btn-{{item.button_style}} btn btn{{loop.index}}" %}
             {%- else -%}
-              {% set button_link_class = "btn btn-link btn-{{item.button_style}} btn-{{item.button_size}} {{'btn-full-width' if item.button_full_width}}" %}
+              {%- if item.button_hide_text and item.button_image.src and item.add_button_icon == "image" or item.button_hide_text and item.button_icon.name and item.add_button_icon == "icon" -%}
+                {% set hide_text_class = 'class="visually-hidden"' %}
+              {%- endif -%}
+              {% set button_link_class = "btn-link btn-{{item.button_style}} btn btn{{loop.index}} btn-{{item.button_size}} {{'btn-full-width' if item.button_full_width}}" %}
             {%- endif -%}
             {%- if item.button_inline ne true -%}
               <div class="btn-block-wrp btn-block-wrp{{loop.index}}">
             {%- endif -%}
             <a {{link_attributes(item.button_link)}} class="{{button_link_class}} {{"stretched-link" if button_stretched_link}}">
               {{render_button_icon(item, "left")}}
-              <span {{'class="visually-hidden"' if item.button_hide_text and item.button_image.src and item.add_button_icon == "image" or item.button_hide_text and item.button_icon.name and item.add_button_icon == "icon"}}>
+              <span {{hide_text_class}}>
                 {{item.button_text}}
               </span>
               {{render_button_icon(item, "right")}}

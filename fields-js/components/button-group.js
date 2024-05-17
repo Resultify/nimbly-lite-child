@@ -267,6 +267,21 @@ const buttonGroup = (parent = '') => {
                 {
                   controlling_field_path: `${parent}button_group.button_text`,
                   operator: 'NOT_EMPTY'
+                },
+                {
+                  controlling_field_path: `${parent}button_group.button_style`,
+                  operator: 'NOT_EQUAL',
+                  controlling_value_regex: 'cta'
+                },
+                {
+                  controlling_field_path: `${parent}button_group.button_style`,
+                  operator: 'NOT_EQUAL',
+                  controlling_value_regex: 'customlink'
+                },
+                {
+                  controlling_field_path: `${parent}button_group.button_style`,
+                  operator: 'NOT_EQUAL',
+                  controlling_value_regex: 'linkonly'
                 }
               ]
             },
@@ -305,7 +320,6 @@ const buttonGroup = (parent = '') => {
       }),
       fi.boolean('Custom style', 'button_custom_style', {
         default: false,
-        display_width: 'half_width',
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
@@ -469,7 +483,7 @@ const buttonGroup = (parent = '') => {
           ]
         }
       }),
-      fi.spacing('Spacing', 'custom_button_spacing', {
+      fi.spacing('', 'custom_button_spacing', {
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
