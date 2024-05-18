@@ -21,6 +21,14 @@ const customTextGroup = (parent = '') => {
       fi.text('Text', 'custom_text', {
         allow_new_line: true
       }),
+      fi.boolean('Inline', 'custom_text_inline', {
+        default: true,
+        display_width: 'half_width',
+        visibility: {
+          controlling_field_path: `${parent}custom_text_group.custom_text`,
+          operator: 'NOT_EMPTY'
+        }
+      }),
       fi.font('Font', 'custom_text_font', {
         visibility: {
           controlling_field_path: `${parent}custom_text_group.custom_text`,
@@ -33,7 +41,15 @@ const customTextGroup = (parent = '') => {
           operator: 'NOT_EMPTY'
         }
       }),
-      fi.number('Spacing', 'custom_text_spacing', {
+      fi.number('Vertical spacing', 'custom_text_vertical_spacing', {
+        visibility: {
+          controlling_field_path: `${parent}custom_text_group.custom_text`,
+          operator: 'NOT_EMPTY'
+        },
+        display_width: 'half_width',
+        suffix: 'px'
+      }),
+      fi.number('Horizontal', 'custom_text_horizontal_spacing', {
         visibility: {
           controlling_field_path: `${parent}custom_text_group.custom_text`,
           operator: 'NOT_EMPTY'
@@ -46,7 +62,6 @@ const customTextGroup = (parent = '') => {
           controlling_field_path: `${parent}custom_text_group.custom_text`,
           operator: 'NOT_EMPTY'
         },
-        display_width: 'half_width',
         suffix: 'px'
       }),
       customGradient(`${parent}custom_text_group`)

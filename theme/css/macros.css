@@ -1,4 +1,4 @@
-{%- macro horizontal_alignment_flexbox(data) -%}
+{%- macro css_alignment_macro(data) -%}
   {%- if data == 'LEFT' -%}
     start
   {%- elif data == 'CENTER' -%}
@@ -8,11 +8,23 @@
   {%- endif -%}
 {%- endmacro -%}
 
-{%- macro gradient(data) -%}
+{%- macro css_gradient_macro(data) -%}
   {%- if data.gradient_direction -%}
     -webkit-text-fill-color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
     background-image: linear-gradient({{data.gradient_direction}}, {{data.gradient_color|map('css')|join(',')}});
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro css_font_macro(data, add_color = true) -%}
+  {%- if add_color and data.color -%}
+    color: {{data.color}};
+  {%- endif -%}
+  {%- if data.size -%}
+    font-size: {{data.size ~ 'px'}};
+  {%- endif -%}
+  {%- if data.style -%}
+    {{data.style}}
   {%- endif -%}
 {%- endmacro -%}

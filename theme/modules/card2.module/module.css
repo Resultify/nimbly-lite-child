@@ -46,7 +46,6 @@
 /* generaral card components flexbox gap */
 .card2-module .content-block-top,
 .card2-module .content-block-bottom,
-.card2-module .buttons-wrp,
 .card2-module .additional-images {
   gap: var(--module-content-gap);
 }

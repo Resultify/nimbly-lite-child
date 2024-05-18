@@ -7,11 +7,16 @@
   {%- if module.custom_text_group|length > 0 -%}
     {% require_css %}
       <style>
+        .custom-text-block-wrp {
+          flex-basis: 100%;
+          display: flex;
+          flex-wrap: wrap;
+        }
         .custom-text-macro-wrp {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
-          gap: var(--root-custom-text-gap, .6ch);
+          gap: var(--root-custom-text-gap, .9ch);
         }
         .custom-text-macro {
           display: block;
@@ -31,11 +36,16 @@
                 {%- if item.custom_text_background.css and item.custom_text_color_gradient.css == null -%}
                   background-color: {{item.custom_text_background.css}};
                 {%- endif -%}
-                {{item.custom_text_font.css}}
-                {{gradient(item)}}
-                {%- if item.custom_text_spacing > 0 -%}
-                  padding: {{item.custom_text_spacing ~ 'px'}};
-                {%- endif -%}
+                {% if item.custom_text_vertical_spacing %}
+                  padding-top: {{item.custom_text_vertical_spacing ~ 'px'}};
+                  padding-bottom: {{item.custom_text_vertical_spacing ~ 'px'}};
+                {% endif %}
+                {% if item.custom_text_horizontal_spacing %}
+                  padding-left: {{item.custom_text_horizontal_spacing ~ 'px'}};
+                  padding-right: {{item.custom_text_horizontal_spacing ~ 'px'}};
+                {% endif %}
+                {{css_gradient_macro(item)}}
+                {{css_font_macro(item.custom_text_font)}}
               }
               {%- if item.custom_text_color_gradient.css and item.custom_text_background.css -%}
                 .custom-text-macro{{loop.index}}:after {
@@ -55,7 +65,13 @@
               {%- endif -%}
             {%- end_scope_css -%}
           </style>
+          {%- if item.custom_text_inline ne true -%}
+            <div class="custom-text-block-wrp">
+          {%- endif -%}
           <span class="custom-text-macro custom-text-macro{{loop.index}}">{{item.custom_text}}</span>
+          {%- if item.custom_text_inline ne true -%}
+            </div>
+          {%- endif -%}
         {%- endif -%}
       {%- endfor -%}
     </div>

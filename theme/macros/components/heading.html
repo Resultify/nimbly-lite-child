@@ -3,6 +3,7 @@
   isAvailableForNewContent: false
 -->
 {% import '../partials/link-attributes.html' %}
+{% import '../../css/macros.css' %}
 {%- macro render(module) -%}
   {%- macro icon(module, alignment) -%}
     {%- if module.add_heading_icon and module.heading_link_type != 'anchor' -%}
@@ -39,7 +40,7 @@
           hyphens: auto;
           display: inline-flex;
           align-items: center;
-          gap: var(--root-heading-icon-gap, .3ch);
+          gap: var(--root-heading-icon-gap, .6ch);
           margin: 0;
           text-align: var(--module-alignment);
           color: var(--module-color);
@@ -47,7 +48,7 @@
         .heading-macro svg,
         .heading-macro .heading-image {
           width: auto;
-          height: var(--root-heading-icon-size, 0.8lh);
+          height: var(--root-heading-icon-size, 1.2lh);
           fill: currentcolor;
         }
         .heading-link {
@@ -78,11 +79,11 @@
         {%- end_scope_css -%}
       </style>
     {%- endif -%}
-    {%- if module.heading_font.css and module.heading_additional_customization -%}
+    {%- if module.heading_additional_customization -%}
       <style>
       {%- scope_css -%}
         .heading-macro {
-          {{module.heading_font.css}}
+          {{css_font_macro(module.heading_font)}}
         }
       {%- end_scope_css -%}
     </style>

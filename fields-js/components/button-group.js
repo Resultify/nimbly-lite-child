@@ -60,6 +60,11 @@ const buttonGroup = (parent = '') => {
               controlling_field_path: `${parent}button_group.button_style`,
               operator: 'NOT_EQUAL',
               controlling_value_regex: 'cta'
+            },
+            {
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'NOT_EQUAL',
+              controlling_value_regex: 'customlink'
             }
           ]
         }

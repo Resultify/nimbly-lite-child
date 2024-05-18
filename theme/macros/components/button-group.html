@@ -18,6 +18,7 @@
           flex-wrap: wrap;
           align-items: center;
           width: 100%;
+          gap: var(--module-content-gap);
         }
         .btn-block-wrp {
           flex-basis: 100%;
@@ -28,14 +29,13 @@
           width: 100%;
         }
         .btn {
-          font-weight: initial;
           line-height: 1;
-          gap: var(--root-button-icon-gap, .6ch);
+          gap: var(--root-button-icon-gap, .9ch);
         }
         .btn > svg,
         .btn > .button-image {
           width: auto;
-          height: var(--root-button-icon-size, 1lh);
+          height: var(--root-button-icon-size, 1.1lh);
           fill: currentcolor;
         }
       </style>
@@ -69,7 +69,6 @@
                   {%- if item.custom_button_border_radius > 0 -%}
                     --border-radius: {{item.custom_button_border_radius ~ 'px'}};
                   {%- endif -%}
-                  {{item.custom_button_font.css}}
                   {%- if item.custom_button_font.color -%}
                     --color: {{item.custom_button_font.color}};
                   {%- endif -%}
@@ -90,9 +89,9 @@
                   {%- if item.custom_button_border_color.css -%}
                     border-color: {{item.custom_button_border_color.css}};
                   {%- endif -%}
+                  {{css_font_macro(item.custom_button_font, false)}}
                 }
                 .btn{{loop.index}}:not(:active):hover {
-                  color: var(--hover-color, var(--_color));
                   {%- if item.custom_button_hover.background.css -%}
                     --hover-bg: {{item.custom_button_hover.background.color}};
                   {%- endif -%}
@@ -105,16 +104,15 @@
                 }
               {%- elif item.button_style == "customlink" and item.button_custom_style -%}
                 .btn{{loop.index}} {
-                  {{item.custom_link_font.css}}
                   {%- if item.custom_link_font.color -%}
                     --color: {{item.custom_link_font.color}};
                   {%- endif -%}
                   {%- if item.custom_link_underline -%}
                     text-decoration: {{item.custom_link_underline}};
                   {%- endif -%}
+                  {{css_font_macro(item.custom_link_font, false)}}
                 }
                 .btn{{loop.index}}:hover {
-                  color: var(--hover-color, var(--_color));
                   {%- if item.custom_link_hover.color.css -%}
                     --hover-color: {{item.custom_link_hover.color.css}};
                   {%- endif -%}

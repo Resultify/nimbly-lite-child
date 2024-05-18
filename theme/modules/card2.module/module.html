@@ -44,7 +44,7 @@
   {% scope_css %}
     .card2-module {
       --module-color: {{module.style.text_color.css is truthy ? module.style.text_color.css : 'initial' }};
-      --module-alignment: {{horizontal_alignment_flexbox(module.style.alignment.horizontal_align)}};
+      --module-alignment: {{css_alignment_macro(module.style.alignment.horizontal_align)}};
       --module-border-radius: {{module.style.border_radius is truthy ? module.style.border_radius ~ "px" : 0 }};
       {% if module.style.background_type == 'background_color' %}
         --module-background: {{module.style.background_color.css is truthy ? module.style.background_color.css : 'initial' }};
@@ -127,16 +127,16 @@
       {% elif item.component|lower == 'subheading' %}
         {{subheading.render(module)}}
 
-      {% elif item.component|cut(" ")|lower == 'customtext' %}
+      {% elif item.component|cut(" ")|lower == 'customtextgroup' %}
         {{customTextGroup.render(module)}}
 
       {% elif item.component|cut(" ")|lower == 'richtext' %}
         {{richtext.render(module)}}
 
-      {% elif item.component|lower == 'buttons' %}
+      {% elif item.component|cut(" ")|lower == 'buttongroup' %}
         {{buttonGroup.render(module)}}
 
-      {% elif item.component|cut(" ")|lower == 'additionalimages' %}
+      {% elif item.component|cut(" ")|lower == 'additionalimagesgroup' %}
         {% if module.additional_images_group|length > 0 %}
           <div class="additional-images">
             {% for image in module.additional_images_group %}

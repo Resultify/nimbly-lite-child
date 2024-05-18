@@ -83,9 +83,9 @@ init(
     'Heading',
     'Subheading',
     'Rich text',
-    'Buttons',
-    'Custom text',
-    'Additional images',
+    'Button group',
+    'Custom text group',
+    'Additional images group',
     'Separator'
   ]),
   fi.boolean('Whole area link', 'whole_area_link', {
