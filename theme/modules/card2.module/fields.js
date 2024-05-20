@@ -76,7 +76,7 @@ init(
         max: 20
       }
     },
-    component.simpleImage('additional_images_group')
+    component.simpleImage('additional_images_group', true)
   ),
   component.order([
     'Image',
@@ -147,7 +147,13 @@ init(
         controlling_value_regex: 'background_gradient'
       }
     }),
-    fi.spacing('Spacing', 'spacing'),
+    fi.spacing('Spacing', 'spacing', {
+      visibility: {
+        hidden_subfields: {
+          margin: true
+        }
+      }
+    }),
     fi.border('Border', 'border'),
     fi.number('Border radius', 'border_radius', {
       suffix: 'px',

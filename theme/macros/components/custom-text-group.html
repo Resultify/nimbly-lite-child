@@ -7,6 +7,10 @@
   {%- if module.custom_text_group|length > 0 -%}
     {% require_css %}
       <style>
+        .custom-text-macro-wrp,
+        .custom-text-block-wrp {
+          justify-content: var(--module-alignment);
+        }
         .custom-text-block-wrp {
           flex-basis: 100%;
           display: flex;
@@ -43,6 +47,12 @@
                 {% if item.custom_text_horizontal_spacing %}
                   padding-left: {{item.custom_text_horizontal_spacing ~ 'px'}};
                   padding-right: {{item.custom_text_horizontal_spacing ~ 'px'}};
+                {% endif %}
+                {% if item.custom_text_font.size >= 30 and item.custom_text_font.size < 45 %}
+                  line-height: 1.2;
+                {% endif %}
+                {% if item.custom_text_font.size >= 45 %}
+                  line-height: 1;
                 {% endif %}
                 {{css_gradient_macro(item)}}
                 {{css_font_macro(item.custom_text_font)}}

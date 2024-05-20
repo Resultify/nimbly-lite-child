@@ -309,6 +309,29 @@ const heading = (parent = '') => {
           underline: true
         }
       }
+    }),
+    fi.color('Hover color', 'heading_hover_color', {
+      visibility_rules: 'ADVANCED',
+      show_opacity: false,
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: `${parent}heading_additional_customization`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
+          },
+          {
+            controlling_field_path: `${parent}heading_text`,
+            operator: 'NOT_EMPTY'
+          },
+          {
+            controlling_field_path: `${parent}heading_link_type`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'link'
+          }
+        ]
+      }
     })
   ]
 }

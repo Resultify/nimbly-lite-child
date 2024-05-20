@@ -11,13 +11,27 @@
           max-width: 100%;
           height: auto;
         }
+        .simple-image-macro-wrp {
+          display: flex;
+          width: 100%;
+        }
       </style>
     {% end_require_css %}
+    {%- if module.simple_image_alignment -%}
+      <div class="simple-image-macro-wrp" style="justify-content:{{module.simple_image_alignment}};">
+    {%- endif -%}
     <img class="simple-image-macro"
       alt="{{module.simple_image.alt}}"
       src="{{module.simple_image.src}}"
-      width="{{module.simple_image.width}}"
-      height="{{module.simple_image.height}}"
+      {%- if module.simple_image_width -%}
+        width="{{module.simple_image_width}}"
+      {%- else -%}
+        width="{{module.simple_image.width}}"
+        height="{{module.simple_image.height}}"
+      {%- endif -%}
       loading="lazy">
+      {%- if module.simple_image_alignment -%}
+        </div>
+      {%- endif -%}
   {%- endif -%}
 {%- endmacro -%}

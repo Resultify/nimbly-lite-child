@@ -44,6 +44,9 @@
           margin: 0;
           text-align: var(--module-alignment);
           color: var(--module-color);
+          transition-property: color;
+          transition-duration: var(--root-transition-duration);
+          transition-timing-function: var(--root-transition-timing-function);
         }
         .heading-macro svg,
         .heading-macro .heading-image {
@@ -81,17 +84,23 @@
     {%- endif -%}
     {%- if module.heading_additional_customization -%}
       <style>
-      {%- scope_css -%}
-        .heading-macro {
-          {{css_font_macro(module.heading_font)}}
-        }
-      {%- end_scope_css -%}
-    </style>
+        {%- scope_css -%}
+          .heading-macro {
+            {{css_font_macro(module.heading_font)}}
+          }
+          {% if module.heading_link_type == 'link' %}
+            .heading-link {
+              --color: {{module.heading_font.color}};
+              --hover-color: {{module.heading_hover_color.css}};
+            }
+          {% endif %}
+        {%- end_scope_css -%}
+      </style>
     {%- endif -%}
     <{{module.heading_tag}}
       class="{{module.heading_style}} heading-macro"
       {{'style="justify-content:space-between;width:100%;"' if module.heading_icon_alignment is containing 'space' and module.add_heading_icon}}
-      {{'id="{{module.heading|lower|replace(" ", "-")|urlencode}}"' if module.heading_link_type == 'anchor'}}>
+      {{'id="{{module.heading_text|lower|replace(" ", "-")|urlencode}}"' if module.heading_link_type == 'anchor'}}>
       {%- if module.heading_link.url.href and module.heading_link_type == 'link' -%}
         <a {{link_attributes(module.heading_link)}} class="heading-link {{"stretched-link" if heading_stretched_link}}">
           {{icon(module, 'left')}}

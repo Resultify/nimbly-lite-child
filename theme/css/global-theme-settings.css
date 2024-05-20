@@ -15,12 +15,12 @@
 
   /* animation global styles */
   --ani-scale1x: scale(1.02);
-  --ani-scale2x: scale(1.04);
-  --ani-scale3x: scale(1.08);
-  --ani-scale4x: scale(1.12);
-  --ani-slideup1x: translateY(-3px);
-  --ani-slideup2x: translateY(-6px);
-  --ani-slideup3x: translateY(-10px);
+  --ani-scale2x: scale(1.03);
+  --ani-scale3x: scale(1.05);
+  --ani-scale4x: scale(1.07);
+  --ani-slideup1x: translateY(-4px);
+  --ani-slideup2x: translateY(-7px);
+  --ani-slideup3x: translateY(-11px);
   /* --ani-custom1: */
   /* --ani-custom2: */
   /* --ani-custom3: */

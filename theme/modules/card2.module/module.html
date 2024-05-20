@@ -15,31 +15,6 @@
 {% import '../../macros/components/simple-image.html' as simpleImage %}
 {% import '../../css/macros.css' %}
 
-{% if module.style.hover.background_color.css and module.style.hover_effects %}
-  {% require_css %}
-    <style>
-      @media (any-hover: hover) {
-        .card2-module:after {
-          content: "";
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: -10;
-          background-color: rgb(255 255 255 / 0%);
-          transition-property: background-color;
-          transition-duration: var(--root-transition-duration);
-          transition-timing-function: var(--root-transition-timing-function);
-          border-radius: var(--module-border-radius);
-        }
-        .card2-module:hover:after {
-          background-color: var(--module-hover-background);
-        }
-      }
-    </style>
-  {% end_require_css %}
-{% endif %}
 <style>
   {% scope_css %}
     .card2-module {
@@ -79,21 +54,42 @@
       {# --card-bottom-block-border: {{module.style.content_block_styles and module.style.bottom_content_block.border.css and module.style.bottom_content_block.border.top.width.value is truthy ? module.style.bottom_content_block.border.css|cut('border:') : 'none'}}; #}
       {# --card-bottom-block-border-radius: {{module.style.content_block_styles and module.style.bottom_content_block.border_radius is truthy ? module.style.bottom_content_block.border_radius ~ "px" : 0}}; #}
       {# --card-bottom-block-padding: {{module.style.content_block_styles and module.style.bottom_content_block.spacing.css is truthy ? padding(module.style.bottom_content_block.spacing) : 0}}; #}
-      }
+    }
 
-      {% if module.style.background_type == 'background_image' and module.style.background_image_overlay.css %}
-        .card2-module:before {
+    {% if module.style.background_type == 'background_image' and module.style.background_image_overlay.css %}
+      .card2-module:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -12;
+        background-color: {{module.style.background_image_overlay.css}};
+        border-radius: var(--module-border-radius);
+      }
+    {% endif %}
+    {% if module.style.hover.background_color.css and module.style.hover_effects %}
+      @media (any-hover: hover) {
+        .card2-module:after {
           content: "";
           width: 100%;
           height: 100%;
           position: absolute;
           top: 0;
           left: 0;
-          z-index: -12;
-          background-color: {{module.style.background_image_overlay.css}};
-          border-radius: var(--module-border-radius);
+          z-index: -10;
+          background-color: rgb(255 255 255 / 0%);
+          transition-property: background-color;
+          transition-duration: var(--root-transition-duration);
+          transition-timing-function: var(--root-transition-timing-function);
+          border-radius: calc(var(--module-border-radius) - 1px);
         }
-      {% endif %}
+        .card2-module:hover:after {
+          background-color: var(--module-hover-background);
+        }
+      }
+    {% endif %}
   {% end_scope_css %}
 </style>
 {# stretched_link #}
