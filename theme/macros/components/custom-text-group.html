@@ -7,38 +7,47 @@
   {%- if module.custom_text_group|length > 0 -%}
     {% require_css %}
       <style>
-        .custom-text-macro-wrp,
-        .custom-text-block-wrp {
+        .custom-text-group-wrp-macro,
+        .custom-text-block-wrp-macro {
           justify-content: var(--module-alignment);
         }
-        .custom-text-block-wrp {
+        .custom-text-block-wrp-macro {
           flex-basis: 100%;
           display: flex;
           flex-wrap: wrap;
         }
-        .custom-text-macro-wrp {
+        .custom-text-group-wrp-macro {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
           gap: var(--root-custom-text-gap, .9ch);
         }
         .custom-text-macro {
+          --_macro-color: var(--module-hover-color, var(--custom-color, var(--module-color)));
+          color: var(--_macro-color);
           display: block;
           position: relative;
+          transition-property: color;
+          transition-duration: var(--root-transition-duration);
+          transition-timing-function: var(--root-transition-timing-function);
         }
       </style>
     {% end_require_css %}
-    <div class="custom-text-macro-wrp">
+    <div class="custom-text-group-wrp-macro">
       {%- for item in module.custom_text_group -%}
         {%- if item.custom_text -%}
           <style>
             {%- scope_css -%}
               .custom-text-macro{{loop.index}} {
+                {% if item.custom_text_font.color %}
+                  --custom-color: {{item.custom_text_font.color}};
+                {% endif %}
                 {%- if item.custom_text_border_radius > 0 -%}
                   border-radius: {{item.custom_text_border_radius ~ 'px'}};
                 {%- endif -%}
                 {%- if item.custom_text_background.css and item.custom_text_color_gradient.css == null -%}
                   background-color: {{item.custom_text_background.css}};
+                  --module-hover-color: var(--custom-color);
                 {%- endif -%}
                 {% if item.custom_text_vertical_spacing %}
                   padding-top: {{item.custom_text_vertical_spacing ~ 'px'}};
@@ -55,7 +64,7 @@
                   line-height: 1;
                 {% endif %}
                 {{css_gradient_macro(item)}}
-                {{css_font_macro(item.custom_text_font)}}
+                {{css_font_macro(item.custom_text_font, false)}}
               }
               {%- if item.custom_text_color_gradient.css and item.custom_text_background.css -%}
                 .custom-text-macro{{loop.index}}:after {
@@ -76,7 +85,7 @@
             {%- end_scope_css -%}
           </style>
           {%- if item.custom_text_inline ne true -%}
-            <div class="custom-text-block-wrp">
+            <div class="custom-text-block-wrp-macro">
           {%- endif -%}
           <span class="custom-text-macro custom-text-macro{{loop.index}}">{{item.custom_text}}</span>
           {%- if item.custom_text_inline ne true -%}

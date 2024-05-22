@@ -20,7 +20,7 @@
             %}
           {%- endif -%}
         {%- elif module.heading_icon_type == 'inline_svg' -%}
-          {{module.inline_svg}}
+          {{module.heading_inline_svg}}
         {%- elif module.heading_icon_type == 'image' -%}
           <img class="heading-image"
             alt=""
@@ -34,6 +34,8 @@
     {% require_css %}
       <style>
         .heading-macro {
+          --_macro-color: var(--module-hover-color, var(--custom-color, var(--module-color)));
+          --_macro-hover-color: var(--module-hover-color, var(--custom-hover-color, var(--module-color)));
           text-wrap: balance;
           overflow-wrap: break-word;
           -webkit-hyphens: auto; /* for Safari */
@@ -43,7 +45,7 @@
           gap: var(--root-heading-icon-gap, .6ch);
           margin: 0;
           text-align: var(--module-alignment);
-          color: var(--module-color);
+          color: var(--_macro-color, var(--global-heading-color));
           transition-property: color;
           transition-duration: var(--root-transition-duration);
           transition-timing-function: var(--root-transition-timing-function);
@@ -55,10 +57,14 @@
           fill: currentcolor;
         }
         .heading-link {
+          color: var(--_macro-color, var(--color));
           transition-property: color;
           transition-duration: var(--root-transition-duration);
           transition-timing-function: var(--root-transition-timing-function);
           gap: var(--root-heading-icon-gap, .3ch);
+        }
+        .heading-link:hover {
+          color: var(--_macro-hover-color, var(--hover-color));
         }
         .anchor-heading-link svg.anchor-icon {
           height: 0.6lh;
@@ -86,14 +92,19 @@
       <style>
         {%- scope_css -%}
           .heading-macro {
+            {%- if module.heading_link_type != 'link' -%}
+              --custom-color: {{module.heading_color.css}};
+            {%- endif -%}
+            {%- if module.heading_link_type == 'link' -%}
+              {%- if module.heading_link_color.css -%}
+                --custom-color: {{module.heading_link_color.css}};
+              {%- endif -%}
+              {%- if module.heading_link_hover_color.css -%}
+                --custom-hover-color: {{module.heading_link_hover_color.css}};
+              {%- endif -%}
+            {%- endif -%}
             {{css_font_macro(module.heading_font)}}
           }
-          {% if module.heading_link_type == 'link' %}
-            .heading-link {
-              --color: {{module.heading_font.color}};
-              --hover-color: {{module.heading_hover_color.css}};
-            }
-          {% endif %}
         {%- end_scope_css -%}
       </style>
     {%- endif -%}

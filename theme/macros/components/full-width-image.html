@@ -2,7 +2,7 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(module, first, last) -%}
+{%- macro render(module) -%}
   {%- if module.full_width_image.src -%}
     {%- require_css -%}
       <style>
@@ -26,18 +26,18 @@
             margin-left: calc(var(--module-padding-left) * -1);
             margin-right: calc(var(--module-padding-right) * -1);
             width: calc(100% + var(--module-padding-left) + var(--module-padding-right));
-            {%- if module.force_full_width_image and first -%}
+            {%- if module.force_full_width_image and loop.first -%}
               margin-top: calc(var(--module-padding-top) * -1);
               margin-bottom: 0.8rem;
-            {%- elif module.force_full_width_image and last -%}
+            {%- elif module.force_full_width_image and loop.last -%}
               margin-bottom: calc(var(--module-padding-bottom) * -1);
             {%- endif -%}
           }
           .full-width-image-macro {
-            {%- if module.force_full_width_image and first -%}
+            {%- if module.force_full_width_image and loop.first -%}
               border-top-left-radius: var(--module-border-radius);
               border-top-right-radius: var(--module-border-radius);
-            {%- elif module.force_full_width_image and last -%}
+            {%- elif module.force_full_width_image and loop.last -%}
               border-bottom-left-radius: var(--module-border-radius);
               border-bottom-right-radius: var(--module-border-radius);
             {%- endif -%}

@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  transition-property: box-shadow, transform, background-color, color, fill;
+  transition-property: box-shadow, transform, background-color;
   transition-duration: var(--root-transition-duration);
   transition-timing-function: var(--root-transition-timing-function);
   transform: translateZ(0);
@@ -26,21 +26,11 @@
 .card2-module .content-block-top {
   display: flex;
   flex-direction: column;
-  margin-top: var(--module-margin-top);
-  margin-bottom: var(--module-margin-bottom);
-  /* background-color: var(--card-top-block-background); */
-  /* border: var(--card-top-block-border); */
-  /* border-radius: var(--card-top-block-border-radius); */
-  /* padding: var(--card-top-block-padding); */
 }
 
 .card2-module .content-block-bottom {
   display: flex;
   flex-direction: column;
-  /* background-color: var(--card-bottom-block-background); */
-  /* border: var(--card-bottom-block-border); */
-  /* border-radius: var(--card-bottom-block-border-radius); */
-  /* padding: var(--card-bottom-block-padding); */
 }
 
 /* generaral card components flexbox gap */
@@ -64,15 +54,3 @@
   align-items: center;
 }
 
-/* hover styles */
-@media (any-hover: hover) {
-  .card2-module:hover {
-    color: var(--module-hover-color);
-    fill: var(--module-hover-color);
-    box-shadow: var(--module-hover-shadow);
-    transform: var(--module-hover-animation);
-  }
-  .card2-module:hover :is(h1,h2,h3,h4,h5,h6) {
-    color: var(--module-hover-color);
-  }
-}

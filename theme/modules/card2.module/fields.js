@@ -107,7 +107,7 @@ init(
     ),
     fi.number('Content gap', 'content_gap', {
       suffix: 'px',
-      default: 12,
+      default: 16,
       display_width: 'half_width',
       help_text: 'General gap between all card components'
     }),
@@ -160,60 +160,6 @@ init(
       display_width: 'half_width'
     }),
     partial.shadowList(),
-    // fi.boolean('Card content block styles', 'content_block_styles'),
-    // fi.number('Content separator gap', 'content_separator_gap', {
-    //   suffix: 'px',
-    //   inherited_value: {
-    //     default_value_path: 'module.style.content_gap'
-    //   },
-    //   visibility: {
-    //     controlling_field_path: 'style.content_block_styles',
-    //     operator: 'EQUAL',
-    //     controlling_value_regex: 'true'
-    //   }
-    // }),
-    // group('Top content block', 'top_content_block',
-    //   {
-    //     visibility: {
-    //       controlling_field_path: 'style.content_block_styles',
-    //       operator: 'EQUAL',
-    //       controlling_value_regex: 'true'
-    //     }
-    //   },
-    //   fi.color('Background color', 'background_color'),
-    //   fi.border('Border', 'border'),
-    //   fi.number('Border radius', 'border_radius', {
-    //     suffix: 'px'
-    //   }),
-    //   fi.spacing('Spacing', 'spacing', {
-    //     visibility: {
-    //       hidden_subfields: {
-    //         margin: true
-    //       }
-    //     }
-    //   })
-    // ),
-    // group('Bottom content block', 'bottom_content_block',
-    //   {
-    //     visibility: {
-    //       controlling_field_path: 'style.content_block_styles',
-    //       operator: 'EQUAL',
-    //       controlling_value_regex: 'true'
-    //     }
-    //   },
-    //   fi.color('Background color', 'background_color'),
-    //   // fi.border('Border', 'border'),
-    //   fi.number('Border radius', 'border_radius', {
-    //     suffix: 'px'
-    //   }),
-    //   fi.spacing('Spacing', 'spacing', {
-    //     visibility: {
-    //       hidden_subfields: {
-    //         // margin: true
-    //       }
-    //     }
-    //   })
-    // ),
     fi.boolean('Card hover effects', 'hover_effects'),
     group('Hover', 'hover',
       {

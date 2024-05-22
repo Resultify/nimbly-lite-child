@@ -306,13 +306,57 @@ const heading = (parent = '') => {
           size: true,
           bold: true,
           italic: true,
-          underline: true
+          underline: true,
+          color: true
         }
       }
     }),
-    fi.color('Hover color', 'heading_hover_color', {
+    fi.color('Color', 'heading_color', {
       visibility_rules: 'ADVANCED',
-      show_opacity: false,
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: `${parent}heading_additional_customization`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
+          },
+          {
+            controlling_field_path: `${parent}heading_text`,
+            operator: 'NOT_EMPTY'
+          },
+          {
+            controlling_field_path: `${parent}heading_link_type`,
+            operator: 'NOT_EQUAL',
+            controlling_value_regex: 'link'
+          }
+        ]
+      }
+    }),
+    fi.color('Color', 'heading_link_color', {
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: `${parent}heading_additional_customization`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
+          },
+          {
+            controlling_field_path: `${parent}heading_text`,
+            operator: 'NOT_EMPTY'
+          },
+          {
+            controlling_field_path: `${parent}heading_link_type`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'link'
+          }
+        ]
+      }
+    }),
+    fi.color('Hover color', 'heading_link_hover_color', {
+      visibility_rules: 'ADVANCED',
       advanced_visibility: {
         boolean_operator: 'AND',
         criteria: [

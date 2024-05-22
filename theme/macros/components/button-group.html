@@ -8,11 +8,11 @@
   {%- if module.button_group|length > 0 -%}
     {% require_css %}
       <style>
-        .buttons-wrp,
-        .btn-block-wrp {
+        .btn-group-wrp-macro,
+        .btn-block-wrp-macro {
           justify-content: var(--module-alignment);
         }
-        .buttons-wrp {
+        .btn-group-wrp-macro {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
@@ -20,7 +20,7 @@
           width: 100%;
           gap: var(--module-content-gap);
         }
-        .btn-block-wrp {
+        .btn-block-wrp-macro {
           flex-basis: 100%;
           display: flex;
           flex-wrap: wrap;
@@ -28,12 +28,12 @@
         .btn-full-width {
           width: 100%;
         }
-        .btn {
+        .btn-macro {
           line-height: 1;
           gap: var(--root-button-icon-gap, .9ch);
         }
-        .btn > svg,
-        .btn > .button-image {
+        .btn-macro > svg,
+        .btn-macro > .btn-image {
           width: auto;
           height: var(--root-button-icon-size, 1.1lh);
           fill: currentcolor;
@@ -43,7 +43,7 @@
     {%- macro render_button_icon(item, position) -%}
       {%- if item.button_icon_position == position -%}
         {%- if item.add_button_icon == "image" and item.button_image.src -%}
-          <img class="button-image"
+          <img class="btn-image"
             alt=""
             src="{{item.button_image.src}}"
             loading="lazy">
@@ -59,7 +59,7 @@
         {%- endif -%}
       {%- endif -%}
     {%- endmacro -%}
-    <div class="buttons-wrp">
+    <div class="btn-group-wrp-macro">
       {%- for item in module.button_group -%}
         {%- if item.button_style is containing 'custom' -%}
           <style>
@@ -127,7 +127,7 @@
         {%- if item.button_full_width != true and item.button_inline != true -%}
           <style>
             {%- scope_css -%}
-              .btn-block-wrp{{loop.index}} {
+              .btn-block-wrp-macro{{loop.index}} {
                 justify-content: {{item.button_alignment}};
               }
             {%- end_scope_css -%}
@@ -145,7 +145,7 @@
         {# render CTA button #}
         {%- if item.button_style == 'cta' -%}
           {%- if item.button_inline ne true -%}
-            <div class="btn-block-wrp btn-block-wrp{{loop.index}}">
+            <div class="btn-block-wrp-macro btn-block-wrp-macro{{loop.index}}">
           {%- endif -%}
           {% cta guid="{{item.button_cta}}" extra_classes="btn-cta" %}
           {%- if item.button_inline ne true -%}
@@ -155,15 +155,15 @@
         {%- else -%}
           {%- if item.button_text -%}
             {%- if item.button_style == "customlink" or item.button_style == "linkonly" -%}
-              {% set button_link_class = "btn-{{item.button_style}} btn btn{{loop.index}}" %}
+              {% set button_link_class = "btn-{{item.button_style}} btn-macro btn{{loop.index}}" %}
             {%- else -%}
               {%- if item.button_hide_text and item.button_image.src and item.add_button_icon == "image" or item.button_hide_text and item.button_icon.name and item.add_button_icon == "icon" -%}
                 {% set hide_text_class = 'class="visually-hidden"' %}
               {%- endif -%}
-              {% set button_link_class = "btn-link btn-{{item.button_style}} btn btn{{loop.index}} btn-{{item.button_size}} {{'btn-full-width' if item.button_full_width}}" %}
+              {% set button_link_class = "btn-link btn-{{item.button_style}} btn-macro btn{{loop.index}} btn-{{item.button_size}} {{'btn-full-width' if item.button_full_width}}" %}
             {%- endif -%}
             {%- if item.button_inline ne true -%}
-              <div class="btn-block-wrp btn-block-wrp{{loop.index}}">
+              <div class="btn-block-wrp-macro btn-block-wrp-macro{{loop.index}}">
             {%- endif -%}
             <a {{link_attributes(item.button_link)}} class="{{button_link_class}} {{"stretched-link" if button_stretched_link}}">
               {{render_button_icon(item, "left")}}

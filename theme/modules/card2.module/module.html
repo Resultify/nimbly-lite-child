@@ -18,42 +18,23 @@
 <style>
   {% scope_css %}
     .card2-module {
-      --module-color: {{module.style.text_color.css is truthy ? module.style.text_color.css : 'initial' }};
+      --module-color: {{module.style.text_color.css if module.style.text_color.css}};
       --module-alignment: {{css_alignment_macro(module.style.alignment.horizontal_align)}};
       --module-border-radius: {{module.style.border_radius is truthy ? module.style.border_radius ~ "px" : 0 }};
-      {% if module.style.background_type == 'background_color' %}
-        --module-background: {{module.style.background_color.css is truthy ? module.style.background_color.css : 'initial' }};
-      {% elif module.style.background_type == 'background_gradient' %}
-        background: {{module.style.background_gradient.css is truthy ? module.style.background_gradient.css : 'initial' }};
-      {% elif module.style.background_type == 'background_image' %}
+      {% if module.style.background_type == 'background_color' and module.style.background_color.css %}
+        --module-background: {{module.style.background_color.css}};
+      {% elif module.style.background_type == 'background_gradient' and module.style.background_gradient.css %}
+        background: {{module.style.background_gradient.css}};
+      {% elif module.style.background_type == 'background_image' and module.style.background_image.css %}
         {{module.style.background_image.css}}
       {% endif %}
       --module-content-gap: {{module.style.content_gap is truthy ? module.style.content_gap ~ 'px' : 0 }};
       --module-border: {{module.style.border.css && module.style.border.top.width.value is truthy ? module.style.border.css|cut('border:') : 'none' }};
       --module-shadow: {{module.style.shadow is truthy ? 'var(--' ~ module.style.shadow ~ ')' : 'var(--shadow-)' }};
-      --module-margin-top: {{module.style.spacing.margin.top.value is truthy ? module.style.spacing.margin.top.value ~ module.style.spacing.margin.top.units : 0 }};
-      --module-margin-bottom: {{ module.style.spacing.margin.bottom.value is truthy ? module.style.spacing.margin.bottom.value ~ module.style.spacing.margin.bottom.units : 0 }};
       --module-padding-top: {{module.style.spacing.padding.top.value is truthy ? module.style.spacing.padding.top.value ~ module.style.spacing.padding.top.units : 0 }};
       --module-padding-bottom: {{module.style.spacing.padding.bottom.value is truthy ? module.style.spacing.padding.bottom.value ~ module.style.spacing.padding.bottom.units : 0 }};
       --module-padding-left: {{module.style.spacing.padding.left.value is truthy ? module.style.spacing.padding.left.value ~ module.style.spacing.padding.left.units : 0 }};
       --module-padding-right: {{module.style.spacing.padding.right.value is truthy ? module.style.spacing.padding.right.value ~ module.style.spacing.padding.right.units : 0 }};
-      --module-hover-color: {{module.style.hover.text_color.css and module.style.hover_effects is truthy ? module.style.hover.text_color.css : 'var(--module-color)' }};
-      --module-hover-background: {{module.style.hover.background_color.css and module.style.hover_effects is truthy ? module.style.hover.background_color.css : 'var(--module-background)' }};
-      --module-hover-shadow: {{module.style.hover.shadow and module.style.hover_effects is truthy ? 'var(--' ~ module.style.hover.shadow ~ ')' : 'var(--module-shadow)' }};
-      --module-hover-animation: {{module.style.hover.animation and module.style.hover_effects is truthy ? 'var(--' ~ module.style.hover.animation ~ ')' : 'var(--ani-)' }};
-
-      /* card-content-blocks */
-      {# --card-content-separator-gap: {{module.style.content_block_styles and module.style.content_separator_gap is truthy ? module.style.content_separator_gap ~ 'px' : 'var(--module-content-gap)'}}; #}
-
-      {# --card-top-block-background: {{module.style.content_block_styles and module.style.top_content_block.background_color.css is truthy ? module.style.top_content_block.background_color.css : 'initial'}}; #}
-      {# --card-top-block-border: {{module.style.content_block_styles and module.style.top_content_block.border.css and module.style.top_content_block.border.top.width.value is truthy ? module.style.top_content_block.border.css|cut('border:') : 'none'}}; #}
-      {# --card-top-block-border-radius: {{module.style.content_block_styles and module.style.top_content_block.border_radius is truthy ? module.style.top_content_block.border_radius ~ "px" : 0}}; #}
-      {# --card-top-block-padding: {{module.style.content_block_styles and module.style.top_content_block.spacing.css is truthy ? padding(module.style.top_content_block.spacing) : 0}}; #}
-
-      {# --card-bottom-block-background: {{module.style.content_block_styles and module.style.bottom_content_block.background_color.css is truthy ? module.style.bottom_content_block.background_color.css : 'initial'}}; #}
-      {# --card-bottom-block-border: {{module.style.content_block_styles and module.style.bottom_content_block.border.css and module.style.bottom_content_block.border.top.width.value is truthy ? module.style.bottom_content_block.border.css|cut('border:') : 'none'}}; #}
-      {# --card-bottom-block-border-radius: {{module.style.content_block_styles and module.style.bottom_content_block.border_radius is truthy ? module.style.bottom_content_block.border_radius ~ "px" : 0}}; #}
-      {# --card-bottom-block-padding: {{module.style.content_block_styles and module.style.bottom_content_block.spacing.css is truthy ? padding(module.style.bottom_content_block.spacing) : 0}}; #}
     }
 
     {% if module.style.background_type == 'background_image' and module.style.background_image_overlay.css %}
@@ -69,25 +50,37 @@
         border-radius: var(--module-border-radius);
       }
     {% endif %}
-    {% if module.style.hover.background_color.css and module.style.hover_effects %}
+    {% if module.style.hover_effects %}
       @media (any-hover: hover) {
-        .card2-module:after {
-          content: "";
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: -10;
-          background-color: rgb(255 255 255 / 0%);
-          transition-property: background-color;
-          transition-duration: var(--root-transition-duration);
-          transition-timing-function: var(--root-transition-timing-function);
-          border-radius: calc(var(--module-border-radius) - 1px);
+        .card2-module:hover {
+          --module-hover-color: {{module.style.hover.text_color.css if module.style.hover.text_color.css}};
+          --module-hover-background: {{module.style.hover.background_color.css if module.style.hover.background_color.css}};
+          --module-hover-shadow: {{module.style.hover.shadow ? 'var(--' ~ module.style.hover.shadow ~ ')' : 'var(--module-shadow)' }};
+          --module-hover-animation: {{module.style.hover.animation ? 'var(--' ~ module.style.hover.animation ~ ')' : 'var(--ani-)' }};
+          box-shadow: var(--module-hover-shadow);
+          transform: var(--module-hover-animation);
+          color: var(--module-hover-color);
+          fill: var(--module-hover-color);
         }
-        .card2-module:hover:after {
-          background-color: var(--module-hover-background);
-        }
+        {% if module.style.hover.background_color.css and module.style.hover_effects %}
+          .card2-module:after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -10;
+            background-color: rgb(255 255 255 / 0%);
+            transition-property: background-color;
+            transition-duration: var(--root-transition-duration);
+            transition-timing-function: var(--root-transition-timing-function);
+            border-radius: calc(var(--module-border-radius) - 1px);
+          }
+          .card2-module:hover:after {
+            background-color: var(--module-hover-background);
+          }
+        {% endif %}
       }
     {% endif %}
   {% end_scope_css %}
@@ -99,9 +92,9 @@
   {% set btn_stretched_link = true %}
 {% endif %}
 
-{%- macro render_image(isfirst, islast) -%}
+{%- macro render_media() -%}
   {% if module.media_type == 'full_width_image' %}
-    {{fullWidthImage.render(module.full_width_image_group, isfirst, islast)}}
+    {{fullWidthImage.render(module.full_width_image_group)}}
   {% elif module.media_type == 'simple_image' %}
     {{simpleImage.render(module.simple_image_group)}}
   {% elif module.media_type == 'icon' %}
@@ -115,7 +108,7 @@
   <div class="content-block-top">
     {% for item in module.components %}
       {% if item.component|lower == 'image' %}
-        {{render_image(loop.first, loop.last)}}
+        {{render_media()}}
 
       {% elif item.component|lower == 'heading' %}
         {{heading.render(module.heading)}}

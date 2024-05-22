@@ -17,6 +17,14 @@
           margin-bottom: 0;
           padding-bottom: 0;
         }
+        .richtext-macro-wrp > :where(h1, h2, h3, h4, h5, h6) {
+          color: var(--module-hover-color, var(--module-color));
+        }
+        .richtext-macro-wrp > * {
+          transition-property: color;
+          transition-duration: var(--root-transition-duration);
+          transition-timing-function: var(--root-transition-timing-function);
+        }
       </style>
     {% end_require_css %}
     <div class="richtext-macro-wrp">
