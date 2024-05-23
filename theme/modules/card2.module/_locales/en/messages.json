@@ -514,6 +514,31 @@
     "description" : null,
     "placeholders" : null
   },
+  "custom_text_group.gradient_color.default.color" : {
+    "message" : "#999999",
+    "description" : null,
+    "placeholders" : null
+  },
+  "custom_text_group.gradient_color.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "custom_text_group.gradient_color.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "custom_text_group.gradient_color.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "custom_text_group.gradient_color.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "enable_heading_link.help_text" : {
     "message" : "",
     "description" : "",

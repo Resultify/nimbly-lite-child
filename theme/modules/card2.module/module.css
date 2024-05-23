@@ -1,6 +1,5 @@
 .card2-module {
   color: var(--module-color);
-  fill: var(--module-color);
   background-color: var(--module-background);
   border: var(--module-border);
   border-radius: var(--module-border-radius);
@@ -19,7 +18,7 @@
   transition-duration: var(--root-transition-duration);
   transition-timing-function: var(--root-transition-timing-function);
   transform: translateZ(0);
-  will-change: transform;
+  will-change: box-shadow, transform, background-color;
 }
 
 /* content blocks styles */

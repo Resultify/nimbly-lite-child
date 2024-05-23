@@ -12,7 +12,7 @@ const buttonGroup = (parent = '') => {
       {
         occurrence: {
           min: 0,
-          max: 15,
+          max: 100,
           sorting_label_field: 'button_group.button_text'
         }
       },
@@ -84,45 +84,21 @@ const buttonGroup = (parent = '') => {
           controlling_value_regex: 'cta'
         }
       }),
-      fi.boolean('Inline', 'button_inline', {
-        default: true,
+      fi.choice('Position', 'button_position', {
+        required: true,
+        default: 'inline',
         display_width: 'half_width',
-        visibility: {
-          controlling_field_path: `${parent}button_group.button_text`,
-          operator: 'NOT_EMPTY'
-        }
-      }),
-      fi.boolean('Full width', 'button_full_width', {
-        display_width: 'half_width',
-        visibility_rules: 'ADVANCED',
-        advanced_visibility: {
-          boolean_operator: 'AND',
-          criteria: [
-            {
-              controlling_field_path: `${parent}button_group.button_text`,
-              operator: 'NOT_EMPTY'
-            },
-            {
-              controlling_field_path: `${parent}button_group.button_style`,
-              operator: 'NOT_EQUAL',
-              controlling_value_regex: 'linkonly'
-            },
-            {
-              controlling_field_path: `${parent}button_group.button_style`,
-              operator: 'NOT_EQUAL',
-              controlling_value_regex: 'customlink'
-            },
-            {
-              controlling_field_path: `${parent}button_group.button_style`,
-              operator: 'NOT_EQUAL',
-              controlling_value_regex: 'cta'
-            }
-          ]
-        }
+        choices: [
+          ['inline', 'Inline with other buttons'],
+          ['separate', 'On separate line'],
+          ['fullwidth', 'Full width button']
+        ]
       }),
       fi.choice('Alignment', 'button_alignment',
         {
           display_width: 'half_width',
+          required: true,
+          default: 'start',
           choices: [
             ['start', 'Left'],
             ['center', 'Center'],
@@ -137,14 +113,14 @@ const buttonGroup = (parent = '') => {
                 operator: 'NOT_EMPTY'
               },
               {
-                controlling_field_path: `${parent}button_group.button_full_width`,
-                operator: 'EQUAL',
-                controlling_value_regex: 'false'
+                controlling_field_path: `${parent}button_group.button_position`,
+                operator: 'NOT_EQUAL',
+                controlling_value_regex: 'fullwidth'
               },
               {
-                controlling_field_path: `${parent}button_group.button_inline`,
-                operator: 'EQUAL',
-                controlling_value_regex: 'false'
+                controlling_field_path: `${parent}button_group.button_position`,
+                operator: 'NOT_EQUAL',
+                controlling_value_regex: 'inline'
               }
             ]
           }
@@ -186,6 +162,11 @@ const buttonGroup = (parent = '') => {
               controlling_field_path: `${parent}button_group.add_button_icon`,
               operator: 'EQUAL',
               controlling_value_regex: 'icon'
+            },
+            {
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'NOT_EQUAL',
+              controlling_value_regex: 'cta'
             }
           ]
         }
@@ -206,6 +187,11 @@ const buttonGroup = (parent = '') => {
               controlling_field_path: `${parent}button_group.add_button_icon`,
               operator: 'EQUAL',
               controlling_value_regex: 'image'
+            },
+            {
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'NOT_EQUAL',
+              controlling_value_regex: 'cta'
             }
           ]
         }
@@ -228,6 +214,11 @@ const buttonGroup = (parent = '') => {
                 {
                   controlling_field_path: `${parent}button_group.button_text`,
                   operator: 'NOT_EMPTY'
+                },
+                {
+                  controlling_field_path: `${parent}button_group.button_style`,
+                  operator: 'NOT_EQUAL',
+                  controlling_value_regex: 'cta'
                 }
               ]
             },
@@ -329,24 +320,6 @@ const buttonGroup = (parent = '') => {
           ]
         }
       }),
-      fi.boolean('Custom style', 'button_custom_style', {
-        default: false,
-        visibility_rules: 'ADVANCED',
-        advanced_visibility: {
-          boolean_operator: 'AND',
-          criteria: [
-            {
-              controlling_field_path: `${parent}button_group.button_style`,
-              operator: 'MATCHES_REGEX',
-              controlling_value_regex: 'custom'
-            },
-            {
-              controlling_field_path: `${parent}button_group.button_text`,
-              operator: 'NOT_EMPTY'
-            }
-          ]
-        }
-      }),
       fi.font('Font', 'custom_link_font', {
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
@@ -358,16 +331,33 @@ const buttonGroup = (parent = '') => {
               controlling_value_regex: 'customlink'
             },
             {
-              controlling_field_path: `${parent}button_group.button_custom_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'true'
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         },
         visibility: {
           hidden_subfields: {
-            underline: true
+            underline: true,
+            color: true
           }
+        }
+      }),
+      fi.color('Color', 'custom_link_color', {
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'customlink'
+            },
+            {
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
+            }
+          ]
         }
       }),
       fi.choice('Underline', 'custom_link_underline', {
@@ -382,9 +372,8 @@ const buttonGroup = (parent = '') => {
               controlling_value_regex: 'customlink'
             },
             {
-              controlling_field_path: `${parent}button_group.button_custom_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'true'
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         },
@@ -405,9 +394,8 @@ const buttonGroup = (parent = '') => {
                 controlling_value_regex: 'customlink'
               },
               {
-                controlling_field_path: `${parent}button_group.button_custom_style`,
-                operator: 'EQUAL',
-                controlling_value_regex: 'true'
+                controlling_field_path: `${parent}button_group.button_text`,
+                operator: 'NOT_EMPTY'
               }
             ]
           }
@@ -432,9 +420,8 @@ const buttonGroup = (parent = '') => {
               controlling_value_regex: 'custombutton'
             },
             {
-              controlling_field_path: `${parent}button_group.button_custom_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'true'
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         }
@@ -450,9 +437,8 @@ const buttonGroup = (parent = '') => {
               controlling_value_regex: 'custombutton'
             },
             {
-              controlling_field_path: `${parent}button_group.button_custom_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'true'
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         }
@@ -468,9 +454,8 @@ const buttonGroup = (parent = '') => {
               controlling_value_regex: 'custombutton'
             },
             {
-              controlling_field_path: `${parent}button_group.button_custom_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'true'
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         },
@@ -488,9 +473,8 @@ const buttonGroup = (parent = '') => {
               controlling_value_regex: 'custombutton'
             },
             {
-              controlling_field_path: `${parent}button_group.button_custom_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'true'
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         },
@@ -508,9 +492,8 @@ const buttonGroup = (parent = '') => {
               controlling_value_regex: 'custombutton'
             },
             {
-              controlling_field_path: `${parent}button_group.button_custom_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'true'
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         },
@@ -530,9 +513,8 @@ const buttonGroup = (parent = '') => {
               controlling_value_regex: 'custombutton'
             },
             {
-              controlling_field_path: `${parent}button_group.button_custom_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'true'
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         }
@@ -548,9 +530,8 @@ const buttonGroup = (parent = '') => {
               controlling_value_regex: 'custombutton'
             },
             {
-              controlling_field_path: `${parent}button_group.button_custom_style`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'true'
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         }
@@ -567,9 +548,8 @@ const buttonGroup = (parent = '') => {
                 controlling_value_regex: 'custombutton'
               },
               {
-                controlling_field_path: `${parent}button_group.button_custom_style`,
-                operator: 'EQUAL',
-                controlling_value_regex: 'true'
+                controlling_field_path: `${parent}button_group.button_text`,
+                operator: 'NOT_EMPTY'
               }
             ]
           }

@@ -94,17 +94,19 @@ init(
     display_width: 'half_width'
   }),
   styleGroup(
-    fi.color('Text color', 'text_color', {
-      show_opacity: false
-    }),
     fi.alignment('Alignment', 'alignment',
       {
+        display_width: 'half_width',
         default: {
           horizontal_align: 'LEFT'
         },
         alignment_direction: 'HORIZONTAL'
       }
     ),
+    fi.color('Text color', 'text_color', {
+      display_width: 'half_width',
+      show_opacity: false
+    }),
     fi.number('Content gap', 'content_gap', {
       suffix: 'px',
       default: 16,

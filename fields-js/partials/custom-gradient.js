@@ -11,7 +11,8 @@ const customGradient = (parent = '') => {
       display_width: 'half_width',
       occurrence: {
         min: 2,
-        max: 7
+        max: 7,
+        default: 2
       },
       default: [
         { color: '#999999', opacity: 100 },

@@ -1,7 +1,5 @@
 :root {
   /* root variables */
-  --root-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  --root-transition-duration: 150ms;
   /* box-shadow global styles */
   --shadow-color: rgb(154 161 177 / 30%);
   --shadow-sm: 0 1px 2px 0 var(--shadow-color);
@@ -14,18 +12,31 @@
   /* --shadow-custom3: */
 
   /* animation global styles */
-  --ani-scale1x: scale(1.02);
-  --ani-scale2x: scale(1.03);
-  --ani-scale3x: scale(1.05);
-  --ani-scale4x: scale(1.07);
+  --ani-scale1x: scale(1.03);
+  --ani-scale2x: scale(1.04);
+  --ani-scale3x: scale(1.06);
+  --ani-scale4x: scale(1.09);
   --ani-slideup1x: translateY(-4px);
-  --ani-slideup2x: translateY(-7px);
-  --ani-slideup3x: translateY(-11px);
+  --ani-slideup2x: translateY(-8px);
+  --ani-slideup3x: translateY(-12px);
   /* --ani-custom1: */
   /* --ani-custom2: */
   /* --ani-custom3: */
 
   }
+
+
+/*
+  If the browser understands the media query and the user
+  explicitly hasn't set a preference, then use animations transition on components and modules.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    --root-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --root-transition-duration: 150ms;
+  }
+}
+
 
 {% include './global-theme-settings/root.css' %}
 {% include './global-theme-settings/general.css' %}
@@ -37,4 +48,5 @@
 {% include './global-theme-settings/buttons.css' %}
 {% include './global-theme-settings/icons.css' %}
 {% include './global-theme-settings/forms.css' %}
+{% include './utils.css' %}
 

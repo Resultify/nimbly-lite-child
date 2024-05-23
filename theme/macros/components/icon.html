@@ -8,6 +8,7 @@
       <style>
         .icon-macro-wrp {
           display: inline-flex;
+          color: var(--module-hover-color, var(--custom-color, var(--module-color)));
         }
         .icon-macro-wrp > svg {
           fill: currentColor;
@@ -36,8 +37,8 @@
             {%- endif -%}
           }
           {%- if module.icon_color.css -%}
-            .icon-macro-wrp > svg {
-              fill: {{module.icon_color.css}};
+            .icon-macro-wrp {
+              --custom-color: {{module.icon_color.css}};
             }
           {%- endif -%}
         {%- endif -%}

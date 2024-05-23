@@ -35,6 +35,7 @@
       --module-padding-bottom: {{module.style.spacing.padding.bottom.value is truthy ? module.style.spacing.padding.bottom.value ~ module.style.spacing.padding.bottom.units : 0 }};
       --module-padding-left: {{module.style.spacing.padding.left.value is truthy ? module.style.spacing.padding.left.value ~ module.style.spacing.padding.left.units : 0 }};
       --module-padding-right: {{module.style.spacing.padding.right.value is truthy ? module.style.spacing.padding.right.value ~ module.style.spacing.padding.right.units : 0 }};
+      --module-padding: {{module.style.spacing.padding.top.value ~ module.style.spacing.padding.top.units if module.style.spacing.css|length <= 17 }};
     }
 
     {% if module.style.background_type == 'background_image' and module.style.background_image_overlay.css %}
@@ -60,7 +61,6 @@
           box-shadow: var(--module-hover-shadow);
           transform: var(--module-hover-animation);
           color: var(--module-hover-color);
-          fill: var(--module-hover-color);
         }
         {% if module.style.hover.background_color.css and module.style.hover_effects %}
           .card2-module:after {
@@ -89,7 +89,7 @@
 {% if module.whole_area_link and module.heading.heading_link_type == "link" and module.heading.heading_link.url.href %}
   {% set heading_stretched_link = true %}
 {% elif module.whole_area_link %}
-  {% set btn_stretched_link = true %}
+  {% set button_stretched_link = true %}
 {% endif %}
 
 {%- macro render_media() -%}

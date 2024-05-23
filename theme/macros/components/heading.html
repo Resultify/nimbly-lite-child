@@ -54,7 +54,10 @@
         .heading-macro .heading-image {
           width: auto;
           height: var(--root-heading-icon-size, 1.2lh);
-          fill: currentcolor;
+          fill: var(--module-hover-color, var(--custom-fill-color, var(--module-color)));
+          transition-property: fill;
+          transition-duration: var(--root-transition-duration);
+          transition-timing-function: var(--root-transition-timing-function);
         }
         .heading-link {
           color: var(--_macro-color, var(--color));
@@ -83,7 +86,7 @@
         {%- scope_css -%}
           .heading-macro > svg,
           .heading-macro > a > svg:not(.anchor-icon) {
-            fill: {{module.heading_icon_color.css}};
+            --custom-fill-color: {{module.heading_icon_color.css}};
           }
         {%- end_scope_css -%}
       </style>
