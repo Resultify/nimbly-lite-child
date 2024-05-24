@@ -14,22 +14,19 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  transition-property: box-shadow, transform, background-color;
+  transition-property: box-shadow, transform, background-color, border-color;
   transition-duration: var(--root-transition-duration);
   transition-timing-function: var(--root-transition-timing-function);
   transform: translateZ(0);
-  will-change: box-shadow, transform, background-color;
+  will-change: box-shadow, transform, background-color, border-color;
 }
 
 /* content blocks styles */
-.card2-module .content-block-top {
-  display: flex;
-  flex-direction: column;
-}
-
+.card2-module .content-block-top,
 .card2-module .content-block-bottom {
   display: flex;
   flex-direction: column;
+  align-items: var(--module-alignment);
 }
 
 /* generaral card components flexbox gap */
@@ -37,12 +34,6 @@
 .card2-module .content-block-bottom,
 .card2-module .additional-images {
   gap: var(--module-content-gap);
-}
-
-/* general card alignment */
-.card2-module .content-block-top,
-.card2-module .content-block-bottom {
-  align-items: var(--module-alignment);
 }
 
 .card2-module .additional-images {

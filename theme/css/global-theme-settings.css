@@ -25,7 +25,6 @@
 
   }
 
-
 /*
   If the browser understands the media query and the user
   explicitly hasn't set a preference, then use animations transition on components and modules.
@@ -36,7 +35,6 @@
     --root-transition-duration: 150ms;
   }
 }
-
 
 {% include './global-theme-settings/root.css' %}
 {% include './global-theme-settings/general.css' %}

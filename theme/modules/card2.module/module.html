@@ -26,10 +26,11 @@
       {% elif module.style.background_type == 'background_gradient' and module.style.background_gradient.css %}
         background: {{module.style.background_gradient.css}};
       {% elif module.style.background_type == 'background_image' and module.style.background_image.css %}
-        {{module.style.background_image.css}}
+        {{css_image_background_macro(module.style)}}
       {% endif %}
       --module-content-gap: {{module.style.content_gap is truthy ? module.style.content_gap ~ 'px' : 0 }};
       --module-border: {{module.style.border.css && module.style.border.top.width.value is truthy ? module.style.border.css|cut('border:') : 'none' }};
+      --module-border-width: {{module.style.border.css && module.style.border.top.width.value is truthy ? module.style.border.top.width.value ~ module.style.border.top.width.units : '0' }};
       --module-shadow: {{module.style.shadow is truthy ? 'var(--' ~ module.style.shadow ~ ')' : 'var(--shadow-)' }};
       --module-padding-top: {{module.style.spacing.padding.top.value is truthy ? module.style.spacing.padding.top.value ~ module.style.spacing.padding.top.units : 0 }};
       --module-padding-bottom: {{module.style.spacing.padding.bottom.value is truthy ? module.style.spacing.padding.bottom.value ~ module.style.spacing.padding.bottom.units : 0 }};
@@ -37,32 +38,26 @@
       --module-padding-right: {{module.style.spacing.padding.right.value is truthy ? module.style.spacing.padding.right.value ~ module.style.spacing.padding.right.units : 0 }};
       --module-padding: {{module.style.spacing.padding.top.value ~ module.style.spacing.padding.top.units if module.style.spacing.css|length <= 17 }};
     }
-
-    {% if module.style.background_type == 'background_image' and module.style.background_image_overlay.css %}
-      .card2-module:before {
-        content: "";
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -12;
-        background-color: {{module.style.background_image_overlay.css}};
-        border-radius: var(--module-border-radius);
+    {# {% if module.style.top_content.top_content_spacing.css %}
+      .card2-module .content-block-top {
+        {{module.style.top_content.top_content_spacing.css}};
       }
-    {% endif %}
+    {% endif %} #}
+
     {% if module.style.hover_effects %}
       @media (any-hover: hover) {
         .card2-module:hover {
           --module-hover-color: {{module.style.hover.text_color.css if module.style.hover.text_color.css}};
           --module-hover-background: {{module.style.hover.background_color.css if module.style.hover.background_color.css}};
+          --module-hover-border-color: {{module.style.hover.border_color.css if module.style.hover.border_color.css}};
           --module-hover-shadow: {{module.style.hover.shadow ? 'var(--' ~ module.style.hover.shadow ~ ')' : 'var(--module-shadow)' }};
           --module-hover-animation: {{module.style.hover.animation ? 'var(--' ~ module.style.hover.animation ~ ')' : 'var(--ani-)' }};
           box-shadow: var(--module-hover-shadow);
           transform: var(--module-hover-animation);
           color: var(--module-hover-color);
+          border-color: var(--module-hover-border-color);
         }
-        {% if module.style.hover.background_color.css and module.style.hover_effects %}
+        {% if module.style.background_type == 'background_image' and module.style.hover.background_color.css or module.style.background_type == 'background_gradient' and module.style.hover.background_color.css %}
           .card2-module:after {
             content: "";
             width: 100%;
@@ -75,9 +70,13 @@
             transition-property: background-color;
             transition-duration: var(--root-transition-duration);
             transition-timing-function: var(--root-transition-timing-function);
-            border-radius: calc(var(--module-border-radius) - 1px);
+            border-radius: calc(var(--module-border-radius) - var(--module-border-width));
           }
           .card2-module:hover:after {
+            background-color: var(--module-hover-background);
+          }
+        {% elif module.style.hover.background_color.css %}
+          .card2-module:hover {
             background-color: var(--module-hover-background);
           }
         {% endif %}

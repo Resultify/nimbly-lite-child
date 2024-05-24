@@ -8,14 +8,6 @@ const lottie = (parent = '') => {
   }
   return [
     fi.file('Lottie file', 'lottie_file'),
-    fi.boolean('Loop', 'lottie_loop', {
-      display_width: 'half_width',
-      default: true,
-      visibility: {
-        controlling_field_path: `${parent}lottie_file`,
-        operator: 'NOT_EMPTY'
-      }
-    }),
     fi.number('Speed', 'lottie_speed', {
       step: 0.1,
       display_width: 'half_width',
@@ -40,18 +32,13 @@ const lottie = (parent = '') => {
         ['reverse-bounce', 'Reverse-bounce']
       ]
     }),
-    fi.choice('Fit', 'lottie_fit', {
+    fi.boolean('Loop', 'lottie_loop', {
       display_width: 'half_width',
-      required: true,
-      default: 'contain',
+      default: true,
       visibility: {
         controlling_field_path: `${parent}lottie_file`,
         operator: 'NOT_EMPTY'
-      },
-      choices: [
-        ['contain', 'Contain'],
-        ['cover', 'Cover']
-      ]
+      }
     })
   ]
 }

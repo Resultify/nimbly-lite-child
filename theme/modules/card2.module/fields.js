@@ -135,11 +135,51 @@ init(
         controlling_value_regex: 'background_image'
       }
     }),
-    fi.color('Background image overlay', 'background_image_overlay', {
+    fi.choice('Background image overlay type', 'background_image_overlay_type', {
       visibility: {
         controlling_field_path: 'style.background_type',
         operator: 'EQUAL',
         controlling_value_regex: 'background_image'
+      },
+      choices: [
+        ['color', 'Color'],
+        ['gradient', 'Gradient']
+      ]
+    }),
+    fi.color('Background image overlay', 'background_image_overlay', {
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: 'style.background_type',
+            operator: 'EQUAL',
+            controlling_value_regex: 'background_image'
+          },
+          {
+            controlling_field_path: 'style.background_image_overlay_type',
+            operator: 'EQUAL',
+            controlling_value_regex: 'color'
+          }
+        ]
+      }
+    }),
+    fi.gradient('Background image overlay gradient', 'background_image_overlay_gradient', {
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'AND',
+        criteria: [
+          {
+            controlling_field_path: 'style.background_type',
+            operator: 'EQUAL',
+            controlling_value_regex: 'background_image'
+          },
+          {
+            controlling_field_path: 'style.background_image_overlay_type',
+            operator: 'EQUAL',
+            controlling_value_regex: 'gradient'
+          }
+        ]
       }
     }),
     fi.gradient('Background gradient', 'background_gradient', {
@@ -149,7 +189,7 @@ init(
         controlling_value_regex: 'background_gradient'
       }
     }),
-    fi.spacing('Spacing', 'spacing', {
+    fi.spacing('', 'spacing', {
       visibility: {
         hidden_subfields: {
           margin: true
@@ -162,6 +202,20 @@ init(
       display_width: 'half_width'
     }),
     partial.shadowList(),
+    // group('Top content block', 'top_content',
+    //   {
+    //     locked: false,
+    //     help_text: 'Add vertical spacing to the top block of content defined by the content separator',
+    //     inline_help_text: 'Add vertical spacing to the top block of content defined by the content separator'
+    //   },
+    //   fi.spacing('', 'top_content_spacing', {
+    //     visibility: {
+    //       hidden_subfields: {
+    //         padding: true
+    //       }
+    //     }
+    //   })
+    // ),
     fi.boolean('Card hover effects', 'hover_effects'),
     group('Hover', 'hover',
       {
@@ -174,6 +228,7 @@ init(
       },
       fi.color('Text color', 'text_color'),
       fi.color('Background color', 'background_color'),
+      fi.color('Border color', 'border_color'),
       partial.shadowList(),
       partial.animationList()
     )

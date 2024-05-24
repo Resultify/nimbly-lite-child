@@ -11,9 +11,10 @@
           const dotLottieCanvas = document.getElementsByClassName('dotlottie-canvas')
           if (!dotLottieCanvas) return
           for (const item of dotLottieCanvas) {
-            let lottieAlignment = getComputedStyle(item.closest('[class*="module"]')).getPropertyValue('--module-alignment')
+            // set lottie alignment based on module alignment
+            let lottieAlignment = window.getComputedStyle(item.closest('[class*="module"]')).getPropertyValue('--module-alignment')
             if (lottieAlignment === 'start') {
-            lottieAlignment = [0, 0.5]
+              lottieAlignment = [0, 0.5]
             } else if (lottieAlignment === 'center') {
               lottieAlignment = [0.5, 0.5]
             } else if (lottieAlignment === 'end') {
@@ -21,20 +22,38 @@
             } else {
               lottieAlignment = [0, 0.5]
             }
+            // initialize dotLottie
             const dotLottie = new window.DotLottie({ // eslint-disable-line
-              autoplay: true,
               loop: item.hasAttribute('data-loop'),
               speed: item.dataset.speed,
               mode: item.dataset.mode,
+              autoplay: true,
               layout: {
-                fit: item.dataset.fit,
+                fit: 'contain',
                 align: lottieAlignment
               },
               canvas: item,
               src: item.dataset.lottieSrc
             })
+            // dotLottie load event
+            dotLottie.addEventListener('load', (event) => {
+              // run animation when in browser view
+              const observer = new window.IntersectionObserver(function (entries) {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    dotLottie.play()
+                  } else {
+                    dotLottie.pause()
+                  }
+                })
+              })
+              for (const module of dotLottieCanvas) {
+                observer.observe(module)
+              }
+            })
           }
         }
+        // run dotLottie when document is ready
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', runDotLottie)
         } else {
@@ -46,9 +65,7 @@
       data-lottie-src="{{module.lottie_file}}"
       data-speed="{{module.lottie_speed}}"
       data-mode="{{module.lottie_mode}}"
-      data-fit="{{module.lottie_fit}}"
-      {{"data-loop" if module.lottie_loop}}
-      >
+      {{"data-loop" if module.lottie_loop}}>
     </canvas>
   {%- endif -%}
 {%- endmacro -%}
