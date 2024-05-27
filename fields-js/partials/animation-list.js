@@ -4,7 +4,7 @@ import {
 
 const animationList = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
+    parent = `${parent}`
   }
   return [
     fi.choice('Animation', 'animation', {

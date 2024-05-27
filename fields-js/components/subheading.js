@@ -4,7 +4,7 @@ import {
 
 const subheading = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
+    parent = `${parent}`
   }
   return [
     fi.text('Subheading', 'subheading_text', {

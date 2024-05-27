@@ -4,8 +4,9 @@
 -->
 {%- macro render(module) -%}
   {%- if module.text -%}
+    {# common styles for text macros #}
     {% require_css %}
-      <style>
+      <style macros="text">
         .text-macro-wrp {
           text-align: var(--module-alignment);
         }
@@ -14,6 +15,7 @@
         }
       </style>
     {% end_require_css %}
+
     <div class="text-macro-wrp">
       <span class="text-macro">{{module.text}}</span>
     </div>

@@ -3,11 +3,12 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
-const order = (components = []) => {
+const order = (components = [], hideOrder = false) => {
   return [
     group('Order of components', 'components',
       {
         help_text: 'To hide a separator, move it to the bottom of the list.',
+        locked: hideOrder,
         occurrence: {
           min: components.length,
           max: components.length,

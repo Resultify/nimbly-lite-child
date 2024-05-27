@@ -4,7 +4,7 @@ import {
 
 const shadowList = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
+    parent = `${parent}`
   }
   return [
     fi.choice('Shadow', 'shadow', {

@@ -4,7 +4,7 @@ import {
 
 const fullWidthImage = (parent = '', hideForceFullWidth = false) => {
   if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
+    parent = `${parent}`
   }
   return [
     fi.image('Image', 'full_width_image', {

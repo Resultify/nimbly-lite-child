@@ -4,7 +4,7 @@ import {
 
 const simpleImage = (parent = '', hideAlignment = false) => {
   if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
+    parent = `${parent}`
   }
   return [
     fi.image('Simple image', 'simple_image', {

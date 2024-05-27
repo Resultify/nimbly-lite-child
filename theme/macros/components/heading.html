@@ -2,37 +2,42 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
+{% import '../partials/hash.html' %}
 {% import '../partials/link-attributes.html' %}
 {% import '../../css/macros.css' %}
-{%- macro render(module) -%}
-  {%- macro icon(module, alignment) -%}
-    {%- if module.add_heading_icon and module.heading_link_type != 'anchor' -%}
-      {%- if module.heading_icon_alignment is containing alignment -%}
-        {%- if module.heading_icon_type == 'fontawesome' -%}
-          {%- if module.heading_icon.name -%}
-            {% icon
-              name="{{module.heading_icon.name}}"
-              style="{{module.heading_icon.type}}"
-              unicode="{{module.heading_icon.unicode}}"
-              icon_set="{{module.heading_icon.icon_set}}"
-              purpose="decorative",
-              no_wrapper=true
-            %}
-          {%- endif -%}
-        {%- elif module.heading_icon_type == 'inline_svg' -%}
-          {{module.heading_inline_svg}}
-        {%- elif module.heading_icon_type == 'image' -%}
-          <img class="heading-image"
-            alt=""
-            src="{{module.heading_image.src}}"
-            loading="lazy">
+
+{%- macro render_heading_icon(module, alignment) -%}
+  {%- if module.add_heading_icon and module.heading_link_type != 'anchor' -%}
+    {%- if module.heading_icon_alignment is containing alignment -%}
+      {%- if module.heading_icon_type == 'fontawesome' -%}
+        {%- if module.heading_icon.name -%}
+          {% icon
+            name="{{module.heading_icon.name}}"
+            style="{{module.heading_icon.type}}"
+            unicode="{{module.heading_icon.unicode}}"
+            icon_set="{{module.heading_icon.icon_set}}"
+            purpose="decorative",
+            no_wrapper=true
+          %}
         {%- endif -%}
+      {%- elif module.heading_icon_type == 'inline_svg' -%}
+        {{module.heading_inline_svg}}
+      {%- elif module.heading_icon_type == 'image' -%}
+        <img class="heading-image"
+          alt=""
+          src="{{module.heading_image.src}}"
+          loading="lazy">
       {%- endif -%}
     {%- endif -%}
-  {%- endmacro -%}
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro render(module) -%}
   {%- if module.heading_text -%}
+
+    {# common styles for heading macros #}
     {% require_css %}
-      <style>
+      <style macros="heading">
         .heading-macro {
           --_macro-color: var(--module-hover-color, var(--custom-color, var(--module-color)));
           --_macro-hover-color: var(--module-hover-color, var(--custom-hover-color, var(--module-color)));
@@ -81,20 +86,31 @@
         }
       </style>
     {% end_require_css %}
+
+    {# hash for scoped styles #}
+    {% set item_hash = hash([
+        module.heading_icon_color.css,
+        module.heading_color.css,
+        module.heading_link_color.css,
+        module.heading_link_hover_color.css,
+        module.heading_font
+    ]) %}
+
+    {# scoped styles for heading macros #}
     {%- if module.heading_icon_color.css and module.heading_link_type != 'link' and module.heading_link_type != 'anchor' -%}
-      <style>
-        {%- scope_css -%}
-          .heading-macro > svg,
-          .heading-macro > a > svg:not(.anchor-icon) {
+      {% require_css %}
+        <style macros="heading scoped heading{{item_hash}}">
+          .heading{{item_hash}} > svg,
+          .heading{{item_hash}} > a > svg:not(.anchor-icon) {
             --custom-fill-color: {{module.heading_icon_color.css}};
           }
-        {%- end_scope_css -%}
-      </style>
+        </style>
+      {% end_require_css %}
     {%- endif -%}
     {%- if module.heading_additional_customization -%}
-      <style>
-        {%- scope_css -%}
-          .heading-macro {
+      {% require_css %}
+        <style macros="heading scoped heading{{item_hash}}">
+          .heading{{item_hash}} {
             {%- if module.heading_link_type != 'link' -%}
               --custom-color: {{module.heading_color.css}};
             {%- endif -%}
@@ -108,18 +124,19 @@
             {%- endif -%}
             {{css_font_macro(module.heading_font)}}
           }
-        {%- end_scope_css -%}
-      </style>
+        </style>
+      {% end_require_css %}
     {%- endif -%}
+
     <{{module.heading_tag}}
-      class="{{module.heading_style}} heading-macro"
+      class="{{module.heading_style}} heading-macro heading{{item_hash}}"
       {{'style="justify-content:space-between;width:100%;"' if module.heading_icon_alignment is containing 'space' and module.add_heading_icon}}
       {{'id="{{module.heading_text|lower|replace(" ", "-")|urlencode}}"' if module.heading_link_type == 'anchor'}}>
       {%- if module.heading_link.url.href and module.heading_link_type == 'link' -%}
         <a {{link_attributes(module.heading_link)}} class="heading-link {{"stretched-link" if heading_stretched_link}}">
-          {{icon(module, 'left')}}
+          {{render_heading_icon(module, 'left')}}
           {{module.heading_text}}
-          {{icon(module, 'right')}}
+          {{render_heading_icon(module, 'right')}}
         </a>
       {%- elif module.heading_link_type == 'anchor' -%}
         <a href="#{{module.heading_text|lower|replace(" ", "-")|urlencode}}" class="heading-link anchor-heading-link">
@@ -127,9 +144,9 @@
           <svg version="1.0" class="anchor-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true"><g><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"></path></g></svg>
         </a>
       {%- else -%}
-        {{icon(module, 'left')}}
+        {{render_heading_icon(module, 'left')}}
         {{module.heading_text}}
-        {{icon(module, 'right')}}
+        {{render_heading_icon(module, 'right')}}
       {%- endif -%}
     </{{module.heading_tag}}>
   {%- endif -%}

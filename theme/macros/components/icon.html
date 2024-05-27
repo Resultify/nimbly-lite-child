@@ -2,10 +2,13 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
+{% import '../partials/hash.html' %}
 {%- macro render(module) -%}
   {%- if module.icon.icon_inline_svg or module.icon.name -%}
+
+    {# common styles for icon macros #}
     {% require_css %}
-      <style>
+      <style macros="icon">
         .icon-macro-wrp {
           display: inline-flex;
           color: var(--module-hover-color, var(--custom-color, var(--module-color)));
@@ -18,14 +21,26 @@
         }
       </style>
     {% end_require_css %}
-    <style>
-      {%- scope_css -%}
-        .icon-macro-wrp > svg {
+
+    {# hash for scoped styles #}
+    {% set item_hash = hash([
+        module.icon_size,
+        module.icon_size,
+        module.icon_background.css,
+        module.icon_border_radius,
+        module.icon_spacing,
+        module.icon_color.css
+    ]) %}
+
+    {# scoped styles for icon macros #}
+    {% require_css %}
+      <style macros="icon scoped icon-wrp{{item_hash}}">
+        .icon-wrp{{item_hash}} > svg {
           width: {{module.icon_size ~ 'px'}};
           height: {{module.icon_size ~ 'px'}};
         }
         {%- if module.icon_additional_customization -%}
-          .icon-macro-wrp {
+          .icon-wrp{{item_hash}} {
             {%- if module.icon_background.css -%}
               background-color: {{module.icon_background.css}};
             {%- endif -%}
@@ -37,28 +52,30 @@
             {%- endif -%}
           }
           {%- if module.icon_color.css -%}
-            .icon-macro-wrp {
+            .icon-wrp{{item_hash}} {
               --custom-color: {{module.icon_color.css}};
             }
           {%- endif -%}
         {%- endif -%}
-      {%- end_scope_css -%}
-    </style>
-  {%- endif -%}
-  {%- if module.icon_type == 'fontawesome' -%}
-    {%- if module.icon.name -%}
-      {% icon
-        extra_classes="icon-macro-wrp"
-        name="{{module.icon.name}}"
-        style="{{module.icon.type}}"
-        unicode="{{module.icon.unicode}}"
-        icon_set="{{module.icon.icon_set}}"
-        purpose="decorative"
-      %}
+      </style>
+    {% end_require_css %}
+
+    {%- if module.icon_type == 'fontawesome' -%}
+      {%- if module.icon.name -%}
+        {% icon
+          extra_classes="icon-macro-wrp"
+          name="{{module.icon.name}}"
+          style="{{module.icon.type}}"
+          unicode="{{module.icon.unicode}}"
+          icon_set="{{module.icon.icon_set}}"
+          purpose="decorative"
+        %}
+      {%- endif -%}
+    {%- elif module.icon_type == 'inline_svg' -%}
+      {%- if module.icon_inline_svg -%}
+        <div class="icon-macro-wrp icon-wrp{{item_hash}}">{{module.icon_inline_svg}}</div>
+      {%- endif -%}
     {%- endif -%}
-  {%- elif module.icon_type == 'inline_svg' -%}
-    {%- if module.icon_inline_svg -%}
-      <div class="icon-macro-wrp">{{module.icon_inline_svg}}</div>
-    {%- endif -%}
   {%- endif -%}
+
 {%- endmacro -%}

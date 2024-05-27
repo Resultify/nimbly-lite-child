@@ -6,7 +6,7 @@ import { customGradient } from '../partials/custom-gradient.js'
 
 const customTextGroup = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
+    parent = `${parent}`
   }
   return [
     group('Custom text', 'custom_text_group',
@@ -64,7 +64,7 @@ const customTextGroup = (parent = '') => {
         },
         suffix: 'px'
       }),
-      customGradient(`${parent}custom_text_group`)
+      customGradient(`${parent}custom_text_group.`)
     )
   ]
 }

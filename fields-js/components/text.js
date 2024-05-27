@@ -4,7 +4,7 @@ import {
 
 const text = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
+    parent = `${parent}`
   }
   return [
     fi.text('Text', 'text', {

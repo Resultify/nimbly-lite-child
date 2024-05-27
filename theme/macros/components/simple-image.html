@@ -4,8 +4,9 @@
 -->
 {%- macro render(module) -%}
   {%- if module.simple_image.src -%}
+    {# common styles for simple-image macros #}
     {% require_css %}
-      <style>
+      <style macros="simple-image">
         .simple-image-macro {
           display: block;
           max-width: 100%;
@@ -17,6 +18,7 @@
         }
       </style>
     {% end_require_css %}
+
     {%- if module.simple_image_alignment -%}
       <div class="simple-image-macro-wrp" style="justify-content:{{module.simple_image_alignment}};">
     {%- endif -%}

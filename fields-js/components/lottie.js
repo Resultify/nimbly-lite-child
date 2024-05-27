@@ -4,7 +4,7 @@ import {
 
 const lottie = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
+    parent = `${parent}`
   }
   return [
     fi.file('Lottie file', 'lottie_file'),

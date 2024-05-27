@@ -4,7 +4,7 @@ import {
 
 const icon = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
+    parent = `${parent}`
   }
   return [
     fi.choice('Icon type', 'icon_type', {

@@ -4,7 +4,7 @@ import {
 
 const customGradient = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
+    parent = `${parent}`
   }
   return [
     fi.color('Gradient color', 'gradient_color', {

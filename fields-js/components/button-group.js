@@ -5,7 +5,7 @@ import {
 
 const buttonGroup = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}.`
+    parent = `${parent}`
   }
   return [
     group('Button', 'button_group',

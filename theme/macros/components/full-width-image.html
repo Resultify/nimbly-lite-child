@@ -2,10 +2,13 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
+{% import '../partials/hash.html' %}
 {%- macro render(module) -%}
   {%- if module.full_width_image.src -%}
-    {%- require_css -%}
-      <style>
+
+    {# common styles for full-width-image macros #}
+    {% require_css %}
+      <style macros="full-width-image">
         .full-width-image-macro-wrp {
           width: 100%;
           z-index: -15;
@@ -18,11 +21,21 @@
           height: auto;
         }
       </style>
-    {%- end_require_css -%}
+    {% end_require_css %}
+
+    {% set item_hash = hash(module.force_full_width_image|union(module.full_width_image_border_radius)) %}
+
+    {# hash for scoped styles #}
+    {% set item_hash = hash([
+      module.force_full_width_image,
+      module.full_width_image_border_radius,
+    ]) %}
+
+    {# scoped styles for full-width-image macros #}
     {%- if module.force_full_width_image -%}
-      <style>
-        {%- scope_css -%}
-          .full-width-image-macro-wrp {
+      {% require_css %}
+        <style macros="full-width-image scoped fullwidthimage{{item_hash}}">
+          .fullwidthimage-wrp{{item_hash}} {
             margin-left: calc(var(--module-padding-left) * -1);
             margin-right: calc(var(--module-padding-right) * -1);
             width: calc(100% + var(--module-padding-left) + var(--module-padding-right));
@@ -33,7 +46,7 @@
               margin-bottom: calc(var(--module-padding-bottom) * -1);
             {%- endif -%}
           }
-          .full-width-image-macro {
+          .fullwidthimage{{item_hash}} {
             {%- if module.force_full_width_image and loop.first -%}
               border-top-left-radius: var(--module-border-radius);
               border-top-right-radius: var(--module-border-radius);
@@ -42,20 +55,21 @@
               border-bottom-right-radius: var(--module-border-radius);
             {%- endif -%}
           }
-        {%- end_scope_css -%}
-      </style>
+        </style>
+      {% end_require_css %}
     {%- endif -%}
     {%- if module.full_width_image_border_radius > 0 and module.force_full_width_image != true -%}
-      <style>
-        {%- scope_css -%}
-          .full-width-image-macro {
+      {% require_css %}
+        <style macros="full-width-image scoped fullwidthimage{{item_hash}}">
+          .fullwidthimage{{item_hash}} {
             border-radius: {{module.full_width_image_border_radius ~ 'px'}};
           }
-        {%- end_scope_css -%}
-      </style>
+        </style>
+      {% end_require_css %}
     {%- endif -%}
-    <div class="full-width-image-macro-wrp">
-      <img class="full-width-image-macro"
+
+    <div class="full-width-image-macro-wrp fullwidthimage-wrp{{item_hash}}">
+      <img class="full-width-image-macro fullwidthimage{{item_hash}}"
         style="aspect-ratio: {{module.full_width_image_aspect_ratio}}"
         alt="{{module.full_width_image.alt}}"
         src="{{module.full_width_image.src}}"

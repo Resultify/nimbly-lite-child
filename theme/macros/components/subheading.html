@@ -3,9 +3,10 @@
   isAvailableForNewContent: false
 -->
 {%- macro render(module) -%}
-{%- if module.subheading_text -%}
+  {%- if module.subheading_text -%}
+    {# common styles for subheading macros #}
     {% require_css %}
-      <style>
+      <style macros="subheading">
         .subheading-macro {
           text-wrap: balance;
           overflow-wrap: break-word;
@@ -20,6 +21,7 @@
         }
       </style>
     {% end_require_css %}
+
     <{{module.subheading_tag}} class="{{module.subheading_style}} subheading-macro">
       {{module.subheading_text}}
     </{{module.subheading_tag}}>
