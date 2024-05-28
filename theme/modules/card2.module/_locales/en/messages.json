@@ -384,6 +384,31 @@
     "description" : "",
     "placeholders" : null
   },
+  "card_grouppp.components.default.component" : {
+    "message" : "Image",
+    "description" : null,
+    "placeholders" : null
+  },
+  "card_grouppp.components.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "card_grouppp.components.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "card_grouppp.components.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "card_grouppp.components.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "components.component.default" : {
     "message" : "",
     "description" : "",

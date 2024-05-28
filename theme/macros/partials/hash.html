@@ -1,0 +1,9 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{%- macro hash(data) -%}
+  {%- if data -%}
+    {{data|tojson|md5|truncate(7,true,'')}}
+  {%- endif -%}
+{%- endmacro -%}

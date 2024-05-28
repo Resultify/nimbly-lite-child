@@ -1,0 +1,153 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{%- macro render(module, style, order_of_components) -%}
+
+  {# add base styles to module previewer #}
+  {% if is_in_module_previewer %}
+    {{require_css(get_asset_url("../../css/base.css"))}}
+    {{require_css(get_asset_url("../../css/global-theme-settings.css"))}}
+  {% endif %}
+  {# *** #}
+
+  {% import '../../macros/components/button-group.html' as buttonGroup %}
+  {% import '../../macros/components/heading.html' as heading %}
+  {% import '../../macros/components/subheading.html' as subheading %}
+  {% import '../../macros/components/custom-text-group.html' as customTextGroup %}
+  {% import '../../macros/components/richtext.html' as richtext %}
+  {% import '../../macros/components/full-width-image.html' as fullWidthImage %}
+  {% import '../../macros/components/icon.html' as icon %}
+  {% import '../../macros/components/lottie.html' as lottie %}
+  {% import '../../macros/components/simple-image.html' as simpleImage %}
+  {% import '../../css/macros.css' %}
+
+  <style>
+    {% scope_css %}
+      .unicard {
+        --module-color: {{style.text_color.css if style.text_color.css}};
+        --module-alignment: {{css_alignment_macro(style.alignment.horizontal_align)}};
+        --module-border-radius: {{style.border_radius is truthy ? style.border_radius ~ "px" : 0 }};
+        {% if style.background_type == 'background_color' and style.background_color.css %}
+          --module-background: {{style.background_color.css}};
+        {% elif style.background_type == 'background_gradient' and style.background_gradient.css %}
+          background: {{style.background_gradient.css}};
+        {% elif style.background_type == 'background_image' and style.background_image.css %}
+          {{css_image_background_macro(style)}}
+        {% endif %}
+        --module-content-gap: {{style.content_gap is truthy ? style.content_gap ~ 'px' : 0 }};
+        --module-border: {{style.border.css && style.border.top.width.value is truthy ? style.border.css|cut('border:') : 'none' }};
+        --module-border-width: {{style.border.css && style.border.top.width.value is truthy ? style.border.top.width.value ~ style.border.top.width.units : '0' }};
+        --module-shadow: {{style.shadow is truthy ? 'var(--' ~ style.shadow ~ ')' : 'var(--shadow-)' }};
+        --module-padding-top: {{style.spacing.padding.top.value is truthy ? style.spacing.padding.top.value ~ style.spacing.padding.top.units : 0 }};
+        --module-padding-bottom: {{style.spacing.padding.bottom.value is truthy ? style.spacing.padding.bottom.value ~ style.spacing.padding.bottom.units : 0 }};
+        --module-padding-left: {{style.spacing.padding.left.value is truthy ? style.spacing.padding.left.value ~ style.spacing.padding.left.units : 0 }};
+        --module-padding-right: {{style.spacing.padding.right.value is truthy ? style.spacing.padding.right.value ~ style.spacing.padding.right.units : 0 }};
+        --module-padding: {{style.spacing.padding.top.value ~ style.spacing.padding.top.units if style.spacing.css|length <= 17 }};
+      }
+      {# {% if style.top_content.top_content_spacing.css %}
+        .unicard .content-block-top {
+          {{style.top_content.top_content_spacing.css}};
+        }
+      {% endif %} #}
+
+      {% if style.hover_effects %}
+        @media (any-hover: hover) {
+          .unicard:hover {
+            --module-hover-color: {{style.hover.text_color.css if style.hover.text_color.css}};
+            --module-hover-background: {{style.hover.background_color.css if style.hover.background_color.css}};
+            --module-hover-border-color: {{style.hover.border_color.css if style.hover.border_color.css}};
+            --module-hover-shadow: {{style.hover.shadow ? 'var(--' ~ style.hover.shadow ~ ')' : 'var(--module-shadow)' }};
+            --module-hover-animation: {{style.hover.animation ? 'var(--' ~ style.hover.animation ~ ')' : 'var(--ani-)' }};
+            box-shadow: var(--module-hover-shadow);
+            transform: var(--module-hover-animation);
+            color: var(--module-hover-color);
+            border-color: var(--module-hover-border-color);
+          }
+          {% if style.background_type == 'background_image' and style.hover.background_color.css or style.background_type == 'background_gradient' and style.hover.background_color.css %}
+            .unicard:after {
+              content: "";
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              top: 0;
+              left: 0;
+              z-index: -10;
+              background-color: rgb(255 255 255 / 0%);
+              transition-property: background-color;
+              transition-duration: var(--root-transition-duration);
+              transition-timing-function: var(--root-transition-timing-function);
+              border-radius: calc(var(--module-border-radius) - var(--module-border-width));
+            }
+            .unicard:hover:after {
+              background-color: var(--module-hover-background);
+            }
+          {% elif style.hover.background_color.css %}
+            .unicard:hover {
+              background-color: var(--module-hover-background);
+            }
+          {% endif %}
+        }
+      {% endif %}
+    {% end_scope_css %}
+  </style>
+  {# stretched_link #}
+  {% if module.whole_area_link and module.heading.heading_link_type == "link" and module.heading.heading_link.url.href %}
+    {% set heading_stretched_link = true %}
+  {% elif module.whole_area_link %}
+    {% set button_stretched_link = true %}
+  {% endif %}
+
+  {%- macro render_media() -%}
+    {% if module.media_type == 'full_width_image' %}
+      {{fullWidthImage.render(module.full_width_image_group)}}
+    {% elif module.media_type == 'simple_image' %}
+      {{simpleImage.render(module.simple_image_group)}}
+    {% elif module.media_type == 'icon' %}
+      {{icon.render(module.icon_group)}}
+    {% elif module.media_type == 'lottie' %}
+      {{lottie.render(module.lottie_group)}}
+    {% endif %}
+  {%- endmacro -%}
+
+  <div class="unicard">
+    <div class="content-block-top">
+      {% for item in order_of_components %}
+        {% if item.component|lower == 'image' %}
+          {{render_media()}}
+
+        {% elif item.component|lower == 'heading' %}
+          {{heading.render(module.heading)}}
+
+        {% elif item.component|lower == 'subheading' %}
+          {{subheading.render(module)}}
+
+        {% elif item.component|cut(" ")|lower == 'customtextgroup' %}
+          {{customTextGroup.render(module)}}
+
+        {% elif item.component|cut(" ")|lower == 'richtext' %}
+          {{richtext.render(module)}}
+
+        {% elif item.component|cut(" ")|lower == 'buttongroup' %}
+          {{buttonGroup.render(module)}}
+
+        {% elif item.component|cut(" ")|lower == 'additionalimagesgroup' %}
+          {% if module.additional_images_group|length > 0 %}
+            <div class="additional-images">
+              {% for image in module.additional_images_group %}
+                {{simpleImage.render(image)}}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+        {% elif item.component|lower == 'separator' and !loop.last %}
+          </div>
+          <div class="content-block-bottom">
+
+        {% endif %}
+
+      {% endfor %}
+    </div>
+  </div>
+
+{%- endmacro -%}
