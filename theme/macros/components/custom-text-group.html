@@ -12,7 +12,7 @@
       <style macros="custom-text-group">
         .custom-text-group-wrp-macro,
         .custom-text-block-wrp-macro {
-          justify-content: var(--module-alignment);
+          justify-content: var(--scope-alignment);
         }
         .custom-text-block-wrp-macro {
           flex-basis: 100%;
@@ -26,7 +26,7 @@
           gap: var(--root-custom-text-gap, .9ch);
         }
         .custom-text-macro {
-          --_macro-color: var(--module-hover-color, var(--custom-color, var(--module-color)));
+          --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
           color: var(--_macro-color);
           display: block;
           position: relative;
@@ -64,7 +64,7 @@
                 {%- endif -%}
                 {%- if item.custom_text_background.css and item.gradient_direction != true -%}
                   background-color: {{item.custom_text_background.css}};
-                  --module-hover-color: var(--custom-color);
+                  --scope-hover-color: var(--custom-color);
                 {%- endif -%}
                 {% if item.custom_text_vertical_spacing %}
                   padding-top: {{item.custom_text_vertical_spacing ~ 'px'}};

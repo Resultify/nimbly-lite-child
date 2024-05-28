@@ -12,7 +12,7 @@
           if (!dotLottieCanvas) return
           for (const item of dotLottieCanvas) {
             // set lottie alignment based on module alignment
-            let lottieAlignment = window.getComputedStyle(item.closest('[class*="module"]')).getPropertyValue('--module-alignment')
+            let lottieAlignment = window.getComputedStyle(item.closest('[class*="scope-root"]')).getPropertyValue('--scope-alignment')
             if (lottieAlignment === 'start') {
               lottieAlignment = [0, 0.5]
             } else if (lottieAlignment === 'center') {
@@ -61,6 +61,15 @@
         }
       </script>
     {% end_require_js %}
+    {# common styles for lottie macros #}
+    {% require_css %}
+      <style macros="lottie">
+        .lottie-macro {
+          max-width: 100%;
+          height: auto;
+        }
+      </style>
+    {% end_require_css %}
     <canvas class="lottie-macro dotlottie-canvas"
       data-lottie-src="{{module.lottie_file}}"
       data-speed="{{module.lottie_speed}}"

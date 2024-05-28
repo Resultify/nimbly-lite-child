@@ -36,7 +36,7 @@
       <style macros="button-group">
         .btn-group-wrp-macro,
         .btn-block-wrp-macro {
-          justify-content: var(--module-alignment);
+          justify-content: var(--scope-alignment);
         }
         .btn-group-wrp-macro {
           display: flex;
@@ -44,7 +44,7 @@
           flex-wrap: wrap;
           align-items: center;
           width: 100%;
-          gap: var(--module-content-gap);
+          gap: var(--scope-content-gap);
         }
         .btn-block-wrp-macro {
           flex-basis: 100%;
@@ -59,8 +59,8 @@
           gap: var(--root-button-icon-gap, .9ch);
         }
         .btn-linkonly, .btn-customlink {
-          --_macro-color: var(--module-hover-color, var(--custom-color, var(--module-color)));
-          --_macro-hover-color: var(--module-hover-color, var(--custom-hover-color, var(--module-color)));
+          --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
+          --_macro-hover-color: var(--scope-hover-color, var(--custom-hover-color, var(--scope-color)));
           color: var(--_macro-color, var(--color));
           transition-property: color;
           transition-duration: var(--root-transition-duration);

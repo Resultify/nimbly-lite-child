@@ -36,23 +36,23 @@
       {% require_css %}
         <style macros="full-width-image scoped fullwidthimage{{item_hash}}">
           .fullwidthimage-wrp{{item_hash}} {
-            margin-left: calc(var(--module-padding-left) * -1);
-            margin-right: calc(var(--module-padding-right) * -1);
-            width: calc(100% + var(--module-padding-left) + var(--module-padding-right));
+            margin-left: calc(var(--scope-padding-left) * -1);
+            margin-right: calc(var(--scope-padding-right) * -1);
+            width: calc(100% + var(--scope-padding-left) + var(--scope-padding-right));
             {%- if module.force_full_width_image and loop.first -%}
-              margin-top: calc(var(--module-padding-top) * -1);
+              margin-top: calc(var(--scope-padding-top) * -1);
               margin-bottom: 0.8rem;
             {%- elif module.force_full_width_image and loop.last -%}
-              margin-bottom: calc(var(--module-padding-bottom) * -1);
+              margin-bottom: calc(var(--scope-padding-bottom) * -1);
             {%- endif -%}
           }
           .fullwidthimage{{item_hash}} {
             {%- if module.force_full_width_image and loop.first -%}
-              border-top-left-radius: var(--module-border-radius);
-              border-top-right-radius: var(--module-border-radius);
+              border-top-left-radius: var(--scope-border-radius);
+              border-top-right-radius: var(--scope-border-radius);
             {%- elif module.force_full_width_image and loop.last -%}
-              border-bottom-left-radius: var(--module-border-radius);
-              border-bottom-right-radius: var(--module-border-radius);
+              border-bottom-left-radius: var(--scope-border-radius);
+              border-bottom-right-radius: var(--scope-border-radius);
             {%- endif -%}
           }
         </style>

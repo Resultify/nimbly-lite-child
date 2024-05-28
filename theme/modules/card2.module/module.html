@@ -1,3 +1,10 @@
+{# add base styles to module previewer #}
+{% if is_in_module_previewer %}
+  {{require_css(get_asset_url("../../css/base.css"))}}
+  {{require_css(get_asset_url("../../css/global-theme-settings.css"))}}
+{% endif %}
+{# *** #}
+
 {% import '../partials/unicard.html' as card %}
 {{require_css(get_asset_url("../partials/unicard.css"))}}
 {{card.render(module, module.style, module.components)}}

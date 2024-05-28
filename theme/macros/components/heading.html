@@ -39,8 +39,8 @@
     {% require_css %}
       <style macros="heading">
         .heading-macro {
-          --_macro-color: var(--module-hover-color, var(--custom-color, var(--module-color)));
-          --_macro-hover-color: var(--module-hover-color, var(--custom-hover-color, var(--module-color)));
+          --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
+          --_macro-hover-color: var(--scope-hover-color, var(--custom-hover-color, var(--scope-color)));
           text-wrap: balance;
           overflow-wrap: break-word;
           -webkit-hyphens: auto; /* for Safari */
@@ -49,7 +49,7 @@
           align-items: center;
           gap: var(--root-heading-icon-gap, .6ch);
           margin: 0;
-          text-align: var(--module-alignment);
+          text-align: var(--scope-alignment);
           color: var(--_macro-color, var(--global-heading-color));
           transition-property: color;
           transition-duration: var(--root-transition-duration);
@@ -59,7 +59,7 @@
         .heading-macro .heading-image {
           width: auto;
           height: var(--root-heading-icon-size, 1.2lh);
-          fill: var(--module-hover-color, var(--custom-fill-color, var(--module-color)));
+          fill: var(--scope-hover-color, var(--custom-fill-color, var(--scope-color)));
           transition-property: fill;
           transition-duration: var(--root-transition-duration);
           transition-timing-function: var(--root-transition-timing-function);
