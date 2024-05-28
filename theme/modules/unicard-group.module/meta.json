@@ -1,0 +1,62 @@
+{
+  "content_tags" : [ {
+    "name" : "TEXT",
+    "source" : "USER"
+  }, {
+    "name" : "VIDEO",
+    "source" : "USER"
+  }, {
+    "name" : "RICH_TEXT",
+    "source" : "USER"
+  }, {
+    "name" : "LISTS",
+    "source" : "USER"
+  }, {
+    "name" : "IMAGE",
+    "source" : "USER"
+  }, {
+    "name" : "ICON",
+    "source" : "USER"
+  }, {
+    "name" : "CTA",
+    "source" : "USER"
+  }, {
+    "name" : "BUTTONS",
+    "source" : "USER"
+  }, {
+    "name" : "ANIMATION",
+    "source" : "USER"
+  }, {
+    "name" : "BRANDING",
+    "source" : "USER"
+  }, {
+    "name" : "CONVERSION",
+    "source" : "USER"
+  }, {
+    "name" : "HEADERS",
+    "source" : "USER"
+  }, {
+    "name" : "INTERACTION",
+    "source" : "USER"
+  }, {
+    "name" : "LAYOUT",
+    "source" : "USER"
+  }, {
+    "name" : "MULTIMEDIA",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "content_types" : [ "KNOWLEDGE_BASE", "QUOTE_TEMPLATE", "MEMBERSHIP", "LANDING_PAGE", "SITE_PAGE", "CUSTOMER_PORTAL", "BLOG_LISTING", "WEB_INTERACTIVE", "BLOG_POST" ],
+  "master_language" : "en",
+  "placeholder" : {
+    "show_module_icon" : true,
+    "title" : "Card v2",
+    "description" : "Add card element"
+  },
+  "categories" : [ "DESIGN", "BODY_CONTENT", "MEDIA" ],
+  "icon" : "fontawesome-5.14.0:Alternate%20File",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 104250577352,
+  "label" : "Cards group",
+  "is_available_for_new_content" : true
+}
