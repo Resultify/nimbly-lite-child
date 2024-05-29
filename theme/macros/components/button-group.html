@@ -4,7 +4,7 @@
 -->
 {% import '../partials/link-attributes.html' %}
 {% import '../partials/hash.html' %}
-{% import '../../css/macros.css' %}
+{% import '../../macros/css/macros.css' %}
 
 {# render button icon internal macro #}
 {%- macro render_button_icon(item, position) -%}
@@ -28,8 +28,8 @@
 {%- endmacro -%}
 
 {# button-group main macro #}
-{%- macro render(module) -%}
-  {%- if module.button_group|length > 0 -%}
+{%- macro render(data) -%}
+  {%- if data.button_group|length > 0 -%}
 
     {# common styles for button-group macros #}
     {% require_css %}
@@ -84,7 +84,7 @@
     {% end_require_css %}
 
     <div class="btn-group-wrp-macro">
-      {%- for item in module.button_group -%}
+      {%- for item in data.button_group -%}
 
         {# hash for scoped styles #}
         {% set item_hash = hash([

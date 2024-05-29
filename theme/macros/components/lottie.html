@@ -2,8 +2,8 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(module) -%}
-  {%- if module.lottie_file -%}
+{%- macro render(data) -%}
+  {%- if data.lottie_file -%}
     {{require_js(get_asset_url('../../assets/js/dotlottie.js'), {defer: true})}}
     {% require_js %}
       <script>
@@ -11,7 +11,7 @@
           const dotLottieCanvas = document.getElementsByClassName('dotlottie-canvas')
           if (!dotLottieCanvas) return
           for (const item of dotLottieCanvas) {
-            // set lottie alignment based on module alignment
+            // set lottie alignment based on scope alignment
             let lottieAlignment = window.getComputedStyle(item.closest('[class*="scope-root"]')).getPropertyValue('--scope-alignment')
             if (lottieAlignment === 'start') {
               lottieAlignment = [0, 0.5]
@@ -47,8 +47,8 @@
                   }
                 })
               })
-              for (const module of dotLottieCanvas) {
-                observer.observe(module)
+              for (const elem of dotLottieCanvas) {
+                observer.observe(elem)
               }
             })
           }
@@ -71,10 +71,10 @@
       </style>
     {% end_require_css %}
     <canvas class="lottie-macro dotlottie-canvas"
-      data-lottie-src="{{module.lottie_file}}"
-      data-speed="{{module.lottie_speed}}"
-      data-mode="{{module.lottie_mode}}"
-      {{"data-loop" if module.lottie_loop}}>
+      data-lottie-src="{{data.lottie_file}}"
+      data-speed="{{data.lottie_speed}}"
+      data-mode="{{data.lottie_mode}}"
+      {{"data-loop" if data.lottie_loop}}>
     </canvas>
   {%- endif -%}
 {%- endmacro -%}

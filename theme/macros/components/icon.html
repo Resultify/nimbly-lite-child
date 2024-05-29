@@ -3,8 +3,8 @@
   isAvailableForNewContent: false
 -->
 {% import '../partials/hash.html' %}
-{%- macro render(module) -%}
-  {%- if module.icon.icon_inline_svg or module.icon.name -%}
+{%- macro render(data) -%}
+  {%- if data.icon.icon_inline_svg or data.icon.name -%}
 
     {# common styles for icon macros #}
     {% require_css %}
@@ -24,56 +24,58 @@
 
     {# hash for scoped styles #}
     {% set item_hash = hash([
-        module.icon_size,
-        module.icon_size,
-        module.icon_background.css,
-        module.icon_border_radius,
-        module.icon_spacing,
-        module.icon_color.css
+        data.icon_size,
+        data.icon_size,
+        data.icon_background.css,
+        data.icon_border_radius,
+        data.icon_spacing,
+        data.icon_color.css
     ]) %}
 
     {# scoped styles for icon macros #}
     {% require_css %}
       <style macros="icon scoped icon-wrp{{item_hash}}">
         .icon-wrp{{item_hash}} > svg {
-          width: {{module.icon_size ~ 'px'}};
-          height: {{module.icon_size ~ 'px'}};
+          width: {{data.icon_size ~ 'px'}};
+          height: {{data.icon_size ~ 'px'}};
         }
-        {%- if module.icon_additional_customization -%}
+        {%- if data.icon_additional_customization -%}
           .icon-wrp{{item_hash}} {
-            {%- if module.icon_background.css -%}
-              background-color: {{module.icon_background.css}};
+            {%- if data.icon_background.css -%}
+              background-color: {{data.icon_background.css}};
+              --scope-hover-color: var(--custom-color);
             {%- endif -%}
-            {% if module.icon_border_radius > 0 %}
-              border-radius: {{module.icon_border_radius ~ '%'}};
+            {% if data.icon_border_radius > 0 %}
+              border-radius: {{data.icon_border_radius ~ '%'}};
             {%- endif -%}
-            {% if module.icon_spacing > 0 %}
-              padding: {{module.icon_spacing ~ 'px'}};
+            {% if data.icon_spacing > 0 %}
+              padding: {{data.icon_spacing ~ 'px'}};
             {%- endif -%}
           }
-          {%- if module.icon_color.css -%}
+          {%- if data.icon_color.css -%}
             .icon-wrp{{item_hash}} {
-              --custom-color: {{module.icon_color.css}};
+              --custom-color: {{data.icon_color.css}};
             }
           {%- endif -%}
         {%- endif -%}
       </style>
     {% end_require_css %}
 
-    {%- if module.icon_type == 'fontawesome' -%}
-      {%- if module.icon.name -%}
+    {%- if data.icon_type == 'fontawesome' -%}
+      {%- if data.icon.name -%}
+        {% set icon_extra_classes= 'icon-macro-wrp icon-wrp' ~ item_hash %}
         {% icon
-          extra_classes="icon-macro-wrp"
-          name="{{module.icon.name}}"
-          style="{{module.icon.type}}"
-          unicode="{{module.icon.unicode}}"
-          icon_set="{{module.icon.icon_set}}"
+          extra_classes={{icon_extra_classes}}
+          name="{{data.icon.name}}"
+          style="{{data.icon.type}}"
+          unicode="{{data.icon.unicode}}"
+          icon_set="{{data.icon.icon_set}}"
           purpose="decorative"
         %}
       {%- endif -%}
-    {%- elif module.icon_type == 'inline_svg' -%}
-      {%- if module.icon_inline_svg -%}
-        <div class="icon-macro-wrp icon-wrp{{item_hash}}">{{module.icon_inline_svg}}</div>
+    {%- elif data.icon_type == 'inline_svg' -%}
+      {%- if data.icon_inline_svg -%}
+        <div class="icon-macro-wrp icon-wrp{{item_hash}}">{{data.icon_inline_svg}}</div>
       {%- endif -%}
     {%- endif -%}
   {%- endif -%}

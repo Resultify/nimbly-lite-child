@@ -2,8 +2,8 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(module) -%}
-  {%- if module.subheading_text -%}
+{%- macro render(data) -%}
+  {%- if data.subheading_text -%}
     {# common styles for subheading macros #}
     {% require_css %}
       <style macros="subheading">
@@ -22,8 +22,8 @@
       </style>
     {% end_require_css %}
 
-    <{{module.subheading_tag}} class="{{module.subheading_style}} subheading-macro">
-      {{module.subheading_text}}
-    </{{module.subheading_tag}}>
+    <{{data.subheading_tag}} class="{{data.subheading_style}} subheading-macro">
+      {{data.subheading_text}}
+    </{{data.subheading_tag}}>
   {%- endif -%}
 {%- endmacro -%}

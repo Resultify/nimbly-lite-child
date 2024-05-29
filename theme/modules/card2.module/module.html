@@ -5,6 +5,6 @@
 {% endif %}
 {# *** #}
 
-{% import '../partials/unicard.html' as card %}
+{% import '../partials/unicard.html' %}
 {{require_css(get_asset_url("../partials/unicard.css"))}}
-{{card.render(module, module.style, module.components)}}
+{{render_unicard(module, module.style, module.components)}}

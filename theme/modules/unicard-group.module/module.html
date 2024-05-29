@@ -1,8 +1,15 @@
-{% import '../partials/unicard.html' as card %}
-{{require_css(get_asset_url("../partials/unicard.css"))}}
-{{card.render(module, module.style, module.components)}}
-{# {{card.render(module.card_group, module.style, module.card_group.components)}} #}
+{# add base styles to module previewer #}
+{% if is_in_module_previewer %}
+  {{require_css(get_asset_url("../../css/base.css"))}}
+  {{require_css(get_asset_url("../../css/global-theme-settings.css"))}}
+{% endif %}
+{# *** #}
 
-{# {% for item in module.card_grouppp %}
-   {{card.render(item, module.style.style_group, module.components, loop.index)}}
-{% endfor %} #}
+{% import '../partials/unicard.html' %}
+{{require_css(get_asset_url("../partials/unicard.css"))}}
+
+<div class="unicard-group" style="--col: {{module.grid_layout.columns}}; gap:{{module.grid_layout.gap ~ 'px'}};">
+  {% for item in module.card_group %}
+    {{render_unicard(item, module.style, module.components)}}
+  {% endfor %}
+</div>

@@ -2,7 +2,7 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(data, style, order_of_components) -%}
+{%- macro render_unicard(data, style, order_of_components) -%}
 
   {% import '../../macros/components/button-group.html' as buttonGroup %}
   {% import '../../macros/components/heading.html' as heading %}
@@ -13,7 +13,7 @@
   {% import '../../macros/components/icon.html' as icon %}
   {% import '../../macros/components/lottie.html' as lottie %}
   {% import '../../macros/components/simple-image.html' as simpleImage %}
-  {% import '../../css/macros.css' %}
+  {% import '../../macros/css/macros.css' %}
 
   <style>
     {% scope_css %}
@@ -30,7 +30,7 @@
         {% endif %}
         --scope-content-gap: {{style.content_gap is truthy ? style.content_gap ~ 'px' : 0 }};
         --scope-border: {{style.border.css && style.border.top.width.value is truthy ? style.border.css|cut('border:') : 'none' }};
-        --scope-border-width: {{style.border.css && style.border.top.width.value is truthy ? style.border.top.width.value ~ style.border.top.width.units : '0' }};
+        --scope-border-width: {{style.border.css && style.border.top.width.value is truthy ? style.border.top.width.value ~ style.border.top.width.units : '0px' }};
         --scope-shadow: {{style.shadow is truthy ? 'var(--' ~ style.shadow ~ ')' : 'var(--shadow-)' }};
         --scope-padding-top: {{style.spacing.padding.top.value is truthy ? style.spacing.padding.top.value ~ style.spacing.padding.top.units : 0 }};
         --scope-padding-bottom: {{style.spacing.padding.bottom.value is truthy ? style.spacing.padding.bottom.value ~ style.spacing.padding.bottom.units : 0 }};

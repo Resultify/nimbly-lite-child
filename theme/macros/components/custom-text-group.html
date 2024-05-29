@@ -3,9 +3,9 @@
   isAvailableForNewContent: false
 -->
 {% import '../partials/hash.html' %}
-{% import '../../css/macros.css' %}
-{%- macro render(module) -%}
-  {%- if module.custom_text_group|length > 0 -%}
+{% import '../../macros/css/macros.css' %}
+{%- macro render(data) -%}
+  {%- if data.custom_text_group|length > 0 -%}
 
     {# common styles for custom-text-group macros #}
     {% require_css %}
@@ -38,7 +38,7 @@
     {% end_require_css %}
 
     <div class="custom-text-group-wrp-macro">
-      {%- for item in module.custom_text_group -%}
+      {%- for item in data.custom_text_group -%}
         {%- if item.custom_text -%}
 
           {# hash for scoped styles #}

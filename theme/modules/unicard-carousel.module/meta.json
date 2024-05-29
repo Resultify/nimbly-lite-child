@@ -57,7 +57,7 @@
     "description" : "Add card element"
   },
   "categories" : [ "DESIGN", "FUNCTIONALITY", "MEDIA" ],
-  "icon" : "fontawesome-5.14.0:Alternate%20File",
+  "icon" : "../../images/module-icons/unicard-carousel.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "module_id" : 104254315719,
   "label" : "Cards carousel",

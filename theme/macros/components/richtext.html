@@ -2,8 +2,8 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(module) -%}
-  {%- if module.richtext -%}
+{%- macro render(data) -%}
+  {%- if data.richtext -%}
     {# common styles for richtext macros #}
     {% require_css %}
       <style macros="richtext">
@@ -29,7 +29,7 @@
       </style>
     {% end_require_css %}
     <div class="richtext-macro-wrp">
-      {{module.richtext|sanitize_html}}
+      {{data.richtext|sanitize_html}}
     </div>
   {%- endif -%}
 {%- endmacro -%}

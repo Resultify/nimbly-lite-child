@@ -54,7 +54,7 @@
     "description" : "Add card element"
   },
   "categories" : [ "BODY_CONTENT", "MEDIA", "TEXT" ],
-  "icon" : "fontawesome-5.14.0:Alternate%20File",
+  "icon" : "../../images/module-icons/unicard.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "module_id" : 104250576632,
   "label" : "Universal card",

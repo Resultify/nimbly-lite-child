@@ -12,7 +12,7 @@
     "description" : "Add card element"
   },
   "categories" : [ "BLOG" ],
-  "icon" : "fontawesome-5.14.0:Alternate%20File",
+  "icon" : "../../images/module-icons/unicard-blog-recent.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "module_id" : 104265001404,
   "label" : "Blog recent cards",

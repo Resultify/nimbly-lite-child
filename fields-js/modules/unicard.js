@@ -5,7 +5,21 @@ import {
 import { component } from '../components/all.js'
 import { partial } from '../partials/all.js'
 
-const cardFields = (parent = '', hideOrder = false) => {
+/**
+ * #### cardFields
+ * @param {Object} [lock] - lock components
+ * @param {Boolean} [lock.lockMedia] - lock media
+ * @param {Boolean} [lock.lockHeading] - lock heading
+ * @param {Boolean} [lock.lockSubheading] - lock subheading
+ * @param {Boolean} [lock.lockRichText] - lock rich text
+ * @param {Boolean} [lock.lockButtonGroup] - lock button group
+ * @param {Boolean} [lock.lockCustomTextGroup] - lock custom text group
+ * @param {Boolean} [lock.lockAdditionalImagesGroup] - lock additional images group
+ * @param {Boolean} [lock.lockComponentOrder] - lock component order
+ * @returns {Array<Object>} - card fields array
+ */
+
+const cardFields = (parent = '', lock = {}) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
@@ -72,6 +86,7 @@ const cardFields = (parent = '', hideOrder = false) => {
     component.customTextGroup(`${parent}`),
     group('Additional images', 'additional_images_group',
       {
+        locked: lock.lockAdditionalImagesGroup,
         occurrence: {
           min: 0,
           max: 20
@@ -88,7 +103,7 @@ const cardFields = (parent = '', hideOrder = false) => {
       'Custom text group',
       'Additional images group',
       'Separator'
-    ], hideOrder),
+    ], lock.lockComponentOrder),
     fi.boolean('Whole area link', 'whole_area_link', {
       display: 'toggle',
       default: false,

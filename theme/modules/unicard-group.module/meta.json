@@ -54,7 +54,7 @@
     "description" : "Add card element"
   },
   "categories" : [ "DESIGN", "BODY_CONTENT", "MEDIA" ],
-  "icon" : "fontawesome-5.14.0:Alternate%20File",
+  "icon" : "../../images/module-icons/unicard-group.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "module_id" : 104250577352,
   "label" : "Cards group",

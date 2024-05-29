@@ -3,8 +3,8 @@
   isAvailableForNewContent: false
 -->
 {% import '../partials/hash.html' %}
-{%- macro render(module) -%}
-  {%- if module.full_width_image.src -%}
+{%- macro render(data) -%}
+  {%- if data.full_width_image.src -%}
 
     {# common styles for full-width-image macros #}
     {% require_css %}
@@ -23,46 +23,46 @@
       </style>
     {% end_require_css %}
 
-    {% set item_hash = hash(module.force_full_width_image|union(module.full_width_image_border_radius)) %}
+    {% set item_hash = hash(data.force_full_width_image|union(data.full_width_image_border_radius)) %}
 
     {# hash for scoped styles #}
     {% set item_hash = hash([
-      module.force_full_width_image,
-      module.full_width_image_border_radius
+      data.force_full_width_image,
+      data.full_width_image_border_radius
     ]) %}
 
     {# scoped styles for full-width-image macros #}
-    {%- if module.force_full_width_image -%}
+    {%- if data.force_full_width_image -%}
       {% require_css %}
         <style macros="full-width-image scoped fullwidthimage{{item_hash}}">
           .fullwidthimage-wrp{{item_hash}} {
             margin-left: calc(var(--scope-padding-left) * -1);
             margin-right: calc(var(--scope-padding-right) * -1);
             width: calc(100% + var(--scope-padding-left) + var(--scope-padding-right));
-            {%- if module.force_full_width_image and loop.first -%}
+            {%- if data.force_full_width_image and loop.first -%}
               margin-top: calc(var(--scope-padding-top) * -1);
               margin-bottom: 0.8rem;
-            {%- elif module.force_full_width_image and loop.last -%}
+            {%- elif data.force_full_width_image and loop.last -%}
               margin-bottom: calc(var(--scope-padding-bottom) * -1);
             {%- endif -%}
           }
           .fullwidthimage{{item_hash}} {
-            {%- if module.force_full_width_image and loop.first -%}
-              border-top-left-radius: var(--scope-border-radius);
-              border-top-right-radius: var(--scope-border-radius);
-            {%- elif module.force_full_width_image and loop.last -%}
-              border-bottom-left-radius: var(--scope-border-radius);
-              border-bottom-right-radius: var(--scope-border-radius);
+            {%- if data.force_full_width_image and loop.first -%}
+              border-top-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+              border-top-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+            {%- elif data.force_full_width_image and loop.last -%}
+              border-bottom-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+              border-bottom-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
             {%- endif -%}
           }
         </style>
       {% end_require_css %}
     {%- endif -%}
-    {%- if module.full_width_image_border_radius > 0 and module.force_full_width_image != true -%}
+    {%- if data.full_width_image_border_radius > 0 and data.force_full_width_image != true -%}
       {% require_css %}
         <style macros="full-width-image scoped fullwidthimage{{item_hash}}">
           .fullwidthimage{{item_hash}} {
-            border-radius: {{module.full_width_image_border_radius ~ 'px'}};
+            border-radius: {{data.full_width_image_border_radius ~ 'px'}};
           }
         </style>
       {% end_require_css %}
@@ -70,11 +70,11 @@
 
     <div class="full-width-image-macro-wrp fullwidthimage-wrp{{item_hash}}">
       <img class="full-width-image-macro fullwidthimage{{item_hash}}"
-        style="aspect-ratio: {{module.full_width_image_aspect_ratio}}"
-        alt="{{module.full_width_image.alt}}"
-        src="{{module.full_width_image.src}}"
-        width="{{module.full_width_image.width}}"
-        height="{{module.full_width_image.height}}"
+        style="aspect-ratio: {{data.full_width_image_aspect_ratio}}"
+        alt="{{data.full_width_image.alt}}"
+        src="{{data.full_width_image.src}}"
+        width="{{data.full_width_image.width}}"
+        height="{{data.full_width_image.height}}"
         loading="lazy">
     </div>
   {%- endif -%}

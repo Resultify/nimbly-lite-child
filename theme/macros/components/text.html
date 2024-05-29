@@ -2,8 +2,8 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(module) -%}
-  {%- if module.text -%}
+{%- macro render(data) -%}
+  {%- if data.text -%}
     {# common styles for text macros #}
     {% require_css %}
       <style macros="text">
@@ -17,7 +17,7 @@
     {% end_require_css %}
 
     <div class="text-macro-wrp">
-      <span class="text-macro">{{module.text}}</span>
+      <span class="text-macro">{{data.text}}</span>
     </div>
   {%- endif -%}
 {%- endmacro -%}

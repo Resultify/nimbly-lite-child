@@ -2,8 +2,8 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(module) -%}
-  {%- if module.simple_image.src -%}
+{%- macro render(data) -%}
+  {%- if data.simple_image.src -%}
     {# common styles for simple-image macros #}
     {% require_css %}
       <style macros="simple-image">
@@ -19,20 +19,20 @@
       </style>
     {% end_require_css %}
 
-    {%- if module.simple_image_alignment -%}
-      <div class="simple-image-macro-wrp" style="justify-content:{{module.simple_image_alignment}};">
+    {%- if data.simple_image_alignment -%}
+      <div class="simple-image-macro-wrp" style="justify-content:{{data.simple_image_alignment}};">
     {%- endif -%}
     <img class="simple-image-macro"
-      alt="{{module.simple_image.alt}}"
-      src="{{module.simple_image.src}}"
-      {%- if module.simple_image_width -%}
-        width="{{module.simple_image_width}}"
+      alt="{{data.simple_image.alt}}"
+      src="{{data.simple_image.src}}"
+      {%- if data.simple_image_width -%}
+        width="{{data.simple_image_width}}"
       {%- else -%}
-        width="{{module.simple_image.width}}"
-        height="{{module.simple_image.height}}"
+        width="{{data.simple_image.width}}"
+        height="{{data.simple_image.height}}"
       {%- endif -%}
       loading="lazy">
-      {%- if module.simple_image_alignment -%}
+      {%- if data.simple_image_alignment -%}
         </div>
       {%- endif -%}
   {%- endif -%}
