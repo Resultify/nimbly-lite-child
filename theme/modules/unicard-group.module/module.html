@@ -6,10 +6,12 @@
 {# *** #}
 
 {% import '../partials/unicard.html' %}
-{{require_css(get_asset_url("../partials/unicard.css"))}}
 
-<div class="unicard-group" style="--col: {{module.grid_layout.columns}}; gap:{{module.grid_layout.gap ~ 'px'}};">
-  {% for item in module.card_group %}
-    {{render_unicard(item, module.style, module.components)}}
-  {% endfor %}
-</div>
+{% if module.card_group|length > 0 %}
+  {{require_css(get_asset_url("../partials/unicard.css"))}}
+  <div class="unicard-group" style="--col: {{module.grid_layout.columns}}; gap:{{module.grid_layout.gap ~ 'px'}};">
+    {% for item in module.card_group %}
+      {{render_unicard(item, module.style, module.components)}}
+    {% endfor %}
+  </div>
+{% endif %}

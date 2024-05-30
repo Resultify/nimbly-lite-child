@@ -55,7 +55,6 @@
           width: 100%;
         }
         .btn-link {
-          line-height: 1;
           gap: var(--root-button-icon-gap, .9ch);
         }
         .btn-linkonly, .btn-customlink {
@@ -111,7 +110,7 @@
             {% require_css %}
               <style macros="button-group scoped btn{{item_hash}}">
                 .btn{{item_hash}} {
-                  {%- if item.custom_button_border_radius > 0 -%}
+                  {%- if item.custom_button_border_radius != null -%}
                     --border-radius: {{item.custom_button_border_radius ~ 'px'}};
                   {%- endif -%}
                   {%- if item.custom_button_font.color -%}
@@ -120,15 +119,15 @@
                   {%- if item.custom_button_background.css -%}
                     --bg: {{item.custom_button_background.css}};
                   {%- endif -%}
-                  {% if item.custom_button_vertical_spacing %}
+                  {% if item.custom_button_vertical_spacing != null %}
                     padding-top: {{item.custom_button_vertical_spacing ~ 'px'}};
                     padding-bottom: {{item.custom_button_vertical_spacing ~ 'px'}};
                   {% endif %}
-                  {% if item.custom_button_horizontal_spacing %}
+                  {% if item.custom_button_horizontal_spacing != null %}
                     padding-left: {{item.custom_button_horizontal_spacing ~ 'px'}};
                     padding-right: {{item.custom_button_horizontal_spacing ~ 'px'}};
                   {% endif %}
-                  {%- if item.custom_button_border_width > 0 -%}
+                  {%- if item.custom_button_border_width != null -%}
                     border-width: {{item.custom_button_border_width ~ 'px'}};
                   {%- endif -%}
                   {%- if item.custom_button_border_color.css -%}

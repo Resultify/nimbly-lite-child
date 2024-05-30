@@ -1,1 +1,31 @@
-/* css */
+.unicard-filter {
+  --root-transition-duration: 0;
+  --columns: 1;
+}
+
+
+@media (min-width: 600px) {
+  .unicard-filter {
+    --columns: 2;
+  }
+}
+
+@media (min-width: 900px) {
+  .unicard-filter {
+    --columns: 3;
+  }
+}
+
+.unicard-filter-buttons-wrp {
+  padding-bottom: 20px;
+}
+
+.unicard-filter .unicard {
+  width: calc((100% / var(--columns)) - var(--gutter) + (var(--gutter) / var(--columns)));
+  margin-bottom: var(--gutter);
+  min-height: auto !important;
+}
+
+.unicard-filter .iso-gutter-sizer {
+  width: var(--gutter);
+}

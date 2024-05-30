@@ -17,6 +17,7 @@ const icon = (parent = '') => {
       ]
     }),
     fi.number('Icon size', 'icon_size', {
+      min: 0,
       display_width: 'half_width',
       default: 80,
       suffix: 'px'
@@ -55,6 +56,7 @@ const icon = (parent = '') => {
       }
     }),
     fi.number('Spacing', 'icon_spacing', {
+      min: 0,
       suffix: 'px',
       display_width: 'half_width',
       visibility: {
@@ -64,6 +66,7 @@ const icon = (parent = '') => {
       }
     }),
     fi.number('Border radius', 'icon_border_radius', {
+      min: 0,
       suffix: '%',
       display_width: 'half_width',
       visibility: {

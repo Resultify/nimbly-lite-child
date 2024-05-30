@@ -8,6 +8,7 @@ import * as order from './order.js'
 import * as lottie from './lottie.js'
 import * as icon from './icon.js'
 import * as fullWidthImage from './full-width-image.js'
+import * as realButtonGroup from './real-button-group.js'
 
 const component = {
   ...heading,
@@ -19,7 +20,8 @@ const component = {
   ...lottie,
   ...icon,
   ...fullWidthImage,
-  ...customTextGroup
+  ...customTextGroup,
+  ...realButtonGroup
 }
 
 export { component }

@@ -9,6 +9,7 @@ const lottie = (parent = '') => {
   return [
     fi.file('Lottie file', 'lottie_file'),
     fi.number('Speed', 'lottie_speed', {
+      min: 0,
       step: 0.1,
       display_width: 'half_width',
       default: 1,

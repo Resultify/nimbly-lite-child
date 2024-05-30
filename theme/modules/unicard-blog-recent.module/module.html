@@ -1,0 +1,11 @@
+{{module.module_components|pprint}}
+{% for component in module.components %}
+  {% if component == 'heading' %}
+    {{module.heading}}
+
+  {% elif component == 'subheading' %}
+    {{module.subheading}}
+
+  {% endif %}
+
+{% endfor %}

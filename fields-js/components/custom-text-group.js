@@ -2,7 +2,7 @@ import {
   moduleFields as fi,
   group
 } from '@resultify/hubspot-fields-js'
-import { customGradient } from '../partials/custom-gradient.js'
+import { partial } from '../partials/all.js'
 
 const customTextGroup = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
@@ -42,6 +42,7 @@ const customTextGroup = (parent = '') => {
         }
       }),
       fi.number('Vertical spacing', 'custom_text_vertical_spacing', {
+        min: 0,
         visibility: {
           controlling_field_path: `${parent}custom_text_group.custom_text`,
           operator: 'NOT_EMPTY'
@@ -50,6 +51,7 @@ const customTextGroup = (parent = '') => {
         suffix: 'px'
       }),
       fi.number('Horizontal', 'custom_text_horizontal_spacing', {
+        min: 0,
         visibility: {
           controlling_field_path: `${parent}custom_text_group.custom_text`,
           operator: 'NOT_EMPTY'
@@ -58,13 +60,14 @@ const customTextGroup = (parent = '') => {
         suffix: 'px'
       }),
       fi.number('Border radius', 'custom_text_border_radius', {
+        min: 0,
         visibility: {
           controlling_field_path: `${parent}custom_text_group.custom_text`,
           operator: 'NOT_EMPTY'
         },
         suffix: 'px'
       }),
-      customGradient(`${parent}custom_text_group.`)
+      partial.customGradient(`${parent}custom_text_group.`)
     )
   ]
 }

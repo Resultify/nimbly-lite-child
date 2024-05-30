@@ -58,7 +58,7 @@
         </style>
       {% end_require_css %}
     {%- endif -%}
-    {%- if data.full_width_image_border_radius > 0 and data.force_full_width_image != true -%}
+    {%- if data.full_width_image_border_radius != null and data.force_full_width_image != true -%}
       {% require_css %}
         <style macros="full-width-image scoped fullwidthimage{{item_hash}}">
           .fullwidthimage{{item_hash}} {

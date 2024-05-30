@@ -13,6 +13,7 @@ const simpleImage = (parent = '', hideAlignment = false) => {
       responsive: false
     }),
     fi.number('Width', 'simple_image_width', {
+      min: 0,
       display_width: 'half_width',
       suffix: 'px',
       visibility: {

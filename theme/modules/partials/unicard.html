@@ -104,7 +104,15 @@
     {% endif %}
   {%- endmacro -%}
 
-  <div class="unicard scope-root">
+  {# unicard filter categories class #}
+  {%- if data.category|length > 0 -%}
+    {%- set data_filter_classes = {class:"iso-item"} -%}
+    {%- for item in data.category -%}
+      {%- do data_filter_classes.update({class: data_filter_classes.class ~ ' ' ~ item|lower|trim|regex_replace("[^a-z0-9]", "")}) -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  <div class="unicard scope-root {{data_filter_classes.class}}">
     <div class="content-block-top">
       {% for item in order_of_components %}
         {% if item.component|lower == 'image' %}

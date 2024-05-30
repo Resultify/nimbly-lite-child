@@ -46,6 +46,7 @@ const fullWidthImage = (parent = '', hideForceFullWidth = false) => {
       }
     }),
     fi.number('Border radius', 'full_width_image_border_radius', {
+      min: 0,
       display_width: 'half_width',
       suffix: 'px',
       visibility_rules: 'ADVANCED',

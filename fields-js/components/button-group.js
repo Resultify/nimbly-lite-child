@@ -444,6 +444,7 @@ const buttonGroup = (parent = '') => {
         }
       }),
       fi.number('Vertical spacing', 'custom_button_vertical_spacing', {
+        min: 0,
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
@@ -463,6 +464,7 @@ const buttonGroup = (parent = '') => {
         suffix: 'px'
       }),
       fi.number('Horizontal', 'custom_button_horizontal_spacing', {
+        min: 0,
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
@@ -482,6 +484,7 @@ const buttonGroup = (parent = '') => {
         suffix: 'px'
       }),
       fi.number('Border width', 'custom_button_border_width', {
+        min: 0,
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
@@ -501,6 +504,7 @@ const buttonGroup = (parent = '') => {
         suffix: 'px'
       }),
       fi.number('Border radius', 'custom_button_border_radius', {
+        min: 0,
         suffix: 'px',
         display_width: 'half_width',
         visibility_rules: 'ADVANCED',
