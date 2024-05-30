@@ -2,7 +2,7 @@ import {
   group,
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
-import { partial } from '../partials/all.js'
+import { categoryList } from '../partials/category-list.js'
 
 const realButtonGroup = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
@@ -17,7 +17,9 @@ const realButtonGroup = (parent = '') => {
           sorting_label_field: `${parent}button_group.button_text`
         }
       },
-      partial.categoryList(),
+      fi.choice('Category', 'category', {
+        choices: categoryList
+      }),
       fi.choice('Style', 'button_style', {
         default: 'primary',
         choices: [

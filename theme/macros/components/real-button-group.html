@@ -6,12 +6,12 @@
 {% import '../../macros/css/macros.css' %}
 
 {# button-group main macro #}
-{%- macro real_button_group(data) -%}
+{%- macro real_button_group_macro(data) -%}
   {%- if data.button_group|length > 0 -%}
 
     {# common styles for button-group macros #}
     {% require_css %}
-      <style macros="real-button-group">
+      <style macro="real-button-group">
         .real-btn-group-wrp-macro,
         .real-btn-block-wrp-macro {
           justify-content: var(--scope-alignment);
@@ -71,7 +71,7 @@
         {# scoped styles for button-group macros #}
         {%- if item.button_style == "custombutton" -%}
           {% require_css %}
-            <style macros="real-button-group scoped btn{{item_hash}}">
+            <style macro="real-button-group scoped btn{{item_hash}}">
               .btn{{item_hash}} {
                 {%- if item.custom_button_border_radius != null -%}
                   --border-radius: {{item.custom_button_border_radius ~ 'px'}};
@@ -115,7 +115,7 @@
 
         {%- if item.active_state_style.color.css or item.active_state_style.background.css or item.active_state_style.border_color.css or item.active_state_style.show_close_icon -%}
           {% require_css %}
-            <style macros="real-button-group scoped btn{{item_hash}}">
+            <style macro="real-button-group scoped btn{{item_hash}}">
               .btn{{item_hash}}.active {
                 {%- if item.active_state_style.color.css -%}
                   --color: {{item.active_state_style.color.css}};

@@ -4,12 +4,12 @@
 -->
 {% import '../partials/hash.html' %}
 {% import '../../macros/css/macros.css' %}
-{%- macro render(data) -%}
+{%- macro custom_text_group_macro(data) -%}
   {%- if data.custom_text_group|length > 0 -%}
 
     {# common styles for custom-text-group macros #}
     {% require_css %}
-      <style macros="custom-text-group">
+      <style macro="custom-text-group">
         .custom-text-group-wrp-macro,
         .custom-text-block-wrp-macro {
           justify-content: var(--scope-alignment);
@@ -54,7 +54,7 @@
 
           {# scoped styles for button-group macros #}
           {% require_css %}
-            <style macros="custom-text-group scoped customtext{{item_hash}}">
+            <style macro="custom-text-group scoped customtext{{item_hash}}">
               .customtext{{item_hash}} {
                 {% if item.custom_text_font.color %}
                   --custom-color: {{item.custom_text_font.color}};

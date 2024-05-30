@@ -4,15 +4,15 @@
 -->
 {%- macro render_unicard(data, style, order_of_components) -%}
 
-  {% import '../../macros/components/button-group.html' as buttonGroup %}
-  {% import '../../macros/components/heading.html' as heading %}
-  {% import '../../macros/components/subheading.html' as subheading %}
-  {% import '../../macros/components/custom-text-group.html' as customTextGroup %}
-  {% import '../../macros/components/richtext.html' as richtext %}
-  {% import '../../macros/components/full-width-image.html' as fullWidthImage %}
-  {% import '../../macros/components/icon.html' as icon %}
-  {% import '../../macros/components/lottie.html' as lottie %}
-  {% import '../../macros/components/simple-image.html' as simpleImage %}
+  {% import '../../macros/components/button-group.html' %}
+  {% import '../../macros/components/heading.html' %}
+  {% import '../../macros/components/subheading.html' %}
+  {% import '../../macros/components/custom-text-group.html' %}
+  {% import '../../macros/components/richtext.html' %}
+  {% import '../../macros/components/full-width-image.html' %}
+  {% import '../../macros/components/icon.html' %}
+  {% import '../../macros/components/lottie.html' %}
+  {% import '../../macros/components/simple-image.html' %}
   {% import '../../macros/css/macros.css' %}
 
   <style>
@@ -94,13 +94,13 @@
 
   {%- macro render_media() -%}
     {% if data.media_type == 'full_width_image' %}
-      {{fullWidthImage.render(data.full_width_image_group)}}
+      {{full_width_image_macro(data.full_width_image_group)}}
     {% elif data.media_type == 'simple_image' %}
-      {{simpleImage.render(data.simple_image_group)}}
+      {{simple_image_macro(data.simple_image_group)}}
     {% elif data.media_type == 'icon' %}
-      {{icon.render(data.icon_group)}}
+      {{icon_macro(data.icon_group)}}
     {% elif data.media_type == 'lottie' %}
-      {{lottie.render(data.lottie_group)}}
+      {{lottie_macro(data.lottie_group)}}
     {% endif %}
   {%- endmacro -%}
 
@@ -119,25 +119,25 @@
           {{render_media()}}
 
         {% elif item.component|lower == 'heading' %}
-          {{heading.render(data.heading)}}
+          {{heading_macro(data.heading)}}
 
         {% elif item.component|lower == 'subheading' %}
-          {{subheading.render(data)}}
+          {{subheading_macro(data)}}
 
         {% elif item.component|cut(" ")|lower == 'customtextgroup' %}
-          {{customTextGroup.render(data)}}
+          {{custom_text_group_macro(data)}}
 
         {% elif item.component|cut(" ")|lower == 'richtext' %}
-          {{richtext.render(data)}}
+          {{richtext_macro(data)}}
 
         {% elif item.component|cut(" ")|lower == 'buttongroup' %}
-          {{buttonGroup.render(data)}}
+          {{button_group_macro(data)}}
 
         {% elif item.component|cut(" ")|lower == 'additionalimagesgroup' %}
           {% if data.additional_images_group|length > 0 %}
             <div class="additional-images">
               {% for image in data.additional_images_group %}
-                {{simpleImage.render(image)}}
+                {{simple_image_macro(image)}}
               {% endfor %}
             </div>
           {% endif %}

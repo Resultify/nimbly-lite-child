@@ -2,11 +2,11 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(data) -%}
+{%- macro richtext_macro(data) -%}
   {%- if data.richtext -%}
     {# common styles for richtext macros #}
     {% require_css %}
-      <style macros="richtext">
+      <style macro="richtext">
         .richtext-macro-wrp {
           text-align: var(--scope-alignment);
         }

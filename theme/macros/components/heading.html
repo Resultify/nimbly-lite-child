@@ -32,12 +32,12 @@
   {%- endif -%}
 {%- endmacro -%}
 
-{%- macro render(data) -%}
+{%- macro heading_macro(data) -%}
   {%- if data.heading_text -%}
 
     {# common styles for heading macros #}
     {% require_css %}
-      <style macros="heading">
+      <style macro="heading">
         .heading-macro {
           --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
           --_macro-hover-color: var(--scope-hover-color, var(--custom-hover-color, var(--scope-color)));
@@ -99,7 +99,7 @@
     {# scoped styles for heading macros #}
     {%- if data.heading_icon_color.css and data.heading_link_type != 'link' and data.heading_link_type != 'anchor' -%}
       {% require_css %}
-        <style macros="heading scoped heading{{item_hash}}">
+        <style macro="heading scoped heading{{item_hash}}">
           .heading{{item_hash}} > svg,
           .heading{{item_hash}} > a > svg:not(.anchor-icon) {
             --custom-fill-color: {{data.heading_icon_color.css}};
@@ -109,7 +109,7 @@
     {%- endif -%}
     {%- if data.heading_additional_customization -%}
       {% require_css %}
-        <style macros="heading scoped heading{{item_hash}}">
+        <style macro="heading scoped heading{{item_hash}}">
           .heading{{item_hash}} {
             {%- if data.heading_link_type != 'link' -%}
               --custom-color: {{data.heading_color.css}};

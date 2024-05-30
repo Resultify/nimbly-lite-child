@@ -2,11 +2,11 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(data) -%}
+{%- macro subheading_macro(data) -%}
   {%- if data.subheading_text -%}
     {# common styles for subheading macros #}
     {% require_css %}
-      <style macros="subheading">
+      <style macro="subheading">
         .subheading-macro {
           text-wrap: balance;
           overflow-wrap: break-word;

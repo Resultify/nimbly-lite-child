@@ -7,7 +7,6 @@ import {
 } from '@resultify/hubspot-fields-js'
 import { component } from '../../../fields-js/components/all.js'
 import { cardFields, cardStyleFields } from '../../../fields-js/modules/unicard.js'
-import { partial } from '../../../fields-js/partials/all.js'
 
 init(
   component.realButtonGroup(),
@@ -21,7 +20,16 @@ init(
     },
     cardFields('card_group.', { lockComponentOrder: true })
   ),
-  partial.unicardComponentOrder(),
+  component.order([
+    'Image',
+    'Heading',
+    'Subheading',
+    'Rich text',
+    'Button group',
+    'Custom text group',
+    'Additional images group',
+    'Separator'
+  ]),
   styleGroup(
     group('Filter buttons', 'filter_buttons',
       {

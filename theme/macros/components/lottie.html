@@ -2,7 +2,7 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(data) -%}
+{%- macro lottie_macro(data) -%}
   {%- if data.lottie_file -%}
     {{require_js(get_asset_url('../../assets/js/dotlottie.js'), {defer: true})}}
     {% require_js %}
@@ -63,7 +63,7 @@
     {% end_require_js %}
     {# common styles for lottie macros #}
     {% require_css %}
-      <style macros="lottie">
+      <style macro="lottie">
         .lottie-macro {
           max-width: 100%;
           height: auto;

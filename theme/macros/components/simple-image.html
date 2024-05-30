@@ -2,11 +2,11 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render(data) -%}
+{%- macro simple_image_macro(data) -%}
   {%- if data.simple_image.src -%}
     {# common styles for simple-image macros #}
     {% require_css %}
-      <style macros="simple-image">
+      <style macro="simple-image">
         .simple-image-macro {
           display: block;
           max-width: 100%;
