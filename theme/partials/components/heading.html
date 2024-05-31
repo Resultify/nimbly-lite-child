@@ -57,11 +57,10 @@
           transition-duration: var(--root-transition-duration);
           transition-timing-function: var(--root-transition-timing-function);
         }
-        .heading-macro svg,
-        .heading-macro .heading-image {
+        .heading-macro svg {
           width: auto;
-          height: var(--root-heading-icon-size, 1.2lh);
-          fill: var(--scope-hover-color, var(--custom-fill-color, var(--scope-color)));
+          height: var(--root-heading-icon-size, 1.2em);
+          fill: currentColor;
           transition-property: fill;
           transition-duration: var(--root-transition-duration);
           transition-timing-function: var(--root-transition-timing-function);
@@ -77,7 +76,8 @@
           color: var(--_macro-hover-color, var(--hover-color));
         }
         .anchor-heading-link svg.anchor-icon {
-          height: 0.6lh;
+          height: 0.8em;
+          fill: currentColor;
           opacity: 0;
           transition-property: opacity;
           transition-duration: var(--root-transition-duration);
@@ -92,6 +92,9 @@
     {# hash for scoped styles #}
     {% set item_hash = hash([
         data.heading_icon_color.css,
+        data.heading_icon_alignment,
+        data.heading_link_type,
+        data.heading_additional_customization,
         data.heading_color.css,
         data.heading_link_color.css,
         data.heading_link_hover_color.css,
@@ -102,9 +105,8 @@
     {%- if data.heading_icon_color.css and data.heading_link_type != 'link' and data.heading_link_type != 'anchor' -%}
       {% require_css %}
         <style component="heading scoped heading{{item_hash}}">
-          .heading{{item_hash}} > svg,
-          .heading{{item_hash}} > a > svg:not(.anchor-icon) {
-            --custom-fill-color: {{data.heading_icon_color.css}};
+          .heading{{item_hash}} > svg {
+            fill: var(--scope-hover-color, {{data.heading_icon_color.css}});
           }
         </style>
       {% end_require_css %}
@@ -113,16 +115,15 @@
       {% require_css %}
         <style component="heading scoped heading{{item_hash}}">
           .heading{{item_hash}} {
-            {%- if data.heading_link_type != 'link' -%}
-              --custom-color: {{data.heading_color.css}};
-            {%- endif -%}
-            {%- if data.heading_link_type == 'link' -%}
+            {%- if data.heading_link_type == 'link' or data.heading_link_type == 'anchor' -%}
               {%- if data.heading_link_color.css -%}
                 --custom-color: {{data.heading_link_color.css}};
               {%- endif -%}
               {%- if data.heading_link_hover_color.css -%}
                 --custom-hover-color: {{data.heading_link_hover_color.css}};
               {%- endif -%}
+            {%- elif data.heading_link_type != 'link' or data.heading_link_type != 'anchor' -%}
+              --custom-color: {{data.heading_color.css}};
             {%- endif -%}
             {{css_font_macro(data.heading_font)}}
           }

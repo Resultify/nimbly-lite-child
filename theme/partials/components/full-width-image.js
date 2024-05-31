@@ -2,7 +2,7 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
-const fullWidthImage = (parent = '', hideForceFullWidth = false) => {
+const fullWidthImage = (parent) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
@@ -37,7 +37,6 @@ const fullWidthImage = (parent = '', hideForceFullWidth = false) => {
     fi.boolean('Force full width', 'force_full_width_image', {
       help_text: 'This image is already full-width, but with the <strong>Force full width</strong> option enabled, it will take the full width of the parent element, even if there is extra padding around it.',
       display_width: 'half_width',
-      locked: hideForceFullWidth,
       default: false,
       visibility: {
         controlling_field_path: `${parent}full_width_image`,

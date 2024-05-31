@@ -48,11 +48,6 @@
   "global" : false,
   "content_types" : [ "KNOWLEDGE_BASE", "QUOTE_TEMPLATE", "MEMBERSHIP", "LANDING_PAGE", "SITE_PAGE", "CUSTOMER_PORTAL", "BLOG_LISTING", "WEB_INTERACTIVE", "BLOG_POST" ],
   "master_language" : "en",
-  "placeholder" : {
-    "show_module_icon" : true,
-    "title" : "Card v2",
-    "description" : "Add card element"
-  },
   "categories" : [ "DESIGN", "FUNCTIONALITY", "MEDIA" ],
   "icon" : "../../images/module-icons/unicard-group.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],

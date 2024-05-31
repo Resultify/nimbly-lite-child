@@ -2,13 +2,11 @@ import {
   moduleFields as fi,
   group
 } from '@resultify/hubspot-fields-js'
-import { component } from '../../../fields-js/components/all.js' // TODO remove
 import { fullWidthImage } from '../components/full-width-image.js'
 import { simpleImage } from '../components/simple-image.js'
 import { icon } from '../components/icon.js'
 import { lottie } from '../components/lottie.js'
 import { heading } from '../components/heading.js'
-import { subheading } from '../components/subheading.js'
 import { customTextGroup } from '../components/custom-text-group.js'
 import { buttonGroup } from '../components/button-group.js'
 import { animationList } from '../data/animation-list.js'
@@ -16,32 +14,60 @@ import { shadowList } from '../data/shadow-list.js'
 import { categoryList } from '../data/category-list.js'
 
 /**
- * #### cardFields
- * @param {Object} [lock] - lock components
- * @param {Boolean} [lock.lockCategoty] - lock category
- * @param {Boolean} [lock.lockMedia] - lock media
- * @param {Boolean} [lock.lockHeading] - lock heading
- * @param {Boolean} [lock.lockSubheading] - lock subheading
- * @param {Boolean} [lock.lockRichText] - lock rich text
- * @param {Boolean} [lock.lockButtonGroup] - lock button group
- * @param {Boolean} [lock.lockCustomTextGroup] - lock custom text group
- * @param {Boolean} [lock.lockAdditionalImagesGroup] - lock additional images group
- * @param {Boolean} [lock.lockComponentOrder] - lock component order
- * @returns {Array<Object>} - card fields array
+ * #### unicard component fields
+ * @typedef {Array<'categories'|'media'|'main_heading'|'sub_heading'|'richtext'|'custom_text'|'lists'|'separator'|'buttons'|'additional_images'>} COMPONENTS
  */
 
-const unicardFields = (parent = '', lock = {}) => {
-  if (typeof parent === 'string' && parent !== '') {
-    parent = `${parent}`
+/**
+ * #### unicard options
+ * @typedef {Object} UNICARD_OPTIONS
+ * @property {string} [options.parent] - parent field
+ * @property {COMPONENTS} options.enabledByDefault - parent field
+ * @property {COMPONENTS} options.components - parent field
+ */
+
+function render (/** @type {UNICARD_OPTIONS} */ { parent, enabledByDefault, components }) {
+  const choices = components.map(component => {
+    const words = component.split('_').join(' ')
+    const title = words[0].toUpperCase() + words.slice(1)
+    return [component, title]
+  })
+  const defaultChoices = enabledByDefault.filter(choice => components.includes(choice))
+  if (!parent) {
+    parent = ''
   }
+  return {
+    parent,
+    default: defaultChoices,
+    choices
+  }
+}
+
+const unicardFields = (/** @type {UNICARD_OPTIONS} */ options) => {
+  const opt = render(options)
   return [
-    fi.choice('Category', 'category', {
+    fi.choice('Module components', 'components', {
+      multiple: true,
+      reordering_enabled: true,
+      default: opt.default,
+      choices: opt.choices
+    }),
+    fi.choice('Categories', 'categories', {
+      visibility: {
+        controlling_field_path: `${opt.parent}components`,
+        operator: 'MATCHES_REGEX',
+        controlling_value_regex: 'categories'
+      },
       locked: false,
       multiple: true,
       choices: categoryList
     }),
     fi.choice('Media type', 'media_type', {
-      locked: lock.lockMedia,
+      visibility: {
+        controlling_field_path: `${opt.parent}components`,
+        operator: 'MATCHES_REGEX',
+        controlling_value_regex: 'media'
+      },
       choices: [
         ['full_width_image', 'Full width image'],
         ['simple_image', 'Simple image'],
@@ -54,73 +80,92 @@ const unicardFields = (parent = '', lock = {}) => {
       {
         expanded: true,
         visibility: {
-          controlling_field_path: `${parent}media_type`,
+          controlling_field_path: `${opt.parent}media_type`,
           operator: 'EQUAL',
           controlling_value_regex: 'full_width_image'
         }
       },
-      fullWidthImage(`${parent}full_width_image_group.`)
+      fullWidthImage(`${opt.parent}full_width_image_group.`)
     ),
     group('Simple image', 'simple_image_group',
       {
         expanded: true,
         visibility: {
-          controlling_field_path: `${parent}media_type`,
+          controlling_field_path: `${opt.parent}media_type`,
           operator: 'EQUAL',
           controlling_value_regex: 'simple_image'
         }
       },
-      simpleImage(`${parent}simple_image_group.`)
+      simpleImage(`${opt.parent}simple_image_group.`)
     ),
     group('Icon', 'icon_group',
       {
         expanded: true,
         visibility: {
-          controlling_field_path: `${parent}media_type`,
+          controlling_field_path: `${opt.parent}media_type`,
           operator: 'EQUAL',
           controlling_value_regex: 'icon'
         }
       },
-      icon(`${parent}icon_group.`)
+      icon(`${opt.parent}icon_group.`)
     ),
     group('Lottie animation', 'lottie_group',
       {
         expanded: true,
         visibility: {
-          controlling_field_path: `${parent}media_type`,
+          controlling_field_path: `${opt.parent}media_type`,
           operator: 'EQUAL',
           controlling_value_regex: 'lottie'
         }
       },
-      lottie(`${parent}lottie_group.`)
+      lottie(`${opt.parent}lottie_group.`)
     ),
-    group('Heading', 'heading', { expanded: true, locked: lock.lockHeading },
-      heading(`${parent}heading.`)
+    group('Heading', 'heading',
+      {
+        visibility: {
+          controlling_field_path: `${opt.parent}components`,
+          operator: 'MATCHES_REGEX',
+          controlling_value_regex: 'main_heading'
+        },
+        expanded: true
+      },
+      heading(`${opt.parent}heading.`, 'Universal card')
     ),
-    subheading(`${parent}`),
-    fi.richtext('Rich text', 'richtext'),
-    buttonGroup(`${parent}`),
-    customTextGroup(`${parent}`),
+    group('Subheading', 'subheading',
+      {
+        visibility: {
+          controlling_field_path: `${opt.parent}components`,
+          operator: 'MATCHES_REGEX',
+          controlling_value_regex: 'sub_heading'
+        },
+        expanded: true
+      },
+      heading(`${opt.parent}subheading.`)
+    ),
+    // subheading(`${opt.parent}`),
+    fi.richtext('Rich text', 'richtext', {
+      visibility: {
+        controlling_field_path: `${opt.parent}components`,
+        operator: 'MATCHES_REGEX',
+        controlling_value_regex: 'richtext'
+      }
+    }),
+    buttonGroup(`${opt.parent}`),
+    customTextGroup(`${opt.parent}`),
     group('Additional images', 'additional_images_group',
       {
-        locked: lock.lockAdditionalImagesGroup,
+        visibility: {
+          controlling_field_path: `${opt.parent}components`,
+          operator: 'MATCHES_REGEX',
+          controlling_value_regex: 'additional_images'
+        },
         occurrence: {
           min: 0,
           max: 20
         }
       },
-      simpleImage(`${parent}additional_images_group.`, true)
+      simpleImage(`${opt.parent}additional_images_group.`, true)
     ),
-    component.order([
-      'Image',
-      'Heading',
-      'Subheading',
-      'Rich text',
-      'Button group',
-      'Custom text group',
-      'Additional images group',
-      'Separator'
-    ], lock.lockComponentOrder),
     fi.boolean('Whole area link', 'whole_area_link', {
       display: 'toggle',
       default: false,

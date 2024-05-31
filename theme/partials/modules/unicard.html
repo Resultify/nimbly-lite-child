@@ -2,7 +2,7 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro unicard_macro(data, style, order_of_components) -%}
+{%- macro unicard_macro(data, style) -%}
 
   {% import '../components/button-group.html' %}
   {% import '../components/heading.html' %}
@@ -115,26 +115,32 @@
 
   <div class="unicard scope-root {{data_filter_classes.class}}">
     <div class="content-block-top">
-      {% for item in order_of_components %}
-        {% if item.component|lower == 'image' %}
+      {% for component in module.components %}
+        {% if component == 'media' %}
           {{render_media()}}
 
-        {% elif item.component|lower == 'heading' %}
+        {% elif component == 'main_heading' %}
           {{heading_macro(data.heading)}}
 
-        {% elif item.component|lower == 'subheading' %}
-          {{subheading_macro(data)}}
+        {% elif component == 'sub_heading' %}
+          {{heading_macro(data.subheading)}}
 
-        {% elif item.component|cut(" ")|lower == 'customtextgroup' %}
-          {{custom_text_group_macro(data)}}
-
-        {% elif item.component|cut(" ")|lower == 'richtext' %}
+        {% elif component == 'richtext' %}
           {{richtext_macro(data)}}
 
-        {% elif item.component|cut(" ")|lower == 'buttongroup' %}
+        {% elif component == 'custom_text' %}
+          {{custom_text_group_macro(data)}}
+
+        {% elif component == 'lists' %}
+
+        {% elif component == 'separator' %}
+          </div>
+          <div class="content-block-bottom">
+
+        {% elif component == 'buttons' %}
           {{button_group_macro(data)}}
 
-        {% elif item.component|cut(" ")|lower == 'additionalimagesgroup' %}
+        {% elif component == 'additional_images' %}
           {% if data.additional_images_group|length > 0 %}
             <div class="additional-images">
               {% for image in data.additional_images_group %}
@@ -143,12 +149,7 @@
             </div>
           {% endif %}
 
-        {% elif item.component|lower == 'separator' and !loop.last %}
-          </div>
-          <div class="content-block-bottom">
-
         {% endif %}
-
       {% endfor %}
     </div>
   </div>

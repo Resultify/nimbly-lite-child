@@ -2,14 +2,14 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
-const heading = (parent = '') => {
+const heading = (parent, defaultHeading = '') => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
   return [
-    fi.text('Heading', 'heading_text', {
+    fi.text('', 'heading_text', {
       allow_new_line: true,
-      default: 'Card heading'
+      default: defaultHeading
     }),
     fi.choice('Tag', 'heading_tag', {
       choices: [
@@ -329,7 +329,13 @@ const heading = (parent = '') => {
             controlling_field_path: `${parent}heading_link_type`,
             operator: 'NOT_EQUAL',
             controlling_value_regex: 'link'
+          },
+          {
+            controlling_field_path: `${parent}heading_link_type`,
+            operator: 'NOT_EQUAL',
+            controlling_value_regex: 'anchor'
           }
+
         ]
       }
     }),
@@ -337,20 +343,35 @@ const heading = (parent = '') => {
       visibility_rules: 'ADVANCED',
       advanced_visibility: {
         boolean_operator: 'AND',
-        criteria: [
+        children: [
           {
-            controlling_field_path: `${parent}heading_additional_customization`,
-            operator: 'EQUAL',
-            controlling_value_regex: 'true'
+            boolean_operator: 'AND',
+            criteria: [
+              {
+                controlling_field_path: `${parent}heading_additional_customization`,
+                operator: 'EQUAL',
+                controlling_value_regex: 'true'
+              },
+              {
+                controlling_field_path: `${parent}heading_text`,
+                operator: 'NOT_EMPTY'
+              }
+            ]
           },
           {
-            controlling_field_path: `${parent}heading_text`,
-            operator: 'NOT_EMPTY'
-          },
-          {
-            controlling_field_path: `${parent}heading_link_type`,
-            operator: 'EQUAL',
-            controlling_value_regex: 'link'
+            boolean_operator: 'OR',
+            criteria: [
+              {
+                controlling_field_path: `${parent}heading_link_type`,
+                operator: 'EQUAL',
+                controlling_value_regex: 'link'
+              },
+              {
+                controlling_field_path: `${parent}heading_link_type`,
+                operator: 'EQUAL',
+                controlling_value_regex: 'anchor'
+              }
+            ]
           }
         ]
       }
@@ -359,20 +380,35 @@ const heading = (parent = '') => {
       visibility_rules: 'ADVANCED',
       advanced_visibility: {
         boolean_operator: 'AND',
-        criteria: [
+        children: [
           {
-            controlling_field_path: `${parent}heading_additional_customization`,
-            operator: 'EQUAL',
-            controlling_value_regex: 'true'
+            boolean_operator: 'AND',
+            criteria: [
+              {
+                controlling_field_path: `${parent}heading_additional_customization`,
+                operator: 'EQUAL',
+                controlling_value_regex: 'true'
+              },
+              {
+                controlling_field_path: `${parent}heading_text`,
+                operator: 'NOT_EMPTY'
+              }
+            ]
           },
           {
-            controlling_field_path: `${parent}heading_text`,
-            operator: 'NOT_EMPTY'
-          },
-          {
-            controlling_field_path: `${parent}heading_link_type`,
-            operator: 'EQUAL',
-            controlling_value_regex: 'link'
+            boolean_operator: 'OR',
+            criteria: [
+              {
+                controlling_field_path: `${parent}heading_link_type`,
+                operator: 'EQUAL',
+                controlling_value_regex: 'link'
+              },
+              {
+                controlling_field_path: `${parent}heading_link_type`,
+                operator: 'EQUAL',
+                controlling_value_regex: 'anchor'
+              }
+            ]
           }
         ]
       }

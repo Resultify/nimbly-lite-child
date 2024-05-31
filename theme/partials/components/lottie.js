@@ -2,7 +2,7 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
-const lottie = (parent = '') => {
+const lottie = (parent) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }

@@ -2,7 +2,7 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
-const subheading = (parent = '') => {
+const subheading = (parent) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }

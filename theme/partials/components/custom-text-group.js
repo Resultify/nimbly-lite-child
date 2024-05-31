@@ -3,13 +3,18 @@ import {
   group
 } from '@resultify/hubspot-fields-js'
 
-const customTextGroup = (parent = '') => {
+const customTextGroup = (parent) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
   return [
     group('Custom text', 'custom_text_group',
       {
+        visibility: {
+          controlling_field_path: `${parent}components`,
+          operator: 'MATCHES_REGEX',
+          controlling_value_regex: 'custom_text'
+        },
         help_text: 'Customizable text. Text that can be used for badges or some unusual typography style.',
         occurrence: {
           min: 0,
