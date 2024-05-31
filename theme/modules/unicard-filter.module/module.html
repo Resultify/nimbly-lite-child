@@ -5,33 +5,33 @@
 {% endif %}
 {# *** #}
 
-{% import '../../macros/components/real-button-group.html' %}
-{% import '../partials/unicard.html' %}
-{% import '../../macros/css/macros.css' %}
+{% import '../../partials/modules/unicard.html' %}
+{% import '../../css/macros.css' %}
+{% import '../../partials/components/real-button-group.html' %}
 
-  {% if module.card_group|length > 0 or module.button_group|length > 0 %}
-    {{require_css(get_asset_url("../partials/unicard.css"))}}
-    {{require_js(get_asset_url('../../assets/js/isotope.js'), { defer: true})}}
+{% if module.card_group|length > 0 or module.button_group|length > 0 %}
+  {{require_css(get_asset_url("../../partials/modules/unicard.css"))}}
+  {{require_js(get_asset_url('../../assets/js/isotope.js'), { defer: true})}}
 
-    <style>
-      {% scope_css %}
+  <style>
+    {% scope_css %}
+      .unicard-filter {
+        --gutter: {{module.style.grid_layout.gutter ~ 'px'}};
+        --scope-content-gap: {{module.style.filter_buttons.buttons_gap ~ 'px'}};
+        --scope-alignment: {{css_alignment_macro(module.style.filter_buttons.alignment.horizontal_align)}};
+      }
+      @media (min-width: 1200px) {
         .unicard-filter {
-          --gutter: {{module.style.grid_layout.gutter ~ 'px'}};
-          --scope-content-gap: {{module.style.filter_buttons.buttons_gap ~ 'px'}};
-          --scope-alignment: {{css_alignment_macro(module.style.filter_buttons.alignment.horizontal_align)}};
+          --columns: {{module.style.grid_layout.columns}};
         }
-        @media (min-width: 1200px) {
-          .unicard-filter {
-            --columns: {{module.style.grid_layout.columns}};
-          }
+      }
+      {% if module.style.filter_buttons.spacing.css %}
+        .unicard-filter-buttons-wrp {
+          {{module.style.filter_buttons.spacing.css}}
         }
-        {% if module.style.filter_buttons.spacing.css %}
-          .unicard-filter-buttons-wrp {
-            {{module.style.filter_buttons.spacing.css}}
-          }
-        {% endif %}
-      {% end_scope_css %}
-    </style>
+      {% endif %}
+    {% end_scope_css %}
+  </style>
 
   <div class="unicard-filter">
     <div class="unicard-filter-buttons-wrp">
@@ -40,7 +40,7 @@
     <div class="unicard-filter-cards-wrp">
       <div class="iso-gutter-sizer"></div>
       {% for item in module.card_group %}
-        {{render_unicard(item, module.style.card_style_group, module.components)}}
+        {{unicard_macro(item, module.style.card_style_group, module.components)}}
       {% endfor %}
     </div>
   </div>

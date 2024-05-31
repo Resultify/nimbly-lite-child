@@ -2,13 +2,13 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{% import '../partials/hash.html' %}
+{% import '../utils/hash.html' %}
 {%- macro icon_macro(data) -%}
   {%- if data.icon.icon_inline_svg or data.icon.name -%}
 
     {# common styles for icon macros #}
     {% require_css %}
-      <style macro="icon">
+      <style component="icon">
         .icon-macro-wrp {
           display: inline-flex;
           color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
@@ -34,7 +34,7 @@
 
     {# scoped styles for icon macros #}
     {% require_css %}
-      <style macro="icon scoped icon-wrp{{item_hash}}">
+      <style component="icon scoped icon-wrp{{item_hash}}">
         .icon-wrp{{item_hash}} > svg {
           width: {{data.icon_size ~ 'px'}};
           height: {{data.icon_size ~ 'px'}};

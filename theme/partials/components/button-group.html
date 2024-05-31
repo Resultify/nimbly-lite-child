@@ -2,9 +2,9 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{% import '../partials/link-attributes.html' %}
-{% import '../partials/hash.html' %}
-{% import '../../macros/css/macros.css' %}
+{% import '../utils/link-attributes.html' %}
+{% import '../utils/hash.html' %}
+{% import '../../css/macros.css' %}
 
 {# render button icon internal macro #}
 {%- macro render_button_icon(item, position) -%}
@@ -33,7 +33,7 @@
 
     {# common styles for button-group macros #}
     {% require_css %}
-      <style macro="button-group">
+      <style component="button-group">
         .btn-group-wrp-macro,
         .btn-block-wrp-macro {
           justify-content: var(--scope-alignment);
@@ -108,7 +108,7 @@
         {%- if item.button_style is containing 'custom' -%}
           {%- if item.button_style == "custombutton" -%}
             {% require_css %}
-              <style macro="button-group scoped btn{{item_hash}}">
+              <style component="button-group scoped btn{{item_hash}}">
                 .btn{{item_hash}} {
                   {%- if item.custom_button_border_radius != null -%}
                     --border-radius: {{item.custom_button_border_radius ~ 'px'}};
@@ -150,7 +150,7 @@
             {% end_require_css %}
           {%- elif item.button_style == "customlink" -%}
             {% require_css %}
-              <style macro="button-group scoped btn{{item_hash}}">
+              <style component="button-group scoped btn{{item_hash}}">
                 .btn{{item_hash}} {
                   {%- if item.custom_link_color.css -%}
                     --custom-color: {{item.custom_link_color.css}};
@@ -174,7 +174,7 @@
         {%- endif -%}
         {%- if item.button_position == 'separate' -%}
           {% require_css %}
-            <style macro="button-group scoped btn{{item_hash}}">
+            <style component="button-group scoped btn{{item_hash}}">
               .btn-block-wrp-macro{{item_hash}} {
                 justify-content: {{item.button_alignment}};
               }
@@ -183,7 +183,7 @@
         {%- endif -%}
         {%- if item.button_hide_text and item.button_image.src and item.add_button_icon == "image" or item.button_hide_text and item.button_icon.name and item.add_button_icon == "icon" -%}
           {% require_css %}
-            <style macro="button-group scoped btn{{item_hash}}">
+            <style component="button-group scoped btn{{item_hash}}">
               .btn{{item_hash}} {
                 min-width: 0;
               }

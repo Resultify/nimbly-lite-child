@@ -6,7 +6,7 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 import { component } from '../../../fields-js/components/all.js'
-import { cardFields, cardStyleFields } from '../../../fields-js/modules/unicard.js'
+import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
 
 init(
   group('Cards', 'card_group',
@@ -17,7 +17,7 @@ init(
         sorting_label_field: 'card_group.heading'
       }
     },
-    cardFields('card_group.', { lockComponentOrder: true })
+    unicardFields('card_group.', { lockComponentOrder: true })
   ),
   component.order([
     'Image',
@@ -45,7 +45,7 @@ init(
       })
     ),
     group('Card', 'card_style_group', {},
-      cardStyleFields('style.card_style_group.')
+      unicardStyleFields('style.card_style_group.')
     )
   )
 )

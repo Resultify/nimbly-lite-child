@@ -2,13 +2,13 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{% import '../partials/hash.html' %}
+{% import '../utils/hash.html' %}
 {%- macro full_width_image_macro(data) -%}
   {%- if data.full_width_image.src -%}
 
     {# common styles for full-width-image macros #}
     {% require_css %}
-      <style macro="full-width-image">
+      <style component="full-width-image">
         .full-width-image-macro-wrp {
           width: 100%;
           z-index: -15;
@@ -34,7 +34,7 @@
     {# scoped styles for full-width-image macros #}
     {%- if data.force_full_width_image -%}
       {% require_css %}
-        <style macro="full-width-image scoped fullwidthimage{{item_hash}}">
+        <style component="full-width-image scoped fullwidthimage{{item_hash}}">
           .fullwidthimage-wrp{{item_hash}} {
             margin-left: calc(var(--scope-padding-left) * -1);
             margin-right: calc(var(--scope-padding-right) * -1);
@@ -60,7 +60,7 @@
     {%- endif -%}
     {%- if data.full_width_image_border_radius != null and data.force_full_width_image != true -%}
       {% require_css %}
-        <style macro="full-width-image scoped fullwidthimage{{item_hash}}">
+        <style component="full-width-image scoped fullwidthimage{{item_hash}}">
           .fullwidthimage{{item_hash}} {
             border-radius: {{data.full_width_image_border_radius ~ 'px'}};
           }

@@ -6,7 +6,7 @@
   {%- if data.simple_image.src -%}
     {# common styles for simple-image macros #}
     {% require_css %}
-      <style macro="simple-image">
+      <style component="simple-image">
         .simple-image-macro {
           display: block;
           max-width: 100%;
@@ -27,6 +27,7 @@
       src="{{data.simple_image.src}}"
       {%- if data.simple_image_width -%}
         width="{{data.simple_image_width}}"
+        height="{{data.simple_image.height}}"
       {%- else -%}
         width="{{data.simple_image.width}}"
         height="{{data.simple_image.height}}"

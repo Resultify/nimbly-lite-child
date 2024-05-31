@@ -5,11 +5,11 @@ import {
   init,
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
-import { cardFields, cardStyleFields } from '../../../fields-js/modules/unicard.js'
+import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
 
 init(
-  cardFields(),
+  unicardFields(),
   styleGroup(
-    cardStyleFields('style.')
+    unicardStyleFields('style.')
   )
 )

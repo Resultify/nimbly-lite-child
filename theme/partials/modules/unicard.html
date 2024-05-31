@@ -2,18 +2,18 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro render_unicard(data, style, order_of_components) -%}
+{%- macro unicard_macro(data, style, order_of_components) -%}
 
-  {% import '../../macros/components/button-group.html' %}
-  {% import '../../macros/components/heading.html' %}
-  {% import '../../macros/components/subheading.html' %}
-  {% import '../../macros/components/custom-text-group.html' %}
-  {% import '../../macros/components/richtext.html' %}
-  {% import '../../macros/components/full-width-image.html' %}
-  {% import '../../macros/components/icon.html' %}
-  {% import '../../macros/components/lottie.html' %}
-  {% import '../../macros/components/simple-image.html' %}
-  {% import '../../macros/css/macros.css' %}
+  {% import '../components/button-group.html' %}
+  {% import '../components/heading.html' %}
+  {% import '../components/subheading.html' %}
+  {% import '../components/custom-text-group.html' %}
+  {% import '../components/richtext.html' %}
+  {% import '../components/full-width-image.html' %}
+  {% import '../components/icon.html' %}
+  {% import '../components/lottie.html' %}
+  {% import '../components/simple-image.html' %}
+  {% import '../../css/macros.css' %}
 
   <style>
     {% scope_css %}
@@ -38,6 +38,7 @@
         --scope-padding-right: {{style.spacing.padding.right.value is truthy ? style.spacing.padding.right.value ~ style.spacing.padding.right.units : 0 }};
         --scope-padding: {{style.spacing.padding.top.value ~ style.spacing.padding.top.units if style.spacing.css|length <= 17 }};
       }
+
       {# {% if style.top_content.top_content_spacing.css %}
         .unicard .content-block-top {
           {{style.top_content.top_content_spacing.css}};

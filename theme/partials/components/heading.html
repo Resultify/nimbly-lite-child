@@ -2,9 +2,9 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{% import '../partials/hash.html' %}
-{% import '../partials/link-attributes.html' %}
-{% import '../../macros/css/macros.css' %}
+{% import '../utils/hash.html' %}
+{% import '../utils/link-attributes.html' %}
+{% import '../../css/macros.css' %}
 
 {%- macro render_heading_icon(data, alignment) -%}
   {%- if data.add_heading_icon and data.heading_link_type != 'anchor' -%}
@@ -26,6 +26,8 @@
         <img class="heading-image"
           alt=""
           src="{{data.heading_image.src}}"
+          width="{{data.heading_image.width}}"
+          height="{{data.heading_image.height}}"
           loading="lazy">
       {%- endif -%}
     {%- endif -%}
@@ -37,7 +39,7 @@
 
     {# common styles for heading macros #}
     {% require_css %}
-      <style macro="heading">
+      <style component="heading">
         .heading-macro {
           --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
           --_macro-hover-color: var(--scope-hover-color, var(--custom-hover-color, var(--scope-color)));
@@ -99,7 +101,7 @@
     {# scoped styles for heading macros #}
     {%- if data.heading_icon_color.css and data.heading_link_type != 'link' and data.heading_link_type != 'anchor' -%}
       {% require_css %}
-        <style macro="heading scoped heading{{item_hash}}">
+        <style component="heading scoped heading{{item_hash}}">
           .heading{{item_hash}} > svg,
           .heading{{item_hash}} > a > svg:not(.anchor-icon) {
             --custom-fill-color: {{data.heading_icon_color.css}};
@@ -109,7 +111,7 @@
     {%- endif -%}
     {%- if data.heading_additional_customization -%}
       {% require_css %}
-        <style macro="heading scoped heading{{item_hash}}">
+        <style component="heading scoped heading{{item_hash}}">
           .heading{{item_hash}} {
             {%- if data.heading_link_type != 'link' -%}
               --custom-color: {{data.heading_color.css}};

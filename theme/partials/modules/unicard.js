@@ -2,12 +2,23 @@ import {
   moduleFields as fi,
   group
 } from '@resultify/hubspot-fields-js'
-import { component } from '../components/all.js'
-import { partial } from '../partials/all.js'
+import { component } from '../../../fields-js/components/all.js' // TODO remove
+import { fullWidthImage } from '../components/full-width-image.js'
+import { simpleImage } from '../components/simple-image.js'
+import { icon } from '../components/icon.js'
+import { lottie } from '../components/lottie.js'
+import { heading } from '../components/heading.js'
+import { subheading } from '../components/subheading.js'
+import { customTextGroup } from '../components/custom-text-group.js'
+import { buttonGroup } from '../components/button-group.js'
+import { animationList } from '../data/animation-list.js'
+import { shadowList } from '../data/shadow-list.js'
+import { categoryList } from '../data/category-list.js'
 
 /**
  * #### cardFields
  * @param {Object} [lock] - lock components
+ * @param {Boolean} [lock.lockCategoty] - lock category
  * @param {Boolean} [lock.lockMedia] - lock media
  * @param {Boolean} [lock.lockHeading] - lock heading
  * @param {Boolean} [lock.lockSubheading] - lock subheading
@@ -19,12 +30,18 @@ import { partial } from '../partials/all.js'
  * @returns {Array<Object>} - card fields array
  */
 
-const cardFields = (parent = '', lock = {}) => {
+const unicardFields = (parent = '', lock = {}) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
   return [
+    fi.choice('Category', 'category', {
+      locked: false,
+      multiple: true,
+      choices: categoryList
+    }),
     fi.choice('Media type', 'media_type', {
+      locked: lock.lockMedia,
       choices: [
         ['full_width_image', 'Full width image'],
         ['simple_image', 'Simple image'],
@@ -42,7 +59,7 @@ const cardFields = (parent = '', lock = {}) => {
           controlling_value_regex: 'full_width_image'
         }
       },
-      component.fullWidthImage(`${parent}full_width_image_group.`)
+      fullWidthImage(`${parent}full_width_image_group.`)
     ),
     group('Simple image', 'simple_image_group',
       {
@@ -53,7 +70,7 @@ const cardFields = (parent = '', lock = {}) => {
           controlling_value_regex: 'simple_image'
         }
       },
-      component.simpleImage(`${parent}simple_image_group.`)
+      simpleImage(`${parent}simple_image_group.`)
     ),
     group('Icon', 'icon_group',
       {
@@ -64,7 +81,7 @@ const cardFields = (parent = '', lock = {}) => {
           controlling_value_regex: 'icon'
         }
       },
-      component.icon(`${parent}icon_group.`)
+      icon(`${parent}icon_group.`)
     ),
     group('Lottie animation', 'lottie_group',
       {
@@ -75,15 +92,15 @@ const cardFields = (parent = '', lock = {}) => {
           controlling_value_regex: 'lottie'
         }
       },
-      component.lottie(`${parent}lottie_group.`)
+      lottie(`${parent}lottie_group.`)
     ),
-    group('Heading', 'heading', { expanded: true },
-      component.heading(`${parent}heading.`)
+    group('Heading', 'heading', { expanded: true, locked: lock.lockHeading },
+      heading(`${parent}heading.`)
     ),
-    component.subheading(`${parent}`),
+    subheading(`${parent}`),
     fi.richtext('Rich text', 'richtext'),
-    component.buttonGroup(`${parent}`),
-    component.customTextGroup(`${parent}`),
+    buttonGroup(`${parent}`),
+    customTextGroup(`${parent}`),
     group('Additional images', 'additional_images_group',
       {
         locked: lock.lockAdditionalImagesGroup,
@@ -92,7 +109,7 @@ const cardFields = (parent = '', lock = {}) => {
           max: 20
         }
       },
-      component.simpleImage(`${parent}additional_images_group.`, true)
+      simpleImage(`${parent}additional_images_group.`, true)
     ),
     component.order([
       'Image',
@@ -112,7 +129,7 @@ const cardFields = (parent = '', lock = {}) => {
   ]
 }
 
-const cardStyleFields = (parent = '', hideCardHoverEffects = false) => {
+const unicardStyleFields = (parent = '', hideCardHoverEffects = false) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
@@ -131,6 +148,7 @@ const cardStyleFields = (parent = '', hideCardHoverEffects = false) => {
       show_opacity: false
     }),
     fi.number('Content gap', 'content_gap', {
+      min: 0,
       suffix: 'px',
       default: 16,
       display_width: 'half_width',
@@ -221,10 +239,14 @@ const cardStyleFields = (parent = '', hideCardHoverEffects = false) => {
     }),
     fi.border('Border', 'border'),
     fi.number('Border radius', 'border_radius', {
+      min: 0,
       suffix: 'px',
       display_width: 'half_width'
     }),
-    partial.shadowList(`${parent}`),
+    fi.choice('Shadow', 'shadow', {
+      display_width: 'half_width',
+      choices: shadowList
+    }),
     // group('Top content block', 'top_content',
     //   {
     //     locked: false,
@@ -253,10 +275,16 @@ const cardStyleFields = (parent = '', hideCardHoverEffects = false) => {
       fi.color('Text color', 'text_color'),
       fi.color('Background color', 'background_color'),
       fi.color('Border color', 'border_color'),
-      partial.shadowList(`${parent}`),
-      partial.animationList(`${parent}`)
+      fi.choice('Shadow', 'shadow', {
+        display_width: 'half_width',
+        choices: shadowList
+      }),
+      fi.choice('Animation', 'animation', {
+        display_width: 'half_width',
+        choices: animationList
+      })
     )
   ]
 }
 
-export { cardFields, cardStyleFields }
+export { unicardFields, unicardStyleFields }

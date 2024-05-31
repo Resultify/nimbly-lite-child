@@ -2,7 +2,7 @@ import {
   group,
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
-import { categoryList } from '../partials/category-list.js'
+import { categoryList } from '../data/category-list.js'
 
 const realButtonGroup = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
