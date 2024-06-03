@@ -19,8 +19,8 @@ init(
       }
     },
     unicardFields({
-      enabledByDefault: ['categories', 'media', 'main_heading', 'richtext', 'buttons'],
-      choices: ['categories', 'media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'lists', 'separator', 'buttons', 'additional_images']
+      enabledByDefault: ['media', 'categories', 'main_heading', 'richtext', 'buttons'],
+      choices: ['media', 'categories', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'lists', 'separator', 'buttons', 'additional_images']
     }, 'card_group.')
   ),
   styleGroup(

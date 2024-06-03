@@ -10,7 +10,7 @@ import { unicardFields, unicardStyleFields } from '../../partials/modules/unicar
 init(
   unicardFields({
     enabledByDefault: ['media', 'main_heading', 'richtext', 'buttons'],
-    components: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'lists', 'separator', 'buttons', 'additional_images']
+    choices: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'lists', 'separator', 'buttons', 'additional_images']
   }),
   styleGroup(
     unicardStyleFields('style.')

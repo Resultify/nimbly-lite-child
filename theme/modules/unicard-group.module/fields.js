@@ -17,10 +17,9 @@ init(
       }
     },
     unicardFields({
-      parent: 'card_group.',
       enabledByDefault: ['media', 'main_heading', 'richtext', 'buttons'],
-      components: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'lists', 'separator', 'buttons', 'additional_images']
-    })
+      choices: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'lists', 'separator', 'buttons', 'additional_images']
+    }, 'card_group.')
   ),
   styleGroup(
     group('Grid layout', 'grid_layout', { expanded: true },

@@ -62,7 +62,7 @@ const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '')
       },
       simpleImage(`${parent}additional_images_group.`, true)
     ),
-    simpleText(),
+    simpleText(parent),
     fi.boolean('Whole area link', 'whole_area_link', {
       help_text: 'When enabled, the whole area of the module will be clickable as a link.',
       display: 'toggle',

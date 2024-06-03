@@ -92,15 +92,7 @@
     {% set button_stretched_link = true %}
   {% endif %}
 
-  {# unicard filter categories class #}
-  {%- if data.categories|length > 0 -%}
-    {%- set data_filter_classes = {class:"iso-item"} -%}
-    {%- for item in data.categories -%}
-      {%- do data_filter_classes.update({class: data_filter_classes.class ~ ' ' ~ item|lower|trim|regex_replace("[^a-z0-9]", "")}) -%}
-    {%- endfor -%}
-  {%- endif -%}
-
-  <div class="unicard scope-root {{data_filter_classes.class}}">
+  <div class="unicard scope-root">
     <div class="content-block-top">
       {% for component in data.module_components %}
         {% if component == 'media' %}

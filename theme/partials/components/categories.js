@@ -45,7 +45,14 @@ const categories = (parent = '') => {
           ]
         }
       },
-      fi.font('Font', 'category_font'),
+      fi.font('Font', 'category_font', {
+        visibility: {
+          hidden_subfields: {
+            color: true
+          }
+        }
+      }),
+      fi.color('Color', 'category_color'),
       fi.color('Background', 'category_background'),
       fi.number('Vertical spacing', 'category_vertical_spacing', {
         min: 0,

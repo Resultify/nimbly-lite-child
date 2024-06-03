@@ -43,7 +43,7 @@
 
           {# hash for scoped styles #}
           {% set item_hash = hash([
-            item.custom_text_font,
+            item.custom_text_font.css,
             item.custom_text_background.css,
             item.custom_text_vertical_spacing,
             item.custom_text_horizontal_spacing,
@@ -52,7 +52,7 @@
             item.gradient_direction
           ]) %}
 
-          {# scoped styles for button-group macros #}
+          {# scoped styles for custom-text-group macros #}
           {% require_css %}
             <style component="custom-text-group scoped customtext{{item_hash}}">
               .customtext{{item_hash}} {

@@ -89,7 +89,7 @@
         {% set item_hash = hash([
           item.button_alignment,
           item.button_hide_text,
-          item.custom_button_font,
+          item.custom_button_font.css,
           item.custom_button_background.css,
           item.custom_button_vertical_spacing,
           item.custom_button_horizontal_spacing,
@@ -99,7 +99,7 @@
           item.custom_button_hover.color.css,
           item.custom_button_hover.background.css,
           item.custom_button_hover.border_color.css,
-          item.custom_link_font,
+          item.custom_link_font.css,
           item.custom_link_color.css,
           item.custom_link_underline,
           item.custom_link_hover.color.css,

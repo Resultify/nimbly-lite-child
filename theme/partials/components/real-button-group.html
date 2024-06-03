@@ -5,11 +5,11 @@
 {% import '../utils/hash.html' %}
 {% import '../../css/macros.css' %}
 
-{# button-group main macro #}
+{# real-button-group main macro #}
 {%- macro real_button_group_macro(data) -%}
   {%- if data.button_group|length > 0 -%}
 
-    {# common styles for button-group macros #}
+    {# common styles for real-button-group macros #}
     {% require_css %}
       <style component="real-button-group">
         .real-btn-group-wrp-macro,
@@ -52,7 +52,7 @@
       {%- for item in data.button_group -%}
         {# hash for scoped styles #}
         {% set item_hash = hash([
-          item.custom_button_font,
+          item.custom_button_font.css,
           item.custom_button_background.css,
           item.custom_button_vertical_spacing,
           item.custom_button_horizontal_spacing,

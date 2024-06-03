@@ -9,39 +9,155 @@
 {% import '../../partials/components/real-button-group.html' %}
 {% import '../../css/macros.css' %}
 
-{% if module.card_group|length > 0 %}
-  {{require_css(get_asset_url("../../partials/modules/unicard.css"))}}
+{{require_css(get_asset_url("../../partials/modules/unicard.css"))}}
+{% if is_in_editor %}
+  {% require_css %}
+    <style>
+      .unicard-filter-cards-wrp {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--gutter);
+      }
+      .iso-gutter-sizer {
+        display: none;
+      }
+    </style>
+  {% end_require_css %}
+{% endif %}
+{% if !is_in_editor %}
   {{require_js(get_asset_url('../../assets/js/isotope.js'), { defer: true})}}
+  {% require_js%}
+    <script>
+      // run isotope plugin
+      function runIsotope () {
+      const cardModulesWithFilter = document.getElementsByClassName('unicard-filter')
+      if (!cardModulesWithFilter) return
+      let initHashFilter = true
+      for (const cardModule of cardModulesWithFilter) {
+        const cardModuleItems = cardModule.querySelector('.unicard-filter-cards-wrp')
+        if (!cardModuleItems) return
 
-  <style>
-    {% scope_css %}
+        // get filter value from hash
+        function getHashFilter () {
+          const urlHash = decodeURI(window.location.hash)
+          const matches = urlHash.match(/filter=([^&]+)/i)
+          const hashFilter = matches && matches[1]
+          return hashFilter && decodeURIComponent(hashFilter)
+        }
+
+        // update button state
+        function updateBtnState (btns) {
+          filterBtns.querySelectorAll('button').forEach((btn) => {
+            const filterValue = btn.getAttribute('data-filter')
+            const isBtnActive = filterValue === getHashFilter()
+            if (isBtnActive) {
+              btn.classList.add('active')
+            } else {
+              btn.classList.remove('active')
+            }
+          })
+        }
+
+        // init isotope
+        const iso = new Isotope(cardModuleItems, { // eslint-disable-line
+          itemSelector: '.iso-item',
+          percentPosition: true,
+          masonry: {
+            gutter: '.iso-gutter-sizer',
+            columnWidth: '.iso-item'
+          }
+        })
+
+        const filterBtns = cardModule.querySelector('.real-btn-group-wrp-macro')
+
+        // filter items on button click
+        if (filterBtns) {
+          filterBtns.addEventListener('click', (event) => {
+            const clickTarget = event.target
+            if (clickTarget.matches('button')) {
+              const isBtnActive = clickTarget.matches('.active')
+              if (isBtnActive) {
+                iso.arrange({ filter: '*' })
+                // remove hash including '#' from url
+                window.location.hash = 'filter=*'
+                updateBtnState(filterBtns)
+              } else {
+                const filterValue = clickTarget.getAttribute('data-filter')
+                iso.arrange({ filter: `.${filterValue}` })
+                window.location.hash = `filter=${encodeURIComponent(filterValue)}`
+                updateBtnState(filterBtns)
+              }
+            }
+          }, false)
+        }
+
+        // filter items on site load (only first module!!!)
+        if (initHashFilter) {
+          const hashFilter = getHashFilter()
+          filterBtns.querySelectorAll('button').forEach((btn) => {
+            const filterValue = btn.getAttribute('data-filter')
+            const isBtnActive = filterValue === hashFilter
+            if (isBtnActive) {
+              btn.classList.add('active')
+              iso.arrange({ filter: `.${hashFilter}` })
+              initHashFilter = false
+            }
+          })
+        }
+      }
+      }
+
+      if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', runIsotope)
+      } else {
+      runIsotope()
+      }
+    </script>
+  {% end_require_js %}
+{% endif %}
+
+<style>
+  {% scope_css %}
+    .unicard-filter {
+      --gutter: {{module.style.grid_layout.gutter ~ 'px'}};
+      --scope-content-gap: {{module.style.filter_buttons.buttons_gap ~ 'px'}};
+      --scope-alignment: {{css_alignment_macro(module.style.filter_buttons.alignment.horizontal_align)}};
+    }
+    @media (min-width: 1200px) {
       .unicard-filter {
-        --gutter: {{module.style.grid_layout.gutter ~ 'px'}};
-        --scope-content-gap: {{module.style.filter_buttons.buttons_gap ~ 'px'}};
-        --scope-alignment: {{css_alignment_macro(module.style.filter_buttons.alignment.horizontal_align)}};
+        --columns: {{module.style.grid_layout.columns}};
       }
-      @media (min-width: 1200px) {
-        .unicard-filter {
-          --columns: {{module.style.grid_layout.columns}};
-        }
+    }
+    {% if module.style.filter_buttons.spacing.css %}
+      .unicard-filter-buttons-wrp {
+        {{module.style.filter_buttons.spacing.css}}
       }
-      {% if module.style.filter_buttons.spacing.css %}
-        .unicard-filter-buttons-wrp {
-          {{module.style.filter_buttons.spacing.css}}
-        }
-      {% endif %}
-    {% end_scope_css %}
-  </style>
+    {% endif %}
+  {% end_scope_css %}
+</style>
 
-  <div class="unicard-filter">
-    <div class="unicard-filter-buttons-wrp">
-      {{real_button_group_macro(module)}}
-    </div>
+<div class="unicard-filter">
+  <div class="unicard-filter-buttons-wrp">
+    {{real_button_group_macro(module)}}
+  </div>
+  {% if module.card_group|length > 0 %}
     <div class="unicard-filter-cards-wrp">
       <div class="iso-gutter-sizer"></div>
-      {% for item in module.card_group %}
-        {{unicard_macro(item, module.style.card_style_group)}}
-      {% endfor %}
+      {%- for item in module.card_group -%}
+
+        {# filter categories class #}
+        {%- if item.categories|length > 0 -%}
+          {%- set data_filter_classes = {class:""} -%}
+          {%- for item2 in item.categories -%}
+            {%- do data_filter_classes.update({class: data_filter_classes.class ~ ' ' ~ item2|lower|trim|regex_replace("[^a-z0-9]", "")}) -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+        <div class="iso-item {{data_filter_classes.class}}">
+          {{unicard_macro(item, module.style.card_style_group)}}
+        </div>
+
+      {%- endfor -%}
     </div>
-  </div>
-{% endif %}
+  {%- endif -%}
+</div>
