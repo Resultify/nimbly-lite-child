@@ -51,13 +51,13 @@
           display: flex;
           flex-wrap: wrap;
         }
-        .btn-full-width {
+        :where(.btn-group-wrp-macro .btn-full-width) {
           width: 100%;
         }
-        .btn-link {
+        :where(.btn-group-wrp-macro .btn-link) {
           gap: var(--root-button-icon-gap, .9ch);
         }
-        .btn-linkonly, .btn-customlink {
+        :where(.btn-group-wrp-macro) :where(.btn-linkonly, .btn-customlink) {
           --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
           --_macro-hover-color: var(--scope-hover-color, var(--custom-hover-color, var(--scope-color)));
           color: var(--_macro-color, var(--color));
@@ -65,7 +65,7 @@
           transition-duration: var(--root-transition-duration);
           transition-timing-function: var(--root-transition-timing-function);
         }
-        .btn-linkonly:hover, .btn-customlink:hover {
+        :where(.btn-group-wrp-macro) :where(.btn-linkonly:hover, .btn-customlink:hover) {
           color: var(--_macro-hover-color, var(--hover-color));
         }
         :where(.btn-group-wrp-macro a) > :where(svg, .btn-image) {
@@ -73,10 +73,10 @@
           height: var(--root-buttonlink-icon-size, 0.8lh);
           fill: currentcolor;
         }
-        :where(.btn-link) > :where( svg, .btn-image) {
+        :where(.btn-group-wrp-macro .btn-link) > :where( svg, .btn-image) {
           height: var(--root-button-icon-size, 1.1lh);
         }
-        :where(.btn-link) :where(.visually-hidden + svg, .visually-hidden + .btn-image) {
+        :where(.btn-group-wrp-macro .btn-link) :where(.visually-hidden + svg, .visually-hidden + .btn-image) {
           height: var(--root-button-onlyicon-size, 1.6lh);
         }
       </style>

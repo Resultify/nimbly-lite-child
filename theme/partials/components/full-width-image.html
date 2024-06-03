@@ -27,6 +27,8 @@
 
     {# hash for scoped styles #}
     {% set item_hash = hash([
+      loop.first,
+      loop.last,
       data.force_full_width_image,
       data.full_width_image_border_radius
     ]) %}
@@ -46,15 +48,17 @@
               margin-bottom: calc(var(--scope-padding-bottom) * -1);
             {%- endif -%}
           }
-          .fullwidthimage{{item_hash}} {
-            {%- if data.force_full_width_image and loop.first -%}
-              border-top-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
-              border-top-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
-            {%- elif data.force_full_width_image and loop.last -%}
-              border-bottom-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
-              border-bottom-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
-            {%- endif -%}
-          }
+          {% if data.force_full_width_image and loop.first or data.force_full_width_image and loop.last %}
+            .fullwidthimage{{item_hash}} {
+              {%- if data.force_full_width_image and loop.first -%}
+                border-top-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                border-top-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+              {%- elif data.force_full_width_image and loop.last -%}
+                border-bottom-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                border-bottom-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+              {%- endif -%}
+            }
+          {% endif %}
         </style>
       {% end_require_css %}
     {%- endif -%}

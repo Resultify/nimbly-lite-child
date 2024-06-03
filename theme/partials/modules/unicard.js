@@ -2,160 +2,56 @@ import {
   moduleFields as fi,
   group
 } from '@resultify/hubspot-fields-js'
-import { fullWidthImage } from '../components/full-width-image.js'
-import { simpleImage } from '../components/simple-image.js'
-import { icon } from '../components/icon.js'
-import { lottie } from '../components/lottie.js'
+import { categories } from '../components/categories.js'
+import { mediaGroup } from '../components/media-group.js'
 import { heading } from '../components/heading.js'
 import { customTextGroup } from '../components/custom-text-group.js'
 import { buttonGroup } from '../components/button-group.js'
+import { simpleImage } from '../components/simple-image.js'
+import { simpleText } from '../components/simple-text.js'
+import { moduleComponents } from '../components/module-components.js'
 import { animationList } from '../data/animation-list.js'
 import { shadowList } from '../data/shadow-list.js'
-import { categoryList } from '../data/category-list.js'
 
-/**
- * #### unicard component fields
- * @typedef {Array<'categories'|'media'|'main_heading'|'sub_heading'|'richtext'|'custom_text'|'lists'|'separator'|'buttons'|'additional_images'>} COMPONENTS
- */
-
-/**
- * #### unicard options
- * @typedef {Object} UNICARD_OPTIONS
- * @property {string} [options.parent] - parent field
- * @property {COMPONENTS} options.enabledByDefault - parent field
- * @property {COMPONENTS} options.components - parent field
- */
-
-function render (/** @type {UNICARD_OPTIONS} */ { parent, enabledByDefault, components }) {
-  const choices = components.map(component => {
-    const words = component.split('_').join(' ')
-    const title = words[0].toUpperCase() + words.slice(1)
-    return [component, title]
-  })
-  const defaultChoices = enabledByDefault.filter(choice => components.includes(choice))
-  if (!parent) {
-    parent = ''
-  }
-  return {
-    parent,
-    default: defaultChoices,
-    choices
-  }
-}
-
-const unicardFields = (/** @type {UNICARD_OPTIONS} */ options) => {
-  const opt = render(options)
+const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '') => {
   return [
-    fi.choice('Module components', 'components', {
-      multiple: true,
-      reordering_enabled: true,
-      default: opt.default,
-      choices: opt.choices
-    }),
-    fi.choice('Categories', 'categories', {
-      visibility: {
-        controlling_field_path: `${opt.parent}components`,
-        operator: 'MATCHES_REGEX',
-        controlling_value_regex: 'categories'
-      },
-      locked: false,
-      multiple: true,
-      choices: categoryList
-    }),
-    fi.choice('Media type', 'media_type', {
-      visibility: {
-        controlling_field_path: `${opt.parent}components`,
-        operator: 'MATCHES_REGEX',
-        controlling_value_regex: 'media'
-      },
-      choices: [
-        ['full_width_image', 'Full width image'],
-        ['simple_image', 'Simple image'],
-        ['icon', 'Icon'],
-        ['lottie', 'Lottie Animation'],
-        ['video', 'Video']
-      ]
-    }),
-    group('Full width image', 'full_width_image_group',
-      {
-        expanded: true,
-        visibility: {
-          controlling_field_path: `${opt.parent}media_type`,
-          operator: 'EQUAL',
-          controlling_value_regex: 'full_width_image'
-        }
-      },
-      fullWidthImage(`${opt.parent}full_width_image_group.`)
-    ),
-    group('Simple image', 'simple_image_group',
-      {
-        expanded: true,
-        visibility: {
-          controlling_field_path: `${opt.parent}media_type`,
-          operator: 'EQUAL',
-          controlling_value_regex: 'simple_image'
-        }
-      },
-      simpleImage(`${opt.parent}simple_image_group.`)
-    ),
-    group('Icon', 'icon_group',
-      {
-        expanded: true,
-        visibility: {
-          controlling_field_path: `${opt.parent}media_type`,
-          operator: 'EQUAL',
-          controlling_value_regex: 'icon'
-        }
-      },
-      icon(`${opt.parent}icon_group.`)
-    ),
-    group('Lottie animation', 'lottie_group',
-      {
-        expanded: true,
-        visibility: {
-          controlling_field_path: `${opt.parent}media_type`,
-          operator: 'EQUAL',
-          controlling_value_regex: 'lottie'
-        }
-      },
-      lottie(`${opt.parent}lottie_group.`)
-    ),
+    categories(parent),
+    mediaGroup(parent),
     group('Heading', 'heading',
       {
         visibility: {
-          controlling_field_path: `${opt.parent}components`,
+          controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',
           controlling_value_regex: 'main_heading'
         },
         expanded: true
       },
-      heading(`${opt.parent}heading.`, 'Universal card')
+      heading(`${parent}heading.`, 'Universal card')
     ),
     group('Subheading', 'subheading',
       {
         visibility: {
-          controlling_field_path: `${opt.parent}components`,
+          controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',
           controlling_value_regex: 'sub_heading'
         },
         expanded: true
       },
-      heading(`${opt.parent}subheading.`)
+      heading(`${parent}subheading.`)
     ),
-    // subheading(`${opt.parent}`),
     fi.richtext('Rich text', 'richtext', {
       visibility: {
-        controlling_field_path: `${opt.parent}components`,
+        controlling_field_path: `${parent}module_components`,
         operator: 'MATCHES_REGEX',
         controlling_value_regex: 'richtext'
       }
     }),
-    buttonGroup(`${opt.parent}`),
-    customTextGroup(`${opt.parent}`),
+    buttonGroup(parent),
+    customTextGroup(parent),
     group('Additional images', 'additional_images_group',
       {
         visibility: {
-          controlling_field_path: `${opt.parent}components`,
+          controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',
           controlling_value_regex: 'additional_images'
         },
@@ -164,13 +60,16 @@ const unicardFields = (/** @type {UNICARD_OPTIONS} */ options) => {
           max: 20
         }
       },
-      simpleImage(`${opt.parent}additional_images_group.`, true)
+      simpleImage(`${parent}additional_images_group.`, true)
     ),
+    simpleText(),
     fi.boolean('Whole area link', 'whole_area_link', {
+      help_text: 'When enabled, the whole area of the module will be clickable as a link.',
       display: 'toggle',
       default: false,
       display_width: 'half_width'
-    })
+    }),
+    moduleComponents(components)
   ]
 }
 

@@ -3,7 +3,7 @@ import {
   group
 } from '@resultify/hubspot-fields-js'
 
-const customTextGroup = (parent) => {
+const customTextGroup = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
@@ -11,7 +11,7 @@ const customTextGroup = (parent) => {
     group('Custom text', 'custom_text_group',
       {
         visibility: {
-          controlling_field_path: `${parent}components`,
+          controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',
           controlling_value_regex: 'custom_text'
         },

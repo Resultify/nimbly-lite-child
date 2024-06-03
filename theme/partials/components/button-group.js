@@ -3,7 +3,7 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
-const buttonGroup = (parent) => {
+const buttonGroup = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
@@ -11,7 +11,7 @@ const buttonGroup = (parent) => {
     group('Buttons', 'button_group',
       {
         visibility: {
-          controlling_field_path: `${parent}components`,
+          controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',
           controlling_value_regex: 'buttons'
         },

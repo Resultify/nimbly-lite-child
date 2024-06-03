@@ -9,5 +9,5 @@
     "moduleResolution": "node",
     "noImplicitAny": false
   },
-  "include": ["theme/modules/**/fields.js", "placeholder.js"]
+  "include": ["theme/modules/**/fields.js", "placeholder.js", "theme/partials/**/*.js"]
 }

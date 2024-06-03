@@ -6,10 +6,10 @@
 {# *** #}
 
 {% import '../../partials/modules/unicard.html' %}
-{% import '../../css/macros.css' %}
 {% import '../../partials/components/real-button-group.html' %}
+{% import '../../css/macros.css' %}
 
-{% if module.card_group|length > 0 or module.button_group|length > 0 %}
+{% if module.card_group|length > 0 %}
   {{require_css(get_asset_url("../../partials/modules/unicard.css"))}}
   {{require_js(get_asset_url('../../assets/js/isotope.js'), { defer: true})}}
 
@@ -40,7 +40,7 @@
     <div class="unicard-filter-cards-wrp">
       <div class="iso-gutter-sizer"></div>
       {% for item in module.card_group %}
-        {{unicard_macro(item, module.style.card_style_group, module.components)}}
+        {{unicard_macro(item, module.style.card_style_group)}}
       {% endfor %}
     </div>
   </div>

@@ -29,15 +29,15 @@
           display: flex;
           flex-wrap: wrap;
         }
-        .btn-full-width {
+        :where(.real-btn-group-wrp-macro) :where(.btn-full-width) {
           width: 100%;
         }
-        .btn-link {
+        :where(.real-btn-group-wrp-macro) :where(.btn-link) {
           gap: var(--root-button-icon-gap, .5ch);
         }
         :where(.real-btn-group-wrp-macro button svg) {
           width: auto;
-          height: var(--root-buttonlink-icon-size, 0.8lh);
+          height: var(--root-buttonlink-icon-size, 1.4em);
           fill: currentcolor;
         }
         :where(.real-btn-group-wrp-macro) :where(svg, span) {

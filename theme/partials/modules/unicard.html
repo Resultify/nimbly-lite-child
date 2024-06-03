@@ -4,15 +4,14 @@
 -->
 {%- macro unicard_macro(data, style) -%}
 
-  {% import '../components/button-group.html' %}
+  {% import '../components/media-group.html' %}
+  {% import '../components/categories.html' %}
   {% import '../components/heading.html' %}
-  {% import '../components/subheading.html' %}
-  {% import '../components/custom-text-group.html' %}
   {% import '../components/richtext.html' %}
-  {% import '../components/full-width-image.html' %}
-  {% import '../components/icon.html' %}
-  {% import '../components/lottie.html' %}
+  {% import '../components/button-group.html' %}
+  {% import '../components/custom-text-group.html' %}
   {% import '../components/simple-image.html' %}
+  {% import '../components/simple-text.html' %}
   {% import '../../css/macros.css' %}
 
   <style>
@@ -93,31 +92,22 @@
     {% set button_stretched_link = true %}
   {% endif %}
 
-  {%- macro render_media() -%}
-    {% if data.media_type == 'full_width_image' %}
-      {{full_width_image_macro(data.full_width_image_group)}}
-    {% elif data.media_type == 'simple_image' %}
-      {{simple_image_macro(data.simple_image_group)}}
-    {% elif data.media_type == 'icon' %}
-      {{icon_macro(data.icon_group)}}
-    {% elif data.media_type == 'lottie' %}
-      {{lottie_macro(data.lottie_group)}}
-    {% endif %}
-  {%- endmacro -%}
-
   {# unicard filter categories class #}
-  {%- if data.category|length > 0 -%}
+  {%- if data.categories|length > 0 -%}
     {%- set data_filter_classes = {class:"iso-item"} -%}
-    {%- for item in data.category -%}
+    {%- for item in data.categories -%}
       {%- do data_filter_classes.update({class: data_filter_classes.class ~ ' ' ~ item|lower|trim|regex_replace("[^a-z0-9]", "")}) -%}
     {%- endfor -%}
   {%- endif -%}
 
   <div class="unicard scope-root {{data_filter_classes.class}}">
     <div class="content-block-top">
-      {% for component in module.components %}
+      {% for component in data.module_components %}
         {% if component == 'media' %}
-          {{render_media()}}
+          {{media_group_macro(data)}}
+
+        {% elif component == 'categories' %}
+          {{categories_macro(data)}}
 
         {% elif component == 'main_heading' %}
           {{heading_macro(data.heading)}}
@@ -148,6 +138,9 @@
               {% endfor %}
             </div>
           {% endif %}
+
+        {% elif component == 'simple_text' %}
+          {{simple_text_macro(data)}}
 
         {% endif %}
       {% endfor %}

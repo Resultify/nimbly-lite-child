@@ -4,7 +4,7 @@ import {
 } from '@resultify/hubspot-fields-js'
 import { categoryList } from '../data/category-list.js'
 
-const realButtonGroup = (parent) => {
+const realButtonGroup = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }

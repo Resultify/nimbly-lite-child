@@ -1,0 +1,26 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{%- macro simple_text_macro(data) -%}
+  {%- if data.simple_text -%}
+    {# common styles for simple text macros #}
+    {% require_css %}
+      <style component="simple-text">
+        .simple-text-macro-wrp {
+          text-align: var(--scope-alignment);
+        }
+        .simple-text-macro {
+          transition-property: color;
+          transition-duration: var(--root-transition-duration);
+          transition-timing-function: var(--root-transition-timing-function);
+          display: inline-block;
+        }
+      </style>
+    {% end_require_css %}
+
+    <div class="simple-text-macro-wrp">
+      <span class="simple-text-macro">{{data.simple_text}}</span>
+    </div>
+  {%- endif -%}
+{%- endmacro -%}

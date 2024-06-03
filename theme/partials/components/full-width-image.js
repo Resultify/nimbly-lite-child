@@ -2,7 +2,7 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
-const fullWidthImage = (parent) => {
+const fullWidthImage = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
