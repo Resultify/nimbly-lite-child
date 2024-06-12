@@ -1,0 +1,120 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% import '../utils/hash.html' %}
+{%- macro video_macro(data) -%}
+  {%- if data.embed.oembed_url or data.embed.embed_html or data.hubspot_video.player_id != null -%}
+    {# common styles for video macros #}
+    {% require_css %}
+      <style component="video">
+        .video-macro-wrp {
+          display: inline-block;
+          height: 100%;
+          position: relative;
+          width: 100%;
+          z-index: -15;
+        }
+        .video-macro-wrp .iframe-wrp {
+          height: 0;
+          padding-bottom: 56.25%;
+          position: relative;
+        }
+        .video-macro-wrp .iframe-wrp iframe {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          left: 0;
+          top: 0;
+          margin: 0 auto;
+          right: 0;
+          border: 0 none;
+          pointer-events: initial;
+        }
+      </style>
+    {% end_require_css %}
+
+    {# hash for scoped styles #}
+    {% set item_hash = hash([
+      loop.first,
+      loop.last,
+      data.force_full_width_video,
+      data.video_border_radius
+    ]) %}
+
+    {# scoped styles for video macros #}
+    {%- if data.force_full_width_video -%}
+      {% require_css %}
+        <style component="video scoped video{{item_hash}}">
+          .video{{item_hash}} {
+            margin-left: calc(var(--scope-padding-left) * -1);
+            margin-right: calc(var(--scope-padding-right) * -1);
+            width: calc(100% + var(--scope-padding-left) + var(--scope-padding-right));
+            {%- if data.force_full_width_video and loop.first -%}
+              margin-top: calc(var(--scope-padding-top) * -1);
+              margin-bottom: 0.8rem;
+            {%- elif data.force_full_width_video and loop.last -%}
+              margin-bottom: calc(var(--scope-padding-bottom) * -1);
+            {%- endif -%}
+          }
+          {% if data.force_full_width_video and loop.first or data.force_full_width_video and loop.last %}
+            .video{{item_hash}} iframe {
+              {%- if data.force_full_width_video and loop.first -%}
+                border-top-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                border-top-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+              {%- elif data.force_full_width_video and loop.last -%}
+                border-bottom-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                border-bottom-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+              {%- endif -%}
+            }
+          {% endif %}
+        </style>
+      {% end_require_css %}
+    {%- endif -%}
+    {%- if data.video_border_radius != null and data.force_full_width_video != true -%}
+      {% require_css %}
+        <style component="video scoped video{{item_hash}}">
+          .video{{item_hash}} iframe {
+            border-radius: {{data.video_border_radius ~ 'px'}};
+          }
+        </style>
+      {% end_require_css %}
+    {%- endif -%}
+
+    <div class="video-macro-wrp video{{item_hash}}">
+      {# Embed Video type #}
+      {%- if data.video_type == "embed" -%}
+        {# Embed url #}
+        {%- if data.embed.source_type == "oembed" -%}
+          {% set isSupportedOEmbedType = data.embed.supported_oembed_types.index(data.embed.oembed_response.type) >= 0 %}
+          {%- if data.embed.oembed_response.html and isSupportedOEmbedType -%}
+            <div class="iframe-wrp embed-url-wrp">
+              {{data.embed.oembed_response.html}}
+            </div>
+          {%- endif -%}
+
+        {# Embed code #}
+        {%- elif data.embed.source_type == "html" -%}
+          {%- if data.embed.embed_html -%}
+            <div class="iframe-wrp embed-code-wrp">
+              {{data.embed.embed_html}}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+
+      {# HubSpot Video type #}
+      {%- elif data.video_type == "hubspot_video" -%}
+        {%- if data.hubspot_video.player_id -%}
+          <div class="iframe-wrp hubspot-video-wrp">
+            {% video_player "hubspot_video"
+              conversion_asset={{data.hubspot_video.conversion_asset|tojson|safe}},
+              play_button_color={{data.hubspot_video_play_button_color.css}},
+              player_id={{data.hubspot_video.player_id}},
+              type={{data.hubspot_video.player_type or 'scriptV4'}},
+            %}
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endmacro -%}

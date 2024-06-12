@@ -23,8 +23,6 @@
       </style>
     {% end_require_css %}
 
-    {% set item_hash = hash(data.force_full_width_image|union(data.full_width_image_border_radius)) %}
-
     {# hash for scoped styles #}
     {% set item_hash = hash([
       loop.first,

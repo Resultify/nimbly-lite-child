@@ -6,6 +6,7 @@ import { fullWidthImage } from './full-width-image.js'
 import { simpleImage } from './simple-image.js'
 import { icon } from './icon.js'
 import { lottie } from './lottie.js'
+import { video } from './video.js'
 
 const mediaGroup = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
@@ -113,6 +114,28 @@ const mediaGroup = (parent = '') => {
         }
       },
       lottie(`${parent}lottie_group.`)
+    ),
+    group('Video', 'video_group',
+      {
+        expanded: true,
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}media_type`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'video'
+            },
+            {
+              controlling_field_path: `${parent}module_components`,
+              operator: 'MATCHES_REGEX',
+              controlling_value_regex: 'media'
+            }
+          ]
+        }
+      },
+      video(`${parent}video_group.`)
     )
   ]
 }

@@ -6,6 +6,7 @@
 {% import '../components/full-width-image.html' %}
 {% import '../components/icon.html' %}
 {% import '../components/lottie.html' %}
+{% import '../components/video.html' %}
 
 {%- macro media_group_macro(data) -%}
   {% if data.media_type == 'full_width_image' %}
@@ -16,5 +17,7 @@
     {{icon_macro(data.icon_group)}}
   {% elif data.media_type == 'lottie' %}
     {{lottie_macro(data.lottie_group)}}
+  {% elif data.media_type == 'video' %}
+    {{video_macro(data.video_group)}}
   {% endif %}
 {%- endmacro -%}
