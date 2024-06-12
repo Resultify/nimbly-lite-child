@@ -9,6 +9,7 @@ import { customTextGroup } from '../components/custom-text-group.js'
 import { buttonGroup } from '../components/button-group.js'
 import { simpleImage } from '../components/simple-image.js'
 import { simpleText } from '../components/simple-text.js'
+import { listGroup } from '../components/list-group.js'
 import { moduleComponents } from '../components/module-components.js'
 import { animationList } from '../data/animation-list.js'
 import { shadowList } from '../data/shadow-list.js'
@@ -63,11 +64,11 @@ const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '')
       simpleImage(`${parent}additional_images_group.`, true)
     ),
     simpleText(parent),
+    listGroup(parent),
     fi.boolean('Whole area link', 'whole_area_link', {
       help_text: 'When enabled, the whole area of the module will be clickable as a link.',
       display: 'toggle',
-      default: false,
-      display_width: 'half_width'
+      default: false
     }),
     moduleComponents(components)
   ]

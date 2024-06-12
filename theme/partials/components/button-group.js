@@ -176,10 +176,8 @@ const buttonGroup = (parent = '') => {
           ]
         }
       }),
-      fi.image('Image', 'button_image', {
-        resizable: false,
-        responsive: false,
-        show_loading: false,
+      fi.file('Image', 'button_image', {
+        picker: 'image',
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
