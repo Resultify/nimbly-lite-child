@@ -6,7 +6,7 @@
 {%- macro full_width_image_macro(data) -%}
   {%- if data.full_width_image.src -%}
 
-    {# common styles for full-width-image macros #}
+    {# common styles for full-width-image macro #}
     {% require_css %}
       <style component="full-width-image">
         .full-width-image-macro-wrp {
@@ -31,7 +31,7 @@
       data.full_width_image_border_radius
     ]) %}
 
-    {# scoped styles for full-width-image macros #}
+    {# scoped styles for full-width-image macro #}
     {%- if data.force_full_width_image -%}
       {% require_css %}
         <style component="full-width-image scoped fullwidthimage{{item_hash}}">

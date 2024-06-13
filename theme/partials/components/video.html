@@ -5,7 +5,7 @@
 {% import '../utils/hash.html' %}
 {%- macro video_macro(data) -%}
   {%- if data.embed.oembed_url or data.embed.embed_html or data.hubspot_video.player_id != null -%}
-    {# common styles for video macros #}
+    {# common styles for video macro #}
     {% require_css %}
       <style component="video">
         .video-macro-wrp {
@@ -42,7 +42,7 @@
       data.video_border_radius
     ]) %}
 
-    {# scoped styles for video macros #}
+    {# scoped styles for video macro #}
     {%- if data.force_full_width_video -%}
       {% require_css %}
         <style component="video scoped video{{item_hash}}">

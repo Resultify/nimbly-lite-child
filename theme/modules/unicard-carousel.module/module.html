@@ -1,0 +1,39 @@
+{# add base styles to module previewer #}
+{% if is_in_module_previewer %}
+  {{require_css(get_asset_url("../../css/base.css"))}}
+  {{require_css(get_asset_url("../../css/global-theme-settings.css"))}}
+{% endif %}
+{# *** #}
+
+{% import '../../partials/modules/unicard.html' %}
+
+{% if module.card_group|length > 0 %}
+  {{require_css(get_asset_url("../../partials/modules/unicard.css"))}}
+  {{require_css(get_asset_url("../../assets/css/swiper.css"), { async: true })}}
+  {{require_js(get_asset_url('../../assets/js/swiper.js'), { defer: true})}}
+
+
+  <div class="unicard-carousel" >
+    <div class="unicard-carousel-swiper swiper" data-delay="{{sliderDelay}}">
+      <div class="image-slider-wrapper swiper-wrapper">
+        {% for item in module.card_group %}
+          <div class="swiper-slide">
+            {{unicard_macro(item, module.style.card_style_group)}}
+          </div>
+        {% endfor %}
+      </div>
+
+
+
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      </div>
+  </div>
+{% endif %}
+
+
+
+

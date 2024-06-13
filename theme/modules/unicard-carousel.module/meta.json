@@ -56,5 +56,5 @@
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "module_id" : 104254315719,
   "label" : "Cards carousel",
-  "is_available_for_new_content" : true
+  "is_available_for_new_content" : false
 }

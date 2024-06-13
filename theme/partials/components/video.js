@@ -11,8 +11,8 @@ const video = (parent = '') => {
       required: true,
       default: 'hubspot_video',
       choices: [
-        ['embed', 'Embed'],
-        ['hubspot_video', 'HubSpot video']
+        ['hubspot_video', 'HubSpot video'],
+        ['embed', 'Embed']
       ]
     }),
     fi.video('HubSpot video', 'hubspot_video', {

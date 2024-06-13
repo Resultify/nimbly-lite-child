@@ -131,9 +131,10 @@ const buttonGroup = (parent = '') => {
           }
         }
       ),
-      fi.choice('Add Icon', 'add_button_icon', {
+      fi.choice('Add icon', 'add_button_icon', {
         display_width: 'half_width',
-        help_text: 'Add an icon to the button',
+        help_text: 'Add icon to the button',
+        placeholder: 'None',
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
@@ -150,7 +151,8 @@ const buttonGroup = (parent = '') => {
           ]
         },
         choices: [
-          ['icon', 'Icon'],
+          ['fontawesome', 'FontAwesome icon'],
+          ['inline_svg', 'Inline SVG'],
           ['image', 'Image']
         ]
       }),
@@ -166,7 +168,29 @@ const buttonGroup = (parent = '') => {
             {
               controlling_field_path: `${parent}button_group.add_button_icon`,
               operator: 'EQUAL',
-              controlling_value_regex: 'icon'
+              controlling_value_regex: 'fontawesome'
+            },
+            {
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'NOT_EQUAL',
+              controlling_value_regex: 'cta'
+            }
+          ]
+        }
+      }),
+      fi.html('Inline SVG', 'button_inline_svg', {
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
+            },
+            {
+              controlling_field_path: `${parent}button_group.add_button_icon`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'inline_svg'
             },
             {
               controlling_field_path: `${parent}button_group.button_style`,
@@ -210,50 +234,19 @@ const buttonGroup = (parent = '') => {
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
-          children: [
+          criteria: [
             {
-              boolean_operator: 'AND',
-              criteria: [
-                {
-                  controlling_field_path: `${parent}button_group.button_text`,
-                  operator: 'NOT_EMPTY'
-                },
-                {
-                  controlling_field_path: `${parent}button_group.button_style`,
-                  operator: 'NOT_EQUAL',
-                  controlling_value_regex: 'cta'
-                }
-              ]
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
             },
             {
-              boolean_operator: 'OR',
-              criteria: [
-                {
-                  controlling_field_path: `${parent}button_group.add_button_icon`,
-                  operator: 'EQUAL',
-                  controlling_value_regex: 'icon'
-                },
-                {
-                  controlling_field_path: `${parent}button_group.add_button_icon`,
-                  operator: 'EQUAL',
-                  controlling_value_regex: 'image'
-                }
-              ]
+              controlling_field_path: `${parent}button_group.add_button_icon`,
+              operator: 'NOT_EMPTY'
             },
             {
-              boolean_operator: 'OR',
-              criteria: [
-                {
-                  controlling_field_path: `${parent}button_group.button_icon`,
-                  operator: 'NOT_EMPTY',
-                  property: 'name'
-                },
-                {
-                  controlling_field_path: `${parent}button_group.button_image`,
-                  operator: 'NOT_EMPTY',
-                  property: 'src'
-                }
-              ]
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'NOT_EQUAL',
+              controlling_value_regex: 'cta'
             }
           ]
         }
@@ -265,60 +258,29 @@ const buttonGroup = (parent = '') => {
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
-          children: [
+          criteria: [
             {
-              boolean_operator: 'AND',
-              criteria: [
-                {
-                  controlling_field_path: `${parent}button_group.button_text`,
-                  operator: 'NOT_EMPTY'
-                },
-                {
-                  controlling_field_path: `${parent}button_group.button_style`,
-                  operator: 'NOT_EQUAL',
-                  controlling_value_regex: 'cta'
-                },
-                {
-                  controlling_field_path: `${parent}button_group.button_style`,
-                  operator: 'NOT_EQUAL',
-                  controlling_value_regex: 'customlink'
-                },
-                {
-                  controlling_field_path: `${parent}button_group.button_style`,
-                  operator: 'NOT_EQUAL',
-                  controlling_value_regex: 'linkonly'
-                }
-              ]
+              controlling_field_path: `${parent}button_group.button_text`,
+              operator: 'NOT_EMPTY'
             },
             {
-              boolean_operator: 'OR',
-              criteria: [
-                {
-                  controlling_field_path: `${parent}button_group.add_button_icon`,
-                  operator: 'EQUAL',
-                  controlling_value_regex: 'icon'
-                },
-                {
-                  controlling_field_path: `${parent}button_group.add_button_icon`,
-                  operator: 'EQUAL',
-                  controlling_value_regex: 'image'
-                }
-              ]
+              controlling_field_path: `${parent}button_group.add_button_icon`,
+              operator: 'NOT_EMPTY'
             },
             {
-              boolean_operator: 'OR',
-              criteria: [
-                {
-                  controlling_field_path: `${parent}button_group.button_icon`,
-                  operator: 'NOT_EMPTY',
-                  property: 'name'
-                },
-                {
-                  controlling_field_path: `${parent}button_group.button_image`,
-                  operator: 'NOT_EMPTY',
-                  property: 'src'
-                }
-              ]
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'NOT_EQUAL',
+              controlling_value_regex: 'cta'
+            },
+            {
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'NOT_EQUAL',
+              controlling_value_regex: 'customlink'
+            },
+            {
+              controlling_field_path: `${parent}button_group.button_style`,
+              operator: 'NOT_EQUAL',
+              controlling_value_regex: 'linkonly'
             }
           ]
         }

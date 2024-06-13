@@ -49,6 +49,7 @@ const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '')
     }),
     buttonGroup(parent),
     customTextGroup(parent),
+    listGroup(parent),
     group('Additional images', 'additional_images_group',
       {
         visibility: {
@@ -64,7 +65,6 @@ const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '')
       simpleImage(`${parent}additional_images_group.`, true)
     ),
     simpleText(parent),
-    listGroup(parent),
     fi.boolean('Whole area link', 'whole_area_link', {
       help_text: 'When enabled, the whole area of the module will be clickable as a link.',
       display: 'toggle',
@@ -101,6 +101,7 @@ const unicardStyleFields = (parent = '', hideCardHoverEffects = false) => {
     }),
     fi.choice('Background type', 'background_type', {
       display_width: 'half_width',
+      placeholder: 'No background',
       choices: [
         ['background_color', 'Background color'],
         ['background_image', 'Background image'],
@@ -127,6 +128,7 @@ const unicardStyleFields = (parent = '', hideCardHoverEffects = false) => {
         operator: 'EQUAL',
         controlling_value_regex: 'background_image'
       },
+      placeholder: 'No overlay',
       choices: [
         ['color', 'Color'],
         ['gradient', 'Gradient']

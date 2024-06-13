@@ -7,7 +7,7 @@
 {%- macro custom_text_group_macro(data) -%}
   {%- if data.custom_text_group|length > 0 -%}
 
-    {# common styles for custom-text-group macros #}
+    {# common styles for custom-text-group macro #}
     {% require_css %}
       <style component="custom-text-group">
         .custom-text-group-wrp-macro,
@@ -52,7 +52,7 @@
             item.gradient_direction
           ]) %}
 
-          {# scoped styles for custom-text-group macros #}
+          {# scoped styles for custom-text-group macro #}
           {% require_css %}
             <style component="custom-text-group scoped customtext{{item_hash}}">
               .customtext{{item_hash}} {

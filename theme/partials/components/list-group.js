@@ -28,31 +28,76 @@ const listGroup = (parent = '') => {
           operator: 'NOT_EMPTY'
         }
       }),
-      fi.choice('Add Icon', 'add_list_item_icon', {
+      fi.choice('Add icon', 'list_item_icon_type', {
+        help_text: 'Add icon to the list item',
         display_width: 'half_width',
-        help_text: 'Add an icon to the list item',
+        placeholder: 'None',
+        choices: [
+          ['fontawesome', 'FontAwesome icon'],
+          ['inline_svg', 'Inline SVG'],
+          ['image', 'Image']
+        ],
         visibility: {
           controlling_field_path: `${parent}list_group.list_item_text`,
           operator: 'NOT_EMPTY'
-        },
-        choices: [
-          ['icon', 'Icon'],
-          ['image', 'Image']
-        ]
+        }
       }),
-      fi.icon('Icon', 'list_item_icon', {
+      fi.choice('Icon position', 'list_item_icon_position', {
+        choices: [
+          ['left', 'Left'],
+          ['right', 'Right'],
+          ['left-space-between', 'Left space between'],
+          ['right-space-between', 'Right space between']
+        ],
+        default: 'left',
+        display_width: 'half_width',
+        required: true,
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
           criteria: [
             {
-              controlling_field_path: `${parent}list_group.list_item_text`,
+              controlling_field_path: `${parent}list_group.list_item_icon_type`,
               operator: 'NOT_EMPTY'
             },
             {
-              controlling_field_path: `${parent}list_group.add_list_item_icon`,
+              controlling_field_path: `${parent}list_group.list_item_text`,
+              operator: 'NOT_EMPTY'
+            }
+          ]
+        }
+      }),
+      fi.icon('Icon', 'list_item_icon', {
+        set: 'fontawesome-6.4.2',
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}list_group.list_item_icon_type`,
               operator: 'EQUAL',
-              controlling_value_regex: 'icon'
+              controlling_value_regex: 'fontawesome'
+            },
+            {
+              controlling_field_path: `${parent}list_group.list_item_text`,
+              operator: 'NOT_EMPTY'
+            }
+          ]
+        }
+      }),
+      fi.html('Inline SVG', 'list_item_inline_svg', {
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}list_group.list_item_icon_type`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'inline_svg'
+            },
+            {
+              controlling_field_path: `${parent}list_group.list_item_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         }
@@ -64,118 +109,72 @@ const listGroup = (parent = '') => {
           boolean_operator: 'AND',
           criteria: [
             {
-              controlling_field_path: `${parent}list_group.list_item_text`,
-              operator: 'NOT_EMPTY'
-            },
-            {
-              controlling_field_path: `${parent}list_group.add_list_item_icon`,
+              controlling_field_path: `${parent}list_group.list_item_icon_type`,
               operator: 'EQUAL',
               controlling_value_regex: 'image'
+            },
+            {
+              controlling_field_path: `${parent}list_group.list_item_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         }
       }),
-      fi.choice('Icon position', 'list_item_icon_position', {
-        display_width: 'half_width',
-        choices: [
-          ['left', 'Left'],
-          ['right', 'Right']
-        ],
-        default: 'left',
-        required: true,
+      fi.color('Icon color', 'list_item_icon_color', {
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
-          children: [
+          criteria: [
             {
-              boolean_operator: 'AND',
-              criteria: [
-                {
-                  controlling_field_path: `${parent}list_group.list_item_text`,
-                  operator: 'NOT_EMPTY'
-                }
-              ]
+              controlling_field_path: `${parent}list_group.list_item_icon_type`,
+              operator: 'NOT_EMPTY'
             },
             {
-              boolean_operator: 'OR',
-              criteria: [
-                {
-                  controlling_field_path: `${parent}list_group.add_list_item_icon`,
-                  operator: 'EQUAL',
-                  controlling_value_regex: 'icon'
-                },
-                {
-                  controlling_field_path: `${parent}list_group.add_list_item_icon`,
-                  operator: 'EQUAL',
-                  controlling_value_regex: 'image'
-                }
-              ]
+              controlling_field_path: `${parent}list_group.list_item_icon_type`,
+              operator: 'NOT_EQUAL',
+              controlling_value_regex: 'image'
             },
             {
-              boolean_operator: 'OR',
-              criteria: [
-                {
-                  controlling_field_path: `${parent}list_group.list_item_icon`,
-                  operator: 'NOT_EMPTY',
-                  property: 'name'
-                },
-                {
-                  controlling_field_path: `${parent}list_group.list_item_image`,
-                  operator: 'NOT_EMPTY',
-                  property: 'src'
-                }
-              ]
+              controlling_field_path: `${parent}list_group.list_item_text`,
+              operator: 'NOT_EMPTY'
+            }
+          ]
+        }
+      }),
+      fi.number('Icon size', 'list_item_icon_size', {
+        display_width: 'half_width',
+        min: 0,
+        suffix: 'px',
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}list_group.list_item_icon_type`,
+              operator: 'NOT_EMPTY'
+            },
+            {
+              controlling_field_path: `${parent}list_group.list_item_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         }
       }),
       fi.number('Icon gap', 'list_item_icon_gap', {
         display_width: 'half_width',
-        default: 0,
         min: 0,
         suffix: 'px',
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
-          children: [
+          criteria: [
             {
-              boolean_operator: 'AND',
-              criteria: [
-                {
-                  controlling_field_path: `${parent}list_group.list_item_text`,
-                  operator: 'NOT_EMPTY'
-                }
-              ]
+              controlling_field_path: `${parent}list_group.list_item_icon_type`,
+              operator: 'NOT_EMPTY'
             },
             {
-              boolean_operator: 'OR',
-              criteria: [
-                {
-                  controlling_field_path: `${parent}list_group.add_list_item_icon`,
-                  operator: 'EQUAL',
-                  controlling_value_regex: 'icon'
-                },
-                {
-                  controlling_field_path: `${parent}list_group.add_list_item_icon`,
-                  operator: 'EQUAL',
-                  controlling_value_regex: 'image'
-                }
-              ]
-            },
-            {
-              boolean_operator: 'OR',
-              criteria: [
-                {
-                  controlling_field_path: `${parent}list_group.list_item_icon`,
-                  operator: 'NOT_EMPTY',
-                  property: 'name'
-                },
-                {
-                  controlling_field_path: `${parent}list_group.list_item_image`,
-                  operator: 'NOT_EMPTY',
-                  property: 'src'
-                }
-              ]
+              controlling_field_path: `${parent}list_group.list_item_text`,
+              operator: 'NOT_EMPTY'
             }
           ]
         }

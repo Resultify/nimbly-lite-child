@@ -9,7 +9,7 @@
 {%- macro real_button_group_macro(data) -%}
   {%- if data.button_group|length > 0 -%}
 
-    {# common styles for real-button-group macros #}
+    {# common styles for real-button-group macro #}
     {% require_css %}
       <style component="real-button-group">
         .real-btn-group-wrp-macro,
@@ -68,7 +68,7 @@
           item.active_state_style.show_close_icon
         ]) %}
 
-        {# scoped styles for button-group macros #}
+        {# scoped styles for button-group macro #}
         {%- if item.button_style == "custombutton" -%}
           {% require_css %}
             <style component="real-button-group scoped btn{{item_hash}}">

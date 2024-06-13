@@ -56,29 +56,11 @@ const heading = (parent = '', defaultHeading = '') => {
         ['link', 'Link'],
         ['anchor', 'Anchor']
       ],
+      placeholder: 'No link',
       display_width: 'half_width',
       visibility: {
         controlling_field_path: `${parent}heading_text`,
         operator: 'NOT_EMPTY'
-      }
-    }),
-    fi.boolean('Add Icon', 'add_heading_icon', {
-      help_text: 'Add an icon to the heading',
-      display_width: 'half_width',
-      visibility_rules: 'ADVANCED',
-      advanced_visibility: {
-        boolean_operator: 'AND',
-        criteria: [
-          {
-            controlling_field_path: `${parent}heading_link_type`,
-            operator: 'NOT_EQUAL',
-            controlling_value_regex: 'anchor'
-          },
-          {
-            controlling_field_path: `${parent}heading_text`,
-            operator: 'NOT_EMPTY'
-          }
-        ]
       }
     }),
     fi.link('', 'heading_link', {
@@ -99,12 +81,12 @@ const heading = (parent = '', defaultHeading = '') => {
         ]
       }
     }),
-    fi.choice('Icon type', 'heading_icon_type', {
+    fi.choice('Add icon', 'heading_icon_type', {
+      help_text: 'Add icon to the heading',
       display_width: 'half_width',
-      required: true,
-      default: 'fontawesome',
+      placeholder: 'None',
       choices: [
-        ['fontawesome', 'Fontawesome'],
+        ['fontawesome', 'FontAwesome icon'],
         ['inline_svg', 'Inline SVG'],
         ['image', 'Image']
       ],
@@ -112,11 +94,6 @@ const heading = (parent = '', defaultHeading = '') => {
       advanced_visibility: {
         boolean_operator: 'AND',
         criteria: [
-          {
-            controlling_field_path: `${parent}add_heading_icon`,
-            operator: 'EQUAL',
-            controlling_value_regex: 'true'
-          },
           {
             controlling_field_path: `${parent}heading_link_type`,
             operator: 'NOT_EQUAL',
@@ -129,7 +106,7 @@ const heading = (parent = '', defaultHeading = '') => {
         ]
       }
     }),
-    fi.choice('Alignment', 'heading_icon_alignment', {
+    fi.choice('Icon position', 'heading_icon_position', {
       choices: [
         ['left', 'Left'],
         ['right', 'Right'],
@@ -144,9 +121,8 @@ const heading = (parent = '', defaultHeading = '') => {
         boolean_operator: 'AND',
         criteria: [
           {
-            controlling_field_path: `${parent}add_heading_icon`,
-            operator: 'EQUAL',
-            controlling_value_regex: 'true'
+            controlling_field_path: `${parent}heading_icon_type`,
+            operator: 'NOT_EMPTY'
           },
           {
             controlling_field_path: `${parent}heading_link_type`,
@@ -172,11 +148,6 @@ const heading = (parent = '', defaultHeading = '') => {
             controlling_value_regex: 'fontawesome'
           },
           {
-            controlling_field_path: `${parent}add_heading_icon`,
-            operator: 'EQUAL',
-            controlling_value_regex: 'true'
-          },
-          {
             controlling_field_path: `${parent}heading_link_type`,
             operator: 'NOT_EQUAL',
             controlling_value_regex: 'anchor'
@@ -188,8 +159,7 @@ const heading = (parent = '', defaultHeading = '') => {
         ]
       }
     }),
-    fi.text('Inline SVG', 'heading_inline_svg', {
-      allow_new_line: true,
+    fi.html('Inline SVG', 'heading_inline_svg', {
       visibility_rules: 'ADVANCED',
       advanced_visibility: {
         boolean_operator: 'AND',
@@ -198,11 +168,6 @@ const heading = (parent = '', defaultHeading = '') => {
             controlling_field_path: `${parent}heading_icon_type`,
             operator: 'EQUAL',
             controlling_value_regex: 'inline_svg'
-          },
-          {
-            controlling_field_path: `${parent}add_heading_icon`,
-            operator: 'EQUAL',
-            controlling_value_regex: 'true'
           },
           {
             controlling_field_path: `${parent}heading_link_type`,
@@ -228,11 +193,6 @@ const heading = (parent = '', defaultHeading = '') => {
             controlling_value_regex: 'image'
           },
           {
-            controlling_field_path: `${parent}add_heading_icon`,
-            operator: 'EQUAL',
-            controlling_value_regex: 'true'
-          },
-          {
             controlling_field_path: `${parent}heading_link_type`,
             operator: 'NOT_EQUAL',
             controlling_value_regex: 'anchor'
@@ -250,9 +210,8 @@ const heading = (parent = '', defaultHeading = '') => {
         boolean_operator: 'AND',
         criteria: [
           {
-            controlling_field_path: `${parent}add_heading_icon`,
-            operator: 'EQUAL',
-            controlling_value_regex: 'true'
+            controlling_field_path: `${parent}heading_icon_type`,
+            operator: 'NOT_EMPTY'
           },
           {
             controlling_field_path: `${parent}heading_icon_type`,

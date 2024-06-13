@@ -12,7 +12,7 @@ const icon = (parent = '') => {
       required: true,
       default: 'fontawesome',
       choices: [
-        ['fontawesome', 'Fontawesome'],
+        ['fontawesome', 'FontAwesome icon'],
         ['inline_svg', 'Inline SVG']
       ]
     }),
@@ -30,8 +30,7 @@ const icon = (parent = '') => {
         controlling_value_regex: 'fontawesome'
       }
     }),
-    fi.text('Inline SVG', 'icon_inline_svg', {
-      allow_new_line: true,
+    fi.html('Inline SVG', 'icon_inline_svg', {
       visibility: {
         controlling_field_path: `${parent}icon_type`,
         operator: 'EQUAL',

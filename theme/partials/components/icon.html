@@ -6,7 +6,7 @@
 {%- macro icon_macro(data) -%}
   {%- if data.icon.icon_inline_svg or data.icon.name -%}
 
-    {# common styles for icon macros #}
+    {# common styles for icon macro #}
     {% require_css %}
       <style component="icon">
         .icon-macro-wrp {
@@ -32,7 +32,7 @@
         data.icon_color.css
     ]) %}
 
-    {# scoped styles for icon macros #}
+    {# scoped styles for icon macro #}
     {% require_css %}
       <style component="icon scoped icon-wrp{{item_hash}}">
         .icon-wrp{{item_hash}} > svg {

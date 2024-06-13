@@ -12,6 +12,7 @@
   {% import '../components/custom-text-group.html' %}
   {% import '../components/simple-image.html' %}
   {% import '../components/simple-text.html' %}
+  {% import '../components/list-group.html' %}
   {% import '../../css/macros.css' %}
 
   <style>
@@ -113,7 +114,8 @@
         {% elif component == 'custom_text' %}
           {{custom_text_group_macro(data)}}
 
-        {% elif component == 'lists' %}
+        {% elif component == 'list' %}
+          {{list_group_macro(data)}}
 
         {% elif component == 'separator' %}
           </div>

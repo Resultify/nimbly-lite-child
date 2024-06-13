@@ -7,7 +7,7 @@
 {%- macro categories_macro(data) -%}
   {%- if data.categories|length > 0 and data.show_categories -%}
 
-    {# common styles for categories macros #}
+    {# common styles for categories macro #}
     {% require_css %}
       <style component="categories">
         .categories-wrp-macro {
@@ -39,7 +39,7 @@
       data.categories_style_group.category_border_color.css
     ]) %}
 
-    {# scoped styles for categories macros #}
+    {# scoped styles for categories macro #}
     {% require_css %}
       <style component="categories scoped categories{{item_hash}}">
         .categories{{item_hash}} {

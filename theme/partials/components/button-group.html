@@ -31,7 +31,7 @@
 {%- macro button_group_macro(data) -%}
   {%- if data.button_group|length > 0 -%}
 
-    {# common styles for button-group macros #}
+    {# common styles for button-group macro #}
     {% require_css %}
       <style component="button-group">
         .btn-group-wrp-macro,
@@ -106,7 +106,7 @@
           item.custom_link_hover.underline
         ]) %}
 
-        {# scoped styles for button-group macros #}
+        {# scoped styles for button-group macro #}
         {%- if item.button_style is containing 'custom' -%}
           {%- if item.button_style == "custombutton" -%}
             {% require_css %}

@@ -8,7 +8,7 @@
 
 {%- macro render_heading_icon(data, alignment) -%}
   {%- if data.add_heading_icon and data.heading_link_type != 'anchor' -%}
-    {%- if data.heading_icon_alignment is containing alignment -%}
+    {%- if data.heading_icon_position is containing alignment -%}
       {%- if data.heading_icon_type == 'fontawesome' -%}
         {%- if data.heading_icon.name -%}
           {% icon
@@ -37,7 +37,7 @@
 {%- macro heading_macro(data) -%}
   {%- if data.heading_text -%}
 
-    {# common styles for heading macros #}
+    {# common styles for heading macro #}
     {% require_css %}
       <style component="heading">
         .heading-macro {
@@ -92,7 +92,7 @@
     {# hash for scoped styles #}
     {% set item_hash = hash([
         data.heading_icon_color.css,
-        data.heading_icon_alignment,
+        data.heading_icon_position,
         data.heading_link_type,
         data.heading_additional_customization,
         data.heading_color.css,
@@ -101,7 +101,7 @@
         data.heading_font.css
     ]) %}
 
-    {# scoped styles for heading macros #}
+    {# scoped styles for heading macro #}
     {%- if data.heading_icon_color.css and data.heading_link_type != 'link' and data.heading_link_type != 'anchor' -%}
       {% require_css %}
         <style component="heading scoped heading{{item_hash}}">
@@ -133,7 +133,7 @@
 
     <{{data.heading_tag}}
       class="{{data.heading_style}} heading-macro heading{{item_hash}}"
-      {{'style="justify-content:space-between;width:100%;"' if data.heading_icon_alignment is containing 'space' and data.add_heading_icon}}
+      {{'style="justify-content:space-between;width:100%;"' if data.heading_icon_position is containing 'space' and data.add_heading_icon}}
       {{'id="{{data.heading_text|lower|replace(" ", "-")|urlencode}}"' if data.heading_link_type == 'anchor'}}>
       {%- if data.heading_link.url.href and data.heading_link_type == 'link' -%}
         <a {{link_attributes(data.heading_link)}} class="heading-link {{"stretched-link" if heading_stretched_link}}">

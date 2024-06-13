@@ -90,6 +90,7 @@ const customTextGroup = (parent = '') => {
       fi.choice('Gradient direction', 'gradient_direction', {
         help_text: 'Unset any gradient direction to turn off the color gradient style for the text',
         display_width: 'half_width',
+        placeholder: 'No gradient',
         choices: [
           ['to top', 'Bottom to top'],
           ['to bottom', 'Top to bottom'],

@@ -19,6 +19,7 @@ const mediaGroup = (parent = '') => {
         operator: 'MATCHES_REGEX',
         controlling_value_regex: 'media'
       },
+      placeholder: 'None',
       choices: [
         ['full_width_image', 'Full width image'],
         ['simple_image', 'Simple image'],
