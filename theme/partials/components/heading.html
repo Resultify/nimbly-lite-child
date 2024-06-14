@@ -6,23 +6,21 @@
 {% import '../utils/link-attributes.html' %}
 {% import '../../css/macros.css' %}
 
-{%- macro render_heading_icon(data, alignment) -%}
-  {%- if data.add_heading_icon and data.heading_link_type != 'anchor' -%}
-    {%- if data.heading_icon_position is containing alignment -%}
-      {%- if data.heading_icon_type == 'fontawesome' -%}
-        {%- if data.heading_icon.name -%}
-          {% icon
-            name="{{data.heading_icon.name}}"
-            style="{{data.heading_icon.type}}"
-            unicode="{{data.heading_icon.unicode}}"
-            icon_set="{{data.heading_icon.icon_set}}"
-            purpose="decorative",
-            no_wrapper=true
-          %}
-        {%- endif -%}
-      {%- elif data.heading_icon_type == 'inline_svg' -%}
+{%- macro add_heading_icon(data, position) -%}
+  {%- if data.heading_link_type != null and data.heading_link_type != 'anchor' -%}
+    {%- if data.heading_icon_position is containing position -%}
+      {%- if data.heading_icon_type == 'fontawesome' and data.heading_icon.name -%}
+        {% icon
+          name="{{data.heading_icon.name}}"
+          style="{{data.heading_icon.type}}"
+          unicode="{{data.heading_icon.unicode}}"
+          icon_set="{{data.heading_icon.icon_set}}"
+          purpose="decorative",
+          no_wrapper=true
+        %}
+      {%- elif data.heading_icon_type == 'inline_svg' and data.heading_inline_svg -%}
         {{data.heading_inline_svg}}
-      {%- elif data.heading_icon_type == 'image' -%}
+      {%- elif data.heading_icon_type == 'image' and data.heading_image.src -%}
         <img class="heading-image"
           alt=""
           src="{{data.heading_image.src}}"
@@ -39,8 +37,8 @@
 
     {# common styles for heading macro #}
     {% require_css %}
-      <style component="heading">
-        .heading-macro {
+      <style data-component="heading">
+        .heading {
           --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
           --_macro-hover-color: var(--scope-hover-color, var(--custom-hover-color, var(--scope-color)));
           text-wrap: balance;
@@ -57,10 +55,11 @@
           transition-duration: var(--root-transition-duration);
           transition-timing-function: var(--root-transition-timing-function);
         }
-        .heading-macro svg {
+        .heading svg {
           width: auto;
           height: var(--root-heading-icon-size, 1.2em);
           fill: currentColor;
+          flex-shrink: 0;
           transition-property: fill;
           transition-duration: var(--root-transition-duration);
           transition-timing-function: var(--root-transition-timing-function);
@@ -104,7 +103,7 @@
     {# scoped styles for heading macro #}
     {%- if data.heading_icon_color.css and data.heading_link_type != 'link' and data.heading_link_type != 'anchor' -%}
       {% require_css %}
-        <style component="heading scoped heading{{item_hash}}">
+        <style data-component="heading scoped id{{item_hash}}">
           .heading{{item_hash}} > svg {
             fill: var(--scope-hover-color, {{data.heading_icon_color.css}});
           }
@@ -113,7 +112,7 @@
     {%- endif -%}
     {%- if data.heading_additional_customization -%}
       {% require_css %}
-        <style component="heading scoped heading{{item_hash}}">
+        <style data-component="heading scoped id{{item_hash}}">
           .heading{{item_hash}} {
             {%- if data.heading_link_type == 'link' or data.heading_link_type == 'anchor' -%}
               {%- if data.heading_link_color.css -%}
@@ -132,14 +131,15 @@
     {%- endif -%}
 
     <{{data.heading_tag}}
-      class="{{data.heading_style}} heading-macro heading{{item_hash}}"
+      data-component="heading"
+      class="{{data.heading_style}} heading heading{{item_hash}}"
       {{'style="justify-content:space-between;width:100%;"' if data.heading_icon_position is containing 'space' and data.add_heading_icon}}
       {{'id="{{data.heading_text|lower|replace(" ", "-")|urlencode}}"' if data.heading_link_type == 'anchor'}}>
       {%- if data.heading_link.url.href and data.heading_link_type == 'link' -%}
         <a {{link_attributes(data.heading_link)}} class="heading-link {{"stretched-link" if heading_stretched_link}}">
-          {{render_heading_icon(data, 'left')}}
+          {{add_heading_icon(data, 'left')}}
           {{data.heading_text}}
-          {{render_heading_icon(data, 'right')}}
+          {{add_heading_icon(data, 'right')}}
         </a>
       {%- elif data.heading_link_type == 'anchor' -%}
         <a href="#{{data.heading_text|lower|replace(" ", "-")|urlencode}}" class="heading-link anchor-heading-link">
@@ -147,9 +147,9 @@
           <svg version="1.0" class="anchor-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true"><g><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"></path></g></svg>
         </a>
       {%- else -%}
-        {{render_heading_icon(data, 'left')}}
+        {{add_heading_icon(data, 'left')}}
         {{data.heading_text}}
-        {{render_heading_icon(data, 'right')}}
+        {{add_heading_icon(data, 'right')}}
       {%- endif -%}
     </{{data.heading_tag}}>
   {%- endif -%}

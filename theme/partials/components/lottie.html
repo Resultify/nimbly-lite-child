@@ -63,14 +63,14 @@
     {% end_require_js %}
     {# common styles for lottie macro #}
     {% require_css %}
-      <style component="lottie">
-        .lottie-macro {
+      <style data-component="lottie">
+        .lottie {
           max-width: 100%;
           height: auto;
         }
       </style>
     {% end_require_css %}
-    <canvas class="lottie-macro dotlottie-canvas"
+    <canvas data-component="lottie" class="lottie dotlottie-canvas"
       data-lottie-src="{{data.lottie_file}}"
       data-speed="{{data.lottie_speed}}"
       data-mode="{{data.lottie_mode}}"

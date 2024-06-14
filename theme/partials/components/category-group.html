@@ -4,20 +4,20 @@
 -->
 {% import '../utils/hash.html' %}
 {% import '../../css/macros.css' %}
-{%- macro categories_macro(data) -%}
-  {%- if data.categories|length > 0 and data.show_categories -%}
+{%- macro category_group_macro(data) -%}
+  {%- if data.category_group|length > 0 and data.show_categories -%}
 
-    {# common styles for categories macro #}
+    {# common styles for category-group macro #}
     {% require_css %}
-      <style component="categories">
-        .categories-wrp-macro {
+      <style data-component="category-group">
+        .category-group {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
           gap: var(--root-custom-text-gap, .9ch);
           justify-content: var(--scope-alignment);
         }
-        .categories-macro {
+        .category {
           color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
           border-color: var(--scope-hover-color, var(--custom-border-color, var(--scope-color)));
           transition-property: color, border-color;
@@ -39,10 +39,10 @@
       data.categories_style_group.category_border_color.css
     ]) %}
 
-    {# scoped styles for categories macro #}
+    {# scoped styles for category-group macro #}
     {% require_css %}
-      <style component="categories scoped categories{{item_hash}}">
-        .categories{{item_hash}} {
+      <style data-component="category-group scoped id{{item_hash}}">
+        .category{{item_hash}} {
           {% if data.categories_style_group.category_color.color %}
             --custom-color: {{data.categories_style_group.category_color.color}};
           {% endif %}
@@ -79,9 +79,9 @@
       </style>
     {% end_require_css %}
 
-    <div class="categories-wrp-macro">
-      {%- for category in data.categories -%}
-        <span class="categories-macro categories{{item_hash}}">{{category|capitalize}}</span>
+    <div data-component="category-group" class="category-group">
+      {%- for category in data.category_group -%}
+        <span class="category category{{item_hash}}">{{category|capitalize}}</span>
       {%- endfor -%}
     </div>
 

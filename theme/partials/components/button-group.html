@@ -7,19 +7,23 @@
 {% import '../../css/macros.css' %}
 
 {# render button icon internal macro #}
-{%- macro render_button_icon(item, position) -%}
-  {%- if item.button_icon_position == position -%}
-    {%- if item.add_button_icon == "image" and item.button_image.src -%}
+{%- macro add_button_icon(data, position) -%}
+  {%- if data.button_icon_position is containing position -%}
+    {%- if data.add_button_icon == "image" and data.button_image.src -%}
       <img class="btn-image"
-        alt=""
-        src="{{item.button_image.src}}"
-        loading="lazy">
-    {%- elif item.add_button_icon == "icon" and item.button_icon.name -%}
+      alt=""
+      src="{{data.button_image.src}}"
+      width="{{data.button_image.width}}"
+      height="{{data.button_image.height}}"
+      loading="lazy">
+    {%- elif data.add_button_icon == "inline_svg" and data.button_inline_svg -%}
+      {{data.button_inline_svg}}
+    {%- elif data.add_button_icon == "fontawesome" and data.button_icon.name -%}
       {%- icon
-        name="{{item.button_icon.name}}"
-        style="{{item.button_icon.type}}"
-        unicode="{{item.button_icon.unicode}}"
-        icon_set="{{item.button_icon.icon_set}}"
+        name="{{data.button_icon.name}}"
+        style="{{data.button_icon.type}}"
+        unicode="{{data.button_icon.unicode}}"
+        icon_set="{{data.button_icon.icon_set}}"
         purpose="decorative",
         no_wrapper=true
       -%}
@@ -33,12 +37,12 @@
 
     {# common styles for button-group macro #}
     {% require_css %}
-      <style component="button-group">
-        .btn-group-wrp-macro,
-        .btn-block-wrp-macro {
+      <style data-component="button-group">
+        .button-group,
+        .btn-block {
           justify-content: var(--scope-alignment);
         }
-        .btn-group-wrp-macro {
+        .button-group {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
@@ -46,18 +50,18 @@
           width: 100%;
           gap: var(--scope-content-gap);
         }
-        .btn-block-wrp-macro {
+        .btn-block {
           flex-basis: 100%;
           display: flex;
           flex-wrap: wrap;
         }
-        :where(.btn-group-wrp-macro .btn-full-width) {
+        :where(.button-group .btn-full-width) {
           width: 100%;
         }
-        :where(.btn-group-wrp-macro .btn-link) {
+        :where(.button-group .btn-link) {
           gap: var(--root-button-icon-gap, .9ch);
         }
-        :where(.btn-group-wrp-macro) :where(.btn-linkonly, .btn-customlink) {
+        :where(.button-group) :where(.btn-linkonly, .btn-customlink) {
           --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
           --_macro-hover-color: var(--scope-hover-color, var(--custom-hover-color, var(--scope-color)));
           color: var(--_macro-color, var(--color));
@@ -65,24 +69,24 @@
           transition-duration: var(--root-transition-duration);
           transition-timing-function: var(--root-transition-timing-function);
         }
-        :where(.btn-group-wrp-macro) :where(.btn-linkonly:hover, .btn-customlink:hover) {
+        :where(.button-group) :where(.btn-linkonly:hover, .btn-customlink:hover) {
           color: var(--_macro-hover-color, var(--hover-color));
         }
-        :where(.btn-group-wrp-macro a) > :where(svg, .btn-image) {
+        :where(.button-group a) > :where(svg, .btn-image) {
           width: auto;
-          height: var(--root-buttonlink-icon-size, 0.8lh);
+          height: var(--root-buttonlink-icon-size, 1.2em);
           fill: currentcolor;
         }
-        :where(.btn-group-wrp-macro .btn-link) > :where( svg, .btn-image) {
-          height: var(--root-button-icon-size, 1.1lh);
+        :where(.button-group .btn-link) > :where( svg, .btn-image) {
+          height: var(--root-button-icon-size, 1.4em);
         }
-        :where(.btn-group-wrp-macro .btn-link) :where(.visually-hidden + svg, .visually-hidden + .btn-image) {
-          height: var(--root-button-onlyicon-size, 1.6lh);
+        :where(.button-group .btn-link) :where(.visually-hidden + svg, .visually-hidden + .btn-image) {
+          height: var(--root-button-onlyicon-size, 1.6em);
         }
       </style>
     {% end_require_css %}
 
-    <div class="btn-group-wrp-macro">
+    <div data-component="button-group" class="button-group">
       {%- for item in data.button_group -%}
 
         {# hash for scoped styles #}
@@ -110,7 +114,7 @@
         {%- if item.button_style is containing 'custom' -%}
           {%- if item.button_style == "custombutton" -%}
             {% require_css %}
-              <style component="button-group scoped btn{{item_hash}}">
+              <style data-component="button-group scoped id{{item_hash}}">
                 .btn{{item_hash}} {
                   {%- if item.custom_button_border_radius != null -%}
                     --border-radius: {{item.custom_button_border_radius ~ 'px'}};
@@ -152,7 +156,7 @@
             {% end_require_css %}
           {%- elif item.button_style == "customlink" -%}
             {% require_css %}
-              <style component="button-group scoped btn{{item_hash}}">
+              <style data-component="button-group scoped id{{item_hash}}">
                 .btn{{item_hash}} {
                   {%- if item.custom_link_color.css -%}
                     --custom-color: {{item.custom_link_color.css}};
@@ -176,16 +180,16 @@
         {%- endif -%}
         {%- if item.button_position == 'separate' -%}
           {% require_css %}
-            <style component="button-group scoped btn{{item_hash}}">
-              .btn-block-wrp-macro{{item_hash}} {
+            <style data-component="button-group scoped id{{item_hash}}">
+              .btn-block{{item_hash}} {
                 justify-content: {{item.button_alignment}};
               }
             </style>
           {% end_require_css %}
         {%- endif -%}
-        {%- if item.button_hide_text and item.button_image.src and item.add_button_icon == "image" or item.button_hide_text and item.button_icon.name and item.add_button_icon == "icon" -%}
+        {%- if item.button_hide_text and item.button_image.src and item.add_button_icon == "image" or item.button_hide_text and item.button_icon.name and item.add_button_icon == "fontawesome" or item.button_hide_text and item.button_inline_svg and item.add_button_icon == "inline_svg" -%}
           {% require_css %}
-            <style component="button-group scoped btn{{item_hash}}">
+            <style data-component="button-group scoped id{{item_hash}}">
               .btn{{item_hash}} {
                 min-width: 0;
               }
@@ -196,7 +200,7 @@
         {# render CTA button #}
         {%- if item.button_style == 'cta' -%}
           {%- if item.button_position == 'separate' -%}
-            <div class="btn-block-wrp-macro btn-block-wrp-macro{{item_hash}}">
+            <div class="btn-block btn-block{{item_hash}}">
           {%- endif -%}
           {% set cta_extra_classes = button_stretched_link and loop.last ? 'btn-cta cta-stretched-link' : 'btn-cta' %}
           {% cta guid="{{item.button_cta}}" extra_classes={{cta_extra_classes}} %}
@@ -209,7 +213,7 @@
             {%- if item.button_style == "customlink" or item.button_style == "linkonly" -%}
               {% set button_link_class = "btn-{{item.button_style}}" %}
             {%- else -%}
-              {%- if item.button_hide_text and item.button_image.src and item.add_button_icon == "image" or item.button_hide_text and item.button_icon.name and item.add_button_icon == "icon" -%}
+              {%- if item.button_hide_text and item.button_image.src and item.add_button_icon == "image" or item.button_hide_text and item.button_icon.name and item.add_button_icon == "fontawesome" or item.button_hide_text and item.button_inline_svg and item.add_button_icon == "inline_svg" -%}
                 {% set hide_text_class = 'class="visually-hidden"' %}
               {%- else -%}
                 {% set hide_text_class = '' %}
@@ -217,12 +221,12 @@
               {% set button_link_class = "btn-link btn-{{item.button_style}} btn-{{item.button_size}} {{'btn-full-width' if item.button_position == 'fullwidth'}}" %}
             {%- endif -%}
             {%- if item.button_position == 'separate' -%}
-              <div class="btn-block-wrp-macro btn-block-wrp-macro{{item_hash}}">
+              <div class="btn-block btn-block{{item_hash}}">
             {%- endif -%}
             <a {{link_attributes(item.button_link)}} class="btn{{item_hash}} {{button_link_class}} {{"stretched-link" if button_stretched_link and loop.last}}">
-              {{render_button_icon(item, "left")}}
+              {{add_button_icon(item, "left")}}
               <span {{hide_text_class}}>{{item.button_text}}</span>
-              {{render_button_icon(item, "right")}}
+              {{add_button_icon(item, "right")}}
             </a>
             {%- if item.button_position == 'separate' -%}
               </div>

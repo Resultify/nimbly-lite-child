@@ -11,12 +11,12 @@
 
     {# common styles for real-button-group macro #}
     {% require_css %}
-      <style component="real-button-group">
-        .real-btn-group-wrp-macro,
-        .real-btn-block-wrp-macro {
+      <style data-component="real-button-group">
+        .real-button-group,
+        .real-btn-block {
           justify-content: var(--scope-alignment);
         }
-        .real-btn-group-wrp-macro {
+        .real-button-group {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
@@ -24,31 +24,31 @@
           width: 100%;
           gap: var(--scope-content-gap);
         }
-        .real-btn-block-wrp-macro {
+        .real-btn-block {
           flex-basis: 100%;
           display: flex;
           flex-wrap: wrap;
         }
-        :where(.real-btn-group-wrp-macro) :where(.btn-full-width) {
+        :where(.real-button-group) :where(.btn-full-width) {
           width: 100%;
         }
-        :where(.real-btn-group-wrp-macro) :where(.btn-link) {
+        :where(.real-button-group) :where(.btn-link) {
           gap: var(--root-button-icon-gap, .5ch);
         }
-        :where(.real-btn-group-wrp-macro button svg) {
+        :where(.real-button-group button svg) {
           width: auto;
           height: var(--root-buttonlink-icon-size, 1.4em);
           fill: currentcolor;
         }
-        :where(.real-btn-group-wrp-macro) :where(svg, span) {
+        :where(.real-button-group) :where(svg, span) {
           pointer-events: none;
         }
-        :where(.real-btn-group-wrp-macro .close-icon) {
+        :where(.real-button-group .close-icon) {
           display: none;
         }
       </style>
     {% end_require_css %}
-    <div class="real-btn-group-wrp-macro">
+    <div data-component="real-button-group" class="real-button-group">
       {%- for item in data.button_group -%}
         {# hash for scoped styles #}
         {% set item_hash = hash([
@@ -71,7 +71,7 @@
         {# scoped styles for button-group macro #}
         {%- if item.button_style == "custombutton" -%}
           {% require_css %}
-            <style component="real-button-group scoped btn{{item_hash}}">
+            <style data-component="real-button-group scoped id{{item_hash}}">
               .btn{{item_hash}} {
                 {%- if item.custom_button_border_radius != null -%}
                   --border-radius: {{item.custom_button_border_radius ~ 'px'}};
@@ -115,7 +115,7 @@
 
         {%- if item.active_state_style.color.css or item.active_state_style.background.css or item.active_state_style.border_color.css or item.active_state_style.show_close_icon -%}
           {% require_css %}
-            <style component="real-button-group scoped btn{{item_hash}}">
+            <style data-component="real-button-group scoped id{{item_hash}}">
               .btn{{item_hash}}.active {
                 {%- if item.active_state_style.color.css -%}
                   --color: {{item.active_state_style.color.css}};
@@ -144,7 +144,7 @@
         {%- if item.button_text or item.category -%}
           {% set button_link_class = "btn-link btn-{{item.button_style}} btn-{{item.button_size}} {{'btn-full-width' if item.button_position == 'fullwidth'}}" %}
           {%- if item.button_position == 'separate' -%}
-            <div class="real-btn-block-wrp-macro">
+            <div class="real-btn-block">
           {%- endif -%}
           <button class="btn{{item_hash}} {{button_link_class}}" {{categorie_filter}}>
             {% if item.button_text %}

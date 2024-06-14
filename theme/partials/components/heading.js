@@ -181,8 +181,10 @@ const heading = (parent = '', defaultHeading = '') => {
         ]
       }
     }),
-    fi.file('Image', 'heading_image', {
-      picker: 'image',
+    fi.image('Image', 'heading_image', {
+      resizable: false,
+      responsive: false,
+      show_loading: false,
       visibility_rules: 'ADVANCED',
       advanced_visibility: {
         boolean_operator: 'AND',

@@ -200,8 +200,10 @@ const buttonGroup = (parent = '') => {
           ]
         }
       }),
-      fi.file('Image', 'button_image', {
-        picker: 'image',
+      fi.image('Image', 'button_image', {
+        responsive: false,
+        resizable: false,
+        show_loading: false,
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
@@ -247,6 +249,11 @@ const buttonGroup = (parent = '') => {
               controlling_field_path: `${parent}button_group.button_style`,
               operator: 'NOT_EQUAL',
               controlling_value_regex: 'cta'
+            },
+            {
+              controlling_field_path: `${parent}button_group.button_hide_text`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'false'
             }
           ]
         }

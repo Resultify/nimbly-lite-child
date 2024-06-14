@@ -2,7 +2,7 @@ import {
   moduleFields as fi,
   group
 } from '@resultify/hubspot-fields-js'
-import { categories } from '../components/categories.js'
+import { categoryGroup } from '../components/category-group.js'
 import { mediaGroup } from '../components/media-group.js'
 import { heading } from '../components/heading.js'
 import { customTextGroup } from '../components/custom-text-group.js'
@@ -16,7 +16,7 @@ import { shadowList } from '../data/shadow-list.js'
 
 const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '') => {
   return [
-    categories(parent),
+    categoryGroup(parent),
     mediaGroup(parent),
     group('Heading', 'heading',
       {
@@ -66,9 +66,30 @@ const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '')
     ),
     simpleText(parent),
     fi.boolean('Whole area link', 'whole_area_link', {
-      help_text: 'When enabled, the whole area of the module will be clickable as a link.',
+      help_text: 'When enabled, the whole area of the module will be clickable as a link.<br>To make this work, you need to add a link to any of the heading, subheading or button components.',
       display: 'toggle',
-      default: false
+      default: false,
+      visibility_rules: 'ADVANCED',
+      advanced_visibility: {
+        boolean_operator: 'OR',
+        criteria: [
+          {
+            controlling_field_path: `${parent}module_components`,
+            operator: 'MATCHES_REGEX',
+            controlling_value_regex: 'main_heading'
+          },
+          {
+            controlling_field_path: `${parent}module_components`,
+            operator: 'MATCHES_REGEX',
+            controlling_value_regex: 'sub_heading'
+          },
+          {
+            controlling_field_path: `${parent}module_components`,
+            operator: 'MATCHES_REGEX',
+            controlling_value_regex: 'buttons'
+          }
+        ]
+      }
     }),
     moduleComponents(components)
   ]

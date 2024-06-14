@@ -8,12 +8,12 @@
 
     {# common styles for full-width-image macro #}
     {% require_css %}
-      <style component="full-width-image">
-        .full-width-image-macro-wrp {
+      <style data-component="full-width-image">
+        .full-width-image {
           width: 100%;
           z-index: -15;
         }
-        .full-width-image-macro {
+        .full-width-image-item {
           object-fit: cover;
           width: 100%;
           display: block;
@@ -34,8 +34,8 @@
     {# scoped styles for full-width-image macro #}
     {%- if data.force_full_width_image -%}
       {% require_css %}
-        <style component="full-width-image scoped fullwidthimage{{item_hash}}">
-          .fullwidthimage-wrp{{item_hash}} {
+        <style data-component="full-width-image scoped id{{item_hash}}">
+          .fullwidthimage{{item_hash}} {
             margin-left: calc(var(--scope-padding-left) * -1);
             margin-right: calc(var(--scope-padding-right) * -1);
             width: calc(100% + var(--scope-padding-left) + var(--scope-padding-right));
@@ -47,7 +47,7 @@
             {%- endif -%}
           }
           {% if data.force_full_width_image and loop.first or data.force_full_width_image and loop.last %}
-            .fullwidthimage{{item_hash}} {
+            .fullwidthimage{{item_hash}} .full-width-image-item {
               {%- if data.force_full_width_image and loop.first -%}
                 border-top-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
                 border-top-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
@@ -62,16 +62,16 @@
     {%- endif -%}
     {%- if data.full_width_image_border_radius != null and data.force_full_width_image != true -%}
       {% require_css %}
-        <style component="full-width-image scoped fullwidthimage{{item_hash}}">
-          .fullwidthimage{{item_hash}} {
+        <style data-component="full-width-image scoped id{{item_hash}}">
+          .fullwidthimage{{item_hash}} .full-width-image-item {
             border-radius: {{data.full_width_image_border_radius ~ 'px'}};
           }
         </style>
       {% end_require_css %}
     {%- endif -%}
 
-    <div class="full-width-image-macro-wrp fullwidthimage-wrp{{item_hash}}">
-      <img class="full-width-image-macro fullwidthimage{{item_hash}}"
+    <div data-component="full-width-image" class="full-width-image fullwidthimage{{item_hash}}">
+      <img class="full-width-image-item"
         style="aspect-ratio: {{data.full_width_image_aspect_ratio}}"
         alt="{{data.full_width_image.alt}}"
         src="{{data.full_width_image.src}}"

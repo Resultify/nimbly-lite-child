@@ -6,11 +6,11 @@
   {%- if data.simple_text -%}
     {# common styles for simple text macro #}
     {% require_css %}
-      <style component="simple-text">
-        .simple-text-macro-wrp {
+      <style data-component="simple-text">
+        .simple-text-wrp {
           text-align: var(--scope-alignment);
         }
-        .simple-text-macro {
+        .simple-text {
           transition-property: color;
           transition-duration: var(--root-transition-duration);
           transition-timing-function: var(--root-transition-timing-function);
@@ -19,8 +19,8 @@
       </style>
     {% end_require_css %}
 
-    <div class="simple-text-macro-wrp">
-      <span class="simple-text-macro">{{data.simple_text}}</span>
+    <div data-component="simple-text" class="simple-text-wrp">
+      <span class="simple-text">{{data.simple_text}}</span>
     </div>
   {%- endif -%}
 {%- endmacro -%}

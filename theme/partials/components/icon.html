@@ -8,12 +8,12 @@
 
     {# common styles for icon macro #}
     {% require_css %}
-      <style component="icon">
-        .icon-macro-wrp {
+      <style data-component="icon">
+        .icon-wrp {
           display: inline-flex;
           color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
         }
-        .icon-macro-wrp > svg {
+        .icon-wrp > svg {
           fill: currentColor;
           transition-property: color;
           transition-duration: var(--root-transition-duration);
@@ -25,7 +25,6 @@
     {# hash for scoped styles #}
     {% set item_hash = hash([
         data.icon_size,
-        data.icon_size,
         data.icon_background.css,
         data.icon_border_radius,
         data.icon_spacing,
@@ -34,13 +33,13 @@
 
     {# scoped styles for icon macro #}
     {% require_css %}
-      <style component="icon scoped icon-wrp{{item_hash}}">
-        .icon-wrp{{item_hash}} > svg {
+      <style data-component="icon scoped id{{item_hash}}">
+        .icon{{item_hash}} > svg {
           width: {{data.icon_size ~ 'px'}};
           height: {{data.icon_size ~ 'px'}};
         }
         {%- if data.icon_additional_customization -%}
-          .icon-wrp{{item_hash}} {
+          .icon{{item_hash}} {
             {%- if data.icon_background.css -%}
               background-color: {{data.icon_background.css}};
               --scope-hover-color: var(--custom-color);
@@ -53,7 +52,7 @@
             {%- endif -%}
           }
           {%- if data.icon_color.css -%}
-            .icon-wrp{{item_hash}} {
+            .icon{{item_hash}} {
               --custom-color: {{data.icon_color.css}};
             }
           {%- endif -%}
@@ -63,7 +62,7 @@
 
     {%- if data.icon_type == 'fontawesome' -%}
       {%- if data.icon.name -%}
-        {% set icon_extra_classes= 'icon-macro-wrp icon-wrp' ~ item_hash %}
+        {% set icon_extra_classes= 'icon-wrp icon' ~ item_hash %}
         {% icon
           extra_classes={{icon_extra_classes}}
           name="{{data.icon.name}}"
@@ -75,7 +74,7 @@
       {%- endif -%}
     {%- elif data.icon_type == 'inline_svg' -%}
       {%- if data.icon_inline_svg -%}
-        <div class="icon-macro-wrp icon-wrp{{item_hash}}">{{data.icon_inline_svg}}</div>
+        <div data-component="icon" class="icon-wrp icon{{item_hash}}">{{data.icon_inline_svg}}</div>
       {%- endif -%}
     {%- endif -%}
   {%- endif -%}

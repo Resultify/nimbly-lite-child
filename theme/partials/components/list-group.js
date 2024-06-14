@@ -45,9 +45,9 @@ const listGroup = (parent = '') => {
       fi.choice('Icon position', 'list_item_icon_position', {
         choices: [
           ['left', 'Left'],
-          ['right', 'Right'],
-          ['left-space-between', 'Left space between'],
-          ['right-space-between', 'Right space between']
+          ['right', 'Right']
+          // ['left-space-between', 'Left space between'],
+          // ['right-space-between', 'Right space between']
         ],
         default: 'left',
         display_width: 'half_width',
@@ -102,8 +102,10 @@ const listGroup = (parent = '') => {
           ]
         }
       }),
-      fi.file('Image', 'list_item_image', {
-        picker: 'image',
+      fi.image('Image', 'list_item_image', {
+        responsive: false,
+        resizable: false,
+        show_loading: false,
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',

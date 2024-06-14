@@ -6,29 +6,29 @@
   {%- if data.richtext -%}
     {# common styles for richtext macro #}
     {% require_css %}
-      <style component="richtext">
-        .richtext-macro-wrp {
+      <style data-component="richtext">
+        .richtext {
           text-align: var(--scope-alignment);
         }
-        .richtext-macro-wrp > *:first-child {
+        .richtext > *:first-child {
           margin-top: 0;
           padding-top: 0;
         }
-        .richtext-macro-wrp > *:last-child {
+        .richtext > *:last-child {
           margin-bottom: 0;
           padding-bottom: 0;
         }
-        .richtext-macro-wrp > :where(h1, h2, h3, h4, h5, h6) {
+        .richtext > :where(h1, h2, h3, h4, h5, h6) {
           color: var(--scope-hover-color, var(--scope-color));
         }
-        .richtext-macro-wrp > * {
+        .richtext > * {
           transition-property: color;
           transition-duration: var(--root-transition-duration);
           transition-timing-function: var(--root-transition-timing-function);
         }
       </style>
     {% end_require_css %}
-    <div class="richtext-macro-wrp">
+    <div data-component="richtext" class="richtext">
       {{data.richtext|sanitize_html}}
     </div>
   {%- endif -%}

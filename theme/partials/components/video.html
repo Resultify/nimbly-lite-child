@@ -7,20 +7,20 @@
   {%- if data.embed.oembed_url or data.embed.embed_html or data.hubspot_video.player_id != null -%}
     {# common styles for video macro #}
     {% require_css %}
-      <style component="video">
-        .video-macro-wrp {
+      <style data-component="video">
+        .video {
           display: inline-block;
           height: 100%;
           position: relative;
           width: 100%;
           z-index: -15;
         }
-        .video-macro-wrp .iframe-wrp {
+        .video .iframe-wrp {
           height: 0;
           padding-bottom: 56.25%;
           position: relative;
         }
-        .video-macro-wrp .iframe-wrp iframe {
+        .video .iframe-wrp iframe {
           position: absolute;
           height: 100%;
           width: 100%;
@@ -45,7 +45,7 @@
     {# scoped styles for video macro #}
     {%- if data.force_full_width_video -%}
       {% require_css %}
-        <style component="video scoped video{{item_hash}}">
+        <style data-component="video scoped id{{item_hash}}">
           .video{{item_hash}} {
             margin-left: calc(var(--scope-padding-left) * -1);
             margin-right: calc(var(--scope-padding-right) * -1);
@@ -73,7 +73,7 @@
     {%- endif -%}
     {%- if data.video_border_radius != null and data.force_full_width_video != true -%}
       {% require_css %}
-        <style component="video scoped video{{item_hash}}">
+        <style data-component="video scoped id{{item_hash}}">
           .video{{item_hash}} iframe {
             border-radius: {{data.video_border_radius ~ 'px'}};
           }
@@ -81,7 +81,7 @@
       {% end_require_css %}
     {%- endif -%}
 
-    <div class="video-macro-wrp video{{item_hash}}">
+    <div data-component="video" class="video video{{item_hash}}">
       {# Embed Video type #}
       {%- if data.video_type == "embed" -%}
         {# Embed url #}

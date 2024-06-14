@@ -6,13 +6,13 @@
   {%- if data.simple_image.src -%}
     {# common styles for simple-image macro #}
     {% require_css %}
-      <style component="simple-image">
-        .simple-image-macro {
+      <style data-component="simple-image">
+        .simple-image {
           display: block;
           max-width: 100%;
           height: auto;
         }
-        .simple-image-macro-wrp {
+        .simple-image-wrp {
           display: flex;
           width: 100%;
         }
@@ -20,9 +20,9 @@
     {% end_require_css %}
 
     {%- if data.simple_image_alignment -%}
-      <div class="simple-image-macro-wrp" style="justify-content:{{data.simple_image_alignment}};">
+      <div class="simple-image-wrp" style="justify-content:{{data.simple_image_alignment}};">
     {%- endif -%}
-    <img class="simple-image-macro"
+    <img data-component="simple-image" class="simple-image"
       alt="{{data.simple_image.alt}}"
       src="{{data.simple_image.src}}"
       {%- if data.simple_image_width -%}

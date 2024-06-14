@@ -4,12 +4,12 @@ import {
 } from '@resultify/hubspot-fields-js'
 import { categoryList } from '../data/category-list.js'
 
-const categories = (parent = '') => {
+const categoryGroup = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
   return [
-    fi.choice('Categories', 'categories', {
+    fi.choice('Categories', 'category_group', {
       visibility: {
         controlling_field_path: `${parent}module_components`,
         operator: 'MATCHES_REGEX',
@@ -79,4 +79,4 @@ const categories = (parent = '') => {
   ]
 }
 
-export { categories }
+export { categoryGroup }
