@@ -30,7 +30,7 @@
 {%- endmacro -%}
 
 {%- macro css_image_background_macro(data) -%}
-  {%- if data.background_image.background_position = 'TOP_LEFT' -%}
+  {%- if data.background_image.background_position == 'TOP_LEFT' -%}
     {%- set background_position = 'left top' -%}
   {%- elif data.background_image.background_position == 'TOP_CENTER' -%}
     {%- set background_position = 'center top' -%}

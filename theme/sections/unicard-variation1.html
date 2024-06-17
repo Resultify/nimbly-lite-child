@@ -1,0 +1,77 @@
+<!--
+  templateType: section
+  label: Unicard variation #3
+  description: Unicard design variation #3
+  isAvailableForNewContent: false
+  screenshotPath: ../images/section-previews/address.png
+-->
+{% dnd_section
+  background_color="rgba(245, 245, 247, 1)",
+  full_width=false
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="/nimbly-lite-child/modules/unicard",
+        offset=0,
+        width=12,
+        custom_text_group=[ {
+          "custom_text" : "UNIVERSAL CARD",
+          "custom_text_background" : { },
+          "custom_text_font" : {
+            "fallback" : "sans-serif",
+            "font" : "Poppins",
+            "font_set" : "GOOGLE",
+            "size" : 70,
+            "styles" : { },
+            "variant" : "900"
+          },
+          "custom_text_inline" : true,
+          "gradient_color" : [ {
+            "color" : "#0497ff",
+            "opacity" : 100
+          }, {
+            "color" : "#c261fd",
+            "opacity" : 100
+          }, {
+            "color" : "#f9565f",
+            "opacity" : 100
+          }, {
+            "color" : "#ffa708",
+            "opacity" : 100
+          } ],
+          "gradient_direction" : "to right"
+        } ],
+        heading={
+          "heading_additional_customization" : true,
+          "heading_color" : {
+            "opacity" : 100
+          },
+          "heading_font" : {
+            "fallback" : "sans-serif",
+            "font" : "Montserrat",
+            "font_set" : "GOOGLE",
+            "styles" : { },
+            "variant" : "700"
+          },
+          "heading_tag" : "h1",
+          "heading_text" : "NIMBLY PRO"
+        },
+        module_components=[ "main_heading", "custom_text", "richtext" ],
+        style={
+          "alignment" : {
+            "horizontal_align" : "CENTER"
+          },
+          "content_gap" : 24
+        }
+      %}
+        {% module_attribute "richtext" %}
+          <p style="font-size: 28px;"><span style="color: #6e6e73;">Use cases and design variations</span></p>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
