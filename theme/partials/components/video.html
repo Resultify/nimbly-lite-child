@@ -71,7 +71,7 @@
         </style>
       {% end_require_css %}
     {%- endif -%}
-    {%- if data.video_border_radius != null and data.force_full_width_video != true -%}
+    {%- if data.video_border_radius is integer and data.force_full_width_video != true -%}
       {% require_css %}
         <style data-component="video scoped id{{item_hash}}">
           .video{{item_hash}} iframe {

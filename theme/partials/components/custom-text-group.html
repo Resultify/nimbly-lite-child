@@ -59,18 +59,18 @@
                 {% if item.custom_text_font.color %}
                   --custom-color: {{item.custom_text_font.color}};
                 {% endif %}
-                {%- if item.custom_text_border_radius != null -%}
+                {%- if item.custom_text_border_radius is integer -%}
                   border-radius: {{item.custom_text_border_radius ~ 'px'}};
                 {%- endif -%}
                 {%- if item.custom_text_background.css and item.gradient_direction != true -%}
                   background-color: {{item.custom_text_background.css}};
                   --scope-hover-color: var(--custom-color);
                 {%- endif -%}
-                {% if item.custom_text_vertical_spacing != null %}
+                {% if item.custom_text_vertical_spacing is integer %}
                   padding-top: {{item.custom_text_vertical_spacing ~ 'px'}};
                   padding-bottom: {{item.custom_text_vertical_spacing ~ 'px'}};
                 {% endif %}
-                {% if item.custom_text_horizontal_spacing != null %}
+                {% if item.custom_text_horizontal_spacing is integer %}
                   padding-left: {{item.custom_text_horizontal_spacing ~ 'px'}};
                   padding-right: {{item.custom_text_horizontal_spacing ~ 'px'}};
                 {% endif %}

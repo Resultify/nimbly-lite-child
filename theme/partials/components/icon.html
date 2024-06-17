@@ -44,10 +44,10 @@
               background-color: {{data.icon_background.css}};
               --scope-hover-color: var(--custom-color);
             {%- endif -%}
-            {% if data.icon_border_radius != null %}
+            {% if data.icon_border_radius is integer %}
               border-radius: {{data.icon_border_radius ~ '%'}};
             {%- endif -%}
-            {% if data.icon_spacing != null %}
+            {% if data.icon_spacing is integer %}
               padding: {{data.icon_spacing ~ 'px'}};
             {%- endif -%}
           }

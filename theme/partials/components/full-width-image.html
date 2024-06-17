@@ -60,7 +60,7 @@
         </style>
       {% end_require_css %}
     {%- endif -%}
-    {%- if data.full_width_image_border_radius != null and data.force_full_width_image != true -%}
+    {%- if data.full_width_image_border_radius is integer and data.force_full_width_image != true -%}
       {% require_css %}
         <style data-component="full-width-image scoped id{{item_hash}}">
           .fullwidthimage{{item_hash}} .full-width-image-item {

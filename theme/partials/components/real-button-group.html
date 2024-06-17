@@ -73,7 +73,7 @@
           {% require_css %}
             <style data-component="real-button-group scoped id{{item_hash}}">
               .btn{{item_hash}} {
-                {%- if item.custom_button_border_radius != null -%}
+                {%- if item.custom_button_border_radius is integer -%}
                   --border-radius: {{item.custom_button_border_radius ~ 'px'}};
                 {%- endif -%}
                 {%- if item.custom_button_font.color -%}
@@ -82,15 +82,15 @@
                 {%- if item.custom_button_background.css -%}
                   --bg: {{item.custom_button_background.css}};
                 {%- endif -%}
-                {% if item.custom_button_vertical_spacing != null %}
+                {% if item.custom_button_vertical_spacing is integer %}
                   padding-top: {{item.custom_button_vertical_spacing ~ 'px'}};
                   padding-bottom: {{item.custom_button_vertical_spacing ~ 'px'}};
                 {% endif %}
-                {% if item.custom_button_horizontal_spacing != null %}
+                {% if item.custom_button_horizontal_spacing is integer %}
                   padding-left: {{item.custom_button_horizontal_spacing ~ 'px'}};
                   padding-right: {{item.custom_button_horizontal_spacing ~ 'px'}};
                 {% endif %}
-                {%- if item.custom_button_border_width != null -%}
+                {%- if item.custom_button_border_width is integer -%}
                   border-width: {{item.custom_button_border_width ~ 'px'}};
                 {%- endif -%}
                 {%- if item.custom_button_border_color.css -%}
