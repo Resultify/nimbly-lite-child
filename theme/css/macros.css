@@ -25,7 +25,7 @@
     font-size: {{data.size ~ 'px'}};
   {%- endif -%}
   {%- if data.style -%}
-    {{data.style}}
+    {{data.style}};
   {%- endif -%}
 {%- endmacro -%}
 

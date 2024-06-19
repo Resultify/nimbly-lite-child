@@ -81,7 +81,7 @@
           height: var(--root-button-icon-size, 1.4em);
         }
         :where(.button-group .btn-link) :where(.visually-hidden + svg, .visually-hidden + .btn-image) {
-          height: var(--root-button-onlyicon-size, 1.6em);
+          height: var(--root-button-onlyicon-size, 1em);
         }
       </style>
     {% end_require_css %}
@@ -143,7 +143,7 @@
                 }
                 .btn{{item_hash}}:not(:active):hover {
                   {%- if item.custom_button_hover.background.css -%}
-                    --hover-bg: {{item.custom_button_hover.background.color}};
+                    --hover-bg: {{item.custom_button_hover.background.css}};
                   {%- endif -%}
                   {%- if item.custom_button_hover.color.css -%}
                     --hover-color: {{item.custom_button_hover.color.css}};

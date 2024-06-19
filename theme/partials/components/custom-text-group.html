@@ -26,6 +26,7 @@
           gap: var(--root-custom-text-gap, .9ch);
         }
         .custom-text {
+          text-align: var(--scope-alignment);
           --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
           color: var(--_macro-color);
           display: block;
@@ -82,6 +83,9 @@
                 {% endif %}
                 {{css_gradient_macro(item)}}
                 {{css_font_macro(item.custom_text_font, false)}}
+                {% if item.custom_text_font.size >= 45 %}
+                  font-size: clamp(45px, calc(4vw + 1rem), {{item.custom_text_font.size ~ 'px'}});
+                {% endif %}
               }
               {%- if item.gradient_direction and item.custom_text_background.css -%}
                 .customtext{{item_hash}}:after {

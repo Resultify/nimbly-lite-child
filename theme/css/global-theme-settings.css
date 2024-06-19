@@ -12,10 +12,10 @@
   /* --shadow-custom3: */
 
   /* animation global styles */
-  --ani-scale1x: scale(1.03);
-  --ani-scale2x: scale(1.04);
-  --ani-scale3x: scale(1.06);
-  --ani-scale4x: scale(1.09);
+  --ani-scale1x: scale(1.01);
+  --ani-scale2x: scale(1.03);
+  --ani-scale3x: scale(1.05);
+  --ani-scale4x: scale(1.08);
   --ani-slideup1x: translateY(-4px);
   --ani-slideup2x: translateY(-8px);
   --ani-slideup3x: translateY(-12px);
