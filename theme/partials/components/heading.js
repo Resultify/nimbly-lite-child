@@ -11,6 +11,10 @@ const heading = (parent = '', defaultHeading = '') => {
       allow_new_line: true,
       default: defaultHeading
     }),
+    fi.boolean('', 'heading_text_prop_visibility', {
+      inline_help_text: '<span style="color:#33475b;">Show/hide</span> additional <span style="color:#007a8c;font-weight:700;font-size:14px;">Heading</span> properties.',
+      display: 'toggle'
+    }),
     fi.choice('Tag', 'heading_tag', {
       choices: [
         ['h1', 'H1'],
@@ -25,8 +29,9 @@ const heading = (parent = '', defaultHeading = '') => {
       help_text: 'Semantic heading tag (h1-h6)',
       display_width: 'half_width',
       visibility: {
-        controlling_field_path: `${parent}heading_text`,
-        operator: 'NOT_EMPTY'
+        controlling_field_path: `${parent}heading_text_prop_visibility`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
       }
     }),
     fi.choice('Style', 'heading_style', {
@@ -47,8 +52,9 @@ const heading = (parent = '', defaultHeading = '') => {
       help_text: 'Display different heading styles not related to semantic heading type (tag h1-h6)',
       display_width: 'half_width',
       visibility: {
-        controlling_field_path: `${parent}heading_text`,
-        operator: 'NOT_EMPTY'
+        controlling_field_path: `${parent}heading_text_prop_visibility`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
       }
     }),
     fi.choice('Link type', 'heading_link_type', {
@@ -59,8 +65,9 @@ const heading = (parent = '', defaultHeading = '') => {
       placeholder: 'No link',
       display_width: 'half_width',
       visibility: {
-        controlling_field_path: `${parent}heading_text`,
-        operator: 'NOT_EMPTY'
+        controlling_field_path: `${parent}heading_text_prop_visibility`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
       }
     }),
     fi.link('', 'heading_link', {
@@ -75,8 +82,9 @@ const heading = (parent = '', defaultHeading = '') => {
             controlling_value_regex: 'link'
           },
           {
-            controlling_field_path: `${parent}heading_text`,
-            operator: 'NOT_EMPTY'
+            controlling_field_path: `${parent}heading_text_prop_visibility`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
           }
         ]
       }
@@ -100,8 +108,9 @@ const heading = (parent = '', defaultHeading = '') => {
             controlling_value_regex: 'anchor'
           },
           {
-            controlling_field_path: `${parent}heading_text`,
-            operator: 'NOT_EMPTY'
+            controlling_field_path: `${parent}heading_text_prop_visibility`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
           }
         ]
       }
@@ -130,8 +139,9 @@ const heading = (parent = '', defaultHeading = '') => {
             controlling_value_regex: 'anchor'
           },
           {
-            controlling_field_path: `${parent}heading_text`,
-            operator: 'NOT_EMPTY'
+            controlling_field_path: `${parent}heading_text_prop_visibility`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
           }
         ]
       }
@@ -153,8 +163,9 @@ const heading = (parent = '', defaultHeading = '') => {
             controlling_value_regex: 'anchor'
           },
           {
-            controlling_field_path: `${parent}heading_text`,
-            operator: 'NOT_EMPTY'
+            controlling_field_path: `${parent}heading_text_prop_visibility`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
           }
         ]
       }
@@ -175,8 +186,9 @@ const heading = (parent = '', defaultHeading = '') => {
             controlling_value_regex: 'anchor'
           },
           {
-            controlling_field_path: `${parent}heading_text`,
-            operator: 'NOT_EMPTY'
+            controlling_field_path: `${parent}heading_text_prop_visibility`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
           }
         ]
       }
@@ -200,8 +212,9 @@ const heading = (parent = '', defaultHeading = '') => {
             controlling_value_regex: 'anchor'
           },
           {
-            controlling_field_path: `${parent}heading_text`,
-            operator: 'NOT_EMPTY'
+            controlling_field_path: `${parent}heading_text_prop_visibility`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
           }
         ]
       }
@@ -231,17 +244,19 @@ const heading = (parent = '', defaultHeading = '') => {
             controlling_value_regex: 'link'
           },
           {
-            controlling_field_path: `${parent}heading_text`,
-            operator: 'NOT_EMPTY'
+            controlling_field_path: `${parent}heading_text_prop_visibility`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
           }
         ]
       }
     }),
-    fi.boolean('Additional customization', 'heading_additional_customization', {
-      help_text: 'Enable additional style customization options',
+    fi.boolean('Advanced customization', 'heading_additional_customization', {
+      help_text: 'Enable advanced <span style="color:#61dcee;font-weight:700;font-size:14px;">Heading</span> style customization.<br>***<br>Use only in rare cases when global heading style is not sufficient.',
       visibility: {
-        controlling_field_path: `${parent}heading_text`,
-        operator: 'NOT_EMPTY'
+        controlling_field_path: `${parent}heading_text_prop_visibility`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
       }
     }),
     fi.font('Font', 'heading_font', {
@@ -255,8 +270,9 @@ const heading = (parent = '', defaultHeading = '') => {
             controlling_value_regex: 'true'
           },
           {
-            controlling_field_path: `${parent}heading_text`,
-            operator: 'NOT_EMPTY'
+            controlling_field_path: `${parent}heading_text_prop_visibility`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
           }
         ]
       },
@@ -281,8 +297,9 @@ const heading = (parent = '', defaultHeading = '') => {
             controlling_value_regex: 'true'
           },
           {
-            controlling_field_path: `${parent}heading_text`,
-            operator: 'NOT_EMPTY'
+            controlling_field_path: `${parent}heading_text_prop_visibility`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
           },
           {
             controlling_field_path: `${parent}heading_link_type`,
@@ -312,8 +329,9 @@ const heading = (parent = '', defaultHeading = '') => {
                 controlling_value_regex: 'true'
               },
               {
-                controlling_field_path: `${parent}heading_text`,
-                operator: 'NOT_EMPTY'
+                controlling_field_path: `${parent}heading_text_prop_visibility`,
+                operator: 'EQUAL',
+                controlling_value_regex: 'true'
               }
             ]
           },
@@ -349,8 +367,9 @@ const heading = (parent = '', defaultHeading = '') => {
                 controlling_value_regex: 'true'
               },
               {
-                controlling_field_path: `${parent}heading_text`,
-                operator: 'NOT_EMPTY'
+                controlling_field_path: `${parent}heading_text_prop_visibility`,
+                operator: 'EQUAL',
+                controlling_value_regex: 'true'
               }
             ]
           },

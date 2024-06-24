@@ -38,7 +38,7 @@
           width: {{data.icon_size ~ 'px'}};
           height: {{data.icon_size ~ 'px'}};
         }
-        {%- if data.icon_additional_customization -%}
+        {%- if data.icon_background.css or data.icon_border_radius is integer or data.icon_spacing is integer or data.icon_color.css -%}
           .icon{{item_hash}} {
             {%- if data.icon_background.css -%}
               background-color: {{data.icon_background.css}};

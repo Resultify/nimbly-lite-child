@@ -34,10 +34,19 @@ const video = (parent = '') => {
         controlling_value_regex: 'embed'
       }
     }),
+    fi.boolean('', 'video_prop_visibility', {
+      inline_help_text: '<span style="color:#33475b;">Show/hide</span> additional <span style="color:#007a8c;font-weight:700;font-size:14px;">Video</span> properties.',
+      display: 'toggle'
+    }),
     fi.boolean('Force full width', 'force_full_width_video', {
       help_text: 'With the <strong>Force full width</strong> option enabled, it will take the full width of the parent element, even if there is extra padding around it.',
       display_width: 'half_width',
-      default: false
+      default: false,
+      visibility: {
+        controlling_field_path: `${parent}video_prop_visibility`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
+      }
     }),
     fi.number('Border radius', 'video_border_radius', {
       min: 0,
@@ -51,6 +60,11 @@ const video = (parent = '') => {
             controlling_field_path: `${parent}force_full_width_video`,
             operator: 'EQUAL',
             controlling_value_regex: 'false'
+          },
+          {
+            controlling_field_path: `${parent}video_prop_visibility`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
           }
         ]
       }
@@ -70,6 +84,11 @@ const video = (parent = '') => {
             controlling_field_path: `${parent}hubspot_video`,
             operator: 'NOT_EMPTY',
             property: 'player_id'
+          },
+          {
+            controlling_field_path: `${parent}video_prop_visibility`,
+            operator: 'EQUAL',
+            controlling_value_regex: 'true'
           }
         ]
       }

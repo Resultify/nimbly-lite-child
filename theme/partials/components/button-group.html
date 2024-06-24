@@ -80,7 +80,7 @@
         :where(.button-group .btn-link) > :where( svg, .btn-image) {
           height: var(--root-button-icon-size, 1.4em);
         }
-        :where(.button-group .btn-link) :where(.visually-hidden + svg, .visually-hidden + .btn-image) {
+        :where(.button-group .btn-link.visually-hidden-text-wrp) > :where( svg, .btn-image) {
           height: var(--root-button-onlyicon-size, 1em);
         }
       </style>
@@ -215,15 +215,17 @@
             {%- else -%}
               {%- if item.button_hide_text and item.button_image.src and item.add_button_icon == "image" or item.button_hide_text and item.button_icon.name and item.add_button_icon == "fontawesome" or item.button_hide_text and item.button_inline_svg and item.add_button_icon == "inline_svg" -%}
                 {% set hide_text_class = 'class="visually-hidden"' %}
+                {% set hide_text_wrp_class = 'visually-hidden-text-wrp' %}
               {%- else -%}
                 {% set hide_text_class = '' %}
+                {% set hide_text_wrp_class = '' %}
               {%- endif -%}
               {% set button_link_class = "btn-link btn-{{item.button_style}} btn-{{item.button_size}} {{'btn-full-width' if item.button_position == 'fullwidth'}}" %}
             {%- endif -%}
             {%- if item.button_position == 'separate' -%}
               <div class="btn-block btn-block{{item_hash}}">
             {%- endif -%}
-            <a {{link_attributes(item.button_link)}} class="btn{{item_hash}} {{button_link_class}} {{"stretched-link" if button_stretched_link and loop.last}}">
+            <a {{link_attributes(item.button_link)}} class="btn{{item_hash}} {{button_link_class}} {{"stretched-link" if button_stretched_link and loop.last}} {{hide_text_wrp_class}}">
               {{add_button_icon(item, "left")}}
               <span {{hide_text_class}}>{{item.button_text}}</span>
               {{add_button_icon(item, "right")}}

@@ -37,19 +37,20 @@ const icon = (parent = '') => {
         controlling_value_regex: 'inline_svg'
       }
     }),
-    fi.boolean('Additional customization', 'icon_additional_customization', {
-      help_text: 'Enable additional style customization options'
+    fi.boolean('', 'icon_prop_visibility', {
+      inline_help_text: '<span style="color:#33475b;">Show/hide</span> additional <span style="color:#007a8c;font-weight:700;font-size:14px;">Icon</span> properties.',
+      display: 'toggle'
     }),
     fi.color('Color', 'icon_color', {
       visibility: {
-        controlling_field_path: `${parent}icon_additional_customization`,
+        controlling_field_path: `${parent}icon_prop_visibility`,
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }
     }),
     fi.color('Background', 'icon_background', {
       visibility: {
-        controlling_field_path: `${parent}icon_additional_customization`,
+        controlling_field_path: `${parent}icon_prop_visibility`,
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }
@@ -59,7 +60,7 @@ const icon = (parent = '') => {
       suffix: 'px',
       display_width: 'half_width',
       visibility: {
-        controlling_field_path: `${parent}icon_additional_customization`,
+        controlling_field_path: `${parent}icon_prop_visibility`,
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }
@@ -69,7 +70,7 @@ const icon = (parent = '') => {
       suffix: '%',
       display_width: 'half_width',
       visibility: {
-        controlling_field_path: `${parent}icon_additional_customization`,
+        controlling_field_path: `${parent}icon_prop_visibility`,
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }
