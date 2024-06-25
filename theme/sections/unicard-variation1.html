@@ -1,12 +1,18 @@
 <!--
   templateType: section
-  label: Unicard variation #3
-  description: Unicard design variation #3
+  label: Unicard variation #1
+  description: Unicard design variation #1
   isAvailableForNewContent: false
-  screenshotPath: ../images/section-previews/address.png
+  screenshotPath: ../images/section-previews/unicard-variation1.jpg
 -->
 {% dnd_section
   background_color="rgba(245, 245, 247, 1)",
+  padding={
+    "default" : {
+      "bottom" : "80px",
+      "top" : "80px"
+    }
+  },
   full_width=false
 %}
   {% dnd_column
@@ -15,7 +21,7 @@
   %}
     {% dnd_row %}
       {% dnd_module
-        path="/nimbly-lite-child/modules/unicard",
+        path="../modules/unicard",
         offset=0,
         width=12,
         custom_text_group=[ {

@@ -1,0 +1,34 @@
+<!--
+  templateType: section
+  label: Unicard variations anchors
+  description: Unicard variations anchors
+  isAvailableForNewContent: false
+  screenshotPath: ../images/section-previews/unicard-variations-anchors.jpg
+-->
+{% dnd_section
+  background_color={{context.background_color || "rgba(255, 255, 255, 0)"}},
+  padding={
+    "default" : {
+      "bottom" : context.padding_bottom || "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/unicard",
+        offset=0,
+        width=12,
+        heading={
+          "heading_link_type" : "anchor",
+          "heading_text" : "{{context.heading_text || 'Variant #1'}}"
+        },
+        module_components=[ "main_heading" ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

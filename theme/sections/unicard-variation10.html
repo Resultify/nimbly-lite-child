@@ -1,0 +1,203 @@
+<!--
+  templateType: section
+  label: Unicard variation #10
+  description: Unicard design variation #10
+  isAvailableForNewContent: false
+  screenshotPath: ../images/section-previews/unicard-variation10.jpg
+-->
+{% dnd_section
+  background_color="rgba(226, 69, 69, 1)",
+  padding={
+    "default" : {
+      "bottom" : "80px",
+      "top" : "30px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12,
+    margin={
+      "default" : {
+        "top" : "-210px"
+      }
+    }
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/unicard",
+        offset=0,
+        width=12,
+        button_group=[ {
+          "button_alignment" : "start",
+          "button_hide_text" : false,
+          "button_icon" : {
+            "type" : "REGULAR"
+          },
+          "button_icon_position" : "left",
+          "button_image" : {
+            "loading" : "disabled",
+            "src" : ""
+          },
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "sponsored" : false,
+            "url" : {
+              "href" : "#test",
+              "type" : "EXTERNAL"
+            },
+            "user_generated_content" : false
+          },
+          "button_position" : "inline",
+          "button_size" : "large",
+          "button_style" : "custombutton",
+          "button_text" : "Get started free",
+          "custom_button_background" : {
+            "color" : "#fff161",
+            "opacity" : 100
+          },
+          "custom_button_border_color" : {
+            "color" : "#fff161",
+            "opacity" : 100
+          },
+          "custom_button_border_radius" : 8,
+          "custom_button_border_width" : 2,
+          "custom_button_font" : {
+            "color" : "#000000",
+            "fallback" : "sans-serif",
+            "font" : "Outfit",
+            "font_set" : "GOOGLE",
+            "size" : 15,
+            "styles" : { },
+            "variant" : "regular"
+          },
+          "custom_button_hover" : {
+            "background" : {
+              "color" : "#FFFFFF",
+              "opacity" : 0
+            },
+            "border_color" : {
+              "color" : "#FFFFFF",
+              "opacity" : 100
+            },
+            "color" : {
+              "color" : "#FFFFFF",
+              "opacity" : 100
+            }
+          },
+          "custom_link_color" : { },
+          "custom_link_font" : {
+            "font_set" : "DEFAULT"
+          },
+          "custom_link_hover" : {
+            "color" : { }
+          }
+        }, {
+          "button_alignment" : "start",
+          "button_hide_text" : false,
+          "button_icon" : {
+            "type" : "REGULAR"
+          },
+          "button_icon_position" : "left",
+          "button_image" : {
+            "loading" : "disabled",
+            "src" : ""
+          },
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "sponsored" : false,
+            "url" : {
+              "href" : "#test",
+              "type" : "EXTERNAL"
+            },
+            "user_generated_content" : false
+          },
+          "button_position" : "inline",
+          "button_size" : "large",
+          "button_style" : "custombutton",
+          "button_text" : "Get a demo",
+          "custom_button_background" : {
+            "color" : "#fff161",
+            "opacity" : 100
+          },
+          "custom_button_border_color" : {
+            "color" : "#fff161",
+            "opacity" : 100
+          },
+          "custom_button_border_radius" : 8,
+          "custom_button_border_width" : 2,
+          "custom_button_font" : {
+            "color" : "#000000",
+            "fallback" : "sans-serif",
+            "font" : "Outfit",
+            "font_set" : "GOOGLE",
+            "size" : 15,
+            "styles" : { },
+            "variant" : "regular"
+          },
+          "custom_button_hover" : {
+            "background" : {
+              "color" : "#FFFFFF",
+              "opacity" : 0
+            },
+            "border_color" : {
+              "color" : "#FFFFFF",
+              "opacity" : 100
+            },
+            "color" : {
+              "color" : "#FFFFFF",
+              "opacity" : 100
+            }
+          },
+          "custom_link_color" : { },
+          "custom_link_font" : {
+            "font_set" : "DEFAULT"
+          },
+          "custom_link_hover" : {
+            "color" : { }
+          }
+        } ],
+        heading={
+          "heading_additional_customization" : true,
+          "heading_font" : {
+            "fallback" : "sans-serif",
+            "font" : "Zen Kaku Gothic New",
+            "font_set" : "GOOGLE",
+            "styles" : { },
+            "variant" : "500"
+          },
+          "heading_style" : "display-2",
+          "heading_text" : "Grow better with HubSpot"
+        },
+        media_type="simple_image",
+        module_components=[ "media", "main_heading", "richtext", "buttons" ],
+        simple_image_group={
+          "simple_image" : {
+            "alt" : "meeting-6004997",
+            "height" : 548,
+            "loading" : "disabled",
+            "src" : get_asset_url('../images/content/unicard-variations/10/1.svg'),
+            "width" : 722
+          },
+          "simple_image_width" : 400
+        },
+        style={
+          "alignment" : {
+            "horizontal_align" : "CENTER"
+          },
+          "content_gap" : 20,
+          "text_color" : {
+            "color" : "#FFFFFF",
+            "opacity" : 100
+          }
+        }
+      %}
+        {% module_attribute "richtext" %}
+          <p style="font-size: 24px;">Software that's powerful, not overpowering. Seamlessly connect your data, teams, and customers on one AI-powered customer platform that grows with your business.</p>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
