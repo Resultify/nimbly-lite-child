@@ -1,0 +1,89 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% import '../utils/hash.html' %}
+{% import '../../css/macros.css' %}
+{%- macro category_group_macro(data) -%}
+  {%- if data.category_group|length > 0 and data.show_categories -%}
+
+    {# common styles for category-group macro #}
+    {% require_css %}
+      <style data-component="category-group">
+        .category-group {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: var(--root-custom-text-gap, .9ch);
+          justify-content: var(--scope-alignment);
+        }
+        .category {
+          color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
+          border-color: var(--scope-hover-color, var(--custom-border-color, var(--scope-color)));
+          transition-property: color, border-color;
+          transition-duration: var(--root-transition-duration);
+          transition-timing-function: var(--root-transition-timing-function);
+        }
+      </style>
+    {% end_require_css %}
+
+    {# hash for scoped styles #}
+    {% set item_hash = hash([
+      data.categories_style_group.category_font.css,
+      data.categories_style_group.category_color.css,
+      data.categories_style_group.category_background.css,
+      data.categories_style_group.category_vertical_spacing,
+      data.categories_style_group.category_horizontal_spacing,
+      data.categories_style_group.category_border_width,
+      data.categories_style_group.category_border_radius,
+      data.categories_style_group.category_border_color.css
+    ]) %}
+
+    {# scoped styles for category-group macro #}
+    {% require_css %}
+      <style data-component="category-group scoped id{{item_hash}}">
+        .category{{item_hash}} {
+          {% if data.categories_style_group.category_color.color %}
+            --custom-color: {{data.categories_style_group.category_color.color}};
+          {% endif %}
+          {%- if data.categories_style_group.category_border_radius is integer -%}
+            border-radius: {{data.categories_style_group.category_border_radius ~ 'px'}};
+          {%- endif -%}
+          {%- if data.categories_style_group.category_background.css -%}
+            background-color: {{data.categories_style_group.category_background.css}};
+            --scope-hover-color: var(--custom-color);
+          {%- endif -%}
+          {% if data.categories_style_group.category_vertical_spacing is integer %}
+            padding-top: {{data.categories_style_group.category_vertical_spacing ~ 'px'}};
+            padding-bottom: {{data.categories_style_group.category_vertical_spacing ~ 'px'}};
+          {% endif %}
+          {% if data.categories_style_group.category_horizontal_spacing is integer %}
+            padding-left: {{data.categories_style_group.category_horizontal_spacing ~ 'px'}};
+            padding-right: {{data.categories_style_group.category_horizontal_spacing ~ 'px'}};
+          {% endif %}
+          {% if data.categories_style_group.category_font.size >= 30 and data.categories_style_group.category_font.size < 45 %}
+            line-height: 1.2;
+          {% endif %}
+          {% if data.categories_style_group.category_font.size >= 45 %}
+            line-height: 1;
+          {% endif %}
+          {% if data.categories_style_group.category_border_width is integer %}
+            border-width: {{data.categories_style_group.category_border_width ~ 'px'}};
+            border-style: solid;
+          {% endif %}
+          {% if data.categories_style_group.category_border_color.css %}
+            --custom-border-color: {{data.categories_style_group.category_border_color.css}};
+          {% endif %}
+          {{css_font_macro(data.categories_style_group.category_font, false)}}
+        }
+      </style>
+    {% end_require_css %}
+
+    <div data-component="category-group" class="category-group">
+      {%- for category in data.category_group -%}
+        <span class="category category{{item_hash}}">{{category|capitalize}}</span>
+      {%- endfor -%}
+    </div>
+
+  {%- endif -%}
+{%- endmacro -%}

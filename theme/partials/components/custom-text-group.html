@@ -1,0 +1,121 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% import '../utils/hash.html' %}
+{% import '../../css/macros.css' %}
+{%- macro custom_text_group_macro(data) -%}
+  {%- if data.custom_text_group|length > 0 -%}
+
+    {# common styles for custom-text-group macro #}
+    {% require_css %}
+      <style data-component="custom-text-group">
+        .custom-text-group,
+        .custom-text-block {
+          justify-content: var(--scope-alignment);
+        }
+        .custom-text-block {
+          flex-basis: 100%;
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .custom-text-group {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: var(--root-custom-text-gap, .9ch);
+        }
+        .custom-text {
+          text-align: var(--scope-alignment);
+          --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
+          color: var(--_macro-color);
+          display: block;
+          position: relative;
+          transition-property: color;
+          transition-duration: var(--root-transition-duration);
+          transition-timing-function: var(--root-transition-timing-function);
+        }
+      </style>
+    {% end_require_css %}
+
+    <div class="custom-text-group">
+      {%- for item in data.custom_text_group -%}
+        {%- if item.custom_text -%}
+
+          {# hash for scoped styles #}
+          {% set item_hash = hash([
+            item.custom_text_font.css,
+            item.custom_text_background.css,
+            item.custom_text_vertical_spacing,
+            item.custom_text_horizontal_spacing,
+            item.custom_text_border_radius,
+            item.gradient_color,
+            item.gradient_direction
+          ]) %}
+
+          {# scoped styles for custom-text-group macro #}
+          {% require_css %}
+            <style data-component="custom-text-group scoped id{{item_hash}}">
+              .customtext{{item_hash}} {
+                {% if item.custom_text_font.color %}
+                  --custom-color: {{item.custom_text_font.color}};
+                {% endif %}
+                {%- if item.custom_text_border_radius is integer -%}
+                  border-radius: {{item.custom_text_border_radius ~ 'px'}};
+                {%- endif -%}
+                {%- if item.custom_text_background.css and item.gradient_direction != true -%}
+                  background-color: {{item.custom_text_background.css}};
+                  --scope-hover-color: var(--custom-color);
+                {%- endif -%}
+                {% if item.custom_text_vertical_spacing is integer %}
+                  padding-top: {{item.custom_text_vertical_spacing ~ 'px'}};
+                  padding-bottom: {{item.custom_text_vertical_spacing ~ 'px'}};
+                {% endif %}
+                {% if item.custom_text_horizontal_spacing is integer %}
+                  padding-left: {{item.custom_text_horizontal_spacing ~ 'px'}};
+                  padding-right: {{item.custom_text_horizontal_spacing ~ 'px'}};
+                {% endif %}
+                {% if item.custom_text_font.size >= 30 and item.custom_text_font.size < 45 %}
+                  line-height: 1.2;
+                {% endif %}
+                {% if item.custom_text_font.size >= 45 %}
+                  line-height: 1;
+                {% endif %}
+                {{css_gradient_macro(item)}}
+                {{css_font_macro(item.custom_text_font, false)}}
+                {% if item.custom_text_font.size >= 45 %}
+                  font-size: clamp(45px, calc(4vw + 1rem), {{item.custom_text_font.size ~ 'px'}});
+                {% endif %}
+              }
+              {%- if item.gradient_direction and item.custom_text_background.css -%}
+                .customtext{{item_hash}}:after {
+                  background-color: {{item.custom_text_background.css}};
+                  content: '';
+                  display: block;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  z-index: -3;
+                  {%- if item.custom_text_border_radius > 0 -%}
+                    border-radius: {{item.custom_text_border_radius ~ 'px'}};
+                  {%- endif -%}
+                }
+              {%- endif -%}
+            </style>
+          {% end_require_css %}
+
+          {%- if item.custom_text_inline ne true -%}
+            <div class="custom-text-block">
+          {%- endif -%}
+          <span data-component="custom-text" class="custom-text customtext{{item_hash}}">{{item.custom_text}}</span>
+          {%- if item.custom_text_inline ne true -%}
+            </div>
+          {%- endif -%}
+
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+{%- endmacro -%}

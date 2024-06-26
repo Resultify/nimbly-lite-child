@@ -1,0 +1,15 @@
+{
+  "content_tags" : [ {
+    "name" : "BLOG",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "content_types" : [ "BLOG_LISTING" ],
+  "master_language" : "en",
+  "categories" : [ "BLOG" ],
+  "icon" : "../../images/module-icons/unicard-blog-list.svg",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 104263992025,
+  "label" : "Blog list cards",
+  "is_available_for_new_content" : false
+}

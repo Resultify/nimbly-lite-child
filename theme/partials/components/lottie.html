@@ -1,0 +1,80 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{%- macro lottie_macro(data) -%}
+  {%- if data.lottie_file -%}
+    {{require_js(get_asset_url('../../assets/js/dotlottie.js'), {defer: true})}}
+    {% require_js %}
+      <script>
+        function runDotLottie () {
+          const dotLottieCanvas = document.getElementsByClassName('dotlottie-canvas')
+          if (!dotLottieCanvas) return
+          for (const item of dotLottieCanvas) {
+            // set lottie alignment based on scope alignment
+            let lottieAlignment = window.getComputedStyle(item.closest('[class*="scope-root"]')).getPropertyValue('--scope-alignment')
+            if (lottieAlignment === 'start') {
+              lottieAlignment = [0, 0.5]
+            } else if (lottieAlignment === 'center') {
+              lottieAlignment = [0.5, 0.5]
+            } else if (lottieAlignment === 'end') {
+              lottieAlignment = [1, 0.5]
+            } else {
+              lottieAlignment = [0, 0.5]
+            }
+            // initialize dotLottie
+            const dotLottie = new window.DotLottie({ // eslint-disable-line
+              loop: item.hasAttribute('data-loop'),
+              speed: item.dataset.speed,
+              mode: item.dataset.mode,
+              autoplay: true,
+              layout: {
+                fit: 'contain',
+                align: lottieAlignment
+              },
+              canvas: item,
+              src: item.dataset.lottieSrc
+            })
+            // dotLottie load event
+            dotLottie.addEventListener('load', (event) => {
+              // run animation when in browser view
+              const observer = new window.IntersectionObserver(function (entries) {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    dotLottie.play()
+                  } else {
+                    dotLottie.pause()
+                  }
+                })
+              })
+              for (const elem of dotLottieCanvas) {
+                observer.observe(elem)
+              }
+            })
+          }
+        }
+        // run dotLottie when document is ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', runDotLottie)
+        } else {
+          runDotLottie()
+        }
+      </script>
+    {% end_require_js %}
+    {# common styles for lottie macro #}
+    {% require_css %}
+      <style data-component="lottie">
+        .lottie {
+          max-width: 100%;
+          height: auto;
+        }
+      </style>
+    {% end_require_css %}
+    <canvas data-component="lottie" class="lottie dotlottie-canvas"
+      data-lottie-src="{{data.lottie_file}}"
+      data-speed="{{data.lottie_speed}}"
+      data-mode="{{data.lottie_mode}}"
+      {{"data-loop" if data.lottie_loop}}>
+    </canvas>
+  {%- endif -%}
+{%- endmacro -%}

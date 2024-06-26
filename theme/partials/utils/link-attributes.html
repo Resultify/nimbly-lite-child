@@ -1,0 +1,22 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{%- macro link_attributes(link) -%}
+  {%- if link -%}
+    {% set href = link.url.href %}
+    {%- if link.url.type is equalto "FILE" -%}
+      {# Adjust FILE urls to match the path to the domain being viewed so a download can start #}
+      {% set grab_domain_parts_regex = "(http[s]://)(.*?)(/.*$)" %}
+      {% set replace_root_domain_regex = "$1{{content.resolved_domain}}$3" %}
+      {# Input: https://<filepathdomain>/<linkedfile> Output: https://<current-page-domain>/<linkedfile> #}
+      {% set href = href|regex_replace(grab_domain_parts_regex, replace_root_domain_regex) %}
+      {% set download = "download" %}
+    {%- elif link.url.type is equalto "EMAIL_ADDRESS" -%}
+      {% set href = "mailto:" + href %}
+    {%- elif link.url.type is equalto "PHONE_NUMBER" -%}
+      {% set href = "tel:" + href %}
+    {%- endif -%}
+    href="{{href}}" {{'target="_blank"' if link.open_in_new_tab}} {{link.rel}} {{download}}
+  {%- endif -%}
+{%- endmacro -%}

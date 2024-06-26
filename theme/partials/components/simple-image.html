@@ -1,0 +1,40 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{%- macro simple_image_macro(data) -%}
+  {%- if data.simple_image.src -%}
+    {# common styles for simple-image macro #}
+    {% require_css %}
+      <style data-component="simple-image">
+        .simple-image {
+          display: block;
+          max-width: 100%;
+          height: auto;
+        }
+        .simple-image-wrp {
+          display: flex;
+          width: 100%;
+        }
+      </style>
+    {% end_require_css %}
+
+    {%- if data.simple_image_alignment -%}
+      <div class="simple-image-wrp" style="justify-content:{{data.simple_image_alignment}};">
+    {%- endif -%}
+    <img data-component="simple-image" class="simple-image"
+      alt="{{data.simple_image.alt}}"
+      src="{{data.simple_image.src}}"
+      {%- if data.simple_image_width -%}
+        width="{{data.simple_image_width}}"
+        height="{{data.simple_image.height}}"
+      {%- else -%}
+        width="{{data.simple_image.width}}"
+        height="{{data.simple_image.height}}"
+      {%- endif -%}
+      loading="lazy">
+      {%- if data.simple_image_alignment -%}
+        </div>
+      {%- endif -%}
+  {%- endif -%}
+{%- endmacro -%}

@@ -1,0 +1,15 @@
+{
+  "content_tags" : [ {
+    "name" : "BLOG",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "content_types" : [ "KNOWLEDGE_BASE", "QUOTE_TEMPLATE", "MEMBERSHIP", "LANDING_PAGE", "SITE_PAGE", "CUSTOMER_PORTAL", "BLOG_LISTING", "WEB_INTERACTIVE", "BLOG_POST" ],
+  "master_language" : "en",
+  "categories" : [ "BLOG" ],
+  "icon" : "../../images/module-icons/unicard-blog-recent.svg",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 104265001404,
+  "label" : "Blog recent cards",
+  "is_available_for_new_content" : false
+}

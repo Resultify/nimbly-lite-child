@@ -1,0 +1,133 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% import '../utils/hash.html' %}
+{% import '../../css/macros.css' %}
+
+{# render list item icon internal macro #}
+{%- macro add_listitem_icon(data) -%}
+    {%- if data.list_item_icon_type == "image" and data.list_item_image.src -%}
+      <img class="list-item-image"
+      alt=""
+      src="{{data.list_item_image.src}}"
+      width="{{data.list_item_image.width}}"
+      height="{{data.list_item_image.height}}"
+      loading="lazy">
+    {%- elif data.list_item_icon_type == "inline_svg" and data.list_item_inline_svg -%}
+      {{data.list_item_inline_svg}}
+    {%- elif data.list_item_icon_type == "fontawesome" and data.list_item_icon.name -%}
+      {%- icon
+        name="{{data.list_item_icon.name}}"
+        style="{{data.list_item_icon.type}}"
+        unicode="{{data.list_item_icon.unicode}}"
+        icon_set="{{data.list_item_icon.icon_set}}"
+        purpose="decorative",
+        no_wrapper=true
+      -%}
+    {%- endif -%}
+{%- endmacro -%}
+
+{# list-group main macro #}
+{%- macro list_group_macro(data) -%}
+
+  {# common styles for list-group macro #}
+  {% require_css %}
+    <style data-component="list-group">
+      .list-group {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: var(--custom-list-gap, 1ch);
+        align-items: var(--scope-alignment);
+      }
+      .listitem {
+        --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
+        text-wrap: balance;
+        overflow-wrap: break-word;
+        -webkit-hyphens: auto; /* for Safari */
+        hyphens: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--custom-listitem-gap, .6ch);
+        color: var(--_macro-color, inherit);
+        transition-property: color;
+        transition-duration: var(--root-transition-duration);
+        transition-timing-function: var(--root-transition-timing-function);
+      }
+      .listitem svg {
+        height: auto;
+        width: var(--custom-listitem-icon-size, 1.2em);
+        fill: var(--custom-icon-color, currentColor);
+        transition-property: fill;
+        flex-shrink: 0;
+        transition-duration: var(--root-transition-duration);
+        transition-timing-function: var(--root-transition-timing-function);
+      }
+    </style>
+  {% end_require_css %}
+
+  {# hash for scoped styles #}
+  {% set list_hash = hash([
+    data.list_group.list_item_font.css,
+    data.list_group.list_item_text_color.css,
+    data.list_group.list_item_icon_size,
+    data.list_group.list_item_icon_gap
+  ]) %}
+
+  {% require_css %}
+    <style data-component="list-group scoped id{{list_hash}}">
+      .list{{list_hash}} .listitem {
+        {%- if data.list_group.list_item_text_color.css -%}
+          --custom-color: {{data.list_group.list_item_text_color.css}};
+        {%- endif -%}
+        {%- if data.list_group.list_item_font.css -%}
+          {{css_font_macro(data.list_group.list_item_font, false)}}
+        {%- endif -%}
+        {% if data.list_group.list_item_font.size >= 30 and data.list_group.list_item_font.size < 45 %}
+          line-height: 1.2;
+        {% endif %}
+        {% if data.list_group.list_item_font.size >= 45 %}
+          line-height: 1;
+        {% endif %}
+        {%- if data.list_group.list_item_icon_gap is integer -%}
+          --custom-listitem-gap: {{data.list_group.list_item_icon_gap ~ 'px'}};
+        {%- endif -%}
+      }
+
+      {%- if data.list_group.list_item_icon_size is integer -%}
+        .list{{list_hash}} .listitem svg {
+          --custom-listitem-icon-size: {{data.list_group.list_item_icon_size ~ 'px'}};
+        }
+        .list{{list_hash}} .listitem img {
+          width: {{data.list_group.list_item_icon_size ~ 'px'}};
+          height: auto;
+        }
+      {%- endif -%}
+      {%- if data.list_group.list_inline -%}
+        .list{{list_hash}} {
+          row-gap: calc(var(--custom-list-gap) / 2);
+          justify-content: var(--scope-alignment);
+        }
+      {%- endif -%}
+    </style>
+  {% end_require_css %}
+
+  {%- if data.list_group.list_item|length > 0 -%}
+    <ul data-component="list-group" class="list-group list{{list_hash}}"
+      style="{{'--custom-list-gap:{{data.list_group.list_gap ~ "px"}};' if data.list_group.list_gap is integer}} {{'flex-direction: row;' if data.list_group.list_inline}}">
+      {%- for item in data.list_group.list_item -%}
+        {%- if item.list_item_text -%}
+          <li class="listitem" style="{{'--custom-icon-color: {{item.list_item_icon_color.css}};' if item.list_item_icon_color.css}}">
+            {{add_listitem_icon(item)}}
+            <span>{{item.list_item_text}}</span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+
+{%- endmacro -%}

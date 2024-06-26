@@ -1,0 +1,18 @@
+{# add base styles to module previewer #}
+{% if is_in_module_previewer %}
+  {{require_css(get_asset_url("../../css/base.css"))}}
+  {{require_css(get_asset_url("../../css/global-theme-settings.css"))}}
+{% endif %}
+{# *** #}
+
+{% import '../../partials/modules/unicard.html' %}
+
+{% if module.card_group|length > 0 %}
+  {{require_css(get_asset_url("../../partials/modules/unicard.css"))}}
+
+  <div class="unicard-group" style="--col: {{module.style.grid_layout.columns}}; gap:{{module.style.grid_layout.gap ~ 'px'}};">
+    {% for item in module.card_group %}
+      {{unicard_macro(item, module.style.card_style_group)}}
+    {% endfor %}
+  </div>
+{% endif %}

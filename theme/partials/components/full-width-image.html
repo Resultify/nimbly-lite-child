@@ -1,0 +1,83 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% import '../utils/hash.html' %}
+{%- macro full_width_image_macro(data) -%}
+  {%- if data.full_width_image.src -%}
+
+    {# common styles for full-width-image macro #}
+    {% require_css %}
+      <style data-component="full-width-image">
+        .full-width-image {
+          width: 100%;
+          z-index: -15;
+        }
+        .full-width-image-item {
+          object-fit: cover;
+          width: 100%;
+          display: block;
+          max-width: 100%;
+          height: auto;
+        }
+      </style>
+    {% end_require_css %}
+
+    {# hash for scoped styles #}
+    {% set item_hash = hash([
+      loop.first,
+      loop.last,
+      data.force_full_width_image,
+      data.full_width_image_border_radius
+    ]) %}
+
+    {# scoped styles for full-width-image macro #}
+    {%- if data.force_full_width_image -%}
+      {% require_css %}
+        <style data-component="full-width-image scoped id{{item_hash}}">
+          .fullwidthimage{{item_hash}} {
+            margin-left: calc(var(--scope-padding-left) * -1);
+            margin-right: calc(var(--scope-padding-right) * -1);
+            width: calc(100% + var(--scope-padding-left) + var(--scope-padding-right));
+            {%- if data.force_full_width_image and loop.first -%}
+              margin-top: calc(var(--scope-padding-top) * -1);
+              margin-bottom: 0.8rem;
+            {%- elif data.force_full_width_image and loop.last -%}
+              margin-bottom: calc(var(--scope-padding-bottom) * -1);
+            {%- endif -%}
+          }
+          {% if data.force_full_width_image and loop.first or data.force_full_width_image and loop.last %}
+            .fullwidthimage{{item_hash}} .full-width-image-item {
+              {%- if data.force_full_width_image and loop.first -%}
+                border-top-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                border-top-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+              {%- elif data.force_full_width_image and loop.last -%}
+                border-bottom-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                border-bottom-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+              {%- endif -%}
+            }
+          {% endif %}
+        </style>
+      {% end_require_css %}
+    {%- endif -%}
+    {%- if data.full_width_image_border_radius is integer and data.force_full_width_image != true -%}
+      {% require_css %}
+        <style data-component="full-width-image scoped id{{item_hash}}">
+          .fullwidthimage{{item_hash}} .full-width-image-item {
+            border-radius: {{data.full_width_image_border_radius ~ 'px'}};
+          }
+        </style>
+      {% end_require_css %}
+    {%- endif -%}
+
+    <div data-component="full-width-image" class="full-width-image fullwidthimage{{item_hash}}">
+      <img class="full-width-image-item"
+        style="aspect-ratio: {{data.full_width_image_aspect_ratio}}"
+        alt="{{data.full_width_image.alt}}"
+        src="{{data.full_width_image.src}}"
+        width="{{data.full_width_image.width}}"
+        height="{{data.full_width_image.height}}"
+        loading="lazy">
+    </div>
+  {%- endif -%}
+{%- endmacro -%}

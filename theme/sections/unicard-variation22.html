@@ -1,0 +1,422 @@
+<!--
+  templateType: section
+  label: Unicard variation #22
+  description: Unicard design variation #22
+  isAvailableForNewContent: false
+  screenshotPath: ../images/section-previews/unicard-variation22.jpg
+-->
+{% dnd_section
+  background_color="rgba(239, 242, 246, 1)"
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_column
+        offset=0,
+        width=12,
+        padding={
+          "default" : {
+            "bottom" : "60px",
+            "left" : "100px",
+            "right" : "100px"
+          },
+          "mobile" : {
+            "left" : "0px",
+            "right" : "0px"
+          }
+        }
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_additional_customization" : true,
+              "heading_font" : {
+                "fallback" : "sans-serif",
+                "font" : "Raleway",
+                "font_set" : "GOOGLE",
+                "styles" : { },
+                "variant" : "700"
+              },
+              "heading_style" : "display-4",
+              "heading_text" : "Unlock the power of your digital content today"
+            },
+            media_type="simple_image",
+            module_components=[ "media", "main_heading" ],
+            simple_image_group={
+              "simple_image" : {
+                "alt" : "upload-svgrepo-com",
+                "height" : 800,
+                "loading" : "disabled",
+                "src" : get_asset_url('../images/content/unicard-variations/22/upload-svgrepo-com.svg'),
+                "width" : 800
+              },
+              "simple_image_width" : 100
+            },
+            style={
+              "alignment" : {
+                "horizontal_align" : "CENTER"
+              },
+              "content_gap" : 0,
+              "text_color" : {
+                "color" : "#2b2d31",
+                "opacity" : 100
+              }
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_column
+        offset=0,
+        width=6
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            button_group=[ {
+              "add_button_icon" : "fontawesome",
+              "button_alignment" : "end",
+              "button_hide_text" : true,
+              "button_icon" : {
+                "name" : "arrow-right",
+                "type" : "SOLID",
+                "unicode" : "f061"
+              },
+              "button_icon_position" : "right",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "",
+                  "href_with_scheme" : "",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "regular",
+              "button_style" : "custombutton",
+              "button_text" : "Read more",
+              "custom_button_background" : {
+                "color" : "#2b2d31",
+                "opacity" : 100
+              },
+              "custom_button_border_color" : {
+                "color" : "#2b2d31",
+                "opacity" : 100
+              },
+              "custom_button_border_radius" : 100,
+              "custom_button_font" : {
+                "color" : "#FFFFFF",
+                "font_set" : "DEFAULT",
+                "size" : 12
+              },
+              "custom_button_horizontal_spacing" : 11,
+              "custom_button_hover" : {
+                "background" : {
+                  "color" : "#1770e5",
+                  "opacity" : 100
+                },
+                "border_color" : {
+                  "color" : "#1770e5",
+                  "opacity" : 100
+                },
+                "color" : { }
+              },
+              "custom_button_vertical_spacing" : 10,
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            } ],
+            heading={
+              "heading_additional_customization" : true,
+              "heading_font" : {
+                "fallback" : "sans-serif",
+                "font" : "Raleway",
+                "font_set" : "GOOGLE",
+                "styles" : { },
+                "variant" : "700"
+              },
+              "heading_style" : "h4",
+              "heading_text" : "Contact sales"
+            },
+            module_components=[ "main_heading", "richtext", "buttons" ],
+            style={
+              "background_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "background_type" : "background_color",
+              "border" : {
+                "bottom" : {
+                  "color" : "#c4d1de",
+                  "opacity" : 0,
+                  "style" : "solid",
+                  "width" : {
+                    "units" : "px",
+                    "value" : 2
+                  }
+                },
+                "left" : {
+                  "color" : "#c4d1de",
+                  "opacity" : 0,
+                  "style" : "solid",
+                  "width" : {
+                    "units" : "px",
+                    "value" : 2
+                  }
+                },
+                "right" : {
+                  "color" : "#c4d1de",
+                  "opacity" : 0,
+                  "style" : "solid",
+                  "width" : {
+                    "units" : "px",
+                    "value" : 2
+                  }
+                },
+                "top" : {
+                  "color" : "#c4d1de",
+                  "opacity" : 0,
+                  "style" : "solid",
+                  "width" : {
+                    "units" : "px",
+                    "value" : 2
+                  }
+                }
+              },
+              "border_radius" : 32,
+              "hover" : {
+                "border_color" : {
+                  "color" : "#1770e5",
+                  "opacity" : 100
+                },
+                "shadow" : "shadow-md"
+              },
+              "hover_effects" : true,
+              "spacing" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 32
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 32
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 32
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 32
+                  }
+                }
+              },
+              "text_color" : {
+                "color" : "#2b2d31",
+                "opacity" : 100
+              }
+            },
+            whole_area_link=true
+          %}
+            {% module_attribute "richtext" %}
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non fringilla mauris, at aliquet metus. Suspendisse potenti.</span>
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+      {% dnd_column
+        offset=6,
+        width=6
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            button_group=[ {
+              "add_button_icon" : "fontawesome",
+              "button_alignment" : "end",
+              "button_hide_text" : true,
+              "button_icon" : {
+                "name" : "arrow-right",
+                "type" : "SOLID",
+                "unicode" : "f061"
+              },
+              "button_icon_position" : "right",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "",
+                  "href_with_scheme" : "",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "regular",
+              "button_style" : "custombutton",
+              "button_text" : "Read more",
+              "custom_button_background" : {
+                "color" : "#2b2d31",
+                "opacity" : 100
+              },
+              "custom_button_border_color" : {
+                "color" : "#2b2d31",
+                "opacity" : 100
+              },
+              "custom_button_border_radius" : 100,
+              "custom_button_font" : {
+                "color" : "#FFFFFF",
+                "font_set" : "DEFAULT",
+                "size" : 12
+              },
+              "custom_button_horizontal_spacing" : 11,
+              "custom_button_hover" : {
+                "background" : {
+                  "color" : "#1770e5",
+                  "opacity" : 100
+                },
+                "border_color" : {
+                  "color" : "#1770e5",
+                  "opacity" : 100
+                },
+                "color" : { }
+              },
+              "custom_button_vertical_spacing" : 10,
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            } ],
+            heading={
+              "heading_additional_customization" : true,
+              "heading_font" : {
+                "fallback" : "sans-serif",
+                "font" : "Raleway",
+                "font_set" : "GOOGLE",
+                "styles" : { },
+                "variant" : "700"
+              },
+              "heading_style" : "h4",
+              "heading_text" : "Get started for free"
+            },
+            module_components=[ "main_heading", "richtext", "buttons" ],
+            style={
+              "background_color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "background_type" : "background_color",
+              "border" : {
+                "bottom" : {
+                  "color" : "#c4d1de",
+                  "opacity" : 0,
+                  "style" : "solid",
+                  "width" : {
+                    "units" : "px",
+                    "value" : 2
+                  }
+                },
+                "left" : {
+                  "color" : "#c4d1de",
+                  "opacity" : 0,
+                  "style" : "solid",
+                  "width" : {
+                    "units" : "px",
+                    "value" : 2
+                  }
+                },
+                "right" : {
+                  "color" : "#c4d1de",
+                  "opacity" : 0,
+                  "style" : "solid",
+                  "width" : {
+                    "units" : "px",
+                    "value" : 2
+                  }
+                },
+                "top" : {
+                  "color" : "#c4d1de",
+                  "opacity" : 0,
+                  "style" : "solid",
+                  "width" : {
+                    "units" : "px",
+                    "value" : 2
+                  }
+                }
+              },
+              "border_radius" : 32,
+              "hover" : {
+                "border_color" : {
+                  "color" : "#1770e5",
+                  "opacity" : 100
+                },
+                "shadow" : "shadow-md"
+              },
+              "hover_effects" : true,
+              "spacing" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 32
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 32
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 32
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 32
+                  }
+                }
+              },
+              "text_color" : {
+                "color" : "#2b2d31",
+                "opacity" : 100
+              }
+            },
+            whole_area_link=true
+          %}
+            {% module_attribute "richtext" %}
+              <span>Vestibulum non fringilla mauris, at aliquet metus.&nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

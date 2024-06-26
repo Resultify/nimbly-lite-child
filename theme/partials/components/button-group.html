@@ -1,0 +1,242 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% import '../utils/link-attributes.html' %}
+{% import '../utils/hash.html' %}
+{% import '../../css/macros.css' %}
+
+{# render button icon internal macro #}
+{%- macro add_button_icon(data, position) -%}
+  {%- if data.button_icon_position is containing position -%}
+    {%- if data.add_button_icon == "image" and data.button_image.src -%}
+      <img class="btn-image"
+      alt=""
+      src="{{data.button_image.src}}"
+      width="{{data.button_image.width}}"
+      height="{{data.button_image.height}}"
+      loading="lazy">
+    {%- elif data.add_button_icon == "inline_svg" and data.button_inline_svg -%}
+      {{data.button_inline_svg}}
+    {%- elif data.add_button_icon == "fontawesome" and data.button_icon.name -%}
+      {%- icon
+        name="{{data.button_icon.name}}"
+        style="{{data.button_icon.type}}"
+        unicode="{{data.button_icon.unicode}}"
+        icon_set="{{data.button_icon.icon_set}}"
+        purpose="decorative",
+        no_wrapper=true
+      -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endmacro -%}
+
+{# button-group main macro #}
+{%- macro button_group_macro(data) -%}
+  {%- if data.button_group|length > 0 -%}
+
+    {# common styles for button-group macro #}
+    {% require_css %}
+      <style data-component="button-group">
+        .button-group,
+        .btn-block {
+          justify-content: var(--scope-alignment);
+        }
+        .button-group {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          width: 100%;
+          gap: var(--scope-content-gap);
+        }
+        .btn-block {
+          flex-basis: 100%;
+          display: flex;
+          flex-wrap: wrap;
+        }
+        :where(.button-group .btn-full-width) {
+          width: 100%;
+        }
+        :where(.button-group .btn-link) {
+          gap: var(--root-button-icon-gap, .9ch);
+        }
+        :where(.button-group) :where(.btn-linkonly, .btn-customlink) {
+          --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
+          --_macro-hover-color: var(--scope-hover-color, var(--custom-hover-color, var(--scope-color)));
+          color: var(--_macro-color, var(--color));
+          transition-property: color;
+          transition-duration: var(--root-transition-duration);
+          transition-timing-function: var(--root-transition-timing-function);
+        }
+        :where(.button-group) :where(.btn-linkonly:hover, .btn-customlink:hover) {
+          color: var(--_macro-hover-color, var(--hover-color));
+        }
+        :where(.button-group a) > :where(svg, .btn-image) {
+          width: auto;
+          height: var(--root-buttonlink-icon-size, 1.2em);
+          fill: currentcolor;
+        }
+        :where(.button-group .btn-link) > :where( svg, .btn-image) {
+          height: var(--root-button-icon-size, 1.4em);
+        }
+        :where(.button-group .btn-link.visually-hidden-text-wrp) > :where( svg, .btn-image) {
+          height: var(--root-button-onlyicon-size, 1em);
+        }
+      </style>
+    {% end_require_css %}
+
+    <div data-component="button-group" class="button-group">
+      {%- for item in data.button_group -%}
+
+        {# hash for scoped styles #}
+        {% set item_hash = hash([
+          item.button_alignment,
+          item.button_hide_text,
+          item.custom_button_font.css,
+          item.custom_button_background.css,
+          item.custom_button_vertical_spacing,
+          item.custom_button_horizontal_spacing,
+          item.custom_button_border_width,
+          item.custom_button_border_radius,
+          item.custom_button_border_color.css,
+          item.custom_button_hover.color.css,
+          item.custom_button_hover.background.css,
+          item.custom_button_hover.border_color.css,
+          item.custom_link_font.css,
+          item.custom_link_color.css,
+          item.custom_link_underline,
+          item.custom_link_hover.color.css,
+          item.custom_link_hover.underline
+        ]) %}
+
+        {# scoped styles for button-group macro #}
+        {%- if item.button_style is containing 'custom' -%}
+          {%- if item.button_style == "custombutton" -%}
+            {% require_css %}
+              <style data-component="button-group scoped id{{item_hash}}">
+                .btn{{item_hash}} {
+                  {%- if item.custom_button_border_radius is integer -%}
+                    --border-radius: {{item.custom_button_border_radius ~ 'px'}};
+                  {%- endif -%}
+                  {%- if item.custom_button_font.color -%}
+                    --color: {{item.custom_button_font.color}};
+                  {%- endif -%}
+                  {%- if item.custom_button_background.css -%}
+                    --bg: {{item.custom_button_background.css}};
+                  {%- endif -%}
+                  {% if item.custom_button_vertical_spacing is integer %}
+                    padding-top: {{item.custom_button_vertical_spacing ~ 'px'}};
+                    padding-bottom: {{item.custom_button_vertical_spacing ~ 'px'}};
+                  {% endif %}
+                  {% if item.custom_button_horizontal_spacing is integer %}
+                    padding-left: {{item.custom_button_horizontal_spacing ~ 'px'}};
+                    padding-right: {{item.custom_button_horizontal_spacing ~ 'px'}};
+                  {% endif %}
+                  {%- if item.custom_button_border_width is integer -%}
+                    border-width: {{item.custom_button_border_width ~ 'px'}};
+                  {%- endif -%}
+                  {%- if item.custom_button_border_color.css -%}
+                    border-color: {{item.custom_button_border_color.css}};
+                  {%- endif -%}
+                  {{css_font_macro(item.custom_button_font, false)}}
+                }
+                .btn{{item_hash}}:not(:active):hover {
+                  {%- if item.custom_button_hover.background.css -%}
+                    --hover-bg: {{item.custom_button_hover.background.css}};
+                  {%- endif -%}
+                  {%- if item.custom_button_hover.color.css -%}
+                    --hover-color: {{item.custom_button_hover.color.css}};
+                  {%- endif -%}
+                  {%- if item.custom_button_hover.border_color.css -%}
+                    --hover-border: {{item.custom_button_hover.border_color.css}};
+                  {%- endif -%}
+                }
+              </style>
+            {% end_require_css %}
+          {%- elif item.button_style == "customlink" -%}
+            {% require_css %}
+              <style data-component="button-group scoped id{{item_hash}}">
+                .btn{{item_hash}} {
+                  {%- if item.custom_link_color.css -%}
+                    --custom-color: {{item.custom_link_color.css}};
+                  {%- endif -%}
+                  {%- if item.custom_link_underline -%}
+                    text-decoration: {{item.custom_link_underline}};
+                  {%- endif -%}
+                  {{css_font_macro(item.custom_link_font, false)}}
+                }
+                .btn{{item_hash}}:hover {
+                  {%- if item.custom_link_hover.color.css -%}
+                    --custom-hover-color: {{item.custom_link_hover.color.css}};
+                  {%- endif -%}
+                  {%- if item.custom_link_hover.underline -%}
+                    text-decoration: {{item.custom_link_hover.underline}};
+                  {%- endif -%}
+                }
+              </style>
+            {% end_require_css %}
+          {%- endif -%}
+        {%- endif -%}
+        {%- if item.button_position == 'separate' -%}
+          {% require_css %}
+            <style data-component="button-group scoped id{{item_hash}}">
+              .btn-block{{item_hash}} {
+                justify-content: {{item.button_alignment}};
+              }
+            </style>
+          {% end_require_css %}
+        {%- endif -%}
+        {%- if item.button_hide_text and item.button_image.src and item.add_button_icon == "image" or item.button_hide_text and item.button_icon.name and item.add_button_icon == "fontawesome" or item.button_hide_text and item.button_inline_svg and item.add_button_icon == "inline_svg" -%}
+          {% require_css %}
+            <style data-component="button-group scoped id{{item_hash}}">
+              .btn{{item_hash}} {
+                min-width: 0;
+              }
+            </style>
+          {% end_require_css %}
+        {%- endif -%}
+
+        {# render CTA button #}
+        {%- if item.button_style == 'cta' -%}
+          {%- if item.button_position == 'separate' -%}
+            <div class="btn-block btn-block{{item_hash}}">
+          {%- endif -%}
+          {% set cta_extra_classes = button_stretched_link and loop.last ? 'btn-cta cta-stretched-link' : 'btn-cta' %}
+          {% cta guid="{{item.button_cta}}" extra_classes={{cta_extra_classes}} %}
+          {%- if item.button_position == 'separate' -%}
+            </div>
+          {%- endif -%}
+        {# render regular button #}
+        {%- else -%}
+          {%- if item.button_text -%}
+            {%- if item.button_style == "customlink" or item.button_style == "linkonly" -%}
+              {% set button_link_class = "btn-{{item.button_style}}" %}
+            {%- else -%}
+              {%- if item.button_hide_text and item.button_image.src and item.add_button_icon == "image" or item.button_hide_text and item.button_icon.name and item.add_button_icon == "fontawesome" or item.button_hide_text and item.button_inline_svg and item.add_button_icon == "inline_svg" -%}
+                {% set hide_text_class = 'class="visually-hidden"' %}
+                {% set hide_text_wrp_class = 'visually-hidden-text-wrp' %}
+              {%- else -%}
+                {% set hide_text_class = '' %}
+                {% set hide_text_wrp_class = '' %}
+              {%- endif -%}
+              {% set button_link_class = "btn-link btn-{{item.button_style}} btn-{{item.button_size}} {{'btn-full-width' if item.button_position == 'fullwidth'}}" %}
+            {%- endif -%}
+            {%- if item.button_position == 'separate' -%}
+              <div class="btn-block btn-block{{item_hash}}">
+            {%- endif -%}
+            <a {{link_attributes(item.button_link)}} class="btn{{item_hash}} {{button_link_class}} {{"stretched-link" if button_stretched_link and loop.last}} {{hide_text_wrp_class}}">
+              {{add_button_icon(item, "left")}}
+              <span {{hide_text_class}}>{{item.button_text}}</span>
+              {{add_button_icon(item, "right")}}
+            </a>
+            {%- if item.button_position == 'separate' -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+{%- endmacro -%}

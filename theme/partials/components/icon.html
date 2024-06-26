@@ -1,0 +1,82 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% import '../utils/hash.html' %}
+{%- macro icon_macro(data) -%}
+  {%- if data.icon.icon_inline_svg or data.icon.name -%}
+
+    {# common styles for icon macro #}
+    {% require_css %}
+      <style data-component="icon">
+        .icon-wrp {
+          display: inline-flex;
+          color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
+        }
+        .icon-wrp > svg {
+          fill: currentColor;
+          transition-property: color;
+          transition-duration: var(--root-transition-duration);
+          transition-timing-function: var(--root-transition-timing-function);
+        }
+      </style>
+    {% end_require_css %}
+
+    {# hash for scoped styles #}
+    {% set item_hash = hash([
+        data.icon_size,
+        data.icon_background.css,
+        data.icon_border_radius,
+        data.icon_spacing,
+        data.icon_color.css
+    ]) %}
+
+    {# scoped styles for icon macro #}
+    {% require_css %}
+      <style data-component="icon scoped id{{item_hash}}">
+        .icon{{item_hash}} > svg {
+          width: {{data.icon_size ~ 'px'}};
+          height: {{data.icon_size ~ 'px'}};
+        }
+        {%- if data.icon_background.css or data.icon_border_radius is integer or data.icon_spacing is integer or data.icon_color.css -%}
+          .icon{{item_hash}} {
+            {%- if data.icon_background.css -%}
+              background-color: {{data.icon_background.css}};
+              --scope-hover-color: var(--custom-color);
+            {%- endif -%}
+            {% if data.icon_border_radius is integer %}
+              border-radius: {{data.icon_border_radius ~ '%'}};
+            {%- endif -%}
+            {% if data.icon_spacing is integer %}
+              padding: {{data.icon_spacing ~ 'px'}};
+            {%- endif -%}
+          }
+          {%- if data.icon_color.css -%}
+            .icon{{item_hash}} {
+              --custom-color: {{data.icon_color.css}};
+            }
+          {%- endif -%}
+        {%- endif -%}
+      </style>
+    {% end_require_css %}
+
+    {%- if data.icon_type == 'fontawesome' -%}
+      {%- if data.icon.name -%}
+        {% set icon_extra_classes= 'icon-wrp icon' ~ item_hash %}
+        {% icon
+          extra_classes={{icon_extra_classes}}
+          name="{{data.icon.name}}"
+          style="{{data.icon.type}}"
+          unicode="{{data.icon.unicode}}"
+          icon_set="{{data.icon.icon_set}}"
+          purpose="decorative"
+        %}
+      {%- endif -%}
+    {%- elif data.icon_type == 'inline_svg' -%}
+      {%- if data.icon_inline_svg -%}
+        <div data-component="icon" class="icon-wrp icon{{item_hash}}">{{data.icon_inline_svg}}</div>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+
+{%- endmacro -%}
