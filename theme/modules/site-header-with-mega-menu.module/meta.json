@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "master_language" : "en",
+  "icon" : "../../images/module-icons/site-header.svg",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 77712681207,
+  "label" : "Site header",
+  "is_available_for_new_content" : true
+}
