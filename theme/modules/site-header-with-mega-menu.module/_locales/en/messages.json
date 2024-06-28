@@ -875,7 +875,7 @@
     "placeholders" : null
   },
   "menu.enable_mega_menu.label" : {
-    "message" : "Mega menu",
+    "message" : "",
     "description" : null,
     "placeholders" : null
   },
@@ -919,18 +919,23 @@
     "description" : "",
     "placeholders" : null
   },
-  "menu.menu.help_text" : {
-    "message" : "If no menu is selected, the name \"main_navigation\" will be used as the default main menu",
-    "description" : "",
+  "menu.menu.default" : {
+    "message" : "",
+    "description" : null,
     "placeholders" : null
   },
-  "menu.menu.inline_help_text" : {
+  "menu.menu.help_text" : {
     "message" : "",
     "description" : "",
     "placeholders" : null
   },
+  "menu.menu.inline_help_text" : {
+    "message" : "<a href=\"//www.resultify.se/hubfs/doc_site-header-with-mega-menu.html\">External documentation on Mega Menu syntax</a>",
+    "description" : "",
+    "placeholders" : null
+  },
   "menu.menu.label" : {
-    "message" : "Menu",
+    "message" : "",
     "description" : "",
     "placeholders" : null
   },
@@ -950,7 +955,7 @@
     "placeholders" : null
   },
   "name" : {
-    "message" : "site-header",
+    "message" : "site-header-with-mega-menu",
     "description" : "",
     "placeholders" : null
   },
