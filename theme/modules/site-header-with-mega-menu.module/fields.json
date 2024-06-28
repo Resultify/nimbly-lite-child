@@ -4851,7 +4851,7 @@
     "locked" : false,
     "display" : "toggle",
     "type" : "boolean",
-    "default" : false
+    "default" : true
   } ],
   "tab" : "CONTENT",
   "expanded" : false,
