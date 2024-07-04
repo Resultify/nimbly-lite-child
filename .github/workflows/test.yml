@@ -1,5 +1,4 @@
 name: Run tests
-
 on:
   push:
     branches:
@@ -8,8 +7,7 @@ on:
     types: [opened, reopened, synchronize]
 
 jobs:
-
-  build:
+  test:
     name: Node
     runs-on: ubuntu-latest
     timeout-minutes: 30

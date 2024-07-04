@@ -1,12 +1,10 @@
 name: Validate theme
-
 on:
   pull_request:
     types: [opened, reopened, synchronize]
 
 jobs:
-  validate:
-    name: Validate theme
+  validate-theme:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
