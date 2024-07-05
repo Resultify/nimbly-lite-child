@@ -203,7 +203,6 @@
     Services
         Get intouch and we tell you more about how we can help you Get intouch and we tell you more about how we can help you
         |Contact Us
-    ( <--- split becomes here between part 1 and part 2 )
         Cyber & IT Risk Management|Lorem ipsum dolor sit amet consectetur. Quam turpis ut maecenas rhoncus.|Cyber & IT Risk Management.svg
             Penetration Testing (Security Assurance)
             Framework Control and Compliance
@@ -223,10 +222,10 @@
     {% set names = link.label|split('|', 3) %}
 
     {#  if a third value is defined, try to fetch an image in the content-folder of theme
-        example: link title||Board Advisory.png
+        example: link title||Icon.png
     #}
     {% if names[2] and names[2] != '' %}
-      {% set imgUrl = get_asset_url('/dcr-partners-lite-child/images/content/' + names[2]) %}
+      {% set imgUrl = get_asset_url('/nimbly-lite-child/images/content/' + names[2]) %}
     {% endif %}
 
     {% if symbol == '|' %}
@@ -330,19 +329,18 @@
     {{'active' if link.activeNode}}">
       {{nav_link(link, link.level)}}
       {% if link.children && link.level < module.menu.max_level %}
-        {% if link.level == 1 && link.children|length > 2 %}
+        {% if link.level == 1 %}
 
-          {# mega menu for DCR Partners with 2 sections #}
+          {# general mega menu #}
           <ul role="list" class="main-nav__list main-nav__list--sublevel
           {{'main-nav__list--dropdown dropdown-menu' if link.children && link.level < module.menu.max_level && link.level < 2}}
           main-nav__list--lvl{{link.level + 1}} lvl{{link.level + 1}} main-nav__list-parts">
-            <div class="main-nav__list-part1">
+            <div class="main-nav__list-part">
             {% if link.children && link.level < module.menu.max_level && link.level < 2 %}
               <li class="main-nav__title">{{link.label || link.pageTitle}}</li>
             {% endif %}
             {% for sublink in link.children %}
               {{render_link_item(sublink, sublink.level)}}
-              {% if loop.index0 == 1 %}</div><div class="main-nav__list-part2">{% endif %}
             {% endfor %}
             </div>
           </ul>
@@ -549,13 +547,8 @@
       align-content: center;
     }
 
-    .main-nav__mega-menu .main-nav__list-part1 {
-      background: var(--secondary1-color) url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzY3IiBoZWlnaHQ9IjQyMCIgdmlld0JveD0iMCAwIDM2NyA0MjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIG9wYWNpdHk9IjAuMDUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjUwLjY2OCAwTDc3LjY4MTYgNDM5LjcxNEgxMTcuODE4TDI4OS40NjkgMEgyNTAuNjY4Wk0zMjguMTk5IDAuMjYwOTE4TDE1NS4xNDIgNDM5Ljk3NEgxOTUuMzQ5TDM2NyAwLjI2MDkxOEgzMjguMTk5Wk0tMC4yMDExNzIgNDM5Ljg3MUwxNzIuODU2IDAuMjA5NDQxSDIxMS41ODZMNDAuMDA1NCA0MzkuODcxSC0wLjIwMTE3MloiIGZpbGw9IiNFRkVCRjIiLz4KPC9zdmc+Cg==') no-repeat;
-      background-size: cover;
-    }
-
-    .main-nav__mega-menu .main-nav__list-part2 {
-      background: #f5f5f5;
+    .main-nav__list-item--lvl1 > .main-nav__description {
+      display: none;
     }
 
     {# mobile only styles #}
@@ -578,13 +571,8 @@
         max-height: unset;
       }
 
-      /* hide part1 in mobile */
-      .main-nav__mega-menu .main-nav__list-part1 {
-        display: none;
-      }
-
-      .main-nav__mega-menu .main-nav__list-part2 {
-        padding: 10px 0 0;
+      .main-nav__mega-menu .main-nav__list-part {
+        padding: 0px 0 0;
       }
     }
 
@@ -625,8 +613,7 @@
         align-items: stretch;
       }
 
-      .main-nav__mega-menu .main-nav__list-part1,
-      .main-nav__mega-menu .main-nav__list-part2 {
+      .main-nav__mega-menu .main-nav__list-part {
         margin-top: -10px;  {# to compensate for show animation #}
         display: flex;
         flex-wrap: wrap;
@@ -634,21 +621,13 @@
         align-items: flex-start;  {# top #}
       }
 
-      .main-nav__mega-menu .main-nav__list-part1 {
-        padding: 50px 40px 50px 40px;
-        width: 29%;
-
-        flex-direction: column;
-        align-content: flex-end;  {# align right #}
-      }
-
-      .main-nav__mega-menu .main-nav__list-part2 {
+      .main-nav__mega-menu .main-nav__list-part {
         padding: 50px 40px 30px 40px;
-        width: 71%;
+        width: 100%;
         gap: 0 16px;
 
         flex-direction: row;
-        align-content: flex-start;  {# align left #}
+        align-content: flex-start;
       }
     }
 
@@ -669,35 +648,32 @@
       display: block;
     }
 
-    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part1 .main-nav__list-item,
-    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part1 .main-nav__description,
-    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part1 .main-nav__title,
-    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part1 .main-nav__list-item-link {
-      color: #fff !important;
-    }
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item,
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__description,
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__title,
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item-link {}
 
-    {# text in part 1 - "Get intouch and we tell you more about ... " #}
-    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part1 a.main-nav__list-item-link {
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part a.main-nav__list-item-link {
       font-size: 18px !important;
       line-height: calc(28 / 18);
       margin-bottom: 10px;
     }
 
-    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part2 .main-nav__list-item--lvl2 {
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item--lvl2 {
       margin-bottom: 30px;
     }
 
-    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part2 .main-nav__list-item-link--lvl2 {
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item-link--lvl2 {
       display: inline-block;
     }
 
-    {# arrows on links in part 2 #}
-    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part2 .main-nav__list-item-link--lvl2:not([href="#"]) {
+    {# arrows on links #}
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item-link--lvl2:not([href="#"]) {
       padding-right: 28px;
       position: relative;
     }
 
-    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part2 .main-nav__list-item-link--lvl2:not([href="#"]):after {
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item-link--lvl2:not([href="#"]):after {
       content: '';
       display: inline;
       position: absolute;
@@ -708,13 +684,13 @@
       background-position: top 8px right;
     }
 
-    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part2 .main-nav__list-item-link--lvl3 {
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item-link--lvl3 {
       margin-bottom: 5px;
       font-size: 14px !important;
       margin: 0;
     }
 
-    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part2 .main-nav__list-item-link--lvl3:not([href="#"]) {
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item-link--lvl3:not([href="#"]) {
       background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOSIgaGVpZ2h0PSI4IiB2aWV3Qm94PSIwIDAgOSA4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGQ9Ik0xIDMuNUMwLjcyMzg1OCAzLjUgMC41IDMuNzIzODYgMC41IDRDMC41IDQuMjc2MTQgMC43MjM4NTggNC41IDEgNC41VjMuNVpNOC4zNTM1NSA0LjM1MzU1QzguNTQ4ODIgNC4xNTgyOSA4LjU0ODgyIDMuODQxNzEgOC4zNTM1NSAzLjY0NjQ1TDUuMTcxNTcgMC40NjQ0NjZDNC45NzYzMSAwLjI2OTIwNCA0LjY1OTczIDAuMjY5MjA0IDQuNDY0NDcgMC40NjQ0NjZDNC4yNjkyIDAuNjU5NzI4IDQuMjY5MiAwLjk3NjMxMSA0LjQ2NDQ3IDEuMTcxNTdMNy4yOTI4OSA0TDQuNDY0NDcgNi44Mjg0M0M0LjI2OTIgNy4wMjM2OSA0LjI2OTIgNy4zNDAyNyA0LjQ2NDQ3IDcuNTM1NTNDNC42NTk3MyA3LjczMDggNC45NzYzMSA3LjczMDggNS4xNzE1NyA3LjUzNTUzTDguMzUzNTUgNC4zNTM1NVpNMSA0LjVIOFYzLjVIMVY0LjVaIiBmaWxsPSIjOUE0OTlBIi8+Cjwvc3ZnPgo=");
       background-position: top 14px left 14px;
       background-repeat: no-repeat;
@@ -723,15 +699,9 @@
 
     {# desktop only styles #}
     @media (min-width: {{mobile_breakpoint ~ 'px'}}) {
-      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part1 > .main-nav__list-item,
-      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part1 > .main-nav__description,
-      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part1 > .main-nav__title {
-        max-width: 300px;
-      }
-
-      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part2 > .main-nav__list-item,
-      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part2 > .main-nav__description,
-      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part2 > .main-nav__title {
+      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part > .main-nav__list-item,
+      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part > .main-nav__description,
+      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part > .main-nav__title {
         width: calc(33% - (16px * 2 / 3)) !important; /* 16px - gap value */
         max-width: 340px;
       }
@@ -772,8 +742,6 @@
     .main-nav__list--sublevel .main-nav__title {
       {{module.style.menu.dropdown.links.spacing.css}}
       {{link_font.style}};
-      font-weight: 300;
-      color: #fff;
     }
 
     .main-nav__list--sublevel .main-nav__description {
