@@ -1,3 +1,11 @@
+### v4.0.1 `July 18, 2024`
+* **[TASK]** update @resultify/hubspot-cms-lib to v3.4.4 [`f3730e6`](https://github.com/Resultify/nimbly-lite-child/commit/f3730e6) (dmh)
+* **[TASK]** update browserslis config, update template screenshots [`6a579c1`](https://github.com/Resultify/nimbly-lite-child/commit/6a579c1) (dmh)
+* **[TASK]** update @resultify/hubspot-cms-lib to v3.4.1 [`dd3d56d`](https://github.com/Resultify/nimbly-lite-child/commit/dd3d56d) (dmh)
+* **[TASK]** update resultify hubspot-cms-lib and hubspot-fields-js deps [`ed62731`](https://github.com/Resultify/nimbly-lite-child/commit/ed62731) (dmh)
+
+***
+
 ### v4.0.0 `July 5, 2024`
 * **[TASK]** update @resultify/hubspot-cms-lib and hubspot-fields-js deps [`4dcf761`](https://github.com/Resultify/nimbly-lite-child/commit/4dcf761) (dmh)
 * **[TEST]** fix test github action [`c5f5864`](https://github.com/Resultify/nimbly-lite-child/commit/c5f5864) (dmh)
