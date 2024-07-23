@@ -1,0 +1,34 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  enableDomainStylesheets: false
+  label: Unicard variations 31-60
+  screenshotPath: ../images/template-previews/unicard-variations.png
+-->
+
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+  {% dnd_area 'dnd_area'
+    label='Unicard variations template',
+    class='unicard-variations-template'
+  %}
+
+
+    {% include_dnd_partial path='../sections/unicard-variation1.html' context={
+      'info_text': 'Use cases and design variations 31-60'
+    } %}
+    {% include_dnd_partial path='../sections/unicard-variations-anchors.html' context={'heading_text': 'Variant #31'} %}
+    {% include_dnd_partial path='../sections/unicard-variation31.html '%}
+    {% include_dnd_partial path='../sections/unicard-variations-anchors.html' context={'heading_text': 'Variant #32'} %}
+    {% include_dnd_partial path='../sections/unicard-variation32.html '%}
+    {% include_dnd_partial path='../sections/unicard-variations-anchors.html' context={'heading_text': 'Variant #33'} %}
+    {% include_dnd_partial path='../sections/unicard-variation33.html '%}
+    {% include_dnd_partial path='../sections/unicard-variations-anchors.html' context={'heading_text': 'Variant #34'} %}
+    {% include_dnd_partial path='../sections/unicard-variation34.html '%}
+
+
+  {% end_dnd_area %}
+
+{% endblock body %}
