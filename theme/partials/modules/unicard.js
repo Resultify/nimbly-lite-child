@@ -10,6 +10,7 @@ import { buttonGroup } from '../components/button-group.js'
 import { simpleImage } from '../components/simple-image.js'
 import { simpleText } from '../components/simple-text.js'
 import { listGroup } from '../components/list-group.js'
+import { accordionGroup } from '../components/accordion-group.js'
 import { moduleComponents } from '../components/module-components.js'
 import { animationList } from '../data/animation-list.js'
 import { shadowList } from '../data/shadow-list.js'
@@ -50,6 +51,7 @@ const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '')
     buttonGroup(parent),
     customTextGroup(parent),
     listGroup(parent),
+    accordionGroup(parent),
     group('Additional images', 'additional_images_group',
       {
         visibility: {

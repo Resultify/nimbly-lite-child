@@ -14,6 +14,7 @@
   {% import '../components/simple-image.html' %}
   {% import '../components/simple-text.html' %}
   {% import '../components/list-group.html' %}
+  {% import '../components/accordion-group.html' %}
   {% import '../../css/macros.css' %}
 
   <style>
@@ -117,6 +118,9 @@
 
         {% elif component == 'list' %}
           {{list_group_macro(data)}}
+
+          {% elif component == 'accordion' %}
+          {{accordion_group_macro(data)}}
 
         {% elif component == 'separator' %}
           </div>
