@@ -8,6 +8,16 @@
   {%- endif -%}
 {%- endmacro -%}
 
+{%- macro css_vertical_alignment_macro(data) -%}
+  {%- if data == 'TOP' -%}
+    start
+  {%- elif data == 'MIDDLE' -%}
+    center
+  {%- elif data == 'BOTTOM' -%}
+    end
+  {%- endif -%}
+{%- endmacro -%}
+
 {%- macro css_gradient_macro(data) -%}
   {%- if data.gradient_direction -%}
     -webkit-text-fill-color: transparent;

@@ -41,12 +41,6 @@
         --scope-padding: {{style.spacing.padding.top.value ~ style.spacing.padding.top.units if style.spacing.css|length <= 17 }};
       }
 
-      {# {% if style.top_content.top_content_spacing.css %}
-        .unicard .content-block-top {
-          {{style.top_content.top_content_spacing.css}};
-        }
-      {% endif %} #}
-
       {% if style.hover_effects %}
         @media (any-hover: hover) {
           .scope-root:hover {

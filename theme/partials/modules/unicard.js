@@ -64,7 +64,7 @@ const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '')
           max: 20
         }
       },
-      simpleImage(`${parent}additional_images_group.`, true)
+      simpleImage(`${parent}additional_images_group.`, { hideAlignmentProp: true })
     ),
     simpleText(parent),
     fi.boolean('Whole area link', 'whole_area_link', {
@@ -217,20 +217,6 @@ const unicardStyleFields = (parent = '', hideCardHoverEffects = false) => {
       display_width: 'half_width',
       choices: shadowList
     }),
-    // group('Top content block', 'top_content',
-    //   {
-    //     locked: false,
-    //     help_text: 'Add vertical spacing to the top block of content defined by the content separator',
-    //     inline_help_text: 'Add vertical spacing to the top block of content defined by the content separator'
-    //   },
-    //   fi.spacing('', 'top_content_spacing', {
-    //     visibility: {
-    //       hidden_subfields: {
-    //         padding: true
-    //       }
-    //     }
-    //   })
-    // ),
     fi.boolean('Card hover effects', 'hover_effects'),
     group('Hover', 'hover',
       {

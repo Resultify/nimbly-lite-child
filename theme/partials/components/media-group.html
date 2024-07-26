@@ -8,6 +8,7 @@
 {% import '../components/icon.html' %}
 {% import '../components/lottie.html' %}
 {% import '../components/video.html' %}
+{% import '../components/form.html' %}
 
 {%- macro media_group_macro(data) -%}
   {% if data.media_type == 'full_width_image' %}
@@ -20,5 +21,7 @@
     {{lottie_macro(data.lottie_group)}}
   {% elif data.media_type == 'video' %}
     {{video_macro(data.video_group)}}
+  {% elif data.media_type == 'form' %}
+    {{form_macro(data.form_group)}}
   {% endif %}
 {%- endmacro -%}
