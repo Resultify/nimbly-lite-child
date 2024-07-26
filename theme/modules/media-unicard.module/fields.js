@@ -7,49 +7,41 @@ import {
 } from '@resultify/hubspot-fields-js'
 import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
 import { mediaGroup } from '../../partials/components/media-group.js'
+import { shadowList } from '../../partials/data/shadow-list.js'
 
 init(
-  fi.choice('Module components', 'module_components', {
-    multiple: true,
-    locked: true,
-    reordering_enabled: true,
-    default: 'media',
-    choices: [
-      ['media', 'media']
-    ]
-  }),
-  mediaGroup('', {
-    hideForceFullWidthImageProp: true,
-    hideAlignmentProp: true,
-    hideForceFullWidthVideoProp: true,
-    additional_media_types: [['form', 'Form']]
-  }),
-  group('Card', 'card', {},
-    unicardFields({
-      enabledByDefault: ['media', 'main_heading', 'richtext', 'buttons'],
-      choices: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'list', 'accordion', 'separator', 'buttons', 'additional_images']
-    }, 'card.')
-  ),
-  styleGroup(
-    fi.choice('', 'mediacard_desktop_direction', {
-      inline_help_text: 'Direction on <span style="color:#007a8c;font-weight:700;font-size:14px;">Desktop</span>',
-      display_width: 'half_width',
-      required: true,
-      default: 'row',
+  group('Media', 'media_group', {},
+    fi.choice('Module components', 'module_components', {
+      multiple: true,
+      locked: true,
+      reordering_enabled: true,
+      default: 'media',
       choices: [
-        ['row', 'Left to right'],
-        ['row-reverse', 'Right to left']
+        ['media', 'media']
       ]
     }),
-    fi.choice('', 'mediacard_mobile_direction', {
-      inline_help_text: 'Direction on <span style="color:#007a8c;font-weight:700;font-size:14px;">Mobile</span>',
+    mediaGroup('media_group.', {
+      defaultMediaType: 'full_width_image',
+      hideForceFullWidthImageProp: true,
+      hideAlignmentProp: true,
+      hideForceFullWidthVideoProp: true,
+      additional_media_types: [['form', 'Form']]
+    })
+  ),
+  group('Card', 'card_group', {},
+    unicardFields({
+      enabledByDefault: ['main_heading', 'richtext', 'buttons'],
+      choices: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'list', 'accordion', 'separator', 'buttons', 'additional_images']
+    }, 'card_group.')
+  ),
+  styleGroup(
+    fi.boolean('Reverse', 'mediacard_desktop_reverse', {
       display_width: 'half_width',
-      required: true,
-      default: 'column',
-      choices: [
-        ['column', 'Top to bottom'],
-        ['column-reverse', 'Bottom to top']
-      ]
+      inline_help_text: 'Order on <span style="color:#007a8c;font-weight:700;font-size:14px;">Desktop</span>'
+    }),
+    fi.boolean('Reverse', 'mediacard_mobile_reverse', {
+      display_width: 'half_width',
+      inline_help_text: 'Order on <span style="color:#007a8c;font-weight:700;font-size:14px;">Mobile</span>'
     }),
     fi.number('', 'mediacard_desktop_gap', {
       default: 40,
@@ -73,6 +65,16 @@ init(
       step: 5,
       suffix: '%'
     }),
+    fi.border('Border', 'border'),
+    fi.number('Border radius', 'border_radius', {
+      min: 0,
+      suffix: 'px',
+      display_width: 'half_width'
+    }),
+    fi.choice('Shadow', 'shadow', {
+      display_width: 'half_width',
+      choices: shadowList
+    }),
     group('Media', 'media_style_group', {},
       fi.alignment('Desktop', 'media_desktop_alignment', {
         default: {
@@ -85,12 +87,12 @@ init(
           boolean_operator: 'OR',
           criteria: [
             {
-              controlling_field_path: 'media_type',
+              controlling_field_path: 'media_group.media_type',
               operator: 'EQUAL',
               controlling_value_regex: 'simple_image'
             },
             {
-              controlling_field_path: 'media_type',
+              controlling_field_path: 'media_group.media_type',
               operator: 'EQUAL',
               controlling_value_regex: 'icon'
             }
@@ -108,7 +110,7 @@ init(
           boolean_operator: 'AND',
           criteria: [
             {
-              controlling_field_path: 'media_type',
+              controlling_field_path: 'media_group.media_type',
               operator: 'EQUAL',
               controlling_value_regex: 'lottie'
             }
@@ -126,12 +128,12 @@ init(
           boolean_operator: 'OR',
           criteria: [
             {
-              controlling_field_path: 'media_type',
+              controlling_field_path: 'media_group.media_type',
               operator: 'EQUAL',
               controlling_value_regex: 'icon'
             },
             {
-              controlling_field_path: 'media_type',
+              controlling_field_path: 'media_group.media_type',
               operator: 'EQUAL',
               controlling_value_regex: 'simple_image'
             }
@@ -139,7 +141,6 @@ init(
         }
       }),
       fi.choice('Background type', 'background_type', {
-        display_width: 'half_width',
         placeholder: 'No background',
         choices: [
           ['background_color', 'Background color'],
@@ -216,15 +217,11 @@ init(
           controlling_value_regex: 'background_gradient'
         }
       })
-      // fi.spacing('', 'media_spacing', {
-      //   visibility: {
-      //     hidden_subfields: {
-      //       margin: true
-      //     }
-      //   }
-      // })
     ),
     group('Card', 'card_style_group', {},
+      fi.alignment('', 'card_vertical_alignment', {
+        alignment_direction: 'VERTICAL'
+      }),
       unicardStyleFields('style.card_style_group.')
     )
   )

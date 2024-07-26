@@ -14,6 +14,7 @@ import { form } from './form.js'
  * @memberof command
  * @param {string} [parent] - parent path
  * @param {object} [opt] - options
+ * @param {string} [opt.defaultMediaType] - default media type
  * @param {boolean} [opt.hideForceFullWidthImageProp] - hide force_full_width_image property for fullWidthImage component
  * @param {boolean} [opt.hideAlignmentProp] - hide alignment property for simpleImage component
  * @param {boolean} [opt.hideForceFullWidthVideoProp] - hide force_full_width_video property for video component
@@ -40,6 +41,7 @@ const mediaGroup = (parent = '', opt) => {
         operator: 'MATCHES_REGEX',
         controlling_value_regex: 'media'
       },
+      default: opt?.defaultMediaType || null,
       placeholder: 'None',
       choices: mediaTypeChoices
     }),

@@ -12,40 +12,52 @@
 
 <style>
 {% scope_css %}
-  {% if module.style.card_style_group.content_gap > 30 %}
-    .media-unicard {
+  .media-unicard {
+    --m-direction:{{module.style.mediacard_mobile_reverse ? 'column-reverse' : 'column' }};
+    --d-gap:{{module.style.mediacard_desktop_gap ~ 'px'}};
+    --m-gap:{{module.style.mediacard_mobile_gap ~ 'px'}};
+    --media-width:{{module.style.mediacard_desktop_reverse == 'false' ? module.style.mediacard_proportions ~ '%' : 100 - module.style.mediacard_proportions ~ '%' }};
+    --card-width:{{module.style.mediacard_desktop_reverse == 'false' ? 100 - module.style.mediacard_proportions ~ '%' : module.style.mediacard_proportions ~ '%' }};
+    --card-vertical-align: {{css_vertical_alignment_macro(module.style.card_style_group.card_vertical_alignment.vertical_align)}};
+    --media-align: {{css_alignment_macro(module.style.media_style_group.media_desktop_alignment.horizontal_align)}};
+    --media-vertical-align: {{css_vertical_alignment_macro(module.style.media_style_group.media_desktop_alignment.vertical_align)}};
+    --media-m-align: {{css_alignment_macro(module.style.media_style_group.media_mobile_alignment.horizontal_align)}};
+
+    --media-border: {{module.style.border.css && module.style.border.top.width.value is truthy ? module.style.border.css|cut('border:') : 'none' }};
+    --media-shadow: {{module.style.shadow is truthy ? 'var(--' ~ module.style.shadow ~ ')' : 'var(--shadow-)' }};
+    --media-border-radius: {{module.style.border_radius is truthy ? module.style.border_radius ~ "px" : 0 }};
+
+    {% if module.style.card_style_group.content_gap > 30 %}
       --custom-button-group-gap: 20px;
-    }
-  {% endif %}
-{% end_scope_css %}
-</style>
-
-
-<div class="media-unicard" style="
-  --d-direction:{{module.style.mediacard_desktop_direction}};
-  --m-direction:{{module.style.mediacard_mobile_direction}};
-  --d-gap:{{module.style.mediacard_desktop_gap ~ 'px'}};
-  --m-gap:{{module.style.mediacard_mobile_gap ~ 'px'}};
-  --media-width:{{module.style.mediacard_desktop_direction == 'row' ? module.style.mediacard_proportions ~ '%' : 100 - module.style.mediacard_proportions ~ '%' }};
-  --card-width:{{module.style.mediacard_desktop_direction == 'row' ? 100 - module.style.mediacard_proportions ~ '%' : module.style.mediacard_proportions ~ '%' }};
-  --media-align: {{css_alignment_macro(module.style.media_style_group.media_desktop_alignment.horizontal_align)}};
-  --media-vertical-align: {{css_vertical_alignment_macro(module.style.media_style_group.media_desktop_alignment.vertical_align)}};
-  --media-m-align: {{css_alignment_macro(module.style.media_style_group.media_mobile_alignment.horizontal_align)}};
-">
-  <div class="media scope-root" style="
+    {% endif %}
+  }
+  .media {
     --scope-alignment: {{css_alignment_macro(module.style.media_style_group.media_lottie_alignment.horizontal_align)}};
     {% if module.style.media_style_group.background_type == 'background_color' and module.style.media_style_group.background_color.css %}
-      background-color: {{module.style.media_style_group.background_color.css}};
+      --media-background: {{module.style.media_style_group.background_color.css}};
     {% elif module.style.media_style_group.background_type == 'background_gradient' and module.style.media_style_group.background_gradient.css %}
       background: {{module.style.media_style_group.background_gradient.css}};
     {% elif module.style.media_style_group.background_type == 'background_image' and module.style.media_style_group.background_image.css %}
       {{css_image_background_macro(module.style.media_style_group)}}
     {% endif %}
-    {# {{module.style.media_style_group.media_spacing.css}} #}
-  ">
-    {{media_group_macro(module)}}
+  }
+{% end_scope_css %}
+</style>
+
+{%- macro media(data, style) -%}
+  <div class="media scope-root">
+    {{media_group_macro(data)}}
   </div>
-  {{unicard_macro(module.card, module.style.card_style_group)}}
+{%- endmacro -%}
+
+<div class="media-unicard">
+  {%- if module.style.mediacard_desktop_reverse -%}
+    {{unicard_macro(module.card_group, module.style.card_style_group)}}
+    {{media(module.media_group, module.style.media_style_group)}}
+  {%- else -%}
+    {{media(module.media_group, module.style.media_style_group)}}
+    {{unicard_macro(module.card_group, module.style.card_style_group)}}
+  {%- endif -%}
 </div>
 
 

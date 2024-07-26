@@ -64,7 +64,7 @@
     background-size: {{data.background_image.background_size}};
     background-position: {{background_position}};
   {% elif data.background_image_overlay_gradient.css and data.background_image_overlay_type == 'gradient' %}
-    background: {{module.style.background_image_overlay_gradient.css}}, url({{data.background_image.src}});
+    background: {{data.background_image_overlay_gradient.css}}, url({{data.background_image.src}});
     background-size: {{data.background_image.background_size}};
     background-position: {{background_position}};
   {% else %}
