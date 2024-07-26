@@ -1,0 +1,46 @@
+/* css */
+.media-unicard {
+  display: flex;
+  align-items: stretch;
+}
+.media-unicard > .media, .media-unicard > .unicard {
+  flex: 1 1 0;
+}
+
+.media-unicard > .media {
+  display: flex;
+  flex-direction: column;
+  transform: translateZ(0);
+}
+
+@media (max-width: 767.8px) {
+  .media-unicard {
+    gap: var(--m-gap);
+    flex-direction: var(--m-direction);
+  }
+  .media-unicard > .media,
+  .media-unicard > .unicard {
+    flex-basis: 100%;
+  }
+  .media-unicard > .media {
+    align-items: var(--media-m-align);
+  }
+}
+@media (min-width: 768px) {
+  .media-unicard {
+    gap: var(--d-gap);
+    flex-direction: var(--d-direction);
+  }
+  .media-unicard > .media {
+    flex-basis: var(--media-width);
+    align-items: var(--media-align);
+    justify-content: var(--media-vertical-align);
+  }
+  .media-unicard > .unicard {
+    flex-basis: var(--card-width);
+  }
+  .media-unicard > .media > .full-width-image,
+  .media-unicard > .media > .full-width-image > .full-width-image-item {
+    height: 100%;
+  }
+}
