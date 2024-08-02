@@ -21,7 +21,7 @@ const accordionGroup = (parent = '') => {
           occurrence: {
             min: 0,
             max: 100,
-            sorting_label_field: 'accordion_group.accordion_item.accordion_item_title'
+            sorting_label_field: `${parent}accordion_group.accordion_item.accordion_item_title`
           }
         },
         fi.text('Accordion heading', 'accordion_item_title'),

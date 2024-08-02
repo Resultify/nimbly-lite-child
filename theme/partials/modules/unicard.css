@@ -21,12 +21,6 @@
   will-change: box-shadow, transform, background-color, border-color;
 }
 
-@media (max-width: 767.8px) {
-  .unicard {
-    flex-direction: var(--mobile-direction);
-  }
-}
-
 /* content blocks styles */
 .unicard .content-block-top,
 .unicard .content-block-bottom {
