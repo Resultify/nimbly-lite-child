@@ -19,21 +19,21 @@
       --right-column-width: {{ 100 - module.style.proportions ~ '%' }};
 
       {% if module.style.background_type == 'background_color' and module.style.background_color.css %}
-        --l-r-unicard-background: {{module.style.background_color.css}};
+        --unicard-l-r-background: {{module.style.background_color.css}};
       {% elif module.style.background_type == 'background_gradient' and module.style.background_gradient.css %}
         background: {{module.style.background_gradient.css}};
       {% elif module.style.background_type == 'background_image' and module.style.background_image.css %}
         {{css_image_background_macro(module.style)}}
       {% endif %}
-      --l-r-unicard-border-radius: {{module.style.border_radius is truthy ? module.style.border_radius ~ "px" : 0 }};
-      --l-r-unicard-border: {{module.style.border.css && module.style.border.top.width.value is truthy ? module.style.border.css|cut('border:') : 'none' }};
-      --l-r-unicard-border-width: {{module.style.border.css && module.style.border.top.width.value is truthy ? module.style.border.top.width.value ~ module.style.border.top.width.units : '0px' }};
-      --l-r-unicard-shadow: {{module.style.shadow is truthy ? 'var(--' ~ module.style.shadow ~ ')' : 'var(--shadow-)' }};
-      --l-r-unicard-padding-top: {{module.style.spacing.padding.top.value is truthy ? module.style.spacing.padding.top.value ~ module.style.spacing.padding.top.units : 0 }};
-      --l-r-unicard-padding-bottom: {{module.style.spacing.padding.bottom.value is truthy ? module.style.spacing.padding.bottom.value ~ module.style.spacing.padding.bottom.units : 0 }};
-      --l-r-unicard-padding-left: {{module.style.spacing.padding.left.value is truthy ? module.style.spacing.padding.left.value ~ module.style.spacing.padding.left.units : 0 }};
-      --l-r-unicard-padding-right: {{module.style.spacing.padding.right.value is truthy ? module.style.spacing.padding.right.value ~ module.style.spacing.padding.right.units : 0 }};
-      --l-r-unicard-padding: {{module.style.spacing.padding.top.value ~ module.style.spacing.padding.top.units if module.style.spacing.css|length <= 17 }};
+      --unicard-l-r-border-radius: {{module.style.border_radius is truthy ? module.style.border_radius ~ "px" : 0 }};
+      --unicard-l-r-border: {{module.style.border.css && module.style.border.top.width.value is truthy ? module.style.border.css|cut('border:') : 'none' }};
+      --unicard-l-r-border-width: {{module.style.border.css && module.style.border.top.width.value is truthy ? module.style.border.top.width.value ~ module.style.border.top.width.units : '0px' }};
+      --unicard-l-r-shadow: {{module.style.shadow is truthy ? 'var(--' ~ module.style.shadow ~ ')' : 'var(--shadow-)' }};
+      --unicard-l-r-padding-top: {{module.style.spacing.padding.top.value is truthy ? module.style.spacing.padding.top.value ~ module.style.spacing.padding.top.units : 0 }};
+      --unicard-l-r-padding-bottom: {{module.style.spacing.padding.bottom.value is truthy ? module.style.spacing.padding.bottom.value ~ module.style.spacing.padding.bottom.units : 0 }};
+      --unicard-l-r-padding-left: {{module.style.spacing.padding.left.value is truthy ? module.style.spacing.padding.left.value ~ module.style.spacing.padding.left.units : 0 }};
+      --unicard-l-r-padding-right: {{module.style.spacing.padding.right.value is truthy ? module.style.spacing.padding.right.value ~ module.style.spacing.padding.right.units : 0 }};
+      --unicard-l-r-padding: {{module.style.spacing.padding.top.value ~ module.style.spacing.padding.top.units if module.style.spacing.css|length <= 17 }};
       {% if module.style.card_style_group1.content_gap > 30 or module.style.card_style_group2.content_gap > 30 %}
         --custom-button-group-gap: 20px;
       {% endif %}
@@ -64,34 +64,34 @@
         .unicard-left-right .unicard:first-of-type,
         .unicard-left-right .unicard:first-of-type .full-width-image-item {
           {% if module.style.mobile_reverse %}
-            border-bottom-left-radius: calc(var(--l-r-unicard-border-radius) - var(--l-r-unicard-border-width));
-            border-bottom-right-radius: calc(var(--l-r-unicard-border-radius) - var(--l-r-unicard-border-width));
+            border-bottom-left-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+            border-bottom-right-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
           {% else %}
-            border-top-left-radius: calc(var(--l-r-unicard-border-radius) - var(--l-r-unicard-border-width));
-            border-top-right-radius: calc(var(--l-r-unicard-border-radius) - var(--l-r-unicard-border-width));
+            border-top-left-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+            border-top-right-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
           {% endif %}
         }
         .unicard-left-right .unicard:last-of-type,
         .unicard-left-right .unicard:last-of-type .full-width-image-item {
           {% if module.style.mobile_reverse %}
-            border-top-left-radius: calc(var(--l-r-unicard-border-radius) - var(--l-r-unicard-border-width));
-            border-top-right-radius: calc(var(--l-r-unicard-border-radius) - var(--l-r-unicard-border-width));
+            border-top-left-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+            border-top-right-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
           {% else %}
-            border-bottom-left-radius: calc(var(--l-r-unicard-border-radius) - var(--l-r-unicard-border-width));
-            border-bottom-right-radius: calc(var(--l-r-unicard-border-radius) - var(--l-r-unicard-border-width));
+            border-bottom-left-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+            border-bottom-right-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
           {% endif %}
         }
       }
       @media (min-width: 768px) {
         .unicard-left-right .unicard:first-of-type,
         .unicard-left-right .unicard:first-of-type .full-width-image-item {
-          border-top-left-radius: calc(var(--l-r-unicard-border-radius) - var(--l-r-unicard-border-width));
-          border-bottom-left-radius: calc(var(--l-r-unicard-border-radius) - var(--l-r-unicard-border-width));
+          border-top-left-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+          border-bottom-left-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
         }
         .unicard-left-right .unicard:last-of-type,
         .unicard-left-right .unicard:last-of-type .full-width-image-item {
-          border-top-right-radius: calc(var(--l-r-unicard-border-radius) - var(--l-r-unicard-border-width));
-          border-bottom-right-radius: calc(var(--l-r-unicard-border-radius) - var(--l-r-unicard-border-width));
+          border-top-right-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+          border-bottom-right-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
         }
       }
     {%- endif -%}

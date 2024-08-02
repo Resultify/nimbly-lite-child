@@ -83,21 +83,21 @@ init(
     }),
     fi.color('Background color', 'background_color', {
       visibility: {
-        controlling_field_path: 'style.media_style_group.background_type',
+        controlling_field_path: 'style.background_type',
         operator: 'EQUAL',
         controlling_value_regex: 'background_color'
       }
     }),
     fi.backgroundimage('Background image', 'background_image', {
       visibility: {
-        controlling_field_path: 'style.media_style_group.background_type',
+        controlling_field_path: 'style.background_type',
         operator: 'EQUAL',
         controlling_value_regex: 'background_image'
       }
     }),
     fi.choice('Background image overlay type', 'background_image_overlay_type', {
       visibility: {
-        controlling_field_path: 'style.media_style_group.background_type',
+        controlling_field_path: 'style.background_type',
         operator: 'EQUAL',
         controlling_value_regex: 'background_image'
       },
@@ -113,12 +113,12 @@ init(
         boolean_operator: 'AND',
         criteria: [
           {
-            controlling_field_path: 'style.media_style_group.background_type',
+            controlling_field_path: 'style.background_type',
             operator: 'EQUAL',
             controlling_value_regex: 'background_image'
           },
           {
-            controlling_field_path: 'style.media_style_group.background_image_overlay_type',
+            controlling_field_path: 'style.background_image_overlay_type',
             operator: 'EQUAL',
             controlling_value_regex: 'color'
           }
@@ -131,12 +131,12 @@ init(
         boolean_operator: 'AND',
         criteria: [
           {
-            controlling_field_path: 'style.media_style_group.background_type',
+            controlling_field_path: 'style.background_type',
             operator: 'EQUAL',
             controlling_value_regex: 'background_image'
           },
           {
-            controlling_field_path: 'style.media_style_group.background_image_overlay_type',
+            controlling_field_path: 'style.background_image_overlay_type',
             operator: 'EQUAL',
             controlling_value_regex: 'gradient'
           }
@@ -145,7 +145,7 @@ init(
     }),
     fi.gradient('Background gradient', 'background_gradient', {
       visibility: {
-        controlling_field_path: 'style.media_style_group.background_type',
+        controlling_field_path: 'style.background_type',
         operator: 'EQUAL',
         controlling_value_regex: 'background_gradient'
       }

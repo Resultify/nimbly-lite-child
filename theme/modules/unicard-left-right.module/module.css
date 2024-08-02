@@ -2,14 +2,14 @@
 .unicard-left-right {
   display: flex;
   min-height: 100%;
-  background-color: var(--l-r-unicard-background);
-  border: var(--l-r-unicard-border);
-  border-radius: var(--l-r-unicard-border-radius);
-  box-shadow: var(--l-r-unicard-shadow);
-  padding-left: var(--l-r-unicard-padding-left);
-  padding-right: var(--l-r-unicard-padding-right);
-  padding-top: var(--l-r-unicard-padding-top);
-  padding-bottom: var(--l-r-unicard-padding-bottom);
+  background-color: var(--unicard-l-r-background);
+  border: var(--unicard-l-r-border);
+  border-radius: var(--unicard-l-r-border-radius);
+  box-shadow: var(--unicard-l-r-shadow);
+  padding-left: var(--unicard-l-r-padding-left);
+  padding-right: var(--unicard-l-r-padding-right);
+  padding-top: var(--unicard-l-r-padding-top);
+  padding-bottom: var(--unicard-l-r-padding-bottom);
 }
 
 .unicard-left-right > .unicard {
