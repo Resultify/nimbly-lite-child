@@ -7,7 +7,6 @@ import { simpleImage } from './simple-image.js'
 import { icon } from './icon.js'
 import { lottie } from './lottie.js'
 import { video } from './video.js'
-import { form } from './form.js'
 
 /**
  * #### mediaGroup fields
@@ -154,28 +153,6 @@ const mediaGroup = (parent = '', opt) => {
         }
       },
       video(`${parent}video_group.`, opt)
-    ),
-    group('Form', 'form_group',
-      {
-        expanded: true,
-        visibility_rules: 'ADVANCED',
-        advanced_visibility: {
-          boolean_operator: 'AND',
-          criteria: [
-            {
-              controlling_field_path: `${parent}media_type`,
-              operator: 'EQUAL',
-              controlling_value_regex: 'form'
-            },
-            {
-              controlling_field_path: `${parent}module_components`,
-              operator: 'MATCHES_REGEX',
-              controlling_value_regex: 'media'
-            }
-          ]
-        }
-      },
-      form(`${parent}form_group.`, opt)
     )
   ]
 }

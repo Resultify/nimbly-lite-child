@@ -3,7 +3,7 @@ hubspot.config.yaml
 hubspot.config.yml
 theme/assets/*
 theme/modules/unicard.module/fields.json
-theme/modules/media-unicard.module/fields.json
+theme/modules/unicard-left-right.module/fields.json
 theme/modules/unicard-group.module/fields.json
 theme/modules/unicard-carousel.module/fields.json
 theme/modules/unicard-filter.module/fields.json

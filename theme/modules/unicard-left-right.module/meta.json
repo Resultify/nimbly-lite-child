@@ -46,12 +46,12 @@
     "source" : "USER"
   } ],
   "global" : false,
-  "content_types" : [ "KNOWLEDGE_BASE", "QUOTE_TEMPLATE", "MEMBERSHIP", "LANDING_PAGE", "SITE_PAGE", "CUSTOMER_PORTAL", "BLOG_LISTING", "WEB_INTERACTIVE", "BLOG_POST" ],
+  "content_types" : [ "KNOWLEDGE_BASE", "MEMBERSHIP", "QUOTE_TEMPLATE", "LANDING_PAGE", "SITE_PAGE", "CUSTOMER_PORTAL", "BLOG_LISTING", "WEB_INTERACTIVE", "BLOG_POST" ],
   "master_language" : "en",
-  "categories" : [ "DESIGN", "FUNCTIONALITY", "MEDIA" ],
-  "icon" : "../../images/module-icons/unicard-group.svg",
+  "categories" : [ "BODY_CONTENT", "MEDIA", "TEXT" ],
+  "icon" : "../../images/module-icons/unicard.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
-  "module_id" : 104263991542,
-  "label" : "Unicard group w/ filter",
+  "module_id" : 110898114003,
+  "label" : "Left|Right Unicard",
   "is_available_for_new_content" : true
 }

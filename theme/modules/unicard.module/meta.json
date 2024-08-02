@@ -52,6 +52,6 @@
   "icon" : "../../images/module-icons/unicard.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "module_id" : 104250576632,
-  "label" : "Universal card",
+  "label" : "Unicard",
   "is_available_for_new_content" : true
 }

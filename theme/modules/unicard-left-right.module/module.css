@@ -1,0 +1,38 @@
+/* css */
+.unicard-left-right {
+  display: flex;
+  min-height: 100%;
+  background-color: var(--l-r-unicard-background);
+  border: var(--l-r-unicard-border);
+  border-radius: var(--l-r-unicard-border-radius);
+  box-shadow: var(--l-r-unicard-shadow);
+  padding-left: var(--l-r-unicard-padding-left);
+  padding-right: var(--l-r-unicard-padding-right);
+  padding-top: var(--l-r-unicard-padding-top);
+  padding-bottom: var(--l-r-unicard-padding-bottom);
+}
+
+.unicard-left-right > .unicard {
+  flex: 1 1 0;
+}
+
+@media (max-width: 767.8px) {
+  .unicard-left-right {
+    gap: var(--mobile-gap);
+    flex-direction: var(--mobile-direction);
+  }
+  .unicard-left-right > .unicard {
+    flex-basis: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .unicard-left-right {
+    gap: var(--desktop-gap);
+  }
+  .unicard-left-right .unicard:first-of-type {
+    flex-basis: var(--left-column-width);
+  }
+  .unicard-left-right .unicard:last-of-type {
+    flex-basis: var(--right-column-width);
+  }
+}

@@ -52,6 +52,6 @@
   "icon" : "../../images/module-icons/unicard-group.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "module_id" : 104250577352,
-  "label" : "Cards group",
+  "label" : "Unicard group",
   "is_available_for_new_content" : true
 }
