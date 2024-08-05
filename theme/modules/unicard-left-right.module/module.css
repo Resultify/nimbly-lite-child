@@ -1,4 +1,7 @@
-/* css */
+.unicard-left-right-hero-wrp {
+  background-color: var(--unicard-l-r-hero-background);
+}
+
 .unicard-left-right {
   display: flex;
   min-height: 100%;
@@ -12,6 +15,11 @@
   padding-bottom: var(--unicard-l-r-padding-bottom);
 }
 
+.unicard-left-right-hero-wrp > .unicard-left-right {
+  max-width: var(--custom-max-width, var(--max-width));
+  margin: 0 auto;
+}
+
 .unicard-left-right > .unicard {
   flex: 1 1 0;
 }
@@ -20,6 +28,10 @@
   .unicard-left-right {
     gap: var(--mobile-gap);
     flex-direction: var(--mobile-direction);
+    padding-left: var(--unicard-l-r-mobile-padding-left);
+    padding-right: var(--unicard-l-r-mobile-padding-right);
+    padding-top: var(--unicard-l-r-mobile-padding-top);
+    padding-bottom: var(--unicard-l-r-mobile-padding-bottom);
   }
   .unicard-left-right > .unicard {
     flex-basis: 100%;
@@ -34,5 +46,38 @@
   }
   .unicard-left-right .unicard:last-of-type {
     flex-basis: var(--right-column-width);
+  }
+}
+
+/* ========================================= */
+/* ========================================= */
+/* flex grid system v2 modifications */
+/* theme/css/flex-system-v2/ */
+/* unicard heroimage section spacing on mobile */
+.dnd-section:is([class*="force-full-width-section"]) .unicard-left-right-hero-wrp {
+  padding-left: var(--section-horizontal-spacing-mobile);
+  padding-right: var(--section-horizontal-spacing-mobile);
+}
+
+
+/* unicard heroimage section spacing on tablet (vertical position) */
+@media (min-width: 540px) {
+  .dnd-section:is([class*="force-full-width-section"]) .unicard-left-right-hero-wrp {
+    padding-left: calc(var(--section-horizontal-spacing));
+    padding-right: calc(var(--section-horizontal-spacing));
+  }
+}
+@media (min-width: 640px) {
+  .dnd-section:is([class*="force-full-width-section"]) .unicard-left-right-hero-wrp {
+    padding-left: calc(var(--section-horizontal-spacing)/2);
+    padding-right: calc(var(--section-horizontal-spacing)/2);
+  }
+}
+
+/* unicard heroimage section spacing on desktop */
+@media (min-width: 1024px) {
+  .dnd-section:is([class*="force-full-width-section"]) .unicard-left-right-hero-wrp {
+    padding-left: var(--section-horizontal-spacing);
+    padding-right: var(--section-horizontal-spacing);
   }
 }
