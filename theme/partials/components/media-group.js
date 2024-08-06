@@ -17,6 +17,7 @@ import { video } from './video.js'
  * @param {boolean} [opt.hideForceFullWidthImageProp] - hide force_full_width_image property for fullWidthImage component
  * @param {boolean} [opt.hideAlignmentProp] - hide alignment property for simpleImage component
  * @param {boolean} [opt.hideForceFullWidthVideoProp] - hide force_full_width_video property for video component
+ * @param {boolean} [opt.showLottieScaleProp] - show lottie scale property
  * @param {Array<Array<string, string>>} [opt.additional_media_types] - additional media types
  */
 const mediaGroup = (parent = '', opt) => {
@@ -130,7 +131,7 @@ const mediaGroup = (parent = '', opt) => {
           ]
         }
       },
-      lottie(`${parent}lottie_group.`)
+      lottie(`${parent}lottie_group.`, opt)
     ),
     group('Video', 'video_group',
       {

@@ -106,6 +106,7 @@ init(
       'card_group.',
       {
         mediaGroup: {
+          showLottieScaleProp: true,
           hideForceFullWidthImageProp: true,
           hideForceFullWidthVideoProp: true
         },

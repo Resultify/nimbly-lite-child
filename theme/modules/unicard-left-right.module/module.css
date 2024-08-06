@@ -1,4 +1,5 @@
 .unicard-left-right-hero-wrp {
+  overflow: hidden;
   background-color: var(--unicard-l-r-hero-background);
 }
 

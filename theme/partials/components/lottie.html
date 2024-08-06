@@ -3,6 +3,18 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
+{%- macro lottie_dimensions(data) -%}
+  {%- if data.lottie_width is integer -%}
+    width="{{data.lottie_width}}"
+  {%- endif -%}
+  {%- if data.lottie_height is integer -%}
+    height="{{data.lottie_height}}"
+  {%- endif -%}
+  {%- if data.lottie_scale is float -%}
+    style="--lottie-custom-scale: scale({{data.lottie_scale}});"
+  {%- endif -%}
+{%- endmacro -%}
+
 {%- macro lottie_macro(data) -%}
   {%- if data.lottie_file -%}
     {{require_js(get_asset_url('../../assets/js/dotlottie.js'), {defer: true})}}
@@ -66,12 +78,15 @@
     {% require_css %}
       <style data-component="lottie">
         .lottie {
-          max-width: 100%;
-          height: auto;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          transform: var(--lottie-custom-scale, scale(1));
         }
       </style>
     {% end_require_css %}
     <canvas data-component="lottie" class="lottie dotlottie-canvas"
+      {{lottie_dimensions(data)}}
       data-lottie-src="{{data.lottie_file}}"
       data-speed="{{data.lottie_speed}}"
       data-mode="{{data.lottie_mode}}"

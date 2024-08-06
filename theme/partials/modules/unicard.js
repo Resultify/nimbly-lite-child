@@ -29,6 +29,7 @@ import { shadowList } from '../data/shadow-list.js'
  * @param {boolean} [opt.mediaGroup.hideForceFullWidthImageProp] - hide force_full_width_image property for fullWidthImage component
  * @param {boolean} [opt.mediaGroup.hideAlignmentProp] - hide alignment property for simpleImage component
  * @param {boolean} [opt.mediaGroup.hideForceFullWidthVideoProp] - hide force_full_width_video property for video component
+ * @param {boolean} [opt.mediaGroup.showLottieScaleProp] - show lottie scale property
  * @param {boolean} [opt.hideWholeAreaLinkProp] - hide whole area link property
  */
 const unicardFields = (components, parent = '', opt) => {
