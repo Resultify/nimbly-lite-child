@@ -124,14 +124,12 @@ init(
       suffix: '%'
     }),
     fi.number('', 'desktop_gap', {
-      default: 40,
       display_width: 'half_width',
       inline_help_text: 'Gap on <span style="color:#007a8c;font-weight:700;font-size:14px;">Desktop</span>',
       min: 0,
       suffix: 'px'
     }),
     fi.number('', 'mobile_gap', {
-      default: 20,
       display_width: 'half_width',
       inline_help_text: 'Gap on <span style="color:#007a8c;font-weight:700;font-size:14px;">Mobile</span>',
       min: 0,
