@@ -59,5 +59,5 @@
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "module_id" : 104254315719,
   "label" : "Unicard carousel",
-  "is_available_for_new_content" : false
+  "is_available_for_new_content" : true
 }

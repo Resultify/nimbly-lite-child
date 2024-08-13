@@ -1,1 +1,92 @@
-/* css */
+.unicard-carousel .splide__track > .splide__list {
+  padding: 16px 0 !important;
+}
+.unicard-carousel .splide__arrow {
+  align-items: center;
+  background-color: var(--navigation-bg);
+  color: var(--navigation-color, var(--primary-color));
+  border-radius: var(--navigation-radius);
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  min-width: auto;
+}
+.unicard-carousel .splide__arrow svg {
+  fill: currentColor;
+  height: var(--navigation-icon-size, 2em);
+  width: var(--navigation-icon-size, 2em);
+}
+.unicard-carousel .splide__arrow:focus-visible {
+  outline-offset: 3px;
+}
+.unicard-carousel .splide__arrow:disabled {
+  background-color: var(--navigation-bg);
+  opacity: .4;
+}
+.unicard-carousel .splide__arrow:hover:not(:disabled) {
+  color: var(--navigation-hover-color, var(--navigation-color));
+  background-color: var(--navigation-hover-bg, var(--navigation-bg));
+}
+.unicard-carousel .splide__arrow--prev {
+  left: 0;
+}
+.unicard-carousel .splide__arrow--prev svg {
+  transform: scaleX(-1);
+}
+.unicard-carousel .splide__arrow--next {
+  right: 0;
+}
+.unicard-carousel .splide__pagination {
+  bottom: var(--pagination-position, -3rem);
+  left: 0;
+  padding: 0 1em;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+.unicard-carousel .splide__pagination__page {
+  background: var(--pagination-color, #ccc);
+  border: 0;
+  border-radius: var(--pagination-radius);
+  display: inline-block;
+  margin: 7px;
+  opacity: .7;
+  padding: 0;
+  position: relative;
+  transition: background-color .2s linear, transform .2s linear;
+  height: var(--pagination-size, 12px);
+  width: var(--pagination-size, 12px);
+  min-width: auto;
+}
+.unicard-carousel .splide__pagination__page.is-active {
+  background: var(--pagination-active-color, var(--primary-color));
+  transform: scale(1.2);
+  opacity: 1;
+  z-index: 1;
+}
+.unicard-carousel .splide__pagination__page:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+.unicard-carousel .splide__pagination__page.is-active:hover {
+  opacity: 0.7;
+}
+.unicard-carousel .splide__pagination__page:focus-visible {
+  outline-offset: 3px;
+}
+.unicard-carousel .splide__progress__bar {
+  background: #ccc;
+  height: 3px
+}
+.unicard-carousel .splide__slide {
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+}
+.unicard-carousel .splide__slide:focus {
+  outline: 0
+}

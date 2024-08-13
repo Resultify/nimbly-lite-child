@@ -26,19 +26,21 @@
     "uploadDb": "cmslib --uploadDb"
   },
   "dependencies": {
-    "@lottiefiles/dotlottie-web": "~0.29.2",
+    "@lottiefiles/dotlottie-web": "~0.30.2",
+    "@splidejs/splide": "^4.1.4",
+    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
+    "@splidejs/splide-extension-intersection": "^0.2.0",
     "bootstrap": "~5.1.3",
     "isotope-layout": "~3.0.6",
-    "simplelightbox": "~2.11.0",
-    "swiper": "~11.1.4"
+    "simplelightbox": "~2.11.0"
   },
   "devDependencies": {
     "@resultify/hubspot-cms-lib": "~3.4.5",
     "@resultify/hubspot-fields-js": "~1.0.2",
-    "browserslist": "~4.23.2",
-    "husky": "~9.1.1",
+    "browserslist": "~4.23.3",
+    "husky": "~9.1.4",
     "standard": "~17.1.0",
-    "stylelint": "~16.7.0",
+    "stylelint": "~16.8.1",
     "stylelint-config-recommended": "~14.0.1",
     "stylelint-no-unsupported-browser-features": "~8.0.1",
     "typescript": "~5.5.3"
