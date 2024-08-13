@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@resultify/hubspot-cms-lib": "~3.4.5",
-    "@resultify/hubspot-fields-js": "~1.0.2",
+    "@resultify/hubspot-fields-js": "~1.0.3",
     "browserslist": "~4.23.3",
     "husky": "~9.1.4",
     "standard": "~17.1.0",
