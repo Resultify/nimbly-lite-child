@@ -1,0 +1,15 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "master_language" : "en",
+  "placeholder" : {
+    "show_module_icon" : true,
+    "title" : "Icon",
+    "description" : "Add icon element"
+  },
+  "icon" : "../../images/module-icons/iconn.svg",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 112160921586,
+  "label" : "Icon.",
+  "is_available_for_new_content" : false
+}
