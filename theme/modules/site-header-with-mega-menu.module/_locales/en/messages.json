@@ -859,31 +859,6 @@
     "description" : "",
     "placeholders" : null
   },
-  "menu.enable_mega_menu.default" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.enable_mega_menu.help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.enable_mega_menu.inline_help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.enable_mega_menu.label" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.enable_mega_menu.placeholder" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
   "menu.help_text" : {
     "message" : "",
     "description" : "",
@@ -899,8 +874,13 @@
     "description" : "",
     "placeholders" : null
   },
+  "menu.max_level.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "menu.max_level.help_text" : {
-    "message" : "Maximum depth level for navigation menu",
+    "message" : "",
     "description" : "",
     "placeholders" : null
   },
@@ -910,13 +890,183 @@
     "placeholders" : null
   },
   "menu.max_level.label" : {
-    "message" : "Max level",
+    "message" : "",
     "description" : "",
     "placeholders" : null
   },
   "menu.max_level.placeholder" : {
     "message" : "",
     "description" : "",
+    "placeholders" : null
+  },
+  "menu.mega_menu.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.enable.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.enable.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.enable.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.enable.label" : {
+    "message" : "Enable mega menu",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.enable.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.full_height.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.full_height.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.full_height.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.full_height.label" : {
+    "message" : "Full height dropdown",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.full_height.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.limit_max_content_width.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.limit_max_content_width.help_text" : {
+    "message" : "Limit the maximum content width (instead of full-width)",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.limit_max_content_width.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.limit_max_content_width.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.limit_max_content_width.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.name" : {
+    "message" : "site-header-with-mega-menu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "menu.mega_menu.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.show_title.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.show_title.help_text" : {
+    "message" : "Show the title of the first level before the next menu levels.",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.show_title.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.show_title.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.show_title.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.vertical_center_dropdown_content.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.vertical_center_dropdown_content.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.vertical_center_dropdown_content.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.vertical_center_dropdown_content.label" : {
+    "message" : "Vertical center dropdown content",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.vertical_center_dropdown_content.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu_options.default.full_screen_mega_menu" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu_options.default.mega_menu_full_height" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu_options.default.mega_menu_show_title_and_description" : {
+    "message" : "",
+    "description" : null,
     "placeholders" : null
   },
   "menu.menu.default" : {
@@ -945,7 +1095,7 @@
     "placeholders" : null
   },
   "menu.name" : {
-    "message" : "site-header",
+    "message" : "site-header-with-mega-menu",
     "description" : "",
     "placeholders" : null
   },

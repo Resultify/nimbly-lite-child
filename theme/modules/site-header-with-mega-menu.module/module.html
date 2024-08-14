@@ -1,3 +1,9 @@
+{# enable={% if module.menu.mega_menu.enable %}enable{% endif %}<br>
+show_title={% if module.menu.mega_menu.show_title %}enable{% endif %}<br>
+full_height={% if module.menu.mega_menu.full_height %}enable{% endif %}<br>
+vertical_center_dropdown_content={% if module.menu.mega_menu.vertical_center_dropdown_content %}enable{% endif %}<br>
+limit_max_content_width={% if module.menu.mega_menu.limit_max_content_width %}enable{% endif %}<br>
+#}
 {% import '../macros/link.html' as link_macros %}
 {% import '../macros/button.html' as button_macros %}
 {% import '../macros/icon.html' as icon_macros %}
@@ -324,19 +330,22 @@
     <li class="main-nav__list-item
     main-nav__list-item--lvl{{link.level}} lvl{{link.level}}
     {{'main-nav__list-item--dropdown' if link.children && link.level < module.menu.max_level && link.level < 2}}
-    {{'main-nav__mega-menu' if link.children && link.level < module.menu.max_level && link.level < 2 && module.menu.enable_mega_menu}}
+    {{'main-nav__mega-menu' if module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
+    {{'main-nav__full-height' if module.menu.mega_menu.full_height && module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
+    {{'main-nav__vertical_center' if module.menu.mega_menu.vertical_center_dropdown_content && module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
+    {{'main-nav__max-content-width' if module.menu.mega_menu.limit_max_content_width && module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
     {{'active-parent' if link.activeBranch && link.children && link.level < module.menu.max_level && link.level < 2}}
     {{'active' if link.activeNode}}">
       {{nav_link(link, link.level)}}
       {% if link.children && link.level < module.menu.max_level %}
-        {% if link.level == 1 %}
+        {% if module.menu.mega_menu.enable && link.level == 1 %}
 
           {# general mega menu #}
           <ul role="list" class="main-nav__list main-nav__list--sublevel
           {{'main-nav__list--dropdown dropdown-menu' if link.children && link.level < module.menu.max_level && link.level < 2}}
           main-nav__list--lvl{{link.level + 1}} lvl{{link.level + 1}} main-nav__list-parts">
             <div class="main-nav__list-part">
-            {% if link.children && link.level < module.menu.max_level && link.level < 2 %}
+            {% if module.menu.mega_menu.show_title && link.children && link.level < module.menu.max_level && link.level < 2 %}
               <li class="main-nav__title">{{link.label || link.pageTitle}}</li>
             {% endif %}
             {% for sublink in link.children %}
@@ -584,7 +593,7 @@
         left: 0;
         right: 0;
         margin: 0 auto;
-        padding: 0;
+        padding: 10px 0;
         {# desktop transition effect #}
         padding-top: 0;
         transition: visibility 0s 0.4s, opacity 0.4s 0s, padding-top 0s 0.4s;
@@ -605,6 +614,10 @@
         opacity: 1;
       }
 
+      .main-nav__mega-menu.main-nav__full-height .main-nav__list--dropdown {
+        min-height: calc(100vh - var(--header-height));
+      }
+
       .main-nav__mega-menu .main-nav__list-parts {
         display: flex;
         flex-direction: row;
@@ -613,15 +626,23 @@
         align-items: stretch;
       }
 
+      /* vertical center dropdown content */
+      .main-nav__mega-menu.main-nav__vertical_center .main-nav__list-parts {
+        align-content: unset;
+        align-items: center;
+      }
+
+      /* maxmium content width */
+      .main-nav__mega-menu.main-nav__max-content-width .main-nav__list--dropdown {
+        padding: 10px calc((100vw - {{container_width}}) / 2);
+      }
+
       .main-nav__mega-menu .main-nav__list-part {
         margin-top: -10px;  {# to compensate for show animation #}
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
         align-items: flex-start;  {# top #}
-      }
-
-      .main-nav__mega-menu .main-nav__list-part {
         padding: 50px 40px 30px 40px;
         width: 100%;
         gap: 0 16px;
@@ -700,8 +721,7 @@
     {# desktop only styles #}
     @media (min-width: {{mobile_breakpoint ~ 'px'}}) {
       .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part > .main-nav__list-item,
-      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part > .main-nav__description,
-      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part > .main-nav__title {
+      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part > .main-nav__description {
         width: calc(33% - (16px * 2 / 3)) !important; /* 16px - gap value */
         max-width: 340px;
       }
