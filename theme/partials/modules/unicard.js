@@ -151,9 +151,6 @@ const unicardStyleFields = (parent = '', opt) => {
       {
         display_width: 'half_width',
         locked: !(opt?.showMobileAlignment),
-        default: {
-          horizontal_align: 'LEFT'
-        },
         alignment_direction: 'HORIZONTAL'
       }
     ),

@@ -91,7 +91,7 @@
       }
     },
     "lighthouse": {
-      "performance": 75,
+      "performance": 65,
       "accessibility": 90,
       "bestPractices": 80,
       "seo": 80

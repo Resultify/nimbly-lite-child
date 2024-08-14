@@ -29,10 +29,10 @@
   .unicard-left-right {
     gap: var(--mobile-gap);
     flex-direction: var(--mobile-direction);
-    padding-left: var(--unicard-l-r-mobile-padding-left);
-    padding-right: var(--unicard-l-r-mobile-padding-right);
-    padding-top: var(--unicard-l-r-mobile-padding-top);
-    padding-bottom: var(--unicard-l-r-mobile-padding-bottom);
+    padding-left: var(--unicard-l-r-mobile-padding-left, var(--unicard-l-r-padding-left));
+    padding-right: var(--unicard-l-r-mobile-padding-right, var(--unicard-l-r-padding-right));
+    padding-top: var(--unicard-l-r-mobile-padding-top, var(--unicard-l-r-padding-top));
+    padding-bottom: var(--unicard-l-r-mobile-padding-bottom, var(--unicard-l-r-padding-bottom));
   }
   .unicard-left-right > .unicard {
     flex-basis: 100%;
