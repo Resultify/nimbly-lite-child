@@ -945,7 +945,7 @@
     "placeholders" : null
   },
   "menu.mega_menu.first_level_title_font_size.label" : {
-    "message" : "First level title font-size",
+    "message" : "",
     "description" : null,
     "placeholders" : null
   },
@@ -1045,7 +1045,7 @@
     "placeholders" : null
   },
   "menu.mega_menu.second_level_descr_font_size.label" : {
-    "message" : "Second level description font-size",
+    "message" : "",
     "description" : null,
     "placeholders" : null
   },
