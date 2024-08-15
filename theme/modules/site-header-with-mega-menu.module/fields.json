@@ -4981,7 +4981,7 @@
       "locked" : false,
       "visibility" : {
         "controlling_field" : null,
-        "controlling_field_path" : "menu.mega_menu.full_height",
+        "controlling_field_path" : "menu.mega_menu.enable",
         "controlling_value_regex" : "true",
         "property" : null,
         "operator" : "EQUAL",
@@ -4990,6 +4990,94 @@
       "display" : "toggle",
       "type" : "boolean",
       "default" : false
+    }, {
+      "id" : "bdce66f4-493d-37e9-f650-d1bac1437af3",
+      "name" : "first_level_title_font_size",
+      "display_width" : null,
+      "label" : "First level title font-size",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "menu.mega_menu.enable",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "min" : 20,
+      "max" : 500,
+      "step" : 1,
+      "suffix" : "%",
+      "type" : "number",
+      "default" : 200
+    }, {
+      "id" : "f49734d1-bc3d-d75c-b93a-777c6f9fff5e",
+      "name" : "second_level_font_size",
+      "display_width" : null,
+      "label" : "Second level font-size",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "menu.mega_menu.enable",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "min" : 20,
+      "max" : 500,
+      "step" : 1,
+      "suffix" : "%",
+      "type" : "number",
+      "default" : 100
+    }, {
+      "id" : "cbc0c08a-696f-ee1e-e753-35947f0c787d",
+      "name" : "second_level_descr_font_size",
+      "display_width" : null,
+      "label" : "Second level description font-size",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "menu.mega_menu.enable",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "min" : 20,
+      "max" : 500,
+      "step" : 1,
+      "suffix" : "%",
+      "type" : "number",
+      "default" : 125
+    }, {
+      "id" : "42ca43dd-59c9-e0b0-822b-cd2e19fc5438",
+      "name" : "third_level_font_size",
+      "display_width" : null,
+      "label" : "Third level font-size",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "menu.mega_menu.enable",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "min" : 20,
+      "max" : 500,
+      "step" : 1,
+      "suffix" : "%",
+      "type" : "number",
+      "default" : 75
     } ],
     "tab" : "CONTENT",
     "expanded" : false,
@@ -5000,7 +5088,11 @@
       "show_title" : false,
       "limit_max_content_width" : false,
       "full_height" : false,
-      "vertical_center_dropdown_content" : false
+      "vertical_center_dropdown_content" : false,
+      "first_level_title_font_size" : 200,
+      "second_level_font_size" : 100,
+      "second_level_descr_font_size" : 125,
+      "third_level_font_size" : 75
     }
   }, {
     "id" : "af650bb1-490f-352d-f39f-aa21064a19ed",
@@ -5038,7 +5130,11 @@
       "show_title" : false,
       "limit_max_content_width" : false,
       "full_height" : false,
-      "vertical_center_dropdown_content" : false
+      "vertical_center_dropdown_content" : false,
+      "first_level_title_font_size" : 200,
+      "second_level_font_size" : 100,
+      "second_level_descr_font_size" : 125,
+      "third_level_font_size" : 75
     },
     "max_level" : 3,
     "accessible_links" : true

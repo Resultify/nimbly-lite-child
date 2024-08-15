@@ -929,6 +929,31 @@
     "description" : null,
     "placeholders" : null
   },
+  "menu.mega_menu.first_level_title_font_size.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.first_level_title_font_size.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.first_level_title_font_size.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.first_level_title_font_size.label" : {
+    "message" : "First level title font-size",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.first_level_title_font_size.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "menu.mega_menu.full_height.default" : {
     "message" : "",
     "description" : null,
@@ -1004,6 +1029,56 @@
     "description" : null,
     "placeholders" : null
   },
+  "menu.mega_menu.second_level_descr_font_size.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.second_level_descr_font_size.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.second_level_descr_font_size.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.second_level_descr_font_size.label" : {
+    "message" : "Second level description font-size",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.second_level_descr_font_size.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.second_level_font_size.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.second_level_font_size.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.second_level_font_size.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.second_level_font_size.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.second_level_font_size.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "menu.mega_menu.show_title.default" : {
     "message" : "",
     "description" : null,
@@ -1029,6 +1104,31 @@
     "description" : null,
     "placeholders" : null
   },
+  "menu.mega_menu.third_level_font_size.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.third_level_font_size.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.third_level_font_size.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.third_level_font_size.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.third_level_font_size.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "menu.mega_menu.vertical_center_dropdown_content.default" : {
     "message" : "",
     "description" : null,
@@ -1045,7 +1145,7 @@
     "placeholders" : null
   },
   "menu.mega_menu.vertical_center_dropdown_content.label" : {
-    "message" : "Vertical center dropdown content",
+    "message" : "",
     "description" : null,
     "placeholders" : null
   },
