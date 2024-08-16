@@ -573,7 +573,6 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
         margin: 0 auto;
         {# desktop transition effect #}
         padding-top: 0;
-        padding-bottom: 10px;
         transition: visibility 0s 0.4s, opacity 0.4s 0s, padding-top 0s 0.4s;
         visibility: hidden;
         opacity: 0;
@@ -618,6 +617,7 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
 
       .main-nav__mega-menu .main-nav__list-part {
         margin-top: -10px;  {# to compensate for show animation #}
+        padding: var(--gap);
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
@@ -625,7 +625,6 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
         width: 100%;
         flex-direction: row;
         align-content: flex-start;
-        padding: 50px 40px 30px 40px;
         gap: var(--gap);
       }
     }
@@ -664,8 +663,7 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
 
     {# desktop only styles #}
     @media (min-width: {{mobile_breakpoint ~ 'px'}}) {
-      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part > .main-nav__list-item,
-      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part > .main-nav__description {
+      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part > .main-nav__list-item {
         width: calc(33% - (var(--gap) * 2 / 3)) !important; /* gap value */
       }
     }
