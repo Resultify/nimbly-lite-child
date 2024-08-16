@@ -347,7 +347,7 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
           {# general mega menu #}
           <ul role="list" class="main-nav__list main-nav__list--sublevel
           {{'main-nav__list--dropdown dropdown-menu' if link.children && link.level < module.menu.max_level && link.level < 2}}
-          main-nav__list--lvl{{link.level + 1}} lvl{{link.level + 1}} main-nav__list-parts">
+          main-nav__list--lvl{{link.level + 1}} lvl{{link.level + 1}} main-nav__list-container">
             <div class="main-nav__list-part">
             {% if module.menu.mega_menu.show_title %}
               {% set names = link.label|split('|', 3) %}
@@ -538,6 +538,17 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
       display: none;
     }
 
+    .main-nav__mega-menu .main-nav__list-part {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;  {# top #}
+      flex-direction: row;
+      align-content: flex-start;
+      gap: var(--gap);
+    }
+
     {# mobile only styles #}
     @media (max-width: {{mobile_breakpoint - 0.02 ~ 'px'}}) {
       .main-nav__mega-menu .main-nav__list--dropdown {
@@ -558,7 +569,7 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
       }
 
       .main-nav__mega-menu .main-nav__list-part {
-        padding: 0px calc(var(--gap) / 2);
+        padding: calc(var(--gap) / 2);
       }
     }
     {# end mobile only styles #}
@@ -595,7 +606,7 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
         min-height: calc(100vh - var(--header-height));
       }
 
-      .main-nav__mega-menu .main-nav__list-parts {
+      .main-nav__mega-menu .main-nav__list-container {
         display: flex;
         flex-direction: row;
         align-content: flex-start;
@@ -604,7 +615,7 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
       }
 
       /* vertical center dropdown content */
-      .main-nav__mega-menu.main-nav__vertical_center .main-nav__list-parts {
+      .main-nav__mega-menu.main-nav__vertical_center .main-nav__list-container {
         align-content: unset;
         align-items: center;
       }
@@ -618,14 +629,6 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
       .main-nav__mega-menu .main-nav__list-part {
         margin-top: -10px;  {# to compensate for show animation #}
         padding: var(--gap);
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items: flex-start;  {# top #}
-        width: 100%;
-        flex-direction: row;
-        align-content: flex-start;
-        gap: var(--gap);
       }
     }
     {# end desktop only styles #}
