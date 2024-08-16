@@ -349,8 +349,14 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
           {{'main-nav__list--dropdown dropdown-menu' if link.children && link.level < module.menu.max_level && link.level < 2}}
           main-nav__list--lvl{{link.level + 1}} lvl{{link.level + 1}} main-nav__list-parts">
             <div class="main-nav__list-part">
-            {% if module.menu.mega_menu.show_title && link.children && link.level < module.menu.max_level && link.level < 2 %}
-              <li class="main-nav__title">{{link.label || link.pageTitle}}</li>
+            {% if module.menu.mega_menu.show_title %}
+              {% set names = link.label|split('|', 3) %}
+              <li class="main-nav__title">{{names[0]}}
+              {# description - only render if it's not: _ #}
+              {% if names[1] and names[1] != '_' %}
+                <span class="main-nav__description">{{names[1]}}</span>
+              {% endif %}
+              </li>
             {% endif %}
             {% for sublink in link.children %}
               {{render_link_item(sublink, sublink.level)}}
@@ -565,9 +571,9 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
         left: 0;
         right: 0;
         margin: 0 auto;
-        padding: 10px 0;
         {# desktop transition effect #}
         padding-top: 0;
+        padding-bottom: 10px;
         transition: visibility 0s 0.4s, opacity 0.4s 0s, padding-top 0s 0.4s;
         visibility: hidden;
         opacity: 0;
@@ -606,7 +612,8 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
 
       /* maxmium content width */
       .main-nav__mega-menu.main-nav__max-content-width .main-nav__list--dropdown {
-        padding: 10px calc((100vw - {{container_width}}) / 2);
+        padding-left: calc((100vw - {{container_width}}) / 2);
+        padding-right: calc((100vw - {{container_width}}) / 2);
       }
 
       .main-nav__mega-menu .main-nav__list-part {
