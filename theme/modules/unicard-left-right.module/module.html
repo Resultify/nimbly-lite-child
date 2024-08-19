@@ -34,7 +34,7 @@
       --unicard-l-r-padding-left: {{module.style.spacing.padding.left.value is truthy ? module.style.spacing.padding.left.value ~ module.style.spacing.padding.left.units : 0 }};
       --unicard-l-r-padding-right: {{module.style.spacing.padding.right.value is truthy ? module.style.spacing.padding.right.value ~ module.style.spacing.padding.right.units : 0 }};
       --unicard-l-r-padding: {{module.style.spacing.padding.top.value ~ module.style.spacing.padding.top.units if module.style.spacing.css|length <= 17 }};
-      {% if module.style.hero_image_mode %}
+      {% if module.hero_image_mode %}
         --unicard-l-r-mobile-padding-top: {{module.style.mobile_spacing.padding.top.value is truthy ? module.style.mobile_spacing.padding.top.value ~ module.style.mobile_spacing.padding.top.units : 'var(--unicard-l-r-padding-top)' }};
         --unicard-l-r-mobile-padding-bottom: {{module.style.mobile_spacing.padding.bottom.value is truthy ? module.style.mobile_spacing.padding.bottom.value ~ module.style.mobile_spacing.padding.bottom.units : 'var(--unicard-l-r-padding-bottom)' }};
         --unicard-l-r-mobile-padding-left: {{module.style.mobile_spacing.padding.left.value is truthy ? module.style.mobile_spacing.padding.left.value ~ module.style.mobile_spacing.padding.left.units : 'var(--unicard-l-r-padding-left)' }};
@@ -45,19 +45,19 @@
       {% endif %}
     }
 
-    {% if module.style.hero_image_mode %}
-      .unicard-left-right-hero-wrp {
-        {% if module.style.hero_image_group.background_type == 'background_color' and module.style.hero_image_group.background_color.css %}
-          --unicard-l-r-hero-background: {{module.style.hero_image_group.background_color.css}};
-        {% elif module.style.hero_image_group.background_type == 'background_gradient' and module.style.hero_image_group.background_gradient.css %}
-          background: {{module.style.hero_image_group.background_gradient.css}};
-        {% elif module.style.hero_image_group.background_type == 'background_image' and module.style.hero_image_group.background_image.css %}
-          {{css_image_hero_background_macro(module.style.hero_image_group)}}
-        {% endif %}
-        {%- if module.style.hero_image_group.container_width is integer -%}
-          --custom-max-width: {{module.style.hero_image_group.container_width ~ 'px'}};
-        {%- endif -%}
-      }
+    {% if module.hero_image_mode %}
+      {% if module.hero_image_group.background_type == 'background_gradient' and module.hero_image_group.gradient_direction and module.hero_image_group.gradient_color|length > 1 %}
+        .unicard-left-right-hero-wrp {
+          background-image: linear-gradient({{module.hero_image_group.gradient_direction}}, {{module.hero_image_group.gradient_color|map('css')|join(',')}});
+        }
+      {% elif module.hero_image_group.background_type == 'background_image' and module.hero_image_group.background_image.src %}
+        {{css_hero_image_background_macro(module.hero_image_group, '.unicard-left-right-hero-wrp')}}
+      {% endif %}
+      {%- if module.hero_image_group.container_width is integer -%}
+        .unicard-left-right-hero-wrp {
+          --custom-max-width: {{module.hero_image_group.container_width ~ 'px'}};
+        }
+      {%- endif -%}
     {% endif %}
 
     {%- for card in module.card_group -%}
@@ -120,10 +120,10 @@
 </style>
 
 
-{% if module.style.hero_image_mode %}
-  {% if module.style.hero_image_group.background_image.src %}
+{% if module.hero_image_mode %}
+  {% if module.hero_image_group.background_image_lowres.src and module.hero_image_group.add_lowres_image %}
     {% require_head %}
-      <link rel="preload" as="image" href="{{resize_image_url(module.style.hero_image_group.background_image.src, 0, 0, 1600)}}" fetchpriority="high">
+      <link rel="preload" as="image" href="{{module.hero_image_group.background_image_lowres.src}}" fetchpriority="high">
     {% end_require_head %}
   {% endif %}
   <div class="unicard-left-right-hero-wrp">

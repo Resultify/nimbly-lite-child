@@ -180,49 +180,26 @@
             "video_type" : "hubspot_video"
           }
         } ],
-        style={
-          "background_image" : {
-            "background_position" : "MIDDLE_CENTER",
-            "background_size" : "cover",
-            "src" : get_asset_url('../images/content/unicard-left-right-variations/1/bg.svg'),
-          },
-          "background_image_overlay_gradient" : {
-            "colors" : [ {
-              "color" : {
-                "a" : 0,
-                "b" : 255,
-                "g" : 255,
-                "r" : 255
-              }
-            }, {
-              "color" : {
-                "a" : 0.95,
-                "b" : 241,
-                "g" : 254,
-                "r" : 214
-              }
-            }, {
-              "color" : {
-                "a" : 0.9,
-                "b" : 255,
-                "g" : 255,
-                "r" : 255
-              }
-            }, {
-              "color" : {
-                "a" : 1,
-                "b" : 241,
-                "g" : 254,
-                "r" : 214
-              }
-            } ],
-            "side_or_corner" : {
-              "horizontalSide" : "RIGHT",
-              "verticalSide" : "BOTTOM"
-            }
-          },
+        hero_image_group={
           "background_image_overlay_type" : "gradient",
-          "background_type" : "",
+          "background_type" : "background_gradient",
+          "gradient_color" : [ {
+            "color" : "#FFFFFF",
+            "opacity" : 90
+          }, {
+            "color" : "#d6fef1",
+            "opacity" : 96
+          }, {
+            "color" : "#FFFFFF",
+            "opacity" : 98
+          }, {
+            "color" : "#d6fef1",
+            "opacity" : 95
+          } ],
+          "gradient_direction" : "to bottom right"
+        },
+        hero_image_mode="true",
+        style={
           "card_style_group1" : {
             "alignment" : {
               "horizontal_align" : "LEFT",
@@ -258,51 +235,6 @@
               "horizontal_align" : "CENTER"
             }
           },
-          "hero_image_group" : {
-            "background_image" : {
-              "background_position" : "TOP_CENTER",
-              "background_size" : "cover",
-              "src" : "https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/city-1252643.svg"
-            },
-            "background_image_overlay_gradient" : {
-              "colors" : [ {
-                "color" : {
-                  "a" : 0,
-                  "b" : 255,
-                  "g" : 255,
-                  "r" : 255
-                }
-              }, {
-                "color" : {
-                  "a" : 0.95,
-                  "b" : 241,
-                  "g" : 254,
-                  "r" : 214
-                }
-              }, {
-                "color" : {
-                  "a" : 0.9,
-                  "b" : 255,
-                  "g" : 255,
-                  "r" : 255
-                }
-              }, {
-                "color" : {
-                  "a" : 1,
-                  "b" : 241,
-                  "g" : 254,
-                  "r" : 214
-                }
-              } ],
-              "side_or_corner" : {
-                "horizontalSide" : "RIGHT",
-                "verticalSide" : "BOTTOM"
-              }
-            },
-            "background_image_overlay_type" : "gradient",
-            "background_type" : "background_image"
-          },
-          "hero_image_mode" : true,
           "mobile_spacing" : {
             "padding" : {
               "bottom" : {

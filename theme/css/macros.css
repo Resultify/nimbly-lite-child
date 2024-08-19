@@ -72,36 +72,43 @@
   {% endif %}
 {%- endmacro -%}
 
-
-{%- macro css_image_hero_background_macro(data) -%}
-  {%- if data.background_image.background_position == 'TOP_LEFT' -%}
-    {%- set background_position = 'left top' -%}
-  {%- elif data.background_image.background_position == 'TOP_CENTER' -%}
-    {%- set background_position = 'center top' -%}
-  {%- elif data.background_image.background_position == 'TOP_RIGHT' -%}
-    {%- set background_position = 'right top' -%}
-  {%- elif data.background_image.background_position == 'MIDDLE_LEFT' -%}
-    {%- set background_position = 'left center' -%}
-  {%- elif data.background_image.background_position == 'MIDDLE_CENTER' -%}
-    {%- set background_position = 'center center' -%}
-  {%- elif data.background_image.background_position == 'MIDDLE_RIGHT' -%}
-    {%- set background_position = 'right center' -%}
-  {%- elif data.background_image.background_position == 'BOTTOM_LEFT' -%}
-    {%- set background_position = 'left bottom' -%}
-  {%- elif data.background_image.background_position == 'BOTTOM_CENTER' -%}
-    {%- set background_position = 'center bottom' -%}
-  {%- elif data.background_image.background_position == 'BOTTOM_RIGHT' -%}
-    {%- set background_position = 'right bottom' -%}
-  {%- endif -%}
-  {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
-    background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{resize_image_url(data.background_image.src, 0, 0, 1600)}});
-    background-size: {{data.background_image.background_size}};
-    background-position: {{background_position}};
-  {% elif data.background_image_overlay_gradient.css and data.background_image_overlay_type == 'gradient' %}
-    background: {{data.background_image_overlay_gradient.css}}, url({{resize_image_url(data.background_image.src, 0, 0, 1600)}});
-    background-size: {{data.background_image.background_size}};
-    background-position: {{background_position}};
-  {% else %}
-    {{data.background_image.css}}
+{%- macro css_hero_image_background_macro(data, class) -%}
+  {% if data.background_image_lowres.src and data.add_lowres_image %}
+    {% set lowres_img = ', url({{data.background_image_lowres.src}})' %}
   {% endif %}
+  {{class}} {
+    {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
+      background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{resize_image_url(data.background_image.src, 0, 0, 700)}}){{lowres_img}};
+    {% elif data.background_image_overlay_type == 'gradient' and module.hero_image_group.gradient_direction and module.hero_image_group.gradient_color|length > 1 %}
+      background: linear-gradient({{module.hero_image_group.gradient_direction}}, {{module.hero_image_group.gradient_color|map('css')|join(',')}}), url({{resize_image_url(data.background_image.src, 0, 0, 700)}}){{lowres_img}};
+    {% else %}
+      background-image: url({{resize_image_url(data.background_image.src, 0, 0, 700)}}){{lowres_img}};
+    {% endif %}
+  }
+  @media screen and (min-width: 768px) {
+    {{class}} {
+      {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
+        background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{resize_image_url(data.background_image.src, 0, 0, 1024)}}){{lowres_img}};
+      {% elif data.background_image_overlay_type == 'gradient' and module.hero_image_group.gradient_direction and module.hero_image_group.gradient_color|length > 1 %}
+        background: linear-gradient({{module.hero_image_group.gradient_direction}}, {{module.hero_image_group.gradient_color|map('css')|join(',')}}), url({{resize_image_url(data.background_image.src, 0, 0, 1024)}}){{lowres_img}};
+      {% else %}
+        background-image: url({{resize_image_url(data.background_image.src, 0, 0, 1024)}}){{lowres_img}};
+      {% endif %}
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    {{class}} {
+      {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
+        background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{resize_image_url(data.background_image.src, 0, 0, 1800)}}){{lowres_img}};
+      {% elif data.background_image_overlay_type == 'gradient' and module.hero_image_group.gradient_direction and module.hero_image_group.gradient_color|length > 1 %}
+        background: linear-gradient({{module.hero_image_group.gradient_direction}}, {{module.hero_image_group.gradient_color|map('css')|join(',')}}), url({{resize_image_url(data.background_image.src, 0, 0, 1800)}}){{lowres_img}};
+      {% else %}
+        background-image: url({{resize_image_url(data.background_image.src, 0, 0, 1800)}}){{lowres_img}};
+      {% endif %}
+    }
+  }
+  {{class}} {
+    background-size: cover;
+    background-position: {{data.background_image_alignment}};
+  }
 {%- endmacro -%}
