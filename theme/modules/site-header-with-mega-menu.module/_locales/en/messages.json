@@ -899,6 +899,16 @@
     "description" : "",
     "placeholders" : null
   },
+  "menu.mega_menu.choice_field.choices.value 1" : {
+    "message" : "Label 1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "menu.mega_menu.choice_field.choices.value 2" : {
+    "message" : "Label 2",
+    "description" : "",
+    "placeholders" : null
+  },
   "menu.mega_menu.default" : {
     "message" : "",
     "description" : null,
@@ -1022,6 +1032,46 @@
   "menu.mega_menu.name" : {
     "message" : "site-header-with-mega-menu",
     "description" : "",
+    "placeholders" : null
+  },
+  "menu.mega_menu.number_of_columns.choices.1col" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.number_of_columns.choices.2col" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.number_of_columns.choices.3col" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.number_of_columns.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.number_of_columns.help_text" : {
+    "message" : "How many columns in desktop mode",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.number_of_columns.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.number_of_columns.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.number_of_columns.placeholder" : {
+    "message" : "",
+    "description" : null,
     "placeholders" : null
   },
   "menu.mega_menu.placeholder" : {

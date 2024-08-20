@@ -4911,6 +4911,21 @@
       "type" : "boolean",
       "default" : true
     }, {
+      "id" : "f0c2fa01-ab4d-9464-47b0-b598ec7cce5f",
+      "name" : "number_of_columns",
+      "display_width" : null,
+      "label" : "Number of columns",
+      "help_text" : "Number of columns in desktop resolutions",
+      "required" : false,
+      "locked" : false,
+      "display" : "radio",
+      "choices" : [ [ "1col", "1 column" ], [ "2col", "2 columns" ], [ "3col", "3 columns" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "3col"
+    }, {
       "id" : "6928f466-bbdb-9c6c-c9b9-218a563df200",
       "name" : "show_title",
       "display_width" : null,
@@ -5085,6 +5100,7 @@
     "type" : "group",
     "default" : {
       "enable" : true,
+      "number_of_columns" : "3col",
       "show_title" : false,
       "limit_max_content_width" : false,
       "full_height" : false,
@@ -5127,6 +5143,7 @@
   "default" : {
     "mega_menu" : {
       "enable" : true,
+      "number_of_columns" : "3col",
       "show_title" : false,
       "limit_max_content_width" : false,
       "full_height" : false,

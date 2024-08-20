@@ -334,7 +334,7 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
     <li class="main-nav__list-item
     main-nav__list-item--lvl{{link.level}} lvl{{link.level}}
     {{'main-nav__list-item--dropdown' if link.children && link.level < module.menu.max_level && link.level < 2}}
-    {{'main-nav__mega-menu' if module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
+    {{'main-nav__mega-menu main-nav__mega-menu--{{ module.menu.mega_menu.number_of_columns }}' if module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
     {{'main-nav__full-height' if module.menu.mega_menu.full_height && module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
     {{'main-nav__vertical_center' if module.menu.mega_menu.vertical_center_dropdown_content && module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
     {{'main-nav__max-content-width' if module.menu.mega_menu.limit_max_content_width && module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
@@ -666,7 +666,13 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
 
     {# desktop only styles #}
     @media (min-width: {{mobile_breakpoint ~ 'px'}}) {
-      .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part > .main-nav__list-item {
+      .main-nav__mega-menu--1col .main-nav__list--dropdown .main-nav__list-part > .main-nav__list-item {}
+
+      .main-nav__mega-menu--2col .main-nav__list--dropdown .main-nav__list-part > .main-nav__list-item {
+        width: calc(50% - (var(--gap) * 1 / 2)) !important; /* gap value */
+      }
+
+      .main-nav__mega-menu--3col .main-nav__list--dropdown .main-nav__list-part > .main-nav__list-item {
         width: calc(33% - (var(--gap) * 2 / 3)) !important; /* gap value */
       }
     }
