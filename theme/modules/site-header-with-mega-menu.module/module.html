@@ -238,6 +238,10 @@ third_level_descr_font_size={% if module.menu.mega_menu.third_level_descr_font_s
     #}
     {% if names[2] and names[2] != '' %}
       {% set imgUrl = get_asset_url('/nimbly-lite-child/images/content/' + names[2]) %}
+      {# if no asset was found, test if it's a full url instead #}
+      {% if imgUrl == '' %}
+        {% set imgUrl = names[2]|escape_url %}
+      {% endif %}
     {% endif %}
 
     {% if symbol == '|' %}
