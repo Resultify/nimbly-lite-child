@@ -4,9 +4,11 @@ full_height={% if module.menu.mega_menu.full_height %}enable{% endif %}<br>
 vertical_center_dropdown_content={% if module.menu.mega_menu.vertical_center_dropdown_content %}enable{% endif %}<br>
 limit_max_content_width={% if module.menu.mega_menu.limit_max_content_width %}enable{% endif %}<br>
 first_level_title_font_size={% if module.menu.mega_menu.first_level_title_font_size %}{{ module.menu.mega_menu.first_level_title_font_size }}{% endif %}<br>
+first_level_descr_font_size={% if module.menu.mega_menu.first_level_descr_font_size %}{{ module.menu.mega_menu.first_level_descr_font_size }}{% endif %}<br>
 second_level_font_size={% if module.menu.mega_menu.second_level_font_size %}{{ module.menu.mega_menu.second_level_font_size }}{% endif %}<br>
 second_level_descr_font_size={% if module.menu.mega_menu.second_level_descr_font_size %}{{ module.menu.mega_menu.second_level_descr_font_size }}{% endif %}<br>
 third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ module.menu.mega_menu.third_level_font_size }}{% endif %}<br>
+third_level_descr_font_size={% if module.menu.mega_menu.third_level_descr_font_size %}{{ module.menu.mega_menu.third_level_descr_font_size }}{% endif %}<br>
 #}
 {% import '../macros/link.html' as link_macros %}
 {% import '../macros/button.html' as button_macros %}
@@ -726,10 +728,25 @@ third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ mod
       {{module.style.menu.dropdown.links.spacing.css}}
 
       {% if link_font.size %}
+        {# use mega_menu.first_level_descr_font_size #}
+        font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.first_level_descr_font_size }} * 0.01));
+      {% endif %}
+    }
+
+    .main-nav__list--sublevel .main-nav__list-item--lvl2 .main-nav__description {
+      {% if link_font.size %}
         {# use mega_menu.second_level_descr_font_size #}
         font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.second_level_descr_font_size }} * 0.01));
       {% endif %}
     }
+
+    .main-nav__list--sublevel .main-nav__list-item--lvl3 .main-nav__description {
+      {% if link_font.size %}
+        {# use mega_menu.third_level_descr_font_size #}
+        font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.third_level_descr_font_size }} * 0.01));
+      {% endif %}
+    }
+
 
     .main-nav__list-item-link--lvl1:hover,
     .main-nav__list-item-link--lvl1.show,

@@ -5036,6 +5036,28 @@
       "type" : "number",
       "default" : 300
     }, {
+      "id" : "a521a729-1a6c-698a-90ef-a046fa1f37c8",
+      "name" : "first_level_descr_font_size",
+      "display_width" : null,
+      "label" : "First level description font-size",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "menu.mega_menu.enable",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "min" : 20,
+      "max" : 500,
+      "step" : 1,
+      "suffix" : "%",
+      "type" : "number",
+      "default" : 100
+    }, {
       "id" : "f49734d1-bc3d-d75c-b93a-777c6f9fff5e",
       "name" : "second_level_font_size",
       "display_width" : null,
@@ -5101,6 +5123,28 @@
       "suffix" : "%",
       "type" : "number",
       "default" : 85
+    }, {
+      "id" : "1a135edf-4bbe-1523-277c-9d551c5eefac",
+      "name" : "third_level_descr_font_size",
+      "display_width" : null,
+      "label" : "Third level description font-size",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "menu.mega_menu.enable",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "min" : 20,
+      "max" : 500,
+      "step" : 1,
+      "suffix" : "%",
+      "type" : "number",
+      "default" : 75
     } ],
     "tab" : "CONTENT",
     "expanded" : false,
@@ -5114,9 +5158,11 @@
       "full_height" : false,
       "vertical_center_dropdown_content" : false,
       "first_level_title_font_size" : 300,
+      "first_level_descr_font_size" : 100,
       "second_level_font_size" : 150,
       "second_level_descr_font_size" : 100,
-      "third_level_font_size" : 85
+      "third_level_font_size" : 85,
+      "third_level_descr_font_size" : 75
     }
   }, {
     "id" : "af650bb1-490f-352d-f39f-aa21064a19ed",
@@ -5157,9 +5203,11 @@
       "full_height" : false,
       "vertical_center_dropdown_content" : false,
       "first_level_title_font_size" : 300,
+      "first_level_descr_font_size" : 100,
       "second_level_font_size" : 150,
       "second_level_descr_font_size" : 100,
-      "third_level_font_size" : 85
+      "third_level_font_size" : 85,
+      "third_level_descr_font_size" : 75
     },
     "max_level" : 3,
     "accessible_links" : true

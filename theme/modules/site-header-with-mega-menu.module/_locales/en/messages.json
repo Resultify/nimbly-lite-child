@@ -939,6 +939,31 @@
     "description" : null,
     "placeholders" : null
   },
+  "menu.mega_menu.first_level_descr_font_size.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.first_level_descr_font_size.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.first_level_descr_font_size.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.first_level_descr_font_size.label" : {
+    "message" : "Second level description font-size copy",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.first_level_descr_font_size.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "menu.mega_menu.first_level_title_font_size.default" : {
     "message" : "",
     "description" : null,
@@ -1150,6 +1175,31 @@
     "placeholders" : null
   },
   "menu.mega_menu.show_title.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.third_level_descr_font_size.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.third_level_descr_font_size.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.third_level_descr_font_size.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.third_level_descr_font_size.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "menu.mega_menu.third_level_descr_font_size.placeholder" : {
     "message" : "",
     "description" : null,
     "placeholders" : null
