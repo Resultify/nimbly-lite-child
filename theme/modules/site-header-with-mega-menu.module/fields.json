@@ -4918,6 +4918,14 @@
       "help_text" : "Number of columns in desktop resolutions",
       "required" : false,
       "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "menu.mega_menu.enable",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
       "display" : "radio",
       "choices" : [ [ "1col", "1 column" ], [ "2col", "2 columns" ], [ "3col", "3 columns" ] ],
       "multiple" : false,

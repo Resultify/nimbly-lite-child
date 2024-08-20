@@ -1055,7 +1055,7 @@
     "placeholders" : null
   },
   "menu.mega_menu.number_of_columns.help_text" : {
-    "message" : "How many columns in desktop mode",
+    "message" : "Number of columns in desktop resolutions",
     "description" : null,
     "placeholders" : null
   },
