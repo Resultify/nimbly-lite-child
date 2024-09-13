@@ -645,7 +645,13 @@ third_level_descr_font_size={% if module.menu.mega_menu.third_level_descr_font_s
     .main-nav__mega-menu .main-nav__list--dropdown .main-nav__description {
       width: 100%;
       display: block;
-      padding: calc(var(--gap) / 3) 0;
+      padding-top: calc(var(--gap) / 3);
+      padding-bottom: calc(var(--gap) / 3);
+    }
+
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__title .main-nav__description {
+      padding-left: 0;
+      padding-right: 0;
     }
 
     .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item-link--lvl2 {
