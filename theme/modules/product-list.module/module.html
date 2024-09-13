@@ -1,1 +1,6 @@
+<!-- module html  -->
 <h1>Product List</h1>
+
+{% set products = module.data_query.data.CRM.product_collection.items %}
+
+{{ products | pprint }}

@@ -1,0 +1,20 @@
+query Products {
+    CRM {
+        product_collection {
+            items {
+                name
+                price
+                quantity
+                tax
+                hs_url
+                amount
+                createdate
+                description
+                discount
+                hs_images
+                hs_object_id
+                hs_product_type
+            }
+        }
+    }
+}
