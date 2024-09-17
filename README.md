@@ -14,3 +14,20 @@
 1. `npm install` - install all development dependencies
 2. Add to `.env` file your portal name and `PERSONAL_ACCESS_KEY` [Read more](https://github.com/Resultify/hubspot-cms-lib?tab=readme-ov-file#custom-multi-account-authentication)
 3. `npm run upload` - upload all local changes to remote HubSpot portal [check more commands](https://github.com/Resultify/hubspot-cms-lib?tab=readme-ov-file#whats-inside)
+
+
+## Events
+
+### Set up HubDB:s in HubDb.
+
+```
+hs hubdb create ./.hubdb/event_information.hubdb.json
+```
+
+Check result, should be something like : `[SUCCESS] The table <TABLE_ID> was created in <HUB_ID> with 0 rows`.
+Edit file `.hubdb/event_date.hubdb.json` and temporary change "foreignTableId" value in "event_information" field to <TABLE_ID>.
+
+```
+hs hubdb create ./.hubdb/event_date.hubdb.json
+```
+Edit file `.hubdb/event_date.hubdb.json` and restore "foreignTableId" value in "event_information" field.

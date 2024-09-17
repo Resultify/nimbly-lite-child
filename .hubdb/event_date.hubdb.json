@@ -1,0 +1,206 @@
+{
+  "name": "event_date",
+  "useForPages": false,
+  "label": "Event Date",
+  "allowChildTables": false,
+  "allowPublicApiAccess": false,
+  "dynamicMetaTags": { "DESCRIPTION": 1, "FEATURED_IMAGE_URL": 2 },
+  "enableChildTablePages": false,
+  "columns": [
+    {
+      "name": "name",
+      "label": "Name",
+      "description": "",
+      "limit": 10000,
+      "type": "TEXT"
+    },
+    {
+      "name": "publish_date",
+      "label": "Publish date",
+      "description": "The date this Event date is published.",
+      "type": "DATETIME"
+    },
+    {
+      "name": "start_date",
+      "label": "Start date and time",
+      "description": "Event start date and time, the same time is used as start time on recurring events.",
+      "type": "DATETIME"
+    },
+    {
+      "name": "end_date",
+      "label": "End date and time",
+      "description": "Event end date and time, the same time is used as end time on recurring events.",
+      "type": "DATETIME"
+    },
+    {
+      "name": "language",
+      "label": "Language",
+      "options": [
+        {
+          "id": "1",
+          "name": "sv",
+          "label": "sv",
+          "type": "option",
+          "order": 1
+        },
+        {
+          "id": "2",
+          "name": "en",
+          "label": "en",
+          "type": "option",
+          "order": 2
+        }
+      ],
+      "description": "",
+      "type": "SELECT",
+      "optionCount": 2
+    },
+    {
+      "name": "tags",
+      "label": "Tags",
+      "options": [
+        {
+          "id": "1",
+          "name": "tag_1",
+          "label": "Tag 1",
+          "type": "option",
+          "order": 1
+        },
+        {
+          "id": "2",
+          "name": "tag_2",
+          "label": "Tag 2",
+          "type": "option",
+          "order": 2
+        },
+        {
+          "id": "3",
+          "name": "tag_3",
+          "label": "Tag 3",
+          "type": "option",
+          "order": 3
+        },
+        {
+          "id": "4",
+          "name": "tag_4",
+          "label": "Tag 4",
+          "type": "option",
+          "order": 4
+        }
+      ],
+      "description": "",
+      "type": "MULTISELECT",
+      "optionCount": 4
+    },
+    {
+      "name": "event_information",
+      "label": "Event information",
+      "foreignTableId": 69779955,
+      "foreignColumnId": 1,
+      "description": "This field is used to select the \"Event information\" this \"Event date\" should be associated with. ",
+      "foreignIds": [],
+      "type": "FOREIGN_ID"
+    },
+    {
+      "name": "recurrence_frequency",
+      "label": "Recurrence frequency",
+      "options": [
+        {
+          "id": "1",
+          "name": "daily",
+          "label": "Daily",
+          "type": "option",
+          "order": 1
+        },
+        {
+          "id": "2",
+          "name": "weekly",
+          "label": "Weekly",
+          "type": "option",
+          "order": 2
+        },
+        {
+          "id": "3",
+          "name": "monthly",
+          "label": "Monthly",
+          "type": "option",
+          "order": 3
+        }
+      ],
+      "description": "Frequency on recurring events, \"daily\",  \"weekly\" or \"monthly\".",
+      "type": "SELECT",
+      "optionCount": 3
+    },
+    {
+      "name": "recurrence_days",
+      "label": "Recurrence days",
+      "options": [
+        {
+          "id": "1",
+          "name": "1",
+          "label": "Monday",
+          "type": "option",
+          "order": 1
+        },
+        {
+          "id": "2",
+          "name": "2",
+          "label": "Tuesday",
+          "type": "option",
+          "order": 2
+        },
+        {
+          "id": "3",
+          "name": "3",
+          "label": "Wednesday",
+          "type": "option",
+          "order": 3
+        },
+        {
+          "id": "4",
+          "name": "4",
+          "label": "Thursday",
+          "type": "option",
+          "order": 4
+        },
+        {
+          "id": "5",
+          "name": "5",
+          "label": "Friday",
+          "type": "option",
+          "order": 5
+        },
+        {
+          "id": "6",
+          "name": "6",
+          "label": "Saturday",
+          "type": "option",
+          "order": 6
+        },
+        {
+          "id": "7",
+          "name": "7",
+          "label": "Sunday",
+          "type": "option",
+          "order": 7
+        }
+      ],
+      "description": "This field is used to specify the days of the week on which a recurring event with \"weekly\" frequency occurs. ",
+      "type": "MULTISELECT",
+      "optionCount": 7
+    },
+    {
+      "name": "recurrence_interval",
+      "label": "Recurrence interval",
+      "description": "This field is used to specify the interval at which a recurring event occurs. This field  represents the number of units (days or months) between each occurrence events with \"daily\" or \"monthly\" frequency. It allows you to define the frequency of the recurrence pattern.",
+      "type": "NUMBER"
+    },
+    {
+      "name": "recurrence_end_date",
+      "label": "Recurrence end date",
+      "description": "This field is used to specify the end date for a recurring event series. ",
+      "type": "DATETIME"
+    }
+  ],
+  "rows": []
+}

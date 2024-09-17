@@ -1,0 +1,308 @@
+<!-- module html  -->
+{% import '../../macros/hubl/events/functions.html' as event_functions_macro %}
+{% import '../macros/image.html' as image_macros %}
+{% import '../macros/heading.html' as heading_macros %}
+{% import '../macros/text.html' as text_macros %}
+{% import '../macros/richtext.html' as richtext_macros %}
+{% import '../macros/link.html' as link_macros %}
+{% import '../macros/button.html' as button_macros %}
+
+{# module scope css #}
+<style>
+  {% scope_css %}
+
+    .event-listing-module {
+      {{module.style.general.spacing.spacing.css}}
+    }
+
+    .event-listing-module__tag-heading {
+      {% if module.style.general_heading.background.color.css %}
+        background-color: {{module.style.general_heading.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.general_heading.alignment.alignment.horizontal_align}};
+      {{module.style.general_heading.spacing.spacing.css}}
+    }
+
+    .event-listing-module__article_wrp,
+    .event-listing-module__tag-heading_wrp {
+      {{module.style.article.spacing.spacing.css}}
+    }
+
+    {# basic-grid #}
+    {% if module.layout.layout == 'basic-grid' %}
+      .basic-grid .event-listing-module__article_wrp {
+        width: calc(100% / {{module.layout.columns}});
+      }
+      @media (max-width: 991.98px) {
+        .basic-grid .event-listing-module__article_wrp {
+          width: 50%;
+        }
+      }
+      @media (max-width: 700px) {
+        .basic-grid .event-listing-module__article_wrp {
+          width: 100%;
+        }
+      }
+    {% endif %}
+
+    {# mosaic grid #}
+    {% if module.layout.layout == 'mosaic-grid' %}
+      {% set mosaic_big_element_height = module.layout.height %}
+      {% set mosaic_small_element_height = module.layout.height/2 - module.style.article.spacing.spacing.padding.top.value %}
+      .mosaic-grid .event-listing-module__article {
+        height: {{mosaic_big_element_height ~ 'px'}};
+      }
+
+      .mosaic-grid-box .event-listing-module__article {
+        height: {{mosaic_small_element_height|int ~ 'px'}};
+      }
+    {% endif %}
+
+    .event-listing-module__article {
+      {% if module.style.article.border.border_radius %}
+        border-radius: {{module.style.article.border.border_radius ~ 'px'}};
+      {% endif %}
+      {% if module.style.article.background.color.css %}
+        background-color: {{module.style.article.background.color.css}};
+      {% endif %}
+      {{module.style.article.border.border.css}}
+      {{module.style.article.internal_spacing.spacing.css}}
+    }
+
+    .event-listing-module__article-image {
+      text-align: {{module.style.image.alignment.alignment.horizontal_align}};
+      {% if module.style.image.background.color.css %}
+        background-color: {{module.style.image.background.color.css}};
+      {% endif %}
+      {{module.style.image.spacing.spacing.css}}
+    }
+
+    .event-listing-module__article-tags {
+      text-align: {{module.style.link.alignment.alignment.horizontal_align}};
+      {% if module.style.link.background.color.css %}
+        background-color: {{module.style.link.background.color.css}};
+      {% endif %}
+      {{module.style.link.spacing.spacing.css}}
+    }
+
+    .event-listing-module__article-heading {
+      {% if module.style.heading.background.color.css %}
+        background-color: {{module.style.heading.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.heading.alignment.alignment.horizontal_align}};
+      {{module.style.heading.spacing.spacing.css}}
+    }
+
+    .event-listing-module__article-date {
+      {% if module.style.text.background.color.css %}
+        background-color: {{module.style.text.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.text.alignment.alignment.horizontal_align}};
+      {{module.style.text.spacing.spacing.css}}
+    }
+
+    .event-listing-module__article-description {
+      {% if module.style.richtext.background.color.css %}
+        background-color: {{module.style.richtext.background.color.css}};
+      {% endif %}
+      {{module.style.richtext.spacing.spacing.css}}
+    }
+
+    .event-listing-module__article-button {
+      text-align: {{module.style.button.alignment.alignment.horizontal_align}};
+      {% if module.style.button.background.color.css %}
+        background-color: {{module.style.button.background.color.css}};
+      {% endif %}
+      {{module.style.button.spacing.spacing.css}}
+    }
+
+  {% end_scope_css %}
+</style>
+
+{# Featured image #}
+{%- macro render_image(content) -%}
+  {% if content.featured_image %}
+    <div class="event-listing-module__article-image event-listing-module__article-item">
+      {%- set image_link_aria = 'aria-label="{% if content.featured_image_alt_text %}Featured image: {{content.featured_image_alt_text }} - {% endif %}Read full post: {{content.hs_name}}"' -%}
+      {%- set image_data = {
+        "image":{
+          "size_type":"auto","src":content.featured_image.url,"alt":content.featured_image_alt_text,
+          "loading":"lazy","width":"1024","height":"1024","max_width":null,"max_height":null
+        },
+        "link":{"link":{"url":{"href":content.featured_image.url,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""} },
+        "caption":{"rich_text":""}
+      }%}{{image_macros.render_image_tmpl(image_data, module.style.image, module,
+        {
+          link_data_attrs: image_link_aria
+        }
+      )}}
+    </div>
+
+  {% endif %}
+{%- endmacro -%}
+
+{# Tags #}
+{%- macro render_tags(content) -%}
+  {% if content.tags %}
+
+    <div class="event-listing-module__article-tags event-listing-module__article-item">
+      {%- for tag in content.tags -%}
+        {%- set text_data = {"text": tag.label}%}
+        {{text_macros.render_text_tmpl(text_data, module.style.text, module)}}
+      {%- endfor -%}
+    </div>
+
+  {% endif %}
+{%- endmacro -%}
+
+{# Heading #}
+{%- macro render_heading(content) -%}
+
+  <div class="event-listing-module__article-heading event-listing-module__article-item">
+    {%- set heading_data = {
+      "display":module.heading.display,"heading_tag":module.heading.heading_tag,"text":content.hs_name,
+      "link":{"link":{"url":{"href":content.absolute_url,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},"accessible_link":true},
+      "icon":{
+        "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+        "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+      }
+    }%}{{heading_macros.render_heading_tmpl(heading_data, module.style.heading, module)}}
+  </div>
+
+{%- endmacro -%}
+
+{# Date #}
+{%- macro render_date(content) -%}
+  {% set dateFormat = settings.timeFormatEventDate %}
+  {% if content.start_date|format_date('YYYY') != today()|format_date('YYYY') %}
+    {% set dateFormat = settings.timeFormatEventDateNextYear %}
+  {% endif %}
+  <time class="event-listing-module__article-date event-listing-module__article-item" datetime="{{content.start_date|format_date('YYYY-MM-dd HH:mm')}}">
+    {%- set text_data = {"text": content.start_date|format_datetime(dateFormat, 'UTC', settings.locale)}%}{{text_macros.render_text_tmpl(text_data, module.style.text, module)}}</time>
+{%- endmacro -%}
+
+{# Description #}
+{%- macro render_description(content) -%}
+  <div class="event-listing-module__article-description event-listing-module__article-item">
+    {%- set richtext_data = {"rich_text":content.description,"truncate":module.description.truncate}%}{{richtext_macros.render_richtext_tmpl(richtext_data, module.style.richtext, module)}}
+  </div>
+{%- endmacro -%}
+
+{# Button #}
+{%- macro render_button(content) -%}
+<div class="event-listing-module__article-button event-listing-module__article-item">
+    {%- set url = "{{ request.path }}/{{ content.hs_path }}" -%}
+    {%- set button_data = {
+      "text":module.button.text,"accessible_link_label":"Read full post: {{content.hs_name}}","accessible_link":true,
+      "link":{"url":{"href":url,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+      "icon":{
+        "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+        "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+      }
+    }%}{{button_macros.render_btn_tmpl(button_data, module.style.button, module)}}
+  </div>
+{%- endmacro -%}
+
+
+{# Fetch "Event dates" and recurring "Event dates", can't use OR in HubDB Graphql, so need two collections. #}
+{% set eventDates = module.data_query.data.HUBDB.event_dates.items %}
+{% set recurringEventDates = module.data_query.data.HUBDB.recurring_event_dates.items %}
+
+{# Set variables from query dict params "event start date gte", "event start date lt" and "event categories" #}
+{% set qd_esdgte = request.query_dict.esdgte %}
+{% set qd_esdlt = request.query_dict.esdlt %}
+{% set qd_etags = request.query_dict.etags %}
+
+{# Parse recurring events #}
+{{- event_functions_macro.parse_recurring_events(recurringEventDates, eventDates, qd_esdgte, qd_esdlt) -}}
+
+{# Set events from combined results sorted by event start_date #}
+{% set events = eventDates|sort(false, false, 'start_date') %}
+
+{# Fetch all available categories #}
+{% set tags = hubdb_table_column('event_date', 'tags') %}
+
+{% set settings = {} %}
+{{- event_functions_macro.parse_settings(content, settings) -}}
+
+<div class="event-listing-module_wrp">
+  <div class="event-listing-module event-listing-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
+    {# Event tag listing header #}
+    {% if tag %}
+      <div class="event-listing-module__tag-heading_wrp">
+        <div class="event-listing-module__tag-heading">
+          {%- set heading_data = {
+            "display":module.tag_listing_header.display,"heading_tag":module.tag_listing_header.heading_tag,"text":module.tag_listing_header.text ~ " " ~ page_meta.html_title|split(" | ")|last,
+            "link":{"link":{"url":{"href":"","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},"accessible_link":true},
+            "icon":{
+              "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+              "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+            }
+          }%}{{heading_macros.render_heading_tmpl(heading_data, module.style.general_heading, module,
+            {
+              id: 'general'
+            }
+          )}}
+        </div>
+      </div>
+    {% endif %}
+
+    {# Event post listing #}
+    <div class="event-listing-module__articles {{module.layout.layout}}">
+      {% for content in events %}
+        {% set eventInformation = content.associations.event_collection__event_information.items[0] %}
+        {% set content_index = loop.index %}
+        {% set content_last = loop.last %}
+
+        {# if mosaic-grid #}
+        {% if module.layout.layout == 'mosaic-grid' %}
+          {% set start_mosaic_wrp_positions = [2,6,12,16,22,26,32,36] %}
+          {% for position in start_mosaic_wrp_positions %}
+            {% if position == content_index %}
+              <div class="mosaic-grid-box">
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {# endif mosaic-grid #}
+
+        <div class="event-listing-module__article_wrp">
+          <article class="event-listing-module__article" aria-label="Event post summary: {{content.name}}">
+            {% for event_component in module.event_components %}
+              {% if event_component.component|lower == 'image' %}
+                {{render_image(eventInformation) if event_component.show}}
+              {% elif event_component.component|lower == 'tags' %}
+                {{render_tags(content) if event_component.show}}
+              {% elif event_component.component|lower == 'heading' %}
+                {{render_heading(eventInformation) if event_component.show}}
+              {% elif event_component.component|lower == 'date' %}
+                {{render_date(content) if event_component.show}}
+              {% elif event_component.component|lower == 'description' %}
+                {{render_description(eventInformation) if event_component.show}}
+              {% endif %}
+            {% endfor %}
+            {% if module.button.show %}
+              {{render_button(eventInformation)}}
+            {% endif %}
+          </article>
+        </div>
+
+        {# if mosaic-grid #}
+        {% if module.layout.layout == 'mosaic-grid' %}
+          {% set end_mosaic_wrp_positions = [5,9,15,19,25,29,35,39] %}
+          {% for position in end_mosaic_wrp_positions %}
+            {% if position|int == content_index %}
+              </div>
+            {% elif content_last and position != content_index and position > content_index %}
+              {% if position|int - 1 == content_index or position|int - 2 == content_index or position|int - 3 == content_index %}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {# endif mosaic-grid #}
+
+      {% endfor %}
+    </div>
+
+  </div>
+</div>

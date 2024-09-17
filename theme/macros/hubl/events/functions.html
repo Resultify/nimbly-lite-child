@@ -1,0 +1,191 @@
+<!-- macro/hubl/event/functional.html file -->
+{% macro parse_settings(content, settings) %}
+
+  {# Swedish labels #}
+  {% if (content.language.languageTag == "sv" || content.language.languageTag == null) %}
+    {% set resetFilterLabel = "Återställ filter" %}
+    {% set eventDatesLabel = "Datum" %}
+    {% set noEventsLabel = "Hittade inga evenemang" %}
+    {% set locale = "sv" %}
+    {% set timeEventDatePrefix = "Kl" %}
+    {% set timeFormatEventDate = "d MMM HH:mm" %}
+    {% set timeFormatEventDateNextYear = "d MMM YYYY HH:mm" %}
+    {% set timeFormatMoreDates = "d MMM HH:mm" %}
+
+    {% set eventTitleLabel = "Evenemang" %}
+    {% set eventLabels = ["Alla", "Sport", "Musik & Show", "Redhawks", "Övrigt"] %}
+    {% set fromCurrencyLabel = ["Från", "SEK"] %}
+    {% set buttonLabels = ["Köp biljett", "Boka hotell", "Boka bord", "Eventdatum", "Praktisk info", "YouTube"] %}
+    {% set headerLabels = ["Fler datum", "Praktisk information"] %}
+    {% set unpublishedLabel = "Detta eventet är inte tillgängligt." %}
+    {% set eventListPath = '/{{ splitPath[0] }}/' %}
+  {% endif %}
+
+  {# English labels #}
+  {% if (content.language.languageTag == "en") %}
+    {% set resetFilterLabel = "Reset filter" %}
+    {% set eventDatesLabel = "Dates" %}
+    {% set noEventsLabel = "No events was found" %}
+    {% set locale = "en" %}
+    {% set timeEventDatePrefix = "" %}
+    {% set timeFormatEventDate = "h:mm a" %}
+    {% set timeFormatEventDateNextYear = "YYYY-MM-dd HH:mm" %}
+    {% set timeFormatMoreDates = "d MMM h:mm a" %}
+
+    {% set eventTitleLabel = "Event" %}
+    {% set eventLabels = ["All", "Sport", "Music & Show", "Redhawks", "Other"] %}
+    {% set fromCurrencyLabel = ["From", "SEK"] %}
+    {% set buttonLabels = ["Buy ticket", "Book hotel", "Book table", "Event date", "Practical information", "YouTube"] %}
+    {% set headerLabels = ["More dates", "Practical information"] %}
+    {% set eventListPath = '/{{ splitPath[0] }}/{{ splitPath[1] }}/' %}
+    {% set unpublishedLabel = "This event is not available at the moment." %}
+  {% endif %}
+
+  {% do settings.update({
+    'resetFilterLabel': resetFilterLabel,
+    'eventDatesLabel': eventDatesLabel,
+    'noEventsLabel': noEventsLabel,
+    'locale': locale,
+    'timeEventDatePrefix': timeEventDatePrefix,
+    'timeFormatEventDateNextYear': timeFormatEventDateNextYear,
+    'timeFormatEventDate': timeFormatEventDate,
+    'timeFormatMoreDates': timeFormatMoreDates,
+  }) %}
+
+{% endmacro %}
+
+{#
+Used as function to parse recurring events.
+
+recurringEventDates - List of recurring events
+eventDates - List of parsed events, reccuring events are appended to this list.
+qd_esdgte - Query dict start date greater than or equal to. If not set, set to yesterday.
+qd_esdlt - Query dict end date less than. If not set, set to event.recurrence_end_date.
+#}
+{% macro parse_recurring_events(recurringEventDates, eventDates, qd_esdgte, qd_esdlt) %}
+  {% for event in recurringEventDates %}
+    {# Set recurring events valid begin and end dates from query dict #}
+    {% set fromLimit = qd_esdgte %}
+    {% set toLimit = qd_esdlt %}
+    {# Set fromLimit to yesterday if not set #}
+    {% if !fromLimit %}
+      {% set fromLimit = unixtimestamp(today().minusDays(1)) %}
+    {% endif %}
+    {# Set toLimit to event.recurrence_end_date if not set #}
+    {% if !toLimit %}
+      {% set toLimit = event.recurrence_end_date %}
+    {% endif %}
+
+    {# event variables #}
+    {% set startDate = event.start_date %}
+    {% set endDate = event.end_date %}
+    {% set recurrenceEndDate = event.recurrence_end_date %}
+    {% if type(event.recurrence_frequency) == 'dict' %}
+      {% set frequency = event.recurrence_frequency.value %}
+      {% set days = event.recurrence_days|map('value') %}
+    {% else %}
+      {% set frequency = event.recurrence_frequency.name %}
+      {% set days = event.recurrence_days|map('name') %}
+    {% endif %}
+    {% set interval = event.recurrence_interval %}
+    {% set recurringDays = ((recurrenceEndDate - startDate) / 86400000) + 1 %}
+    {% set recurringDays = startDate|between_times(recurrenceEndDate, "days") %}
+    {% set nextMatchDate = 0 %}
+
+    {# Loop through recurring days #}
+    {% if recurringDays > 0 %}
+      {% for addDays in range(recurringDays | int) %}
+        {% set loopDate = startDate | plus_time(addDays, "days") %}
+        {# Extract time components from start_date and end_date #}
+        {% set startTime = event.start_date | plus_time(addDays, "days") %}
+        {% set endTime = event.end_date | plus_time(addDays, "days") %}
+
+        {# Check if nextMatchDate is 0 and set loopDate as nextMatchDate #}
+        {% if nextMatchDate == 0 %}
+          {% set nextMatchDate = loopDate %}
+        {% endif %}
+
+        {# Check if event frequency is daily annd loop date equals next match date #}
+        {% if frequency == 'daily' and loopDate == nextMatchDate %}
+          {# Check if loopDate is within fromLimit and toLimit #}
+          {% if loopDate|unixtimestamp >= fromLimit and loopDate|unixtimestamp <= toLimit %}
+            {% do eventDates.append({
+                'title': event.title ~ ' ' ~ addDays,
+                'start_date': startTime|unixtimestamp,
+                'hs_path': event.hs_path,
+                'tags': event.tags,
+                'recurrence_end_date': event.recurrence_end_date,
+                'recurrence_frequency': event.recurrence_frequency,
+                'recurrence_interval': event.recurrence_interval,
+                'recurrence_days': event.recurrence_days,
+                'hs_id': event.hs_id,
+                'associations': {
+                  'event_collection__event_information': {
+                  'items': event.associations.event_collection__event_information.items,
+                  }
+                },
+                'end_date': endTime|unixtimestamp,
+              })
+            %}
+          {% endif %}
+          {# Set next match date to loopDate plus interval days to match next recurring event date #}
+          {% set nextMatchDate = loopDate | plus_time(interval, "days") %}
+        {% endif %}
+
+        {% if frequency == 'weekly' %}
+          {# Check if loopDate is within fromLimit and toLimit #}
+          {% if loopDate|unixtimestamp >= fromLimit and loopDate|unixtimestamp <= toLimit %}
+            {# Check if loopDate day number is in recurring event days array #}
+            {% if loopDate | format_datetime('c', 'UTC', 'sv-SE') in days %}
+              {% do eventDates.append({
+                  'title': event.title ~ ' ' ~ addDays,
+                  'start_date': startTime|unixtimestamp,
+                  'hs_path': event.hs_path,
+                  'tags': event.tags,
+                  'recurrence_end_date': event.recurrence_end_date,
+                  'recurrence_frequency': event.recurrence_frequency,
+                  'recurrence_interval': event.recurrence_interval,
+                  'recurrence_days': event.recurrence_days,
+                  'hs_id': event.hs_id,
+                  'associations': {
+                    'event_collection__event_information': {
+                    'items': event.associations.event_collection__event_information.items,
+                    }
+                  },
+                  'end_date': endTime|unixtimestamp,
+                })
+              %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
+        {# Check if event frequency is monthly annd loop date equals next match date #}
+        {% if frequency == 'monthly' and loopDate == nextMatchDate %}
+          {# Check if loopDate is within fromLimit and toLimit #}
+          {% if loopDate|unixtimestamp >= fromLimit and loopDate|unixtimestamp <= toLimit %}
+            {% do eventDates.append({
+                'title': event.title ~ ' ' ~ addDays,
+                'start_date': startTime|unixtimestamp,
+                'hs_path': event.hs_path,
+                'tags': event.tags,
+                'recurrence_end_date': event.recurrence_end_date,
+                'recurrence_frequency': event.recurrence_frequency,
+                'recurrence_interval': event.recurrence_interval,
+                'recurrence_days': event.recurrence_days,
+                'hs_id': event.hs_id,
+                'associations': {
+                  'event_collection__event_information': {
+                  'items': event.associations.event_collection__event_information.items,
+                  }
+                },
+                'end_date': endTime|unixtimestamp,
+              })
+            %}
+          {% endif %}
+          {# Set next match date to loopDate plus interval days to match next recurring event date #}
+          {% set nextMatchDate = loopDate | plus_time(interval, "months") %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
