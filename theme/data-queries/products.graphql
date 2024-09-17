@@ -1,6 +1,10 @@
-query Products {
+# label: "Products list with filters"
+# description: "Filter Products by different filters"
+# $limit: "{{ request.query_dict.limit <= 101 ? request.query_dict.limit : 100 || 100 }}"
+# $offset: "{{ request.query_dict.offset || 0 }}"
+query Products($limit: Int = 100, $offset: Int = 0) {
     CRM {
-        product_collection {
+        product_collection(limit: $limit, offset: $offset) {
             items {
                 name
                 price
@@ -15,6 +19,9 @@ query Products {
                 hs_object_id
                 hs_product_type
             }
+            limit
+            offset
+            total
         }
     }
 }
