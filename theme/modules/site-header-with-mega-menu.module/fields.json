@@ -4882,16 +4882,6 @@
   "required" : false,
   "locked" : false,
   "children" : [ {
-    "id" : "4a91a32c-99aa-7c9c-0eb9-2dc887a3d179",
-    "name" : "menu",
-    "display_width" : null,
-    "label" : "Menu",
-    "help_text" : "If no menu is selected, the name \"main_navigation\" will be used as the default main menu",
-    "inline_help_text" : "<a href=\"//www.resultify.se/hubfs/doc_site-header-with-mega-menu.html\">External documentation on Mega Menu syntax</a>",
-    "required" : false,
-    "locked" : false,
-    "type" : "menu"
-  }, {
     "id" : "db1f849f-46a9-8d2d-7c34-49ceb8ed15b2",
     "name" : "mega_menu",
     "display_width" : null,
@@ -4899,18 +4889,6 @@
     "required" : false,
     "locked" : false,
     "children" : [ {
-      "id" : "10ec5c67-ee9f-aea2-5ba4-08c51d9a430d",
-      "name" : "enable",
-      "display_width" : null,
-      "label" : "Enable mega menu",
-      "help_text" : "Enables the mega menu in desktop resolutions",
-      "inline_help_text" : "",
-      "required" : false,
-      "locked" : false,
-      "display" : "toggle",
-      "type" : "boolean",
-      "default" : true
-    }, {
       "id" : "f0c2fa01-ab4d-9464-47b0-b598ec7cce5f",
       "name" : "number_of_columns",
       "display_width" : null,
@@ -4918,14 +4896,6 @@
       "help_text" : "Number of columns in desktop resolutions",
       "required" : false,
       "locked" : false,
-      "visibility" : {
-        "controlling_field" : null,
-        "controlling_field_path" : "menu.mega_menu.enable",
-        "controlling_value_regex" : "true",
-        "property" : null,
-        "operator" : "EQUAL",
-        "access" : null
-      },
       "display" : "radio",
       "choices" : [ [ "1col", "1 column" ], [ "2col", "2 columns" ], [ "3col", "3 columns" ] ],
       "multiple" : false,
@@ -4942,14 +4912,6 @@
       "inline_help_text" : "",
       "required" : false,
       "locked" : false,
-      "visibility" : {
-        "controlling_field" : null,
-        "controlling_field_path" : "menu.mega_menu.enable",
-        "controlling_value_regex" : "true",
-        "property" : null,
-        "operator" : "EQUAL",
-        "access" : null
-      },
       "display" : "toggle",
       "type" : "boolean",
       "default" : false
@@ -4962,14 +4924,6 @@
       "inline_help_text" : "",
       "required" : false,
       "locked" : false,
-      "visibility" : {
-        "controlling_field" : null,
-        "controlling_field_path" : "menu.mega_menu.enable",
-        "controlling_value_regex" : "true",
-        "property" : null,
-        "operator" : "EQUAL",
-        "access" : null
-      },
       "display" : "toggle",
       "type" : "boolean",
       "default" : false
@@ -4982,14 +4936,6 @@
       "inline_help_text" : "",
       "required" : false,
       "locked" : false,
-      "visibility" : {
-        "controlling_field" : null,
-        "controlling_field_path" : "menu.mega_menu.enable",
-        "controlling_value_regex" : "true",
-        "property" : null,
-        "operator" : "EQUAL",
-        "access" : null
-      },
       "display" : "toggle",
       "type" : "boolean",
       "default" : false
@@ -5002,14 +4948,6 @@
       "inline_help_text" : "",
       "required" : false,
       "locked" : false,
-      "visibility" : {
-        "controlling_field" : null,
-        "controlling_field_path" : "menu.mega_menu.enable",
-        "controlling_value_regex" : "true",
-        "property" : null,
-        "operator" : "EQUAL",
-        "access" : null
-      },
       "display" : "toggle",
       "type" : "boolean",
       "default" : false
@@ -5020,14 +4958,6 @@
       "label" : "First level title font-size",
       "required" : false,
       "locked" : false,
-      "visibility" : {
-        "controlling_field" : null,
-        "controlling_field_path" : "menu.mega_menu.enable",
-        "controlling_value_regex" : "true",
-        "property" : null,
-        "operator" : "EQUAL",
-        "access" : null
-      },
       "display" : "text",
       "min" : 20,
       "max" : 500,
@@ -5042,14 +4972,6 @@
       "label" : "First level description font-size",
       "required" : false,
       "locked" : false,
-      "visibility" : {
-        "controlling_field" : null,
-        "controlling_field_path" : "menu.mega_menu.enable",
-        "controlling_value_regex" : "true",
-        "property" : null,
-        "operator" : "EQUAL",
-        "access" : null
-      },
       "display" : "text",
       "min" : 20,
       "max" : 500,
@@ -5064,14 +4986,6 @@
       "label" : "Second level font-size",
       "required" : false,
       "locked" : false,
-      "visibility" : {
-        "controlling_field" : null,
-        "controlling_field_path" : "menu.mega_menu.enable",
-        "controlling_value_regex" : "true",
-        "property" : null,
-        "operator" : "EQUAL",
-        "access" : null
-      },
       "display" : "text",
       "min" : 20,
       "max" : 500,
@@ -5086,14 +5000,6 @@
       "label" : "Second level description font-size",
       "required" : false,
       "locked" : false,
-      "visibility" : {
-        "controlling_field" : null,
-        "controlling_field_path" : "menu.mega_menu.enable",
-        "controlling_value_regex" : "true",
-        "property" : null,
-        "operator" : "EQUAL",
-        "access" : null
-      },
       "display" : "text",
       "min" : 20,
       "max" : 500,
@@ -5108,14 +5014,6 @@
       "label" : "Third level font-size",
       "required" : false,
       "locked" : false,
-      "visibility" : {
-        "controlling_field" : null,
-        "controlling_field_path" : "menu.mega_menu.enable",
-        "controlling_value_regex" : "true",
-        "property" : null,
-        "operator" : "EQUAL",
-        "access" : null
-      },
       "display" : "text",
       "min" : 20,
       "max" : 500,
@@ -5130,14 +5028,6 @@
       "label" : "Third level description font-size",
       "required" : false,
       "locked" : false,
-      "visibility" : {
-        "controlling_field" : null,
-        "controlling_field_path" : "menu.mega_menu.enable",
-        "controlling_value_regex" : "true",
-        "property" : null,
-        "operator" : "EQUAL",
-        "access" : null
-      },
       "display" : "text",
       "min" : 20,
       "max" : 500,
@@ -5151,7 +5041,6 @@
     "group_occurrence_meta" : null,
     "type" : "group",
     "default" : {
-      "enable" : true,
       "number_of_columns" : "3col",
       "show_title" : false,
       "limit_max_content_width" : false,
@@ -5164,6 +5053,16 @@
       "third_level_font_size" : 85,
       "third_level_descr_font_size" : 75
     }
+  }, {
+    "id" : "4a91a32c-99aa-7c9c-0eb9-2dc887a3d179",
+    "name" : "menu",
+    "display_width" : null,
+    "label" : "Menu",
+    "help_text" : "If no menu is selected, the name \"main_navigation\" will be used as the default main menu",
+    "inline_help_text" : "<a href=\"//www.resultify.se/hubfs/doc_site-header-with-mega-menu.html\">External documentation on Mega Menu syntax</a>",
+    "required" : false,
+    "locked" : false,
+    "type" : "menu"
   }, {
     "id" : "af650bb1-490f-352d-f39f-aa21064a19ed",
     "name" : "max_level",
@@ -5196,7 +5095,6 @@
   "type" : "group",
   "default" : {
     "mega_menu" : {
-      "enable" : true,
       "number_of_columns" : "3col",
       "show_title" : false,
       "limit_max_content_width" : false,

@@ -340,15 +340,15 @@ third_level_descr_font_size={% if module.menu.mega_menu.third_level_descr_font_s
     <li class="main-nav__list-item
     main-nav__list-item--lvl{{link.level}} lvl{{link.level}}
     {{'main-nav__list-item--dropdown' if link.children && link.level < module.menu.max_level && link.level < 2}}
-    {{'main-nav__mega-menu main-nav__mega-menu--{{ module.menu.mega_menu.number_of_columns }}' if module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
-    {{'main-nav__full-height' if module.menu.mega_menu.full_height && module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
-    {{'main-nav__vertical_center' if module.menu.mega_menu.vertical_center_dropdown_content && module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
-    {{'main-nav__max-content-width' if module.menu.mega_menu.limit_max_content_width && module.menu.mega_menu.enable && link.children && link.level < module.menu.max_level && link.level < 2 }}
+    {{'main-nav__mega-menu main-nav__mega-menu--{{ module.menu.mega_menu.number_of_columns }}' if link.children && link.level < module.menu.max_level && link.level < 2 }}
+    {{'main-nav__full-height' if module.menu.mega_menu.full_height && link.children && link.level < module.menu.max_level && link.level < 2 }}
+    {{'main-nav__vertical_center' if module.menu.mega_menu.vertical_center_dropdown_content && link.children && link.level < module.menu.max_level && link.level < 2 }}
+    {{'main-nav__max-content-width' if module.menu.mega_menu.limit_max_content_width && link.children && link.level < module.menu.max_level && link.level < 2 }}
     {{'active-parent' if link.activeBranch && link.children && link.level < module.menu.max_level && link.level < 2}}
     {{'active' if link.activeNode}}">
       {{nav_link(link, link.level)}}
       {% if link.children && link.level < module.menu.max_level %}
-        {% if module.menu.mega_menu.enable && link.level == 1 %}
+        {% if link.level == 1 %}
 
           {# general mega menu #}
           <ul role="list" class="main-nav__list main-nav__list--sublevel
@@ -357,12 +357,11 @@ third_level_descr_font_size={% if module.menu.mega_menu.third_level_descr_font_s
             <div class="main-nav__list-part">
             {% if module.menu.mega_menu.show_title %}
               {% set names = link.label|split('|', 3) %}
-              <li class="main-nav__title">{{names[0]}}
+              <li class="main-nav__title">{{names[0]}}</li>
               {# description - only render if it's not: _ #}
               {% if names[1] and names[1] != '_' %}
                 <span class="main-nav__description">{{names[1]}}</span>
               {% endif %}
-              </li>
             {% endif %}
             {% for sublink in link.children %}
               {{render_link_item(sublink, sublink.level)}}
@@ -545,7 +544,7 @@ third_level_descr_font_size={% if module.menu.mega_menu.third_level_descr_font_s
       align-items: flex-start;  {# top #}
       flex-direction: row;
       align-content: flex-start;
-      gap: var(--gap);
+      gap: 0 var(--gap);
     }
 
     {# mobile only styles #}
@@ -639,6 +638,8 @@ third_level_descr_font_size={% if module.menu.mega_menu.third_level_descr_font_s
 
     .main-nav__mega-menu .main-nav__list--dropdown .main-nav__title {
       width: 100%;
+      padding-top: 0;
+      padding-bottom: 0;
       display: block;
     }
 
@@ -647,11 +648,6 @@ third_level_descr_font_size={% if module.menu.mega_menu.third_level_descr_font_s
       display: block;
       padding-top: calc(var(--gap) / 3);
       padding-bottom: calc(var(--gap) / 3);
-    }
-
-    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__title .main-nav__description {
-      padding-left: 0;
-      padding-right: 0;
     }
 
     .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item-link--lvl2 {
@@ -745,6 +741,7 @@ third_level_descr_font_size={% if module.menu.mega_menu.third_level_descr_font_s
     }
 
     .main-nav__list--sublevel .main-nav__list-item--lvl3 .main-nav__description {
+      padding-top: 0;
       {% if link_font.size %}
         {# use mega_menu.third_level_descr_font_size #}
         font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.third_level_descr_font_size }} * 0.01));
