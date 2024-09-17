@@ -1,15 +1,3 @@
-{#enable={% if module.menu.mega_menu.enable %}enable{% endif %}<br>
-show_title={% if module.menu.mega_menu.show_title %}enable{% endif %}<br>
-full_height={% if module.menu.mega_menu.full_height %}enable{% endif %}<br>
-vertical_center_dropdown_content={% if module.menu.mega_menu.vertical_center_dropdown_content %}enable{% endif %}<br>
-limit_max_content_width={% if module.menu.mega_menu.limit_max_content_width %}enable{% endif %}<br>
-first_level_title_font_size={% if module.menu.mega_menu.first_level_title_font_size %}{{ module.menu.mega_menu.first_level_title_font_size }}{% endif %}<br>
-first_level_descr_font_size={% if module.menu.mega_menu.first_level_descr_font_size %}{{ module.menu.mega_menu.first_level_descr_font_size }}{% endif %}<br>
-second_level_font_size={% if module.menu.mega_menu.second_level_font_size %}{{ module.menu.mega_menu.second_level_font_size }}{% endif %}<br>
-second_level_descr_font_size={% if module.menu.mega_menu.second_level_descr_font_size %}{{ module.menu.mega_menu.second_level_descr_font_size }}{% endif %}<br>
-third_level_font_size={% if module.menu.mega_menu.third_level_font_size %}{{ module.menu.mega_menu.third_level_font_size }}{% endif %}<br>
-third_level_descr_font_size={% if module.menu.mega_menu.third_level_descr_font_size %}{{ module.menu.mega_menu.third_level_descr_font_size }}{% endif %}<br>
-#}
 {% import '../macros/link.html' as link_macros %}
 {% import '../macros/button.html' as button_macros %}
 {% import '../macros/icon.html' as icon_macros %}
@@ -206,28 +194,32 @@ third_level_descr_font_size={% if module.menu.mega_menu.third_level_descr_font_s
     Type:                             Text format:
     Regular link                      link title
     Link with description             link title|description
-    Image + link with description     link title|description|image filename
-    Image + link without description  link title|_|image filename
+    Image + link with description     link title|description|image url
+    Image + link without description  link title|_|image url
     Button                            |link title
 
     Example of mega-menu:
 
-    Services
-        Get intouch and we tell you more about how we can help you Get intouch and we tell you more about how we can help you
+    Services|We can provide you with great service
+    Technology|Enhance your security
+        Net Neutrality
+        Big Data
+        Augmented Reality
+    Data Mining|The process of extracting and discovering patterns in large data sets
+        Actionable Analytics
+        Artificial Intelligence
+        Virtual Reality
+    Machine Learning|Learn the fundamentals
+        Personalization
+        Voice Recognition
+    Internet of Things
+        Robotics|The interdisciplinary study and practice of the design|https://123.fs1.hubspotusercontent-eu1.net/hubfs/123/robot.svg
+            Quantum Computing|Exploiting quantum mechanical phenomena
+            Chatbots
+        Smart Industry|Digital transformation of manufacturing|https://123.fs1.hubspotusercontent-eu1.net/hubfs/123/industry.svg
+            Blockchain|Distributed ledger of securely linked records
+            Endemic|Managing ongoing global challenges in a sustainable way
         |Contact Us
-        Cyber & IT Risk Management|Lorem ipsum dolor sit amet consectetur. Quam turpis ut maecenas rhoncus.|Cyber & IT Risk Management.svg
-            Penetration Testing (Security Assurance)
-            Framework Control and Compliance
-            Supply Chain and Third Party Risk Management
-            Employee Awareness
-        Operational Resilience|Lorem ipsum dolor sit amet consectetur. Quam turpis ut maecenas rhoncus.|Operational Resilience.svg
-            Framework Control and Compliance
-            Penetration Testing (Security Assurance)
-            Supply Chain and Third Party Risk Management
-        Other Professional Services|Lorem ipusm dolor sit amet consectetur. Qua, turpis ut maecenas rhoncus ac convalis.|Other professional services.svg
-            Framework Control and Compliance
-            Penetration Testing (Security Assurance)
-            Supply Chain and Third Party Risk Management
 
     #}
     {% set symbol = link.label|truncate(1, True, '') %}
@@ -237,7 +229,7 @@ third_level_descr_font_size={% if module.menu.mega_menu.third_level_descr_font_s
         example: link title||Icon.png
     #}
     {% if names[2] and names[2] != '' %}
-      {% set imgUrl = get_asset_url('/nimbly-lite-child/images/content/' + names[2]) %}
+      {% set imgUrl = get_asset_url('../../images/content/' + names[2]) %}
       {# if no asset was found, test if it's a full url instead #}
       {% if imgUrl == '' %}
         {% set imgUrl = names[2]|escape_url %}
