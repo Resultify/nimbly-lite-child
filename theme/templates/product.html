@@ -1,0 +1,35 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  enableDomainStylesheets: false
+  label: Products list and single-view
+  screenshotPath: ../images/template-previews/products.png
+-->
+
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+  <div class="products-template">
+    {# Single view #}
+    {% if request.query_dict.product_id %}
+      {% set product = crm_objects("product", request.query_dict.product_id, "name, price, quantity, tax, hs_url, amount, createdate, description, discount, hs_images, hs_object_id, hs_product_type").results[0] %}
+      {% if product %}
+        <div class="product-single-view">
+          <h2>{{ product.name }}</h2>
+          <img src="{{ resize_image_url(product.hs_images, 240) }}" alt="{{ product.name }}">
+          <p>{{ product.description }}</p>
+          <p>{{ product.price }}</p>
+        </div>
+      {% endif %}
+    {% else %}
+    {# List view - not editable for editor #}
+      {% module "product-list"
+        path="/nimbly-lite-child/modules/product-list",
+      %}
+      {% dnd_area 'dnd_area_list'
+        label='Product list',
+      %}
+      {% end_dnd_area %}
+    {% endif %}
+  </div>
+{% endblock body %}

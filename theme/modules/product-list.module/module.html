@@ -14,7 +14,7 @@
                 <img src="{{ resize_image_url(product.hs_images, 240) }}" alt="{{ product.name }}">
               </div>
               <div class="product-details">
-                <h2>{{ product.name }}</h2>
+                <a href="?product_id={{ product.hs_object_id }}"><h2>{{ product.name }}</h2></a>
                 <p>{{ product.description }}</p>
                 <p>{{ product.price }}</p>
               </div>
