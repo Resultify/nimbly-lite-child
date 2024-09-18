@@ -147,8 +147,17 @@
 
     <div class="event-listing-module__article-tags event-listing-module__article-item">
       {%- for tag in content.tags -%}
-        {%- set text_data = {"text": tag.label}%}
-        {{text_macros.render_text_tmpl(text_data, module.style.text, module)}}
+        {%- set eventTagUrl = "?etags="~tag.value -%}
+        {% if eventTagUrl %}
+          {%- set link_data = {
+            "text":tag.label,"accessible_link":true,
+            "link":{"url":{"href":eventTagUrl,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+            "icon":{
+              "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+              "icon_position":"left"
+            }
+          }%}{{link_macros.render_link_tmpl(link_data, module.style.link, module)}}
+        {% endif %}
       {%- endfor -%}
     </div>
 
@@ -190,7 +199,7 @@
 
 {# Button #}
 {%- macro render_button(content) -%}
-<div class="event-listing-module__article-button event-listing-module__article-item">
+  <div class="event-listing-module__article-button event-listing-module__article-item">
     {%- set url = "{{ request.path }}/{{ content.hs_path }}" -%}
     {%- set button_data = {
       "text":module.button.text,"accessible_link_label":"Read full post: {{content.hs_name}}","accessible_link":true,
@@ -203,6 +212,62 @@
   </div>
 {%- endmacro -%}
 
+{# Button #}
+{%- macro render_reset_button() -%}
+  <div class="event-listing-module__filters-reset-button">
+    {%- set button_data = {
+      "text":module.reset_filters_button.text,"accessible_link_label":module.reset_filters_button.text,"accessible_link":true,
+      "link":{"url":{"href":request.path,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+      "icon":{
+        "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+        "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+      }
+    }%}{{button_macros.render_btn_tmpl(button_data, module.style.reset_filters_button, module)}}
+  </div>
+{%- endmacro -%}
+
+{%- macro render_date_filter() -%}
+  <div class="event-listing-module__filters-bydate">
+    {%- set options = {
+      stretched_link:false,
+      data_attrs:['data-bs-toggle="collapse"', 'role="button"'],
+      class:['']
+    }%}
+    {%- set button_data = {
+      "text":module.date_filter.text,"accessible_link_label":module.date_filter.text,"accessible_link":true,
+      "link":{"url":{"href":"#collapseDates","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+      "icon":{
+        "icon":{"name":"chevron-down","unicode":"","type":"SOLID","icon_set":"fontawesome-5.14.0"},
+        "icon_position":"right","accessibility_options":{"purpose":"decorative"}
+      }
+    }%}{{button_macros.render_btn_tmpl(button_data, module.style.date_filter, module, options)}}
+
+    <div class="collapse dropdown-menu" id="collapseDates">
+      <ul>
+        {% set localMonth = local_dt %}
+        {% for x in range(0,12) %}
+          {% set startMonth = localMonth | plus_time(loop.index0, "months") | format_datetime("yyyy-MM-01'T'00:00:00Z") %}
+          {% set nextMonth = localMonth | plus_time(loop.index0 + 1, "months") | format_datetime("yyyy-MM-01'T'00:00:00Z") %}
+          {% set startMonthDt = startMonth | render | strtotime("yyyy-MM-dd'T'HH:mm:ssZ") %}
+          {% set nextMonthDt = nextMonth | render | strtotime("yyyy-MM-dd'T'HH:mm:ssZ") %}
+          {% set linkText = localMonth|plus_time(loop.index0, "months") | format_datetime('MMMM YYYY', null, settings.locale) %}
+          {% set link = request.path + '?esdgte=' + startMonthDt | unixtimestamp + '&esdlt=' + nextMonthDt | unixtimestamp %}
+          {% if qd_esdgte %}
+            {% if (startMonthDt | unixtimestamp == qd_esdgte) %}
+              <li class="active">
+            {% else %}
+              <li>
+            {% endif %}
+          {% else %}
+            <li>
+          {% endif %}
+            <a href="{{ link }}">{{ linkText }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{%- endmacro -%}
 
 {# Fetch "Event dates" and recurring "Event dates", can't use OR in HubDB Graphql, so need two collections. #}
 {% set eventDates = module.data_query.data.HUBDB.event_dates.items %}
@@ -225,14 +290,21 @@
 {% set settings = {} %}
 {{- event_functions_macro.parse_settings(content, settings) -}}
 
+{# Parse tags from events, will not fetch all tags, only tags in events on page, will work with languages? #}
+{% set dateEventTags = [] %}
+{{- event_functions_macro.parse_event_tags(events, dateEventTags) -}}
+
+{# Event listing module #}
 <div class="event-listing-module_wrp">
   <div class="event-listing-module event-listing-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
+
     {# Event tag listing header #}
-    {% if tag %}
+    {% if qd_etags %}
       <div class="event-listing-module__tag-heading_wrp">
         <div class="event-listing-module__tag-heading">
+          {% set selectedTag = dateEventTags|selectattr('value', 'equalto', qd_etags)|first %}
           {%- set heading_data = {
-            "display":module.tag_listing_header.display,"heading_tag":module.tag_listing_header.heading_tag,"text":module.tag_listing_header.text ~ " " ~ page_meta.html_title|split(" | ")|last,
+            "display":module.tag_listing_header.display,"heading_tag":module.tag_listing_header.heading_tag,"text":module.tag_listing_header.text ~ " " ~ selectedTag.label,
             "link":{"link":{"url":{"href":"","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},"accessible_link":true},
             "icon":{
               "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
@@ -246,6 +318,17 @@
         </div>
       </div>
     {% endif %}
+    <div class="event-listing-module__filters_wrp">
+      {# Filters by date #}
+      {% if module.date_filter.show %}
+        {{ render_date_filter() }}
+      {% endif %}
+
+      {# Reset filters button #}
+      {% if module.reset_filters_button.show %}
+        {{ render_reset_button() }}
+      {% endif %}
+    </div>
 
     {# Event post listing #}
     <div class="event-listing-module__articles {{module.layout.layout}}">

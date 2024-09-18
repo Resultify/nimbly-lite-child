@@ -21,7 +21,6 @@
     {% set utsNow = local_dt | unixtimestamp %}
     {# Set main query and sorting #}
     {% set query = "event_information__contains="~dynamic_page_hubdb_row.hs_id~"&publish_date__lte="~utsNow~"&event_collection__event_information_ids__not_null=" %}
-    {% set query = "event_information__contains="~dynamic_page_hubdb_row.hs_id~"&publish_date__lte="~utsNow~"&event_collection__event_information_ids__not_null=" %}
     {% if content.language.languageTag %}
       {% set query = query~"&language="~content.language.languageTag %}
     {% endif %}
@@ -37,16 +36,19 @@
     {% set moreDateEvents = eventDates + [] %}
     {% set recurringEventDates = hubdb_table_rows('event_date', queryEventsRecurring) %}
 
-    {{- event_functions_macro.parse_recurring_events(recurringEventDates, moreDateEvents) -}}
+    {{- event_functions_macro.parse_recurring_events(recurringEventDates, moreDateEvents, null, null) -}}
+
+    {% set dateEventTags = [] %}
+    {{- event_functions_macro.parse_event_tags(moreDateEvents, dateEventTags) -}}
 
     <div class="event-view-template">
 
       <div class="event-view_wrp">
         <div class="event-view-header-wrp {{"event-view-header-wrp-featured-image" if dynamic_page_hubdb_row.featured_image }}">
           <div class="event-view-header">
-            {% if dynamic_page_hubdb_row.tags %}
+            {% if dateEventTags %}
               <div class="event-view__tags">
-                {% for tag in dynamic_page_hubdb_row.tags %}
+                {% for tag in dateEventTags %}
                   {{ tag.label}}
                 {% endfor %}
               </div>

@@ -2474,15 +2474,25 @@
     "height" : 680
   }
 }, {
-  "id" : "5a6c1c66-37b4-beab-ac8b-1a15d7d87015",
-  "name" : "author_listing_header",
+  "id" : "events_reset_filters_button",
+  "name" : "reset_filters_button",
   "display_width" : null,
-  "label" : "Author listing header",
-  "help_text" : "Event author listing header",
+  "label" : "Reset filters button",
+  "help_text" : "Reset filters button text",
   "required" : false,
   "locked" : false,
   "children" : [ {
-    "id" : "7f399ae0-c8aa-844c-77a2-bf07fc1e2618",
+    "id" : "events_reset_filters_button_show",
+    "name" : "show",
+    "display_width" : null,
+    "label" : "Show button",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "default" : true
+  }, {
+    "id" : "events_reset_filters_button_text",
     "name" : "text",
     "display_width" : null,
     "label" : "Text",
@@ -2492,9 +2502,47 @@
     "allow_new_line" : false,
     "show_emoji_picker" : false,
     "type" : "text",
-    "default" : "Posts by"
+    "default" : "Reset filters"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "show" : true,
+    "text" : "Reset filters"
+  }
+}, {
+  "id" : "events_date_filter",
+  "name" : "date_filter",
+  "display_width" : null,
+  "label" : "Date filter",
+  "help_text" : "Date filter",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "events_date_filter_show",
+    "name" : "show",
+    "display_width" : null,
+    "label" : "Show filter",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "default" : true
   }, {
-    "id" : "39e713e4-3444-0f5f-de90-250d1598f2e8",
+    "id" : "events_date_filter_text",
+    "name" : "text",
+    "display_width" : null,
+    "label" : "Text to display when no filter is applied",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Filter by month"
+  }, {
+    "id" : "events_date_filter_type",
     "name" : "heading_tag",
     "display_width" : null,
     "label" : "Tag",
@@ -2508,9 +2556,9 @@
     "reordering_enabled" : true,
     "preset" : null,
     "type" : "choice",
-    "default" : "h2"
+    "default" : "h3"
   }, {
-    "id" : "787cbf05-192d-7b36-4289-79ededf92492",
+    "id" : "events_date_filter_display",
     "name" : "display",
     "display_width" : null,
     "label" : "Display",
@@ -2530,9 +2578,10 @@
   "expanded" : false,
   "type" : "group",
   "default" : {
-    "text" : "Posts by",
-    "heading_tag" : "h2",
-    "display" : ""
+    "show" : true,
+    "text" : "Filter by month",
+    "heading_tag": "h3",
+    "display": ""
   }
 }, {
   "id" : "3effabad-fdf5-8999-4852-871244c7aa8b",
@@ -2553,7 +2602,7 @@
     "allow_new_line" : false,
     "show_emoji_picker" : false,
     "type" : "text",
-    "default" : "Posts about"
+    "default" : "Events about"
   }, {
     "id" : "4714fcc8-1cc3-eba7-2de4-cae7bffaf58d",
     "name" : "heading_tag",
@@ -2591,7 +2640,7 @@
   "expanded" : false,
   "type" : "group",
   "default" : {
-    "text" : "Posts about",
+    "text" : "Events about",
     "heading_tag" : "h2",
     "display" : ""
   }

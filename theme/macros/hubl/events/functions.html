@@ -189,3 +189,22 @@ qd_esdlt - Query dict end date less than. If not set, set to event.recurrence_en
     {% endif %}
   {% endfor %}
 {% endmacro %}
+
+{#
+Parse event tags
+
+recurringEventDates - List of events
+eventTags - List of parsed unique event tags.
+#}
+{% macro parse_event_tags(events, eventTags) %}
+  {% set allTags = [] %}
+  {% for event in events %}
+    {% for tag in event.tags %}
+      {% do allTags.append(tag) %}
+    {% endfor %}
+  {% endfor %}
+  {# Build list of all unique tags to eventTags #}
+  {% for tag in allTags|unique %}
+    {% do eventTags.append(tag) %}
+  {% endfor %}
+{% endmacro %}

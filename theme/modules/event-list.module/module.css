@@ -60,6 +60,23 @@
     object-fit: cover;
   }
 
+  .event-listing-module__filters_wrp {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 auto;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .event-listing-module__filters-bydate {
+    text-align: right;
+  }
+
+  .event-listing-module__filters-bydate ul {
+    list-style: none;
+    text-align: left;
+  }
+
   @media (max-width: 1200px) {
     .mosaic-grid .event-listing-module__article_wrp {
       width: 40%;
