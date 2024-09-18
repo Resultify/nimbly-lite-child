@@ -36,7 +36,7 @@
     {% set moreDateEvents = eventDates + [] %}
     {% set recurringEventDates = hubdb_table_rows('event_date', queryEventsRecurring) %}
 
-    {{- event_functions_macro.parse_recurring_events(recurringEventDates, moreDateEvents, null, null) -}}
+    {{- event_functions_macro.parse_recurring_events(recurringEventDates, moreDateEvents) -}}
 
     {% set dateEventTags = [] %}
     {{- event_functions_macro.parse_event_tags(moreDateEvents, dateEventTags) -}}
