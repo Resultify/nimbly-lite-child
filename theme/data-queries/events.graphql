@@ -88,5 +88,39 @@ query EventList($publish_date__lte: DateTime = "0d", $start_date_gte: DateTime =
       offset
       total
     }
+    event_max_date: event_date_collection(
+      limit: 1
+      filter: {
+        publish_date__lte: $publish_date__lte,
+        start_date__gte: $start_date_gte,
+        start_date__lt: $start_date_lt,
+        tags__in: $tags,
+        language__eq: $language,
+        recurrence_frequency__null: true,
+        event_collection__event_information_ids__not_null: "",
+      }
+      orderBy: end_date__desc
+    ) {
+      items {
+        end_date
+      }
+    }
+    recurring_event_max_date: event_date_collection(
+        limit: 1
+        filter: {
+          publish_date__lte: $publish_date__lte,
+          recurrence_end_date__gte: $publish_date__lte,
+          recurrence_end_date__gte: $start_date_gte,
+          tags__in: $tags,
+          language__eq: $language,
+          recurrence_frequency__null: false,
+          event_collection__event_information_ids__not_null: "",
+        }
+        orderBy: recurrence_end_date__desc
+    ) {
+      items {
+        recurrence_end_date
+      }
+    }
   }
 }

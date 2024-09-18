@@ -242,10 +242,21 @@
       }
     }%}{{button_macros.render_btn_tmpl(button_data, module.style.date_filter, module, options)}}
 
+    {% set maxEventEndDates = recurringEventMaxDate %}
+    {% if eventMaxDate > recurringEventMaxDate %}
+      {% set maxEventEndDates = eventMaxDate %}
+    {% endif %}
+    {% set startOfCurrentMonth = local_dt|plus_time(0, "months")|format_datetime("yyyy-MM-01'T'00:00:00Z") %}
+    {% set startMonth = startOfCurrentMonth|strtotime("yyyy-MM-dd'T'HH:mm:ssZ") %}
+    {% set months = startMonth|between_times(maxEventEndDates, 'months') %}
+    {% if months > 12 %}
+      {% set months = 12 %}
+    {% endif %}
+
     <div class="collapse dropdown-menu" id="collapseDates">
       <ul>
         {% set localMonth = local_dt %}
-        {% for x in range(0,12) %}
+        {% for x in range(0, months + 1) %}
           {% set startMonth = localMonth | plus_time(loop.index0, "months") | format_datetime("yyyy-MM-01'T'00:00:00Z") %}
           {% set nextMonth = localMonth | plus_time(loop.index0 + 1, "months") | format_datetime("yyyy-MM-01'T'00:00:00Z") %}
           {% set startMonthDt = startMonth | render | strtotime("yyyy-MM-dd'T'HH:mm:ssZ") %}
@@ -273,6 +284,9 @@
 {% set eventDates = module.data_query.data.HUBDB.event_dates.items %}
 {% set recurringEventDates = module.data_query.data.HUBDB.recurring_event_dates.items %}
 
+{% set eventMaxDate = module.data_query.data.HUBDB.event_max_date.items[0].end_date %}
+{% set recurringEventMaxDate = module.data_query.data.HUBDB.recurring_event_max_date.items[0].recurrence_end_date %}
+
 {# Set variables from query dict params "event start date gte", "event start date lt" and "event categories" #}
 {% set qd_esdgte = request.query_dict.esdgte %}
 {% set qd_esdlt = request.query_dict.esdlt %}
@@ -292,7 +306,7 @@
 
 {# Parse tags from events, will not fetch all tags, only tags in events on page, will work with languages? #}
 {% set dateEventTags = [] %}
-{{- event_functions_macro.parse_event_tags(events, dateEventTags) -}}
+{{- event_functions_macro.parse_event_tags(events, qd_etags, dateEventTags) -}}
 
 {# Event listing module #}
 <div class="event-listing-module_wrp">
