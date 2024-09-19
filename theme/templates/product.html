@@ -12,7 +12,7 @@
   <div class="products-template">
     {# Single view #}
     {% if request.query_dict.product_id %}
-      {% set product = crm_objects("product", request.query_dict.product_id, "name, price, quantity, tax, hs_url, amount, createdate, description, discount, hs_images, hs_object_id, hs_product_type").results[0] %}
+      {% set product = crm_objects(dynamic_page_crm_object_type_fqn, request.query_dict.product_id, "name, price, quantity, tax, hs_url, amount, createdate, description, discount, hs_images, hs_object_id, hs_product_type").results[0] %}
       {% if product %}
         <div class="product-single-view">
           <h2>{{ product.name }}</h2>
