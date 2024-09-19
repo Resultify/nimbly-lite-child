@@ -6,34 +6,215 @@
 {# *** #}
 
 {% import '../../partials/modules/unicard.html' %}
-
-{% if module.card_group|length > 0 %}
-  {{require_css(get_asset_url("../../partials/modules/unicard.css"))}}
-  {{require_css(get_asset_url("../../assets/css/swiper.css"), { async: true })}}
-  {{require_js(get_asset_url('../../assets/js/swiper.js'), { defer: true})}}
-
-
-  <div class="unicard-carousel" >
-    <div class="unicard-carousel-swiper swiper" data-delay="{{sliderDelay}}">
-      <div class="image-slider-wrapper swiper-wrapper">
-        {% for item in module.card_group %}
-          <div class="swiper-slide">
-            {{unicard_macro(item, module.style.card_style_group)}}
-          </div>
-        {% endfor %}
-      </div>
-
-
-
-      <!-- If we need pagination -->
-      <div class="swiper-pagination"></div>
-      <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-      </div>
-  </div>
+{{require_css(get_asset_url("../../partials/modules/unicard.css"))}}
+{{require_css(get_asset_url("../../assets/css/splide.css"), { async: true })}}
+{{require_js(get_asset_url('../../assets/js/splide.js'), { defer: true})}}
+{{require_js(get_asset_url('../../assets/js/splide-intersection.js'), { defer: true})}}
+{% if module.style.carousel_preset == 'auto-scroll' %}
+  {{require_js(get_asset_url('../../assets/js/splide-autoscroll.js'), { defer: true})}}
 {% endif %}
 
+<style>
+  {% scope_css %}
+    .unicard-carousel {
+      {% if module.style.carousel_pagination %}
+        {%- if module.style.pagination_group.pagination_color.css -%}
+          --pagination-color: {{module.style.pagination_group.pagination_color.css}};
+        {%- endif -%}
+        {%- if module.style.pagination_group.pagination_active_color.css -%}
+          --pagination-active-color: {{module.style.pagination_group.pagination_active_color.css}};
+        {%- endif -%}
+        {% if module.style.pagination_group.pagination_radius is integer %}
+          --pagination-radius: {{module.style.pagination_group.pagination_radius ~ '%'}};
+        {%- endif -%}
+        {% if module.style.pagination_group.pagination_position is integer %}
+          --pagination-position: {{module.style.pagination_group.pagination_position ~ 'px'}};
+        {%- endif -%}
+        {% if module.style.pagination_group.pagination_size is integer %}
+          --pagination-size: {{module.style.pagination_group.pagination_size ~ 'px'}};
+        {%- endif -%}
+      {%- endif -%}
 
+      {% if module.style.carousel_navigation %}
+        {%- if module.style.navigation_group.navigation_icon_color.css -%}
+          --navigation-color: {{module.style.navigation_group.navigation_icon_color.css}};
+        {%- endif -%}
+        {%- if module.style.navigation_group.navigation_icon_background.css -%}
+          --navigation-bg: {{module.style.navigation_group.navigation_icon_background.css}};
+        {%- endif -%}
+        {%- if module.style.navigation_group.navigation_icon_hover_color.css -%}
+          --navigation-hover-color: {{module.style.navigation_group.navigation_icon_hover_color.css}};
+        {%- endif -%}
+        {%- if module.style.navigation_group.navigation_icon_hover_background.css -%}
+          --navigation-hover-bg: {{module.style.navigation_group.navigation_icon_hover_background.css}};
+        {%- endif -%}
+        {% if module.style.navigation_group.navigation_icon_border_radius is integer %}
+          --navigation-radius: {{module.style.navigation_group.navigation_icon_border_radius ~ '%'}};
+        {%- endif -%}
+        {% if module.style.navigation_group.navigation_icon_size is integer %}
+          --navigation-icon-size: {{module.style.navigation_group.navigation_icon_size ~ 'px'}};
+        {%- endif -%}
+      {% endif %}
+    }
+    .unicard-carousel .splide__arrow {
+      {{module.style.navigation_group.navigation_icon_spacing.css}}
+    }
+    {% if module.style.navigation_group.hide_navigation_on_mobile %}
+      @media (min-width: 1300px) {
+        .unicard-carousel .splide {
+          {{module.style.spacing.css}}
+        }
+      }
+    {% else %}
+      {% if module.style.spacing.padding.left.value > 80 %}
+        .unicard-carousel .splide {
+          {{module.style.spacing.css}}
+          padding-left: {{module.style.spacing.padding.left.value / 3 ~ module.style.spacing.padding.left.units}};
+          padding-right: {{module.style.spacing.padding.right.value / 3 ~ module.style.spacing.padding.right.units}};
+        }
+        @media (min-width: 1024px) {
+          .unicard-carousel .splide {
+            padding-left: {{module.style.spacing.padding.left.value / 2 ~ module.style.spacing.padding.left.units}};
+            padding-right: {{module.style.spacing.padding.right.value / 2 ~ module.style.spacing.padding.right.units}};
+          }
+        }
+        @media (min-width: 1300px) {
+          .unicard-carousel .splide {
+            {{module.style.spacing.css}}
+          }
+        }
+      {% else %}
+        .unicard-carousel .splide {
+          {{module.style.spacing.css}}
+        }
+      {% endif %}
+    {% endif %}
+  {% end_scope_css %}
+</style>
 
+{# breakpoints if less then five columns carousel #}
+{% set less_then_five = {
+  breakpoints: {
+    '639.8': {
+      perPage: 1,
+    },
+    '900': {
+      perPage: module.style.carousel_per_page > 2 ? 2 : module.style.carousel_per_page,
+    },
+    '1200': {
+      perPage: module.style.carousel_per_page > 3 ? 3 : module.style.carousel_per_page,
+    }
+  }
+}%}
 
+{# breakpoints if more then four columns carousel #}
+{% set more_than_four = {
+  breakpoints: {
+    '460': {
+      perPage: 2,
+    },
+    '639.8': {
+      perPage: 3,
+    },
+    '900': {
+      perPage: module.style.carousel_per_page > 4 ? 4 : module.style.carousel_per_page,
+    },
+    '1200': {
+      perPage: module.style.carousel_per_page > 5 ? 5 : module.style.carousel_per_page,
+    }
+  }
+}%}
+
+{# auto scroll carousel preset #}
+{% set auto_scroll = {
+  padding: 3,
+  arrows: module.style.carousel_navigation,
+  pagination: false,
+  gap: module.style.carousel_gap is integer ? module.style.carousel_gap : 30,
+  perMove: 1,
+  perPage: module.style.carousel_per_page is integer ? module.style.carousel_per_page : 3,
+  type: 'loop',
+  drag: 'free',
+  autoScroll: {
+    speed: module.style.carousel_autoscroll_speed is float ? module.style.carousel_autoscroll_speed : 1,
+  },
+  intersection: {
+    inView: {
+      autoScroll: true
+    },
+    outView: {
+      autoScroll: false
+    }
+  }
+}%}
+
+{# carousel preset #}
+{% set carousel = {
+  padding: 3,
+  arrows: module.style.carousel_navigation,
+  pagination: module.style.carousel_pagination,
+  gap: module.style.carousel_gap is integer ? module.style.carousel_gap : 30,
+  perMove: module.style.carousel_per_move is integer ? module.style.carousel_per_move : 1,
+  perPage: module.style.carousel_per_page is integer ? module.style.carousel_per_page : 3,
+  rewind: module.style.carousel_rewind,
+  focus: 0,
+  omitEnd: module.style.carousel_loop == true ? false : true,
+  type: module.style.carousel_loop ? 'loop' : 'slide',
+  autoplay: module.style.carousel_autoplay,
+  interval: module.style.carousel_interval is integer ? module.style.carousel_interval * 1000 : 5000,
+  intersection: {
+    inView: {
+      autoplay: true
+    },
+    outView: {
+      autoplay: false
+    }
+  }
+}%}
+
+{# update carousel and auto_scroll presets based on carousel_per_page #}
+{% if module.style.carousel_per_page < 5 %}
+  {% do carousel.update(less_then_five)%}
+  {% do auto_scroll.update(less_then_five)%}
+{% elif module.style.carousel_per_page > 4 %}
+  {% do carousel.update(more_than_four)%}
+  {% do auto_scroll.update(more_than_four)%}
+{% endif %}
+
+{% if module.style.navigation_group.hide_navigation_on_mobile and module.style.carousel_navigation %}
+  {% do carousel.breakpoints.update({
+    '1300': {
+      arrows: false,
+    }
+  })%}
+  {% do auto_scroll.breakpoints.update({
+    '1300': {
+      arrows: false,
+    }
+  })%}
+{% endif %}
+
+{% if module.card_group|length > 0 %}
+  <div class="unicard-carousel">
+
+    <div class="splide splide-{{module.style.carousel_preset}}" aria-label="Splide Basic HTML Example"
+      {% if module.style.carousel_preset == 'auto-scroll' %}
+        data-splide='{{auto_scroll|tojson}}'
+      {% endif %}
+      {% if module.style.carousel_preset == 'carousel' %}
+        data-splide='{{carousel|tojson}}'
+      {% endif %}
+    >
+      <div class="splide__track">
+        <div class="splide__list">
+          {% for item in module.card_group %}
+            <div class="splide__slide">
+              {{unicard_macro(item, module.style.card_style_group)}}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endif %}

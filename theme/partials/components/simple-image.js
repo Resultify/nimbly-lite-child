@@ -2,7 +2,13 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
-const simpleImage = (parent = '', hideAlignment = false) => {
+/**
+ * #### simpleImage fields
+ * @param {string} [parent] - parent path
+ * @param {object} [opt] - options
+ * @param {boolean} [opt.hideAlignmentProp] - hide alignment property
+ */
+const simpleImage = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
@@ -24,7 +30,7 @@ const simpleImage = (parent = '', hideAlignment = false) => {
     }),
     fi.choice('Alignment', 'simple_image_alignment', {
       display_width: 'half_width',
-      locked: hideAlignment,
+      locked: opt?.hideAlignmentProp || false,
       choices: [
         ['start', 'Left'],
         ['center', 'Center'],

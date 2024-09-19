@@ -9,7 +9,7 @@
   padding-right: var(--scope-padding-right);
   padding-top: var(--scope-padding-top);
   padding-bottom: var(--scope-padding-bottom);
-  justify-content: space-between;
+  justify-content: var(--scope-vertical-alignment, space-between);
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -27,6 +27,7 @@
   display: flex;
   flex-direction: column;
   align-items: var(--scope-alignment);
+  justify-content: var(--scope-vertical-alignment);
   gap: var(--scope-content-gap);
 }
 

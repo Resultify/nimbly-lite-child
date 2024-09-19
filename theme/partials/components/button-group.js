@@ -18,7 +18,7 @@ const buttonGroup = (parent = '') => {
         occurrence: {
           min: 0,
           max: 100,
-          sorting_label_field: 'button_group.button_text'
+          sorting_label_field: `${parent}button_group.button_text`
         }
       },
       fi.choice('Style', 'button_style', {

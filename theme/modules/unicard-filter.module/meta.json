@@ -49,9 +49,9 @@
   "content_types" : [ "KNOWLEDGE_BASE", "QUOTE_TEMPLATE", "MEMBERSHIP", "LANDING_PAGE", "SITE_PAGE", "CUSTOMER_PORTAL", "BLOG_LISTING", "WEB_INTERACTIVE", "BLOG_POST" ],
   "master_language" : "en",
   "categories" : [ "DESIGN", "FUNCTIONALITY", "MEDIA" ],
-  "icon" : "../../images/module-icons/unicard-group.svg",
+  "icon" : "../../images/module-icons/unicard-filter.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "module_id" : 104263991542,
-  "label" : "Cards group with filter",
-  "is_available_for_new_content" : true
+  "label" : "Unicard group w/ filter",
+  "is_available_for_new_content" : false
 }

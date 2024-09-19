@@ -10,14 +10,32 @@ import { buttonGroup } from '../components/button-group.js'
 import { simpleImage } from '../components/simple-image.js'
 import { simpleText } from '../components/simple-text.js'
 import { listGroup } from '../components/list-group.js'
+import { accordionGroup } from '../components/accordion-group.js'
+import { form } from '../components/form.js'
 import { moduleComponents } from '../components/module-components.js'
 import { animationList } from '../data/animation-list.js'
 import { shadowList } from '../data/shadow-list.js'
 
-const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '') => {
+/**
+ * #### fullWidthImage fields
+ * @param {MODULE_COMPONENTS} components - parent path
+ * @param {string} [parent] - parent path
+ * @param {object} [opt] - options
+ * @param {object} [opt.form] - form options
+ * @param {object} [opt.heading] - heading options
+ * @param {string} [opt.heading.defaultHeading] - default heading text
+ * @param {object} [opt.mediaGroup] - media group options
+ * @param {string} [opt.mediaGroup.defaultMediaType] - default media type
+ * @param {boolean} [opt.mediaGroup.hideForceFullWidthImageProp] - hide force_full_width_image property for fullWidthImage component
+ * @param {boolean} [opt.mediaGroup.hideAlignmentProp] - hide alignment property for simpleImage component
+ * @param {boolean} [opt.mediaGroup.hideForceFullWidthVideoProp] - hide force_full_width_video property for video component
+ * @param {boolean} [opt.mediaGroup.showLottieScaleProp] - show lottie scale property
+ * @param {boolean} [opt.hideWholeAreaLinkProp] - hide whole area link property
+ */
+const unicardFields = (components, parent = '', opt) => {
   return [
     categoryGroup(parent),
-    mediaGroup(parent),
+    mediaGroup(parent, opt?.mediaGroup),
     group('Heading', 'heading',
       {
         visibility: {
@@ -27,7 +45,7 @@ const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '')
         },
         expanded: true
       },
-      heading(`${parent}heading.`, 'Universal card')
+      heading(`${parent}heading.`, opt?.heading)
     ),
     group('Subheading', 'subheading',
       {
@@ -50,6 +68,17 @@ const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '')
     buttonGroup(parent),
     customTextGroup(parent),
     listGroup(parent),
+    accordionGroup(parent),
+    group('Form', 'form_group',
+      {
+        visibility: {
+          controlling_field_path: `${parent}module_components`,
+          operator: 'MATCHES_REGEX',
+          controlling_value_regex: 'form'
+        }
+      },
+      form(`${parent}form_group.`, opt?.form)
+    ),
     group('Additional images', 'additional_images_group',
       {
         visibility: {
@@ -62,7 +91,7 @@ const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '')
           max: 20
         }
       },
-      simpleImage(`${parent}additional_images_group.`, true)
+      simpleImage(`${parent}additional_images_group.`, { hideAlignmentProp: true })
     ),
     simpleText(parent),
     fi.boolean('Whole area link', 'whole_area_link', {
@@ -70,6 +99,7 @@ const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '')
       display: 'toggle',
       default: false,
       visibility_rules: 'ADVANCED',
+      locked: opt?.hideWholeAreaLinkProp || false,
       advanced_visibility: {
         boolean_operator: 'OR',
         criteria: [
@@ -95,7 +125,15 @@ const unicardFields = (/** @type {MODULE_COMPONENTS} */ components, parent = '')
   ]
 }
 
-const unicardStyleFields = (parent = '', hideCardHoverEffects = false) => {
+/**
+ * #### fullWidthImage fields
+ * @param {string} [parent] - parent path
+ * @param {object} [opt] - options
+ * @param {boolean} [opt.hideHoverProps] - hide hover props
+ * @param {boolean} [opt.showVerticalAlignment] - show vertical alignment prop
+ * @param {boolean} [opt.showMobileAlignment] - show mobile alignment prop
+ */
+const unicardStyleFields = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
@@ -106,6 +144,13 @@ const unicardStyleFields = (parent = '', hideCardHoverEffects = false) => {
         default: {
           horizontal_align: 'LEFT'
         },
+        alignment_direction: opt?.showVerticalAlignment ? 'BOTH' : 'HORIZONTAL'
+      }
+    ),
+    fi.alignment('Mobile alignment', 'mobile_alignment',
+      {
+        display_width: 'half_width',
+        locked: !(opt?.showMobileAlignment),
         alignment_direction: 'HORIZONTAL'
       }
     ),
@@ -121,7 +166,7 @@ const unicardStyleFields = (parent = '', hideCardHoverEffects = false) => {
       help_text: 'General gap between all card components'
     }),
     fi.choice('Background type', 'background_type', {
-      display_width: 'half_width',
+      display_width: opt?.showMobileAlignment ? null : 'half_width',
       placeholder: 'No background',
       choices: [
         ['background_color', 'Background color'],
@@ -215,25 +260,13 @@ const unicardStyleFields = (parent = '', hideCardHoverEffects = false) => {
       display_width: 'half_width',
       choices: shadowList
     }),
-    // group('Top content block', 'top_content',
-    //   {
-    //     locked: false,
-    //     help_text: 'Add vertical spacing to the top block of content defined by the content separator',
-    //     inline_help_text: 'Add vertical spacing to the top block of content defined by the content separator'
-    //   },
-    //   fi.spacing('', 'top_content_spacing', {
-    //     visibility: {
-    //       hidden_subfields: {
-    //         padding: true
-    //       }
-    //     }
-    //   })
-    // ),
-    fi.boolean('Card hover effects', 'hover_effects'),
+    fi.boolean('Card hover effects', 'hover_effects', {
+      locked: opt?.hideHoverProps || false
+    }),
     group('Hover', 'hover',
       {
         expanded: true,
-        locked: hideCardHoverEffects,
+        locked: opt?.hideHoverProps || false,
         visibility: {
           controlling_field_path: `${parent}hover_effects`,
           operator: 'EQUAL',

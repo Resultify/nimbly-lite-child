@@ -75,7 +75,7 @@
         }
       %}
         {% module_attribute "richtext" %}
-          <p style="font-size: 28px;"><span style="color: #6e6e73;">Use cases and design variations</span></p>
+          <p style="font-size: 28px;"><span style="color: #6e6e73;">{{context.info_text || 'Use cases and design variations 1-30'}}</span></p>
         {% end_module_attribute %}
       {% end_dnd_module %}
     {% end_dnd_row %}

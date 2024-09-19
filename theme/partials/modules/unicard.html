@@ -1,4 +1,5 @@
 <!--
+  label: partials -> modules -> unicard.html
   templateType: "none"
   isAvailableForNewContent: false
 -->
@@ -13,14 +14,50 @@
   {% import '../components/simple-image.html' %}
   {% import '../components/simple-text.html' %}
   {% import '../components/list-group.html' %}
+  {% import '../components/accordion-group.html' %}
   {% import '../../css/macros.css' %}
+  {% import '../utils/hash.html' %}
 
-  <style>
-    {% scope_css %}
-      .scope-root {
-        --scope-color: {{style.text_color.css if style.text_color.css}};
+  {# hash for scoped styles #}
+  {% set scope_hash = hash([
+    style.text_color.css,
+    style.alignment.horizontal_align,
+    style.alignment.vertical_align,
+    style.mobile_alignment.horizontal_align,
+    style.border_radius,
+    style.background_color.css,
+    style.background_gradient.css,
+    style.background_type,
+    style.background_image.css,
+    style.content_gap,
+    style.border.css,
+    style.border.top.width.value,
+    style.shadow,
+    style.spacing.padding.top.value,
+    style.spacing.padding.bottom.value,
+    style.spacing.padding.left.value,
+    style.spacing.padding.right.value,
+    style.hover_effects,
+    style.hover.text_color.css,
+    style.hover.background_color.css,
+    style.hover.border_color.css,
+    style.border.top.color,
+    style.hover.shadow,
+    style.hover.animation
+  ]) %}
+
+  {# scoped styles for unicard module component #}
+  {% require_css %}
+    <style data-component="unicard scoped id{{scope_hash}}">
+      .scope-root.id{{scope_hash}} {
+        {% if style.text_color.css %}
+          --scope-color: {{style.text_color.css if style.text_color.css}};
+        {% endif %}
         --scope-alignment: {{css_alignment_macro(style.alignment.horizontal_align)}};
         --scope-border-radius: {{style.border_radius is truthy ? style.border_radius ~ "px" : 0 }};
+        {% if style.alignment.vertical_align %}
+          --scope-vertical-alignment: {{css_vertical_alignment_macro(style.alignment.vertical_align)}};
+        {% endif %}
         {% if style.background_type == 'background_color' and style.background_color.css %}
           --scope-background: {{style.background_color.css}};
         {% elif style.background_type == 'background_gradient' and style.background_gradient.css %}
@@ -38,19 +75,23 @@
         --scope-padding-right: {{style.spacing.padding.right.value is truthy ? style.spacing.padding.right.value ~ style.spacing.padding.right.units : 0 }};
         --scope-padding: {{style.spacing.padding.top.value ~ style.spacing.padding.top.units if style.spacing.css|length <= 17 }};
       }
-
-      {# {% if style.top_content.top_content_spacing.css %}
-        .unicard .content-block-top {
-          {{style.top_content.top_content_spacing.css}};
+      {% if style.mobile_alignment.horizontal_align %}
+        @media (max-width: 767.8px) {
+          .scope-root.id{{scope_hash}} {
+            --scope-alignment: {{css_alignment_macro(style.mobile_alignment.horizontal_align)}};
+          }
         }
-      {% endif %} #}
-
+      {% endif %}
       {% if style.hover_effects %}
         @media (any-hover: hover) {
-          .scope-root:hover {
-            --scope-hover-color: {{style.hover.text_color.css if style.hover.text_color.css}};
+          .scope-root.id{{scope_hash}}:hover {
+            {% if style.hover.text_color.css %}
+              --scope-hover-color: {{style.hover.text_color.css}};
+            {% endif %}
+            {% if style.hover.border_color.css or style.border.top.color %}
+              --scope-hover-border-color: {{style.hover.border_color.css ? style.hover.border_color.css : style.border.top.color}};
+            {% endif %}
             --scope-hover-background: {{style.hover.background_color.css if style.hover.background_color.css}};
-            --scope-hover-border-color: {{style.hover.border_color.css ? style.hover.border_color.css : style.border.top.color}};
             --scope-hover-shadow: {{style.hover.shadow ? 'var(--' ~ style.hover.shadow ~ ')' : 'var(--scope-shadow)' }};
             --scope-hover-animation: {{style.hover.animation ? 'var(--' ~ style.hover.animation ~ ')' : 'var(--ani-)' }};
             box-shadow: var(--scope-hover-shadow);
@@ -59,7 +100,7 @@
             border-color: var(--scope-hover-border-color);
           }
           {% if style.background_type == 'background_image' and style.hover.background_color.css or style.background_type == 'background_gradient' and style.hover.background_color.css %}
-            .scope-root:after {
+            .scope-root.id{{scope_hash}}:after {
               content: "";
               width: 100%;
               height: 100%;
@@ -73,18 +114,18 @@
               transition-timing-function: var(--root-transition-timing-function);
               border-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
             }
-            .scope-root:hover:after {
+            .scope-root.id{{scope_hash}}:hover:after {
               background-color: var(--scope-hover-background);
             }
           {% elif style.hover.background_color.css %}
-            .scope-root:hover {
+            .scope-root.id{{scope_hash}}:hover {
               background-color: var(--scope-hover-background);
             }
           {% endif %}
         }
       {% endif %}
-    {% end_scope_css %}
-  </style>
+    </style>
+  {% end_require_css %}
 
   {# stretched_link #}
   {% if data.whole_area_link and data.heading.heading_link_type == "link" and data.heading.heading_link.url.href %}
@@ -93,14 +134,14 @@
     {% set button_stretched_link = true %}
   {% endif %}
 
-  <div class="unicard scope-root">
+  <div class="unicard scope-root id{{scope_hash}}">
     <div class="content-block-top">
       {% for component in data.module_components %}
         {% if component == 'media' %}
           {{media_group_macro(data)}}
 
         {% elif component == 'categories' %}
-          {{categories_macro(data)}}
+          {{category_group_macro(data)}}
 
         {% elif component == 'main_heading' %}
           {{heading_macro(data.heading)}}
@@ -116,6 +157,9 @@
 
         {% elif component == 'list' %}
           {{list_group_macro(data)}}
+
+          {% elif component == 'accordion' %}
+          {{accordion_group_macro(data)}}
 
         {% elif component == 'separator' %}
           </div>

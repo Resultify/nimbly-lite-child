@@ -24,6 +24,7 @@
     "@hubspot/horizontal_spacer",
     "@hubspot/page_footer",
     "@hubspot/section_header",
-    "@hubspot/header"
+    "@hubspot/header",
+    "@hubspot/image_slider_gallery"
   ]
 }

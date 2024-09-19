@@ -1,0 +1,144 @@
+{# add base styles to module previewer #}
+{% if is_in_module_previewer %}
+  {{require_css(get_asset_url("../../css/base.css"))}}
+  {{require_css(get_asset_url("../../css/global-theme-settings.css"))}}
+{% endif %}
+{# *** #}
+
+{% import '../../partials/modules/unicard.html' %}
+{% import '../../css/macros.css' %}
+{{require_css(get_asset_url("../../partials/modules/unicard.css"))}}
+
+<style>
+  {% scope_css %}
+    .unicard-left-right {
+      --mobile-direction:{{module.style.mobile_reverse ? 'column-reverse' : 'column' }};
+      --desktop-gap:{{module.style.desktop_gap ~ 'px'}};
+      --mobile-gap:{{module.style.mobile_gap ~ 'px'}};
+      --left-column-width: {{ module.style.proportions ~ '%' }};
+      --right-column-width: {{ 100 - module.style.proportions ~ '%' }};
+
+      {% if module.style.background_type == 'background_color' and module.style.background_color.css %}
+        --unicard-l-r-background: {{module.style.background_color.css}};
+      {% elif module.style.background_type == 'background_gradient' and module.style.background_gradient.css %}
+        background: {{module.style.background_gradient.css}};
+      {% elif module.style.background_type == 'background_image' and module.style.background_image.css %}
+        {{css_image_background_macro(module.style)}}
+      {% endif %}
+      --unicard-l-r-border-radius: {{module.style.border_radius is truthy ? module.style.border_radius ~ "px" : 0 }};
+      --unicard-l-r-border: {{module.style.border.css && module.style.border.top.width.value is truthy ? module.style.border.css|cut('border:') : 'none' }};
+      --unicard-l-r-border-width: {{module.style.border.css && module.style.border.top.width.value is truthy ? module.style.border.top.width.value ~ module.style.border.top.width.units : '0px' }};
+      --unicard-l-r-shadow: {{module.style.shadow is truthy ? 'var(--' ~ module.style.shadow ~ ')' : 'var(--shadow-)' }};
+      --unicard-l-r-padding-top: {{module.style.spacing.padding.top.value is truthy ? module.style.spacing.padding.top.value ~ module.style.spacing.padding.top.units : 0 }};
+      --unicard-l-r-padding-bottom: {{module.style.spacing.padding.bottom.value is truthy ? module.style.spacing.padding.bottom.value ~ module.style.spacing.padding.bottom.units : 0 }};
+      --unicard-l-r-padding-left: {{module.style.spacing.padding.left.value is truthy ? module.style.spacing.padding.left.value ~ module.style.spacing.padding.left.units : 0 }};
+      --unicard-l-r-padding-right: {{module.style.spacing.padding.right.value is truthy ? module.style.spacing.padding.right.value ~ module.style.spacing.padding.right.units : 0 }};
+      --unicard-l-r-padding: {{module.style.spacing.padding.top.value ~ module.style.spacing.padding.top.units if module.style.spacing.css|length <= 17 }};
+      {% if module.hero_image_mode %}
+        --unicard-l-r-mobile-padding-top: {{module.style.mobile_spacing.padding.top.value is truthy ? module.style.mobile_spacing.padding.top.value ~ module.style.mobile_spacing.padding.top.units : 'var(--unicard-l-r-padding-top)' }};
+        --unicard-l-r-mobile-padding-bottom: {{module.style.mobile_spacing.padding.bottom.value is truthy ? module.style.mobile_spacing.padding.bottom.value ~ module.style.mobile_spacing.padding.bottom.units : 'var(--unicard-l-r-padding-bottom)' }};
+        --unicard-l-r-mobile-padding-left: {{module.style.mobile_spacing.padding.left.value is truthy ? module.style.mobile_spacing.padding.left.value ~ module.style.mobile_spacing.padding.left.units : 'var(--unicard-l-r-padding-left)' }};
+        --unicard-l-r-mobile-padding-right: {{module.style.mobile_spacing.padding.right.value is truthy ? module.style.mobile_spacing.padding.right.value ~ module.style.mobile_spacing.padding.right.units : 'var(--unicard-l-r-padding-right)' }};
+      {% endif %}
+      {% if module.style.card_style_group1.content_gap > 30 or module.style.card_style_group2.content_gap > 30 %}
+        --custom-button-group-gap: 20px;
+      {% endif %}
+    }
+
+    {% if module.hero_image_mode %}
+      {% if module.hero_image_group.background_type == 'background_gradient' and module.hero_image_group.gradient_direction and module.hero_image_group.gradient_color|length > 1 %}
+        .unicard-left-right-hero-wrp {
+          background-image: linear-gradient({{module.hero_image_group.gradient_direction}}, {{module.hero_image_group.gradient_color|map('css')|join(',')}});
+        }
+      {% elif module.hero_image_group.background_type == 'background_image' and module.hero_image_group.background_image.src %}
+        {{css_hero_image_background_macro(module.hero_image_group, '.unicard-left-right-hero-wrp')}}
+      {% endif %}
+      {%- if module.hero_image_group.container_width is integer -%}
+        .unicard-left-right-hero-wrp {
+          --custom-max-width: {{module.hero_image_group.container_width ~ 'px'}};
+        }
+      {%- endif -%}
+    {% endif %}
+
+    {%- for card in module.card_group -%}
+      {%- if loop.index == 1 && card.media_type == 'full_width_image' -%}
+        @media (min-width: 768px) {
+          .unicard-left-right .unicard:first-of-type > .content-block-top,
+          .unicard-left-right .unicard:first-of-type > .content-block-top > .full-width-image,
+          .unicard-left-right .unicard:first-of-type > .content-block-top > .full-width-image > .full-width-image-item {
+            height: 100%;
+          }
+        }
+      {%- elif loop.index == 2 && card.media_type == 'full_width_image' -%}
+        @media (min-width: 768px) {
+          .unicard-left-right .unicard:last-of-type > .content-block-top,
+          .unicard-left-right .unicard:last-of-type > .content-block-top > .full-width-image,
+          .unicard-left-right .unicard:last-of-type > .content-block-top > .full-width-image > .full-width-image-item {
+            height: 100%;
+          }
+        }
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if module.style.border_radius -%}
+      @media (max-width: 767.8px) {
+        .unicard-left-right .unicard:first-of-type,
+        .unicard-left-right .unicard:first-of-type .full-width-image-item {
+          {% if module.style.mobile_reverse %}
+            border-bottom-left-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+            border-bottom-right-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+          {% else %}
+            border-top-left-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+            border-top-right-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+          {% endif %}
+        }
+        .unicard-left-right .unicard:last-of-type,
+        .unicard-left-right .unicard:last-of-type .full-width-image-item {
+          {% if module.style.mobile_reverse %}
+            border-top-left-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+            border-top-right-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+          {% else %}
+            border-bottom-left-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+            border-bottom-right-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+          {% endif %}
+        }
+      }
+      @media (min-width: 768px) {
+        .unicard-left-right .unicard:first-of-type,
+        .unicard-left-right .unicard:first-of-type .full-width-image-item {
+          border-top-left-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+          border-bottom-left-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+        }
+        .unicard-left-right .unicard:last-of-type,
+        .unicard-left-right .unicard:last-of-type .full-width-image-item {
+          border-top-right-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+          border-bottom-right-radius: calc(var(--unicard-l-r-border-radius) - var(--unicard-l-r-border-width));
+        }
+      }
+    {%- endif -%}
+  {% end_scope_css %}
+</style>
+
+
+{% if module.hero_image_mode %}
+  {% if module.hero_image_group.background_image_lowres.src and module.hero_image_group.add_lowres_image %}
+    {% require_head %}
+      <link rel="preload" as="image" href="{{module.hero_image_group.background_image_lowres.src}}" fetchpriority="high">
+    {% end_require_head %}
+  {% endif %}
+  <div class="unicard-left-right-hero-wrp">
+{% endif %}
+
+<div class="unicard-left-right">
+  {%- for card in module.card_group -%}
+    {%- if loop.index == 1 -%}
+      {{unicard_macro(card, module.style.card_style_group1)}}
+    {%- elif loop.index == 2 -%}
+      {{unicard_macro(card, module.style.card_style_group2)}}
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+{% if module.style.hero_image_mode %}
+  </div>
+{% endif %}

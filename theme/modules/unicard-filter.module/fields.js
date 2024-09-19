@@ -20,7 +20,7 @@ init(
     },
     unicardFields({
       enabledByDefault: ['media', 'categories', 'main_heading', 'richtext', 'buttons'],
-      choices: ['media', 'categories', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'list', 'separator', 'buttons', 'additional_images']
+      choices: ['media', 'categories', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'list', 'accordion', 'separator', 'buttons', 'additional_images']
     }, 'card_group.')
   ),
   styleGroup(

@@ -1,6 +1,6 @@
 /**
  * #### component field variations
- * @typedef {Array<'categories'|'media'|'main_heading'|'sub_heading'|'richtext'|'custom_text'|'list'|'separator'|'buttons'|'additional_images'|'simple_text'>} COMPONENTS
+ * @typedef {Array<'categories'|'media'|'main_heading'|'sub_heading'|'richtext'|'custom_text'|'list'|'separator'|'buttons'|'additional_images'|'simple_text'|'accordion'|'form'>} COMPONENTS
  */
 
 /**

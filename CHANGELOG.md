@@ -1,3 +1,21 @@
+### v4.0.1 `July 18, 2024`
+* **[TASK]** update @resultify/hubspot-cms-lib to v3.4.4 [`f3730e6`](https://github.com/Resultify/nimbly-lite-child/commit/f3730e6) (dmh)
+* **[TASK]** update browserslis config, update template screenshots [`6a579c1`](https://github.com/Resultify/nimbly-lite-child/commit/6a579c1) (dmh)
+* **[TASK]** update @resultify/hubspot-cms-lib to v3.4.1 [`dd3d56d`](https://github.com/Resultify/nimbly-lite-child/commit/dd3d56d) (dmh)
+* **[TASK]** update resultify hubspot-cms-lib and hubspot-fields-js deps [`ed62731`](https://github.com/Resultify/nimbly-lite-child/commit/ed62731) (dmh)
+
+***
+
+### v4.0.0 `July 5, 2024`
+* **[TASK]** update @resultify/hubspot-cms-lib and hubspot-fields-js deps [`4dcf761`](https://github.com/Resultify/nimbly-lite-child/commit/4dcf761) (dmh)
+* **[TEST]** fix test github action [`c5f5864`](https://github.com/Resultify/nimbly-lite-child/commit/c5f5864) (dmh)
+* **[TASK]** add labels to none-template partials [`9d17188`](https://github.com/Resultify/nimbly-lite-child/commit/9d17188) (dmh)
+* **[TEST]** update github action [`3dbc0a7`](https://github.com/Resultify/nimbly-lite-child/commit/3dbc0a7) (dmh)
+* **[TEST]** update github action test jobs names [`1c37982`](https://github.com/Resultify/nimbly-lite-child/commit/1c37982) (dmh)
+* **[FEATURE]** add universal card module (#11) [`2ef001e`](https://github.com/Resultify/nimbly-lite-child/commit/2ef001e) (Dmytro Hrynevych)
+
+***
+
 ### v3.0.0 `April 11, 2024`
 * **[TASK]** add card v2 module concept [`04b0883`](https://github.com/Resultify/nimbly-lite-child/commit/04b0883) (dmh)
 * **[TASK]** add new grid options flex-system-v2 and grid-system-v2 [`3f0d03f`](https://github.com/Resultify/nimbly-lite-child/commit/3f0d03f) (dmh)

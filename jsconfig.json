@@ -6,7 +6,7 @@
     "checkJs": true,
     "forceConsistentCasingInFileNames": true,
     "useUnknownInCatchVariables": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noImplicitAny": false
   },
   "include": ["theme/modules/**/fields.js", "placeholder.js", "theme/partials/**/*.js"]
