@@ -148,6 +148,12 @@
 {% if limit != 1 %}
   {% do query_param_list.append('limit=' + limit) %}
 {% endif %}
+{% if request.query_dict.qd_name %}
+  {% do query_param_list.append('qd_name=' + request.query_dict.qd_name|urlencode) %}
+{% endif %}
+{% if request.query_dict.qd_sku %}
+  {% do query_param_list.append('qd_sku=' + request.query_dict.qd_sku|urlencode) %}
+{% endif %}
 
 {% set products = module.data_query.data.CRM.product_collection.items %}
 
@@ -155,6 +161,10 @@
   <div class="row-fluid-wrapper dnd-section">
     <div class="row-fluid">
       <div class="span12 dnd-column">
+        <form action="{{ request.path }}">
+          <label for="name">Search</label>
+          <input type="text" id="name" name="qd_name">
+        </form>
         <div class="products-list-entries">
           {% for product in products %}
             <div class="product-entry">
