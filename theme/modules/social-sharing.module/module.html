@@ -1,0 +1,157 @@
+{% import '../macros/icon.html' as icon_macros %}
+{% import '../macros/target-blank.html' as target_blank_macros %}
+{% import '../../css/macros/macros.css' %}
+
+{# module scope css #}
+<style>
+  {% scope_css %}
+
+    .social-sharing-module {
+      {% if module.style.general.alignment.vertical == 'true' %}
+        flex-direction: column;
+      {% endif %}
+
+      {% if module.style.general.alignment.horizontal_alignment.horizontal_align && module.style.general.alignment.vertical == 'false' %}
+        justify-content: {{module.style.general.alignment.horizontal_alignment.horizontal_align}};
+      {% endif %}
+
+      {% if module.style.general.alignment.horizontal_alignment.horizontal_align && module.style.general.alignment.vertical == 'true' %}
+        {% if module.style.general.alignment.horizontal_alignment.horizontal_align == 'LEFT' %}
+          {% set align = 'start'%}
+        {% elif module.style.general.alignment.horizontal_alignment.horizontal_align == 'RIGHT' %}
+          {% set align = 'end'%}
+        {% else %}
+          {% set align = 'center'%}
+        {% endif %}
+
+        align-items: {{align}};
+      {% endif %}
+
+      {% if module.style.general.border.border_radius != null %}
+        border-radius: {{module.style.general.border.border_radius ~ 'px'}};
+      {% endif %}
+      {% if module.style.general.background.color.css %}
+        background-color: {{module.style.general.background.color.css}};
+      {% endif %}
+      {{module.style.general.border.border.css}}
+      {{module.style.general.spacing.spacing.css}}
+    }
+
+    .social-sharing-module__icon {
+      {% if module.style.icon.background.color.css %}
+        background-color: {{module.style.icon.background.color.css}};
+      {% endif %}
+      {{module.style.icon.spacing.spacing.css}}
+    }
+
+    .social-sharing-module .g-module-macros-icon:hover svg {
+      {% if module.style.icon.hover.color.color %}
+        {% set icon_hover_color = module.style.icon.hover.color.color %}
+        {% set icon_hover_opacity = module.style.icon.hover.color.opacity %}
+      {% elif module.style.icon.custom_theme_overrides.color.color %}
+        {% set icon_hover_color = color_variant(module.style.icon.custom_theme_overrides.color.color, +30) %}
+        {% set icon_hover_opacity = 80 %}
+      {% elif module.style.icon.presets.icon_color == 'primary' %}
+        {% set icon_hover_color = color_variant(theme.icons.primary.color.color.color, +30) %}
+        {% set icon_hover_opacity = 80 %}
+      {% else %}
+        {% set icon_hover_color = color_variant(theme.icons.secondary.color.color.color, +30) %}
+        {% set icon_hover_opacity = 80 %}
+      {% endif %}
+
+      fill: {{rgb(icon_hover_color, icon_hover_opacity)}};
+    }
+
+    .social-sharing-module .g-module-macros-icon:hover{
+      {% if module.style.icon.hover.background.color %}
+        {% set icon_hover_bg_color = module.style.icon.hover.background.color %}
+        {% set icon_hover_bg_opacity = module.style.icon.hover.background.opacity %}
+
+        background-color: {{rgb(icon_hover_bg_color, icon_hover_bg_opacity)}};
+      {% endif %}
+      }
+
+  {% end_scope_css %}
+</style>
+
+{% set default_links = {
+  facebook_link:'https://www.facebook.com/share.php?u={{ social_link_url|urlencode }}',
+  linkedin_link:'https://www.linkedin.com/shareArticle?mini=true&url={{ social_link_url|urlencode }}',
+  twitter_link:'https://x.com/intent/tweet?original_referer={{ social_link_url|urlencode }}&url={{ social_link_url|urlencode }}&source=tweetbutton&text={{ social_page_title|urlencode }}',
+  pinterest_link:'https://pinterest.com/pin/create/button/?url={{ social_link_url|urlencode }}&media={{ pinterest_media }}',
+  email_link:'mailto:?subject=Check out {{ social_link_url|urlencode }} &body=Check out {{ social_link_url|urlencode }}'
+} %}
+
+<div class="social-sharing-module_wrp">
+  <div class="social-sharing-module social-sharing-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
+    {% for item in module.social_sharing %}
+      {% if item.share_on is equalto 'facebook' %}
+        {% set link_text = "Share on Facebook" %}
+        {% set href = item.facebook_link ? item.facebook_link : default_links.facebook_link %}
+        {% set icon = {"name" : "Facebook F", "unicode" : "f39e", "type" : "REGULAR" }%}
+      {% endif %}
+      {% if item.share_on is equalto 'linkedin' %}
+        {% set link_text = "Share on LinkedIn" %}
+        {% set href = item.linkedin_link ? item.linkedin_link : default_links.linkedin_link %}
+        {% set icon = {"name" : "LinkedIn", "unicode" : "f08c", "type" : "REGULAR" }%}
+      {% endif %}
+      {% if item.share_on is equalto 'twitter' %}
+        {% set href = item.twitter_link ? item.twitter_link : default_links.twitter_link %}
+        {% if item.twitter_icon is equalto 'x-twitter' %}
+          {% set link_text = "Share on X" %}
+          {% set icon = {"name" : "X-Twitter", "unicode" : "e61b", "type" : "REGULAR" }%}
+        {% else %}
+          {% set link_text = "Share on Twitter" %}
+          {% set icon = {"name" : "Twitter", "unicode" : "f099", "type" : "REGULAR" }%}
+        {% endif %}
+      {% endif %}
+      {% if item.share_on is equalto 'pinterest' %}
+        {% set link_text = "Share on Pinterest" %}
+        {% set href = item.pinterest_link ? item.pinterest_link : default_links.pinterest_link %}
+        {% set icon = {"name" : "Pinterest P", "unicode" : "f231", "type" : "REGULAR" }%}
+        {# used in pinterest url #}
+        {% set pinterest_media = item.pinterest_pin_image.src %}
+      {% endif %}
+      {% if item.share_on is equalto 'email' %}
+        {% set link_text = "Share via email" %}
+        {% set href = item.email_link ? item.email_link : default_links.email_link %}
+        {% set icon = {"name" : "Envelope", "unicode" : "f113", "type" : "REGULAR" }%}
+      {% endif %}
+
+      {% set urlOperator = "&" if "?" in page_meta.canonical_url else "?" %}
+      {% if module.link_url %}
+        {% set social_link_url = module.link_url ~ urlOperator ~ "utm_medium=social&utm_source="|safe ~ item.share_on %}
+      {% else %}
+        {% set social_link_url = page_meta.canonical_url ~ urlOperator ~ "utm_medium=social&utm_source="|safe ~ item.share_on %}
+      {% endif %}
+
+      {% set rel = [] %}
+      {% do rel.append("nofollow") %}
+
+      {%- macro icon_data() -%}
+        {
+          "icon":{"name":"{{icon.name}}","unicode":"{{icon.unicode}}","type":"{{icon.type}}","icon_set":"fontawesome-6.4.2"},
+          "accessibility_options":{"purpose":"semantic", "title":"{{link_text}}"}
+        }
+      {%- endmacro -%}
+
+      <a href="{{ href }}"
+         class="social-sharing-module__link" target="_blank"
+         {% if rel %}rel="{{ rel|join(' ') }}"{% endif %}
+      >
+
+        <div class="social-sharing-module__icon">
+          {{icon_macros.render_icon_tmpl(icon_data()|fromjson, module.style.icon, item, null, item.icon.svg)}}
+          <span class="visually-hidden">{{link_text}}</span>
+
+          {% if item.link.link.open_in_new_tab %}
+            {% if item.link.accessible_link %}
+              {{target_blank_macros.render_target_blank_tmpl('1em')}}
+            {% endif %}
+          {% endif %}
+        </div>
+      </a>
+    {% endfor %}
+
+  </div>
+</div>
