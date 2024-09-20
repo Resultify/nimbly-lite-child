@@ -1,5 +1,153 @@
 <!-- module html  -->
+{% import '../macros/link.html' as link_macros %}
+
+{# English labels #}
+{% if (content.language.languageTag == "en" || content.language.languageTag == null) %}
+  {% set paginationFirstLabel = "First" %}
+  {% set paginationPreviousLabel = "Previous" %}
+  {% set paginationNextLabel = "Next" %}
+  {% set paginationLastLabel = "Last" %}
+  {% set webinarOfLabel = "of" %}
+  {% set pageLabel = "Page" %}
+{% endif %}
+
 <h1>Product List</h1>
+
+{# Render Pagination #}
+{% macro render_pagination(limit, current_offset, current_page_number, number_of_pages, query_param_list) -%}
+{% if number_of_pages > 1 %}
+<div class="products-list-pagination-wrp">
+  <nav aria-label="Pagination navigation" class="products-list-pagination">
+    {# First page link #}
+    {% if current_page_number != 1 %}
+      <span class="productlist-module__pagination-link productlist-module__pagination-link--first-page">
+        {% set offsetParam = "offset=0" %}
+        {% set first_page_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set first_page_link = pagination_link(first_page_url, paginationFirstLabel, 'Angle Double Left', 'f100', 'left')|fromjson %}
+        {{link_macros.render_link_tmpl(first_page_link, module.style.link, module)}}
+      </span>
+    {% endif %}
+
+    {% if current_page_number > 1 %}
+      <span class="productlist-module__pagination-link productlist-module__pagination-link--previous-page">
+        {% set offsetParam = "offset=" + (((current_page_number - 1) * limit) - limit) %}
+        {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set previous_page_link = pagination_link(page_link_url, paginationPreviousLabel, 'angle-left', 'f104', 'left')|fromjson %}
+        {{link_macros.render_link_tmpl(previous_page_link, module.style.link, module)}}
+      </span>
+    {% endif %}
+
+    {% if current_page_number > 2 %}
+      <span class="productlist-module__pagination-page-link productlist-module__pagination-page-link--number">
+        {% set offsetParam = "offset=" + ((current_page_number|add(-2) * limit) - limit) %}
+        {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set page_link = pagination_link(page_link_url, current_page_number|add(-2))|fromjson %}
+        {{link_macros.render_link_tmpl(page_link, module.style.secondary_link, module )}}
+      </span>
+    {% endif %}
+
+    {% if current_page_number > 1 %}
+      <span class="productlist-module__pagination-page-link productlist-module__pagination-page-link--number">
+        {% set offsetParam = "offset=" + ((current_page_number|add(-1) * limit) - limit) %}
+        {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set page_link = pagination_link(page_link_url, current_page_number|add(-1))|fromjson %}
+        {{link_macros.render_link_tmpl(page_link, module.style.secondary_link, module )}}
+      </span>
+    {% endif %}
+
+    <span class="productlist-module__pagination-page-link productlist-module__pagination-page-link--number productlist-module__pagination-page-link--active">
+      {% set offsetParam = "offset=" + ((current_page_number * limit) - limit) %}
+      {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+      {% set page_link = pagination_link(page_link_url, current_page_number)|fromjson %}
+      {{link_macros.render_link_tmpl(page_link, module.style.secondary_link, module )}}
+    </span>
+
+    {% if number_of_pages > current_page_number %}
+      <span class="productlist-module__pagination-page-link productlist-module__pagination-page-link--number">
+        {% set offsetParam = "offset=" + ((current_page_number|add(1) * limit) - limit) %}
+        {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set page_link = pagination_link(page_link_url, current_page_number|add(1))|fromjson %}
+        {{link_macros.render_link_tmpl(page_link, module.style.secondary_link, module )}}
+      </span>
+    {% endif %}
+
+    {% if current_page_number != number_of_pages and current_page_number != number_of_pages-1%}
+      <span class="productlist-module__pagination-page-link productlist-module__pagination-page-link--number">
+        {% set offsetParam = "offset=" + ((current_page_number|add(2) * limit) - limit) %}
+        {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set page_link = pagination_link(page_link_url, current_page_number|add(2))|fromjson %}
+        {{link_macros.render_link_tmpl(page_link, module.style.secondary_link, module )}}
+      </span>
+    {% endif %}
+
+    {% if number_of_pages > current_page_number %}
+      <span class="productlist-module__pagination-link productlist-module__pagination-link--next-page">
+        {% set offsetParam = "offset=" + (((current_page_number + 1) * limit) - limit) %}
+        {% set next_page__link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set next_page_link = pagination_link(next_page__link_url, paginationNextLabel, 'angle-right', 'f105', 'right')|fromjson %}
+        {{link_macros.render_link_tmpl(next_page_link, module.style.link, module)}}
+      </span>
+    {% endif %}
+
+    {# Last page link #}
+    {% if page_number != number_of_pages %}
+      <span class="productlist-module__pagination-link productlist-module__pagination-link--last-page">
+        {% set offsetParam = "offset=" + ((number_of_pages * limit) - limit) %}
+        {% set last_page_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set last_page_link = pagination_link(last_page_url, paginationLastLabel, 'Angle Double Right', 'f101', 'right')|fromjson %}
+        {{link_macros.render_link_tmpl(last_page_link, module.style.link, module)}}
+      </span>
+    {% endif %}
+
+  </nav>
+</div>
+{% endif %}
+{%- endmacro %}
+
+{# Render Page of Pages #}
+{% macro render_page_of_pages(current_page_number, number_of_pages) -%}
+  <div class="products-list-page-of-pages">
+    <span>{{ pageLabel }} {{ current_page_number }} {{ webinarOfLabel }} {{ number_of_pages }}</span>
+  </div>
+{%- endmacro %}
+
+{# Render Item of Items #}
+{% macro render_items_of_items(limit, total, current_page_number, offset) -%}
+  <div class="products-list-item-of-items">
+    {% set from = (current_page_number - 1) * limit + 1 %}
+    {% set to = offset < total ? offset : total %}
+    <span>{{ placeWebinarLabel }} {{ from }}-{{ to }} {{ webinarOfLabel }} {{ total }}</span>
+  </div>
+{%- endmacro %}
+
+{# Pagination link macro #}
+{%- macro pagination_link(url, text, icon_name, icon_unicode, icon_position) -%}
+  {
+    "text":"{{text}}","accessible_link":true,
+    "link":{"url":{"href":"{{url}}","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+    "icon":{
+      "icon":{"name":"{{icon_name}}","unicode":"{{icon_unicode}}","type":"SOLID","icon_set":"fontawesome-5.14.0"},
+      "icon_position":"{{icon_position}}"
+    }
+  }
+{%- endmacro -%}
+
+{# Variables: product_collection and query_dict variables #}
+{% set limit = module.data_query.data.CRM.product_collection.limit %}
+{% set offset = module.data_query.data.CRM.product_collection.offset %}
+{# Offset returned in graphql seems to be the "next" offset, calculate current #}
+{% set current_offset = (offset - limit) %}
+{% set total = module.data_query.data.CRM.product_collection.total %}
+{% set hasMore = module.data_query.data.CRM.product_collection.hasMore %}
+{% set number_of_pages = (total / limit) | round(0,"ceil") %}
+{% set current_page_number = 1 + (current_offset / limit) | int | round(0) %}
+{% set query_param_list = [] %}
+
+{# Query params to keep in pagination + ? #}
+{# If limit != 1 (also the default in both module settings and graphql file, set query parameter #}
+{% if limit != 1 %}
+  {% do query_param_list.append('limit=' + limit) %}
+{% endif %}
 
 {% set products = module.data_query.data.CRM.product_collection.items %}
 
@@ -20,6 +168,12 @@
               </div>
             </div>
           {% endfor %}
+        </div>
+        {# Pagination #}
+        <div class="products-list-footer">
+          {# render_page_of_pages(current_page_number, number_of_pages) #}
+          {# render_items_of_items(limit, total, current_page_number, offset) #}
+          {{ render_pagination(limit, current_offset, current_page_number, number_of_pages, query_param_list) }}
         </div>
       </div>
     </div>
