@@ -26,3 +26,5 @@ temp
 node_modules
 npm-debug.log
 validation-status.json
+
+.hubdb/*sample_data.hubdb.json

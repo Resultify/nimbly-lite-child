@@ -226,6 +226,7 @@
   </div>
 {%- endmacro -%}
 
+{# Date filter #}
 {%- macro render_date_filter() -%}
   <div class="event-listing-module__filters-bydate">
     {%- set options = {
@@ -280,6 +281,37 @@
   </div>
 {%- endmacro -%}
 
+{# Tag filter #}
+{%- macro render_tag_filter() -%}
+  {% if dateEventTags %}
+    <div class="event-listing-module__filters-bytag">
+      {%- for tag in dateEventTags -%}
+        {%- set eventTagUrl = "?etags="~tag.value -%}
+        {% if eventTagUrl %}
+          {%- set button_data = {
+            "text":tag.label,"accessible_link_label":"Filter by "~tag.label,"accessible_link":true,
+            "link":{"url":{"href":eventTagUrl,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+            "icon":{
+              "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+              "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+            }
+          }%}{{button_macros.render_btn_tmpl(button_data, module.style.reset_filters_button, module)}}
+          {#
+          {%- set link_data = {
+            "text":tag.label,"accessible_link":true,
+            "link":{"url":{"href":eventTagUrl,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+            "icon":{
+              "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+              "icon_position":"left"
+            }
+          }%}{{link_macros.render_link_tmpl(link_data, module.style.link, module)}}
+          #}
+        {% endif %}
+      {%- endfor -%}
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
 {# Fetch "Event dates" and recurring "Event dates", can't use OR in HubDB Graphql, so need two collections. #}
 {% set eventDates = module.data_query.data.HUBDB.event_dates.items %}
 {% set recurringEventDates = module.data_query.data.HUBDB.recurring_event_dates.items %}
@@ -298,15 +330,12 @@
 {# Set events from combined results sorted by event start_date #}
 {% set events = eventDates|sort(false, false, 'start_date') %}
 
-{# Fetch all available categories #}
-{% set tags = hubdb_table_column('event_date', 'tags') %}
-
 {% set settings = {} %}
 {{- event_functions_macro.parse_settings(content, settings) -}}
 
 {# Parse tags from events, will not fetch all tags, only tags in events on page, will work with languages? #}
 {% set dateEventTags = [] %}
-{{- event_functions_macro.parse_event_tags(events, qd_etags, dateEventTags) -}}
+{{- event_functions_macro.parse_event_tags(events, dateEventTags) -}}
 
 {# Event listing module #}
 <div class="event-listing-module_wrp">
@@ -332,7 +361,39 @@
         </div>
       </div>
     {% endif %}
+
+    {# Event date listing header #}
+    {% if qd_esdgte %}
+      <div class="event-listing-module__date-heading_wrp">
+        <div class="event-listing-module__date-heading">
+          {% set monthDisplayFormat = 'MMMM' %}
+          {% set localDt = to_local_time(qd_esdgte) %}
+          {% if localDt|format_date('YYYY') != today()|format_date('YYYY') %}
+            {% set monthDisplayFormat = 'MMMM YYYY' %}
+          {% endif %}
+          {% set selectedMonth = to_local_time(qd_esdgte)|format_datetime(monthDisplayFormat, 'UTC', settings.locale) %}
+          {%- set heading_data = {
+            "display":module.date_listing_header.display,"heading_tag":module.date_listing_header.heading_tag,"text":module.date_listing_header.text ~ " " ~ selectedMonth,
+            "link":{"link":{"url":{"href":"","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},"accessible_link":true},
+            "icon":{
+              "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+              "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+            }
+          }%}{{heading_macros.render_heading_tmpl(heading_data, module.style.general_heading, module,
+            {
+              id: 'general'
+            }
+          )}}
+        </div>
+      </div>
+    {% endif %}
+
     <div class="event-listing-module__filters_wrp">
+      {# Filters by tag #}
+      {% if module.tag_filter.show %}
+        {{ render_tag_filter() }}
+      {% endif %}
+
       {# Filters by date #}
       {% if module.date_filter.show %}
         {{ render_date_filter() }}

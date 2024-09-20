@@ -11,14 +11,6 @@
     {% set timeFormatEventDate = "d MMM HH:mm" %}
     {% set timeFormatEventDateNextYear = "d MMM YYYY HH:mm" %}
     {% set timeFormatMoreDates = "d MMM HH:mm" %}
-
-    {% set eventTitleLabel = "Evenemang" %}
-    {% set eventLabels = ["Alla", "Sport", "Musik & Show", "Redhawks", "Övrigt"] %}
-    {% set fromCurrencyLabel = ["Från", "SEK"] %}
-    {% set buttonLabels = ["Köp biljett", "Boka hotell", "Boka bord", "Eventdatum", "Praktisk info", "YouTube"] %}
-    {% set headerLabels = ["Fler datum", "Praktisk information"] %}
-    {% set unpublishedLabel = "Detta eventet är inte tillgängligt." %}
-    {% set eventListPath = '/{{ splitPath[0] }}/' %}
   {% endif %}
 
   {# English labels #}
@@ -28,17 +20,9 @@
     {% set noEventsLabel = "No events was found" %}
     {% set locale = "en" %}
     {% set timeEventDatePrefix = "" %}
-    {% set timeFormatEventDate = "h:mm a" %}
-    {% set timeFormatEventDateNextYear = "YYYY-MM-dd HH:mm" %}
+    {% set timeFormatEventDate = "d MMM h:mm a" %}
+    {% set timeFormatEventDateNextYear = "d MMM YYYY h:mm a" %}
     {% set timeFormatMoreDates = "d MMM h:mm a" %}
-
-    {% set eventTitleLabel = "Event" %}
-    {% set eventLabels = ["All", "Sport", "Music & Show", "Redhawks", "Other"] %}
-    {% set fromCurrencyLabel = ["From", "SEK"] %}
-    {% set buttonLabels = ["Buy ticket", "Book hotel", "Book table", "Event date", "Practical information", "YouTube"] %}
-    {% set headerLabels = ["More dates", "Practical information"] %}
-    {% set eventListPath = '/{{ splitPath[0] }}/{{ splitPath[1] }}/' %}
-    {% set unpublishedLabel = "This event is not available at the moment." %}
   {% endif %}
 
   {% do settings.update({

@@ -20,6 +20,8 @@
 
 ### Set up HubDB:s in HubDb.
 
+Create HubDB table Event information.
+
 ```
 hs hubdb create ./.hubdb/event_information.hubdb.json
 ```
@@ -27,7 +29,44 @@ hs hubdb create ./.hubdb/event_information.hubdb.json
 Check result, should be something like : `[SUCCESS] The table <TABLE_ID> was created in <HUB_ID> with 0 rows`.
 Edit file `.hubdb/event_date.hubdb.json` and temporary change "foreignTableId" value in "event_information" field to <TABLE_ID>.
 
+Create HubDB table Event date.
+
 ```
 hs hubdb create ./.hubdb/event_date.hubdb.json
 ```
+
 Edit file `.hubdb/event_date.hubdb.json` and restore "foreignTableId" value in "event_information" field.
+
+
+### Set up HubDB:s in HubDb with example data.
+
+Generate hubdb json files that includes example data.
+
+```
+node .hubdb/generateEventData.cjs
+```
+
+Will create two new files in `.hubdb` folder, `event_information_with_sample_data.hubdb.json` and `event_date_with_sample_data.hubdb.json`.
+
+Create HubDB table Event information with sample data.
+
+```
+hs hubdb create .hubdb/event_information_with_sample_data.hubdb.json
+```
+
+Check result, should be something like : `[SUCCESS] The table <TABLE_ID> was created in <HUB_ID> with 10 rows`.
+Edit file `.hubdb/event_date_with_sample_data.hubdb.json` and temporary change "foreignTableId" value in "event_information" field to <TABLE_ID>.
+
+Create HubDB table Event date with sample data.
+
+```
+hs hubdb create .hubdb/event_date_with_sample_data.hubdb.json
+```
+
+Edit file `.hubdb/event_date_with_sample_data.hubdb.json` and restore "foreignTableId" value in "event_information" field.
+
+If a page displaying events already exists in HubSpot, remember to set "Dynamic pages" -> "Data source" to "Event information" in page advanced settings.
+
+You also need to select "Event information" on each "Event date" since it isn't set in example data.
+
+The sample events are in sv and en, so page language needs to be selected.

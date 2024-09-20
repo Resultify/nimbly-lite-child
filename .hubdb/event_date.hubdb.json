@@ -61,31 +61,143 @@
       "options": [
         {
           "id": "1",
-          "name": "tag_1",
-          "label": "Tag 1",
+          "name": "sv_kultur_noje",
+          "label": "Kultur & nöje",
           "type": "option",
           "order": 1
         },
         {
           "id": "2",
-          "name": "tag_2",
-          "label": "Tag 2",
+          "name": "sv_konst_hantverk",
+          "label": "Konst & hantverk",
           "type": "option",
           "order": 2
         },
         {
           "id": "3",
-          "name": "tag_3",
-          "label": "Tag 3",
+          "name": "sv_shopping_handel",
+          "label": "Shopping & Handel",
           "type": "option",
           "order": 3
         },
         {
           "id": "4",
-          "name": "tag_4",
-          "label": "Tag 4",
+          "name": "sv_natur_friluftsliv",
+          "label": "Natur & friluftsliv",
           "type": "option",
           "order": 4
+        },
+        {
+          "id": "5",
+          "name": "sv_museer_utställningar",
+          "label": "Museer & utställningar",
+          "type": "option",
+          "order": 5
+        },
+        {
+          "id": "6",
+          "name": "sv_musik_scen",
+          "label": "Musik & scen",
+          "type": "option",
+          "order": 6
+        },
+        {
+          "id": "7",
+          "name": "sv_mat_dryck",
+          "label": "Mat & dryck",
+          "type": "option",
+          "order": 7
+        },
+        {
+          "id": "8",
+          "name": "sv_sport_fritid",
+          "label": "Sport & fritid",
+          "type": "option",
+          "order": 8
+        },
+        {
+          "id": "9",
+          "name": "sv_barn_familj",
+          "label": "Barn & familj",
+          "type": "option",
+          "order": 9
+        },
+        {
+          "id": "10",
+          "name": "sv_forelasning_seminarium",
+          "label": "Föreläsning & seminarium",
+          "type": "option",
+          "order": 10
+        },
+        {
+          "id": "11",
+          "name": "en_culture_entertainment",
+          "label": "Culture & Entertainment",
+          "type": "option",
+          "order": 11
+        },
+        {
+          "id": "12",
+          "name": "en_art_craft",
+          "label": "Art & Craft",
+          "type": "option",
+          "order": 12
+        },
+        {
+          "id": "13",
+          "name": "en_shopping_trade",
+          "label": "Shopping & Trade",
+          "type": "option",
+          "order": 13
+        },
+        {
+          "id": "14",
+          "name": "en_nature_outdoor_life",
+          "label": "Nature & Outdoor Life",
+          "type": "option",
+          "order": 14
+        },
+        {
+          "id": "15",
+          "name": "en_museums_exhibitions",
+          "label": "Museums & Exhibitions",
+          "type": "option",
+          "order": 15
+        },
+        {
+          "id": "16",
+          "name": "en_music_stage",
+          "label": "Music & Stage",
+          "type": "option",
+          "order": 16
+        },
+        {
+          "id": "17",
+          "name": "en_food_drink",
+          "label": "Food & Drink",
+          "type": "option",
+          "order": 17
+        },
+        {
+          "id": "18",
+          "name": "en_sport_leisure",
+          "label": "Sport & Leisure",
+          "type": "option",
+          "order": 18
+        },
+        {
+          "id": "19",
+          "name": "en_children_family",
+          "label": "Children & Family",
+          "type": "option",
+          "order": 19
+        },
+        {
+          "id": "20",
+          "name": "en_lecture_seminar",
+          "label": "Lecture & Seminar",
+          "type": "option",
+          "order": 20
         }
       ],
       "description": "",

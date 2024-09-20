@@ -2474,6 +2474,31 @@
     "height" : 680
   }
 }, {
+  "id" : "events_tag_filter",
+  "name" : "tag_filter",
+  "display_width" : null,
+  "label" : "Tag filters",
+  "help_text" : "",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "events_tag_filter_show",
+    "name" : "show",
+    "display_width" : null,
+    "label" : "Show tag filter",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "default" : true
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "show" : true
+  }
+}, {
   "id" : "events_reset_filters_button",
   "name" : "reset_filters_button",
   "display_width" : null,
@@ -2641,6 +2666,67 @@
   "type" : "group",
   "default" : {
     "text" : "Events about",
+    "heading_tag" : "h2",
+    "display" : ""
+  }
+}, {
+  "id" : "date_listing_header",
+  "name" : "date_listing_header",
+  "display_width" : null,
+  "label" : "Date listing header",
+  "help_text" : "Event date listing header",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "date_listing_header_heading_text",
+    "name" : "text",
+    "display_width" : null,
+    "label" : "Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Events in"
+  }, {
+    "id" : "date_listing_header_heading_tag",
+    "name" : "heading_tag",
+    "display_width" : null,
+    "label" : "Tag",
+    "help_text" : "Semantic heading tag (h1-h6)",
+    "inline_help_text" : "",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "h1", "Heading 1 (H1)" ], [ "h2", "Heading 2 (H2)" ], [ "h3", "Heading 3 (H3)" ], [ "h4", "Heading 4 (H4)" ], [ "h5", "Heading 5 (H5)" ], [ "h6", "Heading 6 (H6)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "h2"
+  }, {
+    "id" : "date_listing_header_display",
+    "name" : "display",
+    "display_width" : null,
+    "label" : "Display",
+    "help_text" : "Display different heading styles not related to semantic heading type (tag h1-h6)",
+    "inline_help_text" : "Display different heading style",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "h1", "Heading 1" ], [ "h2", "Heading 2" ], [ "h3", "Heading 3" ], [ "h4", "Heading 4" ], [ "h5", "Heading 5" ], [ "h6", "Heading 6" ], [ "display-1", "Heading display 1" ], [ "display-2", "Heading display 2" ], [ "display-3", "Heading display 3" ], [ "display-4", "Heading display 4" ], [ "display-5", "Heading display 5" ], [ "display-6", "Heading display 6" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : ""
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "text" : "Events in",
     "heading_tag" : "h2",
     "display" : ""
   }
