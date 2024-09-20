@@ -2,9 +2,15 @@
 # description: "Filter Products by different filters"
 # $limit: "{{ request.query_dict.limit <= 101 ? request.query_dict.limit : 100 || 100 }}"
 # $offset: "{{ request.query_dict.offset || 0 }}"
-query Products($limit: Int = 100, $offset: Int = 0) {
+# $name: "{{ request.query_dict.qd_name }}"
+# $sku: "{{ request.query_dict.qd_sku }}"
+query Products($limit: Int = 100, $offset: Int = 0, $name: String, $sku: String) {
     CRM {
-        product_collection(limit: $limit, offset: $offset) {
+        product_collection(
+            limit: $limit
+            offset: $offset
+            filter: { name__contains: $name, hs_sku__contains: $sku }
+        ) {
             items {
                 name
                 price
