@@ -65,61 +65,61 @@
   {% endif %}
 
   .product-listing-module__article {
-  {% if module.style.article.border.border_radius %}
-    border-radius: {{module.style.article.border.border_radius ~ 'px'}};
-  {% endif %}
-  {% if module.style.article.background.color.css %}
-    background-color: {{module.style.article.background.color.css}};
-  {% endif %}
-  {{module.style.article.border.border.css}}
-  {{module.style.article.internal_spacing.spacing.css}}
+    {% if module.style.article.border.border_radius %}
+      border-radius: {{module.style.article.border.border_radius ~ 'px'}};
+    {% endif %}
+    {% if module.style.article.background.color.css %}
+      background-color: {{module.style.article.background.color.css}};
+    {% endif %}
+    {{module.style.article.border.border.css}}
+    {{module.style.article.internal_spacing.spacing.css}}
   }
 
   .product-listing-module__article-image {
     text-align: {{module.style.image.alignment.alignment.horizontal_align}};
-  {% if module.style.image.background.color.css %}
-    background-color: {{module.style.image.background.color.css}};
-  {% endif %}
-  {{module.style.image.spacing.spacing.css}}
+    {% if module.style.image.background.color.css %}
+      background-color: {{module.style.image.background.color.css}};
+    {% endif %}
+    {{module.style.image.spacing.spacing.css}}
   }
 
   .product-listing-module__article-tags {
     text-align: {{module.style.link.alignment.alignment.horizontal_align}};
-  {% if module.style.link.background.color.css %}
-    background-color: {{module.style.link.background.color.css}};
-  {% endif %}
-  {{module.style.link.spacing.spacing.css}}
+    {% if module.style.link.background.color.css %}
+      background-color: {{module.style.link.background.color.css}};
+    {% endif %}
+    {{module.style.link.spacing.spacing.css}}
   }
 
   .product-listing-module__article-heading {
-  {% if module.style.heading.background.color.css %}
-    background-color: {{module.style.heading.background.color.css}};
-  {% endif %}
-    text-align: {{module.style.heading.alignment.alignment.horizontal_align}};
-  {{module.style.heading.spacing.spacing.css}}
+    {% if module.style.heading.background.color.css %}
+      background-color: {{module.style.heading.background.color.css}};
+    {% endif %}
+      text-align: {{module.style.heading.alignment.alignment.horizontal_align}};
+    {{module.style.heading.spacing.spacing.css}}
   }
 
   .product-listing-module__article-date {
-  {% if module.style.text.background.color.css %}
-    background-color: {{module.style.text.background.color.css}};
-  {% endif %}
-    text-align: {{module.style.text.alignment.alignment.horizontal_align}};
-  {{module.style.text.spacing.spacing.css}}
+    {% if module.style.text.background.color.css %}
+      background-color: {{module.style.text.background.color.css}};
+    {% endif %}
+      text-align: {{module.style.text.alignment.alignment.horizontal_align}};
+    {{module.style.text.spacing.spacing.css}}
   }
 
   .product-listing-module__article-description {
-  {% if module.style.richtext.background.color.css %}
-    background-color: {{module.style.richtext.background.color.css}};
-  {% endif %}
-  {{module.style.richtext.spacing.spacing.css}}
+    {% if module.style.richtext.background.color.css %}
+      background-color: {{module.style.richtext.background.color.css}};
+    {% endif %}
+    {{module.style.richtext.spacing.spacing.css}}
   }
 
   .product-listing-module__article-button {
     text-align: {{module.style.button.alignment.alignment.horizontal_align}};
-  {% if module.style.button.background.color.css %}
-    background-color: {{module.style.button.background.color.css}};
-  {% endif %}
-  {{module.style.button.spacing.spacing.css}}
+    {% if module.style.button.background.color.css %}
+      background-color: {{module.style.button.background.color.css}};
+    {% endif %}
+    {{module.style.button.spacing.spacing.css}}
   }
 
   {% end_scope_css %}
