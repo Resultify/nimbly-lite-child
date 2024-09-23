@@ -1,5 +1,7 @@
 <!-- module html  -->
+{% import '../macros/image.html' as image_macros %}
 {% import '../macros/link.html' as link_macros %}
+{% import '../macros/heading.html' as heading_macros %}
 
 {# English labels #}
 {% if (content.language.languageTag == "en" || content.language.languageTag == null) %}
@@ -11,7 +13,159 @@
   {% set pageLabel = "Page" %}
 {% endif %}
 
-<h1>Product List</h1>
+{# module scope css #}
+<style>
+  {% scope_css %}
+
+  .product-listing-module {
+    {{module.style.general.spacing.spacing.css}}
+  }
+
+  .product-listing-module__tag-heading {
+    {% if module.style.general_heading.background.color.css %}
+      background-color: {{module.style.general_heading.background.color.css}};
+    {% endif %}
+      text-align: {{module.style.general_heading.alignment.alignment.horizontal_align}};
+    {{module.style.general_heading.spacing.spacing.css}}
+  }
+
+  .product-listing-module__article_wrp,
+  .product-listing-module__tag-heading_wrp {
+    {{module.style.article.spacing.spacing.css}}
+  }
+
+  {# basic-grid #}
+  {% if module.layout.layout == 'basic-grid' %}
+    .basic-grid .product-listing-module__article_wrp {
+      width: calc(100% / {{module.layout.columns}});
+   }
+    @media (max-width: 991.98px) {
+      .basic-grid .product-listing-module__article_wrp {
+        width: 50%;
+      }
+    }
+    @media (max-width: 700px) {
+      .basic-grid .product-listing-module__article_wrp {
+        width: 100%;
+      }
+    }
+  {% endif %}
+
+  {# mosaic grid #}
+  {% if module.layout.layout == 'mosaic-grid' %}
+  {% set mosaic_big_element_height = module.layout.height %}
+  {% set mosaic_small_element_height = module.layout.height/2 - module.style.article.spacing.spacing.padding.top.value %}
+  .mosaic-grid .product-listing-module__article {
+    height: {{mosaic_big_element_height ~ 'px'}};
+  }
+
+  .mosaic-grid-box .product-listing-module__article {
+    height: {{mosaic_small_element_height|int ~ 'px'}};
+  }
+  {% endif %}
+
+  .product-listing-module__article {
+  {% if module.style.article.border.border_radius %}
+    border-radius: {{module.style.article.border.border_radius ~ 'px'}};
+  {% endif %}
+  {% if module.style.article.background.color.css %}
+    background-color: {{module.style.article.background.color.css}};
+  {% endif %}
+  {{module.style.article.border.border.css}}
+  {{module.style.article.internal_spacing.spacing.css}}
+  }
+
+  .product-listing-module__article-image {
+    text-align: {{module.style.image.alignment.alignment.horizontal_align}};
+  {% if module.style.image.background.color.css %}
+    background-color: {{module.style.image.background.color.css}};
+  {% endif %}
+  {{module.style.image.spacing.spacing.css}}
+  }
+
+  .product-listing-module__article-tags {
+    text-align: {{module.style.link.alignment.alignment.horizontal_align}};
+  {% if module.style.link.background.color.css %}
+    background-color: {{module.style.link.background.color.css}};
+  {% endif %}
+  {{module.style.link.spacing.spacing.css}}
+  }
+
+  .product-listing-module__article-heading {
+  {% if module.style.heading.background.color.css %}
+    background-color: {{module.style.heading.background.color.css}};
+  {% endif %}
+    text-align: {{module.style.heading.alignment.alignment.horizontal_align}};
+  {{module.style.heading.spacing.spacing.css}}
+  }
+
+  .product-listing-module__article-date {
+  {% if module.style.text.background.color.css %}
+    background-color: {{module.style.text.background.color.css}};
+  {% endif %}
+    text-align: {{module.style.text.alignment.alignment.horizontal_align}};
+  {{module.style.text.spacing.spacing.css}}
+  }
+
+  .product-listing-module__article-description {
+  {% if module.style.richtext.background.color.css %}
+    background-color: {{module.style.richtext.background.color.css}};
+  {% endif %}
+  {{module.style.richtext.spacing.spacing.css}}
+  }
+
+  .product-listing-module__article-button {
+    text-align: {{module.style.button.alignment.alignment.horizontal_align}};
+  {% if module.style.button.background.color.css %}
+    background-color: {{module.style.button.background.color.css}};
+  {% endif %}
+  {{module.style.button.spacing.spacing.css}}
+  }
+
+  {% end_scope_css %}
+</style>
+
+{# Featured image #}
+{%- macro render_image(product) -%}
+  <div class="product-listing-module__article-image product-listing-module__article-item">
+    {%- set image_link_aria = 'aria-label="Full product information: {{ product.description }}"' -%}
+    {%- set image_data = {
+      "image": {
+        "size_type": "auto", "src": product.hs_images, "alt": product.name,
+        "loading": "lazy", "width": "1024", "height":"1024", "max_width": null, "max_height": null
+      },
+      "link": { "link": { "url": { "href": product.hs_images, "type": "EXTERNAL" }, "open_in_new_tab": false, "rel": "" } },
+      "caption": { "rich_text": "" }
+    }%}
+    {{
+      image_macros.render_image_tmpl(
+        image_data,
+        module.style.image,
+        module,
+        {
+          link_data_attrs: image_link_aria
+        }
+      )
+    }}
+  </div>
+{%- endmacro -%}
+
+{# Heading #}
+{%- macro render_heading(product) -%}
+  <div class="product-listing-module__article-heading product-listing-module__article-item">
+    {%- set heading_data = {
+      "display": module.heading.display, "heading_tag": module.heading.heading_tag, "text": product.name,
+      "link": {"link": { "url": { "href": "?product_id={{ product.hs_object_id }}", "type":"EXTERNAL" }, "open_in_new_tab": false, "rel": "" }, "accessible_link": true },
+      "icon":{
+        "icon": { "name": "", "unicode": "", "type": "REGULAR", "icon_set": "fontawesome-5.14.0" },
+        "icon_position": "left", "accessibility_options": { "purpose": "decorative" }
+      }
+    }%}
+    {{
+      heading_macros.render_heading_tmpl(heading_data, module.style.heading, module)
+    }}
+  </div>
+{%- endmacro -%}
 
 {# Render Pagination #}
 {% macro render_pagination(limit, current_offset, current_page_number, number_of_pages, query_param_list) -%}
@@ -157,35 +311,33 @@
 
 {% set products = module.data_query.data.CRM.product_collection.items %}
 
-<div class="products-list-container">
-  <div class="row-fluid-wrapper dnd-section">
-    <div class="row-fluid">
-      <div class="span12 dnd-column">
-        <form action="{{ request.path }}">
-          <label for="name">Search</label>
-          <input type="text" id="name" name="qd_name">
-        </form>
-        <div class="products-list-entries">
-          {% for product in products %}
-            <div class="product-entry">
-              <div class="product-image">
-                <img src="{{ resize_image_url(product.hs_images, 240) }}" alt="{{ product.name }}">
-              </div>
-              <div class="product-details">
-                <a href="?product_id={{ product.hs_object_id }}"><h2>{{ product.name }}</h2></a>
-                <p>{{ product.description }}</p>
-                <p>{{ product.price }}</p>
-              </div>
+<div class="product-listing-module_wrp">
+  <div class="product-listing-module product-listing-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
+    <form action="{{ request.path }}">
+      <label for="name">Search</label>
+      <input type="text" id="name" name="qd_name">
+    </form>
+    <div class="product-listing-module__articles {{module.layout.layout}}">
+      {% for product in products %}
+        <div class="product-listing-module__article_wrp">
+          <article class="product-listing-module__article" aria-label="Product post summary: {{ product.description }}">
+            <div class="product-listing-module__article-image">
+              {{ render_image(product) }}
             </div>
-          {% endfor %}
+            <div class="product-listing-module__article-tags">
+              {{ render_heading(product) }}
+              <p>{{ product.description }}</p>
+              <p>{{ product.price }}</p>
+            </div>
+          </article>
         </div>
-        {# Pagination #}
-        <div class="products-list-footer">
-          {# render_page_of_pages(current_page_number, number_of_pages) #}
-          {# render_items_of_items(limit, total, current_page_number, offset) #}
-          {{ render_pagination(limit, current_offset, current_page_number, number_of_pages, query_param_list) }}
-        </div>
-      </div>
+      {% endfor %}
+    </div>
+    {# Pagination #}
+    <div class="products-list-footer">
+      {# render_page_of_pages(current_page_number, number_of_pages) #}
+      {# render_items_of_items(limit, total, current_page_number, offset) #}
+      {{ render_pagination(limit, current_offset, current_page_number, number_of_pages, query_param_list) }}
     </div>
   </div>
 </div>

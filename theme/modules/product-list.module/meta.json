@@ -11,5 +11,6 @@
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "label" : "Product List",
   "data_query_path" : "../../data-queries/products",
+  "smart_type": "NOT_SMART",
   "is_available_for_new_content" : true
 }
