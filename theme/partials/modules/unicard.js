@@ -12,6 +12,7 @@ import { simpleText } from '../components/simple-text.js'
 import { listGroup } from '../components/list-group.js'
 import { accordionGroup } from '../components/accordion-group.js'
 import { form } from '../components/form.js'
+import { meeting } from '../components/meeting.js'
 import { moduleComponents } from '../components/module-components.js'
 import { animationList } from '../data/animation-list.js'
 import { shadowList } from '../data/shadow-list.js'
@@ -79,6 +80,7 @@ const unicardFields = (components, parent = '', opt) => {
       },
       form(`${parent}form_group.`, opt?.form)
     ),
+    meeting(parent),
     group('Additional images', 'additional_images_group',
       {
         visibility: {
