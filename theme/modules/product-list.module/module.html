@@ -167,6 +167,26 @@
   </div>
 {%- endmacro -%}
 
+{# Product Structured Data #}
+{%- macro render_structured_data(product) -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "{{ product.name }}",
+      "image": "{{ product.hs_images }}",
+      "description": "{{ product.description }}",
+      "sku": "{{ product.hs_object_id }}",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "{{ product.price }}",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  </script>
+{%- endmacro -%}
+
 {# Render Pagination #}
 {% macro render_pagination(limit, current_offset, current_page_number, number_of_pages, query_param_list) -%}
 {% if number_of_pages > 1 %}
@@ -330,6 +350,7 @@
               <p>{{ product.price }}</p>
             </div>
           </article>
+          {{ render_structured_data(product) }}
         </div>
       {% endfor %}
     </div>
