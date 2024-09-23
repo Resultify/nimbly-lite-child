@@ -339,6 +339,18 @@
     </form>
     <div class="product-listing-module__articles {{module.layout.layout}}">
       {% for product in products %}
+
+        {# if mosaic-grid #}
+        {% if module.layout.layout == 'mosaic-grid' %}
+          {% set start_mosaic_wrp_positions = [2,6,12,16,22,26,32,36] %}
+          {% for position in start_mosaic_wrp_positions %}
+            {% if position == content_index %}
+              <div class="mosaic-grid-box">
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {# endif mosaic-grid #}
+
         <div class="product-listing-module__article_wrp">
           <article class="product-listing-module__article" aria-label="Product post summary: {{ product.description }}">
             <div class="product-listing-module__article-image">
@@ -352,6 +364,22 @@
           </article>
           {{ render_structured_data(product) }}
         </div>
+
+      {# if mosaic-grid #}
+      {% if module.layout.layout == 'mosaic-grid' %}
+        {% set end_mosaic_wrp_positions = [5,9,15,19,25,29,35,39] %}
+        {% for position in end_mosaic_wrp_positions %}
+          {% if position|int == content_index %}
+            </div>
+          {% elif content_last and position != content_index and position > content_index %}
+            {% if position|int - 1 == content_index or position|int - 2 == content_index or position|int - 3 == content_index %}
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {# endif mosaic-grid #}
+
       {% endfor %}
     </div>
     {# Pagination #}
