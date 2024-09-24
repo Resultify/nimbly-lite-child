@@ -1,7 +1,14 @@
 {
     "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.setupts": "typoscript",
+        "*.constantsts": "typoscript",
+        "*.tsconfig": "typoscript",
+        "*.ts": "typescript",
         "**/theme/**/*.html": "html-hubl",
-        "**/theme/css/**/*.css": "css-hubl"
+        "**/theme/css/**/*.css": "css-hubl",
+        "*.html": "html-hubl",
+        "*.css": "css-hubl"
     },
     "hubspot.beta": true,
     "hubspot.hublLinting": true

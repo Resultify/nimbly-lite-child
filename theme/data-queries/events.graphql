@@ -1,0 +1,126 @@
+# label: "Events and recurring events with filters"
+# description: "Filter events and recurring events by date"
+# $start_date_gte: "{{ request.query_dict.esdgte  || "-1d"}}"
+# $start_date_lt: "{{ request.query_dict.esdlt || "9999999999999"}}"
+# $limit: "{{ request.query_dict.limit <= 101 ? request.query_dict.limit : 100 || 100 }}"
+# $offset: "{{ request.query_dict.offset || 0 }}"
+# $tags: "{{ request.query_dict.etags }}"
+# $language: "{{ content.language.languageTag }}"
+query EventList($publish_date__lte: DateTime = "0d", $start_date_gte: DateTime = "0d", $start_date_lt: DateTime = "9999999999999", $limit: Int = 100, $offset: Int = 0, $tags: [HS_Enum], $language: HS_Enum) {
+  HUBDB {
+    event_dates: event_date_collection(
+      limit: $limit
+      offset: $offset
+      filter: {
+        publish_date__lte: $publish_date__lte,
+        start_date__gte: $start_date_gte,
+        start_date__lt: $start_date_lt,
+        tags__in: $tags,
+        language__eq: $language,
+        recurrence_frequency__null: true,
+        event_information_collection__event_information_ids__not_null: "",
+      }
+      orderBy: start_date__asc
+    ) {
+      items {
+        start_date
+        tags
+        recurrence_end_date
+        recurrence_frequency
+        recurrence_interval
+        recurrence_days
+        hs_id
+        associations {
+          event_information_collection__event_information {
+            items {
+              hs_name
+              description
+              featured_image
+              card_image
+              hs_path
+            }
+          }
+        }
+        end_date
+      }
+      hasMore
+      limit
+      offset
+      total
+    }
+    recurring_event_dates: event_date_collection(
+        limit: $limit
+        offset: $offset
+        filter: {
+          publish_date__lte: $publish_date__lte,
+          recurrence_end_date__gte: $publish_date__lte,
+          recurrence_end_date__gte: $start_date_gte,
+          tags__in: $tags,
+          language__eq: $language,
+          recurrence_frequency__null: false,
+          event_information_collection__event_information_ids__not_null: "",
+        }
+        orderBy: start_date__asc
+    ) {
+      items {
+        start_date
+        tags
+        recurrence_end_date
+        recurrence_frequency
+        recurrence_interval
+        recurrence_days
+        hs_id
+        associations {
+          event_information_collection__event_information {
+            items {
+              hs_name
+              description
+              featured_image
+              card_image
+              hs_path
+            }
+          }
+        }
+        end_date
+      }
+      hasMore
+      limit
+      offset
+      total
+    }
+    event_max_date: event_date_collection(
+      limit: 1
+      filter: {
+        publish_date__lte: $publish_date__lte,
+        start_date__gte: $start_date_gte,
+        start_date__lt: $start_date_lt,
+        tags__in: $tags,
+        language__eq: $language,
+        recurrence_frequency__null: true,
+        event_information_collection__event_information_ids__not_null: "",
+      }
+      orderBy: end_date__desc
+    ) {
+      items {
+        end_date
+      }
+    }
+    recurring_event_max_date: event_date_collection(
+        limit: 1
+        filter: {
+          publish_date__lte: $publish_date__lte,
+          recurrence_end_date__gte: $publish_date__lte,
+          recurrence_end_date__gte: $start_date_gte,
+          tags__in: $tags,
+          language__eq: $language,
+          recurrence_frequency__null: false,
+          event_information_collection__event_information_ids__not_null: "",
+        }
+        orderBy: recurrence_end_date__desc
+    ) {
+      items {
+        recurrence_end_date
+      }
+    }
+  }
+}
