@@ -3,22 +3,58 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{%- macro form_macro(data) -%}
-  {%- if data.form.form_id -%}
-
-    <div data-component="form" class="form-wrp form-default">
-      {%- if data.form_heading_text -%}
-        <{{data.form_heading_tag}} class="{{data.form_heading_style}} heading">
-          {{data.form_heading_text}}
-        </{{data.form_heading_tag}}>
+{% import '../utils/hash.html' %}
+  {%- macro form_macro(data) -%}
+    {%- if data.form.form_id -%}
+      {# common styles for form macro #}
+      {% require_css %}
+        <style data-component="form">
+          .form-wrp.form-default {
+            width: 100%;
+          }
+          .form-wrp.form-default.center .hs-submit {
+            text-align: center;
+          }
+          .form-wrp.form-default.right .hs-submit {
+            text-align: right;
+          }
+        </style>
+      {% end_require_css %}
+      {# hash for scoped styles #}
+      {% set item_hash = hash([
+        data.form_text_color.css
+      ]) %}
+      {# scoped styles for form macro #}
+      {%- if data.form_text_color.css -%}
+         {% require_css %}
+           <style data-component="form scoped id{{item_hash}}">
+             .form{{item_hash}} input:not([type="submit"]) {
+                color: {{data.form_text_color.css}};
+             }
+           </style>
+         {% end_require_css %}
       {%- endif -%}
-
-      {% form
-        form_key='{{ name }}',
-        form_to_use='{{ data.form.form_id }}',
-        no_title=true
-      %}
-    </div>
-
-  {%- endif -%}
-{%- endmacro -%}
+      {%- if data.button_style -%}
+        {% set button_preset_style = 'form--btn-' ~ data.button_style %}
+      {%- else -%}
+        {% set button_preset_style = theme.forms.button.presets.style %}
+      {%- endif -%}
+      {%- if data.button_size -%}
+        {% set button_preset_size = 'form--btn-' ~ data.button_size %}
+      {%- else -%}
+        {% set button_preset_size = theme.forms.button.presets.size %}
+      {%- endif -%}
+      <div data-component="form" class="form-wrp form-default form{{item_hash}} {{button_preset_style}} {{button_preset_size}} {{data.button_position}}">
+        {%- if data.form_heading_text -%}
+          <{{data.form_heading_tag}} class="{{data.form_heading_style}} heading">
+            {{data.form_heading_text}}
+          </{{data.form_heading_tag}}>
+        {%- endif -%}
+        {% form
+          form_key='{{ name }}',
+          form_to_use='{{ data.form.form_id }}',
+          no_title=true
+        %}
+      </div>
+    {%- endif -%}
+  {%- endmacro -%}
