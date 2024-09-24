@@ -408,7 +408,7 @@
     {# Event post listing #}
     <div class="event-listing-module__articles {{module.layout.layout}}">
       {% for content in events %}
-        {% set eventInformation = content.associations.event_collection__event_information.items[0] %}
+        {% set eventInformation = content.associations.event_information_collection__event_information.items[0] %}
         {% set content_index = loop.index %}
         {% set content_last = loop.last %}
 

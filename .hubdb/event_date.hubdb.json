@@ -207,7 +207,7 @@
     {
       "name": "event_information",
       "label": "Event information",
-      "foreignTableId": 69911774,
+      "foreignTableId": 70760141,
       "foreignColumnId": 1,
       "description": "This field is used to select the \"Event information\" this \"Event date\" should be associated with. ",
       "foreignIds": [],

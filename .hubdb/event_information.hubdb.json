@@ -1,5 +1,5 @@
 {
-  "name": "event",
+  "name": "event_information",
   "useForPages": true,
   "label": "Event Information",
   "allowChildTables": false,

@@ -317,7 +317,7 @@ async function start() {
 
   for (language of languages) {
     for (let index = 0; index < eventToCreate; index++) {
-      let picsumId = Math.floor(Math.random() * 200) + 1;
+      let picsumId = Math.floor(Math.random() * 100) + 1;
       eventInformationItem = {
         "path": "event-" + (index + langageCount) + "-" + language,
         "name": eventNames[(index + langageCount)] + ' ' + language,

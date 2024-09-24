@@ -18,7 +18,7 @@ query EventList($publish_date__lte: DateTime = "0d", $start_date_gte: DateTime =
         tags__in: $tags,
         language__eq: $language,
         recurrence_frequency__null: true,
-        event_collection__event_information_ids__not_null: "",
+        event_information_collection__event_information_ids__not_null: "",
       }
       orderBy: start_date__asc
     ) {
@@ -31,7 +31,7 @@ query EventList($publish_date__lte: DateTime = "0d", $start_date_gte: DateTime =
         recurrence_days
         hs_id
         associations {
-          event_collection__event_information {
+          event_information_collection__event_information {
             items {
               hs_name
               description
@@ -58,7 +58,7 @@ query EventList($publish_date__lte: DateTime = "0d", $start_date_gte: DateTime =
           tags__in: $tags,
           language__eq: $language,
           recurrence_frequency__null: false,
-          event_collection__event_information_ids__not_null: "",
+          event_information_collection__event_information_ids__not_null: "",
         }
         orderBy: start_date__asc
     ) {
@@ -71,7 +71,7 @@ query EventList($publish_date__lte: DateTime = "0d", $start_date_gte: DateTime =
         recurrence_days
         hs_id
         associations {
-          event_collection__event_information {
+          event_information_collection__event_information {
             items {
               hs_name
               description
@@ -97,7 +97,7 @@ query EventList($publish_date__lte: DateTime = "0d", $start_date_gte: DateTime =
         tags__in: $tags,
         language__eq: $language,
         recurrence_frequency__null: true,
-        event_collection__event_information_ids__not_null: "",
+        event_information_collection__event_information_ids__not_null: "",
       }
       orderBy: end_date__desc
     ) {
@@ -114,7 +114,7 @@ query EventList($publish_date__lte: DateTime = "0d", $start_date_gte: DateTime =
           tags__in: $tags,
           language__eq: $language,
           recurrence_frequency__null: false,
-          event_collection__event_information_ids__not_null: "",
+          event_information_collection__event_information_ids__not_null: "",
         }
         orderBy: recurrence_end_date__desc
     ) {
