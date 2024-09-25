@@ -167,6 +167,22 @@
   </div>
 {%- endmacro -%}
 
+{# Currency #}
+{%- macro get_currency() -%}
+  {%- set currency = site_settings.currency %}
+  {%- set languageTag = content.language.languageTag %}
+  {%- if languageTag == "en-us" -%}
+    {%- set currency = "USD" -%}
+  {%- elif languageTag == "en" -%}
+    {%- set currency = "GBP" -%}
+  {%- elif languageTag == "sv" -%}
+    {%- set currency = "SEK" -%}
+  {%- else -%}
+    {%- set currency = "EUR" -%}
+  {%- endif -%}
+  {{ currency }}
+{%- endmacro -%}
+
 {# Product Structured Data #}
 {%- macro render_structured_data(product) -%}
   <script type="application/ld+json">
@@ -179,7 +195,7 @@
       "sku": "{{ product.hs_object_id }}",
       "offers": {
         "@type": "Offer",
-        "priceCurrency": "USD",
+        "priceCurrency": "{{ get_currency() }}",
         "price": "{{ product.price }}",
         "availability": "https://schema.org/InStock"
       }
@@ -359,7 +375,7 @@
             <div class="product-listing-module__article-tags">
               {{ render_heading(product) }}
               <p>{{ product.description }}</p>
-              <p>{{ product.price }}</p>
+              <p>{{ product.price }} {{ get_currency() }}</p>
             </div>
           </article>
           {{ render_structured_data(product) }}
