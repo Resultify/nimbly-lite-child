@@ -5295,6 +5295,52 @@
     "preset" : null,
     "type" : "choice",
     "default" : [ "blog", "website" ]
+  }, {
+    "id" : "3be3df0c-8ce3-74b6-119b-b5d586f4ca64",
+    "name" : "use_custom_search_results_page",
+    "display_width" : null,
+    "label" : "Use custom search results page",
+    "inline_help_text" : "Turn this setting on to use a custom search results page instead of the default global search results page.",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "default" : false
+  }, {
+    "id" : "3a72e3bc-4805-ba9f-0952-a06c443f72ec",
+    "name" : "path_id",
+    "display_width" : null,
+    "label" : "Search results page",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "search.use_custom_search_results_page",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "page"
+  }, {
+    "id" : "63365064-73de-b29b-e8ad-1a47e3b2820c",
+    "name" : "enable_language_specific_search",
+    "display_width" : null,
+    "label" : "Enable language specific search",
+    "inline_help_text" : "When language-specific search is enabled, the search input will align with the page's language and display results only in the corresponding language.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "search.use_custom_search_results_page",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "toggle",
+    "type" : "boolean",
+    "default" : false
   } ],
   "tab" : "CONTENT",
   "expanded" : false,
@@ -5302,7 +5348,9 @@
   "type" : "group",
   "default" : {
     "label_text" : "Search",
-    "search_results_include" : [ "blog", "website" ]
+    "search_results_include" : [ "blog", "website" ],
+    "use_custom_search_results_page" : false,
+    "enable_language_specific_search" : false
   }
 }, {
   "id" : "2540a067-4614-4450-19b2-b4ab2ca44afe",

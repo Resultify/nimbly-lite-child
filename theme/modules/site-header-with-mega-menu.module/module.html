@@ -4,6 +4,13 @@
 {% import '../macros/target-blank.html' as target_blank_macros %}
 {% import '../../css/macros/macros.css' %}
 
+{# add posibility to add simple page as a search result destination #}
+{% set search_page = module.search.use_custom_search_results_page is truthy and module.search.path_id ? content_by_id(module.search.path_id).absolute_url : site_settings.content_search_results_page_path %}
+{% unless (search_page is string_containing "//") %}
+  {% set search_page = "/" ~ search_page %}
+{% endunless %}
+{% set search_page = search_page|regex_replace("http:", "") %}
+
 {%- macro render_logo() -%}
   {% if site_settings.company_domain and module.logo.override_inherited_src == false %}
     {% set link = site_settings.company_domain %}
@@ -138,7 +145,7 @@
           <form class="header-search__form"
           role="search"
           tabindex="0"
-          action="/{{site_settings.content_search_results_page_path}}">
+          action="{{search_page|escape_url}}">
 
             <div class="header-search__form_internal-wrp"
             role="combobox"
@@ -163,6 +170,9 @@
             {% endif %}
             {% if module.search.search_results_include == 'knowledge' %}
               <input type="hidden" name="type" value="KNOWLEDGE_ARTICLE">
+            {% endif %}
+            {% if module.search.enable_language_specific_search %}
+              <input type="hidden" name="language" value="{{html_lang}}">
             {% endif %}
 
             <button class="header-search__form-btn" type="submit" tabindex="-1" aria-label="submit search" >
