@@ -1,20 +1,46 @@
 # Nimbly Lite Child
+A child theme for the **Nimbly Lite** theme that can be used as a base for any new Nimbly dependent project.
 ***
 
-[Compatible browsers](https://browsersl.ist/?results#q=last+2+Chrome+major+versions+and+%3E+0.5%25%0Alast+2+Edge+major+versions+and+%3E+0.5%25%0Alast+2+Firefox+major+versions+and+%3E+0.5%25%0Alast+2+iOS+major+versions+and+%3E+0.5%25%0Alast+2+Safari+major+versions+and+%3E+0.5%25%0A%3E1.3%25&region=alt-eu)
-
-## Requirements
-
+## General requirements
 1. Create a HubSpot development sandbox for testing and development purposes. [Link](https://app.hubspot.com/signup-hubspot/cms-developers)
-
 2. Create a personal CMS access key to enable authenticated access to your account. [Link](https://app.hubspot.com/l/personal-access-key)
+3. Instal rh CLI `npm -g install @resultify/rh-cli`
 
-## Quick start
+## Create a new project based on the Nimbly Lite Child
+`rh init`
 
-1. `npm install` - install all development dependencies
-2. Add to `.env` file your portal name and `PERSONAL_ACCESS_KEY` [Read more](https://github.com/Resultify/hubspot-cms-lib?tab=readme-ov-file#custom-multi-account-authentication)
-3. `npm run upload` - upload all local changes to remote HubSpot portal [check more commands](https://github.com/Resultify/hubspot-cms-lib?tab=readme-ov-file#whats-inside)
+## Commands for working with a new project based on Nimbly Lite Child
+- `rh` - list of possible commands to run based on current working directory
+- `rh upload` - uploads all files to the HubSpot portal
+- `rh fetch` - fetches all files from the HubSpot portal
+- `rh watch` - watches the project for changes and uploads them to the HubSpot portal
+- `rh build` - builds the project
+- `rh uploadDb` - uploads HubDb database to the HubSpot portal
+- `rh fetchDb` - fetches HubDb database from the HubSpot portal
+- `rh browsers` - list of supported browsers for the project
 
+***
+
+## Authentication
+
+### One-project access key
+*Access key for use with one project only*
+1. Add `.env` file to root folder of your project
+2. Add a name of your project Hubspot portal prefixed by `hub_` with associated personal access key to it
+```bash
+hub_projectname=personal-access-key-for-this-portalname
+```
+### Common multi-project access keys
+*Access keys that can be used with different projects*
+- Add access keys to `~/.rh/.env.root` file
+```bash
+hub_sandbox=personal-access-key-for-this-sandbox-portal
+hub_sandbox2=personal-access-key-for-this-sandbox2-portal
+hub_resultifydemo=personal-access-key-for-this-hub_resultifydemo-portal
+GITHUB_TOKEN=GitHub Classic Personal access token with full repo scope is required
+```
+***
 
 ## Events
 
@@ -24,12 +50,12 @@ There are two ways to set up events in HubSpot. You can either upload the predef
 ### Upload events HubDb data tables random data.
 __*\*Events will be out of date, if necessary update them manually in the HubDb tables.*__
 
-1. Upload `event` table (choose `event` in select box)
+1. Upload `event_information` table (pick `event_information.json` file in CLI select box)
 ```bash
 hs uploadDb
 ```
-2. Copy tabele ID from just uploaded 'event' table and paste it to `event_date` table in `foreignTableId` field.
-3. Upload `event_data` table (choose `event_data` in select box)
+2. Copy tabele ID from just uploaded 'event_information' table and paste it to `event_date.json` file in `foreignTableId` field.
+3. Upload `event_date` table (pick `event_date.json` file in CLI select box)
 ```bash
 hs uploadDb
 ```
@@ -110,3 +136,4 @@ The sample events are in sv and en, so page language needs to be selected.
 
 5. **Configure Dynamic Pages**:
    - Set the "Data source" to "Event information".
+

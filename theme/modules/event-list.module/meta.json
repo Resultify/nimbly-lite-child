@@ -1,16 +1,15 @@
 {
-  "label": "Events",
-  "css_assets": [],
-  "external_js": [],
-  "global": false,
-  "help_text": "",
-  "content_types": [
-    "SITE_PAGE"
-  ],
+  "content_tags" : [ {
+    "name" : "INTERACTION",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "content_types" : [ "SITE_PAGE" ],
+  "categories" : [ "FUNCTIONALITY" ],
+  "icon" : "fontawesome-5.14.0:Alternate%20Calendar",
+  "host_template_types" : [ "ANY" ],
+  "module_id" : 115904703983,
   "data_query_path" : "../../data-queries/events",
-  "js_assets": [],
-  "other_assets": [],
-  "smart_type": "NOT_SMART",
-  "tags": [],
-  "is_available_for_new_content": false
+  "label" : "Events",
+  "is_available_for_new_content" : false
 }
