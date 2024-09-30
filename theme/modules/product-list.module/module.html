@@ -171,16 +171,46 @@
 {%- macro get_currency() -%}
   {%- set currency = site_settings.currency %}
   {%- set languageTag = content.language.languageTag %}
+  {%- if currency -%}
+    {%- set currency = currency -%}
+  {%- endif -%}
   {%- if languageTag == "en-us" -%}
     {%- set currency = "USD" -%}
   {%- elif languageTag == "en" -%}
     {%- set currency = "GBP" -%}
   {%- elif languageTag == "sv" -%}
     {%- set currency = "SEK" -%}
-  {%- else -%}
+  {%- elif languageTag == "dk" -%}
+    {%- set currency = "DKK" -%}
+  {%- elif languageTag == "no" -%}
+    {%- set currency = "NOK" -%}
+  {%- elif languageTag in ["de", "fr", "es", "it", "nl", "pt", "fi", "el", "et", "lv", "lt", "mt", "sk", "sl", "ie", "cy", "lu", "be", "at", "gr"] -%}
     {%- set currency = "EUR" -%}
+  {%- else -%}
+    {%- set currency = "USD" -%} {# Default fallback currency #}
   {%- endif -%}
   {{ currency }}
+{%- endmacro -%}
+
+{# Get locale for the website #}
+{%- macro get_locale() -%}
+  {%- set languageTag = content.language.languageTag %}
+  {%- if languageTag == "en-us" -%}
+    {%- set locale = "en-US" -%}
+  {%- elif languageTag == "en" -%}
+    {%- set locale = "en-GB" -%}
+  {%- elif languageTag == "sv" -%}
+    {%- set locale = "sv-SE" -%}
+  {%- elif languageTag == "dk" -%}
+    {%- set locale = "da-DK" -%}
+  {%- elif languageTag == "no" -%}
+    {%- set locale = "nb-NO" -%}
+  {%- elif languageTag in ["de", "fr", "es", "it", "nl", "pt", "fi", "el", "et", "lv", "lt", "mt", "sk", "sl", "ie", "cy", "lu", "be", "at", "gr"] -%}
+    {%- set locale = "eu-EU" -%}
+  {%- else -%}
+    {%- set locale = "en-US" -%} {# Default fallback locale #}
+  {%- endif -%}
+  {{ locale }}
 {%- endmacro -%}
 
 {# Product Structured Data #}
@@ -353,6 +383,7 @@
       <label for="name">Search</label>
       <input type="text" id="name" name="qd_name">
     </form>
+    {{ content.translated_content.values()|selectattr('published')|map('language')|pprint }}
     <div class="product-listing-module__articles {{module.layout.layout}}">
       {% for product in products %}
 
@@ -375,7 +406,7 @@
             <div class="product-listing-module__article-tags">
               {{ render_heading(product) }}
               <p>{{ product.description }}</p>
-              <p>{{ product.price }} {{ get_currency() }}</p>
+              <p>{{ product.price | format_currency_value(locale=get_locale(), currency=get_currency())  }}</p>
             </div>
           </article>
           {{ render_structured_data(product) }}
