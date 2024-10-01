@@ -1,0 +1,994 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  enableDomainStylesheets: false
+  label: Site brand book
+  screenshotPath: ../images/template-previews/brand-book.png
+-->
+{% set template_css = '../../css/templates/brand-book.css' %}
+{% extends "./layouts/blank.html" %}
+  {% block body %}
+  {% dnd_area 'dnd_area'
+    label='Site brand book template',
+    class='site-brand-book-template'
+  %}
+
+    {% dnd_section %}
+      {% dnd_column
+        offset=0,
+        width=6
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_style" : "display-1",
+              "heading_text" : "Heading style 12",
+              "heading_text_prop_visibility" : false
+            },
+            module_components=[ "main_heading" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_style" : "display-2",
+              "heading_text" : "Heading style 11",
+              "heading_text_prop_visibility" : false
+            },
+            module_components=[ "main_heading" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_style" : "display-3",
+              "heading_text" : "Heading style 10",
+              "heading_text_prop_visibility" : false
+            },
+            module_components=[ "main_heading" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_style" : "display-4",
+              "heading_text" : "Heading style 9",
+              "heading_text_prop_visibility" : false
+            },
+            module_components=[ "main_heading" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_style" : "display-5",
+              "heading_text" : "Heading style 8",
+              "heading_text_prop_visibility" : false
+            },
+            module_components=[ "main_heading" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_style" : "display-6",
+              "heading_text" : "Heading style 7",
+              "heading_text_prop_visibility" : false
+            },
+            module_components=[ "main_heading" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_style" : "h1",
+              "heading_text" : "Heading style 6 [H1]",
+              "heading_text_prop_visibility" : false
+            },
+            module_components=[ "main_heading" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_column
+            offset=0,
+            width=12
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../modules/unicard",
+                offset=0,
+                width=12,
+                heading={
+                  "heading_style" : "h2",
+                  "heading_text" : "Heading style 5 [H2]",
+                  "heading_text_prop_visibility" : false
+                },
+                module_components=[ "main_heading" ]
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../modules/unicard",
+                offset=0,
+                width=12,
+                heading={
+                  "heading_style" : "h3",
+                  "heading_text" : "Heading style 4 [H3]",
+                  "heading_text_prop_visibility" : false
+                },
+                module_components=[ "main_heading" ]
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_style" : "h4",
+              "heading_text" : "Heading style 3 [H4]",
+              "heading_text_prop_visibility" : false
+            },
+            module_components=[ "main_heading" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_style" : "h5",
+              "heading_text" : "Heading style 2 [H5]",
+              "heading_text_prop_visibility" : false
+            },
+            module_components=[ "main_heading" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_style" : "h6",
+              "heading_text" : "Heading style 1 [H6]",
+              "heading_text_prop_visibility" : false
+            },
+            module_components=[ "main_heading" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+      {% dnd_column
+        offset=6,
+        width=6
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_text" : ""
+            },
+            module_components=[ "richtext" ]
+          %}
+            {% module_attribute "richtext" %}
+              <p><span><strong>Paragraph. </strong>Lorem ipsum dolor sit amet, <a href="#" rel="noopener">consectetur link</a> adipiscing elit. Ut ultrices, erat sed ultricies ultricies, dolor orci varius nibh, et semper nulla arcu eget justo. Etiam sem sem, ultricies et sagittis sed, aliquam sit amet orci. Ut a dolor a metus laoreet luctus nec aliquet urna. Donec nec ornare libero. Nunc venenatis tortor interdum convallis ornare.&nbsp;</span>Phasellus accumsan ligula magna, vel porta velit eleifend eget. Aliquam elementum bibendum pharetra. Duis pulvinar dignissim massa eget ornare. Ut et mi at ligula iaculis efficitur at non est.</p>
+              <blockquote>
+              <p><span><strong>Blockquote. </strong>Phasellus accumsan ligula magna, vel porta velit eleifend eget. Aliquam elementum bibendum pharetra.</span></p>
+              </blockquote>
+              <ol>
+              <li>Lorem Ipsum is simply dummy</li>
+              <li>Text of the printing and typesetting</li>
+              </ol>
+              <ol style="list-style-type: lower-alpha;">
+              <li>Lorem Ipsum has been the standard</li>
+              <li>Dummy text ever since the 1500s</li>
+              </ol>
+              <ul>
+              <li>Remaining essentially unchanged</li>
+              <li>It was popularised in the 1960s</li>
+              </ul>
+              <ul style="list-style-type: circle;">
+              <li>Letraset sheets containing</li>
+              <li>Lorem Ipsum passages</li>
+              </ul>
+              <ul style="list-style-type: square;">
+              <li>Printer took a galley of type</li>
+              <li>And scrambled it to make a book</li>
+              </ul>
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_column
+            offset=0,
+            width=6
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../modules/unicard",
+                offset=0,
+                width=12,
+                button_group=[ {
+                  "add_button_icon" : "fontawesome",
+                  "button_alignment" : "start",
+                  "button_hide_text" : false,
+                  "button_icon" : {
+                    "name" : "angle-double-right",
+                    "type" : "SOLID",
+                    "unicode" : "f101"
+                  },
+                  "button_icon_position" : "left",
+                  "button_image" : {
+                    "loading" : "disabled",
+                    "src" : ""
+                  },
+                  "button_link" : {
+                    "no_follow" : false,
+                    "open_in_new_tab" : false,
+                    "sponsored" : false,
+                    "url" : {
+                      "href" : "#",
+                      "type" : "EXTERNAL"
+                    },
+                    "user_generated_content" : false
+                  },
+                  "button_position" : "inline",
+                  "button_size" : "regular",
+                  "button_style" : "linkonly",
+                  "button_text" : "Regular link with icon",
+                  "custom_button_background" : { },
+                  "custom_button_border_color" : { },
+                  "custom_button_font" : {
+                    "font_set" : "DEFAULT"
+                  },
+                  "custom_button_hover" : {
+                    "background" : { },
+                    "border_color" : { },
+                    "color" : { }
+                  },
+                  "custom_link_color" : { },
+                  "custom_link_font" : {
+                    "font_set" : "DEFAULT"
+                  },
+                  "custom_link_hover" : {
+                    "color" : { }
+                  }
+                } ],
+                heading={
+                  "heading_text" : ""
+                },
+                module_components=[ "buttons" ],
+                style={
+                  "spacing" : {
+                    "padding" : {
+                      "bottom" : { },
+                      "left" : { },
+                      "right" : { },
+                      "top" : {
+                        "units" : "px",
+                        "value" : 30
+                      }
+                    }
+                  }
+                }
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+          {% dnd_column
+            offset=6,
+            width=6
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../modules/unicard",
+                offset=0,
+                width=12,
+                button_group=[ {
+                  "button_alignment" : "start",
+                  "button_hide_text" : false,
+                  "button_icon" : {
+                    "type" : "REGULAR"
+                  },
+                  "button_icon_position" : "left",
+                  "button_image" : {
+                    "loading" : "disabled",
+                    "src" : ""
+                  },
+                  "button_link" : {
+                    "no_follow" : false,
+                    "open_in_new_tab" : false,
+                    "sponsored" : false,
+                    "url" : {
+                      "href" : "#",
+                      "type" : "EXTERNAL"
+                    },
+                    "user_generated_content" : false
+                  },
+                  "button_position" : "inline",
+                  "button_size" : "regular",
+                  "button_style" : "linkonly",
+                  "button_text" : "Regular link",
+                  "custom_button_background" : { },
+                  "custom_button_border_color" : { },
+                  "custom_button_font" : {
+                    "font_set" : "DEFAULT"
+                  },
+                  "custom_button_hover" : {
+                    "background" : { },
+                    "border_color" : { },
+                    "color" : { }
+                  },
+                  "custom_link_color" : { },
+                  "custom_link_font" : {
+                    "font_set" : "DEFAULT"
+                  },
+                  "custom_link_hover" : {
+                    "color" : { }
+                  }
+                } ],
+                heading={
+                  "heading_text" : ""
+                },
+                module_components=[ "buttons" ],
+                style={
+                  "spacing" : {
+                    "padding" : {
+                      "bottom" : { },
+                      "left" : { },
+                      "right" : { },
+                      "top" : {
+                        "units" : "px",
+                        "value" : 30
+                      }
+                    }
+                  }
+                }
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {% dnd_section %}
+      {% dnd_column
+        offset=0,
+        width=3
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            button_group=[ {
+              "button_alignment" : "start",
+              "button_hide_text" : false,
+              "button_icon" : {
+                "type" : "REGULAR"
+              },
+              "button_icon_position" : "left",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#test",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "small",
+              "button_style" : "primary",
+              "button_text" : "Primary [small]",
+              "custom_button_background" : { },
+              "custom_button_border_color" : { },
+              "custom_button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_button_hover" : {
+                "background" : { },
+                "border_color" : { },
+                "color" : { }
+              },
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            }, {
+              "add_button_icon" : "fontawesome",
+              "button_alignment" : "start",
+              "button_hide_text" : false,
+              "button_icon" : {
+                "name" : "arrow-circle-right",
+                "type" : "SOLID",
+                "unicode" : "f0a9"
+              },
+              "button_icon_position" : "left",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#test",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "regular",
+              "button_style" : "primary",
+              "button_text" : "Primary [regular]",
+              "custom_button_background" : { },
+              "custom_button_border_color" : { },
+              "custom_button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_button_hover" : {
+                "background" : { },
+                "border_color" : { },
+                "color" : { }
+              },
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            }, {
+              "button_alignment" : "start",
+              "button_hide_text" : false,
+              "button_icon" : {
+                "type" : "REGULAR"
+              },
+              "button_icon_position" : "left",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#test",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "large",
+              "button_style" : "primary",
+              "button_text" : "Primary [large]",
+              "custom_button_background" : { },
+              "custom_button_border_color" : { },
+              "custom_button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_button_hover" : {
+                "background" : { },
+                "border_color" : { },
+                "color" : { }
+              },
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            } ],
+            heading={
+              "heading_text" : ""
+            },
+            module_components=[ "buttons" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+      {% dnd_column
+        offset=3,
+        width=3
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            button_group=[ {
+              "button_alignment" : "start",
+              "button_hide_text" : false,
+              "button_icon" : {
+                "type" : "REGULAR"
+              },
+              "button_icon_position" : "left",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#test",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "small",
+              "button_style" : "secondary1",
+              "button_text" : "Style 2 [small]",
+              "custom_button_background" : { },
+              "custom_button_border_color" : { },
+              "custom_button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_button_hover" : {
+                "background" : { },
+                "border_color" : { },
+                "color" : { }
+              },
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            }, {
+              "add_button_icon" : "fontawesome",
+              "button_alignment" : "start",
+              "button_hide_text" : false,
+              "button_icon" : {
+                "name" : "arrow-circle-right",
+                "type" : "SOLID",
+                "unicode" : "f0a9"
+              },
+              "button_icon_position" : "left",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#test",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "regular",
+              "button_style" : "secondary1",
+              "button_text" : "Style 2 [regular]",
+              "custom_button_background" : { },
+              "custom_button_border_color" : { },
+              "custom_button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_button_hover" : {
+                "background" : { },
+                "border_color" : { },
+                "color" : { }
+              },
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            }, {
+              "button_alignment" : "start",
+              "button_hide_text" : false,
+              "button_icon" : {
+                "type" : "REGULAR"
+              },
+              "button_icon_position" : "left",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#test",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "large",
+              "button_style" : "secondary1",
+              "button_text" : "Style 2 [large]",
+              "custom_button_background" : { },
+              "custom_button_border_color" : { },
+              "custom_button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_button_hover" : {
+                "background" : { },
+                "border_color" : { },
+                "color" : { }
+              },
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            } ],
+            heading={
+              "heading_text" : ""
+            },
+            module_components=[ "buttons" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+      {% dnd_column
+        offset=6,
+        width=3
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            button_group=[ {
+              "button_alignment" : "start",
+              "button_hide_text" : false,
+              "button_icon" : {
+                "type" : "REGULAR"
+              },
+              "button_icon_position" : "left",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#test",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "small",
+              "button_style" : "secondary2",
+              "button_text" : "Style 3 [small]",
+              "custom_button_background" : { },
+              "custom_button_border_color" : { },
+              "custom_button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_button_hover" : {
+                "background" : { },
+                "border_color" : { },
+                "color" : { }
+              },
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            }, {
+              "add_button_icon" : "fontawesome",
+              "button_alignment" : "start",
+              "button_hide_text" : false,
+              "button_icon" : {
+                "name" : "arrow-circle-right",
+                "type" : "SOLID",
+                "unicode" : "f0a9"
+              },
+              "button_icon_position" : "left",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#test",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "regular",
+              "button_style" : "secondary2",
+              "button_text" : "Style 3 [regular]",
+              "custom_button_background" : { },
+              "custom_button_border_color" : { },
+              "custom_button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_button_hover" : {
+                "background" : { },
+                "border_color" : { },
+                "color" : { }
+              },
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            }, {
+              "button_alignment" : "start",
+              "button_hide_text" : false,
+              "button_icon" : {
+                "type" : "REGULAR"
+              },
+              "button_icon_position" : "left",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#test",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "large",
+              "button_style" : "secondary2",
+              "button_text" : "Style 3 [large]",
+              "custom_button_background" : { },
+              "custom_button_border_color" : { },
+              "custom_button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_button_hover" : {
+                "background" : { },
+                "border_color" : { },
+                "color" : { }
+              },
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            } ],
+            heading={
+              "heading_text" : ""
+            },
+            module_components=[ "buttons" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+      {% dnd_column
+        offset=9,
+        width=3,
+        background_color="rgba(32, 18, 77, 1)",
+        padding={
+          "default" : {
+            "bottom" : "20px",
+            "left" : "20px",
+            "right" : "20px",
+            "top" : "20px"
+          }
+        }
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            button_group=[ {
+              "button_alignment" : "start",
+              "button_hide_text" : false,
+              "button_icon" : {
+                "type" : "REGULAR"
+              },
+              "button_icon_position" : "left",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#test",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "small",
+              "button_style" : "secondary3",
+              "button_text" : "Style 4 [small]",
+              "custom_button_background" : { },
+              "custom_button_border_color" : { },
+              "custom_button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_button_hover" : {
+                "background" : { },
+                "border_color" : { },
+                "color" : { }
+              },
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            }, {
+              "add_button_icon" : "fontawesome",
+              "button_alignment" : "start",
+              "button_hide_text" : false,
+              "button_icon" : {
+                "name" : "arrow-circle-right",
+                "type" : "SOLID",
+                "unicode" : "f0a9"
+              },
+              "button_icon_position" : "left",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#test",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "regular",
+              "button_style" : "secondary3",
+              "button_text" : "Style 4 [regular]",
+              "custom_button_background" : { },
+              "custom_button_border_color" : { },
+              "custom_button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_button_hover" : {
+                "background" : { },
+                "border_color" : { },
+                "color" : { }
+              },
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            }, {
+              "button_alignment" : "start",
+              "button_hide_text" : false,
+              "button_icon" : {
+                "type" : "REGULAR"
+              },
+              "button_icon_position" : "left",
+              "button_image" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "button_link" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#test",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "button_position" : "separate",
+              "button_size" : "large",
+              "button_style" : "secondary3",
+              "button_text" : "Style 4 [large]",
+              "custom_button_background" : { },
+              "custom_button_border_color" : { },
+              "custom_button_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_button_hover" : {
+                "background" : { },
+                "border_color" : { },
+                "color" : { }
+              },
+              "custom_link_color" : { },
+              "custom_link_font" : {
+                "font_set" : "DEFAULT"
+              },
+              "custom_link_hover" : {
+                "color" : { }
+              }
+            } ],
+            heading={
+              "heading_text" : ""
+            },
+            module_components=[ "buttons" ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+{% end_dnd_area %}
+{% endblock body %}

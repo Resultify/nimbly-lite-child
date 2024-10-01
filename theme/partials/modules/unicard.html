@@ -15,6 +15,8 @@
   {% import '../components/simple-text.html' %}
   {% import '../components/list-group.html' %}
   {% import '../components/accordion-group.html' %}
+  {% import '../components/meeting.html' %}
+  {% import '../components/form.html' %}
   {% import '../../css/macros.css' %}
   {% import '../utils/hash.html' %}
 
@@ -158,8 +160,14 @@
         {% elif component == 'list' %}
           {{list_group_macro(data)}}
 
-          {% elif component == 'accordion' %}
+        {% elif component == 'accordion' %}
           {{accordion_group_macro(data)}}
+
+        {% elif component == 'meeting' %}
+          {{meeting_macro(data)}}
+
+        {% elif component == 'form' %}
+          {{form_macro(data.form_group)}}
 
         {% elif component == 'separator' %}
           </div>

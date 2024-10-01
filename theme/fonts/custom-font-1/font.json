@@ -1,0 +1,24 @@
+{
+  "name": "custom-font-1",
+  "default": "Regular",
+  "fallback": "sans-serif",
+  "variants": [
+    {
+      "name": "Regular",
+      "files": [
+        {
+          "file": "./custom-font-1.woff2",
+          "format": "woff2"
+        },
+        {
+          "file": "./custom-font-1.woff",
+          "format": "woff"
+        }
+      ],
+      "styles": {
+        "font-weight": 400
+      }
+    }
+  ]
+}
+

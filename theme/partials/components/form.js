@@ -61,6 +61,55 @@ const form = (parent = '', opt) => {
         operator: 'EQUAL',
         controlling_value_regex: 'true'
       }
+    }),
+    fi.choice('Button style', 'button_style', {
+      choices: [
+        ['primary', 'Primary'],
+        ['secondary1', 'Button 2'],
+        ['secondary2', 'Button 3'],
+        ['secondary3', 'Button 4']
+      ],
+      display_width: 'half_width',
+      visibility: {
+        controlling_field_path: `${parent}form_prop_visibility`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
+      }
+    }),
+    fi.choice('Button size', 'button_size', {
+      choices: [
+        ['small', 'Small'],
+        ['regular', 'Regular'],
+        ['large', 'Large']
+      ],
+      display_width: 'half_width',
+      visibility: {
+        controlling_field_path: `${parent}form_prop_visibility`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
+      }
+    }),
+    fi.choice('Button position', 'button_position', {
+      display_width: 'half_width',
+      choices: [
+        ['left', 'Left'],
+        ['center', 'Center'],
+        ['right', 'Right']
+      ],
+      default: 'left',
+      required: true,
+      visibility: {
+        controlling_field_path: `${parent}form_prop_visibility`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
+      }
+    }),
+    fi.color('Text color', 'form_text_color', {
+      visibility: {
+        controlling_field_path: `${parent}form_prop_visibility`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
+      }
     })
   ]
 }

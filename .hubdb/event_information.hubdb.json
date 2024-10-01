@@ -1,0 +1,58 @@
+{
+  "name": "event_information",
+  "useForPages": true,
+  "label": "Event Information",
+  "allowChildTables": false,
+  "allowPublicApiAccess": false,
+  "dynamicMetaTags": { "DESCRIPTION": 4, "FEATURED_IMAGE_URL": 5 },
+  "enableChildTablePages": false,
+  "columns": [
+    {
+      "name": "name",
+      "label": "Name",
+      "description": "",
+      "limit": 10000,
+      "type": "TEXT"
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "description": "",
+      "limit": 10000,
+      "type": "TEXT"
+    },
+    {
+      "name": "content",
+      "label": "Content",
+      "description": "",
+      "limit": 65000,
+      "type": "RICHTEXT"
+    },
+    {
+      "name": "open_graph_description",
+      "label": "Open Graph description",
+      "description": "Event view Open Graph description. A one to two sentence description of the Event.",
+      "limit": 10000,
+      "type": "TEXT"
+    },
+    {
+      "name": "open_graph_image",
+      "label": "Open Graph image",
+      "description": "Event view Open Graph image. An image representing the Event. Optimal aspect ratio is 1:91:1, e.g. 1200 x 630.",
+      "type": "IMAGE"
+    },
+    {
+      "name": "featured_image",
+      "label": "Featured image",
+      "description": "Event background and hero image (1600 x 620 or similar ratio)",
+      "type": "IMAGE"
+    },
+    {
+      "name": "card_image",
+      "label": "Card image",
+      "description": "Image for Card View and Promospot (360 x 270 or similar ratio)",
+      "type": "IMAGE"
+    }
+  ],
+  "rows": []
+}

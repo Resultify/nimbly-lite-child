@@ -1,0 +1,22 @@
+<!--
+  label: partials -> components -> meeting.html
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{%- macro meeting_macro(data) -%}
+  {% if data.meeting %}
+    {# common styles for meeting macro #}
+    {% require_css %}
+      <style data-component="meeting">
+        .meeting-wrp {
+          width: 100%;
+          overflow-y: auto;
+        }
+      </style>
+    {% end_require_css %}
+    <div data-component="meeting" class="meeting-wrp">
+      <div class="meetings-iframe-container" data-src="{{ data.meeting ~ '?embed=true'|escape_url }}" data-ab="{{ content.ab|escape_attr }}" data-ab-status="{{ content.abStatus|escape_attr }}" data-content-id="{{ content.id|escape_attr }}"></div>
+      <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" data-hs-ignore="true"></script>
+    </div>
+  {% endif %}
+{%- endmacro -%}

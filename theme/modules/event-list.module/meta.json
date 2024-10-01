@@ -1,0 +1,15 @@
+{
+  "content_tags" : [ {
+    "name" : "INTERACTION",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "content_types" : [ "SITE_PAGE" ],
+  "categories" : [ "FUNCTIONALITY" ],
+  "icon" : "fontawesome-5.14.0:Alternate%20Calendar",
+  "host_template_types" : [ "ANY" ],
+  "module_id" : 115904703983,
+  "data_query_path" : "../../data-queries/events",
+  "label" : "Events",
+  "is_available_for_new_content" : false
+}

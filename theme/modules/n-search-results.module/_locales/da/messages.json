@@ -1,0 +1,652 @@
+{
+  "heading_style.choices.display-1" : {
+    "message" : "Style 12",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.choices.display-2" : {
+    "message" : "Style 11",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.choices.display-3" : {
+    "message" : "Style 10",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.choices.display-4" : {
+    "message" : "Style 9",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.choices.display-5" : {
+    "message" : "Style 8",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.choices.display-6" : {
+    "message" : "Style 7",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.choices.h1" : {
+    "message" : "Style 6 [H1]",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.choices.h2" : {
+    "message" : "Style 5 [H2]",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.choices.h3" : {
+    "message" : "Style 4 [H3]",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.choices.h4" : {
+    "message" : "Style 3 [H4]",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.choices.h5" : {
+    "message" : "Style 2 [H5]",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.choices.h6" : {
+    "message" : "Style 1 [H6]",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.help_text" : {
+    "message" : "Display different heading styles not related to semantic heading type (tag h1-h6)",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.label" : {
+    "message" : "Title style",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_style.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_tag.choices.h1" : {
+    "message" : "H1",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_tag.choices.h2" : {
+    "message" : "H2",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_tag.choices.h3" : {
+    "message" : "H3",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_tag.choices.h4" : {
+    "message" : "H4",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_tag.choices.h5" : {
+    "message" : "H5",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_tag.choices.h6" : {
+    "message" : "H6",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_tag.help_text" : {
+    "message" : "Semantic heading tag (h1-h6)",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_tag.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_tag.label" : {
+    "message" : "Title tag",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading_tag.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.choices.display-1" : {
+    "message" : "Style 12",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.choices.display-2" : {
+    "message" : "Style 11",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.choices.display-3" : {
+    "message" : "Style 10",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.choices.display-4" : {
+    "message" : "Style 9",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.choices.display-5" : {
+    "message" : "Style 8",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.choices.display-6" : {
+    "message" : "Style 7",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.choices.h1" : {
+    "message" : "Style 6 [H1]",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.choices.h2" : {
+    "message" : "Style 5 [H2]",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.choices.h3" : {
+    "message" : "Style 4 [H3]",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.choices.h4" : {
+    "message" : "Style 3 [H4]",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.choices.h5" : {
+    "message" : "Style 2 [H5]",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.choices.h6" : {
+    "message" : "Style 1 [H6]",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.help_text" : {
+    "message" : "Display different heading styles not related to semantic heading type (tag h1-h6)",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.label" : {
+    "message" : "Search item title style",
+    "description" : null,
+    "placeholders" : null
+  },
+  "item_title_style.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "items_per_page.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "items_per_page.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "items_per_page.label" : {
+    "message" : "Search result items per page",
+    "description" : null,
+    "placeholders" : null
+  },
+  "items_per_page.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "n-search-results",
+    "description" : null,
+    "placeholders" : null
+  },
+  "no_results_message.default" : {
+    "message" : "<p>Der var desværre ingen resultater for [[search_term]].</p><p>Prøv at omformulere din forespørgsel, eller gennemse vores websted.</p>",
+    "description" : null,
+    "placeholders" : null
+  },
+  "no_results_message.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "no_results_message.inline_help_text" : {
+    "message" : "Der var desværre ingen resultater for [[search_term]].",
+    "description" : null,
+    "placeholders" : null
+  },
+  "no_results_message.label" : {
+    "message" : "No results message",
+    "description" : null,
+    "placeholders" : null
+  },
+  "no_results_message.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.current_page_aria_label.default" : {
+    "message" : "Nuværende side",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.current_page_aria_label.help_text" : {
+    "message" : "Accessibility feature",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.current_page_aria_label.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.current_page_aria_label.label" : {
+    "message" : "Current page aria label",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.current_page_aria_label.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.current_page_aria_label.validation_regex" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.first_label.default" : {
+    "message" : "Første side",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.first_label.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.first_label.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.first_label.label" : {
+    "message" : "First label",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.first_label.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.first_label.validation_regex" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.label" : {
+    "message" : "Pagination",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.last_label.default" : {
+    "message" : "Sidste side",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.last_label.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.last_label.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.last_label.label" : {
+    "message" : "Last label",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.last_label.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.last_label.validation_regex" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.navigation_aria_label.default" : {
+    "message" : "Søgning navigation",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.navigation_aria_label.help_text" : {
+    "message" : "Accessibility feature",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.navigation_aria_label.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.navigation_aria_label.label" : {
+    "message" : "Navigation aria label",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.navigation_aria_label.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.navigation_aria_label.validation_regex" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.next_label.default" : {
+    "message" : "Næste",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.next_label.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.next_label.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.next_label.label" : {
+    "message" : "Next label",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.next_label.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.next_label.validation_regex" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.page_number_aria_label.default" : {
+    "message" : "Side",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.page_number_aria_label.help_text" : {
+    "message" : "Accessibility feature",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.page_number_aria_label.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.page_number_aria_label.label" : {
+    "message" : "Page number aria label",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.page_number_aria_label.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.page_number_aria_label.validation_regex" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.previous_label.default" : {
+    "message" : "Tidligere",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.previous_label.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.previous_label.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.previous_label.label" : {
+    "message" : "Previous label",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.previous_label.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.previous_label.validation_regex" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_first_and_last_arrows.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_first_and_last_arrows.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_first_and_last_arrows.label" : {
+    "message" : "Show first/last arrows",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_first_and_last_arrows.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_first_and_last_labels.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_first_and_last_labels.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_first_and_last_labels.label" : {
+    "message" : "Show first/last labels",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_first_and_last_labels.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_numbers.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_numbers.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_numbers.label" : {
+    "message" : "Show numbers",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_numbers.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_previous_and_next_arrows.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_previous_and_next_arrows.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_previous_and_next_arrows.label" : {
+    "message" : "Show previous/next arrows",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_previous_and_next_arrows.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_previous_and_next_labels.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_previous_and_next_labels.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_previous_and_next_labels.label" : {
+    "message" : "Show previous/next labels",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.show_previous_and_next_labels.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "results_count_message.default" : {
+    "message" : "Viser [[offset]] – [[limit]] af [[total]] resultater",
+    "description" : null,
+    "placeholders" : null
+  },
+  "results_count_message.help_text" : {
+    "message" : "Leave it blank to hide count_message",
+    "description" : null,
+    "placeholders" : null
+  },
+  "results_count_message.inline_help_text" : {
+    "message" : "Viser [[offset]] – [[limit]] af [[total]] resultater",
+    "description" : null,
+    "placeholders" : null
+  },
+  "results_count_message.label" : {
+    "message" : "Search results count",
+    "description" : null,
+    "placeholders" : null
+  },
+  "results_count_message.placeholder" : {
+    "message" : "Viser [[offset]] – [[limit]] af [[total]] resultater",
+    "description" : null,
+    "placeholders" : null
+  },
+  "results_count_message.validation_regex" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "results_title.default" : {
+    "message" : "Søgeresultater for “{{searched_term|escape}}”",
+    "description" : null,
+    "placeholders" : null
+  },
+  "results_title.help_text" : {
+    "message" : "Enter the title you would like to display above the search results. Leave it blank to hide a title.",
+    "description" : null,
+    "placeholders" : null
+  },
+  "results_title.inline_help_text" : {
+    "message" : "Søgeresultater for “{{searched_term|escape}}”",
+    "description" : null,
+    "placeholders" : null
+  },
+  "results_title.label" : {
+    "message" : "Results title",
+    "description" : null,
+    "placeholders" : null
+  },
+  "results_title.placeholder" : {
+    "message" : "Søgeresultater for “{{searched_term|escape}}”",
+    "description" : null,
+    "placeholders" : null
+  },
+  "results_title.validation_regex" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  }
+}

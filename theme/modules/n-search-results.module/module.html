@@ -1,0 +1,158 @@
+{# add base styles to module previewer #}
+{% if is_in_module_previewer %}
+  {{require_css(get_asset_url("../../css/base.css"))}}
+  {{require_css(get_asset_url("../../css/global-theme-settings.css"))}}
+{% endif %}
+{# *** #}
+
+{# show placeholder content in editor and previewer #}
+{% if is_in_editor or is_in_previewer %}
+  {% require_css %}
+    <style data-component="icon">
+      .search-results {
+        display: block;
+      }
+    </style>
+  {% end_require_css %}
+{% endif %}
+
+{% set searched_term = request.query_dict.term ? request.query_dict.term : request.query_dict.q %}
+
+{% macro first_page_icon_markup() %}
+  <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true"><g id="angle-double-left1_layer"><path d="M223.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L319.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L393.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34zm-192 34l136 136c9.4 9.4 24.6 9.4 33.9 0l22.6-22.6c9.4-9.4 9.4-24.6 0-33.9L127.9 256l96.4-96.4c9.4-9.4 9.4-24.6 0-33.9L201.7 103c-9.4-9.4-24.6-9.4-33.9 0l-136 136c-9.5 9.4-9.5 24.6-.1 34z"></path></g></svg>
+{% endmacro %}
+{% macro previous_page_icon_markup() %}
+  <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" aria-hidden="true"><g id="angle-left1_layer"><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"></path></g></svg>
+{% endmacro %}
+{% macro next_page_icon_markup() %}
+  <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" aria-hidden="true"><g id="angle-right1_layer"><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></g></svg>
+{% endmacro %}
+{% macro last_page_icon_markup() %}
+  <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true"><g id="angle-double-right1_layer"><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34zm192-34l-136-136c-9.4-9.4-24.6-9.4-33.9 0l-22.6 22.6c-9.4 9.4-9.4 24.6 0 33.9l96.4 96.4-96.4 96.4c-9.4 9.4-9.4 24.6 0 33.9l22.6 22.6c9.4 9.4 24.6 9.4 33.9 0l136-136c9.4-9.2 9.4-24.4 0-33.8z"></path></g></svg>
+{% endmacro %}
+
+{% macro in_editor_content_placeholder() %}
+  <li class="search-results-listing-item">
+    <div class="search-results-content">
+      <h2 class="heading {{module.item_title_style}}">
+        <a class="search-results-link heading-link" href="#">
+          <span class="search-results-title">Page title 1</span>
+        </a>
+      </h2>
+      <p class="search-results-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula convallis magna a mollis. Suspendisse quis sem et turpis pellentesque scelerisque. Suspendisse commodo est et velit imperdiet sagittis. Donec at rutrum enim. Etiam in libero at tellus maximus iaculis quis vitae sapien.</p>
+    </div>
+  </li>
+  <li class="search-results-listing-item">
+    <div class="search-results-content">
+      <h2 class="heading {{module.item_title_style}}">
+        <a class="search-results-link heading-link" href="#">
+          <span class="search-results-title">Page title 2</span>
+        </a>
+      </h2>
+      <p class="search-results-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula convallis magna a mollis. Suspendisse quis sem et turpis pellentesque scelerisque. Suspendisse commodo est et velit imperdiet sagittis. Donec at rutrum enim. Etiam in libero at tellus maximus iaculis quis vitae sapien.</p>
+    </div>
+  </li>
+  <li class="search-results-listing-item">
+    <div class="search-results-content">
+      <h2 class="heading {{module.item_title_style}}">
+        <a class="search-results-link heading-link" href="#">
+          <span class="search-results-title">Page title 3</span>
+        </a>
+      </h2>
+      <p class="search-results-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula convallis magna a mollis. Suspendisse quis sem et turpis pellentesque scelerisque. Suspendisse commodo est et velit imperdiet sagittis. Donec at rutrum enim. Etiam in libero at tellus maximus iaculis quis vitae sapien.</p>
+    </div>
+  </li>
+{% endmacro %}
+
+{% macro in_editor_pagination_placeholder() %}
+  <a class="search-results-pagination-link search-results-pagination-link-number search-results-pagination-link-active" href="#" aria-label="{{module.pagination.current_page_aria_label|escape_attr}} {{module.pagination.page_number_aria_label|escape_attr}} 1">1</a>
+  <a class="search-results-pagination-link search-results-pagination-link-number" href="#" aria-label="{{module.pagination.page_number_aria_label|escape_attr}} 2">2</a>
+  <a class="search-results-pagination-link search-results-pagination-link-number" href="#" aria-label="{{module.pagination.page_number_aria_label|escape_attr}} 3">3</a>
+  <a class="search-results-pagination-link search-results-pagination-link-number" href="#" aria-label="{{module.pagination.page_number_aria_label|escape_attr}} 4">4</a>
+  <span class="search-results-pagination-link search-results-pagination-link-ellipsis">...</span>
+  <a class="search-results-pagination-link search-results-pagination-link-number" href="#" aria-label="{{module.pagination.page_number_aria_label|escape_attr}} 12">12</a>
+{% endmacro %}
+
+<div class="search-results-wrp"
+  data-page-path="{{request.path}}"
+  data-title-tag="{{module.heading_tag}}"
+  data-no-results-message="{{module.no_results_message}}"
+  data-current-page-aria-label="{{module.pagination.current_page_aria_label}}"
+  data-page-aria-label="{{module.pagination.page_number_aria_label}}"
+  data-item-title-style="{{module.item_title_style}}"
+  data-limit="{{module.items_per_page}}">
+
+  {% set results_count_message = module.results_count_message %}
+  {% if module.results_title and ( request.query_dict.term or request.query_dict.q or is_in_editor or is_in_previewer ) %}
+    <{{module.heading_tag|escape_attr}} class="search-results-title {{module.heading_style}}">{{module.results_title|render|escape_html}}</{{module.heading_tag|escape_attr}}>
+  {% endif %}
+
+  <div class="search-results">
+    {% if is_in_editor or is_in_previewer %}
+      {% set results_count_message = results_count_message|replace("[[offset]]", "1")|replace("[[limit]]", "10")|replace("[[total]]", "115") %}
+    {% endif %}
+    <p class="search-results-message" role="status">{{results_count_message|escape_html}}</p>
+    <ul class="search-results-listing">
+      {% if is_in_editor or is_in_previewer %}
+        {{ in_editor_content_placeholder() }}
+      {% endif %}
+    </ul>
+
+    <nav class="search-results-pagination" role="navigation" aria-label="{{module.pagination.navigation_aria_label|escape_attr}}">
+      {% if module.pagination.show_first_and_last_labels or module.pagination.show_first_and_last_arrows %}
+        <a class="search-results-pagination-link search-results-pagination-link-first" href="#"
+          aria-label="{{module.pagination.first_label ? module.pagination.first_label|escape_html : 'First Page'}}">
+          {% if module.pagination.show_first_and_last_arrows %}
+            {{first_page_icon_markup()}}
+          {% endif %}
+          {% if module.pagination.show_first_and_last_labels %}
+            <span class="search-results-pagination-link-text">{{module.pagination.first_label|escape_html}}</span>
+          {% endif %}
+        </a>
+      {% endif %}
+      {% if module.pagination.show_previous_and_next_labels or module.pagination.show_previous_and_next_arrows %}
+        <a class="search-results-pagination-link search-results-pagination-link-prev" href="#"
+          aria-label="{{module.pagination.previous_label ? module.pagination.previous_label|escape_html : 'Previous'}}">
+          {% if module.pagination.show_previous_and_next_arrows %}
+            {{previous_page_icon_markup()}}
+          {% endif %}
+          {% if module.pagination.show_previous_and_next_labels %}
+            <span class="search-results-pagination-link-text">{{module.pagination.previous_label|escape_html}}</span>
+          {% endif %}
+        </a>
+      {% endif %}
+
+      {% if module.pagination.show_numbers %}
+        <div class="search-results-pagination-list">
+          {% if is_in_editor or is_in_previewer %}
+            {{ in_editor_pagination_placeholder() }}
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if module.pagination.show_previous_and_next_labels or module.pagination.show_previous_and_next_arrows %}
+        <a class="search-results-pagination-link search-results-pagination-link-next" href="#"
+          aria-label="{{module.pagination.next_label ? module.pagination.next_label|escape_html : 'Next'}}">
+          {% if module.pagination.show_previous_and_next_labels%}
+            <span class="search-results-pagination-link-text">{{module.pagination.next_label|escape_html}}</span>
+          {% endif %}
+          {% if module.pagination.show_previous_and_next_arrows %}
+            {{next_page_icon_markup()}}
+          {% endif %}
+        </a>
+      {% endif %}
+      {% if module.pagination.show_first_and_last_labels or module.pagination.show_first_and_last_arrows %}
+        <a class="search-results-pagination-link search-results-pagination-link-last" href="#"
+          aria-label="{{module.pagination.last_label ? module.pagination.last_label|escape_html : 'Last Page'}}">
+          {% if module.pagination.show_first_and_last_labels %}
+            <span class="search-results-pagination-link-text">{{module.pagination.last_label|escape_html}}</span>
+          {% endif %}
+          {% if module.pagination.show_first_and_last_arrows %}
+            {{last_page_icon_markup()}}
+          {% endif %}
+        </a>
+      {% endif %}
+    </nav>
+  </div>
+
+</div>

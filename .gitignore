@@ -9,6 +9,7 @@ theme/modules/unicard-carousel.module/fields.json
 theme/modules/unicard-filter.module/fields.json
 theme/modules/unicard-blog-list.module/fields.json
 theme/modules/unicard-blog-recent.module/fields.json
+theme/modules/n-search-results.module/fields.json
 
 # IDE ignore config
 .vscode/*
@@ -26,3 +27,5 @@ temp
 node_modules
 npm-debug.log
 validation-status.json
+
+.hubdb/*sample_data.hubdb.json
