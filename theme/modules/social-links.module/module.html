@@ -1,0 +1,122 @@
+{% import '../macros/icon.html' as icon_macros %}
+{% import '../macros/target-blank.html' as target_blank_macros %}
+{% import '../../css/macros/macros.css' %}
+
+{# module scope css #}
+<style>
+  {% scope_css %}
+
+    .social-links-module {
+      {% if module.style.general.alignment.vertical == 'true' %}
+        flex-direction: column;
+      {% endif %}
+
+      {% if module.style.general.alignment.horizontal_alignment.horizontal_align && module.style.general.alignment.vertical == 'false' %}
+        justify-content: {{module.style.general.alignment.horizontal_alignment.horizontal_align}};
+      {% endif %}
+
+      {% if module.style.general.alignment.horizontal_alignment.horizontal_align && module.style.general.alignment.vertical == 'true' %}
+        {% if module.style.general.alignment.horizontal_alignment.horizontal_align == 'LEFT' %}
+          {% set align = 'start'%}
+        {% elif module.style.general.alignment.horizontal_alignment.horizontal_align == 'RIGHT' %}
+          {% set align = 'end'%}
+        {% else %}
+          {% set align = 'center'%}
+        {% endif %}
+
+        align-items: {{align}};
+      {% endif %}
+
+      {% if module.style.general.border.border_radius != null %}
+        border-radius: {{module.style.general.border.border_radius ~ 'px'}};
+      {% endif %}
+      {% if module.style.general.background.color.css %}
+        background-color: {{module.style.general.background.color.css}};
+      {% endif %}
+      {{module.style.general.border.border.css}}
+      {{module.style.general.spacing.spacing.css}}
+    }
+
+    .social-links-module__icon {
+      {% if module.style.icon.background.color.css %}
+        background-color: {{module.style.icon.background.color.css}};
+      {% endif %}
+      {{module.style.icon.spacing.spacing.css}}
+    }
+
+    .social-links-module .g-module-macros-icon:hover svg {
+      {% if module.style.icon.hover.color.color %}
+        {% set icon_hover_color = module.style.icon.hover.color.color %}
+        {% set icon_hover_opacity = module.style.icon.hover.color.opacity %}
+      {% elif module.style.icon.custom_theme_overrides.color.color %}
+        {% set icon_hover_color = color_variant(module.style.icon.custom_theme_overrides.color.color, +30) %}
+        {% set icon_hover_opacity = 80 %}
+      {% elif module.style.icon.presets.icon_color == 'primary' %}
+        {% set icon_hover_color = color_variant(theme.icons.primary.color.color.color, +30) %}
+        {% set icon_hover_opacity = 80 %}
+      {% else %}
+        {% set icon_hover_color = color_variant(theme.icons.secondary.color.color.color, +30) %}
+        {% set icon_hover_opacity = 80 %}
+      {% endif %}
+
+      fill: {{rgb(icon_hover_color, icon_hover_opacity)}};
+    }
+
+    .social-links-module .g-module-macros-icon:hover{
+      {% if module.style.icon.hover.background.color %}
+        {% set icon_hover_bg_color = module.style.icon.hover.background.color %}
+        {% set icon_hover_bg_opacity = module.style.icon.hover.background.opacity %}
+
+        background-color: {{rgb(icon_hover_bg_color, icon_hover_bg_opacity)}};
+      {% endif %}
+      }
+
+  {% end_scope_css %}
+</style>
+
+<div class="social-links-module_wrp">
+  <div class="social-links-module social-links-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
+    {% for item in module.link_group %}
+
+      {% set href = item.link.link.url.href %}
+      {% if item.link.link.url.type is equalto 'EMAIL_ADDRESS' %}
+        {% set href = 'mailto:' + href %}
+      {% endif %}
+
+      {% set rel = [] %}
+      {% if item.link.link.no_follow %}
+        {% do rel.append("nofollow") %}
+      {% endif %}
+      {% if item.link.link.open_in_new_tab %}
+        {% do rel.append("noopener") %}
+        {% set open_in_new_tab_class = "target-blank-link" %}
+      {% endif %}
+
+      {%- macro icon_data() -%}
+        {
+          "icon":{"name":"{{item.icon.icon.name}}","unicode":"{{item.icon.icon.unicode}}","type":"{{item.icon.icon.type}}","icon_set":"fontawesome-5.14.0"},
+          "accessibility_options":{"purpose":"semantic", "title":"{{item.link_label.link_label}}"}
+        }
+      {%- endmacro -%}
+
+      <a href="{{ href }}"
+         class="social-links-module__link {{open_in_new_tab_class}}"
+         {% if item.link.link.open_in_new_tab %}target="_blank"{% endif %}
+         {% if rel %}rel="{{ rel|join(' ') }}"{% endif %}
+         >
+
+          <div class="social-links-module__icon">
+            {{icon_macros.render_icon_tmpl(icon_data()|fromjson, module.style.icon, item, null, item.icon.svg)}}
+            <span class="visually-hidden">{{item.link_label.link_label}}</span>
+
+            {% if item.link.link.open_in_new_tab %}
+              {% if item.link.accessible_link %}
+                {{target_blank_macros.render_target_blank_tmpl('1em')}}
+              {% endif %}
+            {% endif %}
+          </div>
+
+      </a>
+    {% endfor %}
+  </div>
+</div>
