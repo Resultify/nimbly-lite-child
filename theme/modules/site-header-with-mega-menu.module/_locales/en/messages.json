@@ -4129,26 +4129,6 @@
     "description" : "",
     "placeholders" : null
   },
-  "style.menu.dropdown.spacing.width.help_text" : {
-    "message" : "",
-    "description" : "",
-    "placeholders" : null
-  },
-  "style.menu.dropdown.spacing.width.inline_help_text" : {
-    "message" : "",
-    "description" : "",
-    "placeholders" : null
-  },
-  "style.menu.dropdown.spacing.width.label" : {
-    "message" : "Width",
-    "description" : "",
-    "placeholders" : null
-  },
-  "style.menu.dropdown.spacing.width.placeholder" : {
-    "message" : "",
-    "description" : "",
-    "placeholders" : null
-  },
   "style.menu.help_text" : {
     "message" : "",
     "description" : "",

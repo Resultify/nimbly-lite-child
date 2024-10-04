@@ -663,26 +663,13 @@
           "locked" : false,
           "type" : "spacing",
           "default" : { }
-        }, {
-          "id" : "36d6ac1a-0372-c05f-f1dc-e2393dc10042",
-          "name" : "width",
-          "display_width" : null,
-          "label" : "Width",
-          "required" : false,
-          "locked" : false,
-          "display" : "text",
-          "step" : 1,
-          "suffix" : "px",
-          "type" : "number",
-          "default" : 190
         } ],
         "tab" : "STYLE",
         "expanded" : false,
         "group_occurrence_meta" : null,
         "type" : "group",
         "default" : {
-          "spacing" : { },
-          "width" : 190
+          "spacing" : { }
         }
       }, {
         "id" : "941bac4c-5dc6-9c15-8797-018349b08818",
@@ -956,8 +943,7 @@
       "type" : "group",
       "default" : {
         "spacing" : {
-          "spacing" : { },
-          "width" : 190
+          "spacing" : { }
         },
         "background" : {
           "color" : {
@@ -1087,8 +1073,7 @@
       },
       "dropdown" : {
         "spacing" : {
-          "spacing" : { },
-          "width" : 190
+          "spacing" : { }
         },
         "background" : {
           "color" : {
@@ -4296,8 +4281,7 @@
       },
       "dropdown" : {
         "spacing" : {
-          "spacing" : { },
-          "width" : 190
+          "spacing" : { }
         },
         "background" : {
           "color" : {
