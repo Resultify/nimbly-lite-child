@@ -9,8 +9,8 @@
   },
   "icon" : "../../images/module-icons/product.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
-  "label" : "Product List",
+  "module_id" : 115230678500,
   "data_query_path" : "../../data-queries/products",
-  "smart_type": "NOT_SMART",
+  "label" : "Product List",
   "is_available_for_new_content" : true
 }

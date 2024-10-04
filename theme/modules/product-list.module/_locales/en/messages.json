@@ -1,0 +1,42 @@
+{
+  "heading.name" : {
+    "message" : "product-list",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.title.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading.title.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading.title.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading.title.label" : {
+    "message" : "Text",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading.title.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "heading.title.validation_regex" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "product-list",
+    "description" : "",
+    "placeholders" : null
+  }
+}

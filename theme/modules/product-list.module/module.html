@@ -5,12 +5,24 @@
 
 {# English labels #}
 {% if (content.language.languageTag == "en" || content.language.languageTag == null) %}
+  {% set titleLabel = "Products" %}
   {% set paginationFirstLabel = "First" %}
   {% set paginationPreviousLabel = "Previous" %}
   {% set paginationNextLabel = "Next" %}
   {% set paginationLastLabel = "Last" %}
   {% set webinarOfLabel = "of" %}
   {% set pageLabel = "Page" %}
+{% endif %}
+
+{# Swedish labels #}
+{% if (content.language.languageTag == "sv") %}
+  {% set titleLabel = "Produkter" %}
+  {% set paginationFirstLabel = "Första" %}
+  {% set paginationPreviousLabel = "Föregående" %}
+  {% set paginationNextLabel = "Nästa" %}
+  {% set paginationLastLabel = "Sista" %}
+  {% set webinarOfLabel = "av" %}
+  {% set pageLabel = "Sida" %}
 {% endif %}
 
 {# module scope css #}
@@ -379,11 +391,11 @@
 
 <div class="product-listing-module_wrp">
   <div class="product-listing-module product-listing-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
+    <h1>{{ module.heading.title || titleLabel }}</h1>
     <form action="{{ request.path }}">
       <label for="name">Search</label>
       <input type="text" id="name" name="qd_name">
     </form>
-    {{ content.translated_content.values()|selectattr('published')|map('language')|pprint }}
     <div class="product-listing-module__articles {{module.layout.layout}}">
       {% for product in products %}
 
