@@ -633,7 +633,7 @@
         align-items: center;
       }
 
-      /* maxmium content width */
+      /* maximum content width */
       .main-nav__mega-menu.main-nav__max-content-width .main-nav__list--dropdown {
         padding-left: calc((100vw - {{container_width}}) / 2);
         padding-right: calc((100vw - {{container_width}}) / 2);
@@ -964,6 +964,12 @@
     @media (min-width: {{mobile_breakpoint ~ 'px'}}) {
       .siteheader-module {
         flex-wrap: nowrap;
+      }
+
+      {# TODO: add condition in module for Limit Maximum Content Width #}
+      .siteheader-module {
+        padding-left: calc(((100vw - {{container_width}}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.left.value ~ 'px' if module.style.general.spacing.spacing.padding.left.value }});
+        padding-right: calc(((100vw - {{container_width}}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.right.value ~ 'px' if module.style.general.spacing.spacing.padding.right.value }});
       }
 
       .siteheader-module__navbar {
