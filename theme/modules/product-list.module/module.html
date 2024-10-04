@@ -391,7 +391,8 @@
 
 <div class="product-listing-module_wrp">
   <div class="product-listing-module product-listing-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
-    <h1>{{ module.heading.title || titleLabel }}</h1>
+   {{module.heading|pprint}}
+    <{{module.heading.heading_tag}}>{{ module.heading.title || titleLabel }}</{{module.heading.heading_tag}}>
     <form action="{{ request.path }}">
       <label for="name">Search</label>
       <input type="text" id="name" name="qd_name">
