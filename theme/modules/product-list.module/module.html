@@ -2,6 +2,7 @@
 {% import '../macros/image.html' as image_macros %}
 {% import '../macros/link.html' as link_macros %}
 {% import '../macros/heading.html' as heading_macros %}
+{% import '../macros/button.html' as button_macros %}
 
 {# English labels #}
 {% if (content.language.languageTag == "en" || content.language.languageTag == null) %}
@@ -245,6 +246,21 @@
   </script>
 {%- endmacro -%}
 
+{# Button #}
+{%- macro render_button(product) -%}
+  <div class="product-listing-module__product-button product-listing-module__product-item">
+    {%- set url = "?product_id={{ product.hs_object_id }}" -%}
+    {%- set button_data = {
+      "text": module.button.text, "accessible_link_label": "Product information: {{product.name}}", "accessible_link": true,
+      "link": {"url": { "href": url, "type":"EXTERNAL" }, "open_in_new_tab": false, "rel": "" },
+      "icon":{
+        "icon": { "name": "", "unicode": "", "type": "REGULAR", "icon_set": "fontawesome-5.14.0" },
+        "icon_position": "left", "accessibility_options": { "purpose": "decorative" }
+      }
+    }%}{{button_macros.render_btn_tmpl(button_data, module.style.button, module)}}
+  </div>
+{%- endmacro -%}
+
 {# Render Pagination #}
 {% macro render_pagination(limit, current_offset, current_page_number, number_of_pages, query_param_list) -%}
 {% if number_of_pages > 1 %}
@@ -418,7 +434,10 @@
             <div class="product-listing-module__article-tags">
               {{ render_heading(product) }}
               <p>{{ product.description }}</p>
-              <p>{{ product.price | format_currency_value(locale=get_locale(), currency=get_currency())  }}</p>
+              <p>{{ product.price | format_currency_value(locale=get_locale(), currency=get_currency()) }}</p>
+              {% if module.button.show %}
+                {{ render_button(product) }}
+              {% endif %}
             </div>
           </article>
           {{ render_structured_data(product) }}
