@@ -34,22 +34,22 @@
     {{module.style.general.spacing.spacing.css}}
   }
 
-  .product-listing-module__article_wrp {
+  .product-listing-module__product_wrp {
     {{module.style.article.spacing.spacing.css}}
   }
 
   {# basic-grid #}
   {% if module.layout.layout == 'basic-grid' %}
-    .basic-grid .product-listing-module__article_wrp {
+    .basic-grid .product-listing-module__product_wrp {
       width: calc(100% / {{module.layout.columns}});
    }
     @media (max-width: 991.98px) {
-      .basic-grid .product-listing-module__article_wrp {
+      .basic-grid .product-listing-module__product_wrp {
         width: 50%;
       }
     }
     @media (max-width: 700px) {
-      .basic-grid .product-listing-module__article_wrp {
+      .basic-grid .product-listing-module__product_wrp {
         width: 100%;
       }
     }
@@ -87,7 +87,7 @@
     {{module.style.image.spacing.spacing.css}}
   }
 
-  .product-listing-module__article-tags {
+  .product-listing-module__product-information {
     text-align: {{module.style.link.alignment.alignment.horizontal_align}};
     {% if module.style.link.background.color.css %}
       background-color: {{module.style.link.background.color.css}};
@@ -95,7 +95,7 @@
     {{module.style.link.spacing.spacing.css}}
   }
 
-  .product-listing-module__article-heading {
+  .product-listing-module__product-heading {
     {% if module.style.heading.background.color.css %}
       background-color: {{module.style.heading.background.color.css}};
     {% endif %}
@@ -111,14 +111,14 @@
     {{module.style.text.spacing.spacing.css}}
   }
 
-  .product-listing-module__article-description {
+  .product-listing-module__product-description {
     {% if module.style.richtext.background.color.css %}
       background-color: {{module.style.richtext.background.color.css}};
     {% endif %}
     {{module.style.richtext.spacing.spacing.css}}
   }
 
-  .product-listing-module__article-button {
+  .product-listing-module__product-button {
     text-align: {{module.style.button.alignment.alignment.horizontal_align}};
     {% if module.style.button.background.color.css %}
       background-color: {{module.style.button.background.color.css}};
@@ -156,7 +156,7 @@
 
 {# Heading #}
 {%- macro render_heading(product) -%}
-  <div class="product-listing-module__article-heading product-listing-module__article-item">
+  <div class="product-listing-module__product-heading product-listing-module__article-item">
     {%- set heading_data = {
       "display": module.heading.display, "heading_tag": module.heading.heading_tag, "text": product.name,
       "link": {"link": { "url": { "href": "?product_id={{ product.hs_object_id }}", "type":"EXTERNAL" }, "open_in_new_tab": false, "rel": "" }, "accessible_link": true },
@@ -417,14 +417,14 @@
         {% endif %}
         {# endif mosaic-grid #}
 
-        <div class="product-listing-module__article_wrp">
+        <div class="product-listing-module__product_wrp">
           <article class="product-listing-module__article" aria-label="Product post summary: {{ product.description }}">
             <div class="product-listing-module__article-image">
               {{ render_image(product) }}
             </div>
-            <div class="product-listing-module__article-tags">
+            <div class="product-listing-module__product-information">
               {{ render_heading(product) }}
-              <p>{{ product.description }}</p>
+              <p class="product-listing-module__product-description">{{ product.description }}</p>
               <p>{{ product.price | format_currency_value(locale=get_locale(), currency=get_currency()) }}</p>
               {% if module.button.show %}
                 {{ render_button(product) }}
