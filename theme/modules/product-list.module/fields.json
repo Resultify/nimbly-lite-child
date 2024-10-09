@@ -2545,43 +2545,4 @@
     "columns" : 3,
     "height" : 680
   }
-}, {
-  "id" : "events_reset_filters_button",
-  "name" : "reset_filters_button",
-  "display_width" : null,
-  "label" : "Reset filters button",
-  "help_text" : "Reset filters button text",
-  "required" : false,
-  "locked" : false,
-  "children" : [ {
-    "id" : "events_reset_filters_button_show",
-    "name" : "show",
-    "display_width" : null,
-    "label" : "Show button",
-    "required" : false,
-    "locked" : false,
-    "display" : "toggle",
-    "type" : "boolean",
-    "default" : true
-  }, {
-    "id" : "events_reset_filters_button_text",
-    "name" : "text",
-    "display_width" : null,
-    "label" : "Text",
-    "required" : false,
-    "locked" : false,
-    "validation_regex" : "",
-    "allow_new_line" : false,
-    "show_emoji_picker" : false,
-    "type" : "text",
-    "default" : "Reset filters"
-  } ],
-  "tab" : "CONTENT",
-  "expanded" : false,
-  "group_occurrence_meta" : null,
-  "type" : "group",
-  "default" : {
-    "show" : true,
-    "text" : "Reset filters"
-  }
 } ]
