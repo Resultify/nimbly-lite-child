@@ -3964,6 +3964,81 @@
     "description" : "",
     "placeholders" : null
   },
+  "style.menu.dropdown.custom_width.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.custom_width.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.custom_width.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.custom_width.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.custom_width.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.dropdown_style.choices.full-screen-d-and-c" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.dropdown_style.choices.full-screen-d-limit-c" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.dropdown_style.choices.full-width-d-and-c" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.dropdown_style.choices.full-width-d-limit-c" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.dropdown_style.choices.limit-d-and-c" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.dropdown_style.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.dropdown_style.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.dropdown_style.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.dropdown_style.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.dropdown_style.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "style.menu.dropdown.help_text" : {
     "message" : "",
     "description" : "",
@@ -4109,27 +4184,12 @@
     "description" : "",
     "placeholders" : null
   },
-  "style.menu.dropdown.spacing.custom_width.default" : {
+  "style.menu.dropdown.spacing.dropdown_style.choices.full-width-d-and-c-full-height" : {
     "message" : "",
     "description" : null,
     "placeholders" : null
   },
-  "style.menu.dropdown.spacing.custom_width.help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "style.menu.dropdown.spacing.custom_width.inline_help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "style.menu.dropdown.spacing.custom_width.label" : {
-    "message" : "Custom width",
-    "description" : null,
-    "placeholders" : null
-  },
-  "style.menu.dropdown.spacing.custom_width.placeholder" : {
+  "style.menu.dropdown.spacing.dropdown_style.choices.full-width-d-limit-c-full-height" : {
     "message" : "",
     "description" : null,
     "placeholders" : null
@@ -4145,31 +4205,6 @@
     "placeholders" : null
   },
   "style.menu.dropdown.spacing.dropdown_width.choices.limited_d_and_c" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "style.menu.dropdown.spacing.dropdown_width.default" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "style.menu.dropdown.spacing.dropdown_width.help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "style.menu.dropdown.spacing.dropdown_width.inline_help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "style.menu.dropdown.spacing.dropdown_width.label" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "style.menu.dropdown.spacing.dropdown_width.placeholder" : {
     "message" : "",
     "description" : null,
     "placeholders" : null

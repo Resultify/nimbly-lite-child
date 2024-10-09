@@ -688,6 +688,39 @@
       "required" : false,
       "locked" : false,
       "children" : [ {
+        "id" : "94be3ef3-53e7-7163-b956-8b3d647a7cea",
+        "name" : "dropdown_style",
+        "display_width" : null,
+        "label" : "Dropdown style",
+        "required" : false,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "limit-d-and-c", "Limit max width / height on dropdown and content" ], [ "full-width-d-limit-c", "Full width dropdown, limit max width on content" ], [ "full-screen-d-limit-c", "Full screen dropdown, limit max width on content" ], [ "full-width-d-and-c", "Full width dropdown and content" ], [ "full-screen-d-and-c", "Full screen dropdown and content" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "default" : "limit-d-and-c"
+      }, {
+        "id" : "05e9005c-8eb6-9656-2fe9-78d956c764cc",
+        "name" : "custom_width",
+        "display_width" : null,
+        "label" : "Custom width",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.menu.dropdown.dropdown_style",
+          "controlling_value_regex" : "limit-d-and-c full-width-d-limit-c full-screen-d-limit-c",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        },
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number"
+      }, {
         "id" : "e88c9af6-9b03-4728-9a6c-4ba793a2c1e9",
         "name" : "spacing",
         "display_width" : null,
@@ -703,47 +736,13 @@
           "locked" : false,
           "type" : "spacing",
           "default" : { }
-        }, {
-          "id" : "94be3ef3-53e7-7163-b956-8b3d647a7cea",
-          "name" : "dropdown_width",
-          "display_width" : null,
-          "label" : "Dropdown width",
-          "required" : false,
-          "locked" : false,
-          "display" : "select",
-          "choices" : [ [ "limit-d-and-c", "Limit maximum width and height on dropdown and content" ], [ "full-width-d-limit-c", "Full width dropdown, limit max width on content" ], [ "full-width-d-limit-c-full-height", "Full width and height dropdown, limit max width on content" ], [ "full-width-d-and-c", "Full width on dropdown and content" ], [ "full-width-d-and-c-full-height", "Full width and height on dropdown and content" ] ],
-          "multiple" : false,
-          "reordering_enabled" : true,
-          "preset" : null,
-          "type" : "choice",
-          "default" : "limit-d-and-c"
-        }, {
-          "id" : "05e9005c-8eb6-9656-2fe9-78d956c764cc",
-          "name" : "custom_width",
-          "display_width" : null,
-          "label" : "Custom width",
-          "required" : false,
-          "locked" : false,
-          "visibility" : {
-            "controlling_field" : null,
-            "controlling_field_path" : "style.menu.dropdown.spacing.dropdown_width",
-            "controlling_value_regex" : "full_width_d_and_c",
-            "property" : null,
-            "operator" : "NOT_EQUAL",
-            "access" : null
-          },
-          "display" : "text",
-          "step" : 1,
-          "suffix" : "px",
-          "type" : "number"
         } ],
         "tab" : "STYLE",
         "expanded" : false,
         "group_occurrence_meta" : null,
         "type" : "group",
         "default" : {
-          "spacing" : { },
-          "dropdown_width" : "limit-d-and-c"
+          "spacing" : { }
         }
       }, {
         "id" : "941bac4c-5dc6-9c15-8797-018349b08818",
@@ -1016,9 +1015,9 @@
       "group_occurrence_meta" : null,
       "type" : "group",
       "default" : {
+        "dropdown_style" : "limit-d-and-c",
         "spacing" : {
-          "spacing" : { },
-          "dropdown_width" : "limit-d-and-c"
+          "spacing" : { }
         },
         "background" : {
           "color" : {
@@ -1147,9 +1146,9 @@
         }
       },
       "dropdown" : {
+        "dropdown_style" : "limit-d-and-c",
         "spacing" : {
-          "spacing" : { },
-          "dropdown_width" : "limit-d-and-c"
+          "spacing" : { }
         },
         "background" : {
           "color" : {
@@ -4359,9 +4358,9 @@
         }
       },
       "dropdown" : {
+        "dropdown_style" : "limit-d-and-c",
         "spacing" : {
-          "spacing" : { },
-          "dropdown_width" : "limit-d-and-c"
+          "spacing" : { }
         },
         "background" : {
           "color" : {
