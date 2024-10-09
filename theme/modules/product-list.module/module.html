@@ -164,26 +164,6 @@
   </div>
 {%- endmacro -%}
 
-{# Product Structured Data #}
-{%- macro render_structured_data(product) -%}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "{{ product.name }}",
-      "image": "{{ product.hs_images }}",
-      "description": "{{ product.description }}",
-      "sku": "{{ product.hs_object_id }}",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "{{ product_functions_macro.get_currency() }}",
-        "price": "{{ product.price }}",
-        "availability": "https://schema.org/InStock"
-      }
-    }
-  </script>
-{%- endmacro -%}
-
 {# Button #}
 {%- macro render_button(product) -%}
   <div class="product-listing-module__product-button product-listing-module__product-item">
@@ -378,7 +358,7 @@
               {% endif %}
             </div>
           </article>
-          {{ render_structured_data(product) }}
+          {{ product_functions_macro.render_structured_data(product) }}
         </div>
 
       {# if mosaic-grid #}
