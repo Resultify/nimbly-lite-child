@@ -1,0 +1,120 @@
+<!--
+  templateType: page
+  label: Events template
+  isAvailableForNewContent: true
+  enableDomainStylesheets: false
+  screenshotPath: ../images/template-previews/events.jpg
+-->
+{% set template_css = '../../css/templates/event-view.css' %}
+{% extends "./layouts/base.html" %}
+{% import '../macros/hubl/events/functions.html' as event_functions_macro %}
+
+{% block body %}
+  {% if dynamic_page_hubdb_row %}
+    {# Create settings #}
+    {% set settings = {} %}
+    {{- event_functions_macro.parse_settings(content, settings) -}}
+
+    {# List to store more events #}
+    {% set moreDateEvents = [] %}
+
+    {# Set local datetime for queries #}
+    {% set utsNow = local_dt | unixtimestamp %}
+    {# Set main query and sorting #}
+    {% set query = "event_information__contains="~dynamic_page_hubdb_row.hs_id~"&publish_date__lte="~utsNow~"&event_information_collection__event_information_ids__not_null=" %}
+    {% if content.language.languageTag %}
+      {% set query = query~"&language="~content.language.languageTag %}
+    {% endif %}
+    {% set querySortAndLimit = "&orderBy=start_date&limit=100" %}
+
+    {# set event and recurring event queries #}
+    {% set queryEvents = query~"&start_date__gte="~utsNow~"&recurrence_frequency__is_null="~querySortAndLimit %}
+    {% set queryEventsRecurring = query~"&recurrence_end_date__gte="~utsNow~"&recurrence_frequency__not_null="~querySortAndLimit %}
+
+    {# Fetch event dates and recurring event dates #}
+    {% set eventDates = hubdb_table_rows('event_date', queryEvents) %}
+    {# Copy eventDates to moreDateEvents, doesn't seem like items can be appended to eventDates #}
+    {% set moreDateEvents = eventDates + [] %}
+    {% set recurringEventDates = hubdb_table_rows('event_date', queryEventsRecurring) %}
+
+    {{- event_functions_macro.parse_recurring_events(recurringEventDates, moreDateEvents) -}}
+
+    {% set dateEventTags = [] %}
+    {{- event_functions_macro.parse_event_tags(moreDateEvents, dateEventTags) -}}
+
+    <div class="event-view-template">
+
+      <div class="event-view_wrp">
+        <div class="event-view-header-wrp {{"event-view-header-wrp-featured-image" if dynamic_page_hubdb_row.featured_image }}">
+          <div class="event-view-header">
+            {% if dateEventTags %}
+              <div class="event-view__tags">
+                {% for tag in dateEventTags %}
+                  {{ tag.label}}
+                {% endfor %}
+              </div>
+            {% endif %}
+            <h1 class="event-view__heading">
+              {{dynamic_page_hubdb_row.hs_name}}
+            </h1>
+          </div>
+
+          {% if dynamic_page_hubdb_row.featured_image %}
+            <div class="event-view-featured-image-wrp">
+              <img class="event-view-featured-image" src="{{dynamic_page_hubdb_row.featured_image.url}}" alt="{{content.featured_image_alt_text}}">
+            </div>
+          {% endif %}
+
+        </div>
+
+        <article class="event-view">
+
+          <div class="event-view__body">
+            {{dynamic_page_hubdb_row.content}}
+          </div>
+
+        </article>
+
+        {# if there are more events, display them #}
+        {% if moreDateEvents %}
+          <div class="event-view-more-dates">
+            <h3>{{ settings.eventDatesLabel }}</h3>
+            <div class="event-view__dates">
+              {% for event in moreDateEvents %}
+                {% set dateFormat = settings.timeFormatEventDate %}
+                {% if event.start_date|format_date('YYYY') != today()|format_date('YYYY') %}
+                  {% set dateFormat = settings.timeFormatEventDateNextYear %}
+                {% endif %}
+                <time class="event-view-more-dates__article-date" datetime="{{event.start_date|format_date('YYYY-MM-dd HH:mm')}}">
+                  <span class="event-list-more-dates__date">{{event.start_date|format_datetime(dateFormat, 'UTC', settings.locale)}}</span></time>
+              {% endfor %}
+            </div>
+          </div>
+
+        {% endif %}
+      </div>
+    </div>
+
+  {% elif dynamic_page_hubdb_table_id %}
+    {% dnd_area 'dnd_area'
+      label='Events template',
+      class='events-template'
+    %}
+      {% dnd_section %}
+        {% dnd_column
+          offset=0,
+          width=12
+        %}
+          {% dnd_row %}
+            {% dnd_module
+              path="../modules/event-list",
+              offset=0,
+              width=12,
+            %}
+            {% end_dnd_module %}
+          {% end_dnd_row %}
+        {% end_dnd_column %}
+      {% end_dnd_section %}
+    {% end_dnd_area %}
+  {% endif %}
+{% endblock body %}

@@ -1,0 +1,24 @@
+{
+  "name": "custom-font-2",
+  "default": "Regular",
+  "fallback": "serif",
+  "variants": [
+    {
+      "name": "Regular",
+      "files": [
+        {
+          "file": "./custom-font-2.woff2",
+          "format": "woff2"
+        },
+        {
+          "file": "./custom-font-2.ttf",
+          "format": "ttf"
+        }
+      ],
+      "styles": {
+        "font-weight": 400
+      }
+    }
+  ]
+}
+

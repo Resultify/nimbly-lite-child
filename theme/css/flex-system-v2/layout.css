@@ -87,7 +87,6 @@
 }
 
 .row-fluid > [class*="span"] {
-  /* min-height: 1px; */
   width: 100%;
   display: flex;
   flex-direction: column;
