@@ -59,16 +59,16 @@
   {% if module.layout.layout == 'mosaic-grid' %}
   {% set mosaic_big_element_height = module.layout.height %}
   {% set mosaic_small_element_height = module.layout.height/2 - module.style.article.spacing.spacing.padding.top.value %}
-  .mosaic-grid .product-listing-module__article {
+  .mosaic-grid .product-listing-module__product {
     height: {{mosaic_big_element_height ~ 'px'}};
   }
 
-  .mosaic-grid-box .product-listing-module__article {
+  .mosaic-grid-box .product-listing-module__product {
     height: {{mosaic_small_element_height|int ~ 'px'}};
   }
   {% endif %}
 
-  .product-listing-module__article {
+  .product-listing-module__product {
     {% if module.style.article.border.border_radius %}
       border-radius: {{module.style.article.border.border_radius ~ 'px'}};
     {% endif %}
@@ -79,7 +79,7 @@
     {{module.style.article.internal_spacing.spacing.css}}
   }
 
-  .product-listing-module__article-image {
+  .product-listing-module__product-image {
     text-align: {{module.style.image.alignment.alignment.horizontal_align}};
     {% if module.style.image.background.color.css %}
       background-color: {{module.style.image.background.color.css}};
@@ -103,14 +103,6 @@
     {{module.style.heading.spacing.spacing.css}}
   }
 
-  .product-listing-module__article-date {
-    {% if module.style.text.background.color.css %}
-      background-color: {{module.style.text.background.color.css}};
-    {% endif %}
-      text-align: {{module.style.text.alignment.alignment.horizontal_align}};
-    {{module.style.text.spacing.spacing.css}}
-  }
-
   .product-listing-module__product-description {
     {% if module.style.richtext.background.color.css %}
       background-color: {{module.style.richtext.background.color.css}};
@@ -131,7 +123,7 @@
 
 {# Featured image #}
 {%- macro render_image(product) -%}
-  <div class="product-listing-module__article-image product-listing-module__article-item">
+  <div class="product-listing-module__product-image product-listing-module__product-item">
     {%- set image_link_aria = 'aria-label="Full product information: {{ product.description }}"' -%}
     {%- set image_data = {
       "image": {
@@ -156,7 +148,7 @@
 
 {# Heading #}
 {%- macro render_heading(product) -%}
-  <div class="product-listing-module__product-heading product-listing-module__article-item">
+  <div class="product-listing-module__product-heading product-listing-module__product-item">
     {%- set heading_data = {
       "display": module.heading.display, "heading_tag": module.heading.heading_tag, "text": product.name,
       "link": {"link": { "url": { "href": "?product_id={{ product.hs_object_id }}", "type":"EXTERNAL" }, "open_in_new_tab": false, "rel": "" }, "accessible_link": true },
@@ -403,7 +395,7 @@
       <label for="name">Search</label>
       <input type="text" id="name" name="qd_name">
     </form>
-    <div class="product-listing-module__articles {{module.layout.layout}}">
+    <div class="product-listing-module__products {{module.layout.layout}}">
       {% for product in products %}
 
         {# if mosaic-grid #}
@@ -418,8 +410,8 @@
         {# endif mosaic-grid #}
 
         <div class="product-listing-module__product_wrp">
-          <article class="product-listing-module__article" aria-label="Product post summary: {{ product.description }}">
-            <div class="product-listing-module__article-image">
+          <article class="product-listing-module__product" aria-label="Product post summary: {{ product.description }}">
+            <div class="product-listing-module__product-image">
               {{ render_image(product) }}
             </div>
             <div class="product-listing-module__product-information">
