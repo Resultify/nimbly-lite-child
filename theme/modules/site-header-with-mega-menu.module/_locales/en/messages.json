@@ -964,31 +964,6 @@
     "description" : null,
     "placeholders" : null
   },
-  "menu.mega_menu.full_height.default" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.full_height.help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.full_height.inline_help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.full_height.label" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.full_height.placeholder" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
   "menu.mega_menu.help_text" : {
     "message" : "",
     "description" : null,
@@ -1000,31 +975,6 @@
     "placeholders" : null
   },
   "menu.mega_menu.label" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.limit_max_content_width.default" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.limit_max_content_width.help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.limit_max_content_width.inline_help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.limit_max_content_width.label" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.limit_max_content_width.placeholder" : {
     "message" : "",
     "description" : null,
     "placeholders" : null
@@ -1200,31 +1150,6 @@
     "placeholders" : null
   },
   "menu.mega_menu.third_level_font_size.placeholder" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.vertical_center_dropdown_content.default" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.vertical_center_dropdown_content.help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.vertical_center_dropdown_content.inline_help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.vertical_center_dropdown_content.label" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "menu.mega_menu.vertical_center_dropdown_content.placeholder" : {
     "message" : "",
     "description" : null,
     "placeholders" : null
@@ -4029,6 +3954,16 @@
     "description" : "",
     "placeholders" : null
   },
+  "style.menu.dropdown.choice_field.choices.value 1" : {
+    "message" : "Label 1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.menu.dropdown.choice_field.choices.value 2" : {
+    "message" : "Label 2",
+    "description" : "",
+    "placeholders" : null
+  },
   "style.menu.dropdown.help_text" : {
     "message" : "",
     "description" : "",
@@ -4164,9 +4099,79 @@
     "description" : "",
     "placeholders" : null
   },
+  "style.menu.dropdown.name" : {
+    "message" : "site-header-with-mega-menu",
+    "description" : "",
+    "placeholders" : null
+  },
   "style.menu.dropdown.placeholder" : {
     "message" : "",
     "description" : "",
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.custom_width.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.custom_width.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.custom_width.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.custom_width.label" : {
+    "message" : "Custom width",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.custom_width.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.dropdown_width.choices.full_width_d_and_c" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.dropdown_width.choices.full_width_d_limited_c" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.dropdown_width.choices.limited_d_and_c" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.dropdown_width.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.dropdown_width.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.dropdown_width.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.dropdown_width.label" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.spacing.dropdown_width.placeholder" : {
+    "message" : "",
+    "description" : null,
     "placeholders" : null
   },
   "style.menu.dropdown.spacing.help_text" : {

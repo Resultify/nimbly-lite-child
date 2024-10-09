@@ -703,13 +703,47 @@
           "locked" : false,
           "type" : "spacing",
           "default" : { }
+        }, {
+          "id" : "94be3ef3-53e7-7163-b956-8b3d647a7cea",
+          "name" : "dropdown_width",
+          "display_width" : null,
+          "label" : "Dropdown width",
+          "required" : false,
+          "locked" : false,
+          "display" : "select",
+          "choices" : [ [ "limit-d-and-c", "Limit maximum width and height on dropdown and content" ], [ "full-width-d-limit-c", "Full width dropdown, limit max width on content" ], [ "full-width-d-limit-c-full-height", "Full width and height dropdown, limit max width on content" ], [ "full-width-d-and-c", "Full width on dropdown and content" ], [ "full-width-d-and-c-full-height", "Full width and height on dropdown and content" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "default" : "limit-d-and-c"
+        }, {
+          "id" : "05e9005c-8eb6-9656-2fe9-78d956c764cc",
+          "name" : "custom_width",
+          "display_width" : null,
+          "label" : "Custom width",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "style.menu.dropdown.spacing.dropdown_width",
+            "controlling_value_regex" : "full_width_d_and_c",
+            "property" : null,
+            "operator" : "NOT_EQUAL",
+            "access" : null
+          },
+          "display" : "text",
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number"
         } ],
         "tab" : "STYLE",
         "expanded" : false,
         "group_occurrence_meta" : null,
         "type" : "group",
         "default" : {
-          "spacing" : { }
+          "spacing" : { },
+          "dropdown_width" : "limit-d-and-c"
         }
       }, {
         "id" : "941bac4c-5dc6-9c15-8797-018349b08818",
@@ -983,7 +1017,8 @@
       "type" : "group",
       "default" : {
         "spacing" : {
-          "spacing" : { }
+          "spacing" : { },
+          "dropdown_width" : "limit-d-and-c"
         },
         "background" : {
           "color" : {
@@ -1113,7 +1148,8 @@
       },
       "dropdown" : {
         "spacing" : {
-          "spacing" : { }
+          "spacing" : { },
+          "dropdown_width" : "limit-d-and-c"
         },
         "background" : {
           "color" : {
@@ -4324,7 +4360,8 @@
       },
       "dropdown" : {
         "spacing" : {
-          "spacing" : { }
+          "spacing" : { },
+          "dropdown_width" : "limit-d-and-c"
         },
         "background" : {
           "color" : {
@@ -4943,42 +4980,6 @@
       "type" : "boolean",
       "default" : false
     }, {
-      "id" : "7b3cb635-c72c-e074-4527-1a8d94cc27e2",
-      "name" : "limit_max_content_width",
-      "display_width" : null,
-      "label" : "Limit maximum content width",
-      "help_text" : "Limit the maximum content width (instead of full-width)",
-      "inline_help_text" : "",
-      "required" : false,
-      "locked" : false,
-      "display" : "toggle",
-      "type" : "boolean",
-      "default" : false
-    }, {
-      "id" : "3ceba2fa-a71a-4add-bd5e-62374df350a8",
-      "name" : "full_height",
-      "display_width" : null,
-      "label" : "Full height dropdown",
-      "help_text" : "Make the mega menu full height in desktop resolutions",
-      "inline_help_text" : "",
-      "required" : false,
-      "locked" : false,
-      "display" : "toggle",
-      "type" : "boolean",
-      "default" : false
-    }, {
-      "id" : "c85f16c0-c7d7-ce5f-6f91-77a1b064218b",
-      "name" : "vertical_center_dropdown_content",
-      "display_width" : null,
-      "label" : "Vertical center dropdown content",
-      "help_text" : "",
-      "inline_help_text" : "",
-      "required" : false,
-      "locked" : false,
-      "display" : "toggle",
-      "type" : "boolean",
-      "default" : false
-    }, {
       "id" : "bdce66f4-493d-37e9-f650-d1bac1437af3",
       "name" : "first_level_title_font_size",
       "display_width" : null,
@@ -5070,9 +5071,6 @@
     "default" : {
       "number_of_columns" : "3col",
       "show_title" : false,
-      "limit_max_content_width" : false,
-      "full_height" : false,
-      "vertical_center_dropdown_content" : false,
       "first_level_title_font_size" : 300,
       "first_level_descr_font_size" : 100,
       "second_level_font_size" : 150,
@@ -5124,9 +5122,6 @@
     "mega_menu" : {
       "number_of_columns" : "3col",
       "show_title" : false,
-      "limit_max_content_width" : false,
-      "full_height" : false,
-      "vertical_center_dropdown_content" : false,
       "first_level_title_font_size" : 300,
       "first_level_descr_font_size" : 100,
       "second_level_font_size" : 150,
