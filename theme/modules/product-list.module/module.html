@@ -1,6 +1,5 @@
 <!-- module html  -->
 {% import '../../macros/hubl/products/functions.html' as product_functions_macro %}
-{% import '../macros/image.html' as image_macros %}
 {% import '../macros/link.html' as link_macros %}
 {% import '../macros/heading.html' as heading_macros %}
 {% import '../macros/button.html' as button_macros %}
@@ -121,31 +120,6 @@
 
   {% end_scope_css %}
 </style>
-
-{# Featured image #}
-{%- macro render_image(product) -%}
-  <div class="product-listing-module__product-image product-listing-module__product-item">
-    {%- set image_link_aria = 'aria-label="Full product information: {{ product.description }}"' -%}
-    {%- set image_data = {
-      "image": {
-        "size_type": "auto", "src": product.hs_images, "alt": product.name,
-        "loading": "lazy", "width": "1024", "height":"1024", "max_width": null, "max_height": null
-      },
-      "link": { "link": { "url": { "href": product.hs_images, "type": "EXTERNAL" }, "open_in_new_tab": false, "rel": "" } },
-      "caption": { "rich_text": "" }
-    }%}
-    {{
-      image_macros.render_image_tmpl(
-        image_data,
-        module.style.image,
-        module,
-        {
-          link_data_attrs: image_link_aria
-        }
-      )
-    }}
-  </div>
-{%- endmacro -%}
 
 {# Heading #}
 {%- macro render_heading(product) -%}
@@ -347,7 +321,7 @@
         <div class="product-listing-module__product_wrp">
           <article class="product-listing-module__product" aria-label="Product post summary: {{ product.description }}">
             <div class="product-listing-module__product-image">
-              {{ render_image(product) }}
+              {{ product_functions_macro.render_product_list_image(product) }}
             </div>
             <div class="product-listing-module__product-information">
               {{ render_heading(product) }}
