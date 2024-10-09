@@ -1,0 +1,51 @@
+<!--
+  label: macros -> hubl -> products -> functional.html
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+<!-- macro/hubl/products/functional.html file -->
+{# Currency #}
+{%- macro get_currency() -%}
+  {%- set currency = site_settings.currency %}
+  {%- set languageTag = content.language.languageTag %}
+  {%- if currency -%}
+    {%- set currency = currency -%}
+  {%- endif -%}
+  {%- if languageTag == "en-us" -%}
+    {%- set currency = "USD" -%}
+  {%- elif languageTag == "en" -%}
+    {%- set currency = "GBP" -%}
+  {%- elif languageTag == "sv" -%}
+    {%- set currency = "SEK" -%}
+  {%- elif languageTag == "dk" -%}
+    {%- set currency = "DKK" -%}
+  {%- elif languageTag == "no" -%}
+    {%- set currency = "NOK" -%}
+  {%- elif languageTag in ["de", "fr", "es", "it", "nl", "pt", "fi", "el", "et", "lv", "lt", "mt", "sk", "sl", "ie", "cy", "lu", "be", "at", "gr"] -%}
+    {%- set currency = "EUR" -%}
+  {%- else -%}
+    {%- set currency = "USD" -%} {# Default fallback currency #}
+  {%- endif -%}
+  {{ currency }}
+{%- endmacro -%}
+
+{# Get locale for the website #}
+{%- macro get_locale() -%}
+  {%- set languageTag = content.language.languageTag %}
+  {%- if languageTag == "en-us" -%}
+    {%- set locale = "en-US" -%}
+  {%- elif languageTag == "en" -%}
+    {%- set locale = "en-GB" -%}
+  {%- elif languageTag == "sv" -%}
+    {%- set locale = "sv-SE" -%}
+  {%- elif languageTag == "dk" -%}
+    {%- set locale = "da-DK" -%}
+  {%- elif languageTag == "no" -%}
+    {%- set locale = "nb-NO" -%}
+  {%- elif languageTag in ["de", "fr", "es", "it", "nl", "pt", "fi", "el", "et", "lv", "lt", "mt", "sk", "sl", "ie", "cy", "lu", "be", "at", "gr"] -%}
+    {%- set locale = "eu-EU" -%}
+  {%- else -%}
+    {%- set locale = "en-US" -%} {# Default fallback locale #}
+  {%- endif -%}
+  {{ locale }}
+{%- endmacro -%}

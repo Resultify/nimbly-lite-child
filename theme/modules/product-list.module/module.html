@@ -1,4 +1,5 @@
 <!-- module html  -->
+{% import '../../macros/hubl/products/functions.html' as product_functions_macro %}
 {% import '../macros/image.html' as image_macros %}
 {% import '../macros/link.html' as link_macros %}
 {% import '../macros/heading.html' as heading_macros %}
@@ -163,52 +164,6 @@
   </div>
 {%- endmacro -%}
 
-{# Currency #}
-{%- macro get_currency() -%}
-  {%- set currency = site_settings.currency %}
-  {%- set languageTag = content.language.languageTag %}
-  {%- if currency -%}
-    {%- set currency = currency -%}
-  {%- endif -%}
-  {%- if languageTag == "en-us" -%}
-    {%- set currency = "USD" -%}
-  {%- elif languageTag == "en" -%}
-    {%- set currency = "GBP" -%}
-  {%- elif languageTag == "sv" -%}
-    {%- set currency = "SEK" -%}
-  {%- elif languageTag == "dk" -%}
-    {%- set currency = "DKK" -%}
-  {%- elif languageTag == "no" -%}
-    {%- set currency = "NOK" -%}
-  {%- elif languageTag in ["de", "fr", "es", "it", "nl", "pt", "fi", "el", "et", "lv", "lt", "mt", "sk", "sl", "ie", "cy", "lu", "be", "at", "gr"] -%}
-    {%- set currency = "EUR" -%}
-  {%- else -%}
-    {%- set currency = "USD" -%} {# Default fallback currency #}
-  {%- endif -%}
-  {{ currency }}
-{%- endmacro -%}
-
-{# Get locale for the website #}
-{%- macro get_locale() -%}
-  {%- set languageTag = content.language.languageTag %}
-  {%- if languageTag == "en-us" -%}
-    {%- set locale = "en-US" -%}
-  {%- elif languageTag == "en" -%}
-    {%- set locale = "en-GB" -%}
-  {%- elif languageTag == "sv" -%}
-    {%- set locale = "sv-SE" -%}
-  {%- elif languageTag == "dk" -%}
-    {%- set locale = "da-DK" -%}
-  {%- elif languageTag == "no" -%}
-    {%- set locale = "nb-NO" -%}
-  {%- elif languageTag in ["de", "fr", "es", "it", "nl", "pt", "fi", "el", "et", "lv", "lt", "mt", "sk", "sl", "ie", "cy", "lu", "be", "at", "gr"] -%}
-    {%- set locale = "eu-EU" -%}
-  {%- else -%}
-    {%- set locale = "en-US" -%} {# Default fallback locale #}
-  {%- endif -%}
-  {{ locale }}
-{%- endmacro -%}
-
 {# Product Structured Data #}
 {%- macro render_structured_data(product) -%}
   <script type="application/ld+json">
@@ -221,7 +176,7 @@
       "sku": "{{ product.hs_object_id }}",
       "offers": {
         "@type": "Offer",
-        "priceCurrency": "{{ get_currency() }}",
+        "priceCurrency": "{{ product_functions_macro.get_currency() }}",
         "price": "{{ product.price }}",
         "availability": "https://schema.org/InStock"
       }
@@ -417,7 +372,7 @@
             <div class="product-listing-module__product-information">
               {{ render_heading(product) }}
               <p class="product-listing-module__product-description">{{ product.description }}</p>
-              <p>{{ product.price | format_currency_value(locale=get_locale(), currency=get_currency()) }}</p>
+              <p>{{ product.price | format_currency_value(locale=product_functions_macro.get_locale(), currency=product_functions_macro.get_currency()) }}</p>
               {% if module.button.show %}
                 {{ render_button(product) }}
               {% endif %}
