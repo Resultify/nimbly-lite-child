@@ -185,6 +185,43 @@
       "default" : {
         "mobile_breakpoint" : "992"
       }
+    }, {
+      "id" : "917f01b7-10b9-3b20-e290-007dbf714d59",
+      "name" : "maximum_content_width",
+      "display_width" : null,
+      "label" : "Maximum content width",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "959e9460-bc86-ab6e-af10-0d34a11b0b7f",
+        "name" : "limit_maximum_content_width_on_site_header",
+        "display_width" : null,
+        "label" : "Limit maximum content width on Site header",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "default" : true
+      }, {
+        "id" : "80dc62af-fe9b-9c37-541d-b5b157448719",
+        "name" : "custom_container_width",
+        "display_width" : null,
+        "label" : "Custom container width",
+        "help_text" : "By default, when checkbox is enabled, this module matches the width of the general page content width. This option allows you to adjust it.",
+        "required" : false,
+        "locked" : false,
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number"
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "default" : {
+        "limit_maximum_content_width_on_site_header" : true
+      }
     } ],
     "tab" : "STYLE",
     "expanded" : false,
@@ -222,6 +259,9 @@
       },
       "mobile_breakpoint" : {
         "mobile_breakpoint" : "992"
+      },
+      "maximum_content_width" : {
+        "limit_maximum_content_width_on_site_header" : true
       }
     }
   }, {
@@ -4199,6 +4239,9 @@
       },
       "mobile_breakpoint" : {
         "mobile_breakpoint" : "992"
+      },
+      "maximum_content_width" : {
+        "limit_maximum_content_width_on_site_header" : true
       }
     },
     "logo" : {

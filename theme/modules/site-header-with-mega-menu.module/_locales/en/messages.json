@@ -2054,6 +2054,81 @@
     "description" : "",
     "placeholders" : null
   },
+  "style.general.maximum_content_width.custom_container_width.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.custom_container_width.help_text" : {
+    "message" : "By default, when checkbox is enabled, this module matches the width of the general page content width. This option allows you to adjust it.",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.custom_container_width.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.custom_container_width.label" : {
+    "message" : "Custom container width",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.custom_container_width.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.label" : {
+    "message" : "Field group",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.limit_maximum_content_width_on_site_header.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.limit_maximum_content_width_on_site_header.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.limit_maximum_content_width_on_site_header.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.limit_maximum_content_width_on_site_header.label" : {
+    "message" : "Limit maximum content width on Site header",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.limit_maximum_content_width_on_site_header.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.general.maximum_content_width.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "style.general.mobile_breakpoint.custom_mobile_breakpoint.help_text" : {
     "message" : "",
     "description" : "",
@@ -2136,6 +2211,11 @@
   },
   "style.general.mobile_breakpoint.placeholder" : {
     "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.name" : {
+    "message" : "site-header-with-mega-menu",
     "description" : "",
     "placeholders" : null
   },

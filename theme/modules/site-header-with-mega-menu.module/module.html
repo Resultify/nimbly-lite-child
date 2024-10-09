@@ -964,12 +964,17 @@
     @media (min-width: {{mobile_breakpoint ~ 'px'}}) {
       .siteheader-module {
         flex-wrap: nowrap;
-      }
 
-      {# TODO: add condition in module for Limit Maximum Content Width #}
-      .siteheader-module {
-        padding-left: calc(((100vw - {{container_width}}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.left.value ~ 'px' if module.style.general.spacing.spacing.padding.left.value }});
-        padding-right: calc(((100vw - {{container_width}}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.right.value ~ 'px' if module.style.general.spacing.spacing.padding.right.value }});
+        {# limit maximum content width of Site Header, either with custom value or container width #}
+        {% if module.style.general.maximum_content_width.limit_maximum_content_width_on_site_header %}
+          {% if module.style.general.maximum_content_width.custom_container_width %}
+            padding-left: calc(((100vw - {{ module.style.general.maximum_content_width.custom_container_width ~ 'px' }}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.left.value ~ 'px' if module.style.general.spacing.spacing.padding.left.value }});
+            padding-right: calc(((100vw - {{ module.style.general.maximum_content_width.custom_container_width ~ 'px' }}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.right.value ~ 'px' if module.style.general.spacing.spacing.padding.right.value }});
+          {% else %}
+            padding-left: calc(((100vw - {{ container_width }}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.left.value ~ 'px' if module.style.general.spacing.spacing.padding.left.value }});
+            padding-right: calc(((100vw - {{ container_width }}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.right.value ~ 'px' if module.style.general.spacing.spacing.padding.right.value }});
+          {% endif %}
+        {% endif %}
       }
 
       .siteheader-module__navbar {
