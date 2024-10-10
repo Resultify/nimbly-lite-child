@@ -512,8 +512,18 @@
       {% endif %}
       {% if module.style.menu.dropdown.border.border_radius %}
         border-radius: {{module.style.menu.dropdown.border.border_radius ~ 'px'}};
+        {# remove border top radius if no top margin is set #}
+        {% if !module.style.menu.dropdown.spacing.spacing.margin.top.value %}
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        {% endif %}
       {% endif %}
+
       {{module.style.menu.dropdown.border.border.css}}
+      {# remove border top if no top margin is set #}
+      {% if !module.style.menu.dropdown.spacing.spacing.margin.top.value %}
+        border-top: 0;
+      {% endif %}
       margin-top: 0; {# init margin and override data-bs-popper styling #}
       margin-bottom: 0;
       {{module.style.menu.dropdown.spacing.spacing.css}}
@@ -552,7 +562,9 @@
     {# mobile only styles #}
     @media (max-width: {{mobile_breakpoint - 0.02 ~ 'px'}}) {
       .main-nav__mega-menu .main-nav__list--dropdown {
+        {# remove border and border radius in mobile regardless #}
         border: none;
+        border-radius: 0;
         visibility: hidden;
         opacity: 0;
         {# to play nice with bootstrap collapse opening height calculation #}
@@ -575,10 +587,6 @@
         {# to play nice with bootstrap collapse opening height calculation #}
         max-height: unset;
       }
-
-      .main-nav__mega-menu .main-nav__list-part {
-        padding: calc(var(--gap) / 2);
-      }
     }
     {# end mobile only styles #}
 
@@ -591,6 +599,7 @@
         right: 0;
         margin-left: auto;
         margin-right: auto;
+
         {# desktop transition effect #}
         {% if module.style.menu.dropdown.spacing.spacing.padding.top.value %}
           padding-top: {{module.style.menu.dropdown.spacing.spacing.padding.top.value ~ 'px'}};
@@ -633,18 +642,33 @@
         align-items: center;
       }
 
-      /* Full width on dropdown and content - same as with no class */
+      {# full width on dropdown and content - same as with no class #}
       .main-nav__mega-menu.main-nav__full-width-d-and-c,
       .main-nav__mega-menu.main-nav__full-screen-d-and-c {
         left: 0;
         right: 0;
       }
 
-      /* Full width on dropdown, limit maximum width on content */
+      .main-nav__mega-menu.main-nav__full-width-d-and-c .main-nav__list--dropdown,
+      .main-nav__mega-menu.main-nav__full-screen-d-and-c .main-nav__list--dropdown {
+        {# remove left and right border on full width menu if no top margin #}
+        {% if !module.style.menu.dropdown.spacing.spacing.margin.top.value %}
+          border-left: 0;
+          border-right: 0;
+        {% endif %}
+      }
+
+      {# full width on dropdown, limit maximum width on content #}
       .main-nav__mega-menu.main-nav__full-width-d-limit-c .main-nav__list--dropdown,
       .main-nav__mega-menu.main-nav__full-screen-d-limit-c .main-nav__list--dropdown {
         padding-left: calc((100vw - {{ megamenu_width }}) / 2);
         padding-right: calc((100vw - {{ megamenu_width }}) / 2);
+
+        {# remove left and right border on full width menu if no top margin #}
+        {% if !module.style.menu.dropdown.spacing.spacing.margin.top.value %}
+          border-left: 0;
+          border-right: 0;
+        {% endif %}
       }
 
       .main-nav__mega-menu .main-nav__list-part {
@@ -653,7 +677,7 @@
     }
     {# end desktop only styles #}
 
-    /* Limit maximum width on dropdown and content */
+    {# limit maximum width on dropdown and content #}
     @media (min-width: {{mobile_breakpoint ~ 'px'}}) and (min-width: {{megamenu_width}}) {
       .main-nav__mega-menu.main-nav__limit-d-and-c .main-nav__list--dropdown {
         left: calc((100vw - {{ megamenu_width }}) / 2);
@@ -668,16 +692,14 @@
 
     .main-nav__mega-menu .main-nav__list--dropdown .main-nav__title {
       width: 100%;
-      padding-top: 0;
-      padding-bottom: 0;
       display: block;
     }
 
     .main-nav__mega-menu .main-nav__list--dropdown .main-nav__description {
       width: 100%;
       display: block;
-      padding-top: calc(var(--gap) / 3);
-      padding-bottom: calc(var(--gap) / 3);
+      padding-top: 0;
+      {# TODO: add possibility to style description #}
     }
 
     .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item-link--lvl2 {
@@ -771,7 +793,6 @@
     }
 
     .main-nav__list--sublevel .main-nav__list-item--lvl3 .main-nav__description {
-      padding-top: 0;
       {% if link_font.size %}
         {# use mega_menu.third_level_descr_font_size #}
         font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.third_level_descr_font_size }} * 0.01));

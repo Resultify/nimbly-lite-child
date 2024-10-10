@@ -735,7 +735,26 @@
           "required" : false,
           "locked" : false,
           "type" : "spacing",
-          "default" : { }
+          "default" : {
+            "padding" : {
+              "top" : {
+                "value" : 10,
+                "units" : "px"
+              },
+              "bottom" : {
+                "value" : 20,
+                "units" : "px"
+              },
+              "left" : {
+                "value" : 14,
+                "units" : "px"
+              },
+              "right" : {
+                "value" : 14,
+                "units" : "px"
+              }
+            }
+          }
         } ],
         "tab" : "STYLE",
         "expanded" : false,
