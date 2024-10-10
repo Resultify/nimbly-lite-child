@@ -514,8 +514,9 @@
         border-radius: {{module.style.menu.dropdown.border.border_radius ~ 'px'}};
       {% endif %}
       {{module.style.menu.dropdown.border.border.css}}
+      margin-top: 0; {# init margin and override data-bs-popper styling #}
+      margin-bottom: 0;
       {{module.style.menu.dropdown.spacing.spacing.css}}
-
     }
 
     .main-nav__mega-menu .main-nav__list-icon {
