@@ -1,0 +1,13 @@
+/* module css / no hubl variables */
+
+.social-sharing-module {
+  display: flex;
+}
+
+.social-sharing-module .icon {
+  padding: 0;
+}
+
+.social-sharing-module a {
+  text-decoration: none;
+}

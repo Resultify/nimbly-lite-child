@@ -1,0 +1,13 @@
+/* module css / no hubl variables */
+
+.social-links-module {
+  display: flex;
+}
+
+.social-links-module .icon {
+  padding: 0;
+}
+
+.social-links-module a {
+  text-decoration: none;
+}
