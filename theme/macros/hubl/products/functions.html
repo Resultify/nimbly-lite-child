@@ -5,6 +5,40 @@
 -->
 {% import '../../../modules/macros/image.html' as image_macros %}
 
+{% macro parse_settings(content, settings) %}
+  {# English labels #}
+  {% if (content.language.languageTag == "en" || content.language.languageTag == null) %}
+    {% set titleLabel = "Products" %}
+    {% set paginationFirstLabel = "First" %}
+    {% set paginationPreviousLabel = "Previous" %}
+    {% set paginationNextLabel = "Next" %}
+    {% set paginationLastLabel = "Last" %}
+    {% set webinarOfLabel = "of" %}
+    {% set pageLabel = "Page" %}
+  {% endif %}
+
+  {# Swedish labels #}
+  {% if (content.language.languageTag == "sv") %}
+    {% set titleLabel = "Produkter" %}
+    {% set paginationFirstLabel = "Första" %}
+    {% set paginationPreviousLabel = "Föregående" %}
+    {% set paginationNextLabel = "Nästa" %}
+    {% set paginationLastLabel = "Sista" %}
+    {% set webinarOfLabel = "av" %}
+    {% set pageLabel = "Sida" %}
+  {% endif %}
+
+  {% do settings.update({
+    'titleLabel': titleLabel,
+    'paginationFirstLabel': paginationFirstLabel,
+    'paginationPreviousLabel': paginationPreviousLabel,
+    'paginationNextLabel': paginationNextLabel,
+    'paginationLastLabel': paginationLastLabel,
+    'webinarOfLabel': webinarOfLabel,
+    'pageLabel': pageLabel,
+  }) %}
+{% endmacro %}
+
 {# Currency #}
 {%- macro get_currency() -%}
   {%- set currency = site_settings.currency %}

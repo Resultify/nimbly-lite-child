@@ -4,28 +4,6 @@
 {% import '../macros/heading.html' as heading_macros %}
 {% import '../macros/button.html' as button_macros %}
 
-{# English labels #}
-{% if (content.language.languageTag == "en" || content.language.languageTag == null) %}
-  {% set titleLabel = "Products" %}
-  {% set paginationFirstLabel = "First" %}
-  {% set paginationPreviousLabel = "Previous" %}
-  {% set paginationNextLabel = "Next" %}
-  {% set paginationLastLabel = "Last" %}
-  {% set webinarOfLabel = "of" %}
-  {% set pageLabel = "Page" %}
-{% endif %}
-
-{# Swedish labels #}
-{% if (content.language.languageTag == "sv") %}
-  {% set titleLabel = "Produkter" %}
-  {% set paginationFirstLabel = "Första" %}
-  {% set paginationPreviousLabel = "Föregående" %}
-  {% set paginationNextLabel = "Nästa" %}
-  {% set paginationLastLabel = "Sista" %}
-  {% set webinarOfLabel = "av" %}
-  {% set pageLabel = "Sida" %}
-{% endif %}
-
 {# module scope css #}
 <style>
   {% scope_css %}
@@ -121,6 +99,9 @@
   {% end_scope_css %}
 </style>
 
+{% set settings = {} %}
+{{- product_functions_macro.parse_settings(content, settings) -}}
+
 {# Heading #}
 {%- macro render_heading(product) -%}
   <div class="product-listing-module__product-heading product-listing-module__product-item">
@@ -163,7 +144,7 @@
       <span class="productlist-module__pagination-link productlist-module__pagination-link--first-page">
         {% set offsetParam = "offset=0" %}
         {% set first_page_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
-        {% set first_page_link = pagination_link(first_page_url, paginationFirstLabel, 'Angle Double Left', 'f100', 'left')|fromjson %}
+        {% set first_page_link = pagination_link(first_page_url, settings.paginationFirstLabel, 'Angle Double Left', 'f100', 'left')|fromjson %}
         {{link_macros.render_link_tmpl(first_page_link, module.style.link, module)}}
       </span>
     {% endif %}
@@ -172,7 +153,7 @@
       <span class="productlist-module__pagination-link productlist-module__pagination-link--previous-page">
         {% set offsetParam = "offset=" + (((current_page_number - 1) * limit) - limit) %}
         {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
-        {% set previous_page_link = pagination_link(page_link_url, paginationPreviousLabel, 'angle-left', 'f104', 'left')|fromjson %}
+        {% set previous_page_link = pagination_link(page_link_url, settings.paginationPreviousLabel, 'angle-left', 'f104', 'left')|fromjson %}
         {{link_macros.render_link_tmpl(previous_page_link, module.style.link, module)}}
       </span>
     {% endif %}
@@ -224,7 +205,7 @@
       <span class="productlist-module__pagination-link productlist-module__pagination-link--next-page">
         {% set offsetParam = "offset=" + (((current_page_number + 1) * limit) - limit) %}
         {% set next_page__link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
-        {% set next_page_link = pagination_link(next_page__link_url, paginationNextLabel, 'angle-right', 'f105', 'right')|fromjson %}
+        {% set next_page_link = pagination_link(next_page__link_url, settings.paginationNextLabel, 'angle-right', 'f105', 'right')|fromjson %}
         {{link_macros.render_link_tmpl(next_page_link, module.style.link, module)}}
       </span>
     {% endif %}
@@ -234,7 +215,7 @@
       <span class="productlist-module__pagination-link productlist-module__pagination-link--last-page">
         {% set offsetParam = "offset=" + ((number_of_pages * limit) - limit) %}
         {% set last_page_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
-        {% set last_page_link = pagination_link(last_page_url, paginationLastLabel, 'Angle Double Right', 'f101', 'right')|fromjson %}
+        {% set last_page_link = pagination_link(last_page_url, settings.paginationLastLabel, 'Angle Double Right', 'f101', 'right')|fromjson %}
         {{link_macros.render_link_tmpl(last_page_link, module.style.link, module)}}
       </span>
     {% endif %}
@@ -247,7 +228,7 @@
 {# Render Page of Pages #}
 {% macro render_page_of_pages(current_page_number, number_of_pages) -%}
   <div class="products-list-page-of-pages">
-    <span>{{ pageLabel }} {{ current_page_number }} {{ webinarOfLabel }} {{ number_of_pages }}</span>
+    <span>{{ settings.pageLabel }} {{ current_page_number }} {{ settings.webinarOfLabel }} {{ number_of_pages }}</span>
   </div>
 {%- endmacro %}
 
@@ -256,7 +237,7 @@
   <div class="products-list-item-of-items">
     {% set from = (current_page_number - 1) * limit + 1 %}
     {% set to = offset < total ? offset : total %}
-    <span>{{ placeWebinarLabel }} {{ from }}-{{ to }} {{ webinarOfLabel }} {{ total }}</span>
+    <span>{{ settings.placeWebinarLabel }} {{ from }}-{{ to }} {{ settings.webinarOfLabel }} {{ total }}</span>
   </div>
 {%- endmacro %}
 
@@ -299,7 +280,7 @@
 
 <div class="product-listing-module_wrp">
   <div class="product-listing-module product-listing-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
-    <{{module.heading.heading_tag}}>{{ module.heading.title || titleLabel }}</{{module.heading.heading_tag}}>
+    <{{module.heading.heading_tag}}>{{ module.heading.title || settings.titleLabel }}</{{module.heading.heading_tag}}>
     <form action="{{ request.path }}">
       <label for="name">Search</label>
       <input type="text" id="name" name="qd_name">
