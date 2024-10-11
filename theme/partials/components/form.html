@@ -28,8 +28,14 @@
       {%- if data.form_text_color.css -%}
          {% require_css %}
            <style data-component="form scoped id{{item_hash}}">
-             .form{{item_hash}} input:not([type="submit"]) {
+             .form{{item_hash}} input:not([type="submit"]),
+             .form{{item_hash}} textarea,
+             .form{{item_hash}} select {
                 color: {{data.form_text_color.css}};
+             }
+             .form{{item_hash}} select option {
+               color: initial;
+               background-color: initial;
              }
            </style>
          {% end_require_css %}
