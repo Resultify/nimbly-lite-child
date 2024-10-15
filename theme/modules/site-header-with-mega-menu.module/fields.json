@@ -692,6 +692,7 @@
         "name" : "dropdown_style",
         "display_width" : null,
         "label" : "Dropdown style",
+        "inline_help_text" : "<a href=\"//www.resultify.se/hubfs/doc_site-header-with-mega-menu.html#dropdown-styles\">External documentation on dropdown styles</a>",
         "required" : false,
         "locked" : false,
         "display" : "select",
@@ -5102,7 +5103,7 @@
     "display_width" : null,
     "label" : "Menu",
     "help_text" : "If no menu is selected, the name \"main_navigation\" will be used as the default main menu",
-    "inline_help_text" : "<a href=\"//www.resultify.se/hubfs/doc_site-header-with-mega-menu.html\">External documentation on Mega Menu syntax</a>",
+    "inline_help_text" : "<a href=\"//www.resultify.se/hubfs/doc_site-header-with-mega-menu.html#how-to-define\">External documentation on Mega Menu syntax</a>",
     "required" : false,
     "locked" : false,
     "type" : "menu"
