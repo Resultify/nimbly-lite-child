@@ -74,7 +74,11 @@
 
 {%- macro css_hero_image_background_macro(data, class) -%}
   {% if data.background_image_lowres.src and data.add_lowres_image %}
-    {% set lowres_img = ', url({{data.background_image_lowres.src}})' %}
+    {% if data.background_image_lowres.src != data.background_image.src %}
+      {% set lowres_img = ', url({{resize_image_url(data.background_image_lowres.src, 0, 0, 720)}})' %}
+    {% else %}
+      {% set lowres_img = '' %}
+    {% endif %}
   {% endif %}
   {{class}} {
     {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
