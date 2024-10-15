@@ -10,6 +10,11 @@ import { unicardFields, unicardStyleFields } from '../../partials/modules/unicar
 init(
   group('Cards', 'card_group',
     {
+      icon: {
+        name: 'clone',
+        set: 'fontawesome-6.4.2',
+        type: 'SOLID'
+      },
       occurrence: {
         min: 1,
         max: 200,

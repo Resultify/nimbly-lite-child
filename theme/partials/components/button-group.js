@@ -10,6 +10,11 @@ const buttonGroup = (parent = '') => {
   return [
     group('Buttons', 'button_group',
       {
+        icon: {
+          name: 'audio-description',
+          set: 'fontawesome-6.4.2',
+          type: 'SOLID'
+        },
         visibility: {
           controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',

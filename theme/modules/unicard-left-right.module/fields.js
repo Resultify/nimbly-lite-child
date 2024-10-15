@@ -11,6 +11,11 @@ import { shadowList } from '../../partials/data/shadow-list.js'
 init(
   group('Card', 'card_group',
     {
+      icon: {
+        name: 'clone',
+        set: 'fontawesome-6.4.2',
+        type: 'SOLID'
+      },
       occurrence: {
         min: 2,
         max: 2,

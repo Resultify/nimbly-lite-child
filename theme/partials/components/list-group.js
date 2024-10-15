@@ -10,6 +10,11 @@ const listGroup = (parent = '') => {
   return [
     group('List', 'list_group',
       {
+        icon: {
+          name: 'tasks',
+          set: 'fontawesome-6.4.2',
+          type: 'SOLID'
+        },
         visibility: {
           controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',

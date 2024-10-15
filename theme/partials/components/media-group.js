@@ -47,7 +47,11 @@ const mediaGroup = (parent = '', opt) => {
     }),
     group('Full width image', 'full_width_image_group',
       {
-        expanded: true,
+        icon: {
+          name: 'image',
+          set: 'fontawesome-6.4.2',
+          type: 'REGULAR'
+        },
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
           boolean_operator: 'AND',
@@ -69,6 +73,11 @@ const mediaGroup = (parent = '', opt) => {
     ),
     group('Simple image', 'simple_image_group',
       {
+        icon: {
+          name: 'file-image',
+          set: 'fontawesome-6.4.2',
+          type: 'REGULAR'
+        },
         expanded: true,
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
@@ -91,6 +100,11 @@ const mediaGroup = (parent = '', opt) => {
     ),
     group('Icon', 'icon_group',
       {
+        icon: {
+          name: 'cube',
+          set: 'fontawesome-6.4.2',
+          type: 'SOLID'
+        },
         expanded: true,
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
@@ -113,6 +127,11 @@ const mediaGroup = (parent = '', opt) => {
     ),
     group('Lottie animation', 'lottie_group',
       {
+        icon: {
+          name: 'puzzle-piece',
+          set: 'fontawesome-6.4.2',
+          type: 'SOLID'
+        },
         expanded: true,
         visibility_rules: 'ADVANCED',
         advanced_visibility: {
@@ -135,6 +154,11 @@ const mediaGroup = (parent = '', opt) => {
     ),
     group('Video', 'video_group',
       {
+        icon: {
+          name: 'video',
+          set: 'fontawesome-6.4.2',
+          type: 'SOLID'
+        },
         expanded: true,
         visibility_rules: 'ADVANCED',
         advanced_visibility: {

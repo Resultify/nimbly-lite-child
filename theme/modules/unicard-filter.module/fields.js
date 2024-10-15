@@ -12,6 +12,11 @@ init(
   realButtonGroup(),
   group('Cards', 'card_group',
     {
+      icon: {
+        name: 'clone',
+        set: 'fontawesome-6.4.2',
+        type: 'SOLID'
+      },
       occurrence: {
         min: 0,
         max: 200,
