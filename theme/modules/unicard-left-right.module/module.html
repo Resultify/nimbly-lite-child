@@ -122,9 +122,11 @@
 
 {% if module.hero_image_mode %}
   {% if module.hero_image_group.background_image_lowres.src and module.hero_image_group.add_lowres_image %}
-    {% require_head %}
-      <link rel="preload" as="image" href="{{module.hero_image_group.background_image_lowres.src}}" fetchpriority="high">
-    {% end_require_head %}
+    {% if module.hero_image_group.background_image_lowres.src != module.hero_image_group.background_image.src %}
+      {% require_head %}
+        <link rel="preload" as="image" href="{{resize_image_url(module.hero_image_group.background_image_lowres.src, 0, 0, 720)}}" fetchpriority="high">
+      {% end_require_head %}
+    {% endif %}
   {% endif %}
   <div class="unicard-left-right-hero-wrp">
 {% endif %}
@@ -139,6 +141,6 @@
   {%- endfor -%}
 </div>
 
-{% if module.style.hero_image_mode %}
+{% if module.hero_image_mode %}
   </div>
 {% endif %}

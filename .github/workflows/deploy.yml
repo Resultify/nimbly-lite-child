@@ -20,7 +20,7 @@ jobs:
         env:
           HUBSPOT_PORTAL_ID: ${{ secrets.HUBSPOT_CI_PORTAL_ID }}
           HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.HUBSPOT_CI_PERSONAL_ACCESS_KEY }}
-        run: npm run cleanUpload
+        run: npm run ciUpload
 
       - name: Marketplace validation
         env:
