@@ -343,9 +343,7 @@
     main-nav__list-item--lvl{{link.level}} lvl{{link.level}}
     {{'main-nav__list-item--dropdown' if link.children && link.level < module.menu.max_level && link.level < 2}}
     {{'main-nav__mega-menu main-nav__mega-menu--{{ module.menu.mega_menu.number_of_columns }}' if link.children && link.level < module.menu.max_level && link.level < 2 }}
-    {{'main-nav__full-height' if module.menu.mega_menu.full_height && link.children && link.level < module.menu.max_level && link.level < 2 }}
-    {{'main-nav__vertical_center' if module.menu.mega_menu.vertical_center_dropdown_content && link.children && link.level < module.menu.max_level && link.level < 2 }}
-    {{'main-nav__max-content-width' if module.menu.mega_menu.limit_max_content_width && link.children && link.level < module.menu.max_level && link.level < 2 }}
+    {{'main-nav__' ~ module.style.menu.dropdown.dropdown_style if link.children && link.level < module.menu.max_level && link.level < 2 }}
     {{'active-parent' if link.activeBranch && link.children && link.level < module.menu.max_level && link.level < 2}}
     {{'active' if link.activeNode}}">
       {{nav_link(link, link.level)}}
@@ -410,6 +408,12 @@
       {% set container_width = theme.layout.custom_maximum_content_width ~ 'px' %}
     {% else %}
       {% set container_width = theme.layout.maximum_content_width ~ 'px' %}
+    {% endif %}
+
+    {% if module.style.menu.dropdown.custom_width %}
+      {% set megamenu_width = module.style.menu.dropdown.custom_width ~ 'px' %}
+    {% else %}
+      {% set megamenu_width = container_width %}
     {% endif %}
 
     {% set link_font = module.style.menu.links.font %}
@@ -508,11 +512,20 @@
       {% endif %}
       {% if module.style.menu.dropdown.border.border_radius %}
         border-radius: {{module.style.menu.dropdown.border.border_radius ~ 'px'}};
+        {# remove border top radius if no top margin is set #}
+        {% if !module.style.menu.dropdown.spacing.spacing.margin.top.value %}
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        {% endif %}
       {% endif %}
-      {% if module.style.menu.dropdown.spacing.width %}
-        min-width: {{module.style.menu.dropdown.spacing.width ~ 'px'}};
-      {% endif %}
+
       {{module.style.menu.dropdown.border.border.css}}
+      {# remove border top if no top margin is set #}
+      {% if !module.style.menu.dropdown.spacing.spacing.margin.top.value %}
+        border-top: 0;
+      {% endif %}
+      margin-top: 0; {# init margin and override data-bs-popper styling #}
+      margin-bottom: 0;
       {{module.style.menu.dropdown.spacing.spacing.css}}
     }
 
@@ -525,9 +538,6 @@
 
     {# mega menu #}
     .main-nav__mega-menu .main-nav__list--dropdown {
-      border: 0;
-      padding: 0;
-      margin: 0;
       display: flex;
       flex-wrap: wrap;
       justify-content: start;
@@ -552,12 +562,22 @@
     {# mobile only styles #}
     @media (max-width: {{mobile_breakpoint - 0.02 ~ 'px'}}) {
       .main-nav__mega-menu .main-nav__list--dropdown {
+        {# remove border and border radius in mobile regardless #}
         border: none;
+        border-radius: 0;
         visibility: hidden;
         opacity: 0;
         {# to play nice with bootstrap collapse opening height calculation #}
         max-height: 0;
         overflow: hidden;
+      }
+
+      {# override margin and padding in collapsed dropdown #}
+      .main-nav__mega-menu .main-nav__list--dropdown:not(.show) {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
       }
 
       .main-nav__mega-menu .main-nav__list--dropdown.show {
@@ -566,10 +586,6 @@
         opacity: 1;
         {# to play nice with bootstrap collapse opening height calculation #}
         max-height: unset;
-      }
-
-      .main-nav__mega-menu .main-nav__list-part {
-        padding: calc(var(--gap) / 2);
       }
     }
     {# end mobile only styles #}
@@ -581,57 +597,93 @@
         top: var(--header-height);
         left: 0;
         right: 0;
-        margin: 0 auto;
+        margin-left: auto;
+        margin-right: auto;
+
         {# desktop transition effect #}
-        padding-top: 0;
+        {% if module.style.menu.dropdown.spacing.spacing.padding.top.value %}
+          padding-top: {{module.style.menu.dropdown.spacing.spacing.padding.top.value ~ 'px'}};
+        {% else %}
+          padding-top: 0;
+        {% endif%}
         transition: visibility 0s 0.4s, opacity 0.4s 0s, padding-top 0s 0.4s;
         visibility: hidden;
         opacity: 0;
         overflow: hidden;
 
-        {# make mega-menu dropdown scrollbar if taller than viewport-height #}
-        max-height: calc(100vh - var(--header-height));
+        {# make mega-menu dropdown scrollbar if taller than viewport-height (takes dropdown margin into consideration) #}
+        max-height: calc(100vh - var(--header-height){{ ' - ' ~ module.style.menu.dropdown.spacing.spacing.margin.top.value ~ 'px' if module.style.menu.dropdown.spacing.spacing.margin.top.value }}{{ ' - ' ~ module.style.menu.dropdown.spacing.spacing.margin.bottom.value ~ 'px' if module.style.menu.dropdown.spacing.spacing.margin.bottom.value }});
         overflow-y: auto;
       }
 
       .main-nav__mega-menu .main-nav__list--dropdown.show {
         {# desktop transition effect #}
-        padding-top: 10px;
+        {% if module.style.menu.dropdown.spacing.spacing.padding.top.value %}
+          padding-top: calc(10px + {{module.style.menu.dropdown.spacing.spacing.padding.top.value ~ 'px'}});
+        {% else %}
+          padding-top: 10px;
+        {% endif %}
         transition: visibility 0s 0s, opacity 0.2s, padding-top 0.2s ease-out;
         visibility: visible;
         opacity: 1;
       }
 
-      .main-nav__mega-menu.main-nav__full-height .main-nav__list--dropdown {
-        min-height: calc(100vh - var(--header-height));
+      {# make mega-menu dropdown full viewport height (takes dropdown margin into consideration) #}
+      .main-nav__mega-menu.main-nav__full-screen-d-and-c .main-nav__list--dropdown,
+      .main-nav__mega-menu.main-nav__full-screen-d-limit-c .main-nav__list--dropdown {
+        min-height: calc(100vh - var(--header-height){{ ' - ' ~ module.style.menu.dropdown.spacing.spacing.margin.top.value ~ 'px' if module.style.menu.dropdown.spacing.spacing.margin.top.value }}{{ ' - ' ~ module.style.menu.dropdown.spacing.spacing.margin.bottom.value ~ 'px' if module.style.menu.dropdown.spacing.spacing.margin.bottom.value }});
       }
 
       .main-nav__mega-menu .main-nav__list-container {
         display: flex;
         flex-direction: row;
-        align-content: flex-start;
-        justify-content: center;
-        align-items: stretch;
-      }
-
-      /* vertical center dropdown content */
-      .main-nav__mega-menu.main-nav__vertical_center .main-nav__list-container {
         align-content: unset;
+        justify-content: center;
         align-items: center;
       }
 
-      /* maxmium content width */
-      .main-nav__mega-menu.main-nav__max-content-width .main-nav__list--dropdown {
-        padding-left: calc((100vw - {{container_width}}) / 2);
-        padding-right: calc((100vw - {{container_width}}) / 2);
+      {# full width on dropdown and content - same as with no class #}
+      .main-nav__mega-menu.main-nav__full-width-d-and-c,
+      .main-nav__mega-menu.main-nav__full-screen-d-and-c {
+        left: 0;
+        right: 0;
+      }
+
+      .main-nav__mega-menu.main-nav__full-width-d-and-c .main-nav__list--dropdown,
+      .main-nav__mega-menu.main-nav__full-screen-d-and-c .main-nav__list--dropdown {
+        {# remove left and right border on full width menu if no top margin #}
+        {% if !module.style.menu.dropdown.spacing.spacing.margin.top.value %}
+          border-left: 0;
+          border-right: 0;
+        {% endif %}
+      }
+
+      {# full width on dropdown, limit maximum width on content #}
+      .main-nav__mega-menu.main-nav__full-width-d-limit-c .main-nav__list--dropdown,
+      .main-nav__mega-menu.main-nav__full-screen-d-limit-c .main-nav__list--dropdown {
+        padding-left: calc((100vw - {{ megamenu_width }}) / 2);
+        padding-right: calc((100vw - {{ megamenu_width }}) / 2);
+
+        {# remove left and right border on full width menu if no top margin #}
+        {% if !module.style.menu.dropdown.spacing.spacing.margin.top.value %}
+          border-left: 0;
+          border-right: 0;
+        {% endif %}
       }
 
       .main-nav__mega-menu .main-nav__list-part {
         margin-top: -10px;  {# to compensate for show animation #}
-        padding: var(--gap);
       }
     }
     {# end desktop only styles #}
+
+    {# limit maximum width on dropdown and content #}
+    @media (min-width: {{mobile_breakpoint ~ 'px'}}) and (min-width: {{megamenu_width}}) {
+      .main-nav__mega-menu.main-nav__limit-d-and-c .main-nav__list--dropdown {
+        left: calc((100vw - {{ megamenu_width }}) / 2);
+        right: calc((100vw - {{ megamenu_width }}) / 2);
+      }
+    }
 
     .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-item {
       width: 100%;
@@ -640,16 +692,14 @@
 
     .main-nav__mega-menu .main-nav__list--dropdown .main-nav__title {
       width: 100%;
-      padding-top: 0;
-      padding-bottom: 0;
       display: block;
     }
 
     .main-nav__mega-menu .main-nav__list--dropdown .main-nav__description {
       width: 100%;
       display: block;
-      padding-top: calc(var(--gap) / 3);
-      padding-bottom: calc(var(--gap) / 3);
+      padding-top: 0;
+      {# TODO: add possibility to style description #}
     }
 
     .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item-link--lvl2 {
@@ -743,7 +793,6 @@
     }
 
     .main-nav__list--sublevel .main-nav__list-item--lvl3 .main-nav__description {
-      padding-top: 0;
       {% if link_font.size %}
         {# use mega_menu.third_level_descr_font_size #}
         font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.third_level_descr_font_size }} * 0.01));
@@ -952,6 +1001,17 @@
     @media (min-width: {{mobile_breakpoint ~ 'px'}}) {
       .siteheader-module {
         flex-wrap: nowrap;
+
+        {# limit maximum content width of Site Header, either with custom value or container width #}
+        {% if module.style.general.maximum_content_width.limit_maximum_content_width_on_site_header %}
+          {% if module.style.general.maximum_content_width.custom_container_width %}
+            padding-left: calc(((100vw - {{ module.style.general.maximum_content_width.custom_container_width ~ 'px' }}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.left.value ~ 'px' if module.style.general.spacing.spacing.padding.left.value }});
+            padding-right: calc(((100vw - {{ module.style.general.maximum_content_width.custom_container_width ~ 'px' }}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.right.value ~ 'px' if module.style.general.spacing.spacing.padding.right.value }});
+          {% else %}
+            padding-left: calc(((100vw - {{ container_width }}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.left.value ~ 'px' if module.style.general.spacing.spacing.padding.left.value }});
+            padding-right: calc(((100vw - {{ container_width }}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.right.value ~ 'px' if module.style.general.spacing.spacing.padding.right.value }});
+          {% endif %}
+        {% endif %}
       }
 
       .siteheader-module__navbar {
