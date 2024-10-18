@@ -250,7 +250,7 @@
       {# button #}
 
       <div class="main-nav__list-item-link">
-        <a class="btn-link btn-primary btn-regular"
+        <a class="btn-link {{ module.style.menu.dropdown.button_presets.style }} {{ module.style.menu.dropdown.button_presets.size }}"
           {% if link.url %}
             href="{{link.url}}"
           {% else %}

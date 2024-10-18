@@ -1784,6 +1784,11 @@
     "description" : "",
     "placeholders" : null
   },
+  "style.button.name" : {
+    "message" : "site-header-with-mega-menu",
+    "description" : "",
+    "placeholders" : null
+  },
   "style.button.placeholder" : {
     "message" : "",
     "description" : "",
@@ -2717,6 +2722,16 @@
   "style.language_switcher.dropdown.placeholder" : {
     "message" : "",
     "description" : "",
+    "placeholders" : null
+  },
+  "style.language_switcher.dropdown.presets_copy.default.size" : {
+    "message" : "btn-regular",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.language_switcher.dropdown.presets_copy.default.style" : {
+    "message" : "btn-primary",
+    "description" : null,
     "placeholders" : null
   },
   "style.language_switcher.dropdown.spacing.help_text" : {
@@ -3952,6 +3967,116 @@
   "style.menu.dropdown.border.placeholder" : {
     "message" : "",
     "description" : "",
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.label" : {
+    "message" : "Button presets",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.size.choices.btn-large" : {
+    "message" : "Large",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.size.choices.btn-regular" : {
+    "message" : "Medium",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.size.choices.btn-small" : {
+    "message" : "Small",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.size.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.size.help_text" : {
+    "message" : "Button size",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.size.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.size.label" : {
+    "message" : "Size",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.size.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.style.choices.btn-primary" : {
+    "message" : "Primary",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.style.choices.btn-secondary1" : {
+    "message" : "Secondary 1",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.style.choices.btn-secondary2" : {
+    "message" : "Secondary 2",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.style.choices.btn-secondary3" : {
+    "message" : "Secondary 3",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.style.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.style.help_text" : {
+    "message" : "Button style",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.style.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.style.label" : {
+    "message" : "Style",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.button_presets.style.placeholder" : {
+    "message" : "Button style",
+    "description" : null,
     "placeholders" : null
   },
   "style.menu.dropdown.choice_field.choices.value 1" : {
