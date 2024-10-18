@@ -2,23 +2,28 @@
   templateType: page
   isAvailableForNewContent: true
   enableDomainStylesheets: false
+  hasUniqueValue: true
   label: Products list and single-view
   screenshotPath: ../images/template-previews/products.png
 -->
+{% import '../macros/hubl/products/functions.html' as product_functions_macro %}
 
 {% extends "./layouts/base.html" %}
 
 {% block body %}
   <div class="products-template">
     {# Single view #}
-    {% if request.query_dict.product_id %}
-      {% set product = crm_objects(dynamic_page_crm_object_type_fqn, request.query_dict.product_id, "name, price, quantity, tax, hs_url, amount, createdate, description, discount, hs_images, hs_object_id, hs_product_type").results[0] %}
+    {% if dynamic_page_crm_object %}
+      {% set productQuery = product_functions_macro.render_product_url(product) %}
+      {% set product = crm_objects("PRODUCT", productQuery, "name, price, quantity, tax, hs_url, amount, createdate, description, discount, hs_images, hs_object_id, hs_product_type").results[0] %}
       {% if product %}
         <div class="product-single-view">
-          <h2>{{ product.name }}</h2>
+          <h1>{{ product.name }}</h1>
+          {{ product_functions_macro.render_product_list_image(product) }}
           <img src="{{ resize_image_url(product.hs_images, 240) }}" alt="{{ product.name }}">
           <p>{{ product.description }}</p>
-          <p>{{ product.price }}</p>
+          <p>{{ product.price | format_currency_value(locale='sv-SE', currency='SEK') }}</p>
+          {{ product_functions_macro.render_structured_data(product) }}
         </div>
       {% endif %}
     {% else %}

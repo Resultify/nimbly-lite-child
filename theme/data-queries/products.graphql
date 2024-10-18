@@ -25,6 +25,7 @@ query Products($limit: Int = 12, $offset: Int = 0, $name: String, $sku: String) 
                 hs_images
                 hs_object_id
                 hs_product_type
+                hs_sku
             }
             limit
             offset

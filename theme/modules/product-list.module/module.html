@@ -107,7 +107,7 @@
   <div class="product-listing-module__product-heading product-listing-module__product-item">
     {%- set heading_data = {
       "display": module.heading.display, "heading_tag": module.heading.heading_tag, "text": product.name,
-      "link": {"link": { "url": { "href": "?product_id={{ product.hs_object_id }}", "type":"EXTERNAL" }, "open_in_new_tab": false, "rel": "" }, "accessible_link": true },
+      "link": {"link": { "url": { "href": product_functions_macro.render_product_url(product), "type":"EXTERNAL" }, "open_in_new_tab": false, "rel": "" }, "accessible_link": true },
       "icon":{
         "icon": { "name": "", "unicode": "", "type": "REGULAR", "icon_set": "fontawesome-5.14.0" },
         "icon_position": "left", "accessibility_options": { "purpose": "decorative" }
@@ -122,7 +122,7 @@
 {# Button #}
 {%- macro render_button(product) -%}
   <div class="product-listing-module__product-button product-listing-module__product-item">
-    {%- set url = "?product_id={{ product.hs_object_id }}" -%}
+    {%- set url = product_functions_macro.render_product_url(product) -%}
     {%- set button_data = {
       "text": module.button.text, "accessible_link_label": "Product information: {{product.name}}", "accessible_link": true,
       "link": {"url": { "href": url, "type":"EXTERNAL" }, "open_in_new_tab": false, "rel": "" },
@@ -277,7 +277,6 @@
 {% endif %}
 
 {% set products = module.data_query.data.CRM.product_collection.items %}
-
 <div class="product-listing-module_wrp">
   <div class="product-listing-module product-listing-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
     <{{module.heading.heading_tag}}>{{ module.heading.title || settings.titleLabel }}</{{module.heading.heading_tag}}>
