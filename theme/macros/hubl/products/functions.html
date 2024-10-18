@@ -92,8 +92,6 @@
     {% set productUrl = request.path + '/' + product.hs_sku %}
   {% elif slug == 'hs_object_id' %}
     {% set productUrl = request.path + '/' + product.hs_object_id %}
-  {% else %}
-    {% set productUrl = "?product_id={{ product.hs_object_id }}" %}
   {% endif %}
   {{ productUrl }}
 {%- endmacro -%}
@@ -110,8 +108,6 @@
     {% set productQuery = "hs_sku=" + productIdentifier %}
   {% elif slug == "hs_object_id" and productIdentifier %}
     {% set productQuery = "hs_object_id=" + productIdentifier %}
-  {% elif request.query_dict.product_id %}
-    {% set productQuery = request.query_dict.product_id %}
   {% endif %}
   {{ productQuery }}
 {%- endmacro -%}
