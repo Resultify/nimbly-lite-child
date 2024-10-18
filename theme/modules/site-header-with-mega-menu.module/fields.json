@@ -1097,6 +1097,35 @@
           "style" : "btn-primary",
           "size" : "btn-regular"
         }
+      }, {
+        "id" : "3ddbc6e9-4604-48c3-7aca-9dd7318330a3",
+        "name" : "images",
+        "display_width" : null,
+        "label" : "Images",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "f9d6ab61-8cc8-ae9e-37d0-93938f1ae515",
+          "name" : "maximum_size",
+          "display_width" : null,
+          "label" : "Maximum size",
+          "help_text" : "Maximum image size",
+          "required" : true,
+          "locked" : false,
+          "display" : "slider",
+          "min" : 10,
+          "max" : 250,
+          "step" : 1,
+          "type" : "number",
+          "default" : 75
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "default" : {
+          "maximum_size" : 75
+        }
       } ],
       "tab" : "STYLE",
       "expanded" : false,
@@ -1209,6 +1238,9 @@
         "button_presets" : {
           "style" : "btn-primary",
           "size" : "btn-regular"
+        },
+        "images" : {
+          "maximum_size" : 75
         }
       }
     } ],
@@ -1363,6 +1395,9 @@
         "button_presets" : {
           "style" : "btn-primary",
           "size" : "btn-regular"
+        },
+        "images" : {
+          "maximum_size" : 75
         }
       }
     }
@@ -4598,6 +4633,9 @@
         "button_presets" : {
           "style" : "btn-primary",
           "size" : "btn-regular"
+        },
+        "images" : {
+          "maximum_size" : 75
         }
       }
     },

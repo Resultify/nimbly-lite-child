@@ -531,8 +531,8 @@
 
     .main-nav__mega-menu .main-nav__list-icon {
       display: block;
-      max-width: 75px;
-      max-height: 75px;
+      max-width: {{ module.style.menu.dropdown.images.maximum_size ~ 'px' }};
+      max-height: {{ module.style.menu.dropdown.images.maximum_size ~ 'px' }};
       margin-bottom: calc(var(--gap) / 3);
     }
 

@@ -4169,6 +4169,56 @@
     "description" : "",
     "placeholders" : null
   },
+  "style.menu.dropdown.images.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.images.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.images.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.images.label" : {
+    "message" : "Field group",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.images.maximum_size.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.images.maximum_size.help_text" : {
+    "message" : "Maximum image size",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.images.maximum_size.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.images.maximum_size.label" : {
+    "message" : "Maximum size",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.images.maximum_size.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.menu.dropdown.images.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
   "style.menu.dropdown.inline_help_text" : {
     "message" : "",
     "description" : "",
@@ -4506,6 +4556,11 @@
   },
   "style.menu.links.text_hover.placeholder" : {
     "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.menu.name" : {
+    "message" : "site-header-with-mega-menu",
     "description" : "",
     "placeholders" : null
   },
