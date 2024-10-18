@@ -10,6 +10,7 @@ query Products($limit: Int = 12, $offset: Int = 0, $name: String, $sku: String) 
             limit: $limit
             offset: $offset
             filter: { name__contains: $name, hs_sku__contains: $sku }
+            orderBy: name__asc
         ) {
             items {
                 name
