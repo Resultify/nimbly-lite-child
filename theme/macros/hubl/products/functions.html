@@ -107,7 +107,7 @@
   {% set slug = content.property_for_dynamic_page_slug %}
   {% set productQuery = null %}
   {% if slug == "hs_sku" and productIdentifier %}
-    {% set productQuery = "hs_sku" + productIdentifier %}
+    {% set productQuery = "hs_sku=" + productIdentifier %}
   {% elif slug == "hs_object_id" and productIdentifier %}
     {% set productQuery = "hs_object_id=" + productIdentifier %}
   {% elif request.query_dict.product_id %}

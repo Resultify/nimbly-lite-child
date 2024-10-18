@@ -14,8 +14,8 @@
   <div class="products-template">
     {# Single view #}
     {% if dynamic_page_crm_object %}
-      {% set productQuery = product_functions_macro.render_product_url(product) %}
-      {% set product = crm_objects("PRODUCT", productQuery, "name, price, quantity, tax, hs_url, amount, createdate, description, discount, hs_images, hs_object_id, hs_product_type").results[0] %}
+      {% set productQuery = product_functions_macro.get_product_query(product) %}
+      {% set product = crm_object("PRODUCT", productQuery, "name, price, quantity, tax, hs_url, amount, createdate, description, discount, hs_images, hs_object_id, hs_product_type, hs_sku") %}
       {% if product %}
         <div class="product-single-view">
           <h1>{{ product.name }}</h1>
