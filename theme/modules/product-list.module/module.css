@@ -129,3 +129,16 @@
     display: none;
   }
 }
+
+/* Product list */
+.product-listing-module__product-image img {
+  object-position: 50% 50%;
+  object-fit: contain !important;
+  height: 300px !important;
+}
+
+.product-listing-module__product-image span {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
