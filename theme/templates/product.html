@@ -14,18 +14,13 @@
   <div class="products-template">
     {# Single view #}
     {% if dynamic_page_crm_object %}
-      {% set productQuery = product_functions_macro.get_product_query(product) %}
-      {% set product = crm_object("PRODUCT", productQuery, "name, price, quantity, tax, hs_url, amount, createdate, description, discount, hs_images, hs_object_id, hs_product_type, hs_sku") %}
-      {% if product %}
-        <div class="product-single-view">
-          <h1>{{ product.name }}</h1>
-          {{ product_functions_macro.render_product_list_image(product) }}
-          <img src="{{ resize_image_url(product.hs_images, 240) }}" alt="{{ product.name }}">
-          <p>{{ product.description }}</p>
-          <p>{{ product.price | format_currency_value(locale='sv-SE', currency='SEK') }}</p>
-          {{ product_functions_macro.render_structured_data(product) }}
-        </div>
-      {% endif %}
+      <div class="product-single-view">
+        <h1>{{ dynamic_page_crm_object.name }}</h1>
+        {{ product_functions_macro.render_product_list_image(dynamic_page_crm_object) }}
+        <p>{{ dynamic_page_crm_object.description }}</p>
+        <p>{{ dynamic_page_crm_object.price | format_currency_value(locale='sv-SE', currency='SEK') }}</p>
+        {{ product_functions_macro.render_structured_data(dynamic_page_crm_object) }}
+      </div>
     {% else %}
     {# List view - not editable for editor #}
       {% dnd_section %}

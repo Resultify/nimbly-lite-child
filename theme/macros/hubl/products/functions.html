@@ -96,22 +96,6 @@
   {{ productUrl }}
 {%- endmacro -%}
 
-{# Get product query #}
-{%- macro get_product_query(product) -%}
-  {% set url = request.path %}
-  {% set urlParts = url|split('/') %}
-  {% set productIdentifier = urlParts[-1] %}
-
-  {% set slug = content.property_for_dynamic_page_slug %}
-  {% set productQuery = null %}
-  {% if slug == "hs_sku" and productIdentifier %}
-    {% set productQuery = "hs_sku=" + productIdentifier %}
-  {% elif slug == "hs_object_id" and productIdentifier %}
-    {% set productQuery = "hs_object_id=" + productIdentifier %}
-  {% endif %}
-  {{ productQuery }}
-{%- endmacro -%}
-
 {# Product Structured Data #}
 {%- macro render_structured_data(product) -%}
   <script type="application/ld+json">
