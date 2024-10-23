@@ -19,6 +19,8 @@
     "fetchModules": "cmslib --fetchModules",
     "upload": "cmslib --upload",
     "ciUpload": "cmslib --ciUpload",
+    "buildModule": "cmslib --buildModule",
+    "uploadModule": "cmslib --uploadModule",
     "cleanUpload": "cmslib --cleanUpload",
     "validate": "cmslib --validate",
     "lighthouse": "cmslib --lighthouse",

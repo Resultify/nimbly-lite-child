@@ -1,0 +1,4234 @@
+[
+  {
+    "label": "Categories",
+    "name": "category_group",
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "categories"
+    },
+    "multiple": true,
+    "choices": [
+      [
+        "category 1",
+        "Category 1"
+      ],
+      [
+        "category 2",
+        "Category 2"
+      ],
+      [
+        "category 3",
+        "Category 3"
+      ],
+      [
+        "category 4",
+        "Category 4"
+      ],
+      [
+        "category 5",
+        "Category 5"
+      ],
+      [
+        "category 6",
+        "Category 6"
+      ],
+      [
+        "category 7",
+        "Category 7"
+      ],
+      [
+        "category 8",
+        "Category 8"
+      ],
+      [
+        "category 9",
+        "Category 9"
+      ],
+      [
+        "category 10",
+        "Category 10"
+      ]
+    ],
+    "type": "choice"
+  },
+  {
+    "label": "Show categories",
+    "name": "show_categories",
+    "help_text": "Show categories inside the module as a content block",
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "categories"
+    },
+    "type": "boolean"
+  },
+  {
+    "label": "Categories style",
+    "name": "categories_style_group",
+    "type": "group",
+    "visibility_rules": "ADVANCED",
+    "advanced_visibility": {
+      "boolean_operator": "AND",
+      "criteria": [
+        {
+          "controlling_field_path": "module_components",
+          "operator": "MATCHES_REGEX",
+          "controlling_value_regex": "categories"
+        },
+        {
+          "controlling_field_path": "show_categories",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        }
+      ]
+    },
+    "children": [
+      {
+        "label": "Font",
+        "name": "category_font",
+        "visibility": {
+          "hidden_subfields": {
+            "color": true
+          }
+        },
+        "type": "font"
+      },
+      {
+        "label": "Color",
+        "name": "category_color",
+        "type": "color"
+      },
+      {
+        "label": "Background",
+        "name": "category_background",
+        "type": "color"
+      },
+      {
+        "label": "Vertical spacing",
+        "name": "category_vertical_spacing",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "type": "number"
+      },
+      {
+        "label": "Horizontal",
+        "name": "category_horizontal_spacing",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "type": "number"
+      },
+      {
+        "label": "Border width",
+        "name": "category_border_width",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "type": "number"
+      },
+      {
+        "label": "Border radius",
+        "name": "category_border_radius",
+        "min": 0,
+        "suffix": "px",
+        "display_width": "half_width",
+        "type": "number"
+      },
+      {
+        "label": "Border color",
+        "name": "category_border_color",
+        "type": "color"
+      }
+    ]
+  },
+  {
+    "label": "Media type",
+    "name": "media_type",
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "media"
+    },
+    "default": null,
+    "placeholder": "None",
+    "choices": [
+      [
+        "full_width_image",
+        "Full width image"
+      ],
+      [
+        "simple_image",
+        "Simple image"
+      ],
+      [
+        "icon",
+        "Icon"
+      ],
+      [
+        "lottie",
+        "Lottie Animation"
+      ],
+      [
+        "video",
+        "Video"
+      ]
+    ],
+    "type": "choice"
+  },
+  {
+    "label": "Full width image",
+    "name": "full_width_image_group",
+    "type": "group",
+    "icon": {
+      "name": "image",
+      "set": "fontawesome-6.4.2",
+      "type": "REGULAR"
+    },
+    "visibility_rules": "ADVANCED",
+    "advanced_visibility": {
+      "boolean_operator": "AND",
+      "criteria": [
+        {
+          "controlling_field_path": "media_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "full_width_image"
+        },
+        {
+          "controlling_field_path": "module_components",
+          "operator": "MATCHES_REGEX",
+          "controlling_value_regex": "media"
+        }
+      ]
+    },
+    "children": [
+      {
+        "label": "Image",
+        "name": "full_width_image",
+        "resizable": false,
+        "show_loading": false,
+        "responsive": true,
+        "type": "image"
+      },
+      {
+        "label": "",
+        "name": "full_width_image_opt_visibility",
+        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> additional <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Full width image</span> properties.",
+        "display": "toggle",
+        "type": "boolean"
+      },
+      {
+        "label": "Aspect ratio",
+        "name": "full_width_image_aspect_ratio",
+        "display_width": "half_width",
+        "required": true,
+        "default": "16/9",
+        "visibility": {
+          "controlling_field_path": "full_width_image_group.full_width_image_opt_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "choices": [
+          [
+            "1/1",
+            "1/1"
+          ],
+          [
+            "1.91/1",
+            "1.91/1"
+          ],
+          [
+            "2/1",
+            "2/1"
+          ],
+          [
+            "3/1",
+            "3/1"
+          ],
+          [
+            "3/2",
+            "3/2"
+          ],
+          [
+            "4/3",
+            "4/3"
+          ],
+          [
+            "4/5",
+            "4/5"
+          ],
+          [
+            "5/4",
+            "5/4"
+          ],
+          [
+            "9/16",
+            "9/16"
+          ],
+          [
+            "16/9",
+            "16/9"
+          ]
+        ],
+        "type": "choice"
+      },
+      {
+        "label": "Force full width",
+        "name": "force_full_width_image",
+        "locked": false,
+        "help_text": "This image is already full-width, but with the <strong>Force full width</strong> option enabled, it will take the full width of the parent element, even if there is extra padding around it.",
+        "display_width": "half_width",
+        "default": false,
+        "visibility": {
+          "controlling_field_path": "full_width_image_group.full_width_image_opt_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "boolean"
+      },
+      {
+        "label": "Border radius",
+        "name": "full_width_image_border_radius",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "full_width_image_group.full_width_image_opt_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "full_width_image_group.force_full_width_image",
+              "operator": "EQUAL",
+              "controlling_value_regex": "false"
+            }
+          ]
+        },
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "label": "Simple image",
+    "name": "simple_image_group",
+    "type": "group",
+    "icon": {
+      "name": "file-image",
+      "set": "fontawesome-6.4.2",
+      "type": "REGULAR"
+    },
+    "expanded": true,
+    "visibility_rules": "ADVANCED",
+    "advanced_visibility": {
+      "boolean_operator": "AND",
+      "criteria": [
+        {
+          "controlling_field_path": "media_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "simple_image"
+        },
+        {
+          "controlling_field_path": "module_components",
+          "operator": "MATCHES_REGEX",
+          "controlling_value_regex": "media"
+        }
+      ]
+    },
+    "children": [
+      {
+        "label": "Simple image",
+        "name": "simple_image",
+        "resizable": false,
+        "show_loading": false,
+        "responsive": false,
+        "type": "image"
+      },
+      {
+        "label": "Width",
+        "name": "simple_image_width",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility": {
+          "controlling_field_path": "simple_image_group.simple_image",
+          "operator": "NOT_EMPTY",
+          "property": "src"
+        },
+        "type": "number"
+      },
+      {
+        "label": "Alignment",
+        "name": "simple_image_alignment",
+        "display_width": "half_width",
+        "locked": false,
+        "choices": [
+          [
+            "start",
+            "Left"
+          ],
+          [
+            "center",
+            "Center"
+          ],
+          [
+            "end",
+            "Right"
+          ]
+        ],
+        "visibility": {
+          "controlling_field_path": "simple_image_group.simple_image",
+          "operator": "NOT_EMPTY",
+          "property": "src"
+        },
+        "type": "choice"
+      }
+    ]
+  },
+  {
+    "label": "Icon",
+    "name": "icon_group",
+    "type": "group",
+    "icon": {
+      "name": "cube",
+      "set": "fontawesome-6.4.2",
+      "type": "SOLID"
+    },
+    "expanded": true,
+    "visibility_rules": "ADVANCED",
+    "advanced_visibility": {
+      "boolean_operator": "AND",
+      "criteria": [
+        {
+          "controlling_field_path": "media_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "icon"
+        },
+        {
+          "controlling_field_path": "module_components",
+          "operator": "MATCHES_REGEX",
+          "controlling_value_regex": "media"
+        }
+      ]
+    },
+    "children": [
+      {
+        "label": "Icon type",
+        "name": "icon_type",
+        "display_width": "half_width",
+        "required": true,
+        "default": "fontawesome",
+        "choices": [
+          [
+            "fontawesome",
+            "FontAwesome icon"
+          ],
+          [
+            "inline_svg",
+            "Inline SVG"
+          ]
+        ],
+        "type": "choice"
+      },
+      {
+        "label": "Icon size",
+        "name": "icon_size",
+        "min": 0,
+        "display_width": "half_width",
+        "default": 80,
+        "suffix": "px",
+        "type": "number"
+      },
+      {
+        "label": "Icon",
+        "name": "icon",
+        "set": "fontawesome-6.4.2",
+        "visibility": {
+          "controlling_field_path": "icon_group.icon_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "fontawesome"
+        },
+        "type": "icon"
+      },
+      {
+        "label": "Inline SVG",
+        "name": "icon_inline_svg",
+        "visibility": {
+          "controlling_field_path": "icon_group.icon_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "inline_svg"
+        },
+        "type": "html"
+      },
+      {
+        "label": "",
+        "name": "icon_prop_visibility",
+        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> additional <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Icon</span> properties.",
+        "display": "toggle",
+        "type": "boolean"
+      },
+      {
+        "label": "Color",
+        "name": "icon_color",
+        "visibility": {
+          "controlling_field_path": "icon_group.icon_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "color"
+      },
+      {
+        "label": "Background",
+        "name": "icon_background",
+        "visibility": {
+          "controlling_field_path": "icon_group.icon_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "color"
+      },
+      {
+        "label": "Spacing",
+        "name": "icon_spacing",
+        "min": 0,
+        "suffix": "px",
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "icon_group.icon_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "number"
+      },
+      {
+        "label": "Border radius",
+        "name": "icon_border_radius",
+        "min": 0,
+        "suffix": "%",
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "icon_group.icon_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "label": "Lottie animation",
+    "name": "lottie_group",
+    "type": "group",
+    "icon": {
+      "name": "puzzle-piece",
+      "set": "fontawesome-6.4.2",
+      "type": "SOLID"
+    },
+    "expanded": true,
+    "visibility_rules": "ADVANCED",
+    "advanced_visibility": {
+      "boolean_operator": "AND",
+      "criteria": [
+        {
+          "controlling_field_path": "media_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "lottie"
+        },
+        {
+          "controlling_field_path": "module_components",
+          "operator": "MATCHES_REGEX",
+          "controlling_value_regex": "media"
+        }
+      ]
+    },
+    "children": [
+      {
+        "label": "Lottie file",
+        "name": "lottie_file",
+        "type": "file"
+      },
+      {
+        "label": "",
+        "name": "lottie_prop_visibility",
+        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> additional <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Lottie</span> properties.",
+        "display": "toggle",
+        "type": "boolean"
+      },
+      {
+        "label": "Speed",
+        "name": "lottie_speed",
+        "min": 0,
+        "step": 0.1,
+        "display_width": "half_width",
+        "default": 1,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "lottie_group.lottie_file",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "lottie_group.lottie_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "number"
+      },
+      {
+        "label": "Mode",
+        "name": "lottie_mode",
+        "display_width": "half_width",
+        "required": true,
+        "default": "forward",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "lottie_group.lottie_file",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "lottie_group.lottie_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "choices": [
+          [
+            "forward",
+            "Forward"
+          ],
+          [
+            "reverse",
+            "Reverse"
+          ],
+          [
+            "bounce",
+            "Bounce"
+          ],
+          [
+            "reverse-bounce",
+            "Reverse-bounce"
+          ]
+        ],
+        "type": "choice"
+      },
+      {
+        "label": "Loop",
+        "name": "lottie_loop",
+        "default": true,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "lottie_group.lottie_file",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "lottie_group.lottie_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "boolean"
+      },
+      {
+        "label": "Width",
+        "name": "lottie_width",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "lottie_group.lottie_file",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "lottie_group.lottie_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "number"
+      },
+      {
+        "label": "Height",
+        "name": "lottie_height",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "lottie_group.lottie_file",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "lottie_group.lottie_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "number"
+      },
+      {
+        "label": "Scale",
+        "name": "lottie_scale",
+        "min": 0,
+        "step": 0.1,
+        "max": 10,
+        "locked": true,
+        "display_width": "half_width",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "lottie_group.lottie_file",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "lottie_group.lottie_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "label": "Video",
+    "name": "video_group",
+    "type": "group",
+    "icon": {
+      "name": "video",
+      "set": "fontawesome-6.4.2",
+      "type": "SOLID"
+    },
+    "expanded": true,
+    "visibility_rules": "ADVANCED",
+    "advanced_visibility": {
+      "boolean_operator": "AND",
+      "criteria": [
+        {
+          "controlling_field_path": "media_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "video"
+        },
+        {
+          "controlling_field_path": "module_components",
+          "operator": "MATCHES_REGEX",
+          "controlling_value_regex": "media"
+        }
+      ]
+    },
+    "children": [
+      {
+        "label": "Video type",
+        "name": "video_type",
+        "required": true,
+        "default": "hubspot_video",
+        "choices": [
+          [
+            "hubspot_video",
+            "HubSpot video"
+          ],
+          [
+            "embed",
+            "Embed"
+          ]
+        ],
+        "type": "choice"
+      },
+      {
+        "label": "HubSpot video",
+        "name": "hubspot_video",
+        "show_preview": true,
+        "show_advanced_options": false,
+        "resizable": false,
+        "visibility": {
+          "controlling_field_path": "video_group.video_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "hubspot_video"
+        },
+        "type": "videoplayer"
+      },
+      {
+        "label": "Embed",
+        "name": "embed",
+        "show_preview": true,
+        "resizable": false,
+        "visibility": {
+          "controlling_field_path": "video_group.video_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "embed"
+        },
+        "type": "embed"
+      },
+      {
+        "label": "",
+        "name": "video_prop_visibility",
+        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> additional <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Video</span> properties.",
+        "display": "toggle",
+        "type": "boolean"
+      },
+      {
+        "label": "Force full width",
+        "name": "force_full_width_video",
+        "locked": false,
+        "help_text": "With the <strong>Force full width</strong> option enabled, it will take the full width of the parent element, even if there is extra padding around it.",
+        "display_width": "half_width",
+        "default": false,
+        "visibility": {
+          "controlling_field_path": "video_group.video_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "boolean"
+      },
+      {
+        "label": "Border radius",
+        "name": "video_border_radius",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "video_group.force_full_width_video",
+              "operator": "EQUAL",
+              "controlling_value_regex": "false"
+            },
+            {
+              "controlling_field_path": "video_group.video_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "number"
+      },
+      {
+        "label": "HubSpot video play button color",
+        "name": "hubspot_video_play_button_color",
+        "show_opacity": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "video_group.video_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "hubspot_video"
+            },
+            {
+              "controlling_field_path": "video_group.hubspot_video",
+              "operator": "NOT_EMPTY",
+              "property": "player_id"
+            },
+            {
+              "controlling_field_path": "video_group.video_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "color"
+      }
+    ]
+  },
+  {
+    "label": "Heading",
+    "name": "heading",
+    "type": "group",
+    "icon": {
+      "name": "heading",
+      "set": "fontawesome-6.4.2",
+      "type": "SOLID"
+    },
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "main_heading"
+    },
+    "expanded": true,
+    "children": [
+      {
+        "label": "",
+        "name": "heading_text",
+        "allow_new_line": true,
+        "default": "Universal card heading",
+        "type": "text"
+      },
+      {
+        "label": "",
+        "name": "heading_text_prop_visibility",
+        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> additional <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Heading</span> properties.",
+        "display": "toggle",
+        "type": "boolean"
+      },
+      {
+        "label": "Tag",
+        "name": "heading_tag",
+        "choices": [
+          [
+            "h1",
+            "H1"
+          ],
+          [
+            "h2",
+            "H2"
+          ],
+          [
+            "h3",
+            "H3"
+          ],
+          [
+            "h4",
+            "H4"
+          ],
+          [
+            "h5",
+            "H5"
+          ],
+          [
+            "h6",
+            "H6"
+          ]
+        ],
+        "default": "h2",
+        "required": true,
+        "help_text": "Semantic heading tag (h1-h6)",
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "heading.heading_text_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Style",
+        "name": "heading_style",
+        "choices": [
+          [
+            "display-1",
+            "Style 12"
+          ],
+          [
+            "display-2",
+            "Style 11"
+          ],
+          [
+            "display-3",
+            "Style 10"
+          ],
+          [
+            "display-4",
+            "Style 9"
+          ],
+          [
+            "display-5",
+            "Style 8"
+          ],
+          [
+            "display-6",
+            "Style 7"
+          ],
+          [
+            "h1",
+            "Style 6 [H1]"
+          ],
+          [
+            "h2",
+            "Style 5 [H2]"
+          ],
+          [
+            "h3",
+            "Style 4 [H3]"
+          ],
+          [
+            "h4",
+            "Style 3 [H4]"
+          ],
+          [
+            "h5",
+            "Style 2 [H5]"
+          ],
+          [
+            "h6",
+            "Style 1 [H6]"
+          ]
+        ],
+        "help_text": "Display different heading styles not related to semantic heading type (tag h1-h6)",
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "heading.heading_text_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Link type",
+        "name": "heading_link_type",
+        "choices": [
+          [
+            "link",
+            "Link"
+          ],
+          [
+            "anchor",
+            "Anchor"
+          ]
+        ],
+        "placeholder": "No link",
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "heading.heading_text_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "",
+        "name": "heading_link",
+        "supported_types": [
+          "BLOG",
+          "CALL_TO_ACTION",
+          "CONTENT",
+          "EMAIL_ADDRESS",
+          "FILE",
+          "EXTERNAL",
+          "PAYMENT",
+          "PHONE_NUMBER",
+          "WHATSAPP_NUMBER"
+        ],
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "heading.heading_link_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "link"
+            },
+            {
+              "controlling_field_path": "heading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "link"
+      },
+      {
+        "label": "Add icon",
+        "name": "heading_icon_type",
+        "help_text": "Add icon to the heading",
+        "display_width": "half_width",
+        "placeholder": "None",
+        "choices": [
+          [
+            "fontawesome",
+            "FontAwesome icon"
+          ],
+          [
+            "inline_svg",
+            "Inline SVG"
+          ],
+          [
+            "image",
+            "Image"
+          ]
+        ],
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "heading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            },
+            {
+              "controlling_field_path": "heading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Icon position",
+        "name": "heading_icon_position",
+        "choices": [
+          [
+            "left",
+            "Left"
+          ],
+          [
+            "right",
+            "Right"
+          ],
+          [
+            "left-space-between",
+            "Left space between"
+          ],
+          [
+            "right-space-between",
+            "Right space between"
+          ]
+        ],
+        "default": "left",
+        "display_width": "half_width",
+        "required": true,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "heading.heading_icon_type",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "heading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            },
+            {
+              "controlling_field_path": "heading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Icon",
+        "name": "heading_icon",
+        "set": "fontawesome-6.4.2",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "heading.heading_icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "fontawesome"
+            },
+            {
+              "controlling_field_path": "heading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            },
+            {
+              "controlling_field_path": "heading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "icon"
+      },
+      {
+        "label": "Inline SVG",
+        "name": "heading_inline_svg",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "heading.heading_icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "inline_svg"
+            },
+            {
+              "controlling_field_path": "heading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            },
+            {
+              "controlling_field_path": "heading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "html"
+      },
+      {
+        "label": "Image",
+        "name": "heading_image",
+        "resizable": false,
+        "responsive": false,
+        "show_loading": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "heading.heading_icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "image"
+            },
+            {
+              "controlling_field_path": "heading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            },
+            {
+              "controlling_field_path": "heading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "image"
+      },
+      {
+        "label": "Icon color",
+        "name": "heading_icon_color",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "heading.heading_icon_type",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "heading.heading_icon_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "image"
+            },
+            {
+              "controlling_field_path": "heading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            },
+            {
+              "controlling_field_path": "heading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "link"
+            },
+            {
+              "controlling_field_path": "heading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Advanced customization",
+        "name": "heading_additional_customization",
+        "help_text": "Enable advanced <span style=\"color:#61dcee;font-weight:700;font-size:14px;\">Heading</span> style customization.<br>***<br>Use only in rare cases when global heading style is not sufficient.",
+        "visibility": {
+          "controlling_field_path": "heading.heading_text_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "boolean"
+      },
+      {
+        "label": "Font",
+        "name": "heading_font",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "heading.heading_additional_customization",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "heading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "visibility": {
+          "hidden_subfields": {
+            "size": true,
+            "bold": true,
+            "italic": true,
+            "underline": true,
+            "color": true
+          }
+        },
+        "type": "font"
+      },
+      {
+        "label": "Color",
+        "name": "heading_color",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "heading.heading_additional_customization",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "heading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "heading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "link"
+            },
+            {
+              "controlling_field_path": "heading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Color",
+        "name": "heading_link_color",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "children": [
+            {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "heading.heading_additional_customization",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                },
+                {
+                  "controlling_field_path": "heading.heading_text_prop_visibility",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            {
+              "boolean_operator": "OR",
+              "criteria": [
+                {
+                  "controlling_field_path": "heading.heading_link_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "link"
+                },
+                {
+                  "controlling_field_path": "heading.heading_link_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "anchor"
+                }
+              ]
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Hover color",
+        "name": "heading_link_hover_color",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "children": [
+            {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "heading.heading_additional_customization",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                },
+                {
+                  "controlling_field_path": "heading.heading_text_prop_visibility",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            {
+              "boolean_operator": "OR",
+              "criteria": [
+                {
+                  "controlling_field_path": "heading.heading_link_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "link"
+                },
+                {
+                  "controlling_field_path": "heading.heading_link_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "anchor"
+                }
+              ]
+            }
+          ]
+        },
+        "type": "color"
+      }
+    ]
+  },
+  {
+    "label": "Subheading",
+    "name": "subheading",
+    "type": "group",
+    "icon": {
+      "name": "bold",
+      "set": "fontawesome-6.4.2",
+      "type": "SOLID"
+    },
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "sub_heading"
+    },
+    "expanded": true,
+    "children": [
+      {
+        "label": "",
+        "name": "heading_text",
+        "allow_new_line": true,
+        "default": "Universal card heading",
+        "type": "text"
+      },
+      {
+        "label": "",
+        "name": "heading_text_prop_visibility",
+        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> additional <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Heading</span> properties.",
+        "display": "toggle",
+        "type": "boolean"
+      },
+      {
+        "label": "Tag",
+        "name": "heading_tag",
+        "choices": [
+          [
+            "h1",
+            "H1"
+          ],
+          [
+            "h2",
+            "H2"
+          ],
+          [
+            "h3",
+            "H3"
+          ],
+          [
+            "h4",
+            "H4"
+          ],
+          [
+            "h5",
+            "H5"
+          ],
+          [
+            "h6",
+            "H6"
+          ]
+        ],
+        "default": "h2",
+        "required": true,
+        "help_text": "Semantic heading tag (h1-h6)",
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "subheading.heading_text_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Style",
+        "name": "heading_style",
+        "choices": [
+          [
+            "display-1",
+            "Style 12"
+          ],
+          [
+            "display-2",
+            "Style 11"
+          ],
+          [
+            "display-3",
+            "Style 10"
+          ],
+          [
+            "display-4",
+            "Style 9"
+          ],
+          [
+            "display-5",
+            "Style 8"
+          ],
+          [
+            "display-6",
+            "Style 7"
+          ],
+          [
+            "h1",
+            "Style 6 [H1]"
+          ],
+          [
+            "h2",
+            "Style 5 [H2]"
+          ],
+          [
+            "h3",
+            "Style 4 [H3]"
+          ],
+          [
+            "h4",
+            "Style 3 [H4]"
+          ],
+          [
+            "h5",
+            "Style 2 [H5]"
+          ],
+          [
+            "h6",
+            "Style 1 [H6]"
+          ]
+        ],
+        "help_text": "Display different heading styles not related to semantic heading type (tag h1-h6)",
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "subheading.heading_text_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Link type",
+        "name": "heading_link_type",
+        "choices": [
+          [
+            "link",
+            "Link"
+          ],
+          [
+            "anchor",
+            "Anchor"
+          ]
+        ],
+        "placeholder": "No link",
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "subheading.heading_text_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "",
+        "name": "heading_link",
+        "supported_types": [
+          "BLOG",
+          "CALL_TO_ACTION",
+          "CONTENT",
+          "EMAIL_ADDRESS",
+          "FILE",
+          "EXTERNAL",
+          "PAYMENT",
+          "PHONE_NUMBER",
+          "WHATSAPP_NUMBER"
+        ],
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "subheading.heading_link_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "link"
+            },
+            {
+              "controlling_field_path": "subheading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "link"
+      },
+      {
+        "label": "Add icon",
+        "name": "heading_icon_type",
+        "help_text": "Add icon to the heading",
+        "display_width": "half_width",
+        "placeholder": "None",
+        "choices": [
+          [
+            "fontawesome",
+            "FontAwesome icon"
+          ],
+          [
+            "inline_svg",
+            "Inline SVG"
+          ],
+          [
+            "image",
+            "Image"
+          ]
+        ],
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "subheading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            },
+            {
+              "controlling_field_path": "subheading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Icon position",
+        "name": "heading_icon_position",
+        "choices": [
+          [
+            "left",
+            "Left"
+          ],
+          [
+            "right",
+            "Right"
+          ],
+          [
+            "left-space-between",
+            "Left space between"
+          ],
+          [
+            "right-space-between",
+            "Right space between"
+          ]
+        ],
+        "default": "left",
+        "display_width": "half_width",
+        "required": true,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "subheading.heading_icon_type",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "subheading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            },
+            {
+              "controlling_field_path": "subheading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Icon",
+        "name": "heading_icon",
+        "set": "fontawesome-6.4.2",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "subheading.heading_icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "fontawesome"
+            },
+            {
+              "controlling_field_path": "subheading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            },
+            {
+              "controlling_field_path": "subheading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "icon"
+      },
+      {
+        "label": "Inline SVG",
+        "name": "heading_inline_svg",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "subheading.heading_icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "inline_svg"
+            },
+            {
+              "controlling_field_path": "subheading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            },
+            {
+              "controlling_field_path": "subheading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "html"
+      },
+      {
+        "label": "Image",
+        "name": "heading_image",
+        "resizable": false,
+        "responsive": false,
+        "show_loading": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "subheading.heading_icon_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "image"
+            },
+            {
+              "controlling_field_path": "subheading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            },
+            {
+              "controlling_field_path": "subheading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "image"
+      },
+      {
+        "label": "Icon color",
+        "name": "heading_icon_color",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "subheading.heading_icon_type",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "subheading.heading_icon_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "image"
+            },
+            {
+              "controlling_field_path": "subheading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            },
+            {
+              "controlling_field_path": "subheading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "link"
+            },
+            {
+              "controlling_field_path": "subheading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Advanced customization",
+        "name": "heading_additional_customization",
+        "help_text": "Enable advanced <span style=\"color:#61dcee;font-weight:700;font-size:14px;\">Heading</span> style customization.<br>***<br>Use only in rare cases when global heading style is not sufficient.",
+        "visibility": {
+          "controlling_field_path": "subheading.heading_text_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "boolean"
+      },
+      {
+        "label": "Font",
+        "name": "heading_font",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "subheading.heading_additional_customization",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "subheading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "visibility": {
+          "hidden_subfields": {
+            "size": true,
+            "bold": true,
+            "italic": true,
+            "underline": true,
+            "color": true
+          }
+        },
+        "type": "font"
+      },
+      {
+        "label": "Color",
+        "name": "heading_color",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "subheading.heading_additional_customization",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "subheading.heading_text_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "subheading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "link"
+            },
+            {
+              "controlling_field_path": "subheading.heading_link_type",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "anchor"
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Color",
+        "name": "heading_link_color",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "children": [
+            {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "subheading.heading_additional_customization",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                },
+                {
+                  "controlling_field_path": "subheading.heading_text_prop_visibility",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            {
+              "boolean_operator": "OR",
+              "criteria": [
+                {
+                  "controlling_field_path": "subheading.heading_link_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "link"
+                },
+                {
+                  "controlling_field_path": "subheading.heading_link_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "anchor"
+                }
+              ]
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Hover color",
+        "name": "heading_link_hover_color",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "children": [
+            {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "subheading.heading_additional_customization",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                },
+                {
+                  "controlling_field_path": "subheading.heading_text_prop_visibility",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "true"
+                }
+              ]
+            },
+            {
+              "boolean_operator": "OR",
+              "criteria": [
+                {
+                  "controlling_field_path": "subheading.heading_link_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "link"
+                },
+                {
+                  "controlling_field_path": "subheading.heading_link_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "anchor"
+                }
+              ]
+            }
+          ]
+        },
+        "type": "color"
+      }
+    ]
+  },
+  {
+    "label": "Rich text",
+    "name": "richtext",
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "richtext"
+    },
+    "type": "richtext"
+  },
+  {
+    "label": "Buttons",
+    "name": "button_group",
+    "type": "group",
+    "icon": {
+      "name": "audio-description",
+      "set": "fontawesome-6.4.2",
+      "type": "SOLID"
+    },
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "buttons"
+    },
+    "occurrence": {
+      "min": 0,
+      "max": 100,
+      "sorting_label_field": "button_group.button_text"
+    },
+    "children": [
+      {
+        "label": "Style",
+        "name": "button_style",
+        "default": "primary",
+        "choices": [
+          [
+            "primary",
+            "Primary"
+          ],
+          [
+            "secondary1",
+            "Button 2"
+          ],
+          [
+            "secondary2",
+            "Button 3"
+          ],
+          [
+            "secondary3",
+            "Button 4"
+          ],
+          [
+            "linkonly",
+            "Link"
+          ],
+          [
+            "cta",
+            "CTA"
+          ],
+          [
+            "customlink",
+            "Custom link"
+          ],
+          [
+            "custombutton",
+            "Custom Button"
+          ]
+        ],
+        "required": true,
+        "display_width": "half_width",
+        "type": "choice"
+      },
+      {
+        "label": "CTA",
+        "name": "button_cta",
+        "visibility": {
+          "controlling_field_path": "button_group.button_style",
+          "operator": "EQUAL",
+          "controlling_value_regex": "cta"
+        },
+        "type": "cta"
+      },
+      {
+        "label": "Size",
+        "name": "button_size",
+        "default": "regular",
+        "choices": [
+          [
+            "small",
+            "Small"
+          ],
+          [
+            "regular",
+            "Regular"
+          ],
+          [
+            "large",
+            "Large"
+          ]
+        ],
+        "required": true,
+        "display_width": "half_width",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "linkonly"
+            },
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "cta"
+            },
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "customlink"
+            }
+          ]
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Text",
+        "name": "button_text",
+        "visibility": {
+          "controlling_field_path": "button_group.button_style",
+          "operator": "NOT_EQUAL",
+          "controlling_value_regex": "cta"
+        },
+        "type": "text"
+      },
+      {
+        "label": "",
+        "name": "button_link",
+        "supported_types": [
+          "BLOG",
+          "CALL_TO_ACTION",
+          "CONTENT",
+          "EMAIL_ADDRESS",
+          "FILE",
+          "EXTERNAL",
+          "PAYMENT",
+          "PHONE_NUMBER",
+          "WHATSAPP_NUMBER"
+        ],
+        "visibility": {
+          "controlling_field_path": "button_group.button_style",
+          "operator": "NOT_EQUAL",
+          "controlling_value_regex": "cta"
+        },
+        "type": "link"
+      },
+      {
+        "label": "Position",
+        "name": "button_position",
+        "required": true,
+        "default": "inline",
+        "display_width": "half_width",
+        "choices": [
+          [
+            "inline",
+            "Inline with other buttons"
+          ],
+          [
+            "separate",
+            "On separate line"
+          ],
+          [
+            "fullwidth",
+            "Full width button"
+          ]
+        ],
+        "type": "choice"
+      },
+      {
+        "label": "Alignment",
+        "name": "button_alignment",
+        "display_width": "half_width",
+        "required": true,
+        "default": "start",
+        "choices": [
+          [
+            "start",
+            "Left"
+          ],
+          [
+            "center",
+            "Center"
+          ],
+          [
+            "end",
+            "Right"
+          ]
+        ],
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "button_group.button_position",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "fullwidth"
+            },
+            {
+              "controlling_field_path": "button_group.button_position",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "inline"
+            }
+          ]
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Add icon",
+        "name": "add_button_icon",
+        "display_width": "half_width",
+        "help_text": "Add icon to the button",
+        "placeholder": "None",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "cta"
+            }
+          ]
+        },
+        "choices": [
+          [
+            "fontawesome",
+            "FontAwesome icon"
+          ],
+          [
+            "inline_svg",
+            "Inline SVG"
+          ],
+          [
+            "image",
+            "Image"
+          ]
+        ],
+        "type": "choice"
+      },
+      {
+        "label": "Icon",
+        "name": "button_icon",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "button_group.add_button_icon",
+              "operator": "EQUAL",
+              "controlling_value_regex": "fontawesome"
+            },
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "cta"
+            }
+          ]
+        },
+        "type": "icon"
+      },
+      {
+        "label": "Inline SVG",
+        "name": "button_inline_svg",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "button_group.add_button_icon",
+              "operator": "EQUAL",
+              "controlling_value_regex": "inline_svg"
+            },
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "cta"
+            }
+          ]
+        },
+        "type": "html"
+      },
+      {
+        "label": "Image",
+        "name": "button_image",
+        "responsive": false,
+        "resizable": false,
+        "show_loading": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "button_group.add_button_icon",
+              "operator": "EQUAL",
+              "controlling_value_regex": "image"
+            },
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "cta"
+            }
+          ]
+        },
+        "type": "image"
+      },
+      {
+        "label": "Icon position",
+        "name": "button_icon_position",
+        "display_width": "half_width",
+        "choices": [
+          [
+            "left",
+            "Left"
+          ],
+          [
+            "right",
+            "Right"
+          ]
+        ],
+        "default": "left",
+        "required": true,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "button_group.add_button_icon",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "cta"
+            },
+            {
+              "controlling_field_path": "button_group.button_hide_text",
+              "operator": "EQUAL",
+              "controlling_value_regex": "false"
+            }
+          ]
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Hide text",
+        "name": "button_hide_text",
+        "help_text": "Hide the button text and only show the icon or image",
+        "display_width": "half_width",
+        "default": false,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "button_group.add_button_icon",
+              "operator": "NOT_EMPTY"
+            },
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "cta"
+            },
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "customlink"
+            },
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "linkonly"
+            }
+          ]
+        },
+        "type": "boolean"
+      },
+      {
+        "label": "Font",
+        "name": "custom_link_font",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "customlink"
+            },
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            }
+          ]
+        },
+        "visibility": {
+          "hidden_subfields": {
+            "underline": true,
+            "color": true
+          }
+        },
+        "type": "font"
+      },
+      {
+        "label": "Color",
+        "name": "custom_link_color",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "customlink"
+            },
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Underline",
+        "name": "custom_link_underline",
+        "display": "radio",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "customlink"
+            },
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            }
+          ]
+        },
+        "choices": [
+          [
+            "underline",
+            "Underline"
+          ],
+          [
+            "none",
+            "None"
+          ]
+        ],
+        "type": "choice"
+      },
+      {
+        "label": "Hover effects",
+        "name": "custom_link_hover",
+        "type": "group",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "customlink"
+            },
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            }
+          ]
+        },
+        "children": [
+          {
+            "label": "Color",
+            "name": "color",
+            "type": "color"
+          },
+          {
+            "label": "Underline",
+            "name": "underline",
+            "display": "radio",
+            "choices": [
+              [
+                "underline",
+                "Underline"
+              ],
+              [
+                "none",
+                "None"
+              ]
+            ],
+            "type": "choice"
+          }
+        ]
+      },
+      {
+        "label": "Font",
+        "name": "custom_button_font",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custombutton"
+            },
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            }
+          ]
+        },
+        "type": "font"
+      },
+      {
+        "label": "Background",
+        "name": "custom_button_background",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custombutton"
+            },
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Vertical spacing",
+        "name": "custom_button_vertical_spacing",
+        "min": 0,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custombutton"
+            },
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            }
+          ]
+        },
+        "display_width": "half_width",
+        "suffix": "px",
+        "type": "number"
+      },
+      {
+        "label": "Horizontal",
+        "name": "custom_button_horizontal_spacing",
+        "min": 0,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custombutton"
+            },
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            }
+          ]
+        },
+        "display_width": "half_width",
+        "suffix": "px",
+        "type": "number"
+      },
+      {
+        "label": "Border width",
+        "name": "custom_button_border_width",
+        "min": 0,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custombutton"
+            },
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            }
+          ]
+        },
+        "display_width": "half_width",
+        "suffix": "px",
+        "type": "number"
+      },
+      {
+        "label": "Border radius",
+        "name": "custom_button_border_radius",
+        "min": 0,
+        "suffix": "px",
+        "display_width": "half_width",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custombutton"
+            },
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            }
+          ]
+        },
+        "type": "number"
+      },
+      {
+        "label": "Border color",
+        "name": "custom_button_border_color",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custombutton"
+            },
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Hover effects",
+        "name": "custom_button_hover",
+        "type": "group",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "button_group.button_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "custombutton"
+            },
+            {
+              "controlling_field_path": "button_group.button_text",
+              "operator": "NOT_EMPTY"
+            }
+          ]
+        },
+        "children": [
+          {
+            "label": "Color",
+            "name": "color",
+            "type": "color"
+          },
+          {
+            "label": "Background",
+            "name": "background",
+            "type": "color"
+          },
+          {
+            "label": "Border color",
+            "name": "border_color",
+            "type": "color"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Custom text",
+    "name": "custom_text_group",
+    "type": "group",
+    "icon": {
+      "name": "font",
+      "set": "fontawesome-6.4.2",
+      "type": "SOLID"
+    },
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "custom_text"
+    },
+    "help_text": "Customizable text. Text that can be used for badges or some unusual typography style.",
+    "occurrence": {
+      "min": 0,
+      "max": 10,
+      "sorting_label_field": "custom_text_group.text"
+    },
+    "children": [
+      {
+        "label": "Text",
+        "name": "custom_text",
+        "allow_new_line": true,
+        "type": "text"
+      },
+      {
+        "label": "Inline",
+        "name": "custom_text_inline",
+        "default": true,
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "custom_text_group.custom_text",
+          "operator": "NOT_EMPTY"
+        },
+        "type": "boolean"
+      },
+      {
+        "label": "Font",
+        "name": "custom_text_font",
+        "visibility": {
+          "controlling_field_path": "custom_text_group.custom_text",
+          "operator": "NOT_EMPTY"
+        },
+        "type": "font"
+      },
+      {
+        "label": "Background",
+        "name": "custom_text_background",
+        "visibility": {
+          "controlling_field_path": "custom_text_group.custom_text",
+          "operator": "NOT_EMPTY"
+        },
+        "type": "color"
+      },
+      {
+        "label": "Vertical spacing",
+        "name": "custom_text_vertical_spacing",
+        "min": 0,
+        "visibility": {
+          "controlling_field_path": "custom_text_group.custom_text",
+          "operator": "NOT_EMPTY"
+        },
+        "display_width": "half_width",
+        "suffix": "px",
+        "type": "number"
+      },
+      {
+        "label": "Horizontal",
+        "name": "custom_text_horizontal_spacing",
+        "min": 0,
+        "visibility": {
+          "controlling_field_path": "custom_text_group.custom_text",
+          "operator": "NOT_EMPTY"
+        },
+        "display_width": "half_width",
+        "suffix": "px",
+        "type": "number"
+      },
+      {
+        "label": "Border radius",
+        "name": "custom_text_border_radius",
+        "min": 0,
+        "visibility": {
+          "controlling_field_path": "custom_text_group.custom_text",
+          "operator": "NOT_EMPTY"
+        },
+        "suffix": "px",
+        "type": "number"
+      },
+      {
+        "label": "Gradient color",
+        "name": "gradient_color",
+        "display_width": "half_width",
+        "occurrence": {
+          "min": 2,
+          "max": 7,
+          "default": 2
+        },
+        "default": [
+          {
+            "color": "#999999",
+            "opacity": 100
+          },
+          {
+            "color": "#999999",
+            "opacity": 100
+          }
+        ],
+        "visibility": {
+          "controlling_field_path": "custom_text_group.custom_text",
+          "operator": "NOT_EMPTY"
+        },
+        "type": "color"
+      },
+      {
+        "label": "Gradient direction",
+        "name": "gradient_direction",
+        "help_text": "Unset any gradient direction to turn off the color gradient style for the text",
+        "display_width": "half_width",
+        "placeholder": "No gradient",
+        "choices": [
+          [
+            "to top",
+            "Bottom to top"
+          ],
+          [
+            "to bottom",
+            "Top to bottom"
+          ],
+          [
+            "to left",
+            "Right to left"
+          ],
+          [
+            "to right",
+            "Left to right"
+          ],
+          [
+            "to bottom right",
+            "Top left to bottom right"
+          ],
+          [
+            "to bottom left",
+            "Top right to bottom left"
+          ]
+        ],
+        "visibility": {
+          "controlling_field_path": "custom_text_group.custom_text",
+          "operator": "NOT_EMPTY"
+        },
+        "type": "choice"
+      }
+    ]
+  },
+  {
+    "label": "List",
+    "name": "list_group",
+    "type": "group",
+    "icon": {
+      "name": "tasks",
+      "set": "fontawesome-6.4.2",
+      "type": "SOLID"
+    },
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "list"
+    },
+    "children": [
+      {
+        "label": "List item",
+        "name": "list_item",
+        "type": "group",
+        "occurrence": {
+          "min": 0,
+          "max": 100,
+          "sorting_label_field": "list_group.list_item_text"
+        },
+        "children": [
+          {
+            "label": "List item text",
+            "name": "list_item_text",
+            "type": "text"
+          },
+          {
+            "label": "Add icon",
+            "name": "list_item_icon_type",
+            "help_text": "Add icon to the list item",
+            "display_width": "half_width",
+            "placeholder": "None",
+            "choices": [
+              [
+                "fontawesome",
+                "FontAwesome icon"
+              ],
+              [
+                "inline_svg",
+                "Inline SVG"
+              ],
+              [
+                "image",
+                "Image"
+              ]
+            ],
+            "visibility": {
+              "controlling_field_path": "list_group.list_item.list_item_text",
+              "operator": "NOT_EMPTY"
+            },
+            "type": "choice"
+          },
+          {
+            "label": "Icon",
+            "name": "list_item_icon",
+            "set": "fontawesome-6.4.2",
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "list_group.list_item.list_item_icon_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "fontawesome"
+                },
+                {
+                  "controlling_field_path": "list_group.list_item.list_item_text",
+                  "operator": "NOT_EMPTY"
+                }
+              ]
+            },
+            "type": "icon"
+          },
+          {
+            "label": "Inline SVG",
+            "name": "list_item_inline_svg",
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "list_group.list_item.list_item_icon_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "inline_svg"
+                },
+                {
+                  "controlling_field_path": "list_group.list_item.list_item_text",
+                  "operator": "NOT_EMPTY"
+                }
+              ]
+            },
+            "type": "html"
+          },
+          {
+            "label": "Image",
+            "name": "list_item_image",
+            "responsive": false,
+            "resizable": false,
+            "show_loading": false,
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "list_group.list_item.list_item_icon_type",
+                  "operator": "EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "list_group.list_item.list_item_text",
+                  "operator": "NOT_EMPTY"
+                }
+              ]
+            },
+            "type": "image"
+          },
+          {
+            "label": "Icon color",
+            "name": "list_item_icon_color",
+            "visibility_rules": "ADVANCED",
+            "advanced_visibility": {
+              "boolean_operator": "AND",
+              "criteria": [
+                {
+                  "controlling_field_path": "list_group.list_item.list_item_icon_type",
+                  "operator": "NOT_EMPTY"
+                },
+                {
+                  "controlling_field_path": "list_group.list_item.list_item_icon_type",
+                  "operator": "NOT_EQUAL",
+                  "controlling_value_regex": "image"
+                },
+                {
+                  "controlling_field_path": "list_group.list_item.list_item_text",
+                  "operator": "NOT_EMPTY"
+                }
+              ]
+            },
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "label": "List gap",
+        "name": "list_gap",
+        "help_text": "Space between list items",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "type": "number"
+      },
+      {
+        "label": "Inline",
+        "name": "list_inline",
+        "help_text": "Display list items in a row",
+        "display_width": "half_width",
+        "type": "boolean"
+      },
+      {
+        "label": "Font",
+        "name": "list_item_font",
+        "visibility": {
+          "hidden_subfields": {
+            "color": true
+          }
+        },
+        "type": "font"
+      },
+      {
+        "label": "Text color",
+        "name": "list_item_text_color",
+        "type": "color"
+      },
+      {
+        "label": "Icon size",
+        "name": "list_item_icon_size",
+        "display_width": "half_width",
+        "min": 0,
+        "suffix": "px",
+        "type": "number"
+      },
+      {
+        "label": "Icon gap",
+        "name": "list_item_icon_gap",
+        "display_width": "half_width",
+        "min": 0,
+        "suffix": "px",
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "label": "Accordion",
+    "name": "accordion_group",
+    "type": "group",
+    "icon": {
+      "name": "indent",
+      "set": "fontawesome-6.4.2",
+      "type": "SOLID"
+    },
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "accordion"
+    },
+    "children": [
+      {
+        "label": "Accordion item",
+        "name": "accordion_item",
+        "type": "group",
+        "occurrence": {
+          "min": 0,
+          "max": 100,
+          "sorting_label_field": "accordion_group.accordion_item.accordion_item_title"
+        },
+        "children": [
+          {
+            "label": "Accordion heading",
+            "name": "accordion_item_title",
+            "type": "text"
+          },
+          {
+            "label": "Accordion item text",
+            "name": "accordion_item_text",
+            "type": "richtext"
+          }
+        ]
+      },
+      {
+        "label": "",
+        "name": "accordion_title_prop_visibility",
+        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> accordion <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Title</span> properties.",
+        "display": "toggle",
+        "type": "boolean"
+      },
+      {
+        "label": "Title font",
+        "name": "accordion_title_font",
+        "visibility": {
+          "hidden_subfields": {
+            "color": true,
+            "size": true,
+            "bold": true,
+            "italic": true,
+            "underline": true
+          },
+          "controlling_field_path": "accordion_group.accordion_title_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "font"
+      },
+      {
+        "label": "Title color",
+        "name": "accordion_title_color",
+        "visibility": {
+          "controlling_field_path": "accordion_group.accordion_title_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "color"
+      },
+      {
+        "label": "Title size",
+        "name": "accordion_title_size",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility": {
+          "controlling_field_path": "accordion_group.accordion_title_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "number"
+      },
+      {
+        "label": "",
+        "name": "accordion_spacing_prop_visibility",
+        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> accordion <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Spacing</span> properties.",
+        "display": "toggle",
+        "type": "boolean"
+      },
+      {
+        "label": "Top",
+        "name": "accordion_spacing_top",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility": {
+          "controlling_field_path": "accordion_group.accordion_spacing_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "number"
+      },
+      {
+        "label": "Bottom",
+        "name": "accordion_spacing_bottom",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility": {
+          "controlling_field_path": "accordion_group.accordion_spacing_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "number"
+      },
+      {
+        "label": "Left",
+        "name": "accordion_spacing_left",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility": {
+          "controlling_field_path": "accordion_group.accordion_spacing_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "number"
+      },
+      {
+        "label": "Right",
+        "name": "accordion_spacing_right",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility": {
+          "controlling_field_path": "accordion_group.accordion_spacing_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "number"
+      },
+      {
+        "label": "",
+        "name": "accordion_icon_prop_visibility",
+        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> accordion <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Icon</span> properties.",
+        "display": "toggle",
+        "type": "boolean"
+      },
+      {
+        "label": "Icon position",
+        "name": "accordion_icon_position",
+        "choices": [
+          [
+            "left",
+            "Left"
+          ],
+          [
+            "right",
+            "Right"
+          ]
+        ],
+        "default": "left",
+        "display_width": "half_width",
+        "required": true,
+        "visibility": {
+          "controlling_field_path": "accordion_group.accordion_icon_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Icon size",
+        "name": "accordion_icon_size",
+        "display_width": "half_width",
+        "min": 0,
+        "suffix": "px",
+        "visibility": {
+          "controlling_field_path": "accordion_group.accordion_icon_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "number"
+      },
+      {
+        "label": "Icon gap",
+        "name": "accordion_icon_gap",
+        "display_width": "half_width",
+        "min": 0,
+        "suffix": "px",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "accordion_group.accordion_icon_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_icon_position",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "right"
+            }
+          ]
+        },
+        "type": "number"
+      },
+      {
+        "label": "Inline SVG",
+        "name": "accordion_icon_inline_svg",
+        "visibility": {
+          "controlling_field_path": "accordion_group.accordion_icon_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "html"
+      },
+      {
+        "label": "Icon color",
+        "name": "accordion_icon_color",
+        "visibility": {
+          "controlling_field_path": "accordion_group.accordion_icon_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "color"
+      },
+      {
+        "label": "",
+        "name": "accordion_border_prop_visibility",
+        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> accordion <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Border</span> properties.",
+        "display": "toggle",
+        "type": "boolean"
+      },
+      {
+        "label": "Border style",
+        "name": "accordion_border_style",
+        "choices": [
+          [
+            "no_border",
+            "No border"
+          ],
+          [
+            "border_divider",
+            "Border divider"
+          ],
+          [
+            "border_wrapper",
+            "Border wrapper"
+          ]
+        ],
+        "default": "border_divider",
+        "display_width": "half_width",
+        "required": true,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            }
+          ]
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Border width",
+        "name": "accordion_border_width",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_border_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "no_border"
+            }
+          ]
+        },
+        "type": "number"
+      },
+      {
+        "label": "Border color",
+        "name": "accordion_border_color",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_border_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "no_border"
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Border radius",
+        "name": "accordion_border_radius",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_border_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "no_border"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_border_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "border_wrapper"
+            }
+          ]
+        },
+        "type": "number"
+      },
+      {
+        "label": "Gap",
+        "name": "accordion_border_gap",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_border_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "no_border"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_border_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "border_wrapper"
+            }
+          ]
+        },
+        "type": "number"
+      },
+      {
+        "label": "Background color",
+        "name": "accordion_bg_color",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_border_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "no_border"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_border_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "border_wrapper"
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Show top border",
+        "name": "accordion_show_top_border",
+        "display_width": "half_width",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_border_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "no_border"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_border_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "border_divider"
+            }
+          ]
+        },
+        "type": "boolean"
+      },
+      {
+        "label": "Show bottom border",
+        "name": "accordion_show_bottom_border",
+        "display_width": "half_width",
+        "default": true,
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
+              "operator": "EQUAL",
+              "controlling_value_regex": "true"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_border_style",
+              "operator": "NOT_EQUAL",
+              "controlling_value_regex": "no_border"
+            },
+            {
+              "controlling_field_path": "accordion_group.accordion_border_style",
+              "operator": "EQUAL",
+              "controlling_value_regex": "border_divider"
+            }
+          ]
+        },
+        "type": "boolean"
+      }
+    ]
+  },
+  {
+    "label": "Form",
+    "name": "form_group",
+    "type": "group",
+    "icon": {
+      "name": "wpforms",
+      "set": "fontawesome-6.4.2",
+      "type": "REGULAR"
+    },
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "form"
+    },
+    "children": [
+      {
+        "label": "Title",
+        "name": "form_heading_text",
+        "allow_new_line": true,
+        "type": "text"
+      },
+      {
+        "label": "Form",
+        "name": "form",
+        "type": "form"
+      },
+      {
+        "label": "",
+        "name": "form_prop_visibility",
+        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> additional <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Form</span> properties.",
+        "display": "toggle",
+        "type": "boolean"
+      },
+      {
+        "label": "Title tag",
+        "name": "form_heading_tag",
+        "choices": [
+          [
+            "h1",
+            "H1"
+          ],
+          [
+            "h2",
+            "H2"
+          ],
+          [
+            "h3",
+            "H3"
+          ],
+          [
+            "h4",
+            "H4"
+          ],
+          [
+            "h5",
+            "H5"
+          ],
+          [
+            "h6",
+            "H6"
+          ]
+        ],
+        "default": "h3",
+        "required": true,
+        "help_text": "Semantic heading tag (h1-h6)",
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "form_group.form_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Title style",
+        "name": "form_heading_style",
+        "choices": [
+          [
+            "display-1",
+            "Style 12"
+          ],
+          [
+            "display-2",
+            "Style 11"
+          ],
+          [
+            "display-3",
+            "Style 10"
+          ],
+          [
+            "display-4",
+            "Style 9"
+          ],
+          [
+            "display-5",
+            "Style 8"
+          ],
+          [
+            "display-6",
+            "Style 7"
+          ],
+          [
+            "h1",
+            "Style 6 [H1]"
+          ],
+          [
+            "h2",
+            "Style 5 [H2]"
+          ],
+          [
+            "h3",
+            "Style 4 [H3]"
+          ],
+          [
+            "h4",
+            "Style 3 [H4]"
+          ],
+          [
+            "h5",
+            "Style 2 [H5]"
+          ],
+          [
+            "h6",
+            "Style 1 [H6]"
+          ]
+        ],
+        "help_text": "Display different heading styles not related to semantic heading type (tag h1-h6)",
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "form_group.form_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Button style",
+        "name": "button_style",
+        "choices": [
+          [
+            "primary",
+            "Primary"
+          ],
+          [
+            "secondary1",
+            "Button 2"
+          ],
+          [
+            "secondary2",
+            "Button 3"
+          ],
+          [
+            "secondary3",
+            "Button 4"
+          ]
+        ],
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "form_group.form_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Button size",
+        "name": "button_size",
+        "choices": [
+          [
+            "small",
+            "Small"
+          ],
+          [
+            "regular",
+            "Regular"
+          ],
+          [
+            "large",
+            "Large"
+          ]
+        ],
+        "display_width": "half_width",
+        "visibility": {
+          "controlling_field_path": "form_group.form_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Button position",
+        "name": "button_position",
+        "display_width": "half_width",
+        "choices": [
+          [
+            "left",
+            "Left"
+          ],
+          [
+            "center",
+            "Center"
+          ],
+          [
+            "right",
+            "Right"
+          ]
+        ],
+        "default": "left",
+        "required": true,
+        "visibility": {
+          "controlling_field_path": "form_group.form_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Text color",
+        "name": "form_text_color",
+        "visibility": {
+          "controlling_field_path": "form_group.form_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "color"
+      }
+    ]
+  },
+  {
+    "label": "Meeting",
+    "name": "meeting",
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "meeting"
+    },
+    "type": "meeting"
+  },
+  {
+    "label": "Additional images",
+    "name": "additional_images_group",
+    "type": "group",
+    "icon": {
+      "name": "images",
+      "set": "fontawesome-6.4.2",
+      "type": "REGULAR"
+    },
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "additional_images"
+    },
+    "occurrence": {
+      "min": 0,
+      "max": 20
+    },
+    "children": [
+      {
+        "label": "Simple image",
+        "name": "simple_image",
+        "resizable": false,
+        "show_loading": false,
+        "responsive": false,
+        "type": "image"
+      },
+      {
+        "label": "Width",
+        "name": "simple_image_width",
+        "min": 0,
+        "display_width": "half_width",
+        "suffix": "px",
+        "visibility": {
+          "controlling_field_path": "additional_images_group.simple_image",
+          "operator": "NOT_EMPTY",
+          "property": "src"
+        },
+        "type": "number"
+      },
+      {
+        "label": "Alignment",
+        "name": "simple_image_alignment",
+        "display_width": "half_width",
+        "locked": true,
+        "choices": [
+          [
+            "start",
+            "Left"
+          ],
+          [
+            "center",
+            "Center"
+          ],
+          [
+            "end",
+            "Right"
+          ]
+        ],
+        "visibility": {
+          "controlling_field_path": "additional_images_group.simple_image",
+          "operator": "NOT_EMPTY",
+          "property": "src"
+        },
+        "type": "choice"
+      }
+    ]
+  },
+  {
+    "label": "Simple text",
+    "name": "simple_text",
+    "visibility": {
+      "controlling_field_path": "module_components",
+      "operator": "MATCHES_REGEX",
+      "controlling_value_regex": "simple_text"
+    },
+    "allow_new_line": true,
+    "type": "text"
+  },
+  {
+    "label": "Whole area link",
+    "name": "whole_area_link",
+    "help_text": "When enabled, the whole area of the module will be clickable as a link.<br>To make this work, you need to add a link to any of the heading, subheading or button components.",
+    "display": "toggle",
+    "default": false,
+    "visibility_rules": "ADVANCED",
+    "locked": false,
+    "advanced_visibility": {
+      "boolean_operator": "OR",
+      "criteria": [
+        {
+          "controlling_field_path": "module_components",
+          "operator": "MATCHES_REGEX",
+          "controlling_value_regex": "main_heading"
+        },
+        {
+          "controlling_field_path": "module_components",
+          "operator": "MATCHES_REGEX",
+          "controlling_value_regex": "sub_heading"
+        },
+        {
+          "controlling_field_path": "module_components",
+          "operator": "MATCHES_REGEX",
+          "controlling_value_regex": "buttons"
+        }
+      ]
+    },
+    "type": "boolean"
+  },
+  {
+    "label": "Module components",
+    "name": "module_components",
+    "multiple": true,
+    "reordering_enabled": true,
+    "default": [
+      "media",
+      "main_heading",
+      "richtext",
+      "buttons"
+    ],
+    "choices": [
+      [
+        "media",
+        "Media"
+      ],
+      [
+        "main_heading",
+        "Main heading"
+      ],
+      [
+        "sub_heading",
+        "Sub heading"
+      ],
+      [
+        "richtext",
+        "Richtext"
+      ],
+      [
+        "custom_text",
+        "Custom text"
+      ],
+      [
+        "list",
+        "List"
+      ],
+      [
+        "accordion",
+        "Accordion"
+      ],
+      [
+        "separator",
+        "Separator"
+      ],
+      [
+        "buttons",
+        "Buttons"
+      ],
+      [
+        "additional_images",
+        "Additional images"
+      ],
+      [
+        "meeting",
+        "Meeting"
+      ],
+      [
+        "form",
+        "Form"
+      ]
+    ],
+    "type": "choice"
+  },
+  {
+    "name": "style",
+    "label": "Style",
+    "children": [
+      {
+        "label": "Alignment",
+        "name": "alignment",
+        "display_width": "half_width",
+        "default": {
+          "horizontal_align": "LEFT"
+        },
+        "alignment_direction": "HORIZONTAL",
+        "type": "alignment"
+      },
+      {
+        "label": "Mobile alignment",
+        "name": "mobile_alignment",
+        "display_width": "half_width",
+        "locked": true,
+        "alignment_direction": "HORIZONTAL",
+        "type": "alignment"
+      },
+      {
+        "label": "Text color",
+        "name": "text_color",
+        "display_width": "half_width",
+        "show_opacity": false,
+        "type": "color"
+      },
+      {
+        "label": "Content gap",
+        "name": "content_gap",
+        "min": 0,
+        "suffix": "px",
+        "default": 16,
+        "display_width": "half_width",
+        "help_text": "General gap between all card components",
+        "type": "number"
+      },
+      {
+        "label": "Background type",
+        "name": "background_type",
+        "display_width": "half_width",
+        "placeholder": "No background",
+        "choices": [
+          [
+            "background_color",
+            "Background color"
+          ],
+          [
+            "background_image",
+            "Background image"
+          ],
+          [
+            "background_gradient",
+            "Background gradient"
+          ]
+        ],
+        "type": "choice"
+      },
+      {
+        "label": "Background color",
+        "name": "background_color",
+        "visibility": {
+          "controlling_field_path": "style.background_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "background_color"
+        },
+        "type": "color"
+      },
+      {
+        "label": "Background image",
+        "name": "background_image",
+        "visibility": {
+          "controlling_field_path": "style.background_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "background_image"
+        },
+        "type": "backgroundimage"
+      },
+      {
+        "label": "Background image overlay type",
+        "name": "background_image_overlay_type",
+        "visibility": {
+          "controlling_field_path": "style.background_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "background_image"
+        },
+        "placeholder": "No overlay",
+        "choices": [
+          [
+            "color",
+            "Color"
+          ],
+          [
+            "gradient",
+            "Gradient"
+          ]
+        ],
+        "type": "choice"
+      },
+      {
+        "label": "Background image overlay",
+        "name": "background_image_overlay",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "style.background_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "background_image"
+            },
+            {
+              "controlling_field_path": "style.background_image_overlay_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "color"
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Background image overlay gradient",
+        "name": "background_image_overlay_gradient",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "style.background_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "background_image"
+            },
+            {
+              "controlling_field_path": "style.background_image_overlay_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "gradient"
+            }
+          ]
+        },
+        "type": "gradient"
+      },
+      {
+        "label": "Background gradient",
+        "name": "background_gradient",
+        "visibility": {
+          "controlling_field_path": "style.background_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "background_gradient"
+        },
+        "type": "gradient"
+      },
+      {
+        "label": "",
+        "name": "spacing",
+        "visibility": {
+          "hidden_subfields": {
+            "margin": true
+          }
+        },
+        "type": "spacing"
+      },
+      {
+        "label": "Border",
+        "name": "border",
+        "type": "border"
+      },
+      {
+        "label": "Border radius",
+        "name": "border_radius",
+        "min": 0,
+        "suffix": "px",
+        "display_width": "half_width",
+        "type": "number"
+      },
+      {
+        "label": "Shadow",
+        "name": "shadow",
+        "display_width": "half_width",
+        "choices": [
+          [
+            "shadow-sm",
+            "Shadow small"
+          ],
+          [
+            "shadow-md",
+            "Shadow medium"
+          ],
+          [
+            "shadow-lg",
+            "Shadow large"
+          ],
+          [
+            "shadow-xl",
+            "Shadow xl"
+          ],
+          [
+            "shadow-2xl",
+            "Shadow 2xl"
+          ],
+          [
+            "shadow-custom1",
+            "Custom-shadow 1"
+          ],
+          [
+            "shadow-custom2",
+            "Custom-shadow 2"
+          ],
+          [
+            "shadow-custom3",
+            "Custom-shadow 3"
+          ]
+        ],
+        "type": "choice"
+      },
+      {
+        "label": "Card hover effects",
+        "name": "hover_effects",
+        "locked": false,
+        "type": "boolean"
+      },
+      {
+        "label": "Hover",
+        "name": "hover",
+        "type": "group",
+        "expanded": true,
+        "locked": false,
+        "visibility": {
+          "controlling_field_path": "style.hover_effects",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "children": [
+          {
+            "label": "Text color",
+            "name": "text_color",
+            "type": "color"
+          },
+          {
+            "label": "Background color",
+            "name": "background_color",
+            "type": "color"
+          },
+          {
+            "label": "Border color",
+            "name": "border_color",
+            "type": "color"
+          },
+          {
+            "label": "Shadow",
+            "name": "shadow",
+            "display_width": "half_width",
+            "choices": [
+              [
+                "shadow-sm",
+                "Shadow small"
+              ],
+              [
+                "shadow-md",
+                "Shadow medium"
+              ],
+              [
+                "shadow-lg",
+                "Shadow large"
+              ],
+              [
+                "shadow-xl",
+                "Shadow xl"
+              ],
+              [
+                "shadow-2xl",
+                "Shadow 2xl"
+              ],
+              [
+                "shadow-custom1",
+                "Custom-shadow 1"
+              ],
+              [
+                "shadow-custom2",
+                "Custom-shadow 2"
+              ],
+              [
+                "shadow-custom3",
+                "Custom-shadow 3"
+              ]
+            ],
+            "type": "choice"
+          },
+          {
+            "label": "Animation",
+            "name": "animation",
+            "display_width": "half_width",
+            "choices": [
+              [
+                "ani-scale1x",
+                "Scale 1x"
+              ],
+              [
+                "ani-scale2x",
+                "Scale 2x"
+              ],
+              [
+                "ani-scale3x",
+                "Scale 3x"
+              ],
+              [
+                "ani-scale4x",
+                "Scale 4x"
+              ],
+              [
+                "ani-slideup1x",
+                "Slide Up 1x"
+              ],
+              [
+                "ani-slideup2x",
+                "Slide Up 2x"
+              ],
+              [
+                "ani-slideup3x",
+                "Slide Up 3x"
+              ],
+              [
+                "ani-custom1",
+                "Custom animation 1"
+              ],
+              [
+                "ani-custom2",
+                "Custom animation 2"
+              ],
+              [
+                "ani-custom3",
+                "Custom animation 3"
+              ]
+            ],
+            "type": "choice"
+          }
+        ]
+      }
+    ],
+    "tab": "STYLE",
+    "type": "group"
+  }
+]
