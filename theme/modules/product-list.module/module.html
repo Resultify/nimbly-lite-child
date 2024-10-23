@@ -134,6 +134,26 @@
   </div>
 {%- endmacro -%}
 
+{# Render sorting filters #}
+{% macro render_sorting_filter(qd_sorting) -%}
+  <div class="product-listing-module__sorting-filter span6">
+    <span>
+      <select class="btn-link btn-secondary1 btn-regular float-start" id="qd_sorting">
+        {% set selected = ' selected="selected"' %}
+        {% set nameAscending = 'name__asc' %}
+        {% set nameDescending = 'name__desc' %}
+        {% set priceAscending = 'price__asc' %}
+        {% set priceDescending = 'price__desc' %}
+        <option value="{{ request.path }}"{% if not qd_sorting %}{{ selected }}{% endif %}>Reset</option>
+        <option value="{{ request.path }}?qd_sorting={{ nameAscending }}"{% if nameAscending == qd_sorting %}{{ selected }}{% endif %}>Name ascending</option>
+        <option value="{{ request.path }}?qd_sorting={{ nameDescending }}"{% if nameDescending == qd_sorting %}{{ selected }}{% endif %}>Name descending</option>
+        <option value="{{ request.path }}?qd_sorting={{ priceAscending }}"{% if priceAscending == qd_sorting %}{{ selected }}{% endif %}>Price ascending</option>
+        <option value="{{ request.path }}?qd_sorting={{ priceDescending }}"{% if priceDescending == qd_sorting %}{{ selected }}{% endif %}>Price descending</option>
+      </select>
+    </span>
+  </div>
+{%- endmacro %}
+
 {# Render Pagination #}
 {% macro render_pagination(limit, current_offset, current_page_number, number_of_pages, query_param_list) -%}
 {% if number_of_pages > 1 %}
@@ -275,15 +295,23 @@
 {% if request.query_dict.qd_sku %}
   {% do query_param_list.append('qd_sku=' + request.query_dict.qd_sku|urlencode) %}
 {% endif %}
+{% if request.query_dict.qd_sorting %}
+  {% do query_param_list.append('qd_sorting=' + request.query_dict.qd_sorting|urlencode) %}
+{% endif %}
 
 {% set products = module.data_query.data.CRM.product_collection.items %}
 <div class="product-listing-module_wrp">
   <div class="product-listing-module product-listing-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
     <{{module.heading.heading_tag}}>{{ module.heading.title || settings.titleLabel }}</{{module.heading.heading_tag}}>
-    <form action="{{ request.path }}">
-      <label for="name">Search</label>
-      <input type="text" id="name" name="qd_name">
-    </form>
+    <div class="row-fluid">
+      <div class="span6">
+        <form action="{{ request.path }}">
+          <label for="name">Search</label>
+          <input type="text" id="name" name="qd_name">
+        </form>
+      </div>
+      {{ render_sorting_filter(request.query_dict.qd_sorting) }}
+    </div>
     <div class="product-listing-module__products {{module.layout.layout}}">
       {% for product in products %}
 
