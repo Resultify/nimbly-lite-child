@@ -18,7 +18,7 @@
         <h1>{{ dynamic_page_crm_object.name }}</h1>
         {{ product_functions_macro.render_product_list_image(dynamic_page_crm_object) }}
         <p>{{ dynamic_page_crm_object.description }}</p>
-        <p>{{ dynamic_page_crm_object.price | format_currency_value(locale='sv-SE', currency='SEK') }}</p>
+        <p>{{ dynamic_page_crm_object.price | format_currency_value(locale=product_functions_macro.get_locale(), currency=product_functions_macro.get_currency()) }}</p>
         {{ product_functions_macro.render_structured_data(dynamic_page_crm_object) }}
       </div>
     {% else %}
