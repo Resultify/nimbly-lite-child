@@ -41,11 +41,7 @@
 
 {# Currency #}
 {%- macro get_currency() -%}
-  {%- set currency = site_settings.currency %}
   {%- set languageTag = content.language.languageTag %}
-  {%- if currency -%}
-    {%- set currency = currency -%}
-  {%- endif -%}
   {%- if languageTag == "en-us" -%}
     {%- set currency = "USD" -%}
   {%- elif languageTag == "en" -%}
