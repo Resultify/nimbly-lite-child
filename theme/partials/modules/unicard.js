@@ -39,6 +39,11 @@ const unicardFields = (components, parent = '', opt) => {
     mediaGroup(parent, opt?.mediaGroup),
     group('Heading', 'heading',
       {
+        icon: {
+          name: 'heading',
+          set: 'fontawesome-6.4.2',
+          type: 'SOLID'
+        },
         visibility: {
           controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',
@@ -50,6 +55,11 @@ const unicardFields = (components, parent = '', opt) => {
     ),
     group('Subheading', 'subheading',
       {
+        icon: {
+          name: 'bold',
+          set: 'fontawesome-6.4.2',
+          type: 'SOLID'
+        },
         visibility: {
           controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',
@@ -72,6 +82,11 @@ const unicardFields = (components, parent = '', opt) => {
     accordionGroup(parent),
     group('Form', 'form_group',
       {
+        icon: {
+          name: 'wpforms',
+          set: 'fontawesome-6.4.2',
+          type: 'REGULAR'
+        },
         visibility: {
           controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',
@@ -83,6 +98,11 @@ const unicardFields = (components, parent = '', opt) => {
     meeting(parent),
     group('Additional images', 'additional_images_group',
       {
+        icon: {
+          name: 'images',
+          set: 'fontawesome-6.4.2',
+          type: 'REGULAR'
+        },
         visibility: {
           controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',

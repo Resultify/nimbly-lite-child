@@ -1,0 +1,279 @@
+<!--
+  templateType: blog_post
+  isAvailableForNewContent: true
+  label: Blog post 2
+  screenshotPath: ../images/template-previews/blog-post-2.jpg
+-->
+{% set template_css = '../../css/templates/blog-post-v2.css' %}
+{% extends './layouts/base.html' %}
+
+{% block body %}
+
+  <div class="blog-post-template">
+
+    <div class="blog-post_wrp">
+      <div class="blog-post-header-wrp {{"blog-post-header-wrp-featured-image" if content.featured_image }}">
+        <div class="blog-post-header">
+          {% if content.tag_list %}
+            <div class="blog-post__tags">
+              {% for tag in content.tag_list %}
+                <a class="blog-post__tag-link" href="{{blog_tag_url(group.id, tag.slug)}}" rel="tag">{{tag.name|escape_html}}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <h1 class="blog-post__heading">
+            {%- if is_in_blog_post_editor -%}
+              {{content.name}}
+            {%- else -%}
+              {{content.name|sanitize_html("STRIP")}}
+            {%- endif -%}
+          </h1>
+          <div class="blog-post__meta">
+            {% if content.blog_author.avatar %}
+              <div class="blog-post__meta-author-avatar_wrp">
+                <img class="blog-post__meta-author-avatar" src="{{content.blog_author.avatar}}" width="50" loading="eager" alt="Picture of {{content.blog_author.display_name}}">
+              </div>
+            {% endif %}
+            <div class="blog-post__meta-info">
+              <a class="blog-post__meta-info-author-link" href="{{blog_author_url(group.id, content.blog_post_author.slug)|escape_url}}" rel="author">
+                {{content.blog_post_author.display_name|escape_html}}
+              </a>
+
+              <div class="blog-post__meta-info-date_wrp">
+                <time datetime="{{content.publish_date|escape_attr}}" class="blog-post__meta-info-date">
+                  {{content.publish_date_localized|escape_html}}
+                </time>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% if content.featured_image %}
+          <div class="blog-post-featured-image-wrp">
+            <img class="blog-post-featured-image" src="{{content.featured_image}}" alt="{{content.featured_image_alt_text}}">
+          </div>
+        {% endif %}
+
+      </div>
+
+      <article class="blog-post">
+        <div class="blog-post__body">
+          {{content.post_body}}
+        </div>
+
+        {% module "blog_post_audio" path="@hubspot/blog_audio", overrideable=False %}
+
+        {% module "social-sharing"
+          path="../modules/social-sharing",
+          offset=0,
+          width=12,
+          social_sharing=[ {
+            "email_link" : "",
+            "facebook_link" : "",
+            "linkedin_link" : "",
+            "pinterest_link" : "",
+            "pinterest_pin_image" : {
+              "loading" : "lazy",
+              "size_type" : "exact",
+              "src" : ""
+            },
+            "share_on" : "facebook",
+            "twitter_icon" : "x-twitter",
+            "twitter_link" : ""
+          }, {
+            "email_link" : "",
+            "facebook_link" : "",
+            "linkedin_link" : "",
+            "pinterest_link" : "",
+            "pinterest_pin_image" : {
+              "loading" : "lazy",
+              "size_type" : "exact",
+              "src" : ""
+            },
+            "share_on" : "linkedin",
+            "twitter_icon" : "x-twitter",
+            "twitter_link" : ""
+          }, {
+            "email_link" : "",
+            "facebook_link" : "",
+            "linkedin_link" : "",
+            "pinterest_link" : "",
+            "pinterest_pin_image" : {
+              "loading" : "lazy",
+              "size_type" : "exact",
+              "src" : ""
+            },
+            "share_on" : "twitter",
+            "twitter_icon" : "x-twitter",
+            "twitter_link" : ""
+          }, {
+            "email_link" : "",
+            "facebook_link" : "",
+            "linkedin_link" : "",
+            "pinterest_link" : "",
+            "pinterest_pin_image" : {
+              "loading" : "lazy",
+              "size_type" : "exact",
+              "src" : ""
+            },
+            "share_on" : "pinterest",
+            "twitter_icon" : "x-twitter",
+            "twitter_link" : ""
+          }, {
+            "email_link" : "",
+            "facebook_link" : "",
+            "linkedin_link" : "",
+            "pinterest_link" : "",
+            "pinterest_pin_image" : {
+              "loading" : "lazy",
+              "size_type" : "exact",
+              "src" : ""
+            },
+            "share_on" : "email",
+            "twitter_icon" : "x-twitter",
+            "twitter_link" : ""
+          } ],
+          style={
+            "general" : {
+              "spacing" : {
+                "spacing" : {
+                  "padding" : {
+                    "bottom" : { },
+                    "left" : { },
+                    "right" : { },
+                    "top" : {
+                      "units" : "px",
+                      "value" : 30
+                    }
+                  }
+                }
+              }
+            }
+          }
+        %}
+      </article>
+    </div>
+
+    {# Related posts #}
+    <div class="blog-recent-posts_wrp">
+      <div class="blog-recent-posts blog-post-section">
+        {% module "blog-recent-by-tag"
+          path="@marketplace/Resultify/Nimbly_Lite/modules/blog-recent-by-tag",
+          offset=0,
+          width=12,
+          blog_components=[ {
+            "component" : "Image",
+            "show" : true
+          }, {
+            "component" : "Tags",
+            "show" : true
+          }, {
+            "component" : "Heading",
+            "show" : true
+          }, {
+            "component" : "Author",
+            "show" : false
+          }, {
+            "component" : "Date",
+            "show" : false
+          }, {
+            "component" : "Author and Date",
+            "show" : false
+          }, {
+            "component" : "Description",
+            "show" : true
+          } ],
+          general_heading={
+            "text" : ""
+          },
+          style={
+            "button" : {
+              "presets" : {
+                "size" : "btn-small"
+              }
+            },
+            "general" : {
+              "spacing" : {
+                "spacing" : {
+                  "padding" : {
+                    "bottom" : {
+                      "units" : "px",
+                      "value" : 50
+                    },
+                    "left" : { },
+                    "right" : { },
+                    "top" : {
+                      "units" : "px",
+                      "value" : 100
+                    }
+                  }
+                }
+              }
+            },
+            "image" : {
+              "custom_image_fit" : {
+                "image_aspect_ratio" : "3/2",
+                "image_fit" : "cover"
+              },
+              "spacing" : {
+                "spacing" : {
+                  "margin" : {
+                    "bottom" : {
+                      "units" : "px",
+                      "value" : 16
+                    },
+                    "top" : { }
+                  }
+                }
+              }
+            }
+          }
+        %}
+      </div>
+
+      <div class="blog-all-posts__button">
+        {% module 'blog_button'
+          path="../modules/n-button",
+          offset=0,
+          width=12,
+          text="ALL ARTICLES",
+          link={
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : group.absolute_url,
+              "type" : "EXTERNAL"
+            }
+          },
+          style={
+            "presets" : {
+              "style" : "btn-secondary2"
+            },
+            "alignment" : {
+              "alignment" : {
+                "horizontal_align" : "CENTER"
+              }
+            },
+            "spacing" : {
+              "spacing" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 100
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 0
+                  }
+                }
+              }
+            }
+          }
+        %}
+
+      </div>
+    </div>
+
+  </div>
+
+{% endblock body %}

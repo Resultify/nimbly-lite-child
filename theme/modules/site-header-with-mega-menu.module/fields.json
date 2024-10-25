@@ -185,6 +185,43 @@
       "default" : {
         "mobile_breakpoint" : "992"
       }
+    }, {
+      "id" : "917f01b7-10b9-3b20-e290-007dbf714d59",
+      "name" : "maximum_content_width",
+      "display_width" : null,
+      "label" : "Maximum content width",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "959e9460-bc86-ab6e-af10-0d34a11b0b7f",
+        "name" : "limit_maximum_content_width_on_site_header",
+        "display_width" : null,
+        "label" : "Limit maximum content width on Site header",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "default" : true
+      }, {
+        "id" : "80dc62af-fe9b-9c37-541d-b5b157448719",
+        "name" : "custom_container_width",
+        "display_width" : null,
+        "label" : "Custom container width",
+        "help_text" : "By default, when checkbox is enabled, this module matches the width of the general page content width. This option allows you to adjust it.",
+        "required" : false,
+        "locked" : false,
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number"
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "default" : {
+        "limit_maximum_content_width_on_site_header" : true
+      }
     } ],
     "tab" : "STYLE",
     "expanded" : false,
@@ -222,6 +259,9 @@
       },
       "mobile_breakpoint" : {
         "mobile_breakpoint" : "992"
+      },
+      "maximum_content_width" : {
+        "limit_maximum_content_width_on_site_header" : true
       }
     }
   }, {
@@ -648,6 +688,40 @@
       "required" : false,
       "locked" : false,
       "children" : [ {
+        "id" : "94be3ef3-53e7-7163-b956-8b3d647a7cea",
+        "name" : "dropdown_style",
+        "display_width" : null,
+        "label" : "Dropdown style",
+        "inline_help_text" : "<a href=\"//www.resultify.se/hubfs/doc_site-header-with-mega-menu.html#dropdown-styles\">External documentation on dropdown styles</a>",
+        "required" : false,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "limit-d-and-c", "Limit max width / height on dropdown and content" ], [ "full-width-d-limit-c", "Full width dropdown, limit max width on content" ], [ "full-screen-d-limit-c", "Full screen dropdown, limit max width on content" ], [ "full-width-d-and-c", "Full width dropdown and content" ], [ "full-screen-d-and-c", "Full screen dropdown and content" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "default" : "limit-d-and-c"
+      }, {
+        "id" : "05e9005c-8eb6-9656-2fe9-78d956c764cc",
+        "name" : "custom_width",
+        "display_width" : null,
+        "label" : "Custom width",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.menu.dropdown.dropdown_style",
+          "controlling_value_regex" : "limit-d-and-c full-width-d-limit-c full-screen-d-limit-c",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        },
+        "display" : "text",
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number"
+      }, {
         "id" : "e88c9af6-9b03-4728-9a6c-4ba793a2c1e9",
         "name" : "spacing",
         "display_width" : null,
@@ -662,27 +736,33 @@
           "required" : false,
           "locked" : false,
           "type" : "spacing",
-          "default" : { }
-        }, {
-          "id" : "36d6ac1a-0372-c05f-f1dc-e2393dc10042",
-          "name" : "width",
-          "display_width" : null,
-          "label" : "Width",
-          "required" : false,
-          "locked" : false,
-          "display" : "text",
-          "step" : 1,
-          "suffix" : "px",
-          "type" : "number",
-          "default" : 190
+          "default" : {
+            "padding" : {
+              "top" : {
+                "value" : 10,
+                "units" : "px"
+              },
+              "bottom" : {
+                "value" : 20,
+                "units" : "px"
+              },
+              "left" : {
+                "value" : 14,
+                "units" : "px"
+              },
+              "right" : {
+                "value" : 14,
+                "units" : "px"
+              }
+            }
+          }
         } ],
         "tab" : "STYLE",
         "expanded" : false,
         "group_occurrence_meta" : null,
         "type" : "group",
         "default" : {
-          "spacing" : { },
-          "width" : 190
+          "spacing" : { }
         }
       }, {
         "id" : "941bac4c-5dc6-9c15-8797-018349b08818",
@@ -955,9 +1035,9 @@
       "group_occurrence_meta" : null,
       "type" : "group",
       "default" : {
+        "dropdown_style" : "limit-d-and-c",
         "spacing" : {
-          "spacing" : { },
-          "width" : 190
+          "spacing" : { }
         },
         "background" : {
           "color" : {
@@ -1086,9 +1166,9 @@
         }
       },
       "dropdown" : {
+        "dropdown_style" : "limit-d-and-c",
         "spacing" : {
-          "spacing" : { },
-          "width" : 190
+          "spacing" : { }
         },
         "background" : {
           "color" : {
@@ -4214,6 +4294,9 @@
       },
       "mobile_breakpoint" : {
         "mobile_breakpoint" : "992"
+      },
+      "maximum_content_width" : {
+        "limit_maximum_content_width_on_site_header" : true
       }
     },
     "logo" : {
@@ -4295,9 +4378,9 @@
         }
       },
       "dropdown" : {
+        "dropdown_style" : "limit-d-and-c",
         "spacing" : {
-          "spacing" : { },
-          "width" : 190
+          "spacing" : { }
         },
         "background" : {
           "color" : {
@@ -4916,42 +4999,6 @@
       "type" : "boolean",
       "default" : false
     }, {
-      "id" : "7b3cb635-c72c-e074-4527-1a8d94cc27e2",
-      "name" : "limit_max_content_width",
-      "display_width" : null,
-      "label" : "Limit maximum content width",
-      "help_text" : "Limit the maximum content width (instead of full-width)",
-      "inline_help_text" : "",
-      "required" : false,
-      "locked" : false,
-      "display" : "toggle",
-      "type" : "boolean",
-      "default" : false
-    }, {
-      "id" : "3ceba2fa-a71a-4add-bd5e-62374df350a8",
-      "name" : "full_height",
-      "display_width" : null,
-      "label" : "Full height dropdown",
-      "help_text" : "Make the mega menu full height in desktop resolutions",
-      "inline_help_text" : "",
-      "required" : false,
-      "locked" : false,
-      "display" : "toggle",
-      "type" : "boolean",
-      "default" : false
-    }, {
-      "id" : "c85f16c0-c7d7-ce5f-6f91-77a1b064218b",
-      "name" : "vertical_center_dropdown_content",
-      "display_width" : null,
-      "label" : "Vertical center dropdown content",
-      "help_text" : "",
-      "inline_help_text" : "",
-      "required" : false,
-      "locked" : false,
-      "display" : "toggle",
-      "type" : "boolean",
-      "default" : false
-    }, {
       "id" : "bdce66f4-493d-37e9-f650-d1bac1437af3",
       "name" : "first_level_title_font_size",
       "display_width" : null,
@@ -5043,9 +5090,6 @@
     "default" : {
       "number_of_columns" : "3col",
       "show_title" : false,
-      "limit_max_content_width" : false,
-      "full_height" : false,
-      "vertical_center_dropdown_content" : false,
       "first_level_title_font_size" : 300,
       "first_level_descr_font_size" : 100,
       "second_level_font_size" : 150,
@@ -5059,7 +5103,7 @@
     "display_width" : null,
     "label" : "Menu",
     "help_text" : "If no menu is selected, the name \"main_navigation\" will be used as the default main menu",
-    "inline_help_text" : "<a href=\"//www.resultify.se/hubfs/doc_site-header-with-mega-menu.html\">External documentation on Mega Menu syntax</a>",
+    "inline_help_text" : "<a href=\"//www.resultify.se/hubfs/doc_site-header-with-mega-menu.html#how-to-define\">External documentation on Mega Menu syntax</a>",
     "required" : false,
     "locked" : false,
     "type" : "menu"
@@ -5097,9 +5141,6 @@
     "mega_menu" : {
       "number_of_columns" : "3col",
       "show_title" : false,
-      "limit_max_content_width" : false,
-      "full_height" : false,
-      "vertical_center_dropdown_content" : false,
       "first_level_title_font_size" : 300,
       "first_level_descr_font_size" : 100,
       "second_level_font_size" : 150,

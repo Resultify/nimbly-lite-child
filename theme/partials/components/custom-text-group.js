@@ -10,6 +10,11 @@ const customTextGroup = (parent = '') => {
   return [
     group('Custom text', 'custom_text_group',
       {
+        icon: {
+          name: 'font',
+          set: 'fontawesome-6.4.2',
+          type: 'SOLID'
+        },
         visibility: {
           controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',

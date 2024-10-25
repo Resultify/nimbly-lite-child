@@ -10,6 +10,11 @@ const accordionGroup = (parent = '') => {
   return [
     group('Accordion', 'accordion_group',
       {
+        icon: {
+          name: 'indent',
+          set: 'fontawesome-6.4.2',
+          type: 'SOLID'
+        },
         visibility: {
           controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',

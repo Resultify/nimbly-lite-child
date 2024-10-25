@@ -1,10 +1,12 @@
-{# add base styles to module previewer #}
+{# add base styles to module previewer [rmstart] #}
 {% if is_in_module_previewer %}
   {{require_css(get_asset_url("../../css/base.css"))}}
   {{require_css(get_asset_url("../../css/global-theme-settings.css"))}}
 {% endif %}
-{# *** #}
+{# *** [rmend] #}
 
 {% import '../../partials/modules/unicard.html' %}
+{# [rmstart] #}
 {{require_css(get_asset_url("../../partials/modules/unicard.css"))}}
+{# [rmend] #}
 {{unicard_macro(module, module.style)}}
