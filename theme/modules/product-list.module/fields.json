@@ -1544,20 +1544,6 @@
   "required" : false,
   "locked" : false,
   "children" : [ {
-    "id" : "5c70446c-c8cf-b887-b563-e6f46798431c",
-    "name" : "layout",
-    "display_width" : null,
-    "label" : "Layout",
-    "required" : true,
-    "locked" : false,
-    "display" : "select",
-    "choices" : [ [ "basic-grid", "Basic grid" ], [ "mosaic-grid", "Mosaic grid" ] ],
-    "multiple" : false,
-    "reordering_enabled" : true,
-    "preset" : null,
-    "type" : "choice",
-    "default" : "basic-grid"
-  }, {
     "id" : "7c12d400-9361-868c-5d94-adcd7545253c",
     "name" : "columns",
     "display_width" : null,
@@ -1565,14 +1551,6 @@
     "help_text" : "Posts per row",
     "required" : false,
     "locked" : false,
-    "visibility" : {
-      "controlling_field" : "5c70446c-c8cf-b887-b563-e6f46798431c",
-      "controlling_field_path" : null,
-      "controlling_value_regex" : "basic-grid",
-      "property" : null,
-      "operator" : "EQUAL",
-      "access" : null
-    },
     "display" : "text",
     "step" : 1,
     "type" : "number",
@@ -1585,14 +1563,6 @@
     "help_text" : "Height of the larger element",
     "required" : false,
     "locked" : false,
-    "visibility" : {
-      "controlling_field" : "5c70446c-c8cf-b887-b563-e6f46798431c",
-      "controlling_field_path" : null,
-      "controlling_value_regex" : "mosaic-grid",
-      "property" : null,
-      "operator" : "EQUAL",
-      "access" : null
-    },
     "display" : "text",
     "step" : 1,
     "suffix" : "px",
@@ -1604,7 +1574,6 @@
   "group_occurrence_meta" : null,
   "type" : "group",
   "default" : {
-    "layout" : "basic-grid",
     "columns" : 3,
     "height" : 680
   }
