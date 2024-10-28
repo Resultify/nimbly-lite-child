@@ -45,7 +45,8 @@
     style.hover.border_color.css,
     style.border.top.color,
     style.hover.shadow,
-    style.hover.animation
+    style.hover.animation,
+    style.max_width
   ]) %}
 
   {# scoped styles for unicard module component #}
@@ -77,6 +78,29 @@
         --scope-padding-right: {{style.spacing.padding.right.value is truthy ? style.spacing.padding.right.value ~ style.spacing.padding.right.units : 0 }};
         --scope-padding: {{style.spacing.padding.top.value ~ style.spacing.padding.top.units if style.spacing.css|length <= 17 }};
       }
+
+      {% if style.spacing.padding.top.value > 45 or style.spacing.padding.bottom.value > 45 or style.spacing.padding.left.value > 45 or style.spacing.padding.right.value > 45 %}
+        @media screen and (max-width: {{theme.layout.maximum_content_width - 0.2 ~ 'px'}}) {
+          .scope-root.id{{scope_hash}} {
+            {% if style.spacing.padding.top.value > 45 %}
+              --scope-padding-top: calc(2.8125rem + ({{style.spacing.padding.top.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+            {% endif %}
+            {% if style.spacing.padding.bottom.value > 45 %}
+              --scope-padding-bottom: calc(2.8125rem + ({{style.spacing.padding.bottom.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+            {% endif %}
+            {% if style.spacing.padding.left.value > 45 %}
+              --scope-padding-left: calc(2.8125rem + ({{style.spacing.padding.left.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+            {% endif %}
+            {% if style.spacing.padding.right.value > 45 %}
+              --scope-padding-right: calc(2.8125rem + ({{style.spacing.padding.right.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+            {% endif %}
+            {% if style.spacing.css|length <= 17 %}
+              --scope-padding: calc(2.8125rem + ({{style.spacing.padding.top.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+            {% endif %}
+          }
+        }
+      {% endif %}
+
       {% if style.mobile_alignment.horizontal_align %}
         @media (max-width: 767.8px) {
           .scope-root.id{{scope_hash}} {
@@ -124,6 +148,11 @@
               background-color: var(--scope-hover-background);
             }
           {% endif %}
+        }
+      {% endif %}
+      {% if style.max_width is truthy %}
+        .scope-root.id{{scope_hash}} .content-block-top {
+          max-width: {{style.max_width ~ 'px'}};
         }
       {% endif %}
     </style>

@@ -433,17 +433,6 @@ init(
         }
       }
     }),
-    fi.spacing('', 'mobile_spacing', {
-      inline_help_text: 'Spacing on <span style="color:#007a8c;font-weight:700;font-size:14px;">Mobile</span>',
-      visibility: {
-        controlling_field_path: 'hero_image_mode',
-        operator: 'EQUAL',
-        controlling_value_regex: 'true',
-        hidden_subfields: {
-          margin: true
-        }
-      }
-    }),
     fi.border('Border', 'border'),
     fi.number('Border radius', 'border_radius', {
       min: 0,
@@ -462,14 +451,16 @@ init(
       unicardStyleFields('style.card_style_group1.', {
         hideHoverProps: true,
         showMobileAlignment: true,
-        showVerticalAlignment: true
+        showVerticalAlignment: true,
+        showMaxWidth: true
       })
     ),
     group('Card 2', 'card_style_group2', {},
       unicardStyleFields('style.card_style_group2.', {
         hideHoverProps: true,
         showMobileAlignment: true,
-        showVerticalAlignment: true
+        showVerticalAlignment: true,
+        showMaxWidth: true
       })
     )
   )

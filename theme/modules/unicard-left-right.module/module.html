@@ -14,6 +14,9 @@
     .unicard-left-right {
       --mobile-direction:{{module.style.mobile_reverse ? 'column-reverse' : 'column' }};
       --desktop-gap:{{module.style.desktop_gap ~ 'px'}};
+      {% if module.style.desktop_gap > 45 %}
+        --desktop-gap: calc(2.8125rem + ({{module.style.desktop_gap}} - 45) * (100vw - 52rem) / ({{theme.layout.maximum_content_width}} - 840));
+      {% endif %}
       --mobile-gap:{{module.style.mobile_gap ~ 'px'}};
       --left-column-width: {{ module.style.proportions ~ '%' }};
       --right-column-width: {{ 100 - module.style.proportions ~ '%' }};
@@ -34,16 +37,32 @@
       --unicard-l-r-padding-left: {{module.style.spacing.padding.left.value is truthy ? module.style.spacing.padding.left.value ~ module.style.spacing.padding.left.units : 0 }};
       --unicard-l-r-padding-right: {{module.style.spacing.padding.right.value is truthy ? module.style.spacing.padding.right.value ~ module.style.spacing.padding.right.units : 0 }};
       --unicard-l-r-padding: {{module.style.spacing.padding.top.value ~ module.style.spacing.padding.top.units if module.style.spacing.css|length <= 17 }};
-      {% if module.hero_image_mode %}
-        --unicard-l-r-mobile-padding-top: {{module.style.mobile_spacing.padding.top.value is truthy ? module.style.mobile_spacing.padding.top.value ~ module.style.mobile_spacing.padding.top.units : 'var(--unicard-l-r-padding-top)' }};
-        --unicard-l-r-mobile-padding-bottom: {{module.style.mobile_spacing.padding.bottom.value is truthy ? module.style.mobile_spacing.padding.bottom.value ~ module.style.mobile_spacing.padding.bottom.units : 'var(--unicard-l-r-padding-bottom)' }};
-        --unicard-l-r-mobile-padding-left: {{module.style.mobile_spacing.padding.left.value is truthy ? module.style.mobile_spacing.padding.left.value ~ module.style.mobile_spacing.padding.left.units : 'var(--unicard-l-r-padding-left)' }};
-        --unicard-l-r-mobile-padding-right: {{module.style.mobile_spacing.padding.right.value is truthy ? module.style.mobile_spacing.padding.right.value ~ module.style.mobile_spacing.padding.right.units : 'var(--unicard-l-r-padding-right)' }};
-      {% endif %}
       {% if module.style.card_style_group1.content_gap > 30 or module.style.card_style_group2.content_gap > 30 %}
         --custom-button-group-gap: 20px;
       {% endif %}
     }
+
+    {% if module.style.spacing.padding.top.value > 45 or module.style.spacing.padding.bottom.value > 45 or module.style.spacing.padding.left.value > 45 or module.style.spacing.padding.right.value > 45 %}
+      @media screen and (max-width: {{theme.layout.maximum_content_width - 0.2 ~ 'px'}}) {
+        .unicard-left-right {
+          {% if module.style.spacing.padding.top.value > 45 %}
+            --unicard-l-r-padding-top: calc(2.8125rem + ({{module.style.spacing.padding.top.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+          {% endif %}
+          {% if module.style.spacing.padding.bottom.value > 45 %}
+            --unicard-l-r-padding-bottom: calc(2.8125rem + ({{module.style.spacing.padding.bottom.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+          {% endif %}
+          {% if module.style.spacing.padding.left.value > 45 %}
+            --unicard-l-r-padding-left: calc(2.8125rem + ({{module.style.spacing.padding.left.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+          {% endif %}
+          {% if module.style.spacing.padding.right.value > 45 %}
+            --unicard-l-r-padding-right: calc(2.8125rem + ({{module.style.spacing.padding.right.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+          {% endif %}
+          {% if module.style.spacing.css|length <= 17 %}
+            --unicard-l-r-padding: calc(2.8125rem + ({{module.style.spacing.padding.top.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+          {% endif %}
+        }
+      }
+    {% endif %}
 
     {% if module.hero_image_mode %}
       {% if module.hero_image_group.background_type == 'background_gradient' and module.hero_image_group.gradient_direction and module.hero_image_group.gradient_color|length > 1 %}
