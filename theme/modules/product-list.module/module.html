@@ -111,9 +111,19 @@
   </div>
 {%- endmacro -%}
 
+{# Render search #}
+{% macro render_search() %}
+<div class="product-listing-module__search">
+  <form action="{{ request.path }}">
+    <input type="text" name="qd_name" class="form-control border border-secondary rounded">
+    <button type="submit" class="btn-link btn-secondary1 btn-regular">Search</button>
+  </form>
+</div>
+{%- endmacro %}
+
 {# Render sorting filters #}
 {% macro render_sorting_filter(qd_sorting) -%}
-  <div class="product-listing-module__sorting-filter span6">
+  <div class="product-listing-module__sorting-filter">
     <span>
       <select class="btn-link btn-secondary1 btn-regular float-start" id="qd_sorting">
         {% set selected = ' selected="selected"' %}
@@ -282,12 +292,11 @@
     <{{module.heading.heading_tag}}>{{ module.heading.title || settings.titleLabel }}</{{module.heading.heading_tag}}>
     <div class="row-fluid">
       <div class="span6">
-        <form action="{{ request.path }}">
-          <label for="name">Search</label>
-          <input type="text" id="name" name="qd_name">
-        </form>
+        {{ render_search() }}
       </div>
-      {{ render_sorting_filter(request.query_dict.qd_sorting) }}
+      <div class="span6">
+        {{ render_sorting_filter(request.query_dict.qd_sorting) }}
+      </div>
     </div>
     <div class="product-listing-module__products {{module.layout.layout}}">
       {% for product in products %}
