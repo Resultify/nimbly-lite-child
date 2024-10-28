@@ -65,13 +65,6 @@
     {{module.style.heading.spacing.spacing.css}}
   }
 
-  .product-listing-module__product-description {
-    {% if module.style.richtext.background.color.css %}
-      background-color: {{module.style.richtext.background.color.css}};
-    {% endif %}
-    {{module.style.richtext.spacing.spacing.css}}
-  }
-
   .product-listing-module__product-button {
     text-align: {{module.style.button.alignment.alignment.horizontal_align}};
     {% if module.style.button.background.color.css %}
@@ -305,7 +298,13 @@
             </div>
             <div class="product-listing-module__product-information">
               {{ render_heading(product) }}
-              <p class="product-listing-module__product-description">{{ product.description }}</p>
+              <p class="product-listing-module__product-description">
+                {% if module.description.truncate %}
+                  {{ product.description | truncatehtml(module.description.truncate, "...", false) }}
+                {% else %}
+                  {{ product.description }}
+                {% endif %}
+              </p>
               <p>{{ product.price | format_currency_value(locale=product_functions_macro.get_locale(), currency=product_functions_macro.get_currency()) }}</p>
               {% if module.button.show %}
                 {{ render_button(product) }}
