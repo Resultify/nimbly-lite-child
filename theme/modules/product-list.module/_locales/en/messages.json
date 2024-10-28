@@ -88,5 +88,95 @@
     "message" : "product-list",
     "description" : "",
     "placeholders" : null
+  },
+  "style.product.default.background.color.color" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.background.color.opacity" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.internal_spacing.spacing.padding.bottom.units" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.internal_spacing.spacing.padding.bottom.value" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.internal_spacing.spacing.padding.left.units" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.internal_spacing.spacing.padding.left.value" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.internal_spacing.spacing.padding.right.units" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.internal_spacing.spacing.padding.right.value" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.internal_spacing.spacing.padding.top.units" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.internal_spacing.spacing.padding.top.value" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.spacing.spacing.padding.bottom.units" : {
+    "message" : "px",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.spacing.spacing.padding.left.units" : {
+    "message" : "px",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.spacing.spacing.padding.right.units" : {
+    "message" : "px",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.default.spacing.spacing.padding.top.units" : {
+    "message" : "px",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.label" : {
+    "message" : "Product",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.product.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
   }
 }

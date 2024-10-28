@@ -240,9 +240,9 @@
     }
   }, {
     "id" : "1c03e4da-0e47-3d67-22e7-987f764cf593",
-    "name" : "article",
+    "name" : "product",
     "display_width" : null,
-    "label" : "Article",
+    "label" : "Product",
     "required" : false,
     "locked" : false,
     "children" : [ {
@@ -1274,7 +1274,7 @@
         }
       }
     },
-    "article" : {
+    "product" : {
       "spacing" : {
         "spacing" : {
           "padding" : {

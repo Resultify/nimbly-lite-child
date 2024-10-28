@@ -13,7 +13,7 @@
   }
 
   .product-listing-module__product_wrp {
-    {{module.style.article.spacing.spacing.css}}
+    {{module.style.product.spacing.spacing.css}}
   }
 
   .basic-grid .product-listing-module__product_wrp {
@@ -31,14 +31,14 @@
   }
 
   .product-listing-module__product {
-    {% if module.style.article.border.border_radius %}
-      border-radius: {{module.style.article.border.border_radius ~ 'px'}};
+    {% if module.style.product.border.border_radius %}
+      border-radius: {{module.style.product.border.border_radius ~ 'px'}};
     {% endif %}
-    {% if module.style.article.background.color.css %}
-      background-color: {{module.style.article.background.color.css}};
+    {% if module.style.product.background.color.css %}
+      background-color: {{module.style.product.background.color.css}};
     {% endif %}
-    {{module.style.article.border.border.css}}
-    {{module.style.article.internal_spacing.spacing.css}}
+    {{module.style.product.border.border.css}}
+    {{module.style.product.internal_spacing.spacing.css}}
   }
 
   .product-listing-module__product-image {
