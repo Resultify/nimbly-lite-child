@@ -59,31 +59,6 @@
     "description" : null,
     "placeholders" : null
   },
-  "layout.height.default" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "layout.height.help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "layout.height.inline_help_text" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "layout.height.label" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
-  "layout.height.placeholder" : {
-    "message" : "",
-    "description" : null,
-    "placeholders" : null
-  },
   "name" : {
     "message" : "product-list",
     "description" : "",

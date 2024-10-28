@@ -1555,26 +1555,12 @@
     "step" : 1,
     "type" : "number",
     "default" : 3
-  }, {
-    "id" : "e36853d7-6fc1-7d69-0859-555462e628e5",
-    "name" : "height",
-    "display_width" : null,
-    "label" : "Height",
-    "help_text" : "Height of the larger element",
-    "required" : false,
-    "locked" : false,
-    "display" : "text",
-    "step" : 1,
-    "suffix" : "px",
-    "type" : "number",
-    "default" : 680
   } ],
   "tab" : "CONTENT",
   "expanded" : false,
   "group_occurrence_meta" : null,
   "type" : "group",
   "default" : {
-    "columns" : 3,
-    "height" : 680
+    "columns" : 3
   }
 } ]
