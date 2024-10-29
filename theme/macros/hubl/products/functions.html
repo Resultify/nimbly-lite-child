@@ -15,6 +15,12 @@
     {% set paginationLastLabel = "Last" %}
     {% set webinarOfLabel = "of" %}
     {% set pageLabel = "Page" %}
+    {% set searchLabel = "Search" %}
+    {% set resetLabel = "Reset" %}
+    {% set nameAscendingLabel = "Name ascending" %}
+    {% set nameDescendingLabel = "Name descending" %}
+    {% set priceAscendingLabel = "Price ascending" %}
+    {% set priceDescendingLabel = "Price ascending" %}
   {% endif %}
 
   {# Swedish labels #}
@@ -26,6 +32,12 @@
     {% set paginationLastLabel = "Sista" %}
     {% set webinarOfLabel = "av" %}
     {% set pageLabel = "Sida" %}
+    {% set searchLabel = "Sök" %}
+    {% set resetLabel = "Återställ" %}
+    {% set nameAscendingLabel = "Namn stigande" %}
+    {% set nameDescendingLabel = "Namn fallande" %}
+    {% set priceAscendingLabel = "Pris stigande" %}
+    {% set priceDescendingLabel = "Pris ascending" %}
   {% endif %}
 
   {% do settings.update({
@@ -36,6 +48,12 @@
     'paginationLastLabel': paginationLastLabel,
     'webinarOfLabel': webinarOfLabel,
     'pageLabel': pageLabel,
+    'searchLabel': searchLabel,
+    'resetLabel': resetLabel,
+    'nameAscendingLabel': nameAscendingLabel,
+    'nameDescendingLabel': nameDescendingLabel,
+    'priceAscendingLabel': priceAscendingLabel,
+    'priceDescendingLabel': priceDescendingLabel',
   }) %}
 {% endmacro %}
 
