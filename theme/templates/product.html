@@ -28,7 +28,21 @@
                   <h1>{{ dynamic_page_crm_object.name }}</h1>
                   {{ product_functions_macro.render_product_image(dynamic_page_crm_object, 1400, 1024) }}
                   <p>{{ dynamic_page_crm_object.description }}</p>
-                  <p>{{ dynamic_page_crm_object.price | format_currency_value(locale=product_functions_macro.get_locale(), currency=product_functions_macro.get_currency()) }}</p>
+                  {% if dynamic_page_crm_object.price %}
+                    <p>{{ settings.priceLabel }}: {{ dynamic_page_crm_object.price | format_currency_value(locale=product_functions_macro.get_locale(), currency=product_functions_macro.get_currency()) }}</p>
+                  {% endif %}
+                  {% if dynamic_page_crm_object.hs_sku %}
+                    <p>{{ settings.skuLabel }}: {{ dynamic_page_crm_object.hs_sku }}</p>
+                  {% endif %}
+                  {% if dynamic_page_crm_object.quantity %}
+                    <p>{{ settings.quantityLabel }}: {{ dynamic_page_crm_object.quantity }}</p>
+                  {% endif %}
+                  {% if dynamic_page_crm_object.hs_product_type %}
+                    <p>{{ settings.productTypeLabel }}: {{ dynamic_page_crm_object.hs_product_type }}</p>
+                  {% endif %}
+                  {% if dynamic_page_crm_object.hs_url %}
+                    <p>{{ settings.externalUrlLabel }}: <a href="{{ dynamic_page_crm_object.hs_url }}" alt="{{ dynamic_page_crm_object.name }}">{{ dynamic_page_crm_object.hs_url }}</a></p>
+                  {% endif %}
                   {{ product_functions_macro.render_structured_data(dynamic_page_crm_object) }}
                 </div>
                 <a href="/{{ backToListUrlSlug }}" class="btn-link">{{ settings.backToListLabel }}</a>

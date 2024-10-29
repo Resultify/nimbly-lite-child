@@ -22,6 +22,11 @@
     {% set priceAscendingLabel = "Price ascending" %}
     {% set priceDescendingLabel = "Price ascending" %}
     {% set backToListLabel = "Back to list" %}
+    {% set priceLabel = "Price" %}
+    {% set skuLabel = "SKU" %}
+    {% set quantityLabel = "Quantity" %}
+    {% set externalUrlLabel = "External url" %}
+    {% set productTypeLabel = "Product type" %}
   {% endif %}
 
   {# Swedish labels #}
@@ -40,6 +45,11 @@
     {% set priceAscendingLabel = "Pris stigande" %}
     {% set priceDescendingLabel = "Pris ascending" %}
     {% set backToListLabel = "Tillbaka till listan" %}
+    {% set priceLabel = "Pris" %}
+    {% set skuLabel = "SKU" %}
+    {% set quantityLabel = "Kvantitet" %}
+    {% set externalUrlLabel = "Extern url" %}
+    {% set productTypeLabel = "Produkttyp" %}
   {% endif %}
 
   {% do settings.update({
@@ -56,7 +66,12 @@
     'nameDescendingLabel': nameDescendingLabel,
     'priceAscendingLabel': priceAscendingLabel,
     'priceDescendingLabel': priceDescendingLabel,
-    'backToListLabel': backToListLabel
+    'backToListLabel': backToListLabel,
+    'priceLabel': priceLabel,
+    'skuLabel': skuLabel,
+    'quantityLabel': quantityLabel,
+    'externalUrlLabel': externalUrlLabel,
+    'productTypeLabel': productTypeLabel
   }) %}
 {% endmacro %}
 
