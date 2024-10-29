@@ -112,26 +112,24 @@
   </script>
 {%- endmacro -%}
 
-{# Featured image #}
-{%- macro render_product_list_image(product) -%}
-  <div class="product-listing-module__product-image product-listing-module__product-item">
-    {%- set image_link_aria = 'aria-label="Full product information: {{ product.description }}"' -%}
-    {%- set image_data = {
-      "image": {
-        "size_type": "auto", "src": product.hs_images, "alt": product.name,
-        "loading": "lazy", "width": "1024", "height":"1024", "max_width": null, "max_height": null
-      },
-      "caption": { "rich_text": "" }
-      }%}
-    {{
-      image_macros.render_image_tmpl(
-        image_data,
-        module.style.image,
-        module,
-        {
-          link_data_attrs: image_link_aria
-        }
-      )
-    }}
-  </div>
+{# Render product image #}
+{%- macro render_product_image(product, imageWidth, imageHeight) -%}
+  {%- set image_link_aria = 'aria-label="Full product information: {{ product.description }}"' -%}
+  {%- set image_data = {
+    "image": {
+      "size_type": "auto", "src": product.hs_images, "alt": product.name,
+      "loading": "lazy", "width": "{{ imageWidth }}", "height": "{{ imageHeight }}", "max_width": null, "max_height": null
+    },
+    "caption": { "rich_text": "" }
+    }%}
+  {{
+    image_macros.render_image_tmpl(
+      image_data,
+      module.style.image,
+      module,
+      {
+        link_data_attrs: image_link_aria
+      }
+    )
+  }}
 {%- endmacro -%}

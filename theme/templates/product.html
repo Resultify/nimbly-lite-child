@@ -6,9 +6,9 @@
   label: Products list and single-view
   screenshotPath: ../images/template-previews/products.png
 -->
+{% set template_css = '../../css/templates/product.css' %}
+{% extends './layouts/base.html' %}
 {% import '../macros/hubl/products/functions.html' as product_functions_macro %}
-
-{% extends "./layouts/base.html" %}
 
 {% block body %}
   <div class="products-template">
@@ -17,14 +17,24 @@
       {% set backToListUrlSlug = request.path|split('/') %}
       {% set backToListUrlSlug = backToListUrlSlug[:-1] %}
       {% set backToListUrlSlug = backToListUrlSlug|join('/') %}
-      <div class="product-single-view">
-        <h1>{{ dynamic_page_crm_object.name }}</h1>
-        {{ product_functions_macro.render_product_list_image(dynamic_page_crm_object) }}
-        <p>{{ dynamic_page_crm_object.description }}</p>
-        <p>{{ dynamic_page_crm_object.price | format_currency_value(locale=product_functions_macro.get_locale(), currency=product_functions_macro.get_currency()) }}</p>
-        {{ product_functions_macro.render_structured_data(dynamic_page_crm_object) }}
+      <div class="row-fluid">
+        <div class="span12 widget-span widget-type-cell">
+          <div class="row-fluid-wrapper row-depth-1 row-number-1 dnd-section">
+            <div class="row-fluid">
+              <div class="span12 widget-span widget-type-cell dnd-column">
+                <div class="product-single-view">
+                  <h1>{{ dynamic_page_crm_object.name }}</h1>
+                  {{ product_functions_macro.render_product_image(dynamic_page_crm_object, 1400, 1024) }}
+                  <p>{{ dynamic_page_crm_object.description }}</p>
+                  <p>{{ dynamic_page_crm_object.price | format_currency_value(locale=product_functions_macro.get_locale(), currency=product_functions_macro.get_currency()) }}</p>
+                  {{ product_functions_macro.render_structured_data(dynamic_page_crm_object) }}
+                </div>
+                <a href="/{{ backToListUrlSlug }}" class="btn-link">Back to Product List</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <a href="/{{ backToListUrlSlug }}" class="back-to-list">Back to Product List</a>
     {% else %}
       {# List view - not editable for editor #}
       {% dnd_area 'dnd_area_list'

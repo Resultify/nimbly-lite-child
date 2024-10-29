@@ -303,7 +303,9 @@
         <div class="product-listing-module__product_wrp">
           <article class="product-listing-module__product" aria-label="Product post summary: {{ product.description }}">
             <div class="product-listing-module__product-image">
-              {{ product_functions_macro.render_product_list_image(product) }}
+              <div class="product-listing-module__product-image product-listing-module__product-item">
+                {{ product_functions_macro.render_product_image(product, 600, 400) }}
+              </div>
             </div>
             <div class="product-listing-module__product-information">
               {{ render_heading(product) }}
