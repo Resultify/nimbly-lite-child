@@ -21,6 +21,7 @@
     {% set nameDescendingLabel = "Name descending" %}
     {% set priceAscendingLabel = "Price ascending" %}
     {% set priceDescendingLabel = "Price ascending" %}
+    {% set backToListLabel = "Back to list" %}
   {% endif %}
 
   {# Swedish labels #}
@@ -38,6 +39,7 @@
     {% set nameDescendingLabel = "Namn fallande" %}
     {% set priceAscendingLabel = "Pris stigande" %}
     {% set priceDescendingLabel = "Pris ascending" %}
+    {% set backToListLabel = "Tillbaka till listan" %}
   {% endif %}
 
   {% do settings.update({
@@ -53,7 +55,8 @@
     'nameAscendingLabel': nameAscendingLabel,
     'nameDescendingLabel': nameDescendingLabel,
     'priceAscendingLabel': priceAscendingLabel,
-    'priceDescendingLabel': priceDescendingLabel',
+    'priceDescendingLabel': priceDescendingLabel,
+    'backToListLabel': backToListLabel
   }) %}
 {% endmacro %}
 

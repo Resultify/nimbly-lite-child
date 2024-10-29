@@ -14,6 +14,8 @@
   <div class="products-template">
     {# Single view #}
     {% if dynamic_page_crm_object %}
+      {% set settings = {} %}
+      {{- product_functions_macro.parse_settings(content, settings) -}}
       {% set backToListUrlSlug = request.path|split('/') %}
       {% set backToListUrlSlug = backToListUrlSlug[:-1] %}
       {% set backToListUrlSlug = backToListUrlSlug|join('/') %}
@@ -29,7 +31,7 @@
                   <p>{{ dynamic_page_crm_object.price | format_currency_value(locale=product_functions_macro.get_locale(), currency=product_functions_macro.get_currency()) }}</p>
                   {{ product_functions_macro.render_structured_data(dynamic_page_crm_object) }}
                 </div>
-                <a href="/{{ backToListUrlSlug }}" class="btn-link">Back to Product List</a>
+                <a href="/{{ backToListUrlSlug }}" class="btn-link">{{ settings.backToListLabel }}</a>
               </div>
             </div>
           </div>
