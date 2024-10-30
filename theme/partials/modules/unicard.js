@@ -18,7 +18,7 @@ import { animationList } from '../data/animation-list.js'
 import { shadowList } from '../data/shadow-list.js'
 
 /**
- * #### fullWidthImage fields
+ * #### unicard fields
  * @param {MODULE_COMPONENTS} components - parent path
  * @param {string} [parent] - parent path
  * @param {object} [opt] - options
@@ -154,6 +154,7 @@ const unicardFields = (components, parent = '', opt) => {
  * @param {boolean} [opt.hideHoverProps] - hide hover props
  * @param {boolean} [opt.showVerticalAlignment] - show vertical alignment prop
  * @param {boolean} [opt.showMobileAlignment] - show mobile alignment prop
+ * @param {boolean} [opt.showMaxWidth] - show max width prop
  */
 const unicardStyleFields = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
@@ -281,6 +282,12 @@ const unicardStyleFields = (parent = '', opt) => {
     fi.choice('Shadow', 'shadow', {
       display_width: 'half_width',
       choices: shadowList
+    }),
+    fi.number('Max width', 'max_width', {
+      locked: !(opt?.showMaxWidth),
+      min: 0,
+      suffix: 'px',
+      display_width: 'half_width'
     }),
     fi.boolean('Card hover effects', 'hover_effects', {
       locked: opt?.hideHoverProps || false
