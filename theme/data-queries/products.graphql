@@ -31,6 +31,7 @@ query Products($limit: Int = 12, $offset: Int = 0, $orderBy: [crm_product_order_
             limit
             offset
             total
+            hasMore
         }
     }
 }
