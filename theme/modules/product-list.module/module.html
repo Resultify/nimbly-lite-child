@@ -310,11 +310,7 @@
             <div class="product-listing-module__product-information">
               {{ render_heading(product) }}
               <p class="product-listing-module__product-description">
-                {% if module.description.truncate %}
-                  {{ product.description | truncatehtml(module.description.truncate, "...", false) }}
-                {% else %}
-                  {{ product.description }}
-                {% endif %}
+                {{ product.description | truncatehtml(module.description.truncate ? module.description.truncate : 100, "...", false) }}
               </p>
               <p>{{ product.price | format_currency_value(locale=product_functions_macro.get_locale(), currency=product_functions_macro.get_currency()) }}</p>
               {% if module.button.show %}
