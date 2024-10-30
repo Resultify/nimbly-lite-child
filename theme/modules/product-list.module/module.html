@@ -114,18 +114,17 @@
 {# Render search #}
 {% macro render_search(qd_name, searchLabel) %}
 <div class="product-listing-module__search">
-  <form action="{{ request.path }}">
-    <input type="text" name="qd_name" value="{{ qd_name }}" class="form-control border border-secondary rounded">
-    <button type="submit" class="btn-link btn-secondary1 btn-regular">{{ searchLabel }}</button>
+  <form action="{{ request.path }}" class="row-fluid">
+    <input type="text" name="qd_name" value="{{ qd_name }}">
+    <button type="submit" class="btn-link btn-regular">{{ searchLabel }}</button>
   </form>
 </div>
 {%- endmacro %}
 
 {# Render sorting filters #}
 {% macro render_sorting_filter(qd_sorting, labels) -%}
-  <div class="product-listing-module__sorting-filter">
-    <span>
-      <select class="btn-link btn-secondary1 btn-regular float-start" id="qd_sorting">
+  <div class="product-listing-module__sorting-filter row-fluid">
+      <select class="btn-link btn-regular" id="qd_sorting">
         {% set selected = ' selected="selected"' %}
         {% set nameAscending = 'name__asc' %}
         {% set nameDescending = 'name__desc' %}
@@ -137,7 +136,6 @@
         <option value="{{ request.path }}?qd_sorting={{ priceAscending }}"{% if priceAscending == qd_sorting %}{{ selected }}{% endif %}>{{ labels.priceAscendingLabel }}</option>
         <option value="{{ request.path }}?qd_sorting={{ priceDescending }}"{% if priceDescending == qd_sorting %}{{ selected }}{% endif %}>{{ labels.priceDescendingLabel }}</option>
       </select>
-    </span>
   </div>
 {%- endmacro %}
 
