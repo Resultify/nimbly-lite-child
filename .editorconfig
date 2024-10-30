@@ -17,6 +17,10 @@ indent_size = 4
 [*.{ts,js,json,mjs}]
 indent_size = 2
 
+# JSON files
+[*.json]
+insert_final_newline = false
+
 # XLF/XML files
 [*.{xlf,xml}]
 indent_style = tab
