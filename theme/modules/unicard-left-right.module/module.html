@@ -14,9 +14,6 @@
     .unicard-left-right {
       --mobile-direction:{{module.style.mobile_reverse ? 'column-reverse' : 'column' }};
       --desktop-gap:{{module.style.desktop_gap ~ 'px'}};
-      {% if module.style.desktop_gap > 45 %}
-        --desktop-gap: calc(2.8125rem + ({{module.style.desktop_gap}} - 45) * (100vw - 52rem) / ({{theme.layout.maximum_content_width}} - 840));
-      {% endif %}
       --mobile-gap:{{module.style.mobile_gap ~ 'px'}};
       --left-column-width: {{ module.style.proportions ~ '%' }};
       --right-column-width: {{ 100 - module.style.proportions ~ '%' }};
@@ -43,7 +40,7 @@
     }
 
     {% if module.style.spacing.padding.top.value > 45 or module.style.spacing.padding.bottom.value > 45 or module.style.spacing.padding.left.value > 45 or module.style.spacing.padding.right.value > 45 %}
-      @media screen and (max-width: {{theme.layout.maximum_content_width - 0.2 ~ 'px'}}) {
+      @media (max-width: {{theme.layout.maximum_content_width - 0.2 ~ 'px'}}) {
         .unicard-left-right {
           {% if module.style.spacing.padding.top.value > 45 %}
             --unicard-l-r-padding-top: calc(2.8125rem + ({{module.style.spacing.padding.top.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
@@ -60,6 +57,14 @@
           {% if module.style.spacing.css|length <= 17 %}
             --unicard-l-r-padding: calc(2.8125rem + ({{module.style.spacing.padding.top.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
           {% endif %}
+        }
+      }
+    {% endif %}
+
+    {% if module.style.desktop_gap > 45 %}
+      @media (max-width: {{theme.layout.maximum_content_width - 0.2 ~ 'px'}}) {
+        .unicard-left-right {
+          --desktop-gap: calc(2.8125rem + ({{module.style.desktop_gap}} - 45) * (100vw - 52rem) / ({{theme.layout.maximum_content_width}} - 840));
         }
       }
     {% endif %}
