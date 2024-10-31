@@ -116,6 +116,13 @@
 <div class="product-listing-module__search">
   <form action="{{ request.path }}" class="row-fluid">
     <input type="text" name="qd_name" value="{{ qd_name }}">
+    {% if request.query_dict %}
+      {% for key, value in request.query_dict.items() %}
+        {% if key != 'qd_name' %}
+          <input type="hidden" name="{{ key }}" value="{{ value }}">
+        {% endif %}
+      {% endfor %}
+    {% endif %}
     <button type="submit" class="btn-link btn-regular">{{ searchLabel }}</button>
   </form>
 </div>
