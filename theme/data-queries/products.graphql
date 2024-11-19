@@ -1,0 +1,37 @@
+# label: "Products list with filters"
+# description: "Filter Products by different filters"
+# $limit: "{{ request.query_dict.limit <= 13 ? request.query_dict.limit : 12 || 12 }}"
+# $offset: "{{ request.query_dict.offset || 0 }}"
+# $orderBy: "{{ request.query_dict.qd_sorting }}"
+# $name: "{{ request.query_dict.qd_name }}"
+# $sku: "{{ request.query_dict.qd_sku }}"
+query Products($limit: Int = 12, $offset: Int = 0, $orderBy: [crm_product_order_by] = name__asc, $name: String, $sku: String) {
+    CRM {
+        product_collection(
+            limit: $limit
+            offset: $offset
+            filter: { name__contains: $name, hs_sku__contains: $sku }
+            orderBy: $orderBy
+        ) {
+            items {
+                name
+                price
+                quantity
+                tax
+                hs_url
+                amount
+                createdate
+                description
+                discount
+                hs_images
+                hs_object_id
+                hs_product_type
+                hs_sku
+            }
+            limit
+            offset
+            total
+            hasMore
+        }
+    }
+}

@@ -1,0 +1,336 @@
+<!-- module html  -->
+{% import '../../macros/hubl/products/functions.html' as product_functions_macro %}
+{% import '../macros/link.html' as link_macros %}
+{% import '../macros/heading.html' as heading_macros %}
+{% import '../macros/button.html' as button_macros %}
+
+{# module scope css #}
+<style>
+  {% scope_css %}
+
+  .product-listing-module {
+    {{module.style.general.spacing.spacing.css}}
+  }
+
+  .product-listing-module__product_wrp {
+    {{module.style.product.spacing.spacing.css}}
+  }
+
+  .basic-grid .product-listing-module__product_wrp {
+    width: calc(100% / {{module.layout.columns}});
+  }
+  @media (max-width: 991.98px) {
+    .basic-grid .product-listing-module__product_wrp {
+      width: 50%;
+    }
+  }
+  @media (max-width: 700px) {
+    .basic-grid .product-listing-module__product_wrp {
+      width: 100%;
+    }
+  }
+
+  .product-listing-module__product {
+    {% if module.style.product.border.border_radius %}
+      border-radius: {{module.style.product.border.border_radius ~ 'px'}};
+    {% endif %}
+    {% if module.style.product.background.color.css %}
+      background-color: {{module.style.product.background.color.css}};
+    {% endif %}
+    {{module.style.product.border.border.css}}
+    {{module.style.product.internal_spacing.spacing.css}}
+  }
+
+  .product-listing-module__product-image {
+    text-align: {{module.style.image.alignment.alignment.horizontal_align}};
+    {% if module.style.image.background.color.css %}
+      background-color: {{module.style.image.background.color.css}};
+    {% endif %}
+    {{module.style.image.spacing.spacing.css}}
+  }
+
+  .product-listing-module__product-information {
+    text-align: {{module.style.link.alignment.alignment.horizontal_align}};
+    {% if module.style.link.background.color.css %}
+      background-color: {{module.style.link.background.color.css}};
+    {% endif %}
+    {{module.style.link.spacing.spacing.css}}
+  }
+
+  .product-listing-module__product-heading {
+    {% if module.style.heading.background.color.css %}
+      background-color: {{module.style.heading.background.color.css}};
+    {% endif %}
+      text-align: {{module.style.heading.alignment.alignment.horizontal_align}};
+    {{module.style.heading.spacing.spacing.css}}
+  }
+
+  .product-listing-module__product-button {
+    text-align: {{module.style.button.alignment.alignment.horizontal_align}};
+    {% if module.style.button.background.color.css %}
+      background-color: {{module.style.button.background.color.css}};
+    {% endif %}
+    {{module.style.button.spacing.spacing.css}}
+  }
+
+  {% end_scope_css %}
+</style>
+
+{% set settings = {} %}
+{{- product_functions_macro.parse_settings(content, settings) -}}
+
+{# Heading #}
+{%- macro render_heading(product) -%}
+  <div class="product-listing-module__product-heading product-listing-module__product-item">
+    {%- set heading_data = {
+      "display": module.heading.display, "heading_tag": module.heading.heading_tag, "text": product.name,
+      "link": {"link": { "url": { "href": product_functions_macro.render_product_url(product), "type":"EXTERNAL" }, "open_in_new_tab": false, "rel": "" }, "accessible_link": true },
+      "icon":{
+        "icon": { "name": "", "unicode": "", "type": "REGULAR", "icon_set": "fontawesome-5.14.0" },
+        "icon_position": "left", "accessibility_options": { "purpose": "decorative" }
+      }
+    }%}
+    {{
+      heading_macros.render_heading_tmpl(heading_data, module.style.heading, module)
+    }}
+  </div>
+{%- endmacro -%}
+
+{# Button #}
+{%- macro render_button(product) -%}
+  <div class="product-listing-module__product-button product-listing-module__product-item">
+    {%- set url = product_functions_macro.render_product_url(product) -%}
+    {%- set button_data = {
+      "text": module.button.text, "accessible_link_label": "Product information: {{product.name}}", "accessible_link": true,
+      "link": {"url": { "href": url, "type":"EXTERNAL" }, "open_in_new_tab": false, "rel": "" },
+      "icon":{
+        "icon": { "name": "", "unicode": "", "type": "REGULAR", "icon_set": "fontawesome-5.14.0" },
+        "icon_position": "left", "accessibility_options": { "purpose": "decorative" }
+      }
+    }%}{{button_macros.render_btn_tmpl(button_data, module.style.button, module)}}
+  </div>
+{%- endmacro -%}
+
+{# Render search #}
+{% macro render_search(qd_name, searchLabel) %}
+<div class="product-listing-module__search">
+  <form action="{{ request.path }}" class="row-fluid">
+    <input type="text" name="qd_name" value="{{ qd_name }}">
+    {% if request.query_dict %}
+      {% for key, value in request.query_dict.items() %}
+        {% if key != 'qd_name' %}
+          <input type="hidden" name="{{ key }}" value="{{ value }}">
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    <button type="submit" class="btn-link btn-regular">{{ searchLabel }}</button>
+  </form>
+</div>
+{%- endmacro %}
+
+{# Render sorting filters #}
+{% macro render_sorting_filter(qd_sorting, labels) -%}
+  <div class="product-listing-module__sorting-filter row-fluid">
+      <select class="btn-link btn-regular" id="qd_sorting">
+        {% set selected = ' selected="selected"' %}
+        {% set nameAscending = 'name__asc' %}
+        {% set nameDescending = 'name__desc' %}
+        {% set priceAscending = 'price__asc' %}
+        {% set priceDescending = 'price__desc' %}
+        <option value="{{ request.path }}"{% if not qd_sorting %}{{ selected }}{% endif %}>{{ labels.resetLabel }}</option>
+        <option value="{{ request.path }}?qd_sorting={{ nameAscending }}"{% if nameAscending == qd_sorting %}{{ selected }}{% endif %}>{{ labels.nameAscendingLabel }}</option>
+        <option value="{{ request.path }}?qd_sorting={{ nameDescending }}"{% if nameDescending == qd_sorting %}{{ selected }}{% endif %}>{{ labels.nameDescendingLabel }}</option>
+        <option value="{{ request.path }}?qd_sorting={{ priceAscending }}"{% if priceAscending == qd_sorting %}{{ selected }}{% endif %}>{{ labels.priceAscendingLabel }}</option>
+        <option value="{{ request.path }}?qd_sorting={{ priceDescending }}"{% if priceDescending == qd_sorting %}{{ selected }}{% endif %}>{{ labels.priceDescendingLabel }}</option>
+      </select>
+  </div>
+{%- endmacro %}
+
+{# Render Pagination #}
+{% macro render_pagination(limit, current_offset, current_page_number, number_of_pages, query_param_list) -%}
+{% if number_of_pages > 1 %}
+<div class="products-list-pagination-wrp">
+  <nav aria-label="Pagination navigation" class="products-list-pagination">
+    {# First page link #}
+    {% if current_page_number != 1 %}
+      <span class="productlist-module__pagination-link productlist-module__pagination-link--first-page">
+        {% set offsetParam = "offset=0" %}
+        {% set first_page_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set first_page_link = pagination_link(first_page_url, settings.paginationFirstLabel, 'Angle Double Left', 'f100', 'left')|fromjson %}
+        {{link_macros.render_link_tmpl(first_page_link, module.style.link, module)}}
+      </span>
+    {% endif %}
+
+    {% if current_page_number > 1 %}
+      <span class="productlist-module__pagination-link productlist-module__pagination-link--previous-page">
+        {% set offsetParam = "offset=" + (((current_page_number - 1) * limit) - limit) %}
+        {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set previous_page_link = pagination_link(page_link_url, settings.paginationPreviousLabel, 'angle-left', 'f104', 'left')|fromjson %}
+        {{link_macros.render_link_tmpl(previous_page_link, module.style.link, module)}}
+      </span>
+    {% endif %}
+
+    {% if current_page_number > 2 %}
+      <span class="productlist-module__pagination-page-link productlist-module__pagination-page-link--number">
+        {% set offsetParam = "offset=" + ((current_page_number|add(-2) * limit) - limit) %}
+        {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set page_link = pagination_link(page_link_url, current_page_number|add(-2))|fromjson %}
+        {{link_macros.render_link_tmpl(page_link, module.style.secondary_link, module )}}
+      </span>
+    {% endif %}
+
+    {% if current_page_number > 1 %}
+      <span class="productlist-module__pagination-page-link productlist-module__pagination-page-link--number">
+        {% set offsetParam = "offset=" + ((current_page_number|add(-1) * limit) - limit) %}
+        {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set page_link = pagination_link(page_link_url, current_page_number|add(-1))|fromjson %}
+        {{link_macros.render_link_tmpl(page_link, module.style.secondary_link, module )}}
+      </span>
+    {% endif %}
+
+    <span class="productlist-module__pagination-page-link productlist-module__pagination-page-link--number productlist-module__pagination-page-link--active">
+      {% set offsetParam = "offset=" + ((current_page_number * limit) - limit) %}
+      {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+      {% set page_link = pagination_link(page_link_url, current_page_number)|fromjson %}
+      {{link_macros.render_link_tmpl(page_link, module.style.secondary_link, module )}}
+    </span>
+
+    {% if number_of_pages > current_page_number %}
+      <span class="productlist-module__pagination-page-link productlist-module__pagination-page-link--number">
+        {% set offsetParam = "offset=" + ((current_page_number|add(1) * limit) - limit) %}
+        {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set page_link = pagination_link(page_link_url, current_page_number|add(1))|fromjson %}
+        {{link_macros.render_link_tmpl(page_link, module.style.secondary_link, module )}}
+      </span>
+    {% endif %}
+
+    {% if current_page_number != number_of_pages and current_page_number != number_of_pages-1%}
+      <span class="productlist-module__pagination-page-link productlist-module__pagination-page-link--number">
+        {% set offsetParam = "offset=" + ((current_page_number|add(2) * limit) - limit) %}
+        {% set page_link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set page_link = pagination_link(page_link_url, current_page_number|add(2))|fromjson %}
+        {{link_macros.render_link_tmpl(page_link, module.style.secondary_link, module )}}
+      </span>
+    {% endif %}
+
+    {% if number_of_pages > current_page_number %}
+      <span class="productlist-module__pagination-link productlist-module__pagination-link--next-page">
+        {% set offsetParam = "offset=" + (((current_page_number + 1) * limit) - limit) %}
+        {% set next_page__link_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set next_page_link = pagination_link(next_page__link_url, settings.paginationNextLabel, 'angle-right', 'f105', 'right')|fromjson %}
+        {{link_macros.render_link_tmpl(next_page_link, module.style.link, module)}}
+      </span>
+    {% endif %}
+
+    {# Last page link #}
+    {% if page_number != number_of_pages %}
+      <span class="productlist-module__pagination-link productlist-module__pagination-link--last-page">
+        {% set offsetParam = "offset=" + ((number_of_pages * limit) - limit) %}
+        {% set last_page_url = content.absolute_url ~ '?' ~ query_param_list|union([offsetParam])|join('&') %}
+        {% set last_page_link = pagination_link(last_page_url, settings.paginationLastLabel, 'Angle Double Right', 'f101', 'right')|fromjson %}
+        {{link_macros.render_link_tmpl(last_page_link, module.style.link, module)}}
+      </span>
+    {% endif %}
+
+  </nav>
+</div>
+{% endif %}
+{%- endmacro %}
+
+{# Render Page of Pages #}
+{% macro render_page_of_pages(current_page_number, number_of_pages) -%}
+  <div class="products-list-page-of-pages">
+    <span>{{ settings.pageLabel }} {{ current_page_number }} {{ settings.webinarOfLabel }} {{ number_of_pages }}</span>
+  </div>
+{%- endmacro %}
+
+{# Render Item of Items #}
+{% macro render_items_of_items(limit, total, current_page_number, offset) -%}
+  <div class="products-list-item-of-items">
+    {% set from = (current_page_number - 1) * limit + 1 %}
+    {% set to = offset < total ? offset : total %}
+    <span>{{ settings.placeWebinarLabel }} {{ from }}-{{ to }} {{ settings.webinarOfLabel }} {{ total }}</span>
+  </div>
+{%- endmacro %}
+
+{# Pagination link macro #}
+{%- macro pagination_link(url, text, icon_name, icon_unicode, icon_position) -%}
+  {
+    "text":"{{text}}","accessible_link":true,
+    "link":{"url":{"href":"{{url}}","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+    "icon":{
+      "icon":{"name":"{{icon_name}}","unicode":"{{icon_unicode}}","type":"SOLID","icon_set":"fontawesome-5.14.0"},
+      "icon_position":"{{icon_position}}"
+    }
+  }
+{%- endmacro -%}
+
+{# Variables: product_collection and query_dict variables #}
+{% set limit = module.data_query.data.CRM.product_collection.limit %}
+{% set offset = module.data_query.data.CRM.product_collection.offset %}
+{# Offset returned in graphql seems to be the "next" offset, calculate current #}
+{% set current_offset = (offset - limit) %}
+{% set total = module.data_query.data.CRM.product_collection.total %}
+{% set hasMore = module.data_query.data.CRM.product_collection.hasMore %}
+{% set number_of_pages = (total / limit) | round(0,"ceil") %}
+{% set current_page_number = 1 + (current_offset / limit) | int | round(0) %}
+{% set query_param_list = [] %}
+
+{# Query params to keep in pagination + ? #}
+{# If limit != 1 (also the default in both module settings and graphql file, set query parameter #}
+{% if limit != 1 %}
+  {% do query_param_list.append('limit=' + limit) %}
+{% endif %}
+{% if request.query_dict.qd_name %}
+  {% do query_param_list.append('qd_name=' + request.query_dict.qd_name|urlencode) %}
+{% endif %}
+{% if request.query_dict.qd_sku %}
+  {% do query_param_list.append('qd_sku=' + request.query_dict.qd_sku|urlencode) %}
+{% endif %}
+{% if request.query_dict.qd_sorting %}
+  {% do query_param_list.append('qd_sorting=' + request.query_dict.qd_sorting|urlencode) %}
+{% endif %}
+
+{% set products = module.data_query.data.CRM.product_collection.items %}
+<div class="product-listing-module_wrp">
+  <div class="product-listing-module product-listing-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
+    <{{module.heading.heading_tag}}>{{ module.heading.title || settings.titleLabel }}</{{module.heading.heading_tag}}>
+    <div class="row-fluid">
+      <div class="span6">
+        {{ render_search(request.query_dict.qd_name, settings.searchLabel) }}
+      </div>
+      <div class="span6">
+        {{ render_sorting_filter(request.query_dict.qd_sorting, settings) }}
+      </div>
+    </div>
+    <div class="product-listing-module__products {{module.layout.layout}}">
+      {% for product in products %}
+        <div class="product-listing-module__product_wrp">
+          <article class="product-listing-module__product" aria-label="Product post summary: {{ product.description }}">
+            <div class="product-listing-module__product-image">
+              <div class="product-listing-module__product-image product-listing-module__product-item">
+                {{ product_functions_macro.render_product_image(product, 600, 400) }}
+              </div>
+            </div>
+            <div class="product-listing-module__product-information">
+              {{ render_heading(product) }}
+              <p class="product-listing-module__product-description">
+                {{ product.description | truncatehtml(module.description.truncate ? module.description.truncate : 100, "...", false) }}
+              </p>
+              <p>{{ product.price | format_currency_value(locale=product_functions_macro.get_locale(), currency=product_functions_macro.get_currency()) }}</p>
+              {% if module.button.show %}
+                {{ render_button(product) }}
+              {% endif %}
+            </div>
+          </article>
+        </div>
+      {% endfor %}
+    </div>
+    {# Pagination #}
+    <div class="products-list-footer">
+      {# render_page_of_pages(current_page_number, number_of_pages) #}
+      {# render_items_of_items(limit, total, current_page_number, offset) #}
+      {{ render_pagination(limit, current_offset, current_page_number, number_of_pages, query_param_list) }}
+    </div>
+  </div>
+</div>

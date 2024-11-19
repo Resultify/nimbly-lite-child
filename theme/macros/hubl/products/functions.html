@@ -1,0 +1,171 @@
+<!--
+  label: macros -> hubl -> products -> functional.html
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{% import '../../../modules/macros/image.html' as image_macros %}
+
+{% macro parse_settings(content, settings) %}
+  {# English labels #}
+  {% if (content.language.languageTag == "en" || content.language.languageTag == null) %}
+    {% set titleLabel = "Products" %}
+    {% set paginationFirstLabel = "First" %}
+    {% set paginationPreviousLabel = "Previous" %}
+    {% set paginationNextLabel = "Next" %}
+    {% set paginationLastLabel = "Last" %}
+    {% set webinarOfLabel = "of" %}
+    {% set pageLabel = "Page" %}
+    {% set searchLabel = "Search" %}
+    {% set resetLabel = "Reset" %}
+    {% set nameAscendingLabel = "Name ascending" %}
+    {% set nameDescendingLabel = "Name descending" %}
+    {% set priceAscendingLabel = "Price ascending" %}
+    {% set priceDescendingLabel = "Price ascending" %}
+    {% set backToListLabel = "Back to list" %}
+    {% set priceLabel = "Price" %}
+    {% set skuLabel = "SKU" %}
+    {% set quantityLabel = "Quantity" %}
+    {% set externalUrlLabel = "External url" %}
+    {% set productTypeLabel = "Product type" %}
+  {% endif %}
+
+  {# Swedish labels #}
+  {% if (content.language.languageTag == "sv") %}
+    {% set titleLabel = "Produkter" %}
+    {% set paginationFirstLabel = "Första" %}
+    {% set paginationPreviousLabel = "Föregående" %}
+    {% set paginationNextLabel = "Nästa" %}
+    {% set paginationLastLabel = "Sista" %}
+    {% set webinarOfLabel = "av" %}
+    {% set pageLabel = "Sida" %}
+    {% set searchLabel = "Sök" %}
+    {% set resetLabel = "Återställ" %}
+    {% set nameAscendingLabel = "Namn stigande" %}
+    {% set nameDescendingLabel = "Namn fallande" %}
+    {% set priceAscendingLabel = "Pris stigande" %}
+    {% set priceDescendingLabel = "Pris fallande" %}
+    {% set backToListLabel = "Tillbaka till listan" %}
+    {% set priceLabel = "Pris" %}
+    {% set skuLabel = "SKU" %}
+    {% set quantityLabel = "Kvantitet" %}
+    {% set externalUrlLabel = "Extern url" %}
+    {% set productTypeLabel = "Produkttyp" %}
+  {% endif %}
+
+  {% do settings.update({
+    'titleLabel': titleLabel,
+    'paginationFirstLabel': paginationFirstLabel,
+    'paginationPreviousLabel': paginationPreviousLabel,
+    'paginationNextLabel': paginationNextLabel,
+    'paginationLastLabel': paginationLastLabel,
+    'webinarOfLabel': webinarOfLabel,
+    'pageLabel': pageLabel,
+    'searchLabel': searchLabel,
+    'resetLabel': resetLabel,
+    'nameAscendingLabel': nameAscendingLabel,
+    'nameDescendingLabel': nameDescendingLabel,
+    'priceAscendingLabel': priceAscendingLabel,
+    'priceDescendingLabel': priceDescendingLabel,
+    'backToListLabel': backToListLabel,
+    'priceLabel': priceLabel,
+    'skuLabel': skuLabel,
+    'quantityLabel': quantityLabel,
+    'externalUrlLabel': externalUrlLabel,
+    'productTypeLabel': productTypeLabel
+  }) %}
+{% endmacro %}
+
+{# Currency #}
+{%- macro get_currency() -%}
+  {%- set languageTag = content.language.languageTag %}
+  {%- if languageTag == "en-us" -%}
+    {%- set currency = "USD" -%}
+  {%- elif languageTag == "en" -%}
+    {%- set currency = "GBP" -%}
+  {%- elif languageTag == "sv" -%}
+    {%- set currency = "SEK" -%}
+  {%- elif languageTag == "dk" -%}
+    {%- set currency = "DKK" -%}
+  {%- elif languageTag == "no" -%}
+    {%- set currency = "NOK" -%}
+  {%- elif languageTag in ["de", "fr", "es", "it", "nl", "pt", "fi", "el", "et", "lv", "lt", "mt", "sk", "sl", "ie", "cy", "lu", "be", "at", "gr"] -%}
+    {%- set currency = "EUR" -%}
+  {%- else -%}
+    {%- set currency = "USD" -%} {# Default fallback currency #}
+  {%- endif -%}
+  {{ currency }}
+{%- endmacro -%}
+
+{# Get locale for the website #}
+{%- macro get_locale() -%}
+  {%- set languageTag = content.language.languageTag %}
+  {%- if languageTag == "en-us" -%}
+    {%- set locale = "en-US" -%}
+  {%- elif languageTag == "en" -%}
+    {%- set locale = "en-GB" -%}
+  {%- elif languageTag == "sv" -%}
+    {%- set locale = "sv-SE" -%}
+  {%- elif languageTag == "dk" -%}
+    {%- set locale = "da-DK" -%}
+  {%- elif languageTag == "no" -%}
+    {%- set locale = "nb-NO" -%}
+  {%- elif languageTag in ["de", "fr", "es", "it", "nl", "pt", "fi", "el", "et", "lv", "lt", "mt", "sk", "sl", "ie", "cy", "lu", "be", "at", "gr"] -%}
+    {%- set locale = "eu-EU" -%}
+  {%- else -%}
+    {%- set locale = "en-US" -%} {# Default fallback locale #}
+  {%- endif -%}
+  {{ locale }}
+{%- endmacro -%}
+
+{# Render product url #}
+{%- macro render_product_url(product) -%}
+  {%- set slug = content.property_for_dynamic_page_slug -%}
+  {% if slug == 'hs_sku' %}
+    {% set productUrl = request.path + '/' + product.hs_sku %}
+  {% elif slug == 'hs_object_id' %}
+    {% set productUrl = request.path + '/' + product.hs_object_id %}
+  {% endif %}
+  {{ productUrl }}
+{%- endmacro -%}
+
+{# Product Structured Data #}
+{%- macro render_structured_data(product) -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "{{ product.name }}",
+      "image": "{{ product.hs_images }}",
+      "description": "{{ product.description }}",
+      "sku": "{{ product.hs_object_id }}",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "{{ product_functions_macro.get_currency() }}",
+        "price": "{{ product.price }}",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  </script>
+{%- endmacro -%}
+
+{# Render product image #}
+{%- macro render_product_image(product, imageWidth, imageHeight) -%}
+  {%- set image_link_aria = 'aria-label="Full product information: {{ product.description }}"' -%}
+  {%- set image_data = {
+    "image": {
+      "size_type": "auto", "src": product.hs_images, "alt": product.name,
+      "loading": "lazy", "width": "{{ imageWidth }}", "height": "{{ imageHeight }}", "max_width": null, "max_height": null
+    },
+    "caption": { "rich_text": "" }
+    }%}
+  {{
+    image_macros.render_image_tmpl(
+      image_data,
+      module.style.image,
+      module,
+      {
+        link_data_attrs: image_link_aria
+      }
+    )
+  }}
+{%- endmacro -%}
