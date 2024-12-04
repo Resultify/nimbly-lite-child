@@ -34,117 +34,117 @@ import { shadowList } from '../data/shadow-list.js'
  * @param {boolean} [opt.hideWholeAreaLinkProp] - hide whole area link property
  */
 const unicardFields = (components, parent = '', opt) => {
-  return [
-    categoryGroup(parent),
-    mediaGroup(parent, opt?.mediaGroup),
-    group('Heading', 'heading',
-      {
-        icon: {
-          name: 'heading',
-          set: 'fontawesome-6.4.2',
-          type: 'SOLID'
-        },
-        visibility: {
+  const fields = []
+  components.choices.includes('categories') && fields.push(categoryGroup(parent))
+  components.choices.includes('media') && fields.push(mediaGroup(parent, opt?.mediaGroup))
+  components.choices.includes('main_heading') && fields.push(group('Heading', 'heading',
+    {
+      icon: {
+        name: 'heading',
+        set: 'fontawesome-6.4.2',
+        type: 'SOLID'
+      },
+      visibility: {
+        controlling_field_path: `${parent}module_components`,
+        operator: 'MATCHES_REGEX',
+        controlling_value_regex: 'main_heading'
+      },
+      expanded: true
+    },
+    heading(`${parent}heading.`, opt?.heading)
+  ))
+  components.choices.includes('sub_heading') && fields.push(group('Subheading', 'subheading',
+    {
+      icon: {
+        name: 'bold',
+        set: 'fontawesome-6.4.2',
+        type: 'SOLID'
+      },
+      visibility: {
+        controlling_field_path: `${parent}module_components`,
+        operator: 'MATCHES_REGEX',
+        controlling_value_regex: 'sub_heading'
+      },
+      expanded: true
+    },
+    heading(`${parent}subheading.`)
+  ))
+  components.choices.includes('richtext') && fields.push(fi.richtext('Rich text', 'richtext', {
+    visibility: {
+      controlling_field_path: `${parent}module_components`,
+      operator: 'MATCHES_REGEX',
+      controlling_value_regex: 'richtext'
+    }
+  }))
+  components.choices.includes('buttons') && fields.push(buttonGroup(parent))
+  components.choices.includes('custom_text') && fields.push(customTextGroup(parent))
+  components.choices.includes('list') && fields.push(listGroup(parent))
+  components.choices.includes('accordion') && fields.push(accordionGroup(parent))
+  components.choices.includes('form') && fields.push(group('Form', 'form_group',
+    {
+      icon: {
+        name: 'wpforms',
+        set: 'fontawesome-6.4.2',
+        type: 'REGULAR'
+      },
+      visibility: {
+        controlling_field_path: `${parent}module_components`,
+        operator: 'MATCHES_REGEX',
+        controlling_value_regex: 'form'
+      }
+    },
+    form(`${parent}form_group.`, opt?.form)
+  ))
+  components.choices.includes('meeting') && fields.push(meeting(parent))
+  components.choices.includes('additional_images') && fields.push(group('Additional images', 'additional_images_group',
+    {
+      icon: {
+        name: 'images',
+        set: 'fontawesome-6.4.2',
+        type: 'REGULAR'
+      },
+      visibility: {
+        controlling_field_path: `${parent}module_components`,
+        operator: 'MATCHES_REGEX',
+        controlling_value_regex: 'additional_images'
+      },
+      occurrence: {
+        min: 0,
+        max: 20
+      }
+    },
+    simpleImage(`${parent}additional_images_group.`, { hideAlignmentProp: true })
+  ))
+  components.choices.includes('simple_text') && fields.push(simpleText(parent))
+  fields.push(fi.boolean('Whole area link', 'whole_area_link', {
+    help_text: 'When enabled, the whole area of the module will be clickable as a link.<br>To make this work, you need to add a link to any of the heading, subheading or button components.',
+    display: 'toggle',
+    default: false,
+    visibility_rules: 'ADVANCED',
+    locked: opt?.hideWholeAreaLinkProp || false,
+    advanced_visibility: {
+      boolean_operator: 'OR',
+      criteria: [
+        {
           controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',
           controlling_value_regex: 'main_heading'
         },
-        expanded: true
-      },
-      heading(`${parent}heading.`, opt?.heading)
-    ),
-    group('Subheading', 'subheading',
-      {
-        icon: {
-          name: 'bold',
-          set: 'fontawesome-6.4.2',
-          type: 'SOLID'
-        },
-        visibility: {
+        {
           controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',
           controlling_value_regex: 'sub_heading'
         },
-        expanded: true
-      },
-      heading(`${parent}subheading.`)
-    ),
-    fi.richtext('Rich text', 'richtext', {
-      visibility: {
-        controlling_field_path: `${parent}module_components`,
-        operator: 'MATCHES_REGEX',
-        controlling_value_regex: 'richtext'
-      }
-    }),
-    buttonGroup(parent),
-    customTextGroup(parent),
-    listGroup(parent),
-    accordionGroup(parent),
-    group('Form', 'form_group',
-      {
-        icon: {
-          name: 'wpforms',
-          set: 'fontawesome-6.4.2',
-          type: 'REGULAR'
-        },
-        visibility: {
+        {
           controlling_field_path: `${parent}module_components`,
           operator: 'MATCHES_REGEX',
-          controlling_value_regex: 'form'
+          controlling_value_regex: 'buttons'
         }
-      },
-      form(`${parent}form_group.`, opt?.form)
-    ),
-    meeting(parent),
-    group('Additional images', 'additional_images_group',
-      {
-        icon: {
-          name: 'images',
-          set: 'fontawesome-6.4.2',
-          type: 'REGULAR'
-        },
-        visibility: {
-          controlling_field_path: `${parent}module_components`,
-          operator: 'MATCHES_REGEX',
-          controlling_value_regex: 'additional_images'
-        },
-        occurrence: {
-          min: 0,
-          max: 20
-        }
-      },
-      simpleImage(`${parent}additional_images_group.`, { hideAlignmentProp: true })
-    ),
-    simpleText(parent),
-    fi.boolean('Whole area link', 'whole_area_link', {
-      help_text: 'When enabled, the whole area of the module will be clickable as a link.<br>To make this work, you need to add a link to any of the heading, subheading or button components.',
-      display: 'toggle',
-      default: false,
-      visibility_rules: 'ADVANCED',
-      locked: opt?.hideWholeAreaLinkProp || false,
-      advanced_visibility: {
-        boolean_operator: 'OR',
-        criteria: [
-          {
-            controlling_field_path: `${parent}module_components`,
-            operator: 'MATCHES_REGEX',
-            controlling_value_regex: 'main_heading'
-          },
-          {
-            controlling_field_path: `${parent}module_components`,
-            operator: 'MATCHES_REGEX',
-            controlling_value_regex: 'sub_heading'
-          },
-          {
-            controlling_field_path: `${parent}module_components`,
-            operator: 'MATCHES_REGEX',
-            controlling_value_regex: 'buttons'
-          }
-        ]
-      }
-    }),
-    moduleComponents(components)
-  ]
+      ]
+    }
+  }))
+  fields.push(moduleComponents(components))
+  return fields
 }
 
 /**
