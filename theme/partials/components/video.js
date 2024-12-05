@@ -55,6 +55,15 @@ const video = (parent = '', opt) => {
         controlling_value_regex: 'true'
       }
     }),
+    fi.boolean('Autoplay', 'autoplay', {
+      display_width: 'half_width',
+      default: false,
+      visibility: {
+        controlling_field_path: `${parent}video_prop_visibility`,
+        operator: 'EQUAL',
+        controlling_value_regex: 'true'
+      }
+    }),
     fi.number('Border radius', 'video_border_radius', {
       min: 0,
       display_width: 'half_width',
