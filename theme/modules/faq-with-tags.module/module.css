@@ -14,14 +14,18 @@
 
 /* Tags container (source) */
 .faq-with-tags-module__button-tags {
-  border-bottom: 1px solid #bbb;
-  margin-bottom: 20px;
   padding-bottom: 50px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
+}
+
+/* horizontal lines */
+.faq-with-tags-module__details,
+.faq-with-tags-module__button-tags {
+  border-bottom: 1px solid #dbdbdb;
 }
 
 /* Tag containers destination */
@@ -64,12 +68,11 @@
 }
 
 .faq-with-tags-module__details {
-  border-bottom: 1px solid #dbdbdb;
   margin-bottom: 20px;
 }
 
 .faq-with-tags-module__richtext {
-  padding-left: 65px;
+  padding-left: 40px;
   padding-bottom: 40px;
 }
 
