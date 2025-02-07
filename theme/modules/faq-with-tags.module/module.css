@@ -1,0 +1,129 @@
+/* module css / no hubl variables */
+.faq-with-tags-module__tag,
+.faq-with-tags-module__text {
+  list-style: none;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+/* safari */
+.faq-with-tags-module__tag::-webkit-details-marker,
+.faq-with-tags-module__text::-webkit-details-marker {
+  display: none;
+}
+
+/* Tags container (source) */
+.faq-with-tags-module__button-tags {
+  border-bottom: 1px solid #bbb;
+  margin-bottom: 20px;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Tag containers destination */
+.faq-with-tags-module__tag {
+  display: none;
+}
+
+.faq-with-tags-module__tag.show {
+  display: block;
+}
+
+/* Question */
+.faq-with-tags-module__text > .g-module-macros-text {
+  position: relative;
+  user-select: none;
+  display: inline;
+}
+
+.faq-with-tags-module__text {
+  padding-left: 40px;
+}
+
+/* Question arrow */
+.faq-with-tags-module__arrow {
+  user-select: none;
+  position: relative;
+  z-index: 1;
+  display: inline;
+}
+
+/* Question arrow SVG */
+.faq-with-tags-module__arrow svg {
+  position: absolute;
+  top: 0;
+  left: -40px;
+}
+
+.faq-with-tags-module__arrow svg > path {
+  stroke: var(--primary-color, #222);
+}
+
+.faq-with-tags-module__details {
+  border-bottom: 1px solid #dbdbdb;
+  margin-bottom: 20px;
+}
+
+.faq-with-tags-module__richtext {
+  padding-left: 65px;
+  padding-bottom: 40px;
+}
+
+.faq-with-tags-module__details.opening > summary svg,
+.faq-with-tags-module__details.closing > summary svg {
+  transition: transform 0.2s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-with-tags-module__details.opening > summary svg,
+  .faq-with-tags-module__details.closing > summary svg {
+    transition: none;
+  }
+}
+
+.faq-with-tags-module__details[open]:not(.closing) > summary svg {
+  transform: rotate(90deg);
+}
+
+/* Answer - animation */
+@keyframes details-opening-1 {
+  from { margin-top: -10rem; }
+  to { margin-top: 0; }
+}
+
+@keyframes details-closing-1 {
+  from { margin-top: 0; }
+  to { margin-top: -10rem; }
+}
+
+@keyframes details-opening-2 {
+  from { opacity: 0.1; }
+  to { opacity: 1; }
+}
+
+@keyframes details-closing-2 {
+  from { opacity: 1; }
+  to { opacity: 0.1; }
+}
+
+.faq-with-tags-module__details.opening > .faq-with-tags-module__richtext {
+  overflow: hidden;
+  animation: details-opening-2 0.2s ease-in both;
+}
+
+.faq-with-tags-module__details.closing > .faq-with-tags-module__richtext {
+  overflow: hidden;
+  animation: details-closing-2 0.2s ease-out both;
+}
+
+.faq-with-tags-module__details.opening > .faq-with-tags-module__richtext *:first-child {
+  animation: details-opening-1 0.2s ease-out both;
+}
+
+.faq-with-tags-module__details.closing > .faq-with-tags-module__richtext *:first-child {
+  animation: details-closing-1 0.2s ease-in both;
+}
