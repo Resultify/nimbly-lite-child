@@ -1,0 +1,68 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: true
+    label: Membership Logout Page
+    screenshotPath: ../images/template-previews/membership-logout.png
+-->
+{# templateType: membership_logout_page #}
+{% extends "./layouts/base.html" %}
+{% set template_translations = load_translations("@hubspot/cmsdefaultsystempages/templates/_locales", html_lang, "en") %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row-fluid-wrapper">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="dnd-section">
+                        <div class="row-fluid">
+                            {% module "logout_heading"
+                                path="@hubspot/rich_text",
+                                html={{ "<h1>" ~ template_translations.membership_logout_heading.message ~ "</h1>" }}
+                            %}
+                        </div>
+                        <div class="row-fluid">
+                            {% module 'sign_in_button'
+                                path="../modules/n-button",
+                                offset=0,
+                                width=12,
+                                text={{ template_translations.membership_logout_button.message }},
+                                link={
+                                    "no_follow" : false,
+                                    "open_in_new_tab" : false,
+                                    "url" : {
+                                        "href": "/_hcms/mem/login",
+                                        "type" : "EXTERNAL"
+                                    }
+                                },
+                                style={
+                                    "presets" : { },
+                                    "alignment" : { },
+                                    "spacing" : {
+                                        "spacing" : {
+                                            "padding" : {
+                                                "bottom" : {
+                                                    "units" : "px",
+                                                    "value" : 30
+                                                },
+                                                "top" : {
+                                                    "units" : "px",
+                                                    "value" : 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            %}
+                        </div>
+                        <div class="row-fluid">
+                            {% module "logout_description"
+                                path="@hubspot/rich_text",
+                                html={{ "<p>" ~ template_translations.membership_logout_alt.message ~ "</p>" }}
+                            %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
