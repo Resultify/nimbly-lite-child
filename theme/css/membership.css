@@ -366,7 +366,8 @@
   font-size: 1rem;
   font-weight: 700;
   font-style: initial;
-  background: var(--_bg);
+  {# override background: none from base nimbly-lite #}
+  background: var(--_bg) !important;
   color: var(--_color);
   border: 1px solid #c8c8c8;
   display: inline-flex;
@@ -390,7 +391,8 @@
 }
 
 :where(.hs-button):where(:not(:active):hover) {
-  background: var(--hover-bg, var(--_bg));
+  {# override background: none from base nimbly-lite #}
+  background: var(--hover-bg, var(--_bg)) !important;
   color: var(--hover-color, var(--_color));
   border-color: var(--hover-border, #999) !important;
 }
@@ -400,7 +402,8 @@
 }
 
 :where(.hs-button)[disabled] {
-  background: none;
+  {# background: none replaced with opacity for readibility #}
+  opacity: 0.5;
   cursor: not-allowed; /* stylelint-disable-line */
 
   --color: hsl(210deg 7% 40%);
@@ -469,7 +472,8 @@
 }
 
 /* button primary */
-.hs-button.primary {
+.hs-button.primary,
+.hs-button.primary[disabled] {
     {% if btn_primary_radius %}
     --border-radius: {{btn_primary_radius ~ 'px'}};
     {% endif %}
@@ -491,7 +495,8 @@
     {{btn_primary_border.css}}
 }
 
-.hs-button.primary:hover {
+.hs-button.primary:hover,
+.hs-button.primary:hover[disabled] {
     {% if btn_primary_hover_color %}
     --hover-color: {{btn_primary_hover_color}};
     {% endif %}
