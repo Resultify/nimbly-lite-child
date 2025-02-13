@@ -46,6 +46,5 @@
 {% include './global-theme-settings/buttons.css' %}
 {% include './global-theme-settings/icons.css' %}
 {% include './global-theme-settings/forms.css' %}
-{% include './membership.css' %}
 {% include './utils.css' %}
 
