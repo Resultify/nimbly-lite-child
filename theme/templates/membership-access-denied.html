@@ -1,0 +1,70 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: true
+    label: Membership Access Denied Page
+    screenshotPath: ../images/template-previews/membership-access-denied.png
+-->
+{# screenshot added only for hubspot market validation #}
+{# templateType: error_page #}
+{% extends "./layouts/base.html" %}
+{% set template_translations = load_translations("@hubspot/cmsdefaultsystempages/templates/_locales", html_lang, "en") %}
+{% set template_css = '../../css/membership.css' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row-fluid-wrapper">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="dnd-section">
+                        <div class="row-fluid">
+                            {% module "access_denied_heading"
+                                path="@hubspot/rich_text",
+                                html={{ "<h1>" ~ template_translations.member_access_denied_heading.message ~ "</h1>" }}
+                            %}
+                        </div>
+                        <div class="row-fluid">
+                            {% module "access_denied_description"
+                                path="@hubspot/rich_text",
+                                html={{ "<p>" ~ template_translations.member_access_denied_description.message ~ "</p>" }}
+                            %}
+                        </div>
+                        <div class="row-fluid">
+                            {% module 'return_button'
+                                path="../modules/n-button",
+                                offset=0,
+                                width=12,
+                                text={{ template_translations.member_access_denied_button.message }},
+                                link={
+                                    "no_follow" : false,
+                                    "open_in_new_tab" : false,
+                                    "url" : {
+                                        "href": "/",
+                                        "type" : "EXTERNAL"
+                                    }
+                                },
+                                style={
+                                    "presets" : { },
+                                    "alignment" : { },
+                                    "spacing" : {
+                                        "spacing" : {
+                                            "padding" : {
+                                                "bottom" : {
+                                                    "units" : "px",
+                                                    "value" : 0
+                                                },
+                                                "top" : {
+                                                    "units" : "px",
+                                                    "value" : 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

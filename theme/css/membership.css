@@ -1,0 +1,576 @@
+/* used in forms.css and buttons.css */
+{% import './macros/macros.css' %}
+
+/* form-defaults.css */
+
+/* start normalize default HubSpot form styling */
+.form-wrapper .hs-form fieldset {
+  margin: initial;
+  padding: initial;
+  border: initial;
+  max-width: initial;
+}
+
+.form-wrapper :is(fieldset.form-columns-2, fieldset.form-columns-3) > div.hs-form-field {
+  float: none;
+  width: initial;
+}
+
+.form-wrapper .hs-form-field .hs-field-desc {
+  width: 100%;
+}
+
+.form-wrapper div.hs-form-field div.input {
+  margin-right: 0;
+}
+
+.form-wrapper fieldset.form-columns-1 .input .hs-input {
+  width: 100%;
+}
+
+.form-wrapper form fieldset.form-columns-2 .hs-form-field .input .hs-input {
+  width: 100%;
+}
+
+.form-wrapper fieldset.form-columns-1 .input input[type="radio"],
+.form-wrapper fieldset.form-columns-1 .input input[type="checkbox"] {
+  width: 1.2em;
+  float: none;
+}
+
+.form-wrapper .inputs-list :is(.hs-form-checkbox-display,
+.hs-form-booleancheckbox-display,
+.hs-form-radio-display) > span {
+  margin: 0;
+}
+/* end normalize */
+
+.form-wrapper {
+  --_form-label-color: var(--form-label-color, inherit);
+  --_form-help-text-color: var(--form-help-text-color, #394047);
+  --_form-placeholder-color: var(--form-placeholder-color, rgb(57 64 71 / 70%));
+  --_form-error-color: var(--form-error-color, #f2545b);
+}
+
+{# form styling - submit button - add spacing #}
+.form-wrapper .hs-submit {
+  margin-top: 1.5rem;
+}
+
+{# form styling - form field - more spacing #}
+.form-wrapper .hs-form-field {
+  margin-bottom: 1.5rem;
+}
+
+.form-wrapper :where(.form-columns-2,
+.form-columns-3) {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.form-wrapper :where(.form-columns-2, .form-columns-3) > .hs-form-field {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+@media (max-width: 991.98px) {
+  .form-wrapper :is(fieldset.form-columns-2, fieldset.form-columns-3) > div.hs-form-field {
+    flex-basis: auto;
+  }
+}
+
+.form-wrapper label,
+.form-wrapper .fakelabel {
+  color: var(--_form-label-color);
+  margin-bottom: 0.4rem;
+  display: flex;
+}
+
+.form-wrapper .hs-field-desc { /* stylelint-disable-line */
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.875em;
+  color: var(--_form-help-text-color);
+}
+
+.form-wrapper .hs-form-required {
+  color: var(--_form-error-color);
+  margin-left: 2px;
+}
+
+.form-wrapper input:not(
+[type="checkbox"],
+[type="radio"],
+[type="file"],
+[type="button"],
+[type="reset"],
+[type="submit"]),
+.form-wrapper textarea,
+.form-wrapper select {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.5rem;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-wrapper input[type="file"] {
+  overflow: hidden;
+  padding: 0;
+}
+
+.form-wrapper select {
+  padding: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form-wrapper input:not(
+  [type="checkbox"],
+  [type="radio"],
+  [type="file"],
+  [type="button"],
+  [type="reset"],
+  [type="submit"]),
+  .form-wrapper textarea,
+  .form-wrapper select {
+    transition: none;
+  }
+}
+
+.form-wrapper input.error:not(
+[type="checkbox"],
+[type="radio"],
+[type="file"],
+[type="button"],
+[type="reset"],
+[type="submit"]),
+.form-wrapper textarea.error,
+.form-wrapper select.error {
+  border-color: var(--_form-error-color) !important;
+}
+
+.form-wrapper .inputs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.form-wrapper .hs-error-msg,
+.form-wrapper .hs-error-msgs .hs-main-font-element {
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: var(--_form-error-color);
+}
+
+.form-wrapper input::placeholder,
+.form-wrapper textarea::placeholder {
+  color: var(--_form-placeholder-color);
+}
+
+.form-wrapper :where(.hs-form-checkbox-display,
+.hs-form-booleancheckbox-display,
+.hs-form-radio-display,
+.fakelabel) {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.form-wrapper input[type="radio"],
+/* stylelint-disable-next-line no-descending-specificity */
+.form-wrapper input[type="checkbox"] {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.form-wrapper input[type="file"]:not(:disabled) {
+  cursor: pointer;
+}
+
+/* forms.css */
+
+.form-wrapper input:not(
+    [type="checkbox"],
+    [type="radio"],
+    [type="file"],
+    [type="button"],
+    [type="reset"],
+    [type="submit"]):focus,
+.form-wrapper textarea:focus,
+.form-wrapper select:focus {
+    border-color: {{theme.global_colors.advanced.focus.color}};
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem {{rgb(theme.global_colors.advanced.focus.color, 30)}};
+}
+
+.form-wrapper {
+    {% if theme.forms.input_label.font.color %}
+    --form-label-color: {{theme.forms.input_label.font.color}};
+    {% endif %}
+    {% if theme.forms.help_text.font.color %}
+    --form-help-text-color: {{theme.forms.help_text.font.color}};
+    {% endif %}
+    {% if theme.forms.placeholder.font.color %}
+    --form-placeholder-color: {{theme.forms.placeholder.font.color}};
+    {% endif %}
+    {% if theme.forms.error.font.color %}
+    --form-error-color: {{theme.forms.error.font.color}};
+    {% endif %}
+    {% if theme.forms.focus.color.css %}
+    --form-focus-color: {{theme.forms.focus.color.css}};
+    {% endif %}
+    {% if theme.forms.background.color.css %}
+    background-color: {{theme.forms.background.color.css}};
+    {% endif %}
+    {% if theme.forms.border.border_radius != null %}
+    border-radius: {{theme.forms.border.border_radius ~ 'px'}};
+    {% endif %}
+    {{theme.forms.spacing.spacing.css}}
+    {{theme.forms.border.border.css}}
+}
+
+.form-wrapper .submitted-message,
+.form-wrapper .hs-richtext {
+    {% if theme.forms.text.font.size %}
+    font-size: {{theme.forms.text.font.size ~ 'px'}};
+    {% endif %}
+    {% if theme.forms.text.font.color %}
+    color: {{theme.forms.text.font.color}};
+    {% endif %}
+    {% if theme.forms.text.font.style %}
+    {{theme.forms.text.font.style}};
+    {% endif %}
+}
+
+.form-wrapper label:not(.hs-error-msg):not(.hs-main-font-element),
+.form-wrapper .fakelabel {
+    {% if theme.forms.input_label.background.css %}
+    background-color: {{theme.forms.input_label.background.css}};
+    {% endif %}
+    {% if theme.forms.input_label.font.style %}
+    {{theme.forms.input_label.font.style}};
+    {% endif %}
+    {% if theme.forms.input_label.font.size %}
+    font-size: {{theme.forms.input_label.font.size ~ 'px'}};
+    {% endif %}
+    {{theme.forms.input_label.spacing.css}}
+}
+
+.form-wrapper .hs-field-desc {
+    {% if theme.forms.help_text.background.css %}
+    background-color: {{theme.forms.help_text.background.css}};
+    {% endif %}
+    {% if theme.forms.help_text.font.style %}
+    {{theme.forms.help_text.font.style}};
+    {% endif %}
+    {% if theme.forms.help_text.font.size %}
+    font-size: {{theme.forms.help_text.font.size ~ 'px'}};
+    {% endif %}
+    {{theme.forms.help_text.spacing.css}}
+}
+
+.form-wrapper input:not(
+    [type="checkbox"],
+    [type="radio"],
+    [type="file"],
+    [type="button"],
+    [type="reset"],
+    [type="submit"]),
+.form-wrapper textarea,
+.form-wrapper select {
+    {% if theme.forms.input_field.background.css %}
+    background-color: {{theme.forms.input_field.background.css}};
+    {% endif %}
+    {% if theme.forms.input_field.border_radius != null %}
+    border-radius: {{theme.forms.input_field.border_radius ~ 'px'}};
+    {% endif %}
+    {{theme.forms.input_field.border.css}}
+    {{theme.forms.input_field.spacing.css}}
+}
+
+{% if theme.forms.input_field.spacing.css %}
+    .form-wrapper select {
+    {{theme.forms.input_field.spacing.css}}
+    {% if theme.forms.input_field.spacing.padding.top.value %}
+        padding-top:{{theme.forms.input_field.spacing.padding.top.value + 2 ~ 'px'}};
+    {% endif %}
+    {% if theme.forms.input_field.spacing.padding.bottom.value %}
+        padding-bottom:{{theme.forms.input_field.spacing.padding.bottom.value + 2 ~ 'px'}};
+    {% endif %}
+    {% if theme.forms.input_field.spacing.padding.left.value %}
+        padding-left:{{theme.forms.input_field.spacing.padding.left.value ~ 'px'}};
+    {% endif %}
+    {% if theme.forms.input_field.spacing.padding.right.valu %}
+        padding-right:{{theme.forms.input_field.spacing.padding.right.value ~ 'px'}};
+    {% endif %}
+    }
+{% endif %}
+
+{% if theme.forms.focus.color.color %}
+    .form-wrapper input:not(
+    [type="checkbox"],
+    [type="radio"],
+    [type="file"],
+    [type="button"],
+    [type="reset"],
+    [type="submit"]):focus,
+    .form-wrapper textarea:focus,
+    .form-wrapper select:focus {
+        border-color: {{theme.forms.focus.color.css}};
+        box-shadow: 0 0 0 0.25rem {{rgb(theme.forms.focus.color.color, 30)}};
+    }
+{% endif %}
+
+.form-wrapper input::placeholder,
+.form-wrapper textarea::placeholder {
+    {% if theme.forms.placeholder.font.style %}
+    {{theme.forms.placeholder.font.style}};
+    {% endif %}
+    {% if theme.forms.placeholder.font.size %}
+    font-size: {{theme.forms.placeholder.font.size ~ 'px'}};
+    {% endif %}
+}
+
+.form-wrapper .hs-error-msg {
+    {% if theme.forms.error.font.style %}
+    {{theme.forms.error.font.style}};
+    {% endif %}
+    {% if theme.forms.error.font.size %}
+    font-size: {{theme.forms.error.font.size ~ 'px'}};
+    {% endif %}
+    {{theme.forms.error.spacing.css}}
+}
+
+/* button-defaults.css */
+
+:where(.hs-button) {
+  --_border-radius: var(--border-radius, none);
+  --_bg: var(--bg, #fff);
+  --_color: var(--color, #333);
+
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: 1.5;
+  border-radius: var(--_border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  font-style: initial;
+  {# override background: none from base nimbly-lite #}
+  background: var(--_bg) !important;
+  color: var(--_color);
+  border: 1px solid #c8c8c8;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.5ch;
+  padding: 8px 20px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  min-width: 100px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :where(.hs-button) {
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  }
+}
+
+:where(.hs-button):where(:not(:active):hover) {
+  {# override background: none from base nimbly-lite #}
+  background: var(--hover-bg, var(--_bg)) !important;
+  color: var(--hover-color, var(--_color));
+  border-color: var(--hover-border, #999) !important;
+}
+
+:where(.hs-button):where(:not(:active)):focus-visible {
+  outline-offset: 5px;
+}
+
+:where(.hs-button)[disabled] {
+  {# background: none replaced with opacity for readibility #}
+  opacity: 0.5;
+  cursor: not-allowed; /* stylelint-disable-line */
+
+  --color: hsl(210deg 7% 40%);
+}
+
+:where(.hs-button) {
+  appearance: none; /* stylelint-disable-line */
+}
+
+:where(.hs-button) :where(.icon) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:where(.hs-button) :where(svg, .icon > svg) {
+  height: 1.8ch;
+  width: 1.8ch;
+  flex-shrink: 0;
+  fill: currentcolor;
+}
+
+:where(.hs-button):where(.btn-w100) {
+  width: 100%;
+}
+
+:where(.hs-button):where(.btn-w100 + .btn-w100) {
+  margin-top: 0.5rem;
+}
+
+
+/* buttons.css */
+
+/* Buttons */
+/* Primary button */
+{% set btn_primary_border = theme.buttons.primary.border.border %}
+{% set btn_primary_radius = theme.buttons.primary.border.border_radius %}
+{% set btn_primary_font = theme.buttons.primary.text.font %}
+{% set btn_primary_background = theme.buttons.primary.background.color %}
+/* hover color */
+{% if theme.buttons.primary.hover.color.color %}
+    {% set btn_primary_hover_color = theme.buttons.primary.hover.color.color %}
+{% else %}
+    {% set btn_primary_hover_color = color_variant(btn_primary_font.color, -20) %}
+{% endif %}
+/* hover background */
+{% if theme.buttons.primary.hover.background.color %}
+    {% set btn_primary_hover_background_color = theme.buttons.primary.hover.background.color %}
+    {% set btn_primary_hover_background_opacity = theme.buttons.primary.hover.background.opacity %}
+{% else %}
+    {% set btn_primary_hover_background_color = color_variant(btn_primary_background.color, -25) %}
+    {% set btn_primary_hover_background_opacity = btn_primary_background.opacity %}
+{% endif %}
+/* hover border */
+{% if theme.buttons.primary.hover.border.color %}
+    {% set btn_primary_hover_border_color = theme.buttons.primary.hover.border.color %}
+    {% set btn_primary_hover_border_opacity = theme.buttons.primary.hover.border.opacity %}
+{% else %}
+    {% set btn_primary_hover_border_color = color_variant(btn_primary_border.top.color, -25) %}
+    {% set btn_primary_hover_border_opacity = btn_primary_border.top.opacity %}
+{% endif %}
+
+.hs-button {
+    font-size: {{theme.buttons.size.regular.font_size ~ 'px'}};
+    {{theme.buttons.size.regular.spacing.css}}
+}
+
+/* button primary */
+.hs-button.primary,
+.hs-button.primary[disabled] {
+    {% if btn_primary_radius %}
+    --border-radius: {{btn_primary_radius ~ 'px'}};
+    {% endif %}
+    {% if btn_primary_font.color %}
+    --color: {{btn_primary_font.color}};
+    {% endif %}
+    {% if btn_primary_font.size %}
+    font-size: {{btn_primary_font.size ~ 'px'}};
+    {% endif %}
+    {% if btn_primary_background.css %}
+    --bg: {{btn_primary_background.css}};
+    {% endif %}
+    {% if btn_primary_font.font == null %}
+    font-family: var(--system-fonts);
+    {% endif %}
+    {% if btn_primary_font.style %}
+    {{btn_primary_font.style}};
+    {% endif %}
+    {{btn_primary_border.css}}
+}
+
+.hs-button.primary:hover,
+.hs-button.primary:hover[disabled] {
+    {% if btn_primary_hover_color %}
+    --hover-color: {{btn_primary_hover_color}};
+    {% endif %}
+    {% if btn_primary_hover_background_color %}
+    --hover-bg: {{rgb(btn_primary_hover_background_color, btn_primary_hover_background_opacity)}};
+    {% endif %}
+    {% if btn_primary_hover_border_color %}
+    --hover-border: {{rgb(btn_primary_hover_border_color, btn_primary_hover_border_opacity)}};
+    {% endif %}
+}
+
+{# custom.css #}
+
+{# form styling -  align form fields (when requirement message are shown) #}
+.form-wrapper .hs-form-field {
+  align-self: flex-start;
+}
+
+{# form styling - regular input, textarea, select font - based on placeholder font-style since that's what's available in theme settings #}
+.form-wrapper input,
+.form-wrapper textarea,
+.form-wrapper select {
+  {% if theme.forms.placeholder.font.style %}
+    {{theme.forms.placeholder.font.style}};
+  {% endif %}
+  {% if theme.forms.placeholder.font.size %}
+    font-size: {{theme.forms.placeholder.font.size ~ 'px'}};
+  {% endif %}
+}
+
+{# form styling - set error message font size based on input label #}
+.form-wrapper .hs-error-msg,
+.form-wrapper .hs-error-msgs .hs-main-font-element {
+  {% if theme.forms.input_label.font.size %}
+    font-size: {{theme.forms.input_label.font.size ~ 'px'}} !important;
+  {% endif %}
+}
+
+.form-wrapper .hs_submit {
+  text-align: left !important;
+}
+
+{# custom membership styling #}
+
+.hs-register-widget-show-password,
+.hs-login-widget-show-password,
+#hs_login_reset {
+    {% if theme.forms.input_label.background.css %}
+        background-color: {{theme.forms.input_label.background.css}};
+    {% endif %}
+    {% if theme.forms.input_label.font.style %}
+        {{theme.forms.input_label.font.style}};
+    {% endif %}
+    {% if theme.forms.input_label.font.size %}
+        font-size: {{theme.forms.input_label.font.size ~ 'px'}};
+    {% endif %}
+    {{theme.forms.input_label.spacing.css}}
+}
+
+.form-wrapper .form-separator {
+    padding: 1rem 0;
+    display: block;
+}
+
+.form-wrapper .no-list {
+    list-style: none;
+    padding: 0;
+}
+
+.form-wrapper input[type="radio"] + label,
+.form-wrapper input[type="checkbox"] + label {
+    display: inline-block;
+}
+
+.hs-button {
+    margin-bottom: 1rem;
+}
