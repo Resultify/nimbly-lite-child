@@ -89,7 +89,7 @@
       background-image: url({{resize_image_url(data.background_image.src, 0, 0, 700)}}){{lowres_img}};
     {% endif %}
   }
-  @media screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     {{class}} {
       {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
         background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{resize_image_url(data.background_image.src, 0, 0, 1024)}}){{lowres_img}};
@@ -100,7 +100,7 @@
       {% endif %}
     }
   }
-  @media screen and (min-width: 1024px) {
+  @media (min-width: 1024px) {
     {{class}} {
       {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
         background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{resize_image_url(data.background_image.src, 0, 0, 1800)}}){{lowres_img}};

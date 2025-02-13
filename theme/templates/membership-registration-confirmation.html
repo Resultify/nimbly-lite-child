@@ -1,0 +1,61 @@
+<!--
+    templateType: membership_self_register_confirmation_page
+    isAvailableForNewContent: true
+    label: Membership Registration Confirmation Page
+-->
+{% extends "./layouts/base.html" %}
+{% set template_translations = load_translations("@hubspot/cmsdefaultsystempages/templates/_locales", html_lang, "en") %}
+{% set template_css = '../../css/membership.css' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row-fluid-wrapper">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="dnd-section">
+                        <div class="row-fluid">
+                            {% if request.query_dict.redirect_url %}
+                                {% set redirect_query_param = "?redirect_url=" ~ request.query_dict.redirect_url %}
+                            {% endif %}
+
+                            <img class="success-image" src="{{ get_asset_url("../../img/success.svg") }}" height="76" width="76" loading="eager" alt="">
+                        </div>
+                        <div class="row-fluid">
+                            {% module "registration_confirmation_heading"
+                                path="@hubspot/rich_text",
+                                html={{ "<h1>" ~ template_translations.membership_registration_confirmation_heading.message ~ "</h1>" }}
+                            %}
+                        </div>
+                        <div class="row-fluid">
+                            {% module "registration_confirmation_description"
+                                path="@hubspot/rich_text",
+                                html={{ "<p>" ~ template_translations.membership_registration_confirmation_description.message ~ "</p>" }}
+                            %}
+                        </div>
+                        <div class="row-fluid">
+                            {% module "registration_confirmation_sign_in_button"
+                                path="@hubspot/button",
+                                extra_classes="button-wrapper button-wrapper--membership-registration-confirmation",
+                                button_text={{ template_translations.membership_registration_confirmation_button.message }},
+                                link={
+                                    "url": {
+                                        "type": "EXTERNAL",
+                                        "href": "/_hcms/mem/login" ~ redirect_query_param
+                                    }
+                                }
+                            %}
+                        </div>
+                        {% if site_settings.membershipWebsiteAdmin %}
+                            <div class="row-fluid">
+                                {% module "admin_contact"
+                                    path="@hubspot/rich_text",
+                                    html={{ "<p>" ~ template_translations.membership_reset_password_contact_admin.message ~ "</p>" }}
+                                %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

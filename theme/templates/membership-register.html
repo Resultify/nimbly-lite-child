@@ -1,0 +1,45 @@
+<!--
+    templateType: membership_register_page
+    isAvailableForNewContent: true
+    label: Membership Register Page
+-->
+{% extends "./layouts/base.html" %}
+{% set template_translations = load_translations("@hubspot/cmsdefaultsystempages/templates/_locales", html_lang, "en") %}
+{% set template_css = '../../css/membership.css' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row-fluid-wrapper">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="dnd-section">
+                        <div class="row-fluid">
+                            {% module "register_heading"
+                                path="@hubspot/rich_text",
+                                html={{ "<h1>" ~ template_translations.membership_register_heading.message ~ "</h1><p>" ~ template_translations.membership_register_subheading.message ~ "</p>" }}
+                            %}
+                        </div>
+                        <div class="row-fluid">
+                            {% member_register "register_form"
+                                extra_classes="form-wrapper form-wrapper--membership-registration",
+                                email_label={{ template_translations.membership_register_email.message }},
+                                password_confirm_label={{ template_translations.membership_register_confirm_password.message }},
+                                password_label={{ template_translations.membership_register_password.message }},
+                                submit_button_text={{ template_translations.membership_register_save_password.message }},
+                                show_password={{ template_translations.membership_register_show_password.message }}
+                            %}
+                        </div>
+                        {% if site_settings.membershipWebsiteAdmin %}
+                            <div class="row-fluid">
+                                {% module "admin_contact"
+                                    path="@hubspot/rich_text",
+                                    html={{ "<p>" ~ template_translations.membership_register_contact_admin.message ~ "</p>" }}
+                                %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

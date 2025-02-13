@@ -1,0 +1,77 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  enableDomainStylesheets: false
+  hasUniqueValue: true
+  label: Products list and single-view
+  screenshotPath: ../images/template-previews/products.png
+-->
+{% set template_css = '../../css/templates/product.css' %}
+{% extends './layouts/base.html' %}
+{% import '../macros/hubl/products/functions.html' as product_functions_macro %}
+
+{% block body %}
+  <div class="products-template">
+    {# Single view #}
+    {% if dynamic_page_crm_object %}
+      {% set settings = {} %}
+      {{- product_functions_macro.parse_settings(content, settings) -}}
+      {% set backToListUrlSlug = request.path|split('/') %}
+      {% set backToListUrlSlug = backToListUrlSlug[:-1] %}
+      {% set backToListUrlSlug = backToListUrlSlug|join('/') %}
+      <div class="row-fluid">
+        <div class="span12 widget-span widget-type-cell">
+          <div class="row-fluid-wrapper row-depth-1 row-number-1 dnd-section">
+            <div class="row-fluid">
+              <div class="span12 widget-span widget-type-cell dnd-column">
+                <div class="product-single-view">
+                  <h1>{{ dynamic_page_crm_object.name }}</h1>
+                  {{ product_functions_macro.render_product_image(dynamic_page_crm_object, 1400, 1024) }}
+                  <p>{{ dynamic_page_crm_object.description }}</p>
+                  {% if dynamic_page_crm_object.price %}
+                    <p>{{ settings.priceLabel }}: {{ dynamic_page_crm_object.price | format_currency_value(locale=product_functions_macro.get_locale(), currency=product_functions_macro.get_currency()) }}</p>
+                  {% endif %}
+                  {% if dynamic_page_crm_object.hs_sku %}
+                    <p>{{ settings.skuLabel }}: {{ dynamic_page_crm_object.hs_sku }}</p>
+                  {% endif %}
+                  {% if dynamic_page_crm_object.quantity %}
+                    <p>{{ settings.quantityLabel }}: {{ dynamic_page_crm_object.quantity }}</p>
+                  {% endif %}
+                  {% if dynamic_page_crm_object.hs_product_type %}
+                    <p>{{ settings.productTypeLabel }}: {{ dynamic_page_crm_object.hs_product_type }}</p>
+                  {% endif %}
+                  {% if dynamic_page_crm_object.hs_url %}
+                    <p>{{ settings.externalUrlLabel }}: <a href="{{ dynamic_page_crm_object.hs_url }}" alt="{{ dynamic_page_crm_object.name }}">{{ dynamic_page_crm_object.hs_url }}</a></p>
+                  {% endif %}
+                  {{ product_functions_macro.render_structured_data(dynamic_page_crm_object) }}
+                </div>
+                <a href="/{{ backToListUrlSlug }}" class="btn-link back-to-list-link">{{ settings.backToListLabel }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      {# List view - not editable for editor #}
+      {% dnd_area 'dnd_area_list'
+        label='Product list',
+      %}
+        {% dnd_section %}
+          {% dnd_column
+            offset=0,
+            width=12
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="/nimbly-lite-child/modules/product-list",
+                offset=0,
+                width=12
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+        {% end_dnd_section %}
+      {% end_dnd_area %}
+    {% endif %}
+  </div>
+{% endblock body %}

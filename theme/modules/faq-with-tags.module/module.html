@@ -1,0 +1,75 @@
+{% import '../macros/text.html' as text_macros %}
+{% import '../macros/richtext.html' as richtext_macros %}
+
+{# module scope css #}
+<style>
+  {% scope_css %}
+
+    .faq-with-tags-module {
+      {% if module.style.general.background.color.css %}
+        background-color: {{module.style.general.background.color.css}};
+      {% endif %}
+    }
+
+    .faq-with-tags-module__text {
+      {% if module.style.text.background.color.css %}
+        background-color: {{module.style.text.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.text.alignment.alignment.horizontal_align}};
+      {{module.style.text.spacing.spacing.css}}
+    }
+
+    .faq-with-tags-module__richtext {
+      {% if module.style.richtext.background.color.css %}
+        background-color: {{module.style.richtext.background.color.css}};
+      {% endif %}
+      {{module.style.richtext.spacing.spacing.css}}
+    }
+
+    .faq-with-tags-module__arrow svg > path {
+      {% if module.style.text.arrow.color.color %}
+        stroke: {{ module.style.text.arrow.color.color }};
+      {% endif %}
+    }
+    .faq-with-tags-module__arrow svg {
+      {% if module.style.text.arrow.color.opacity %}
+        opacity: {{ module.style.text.arrow.color.opacity }}%;
+      {% endif %}
+    }
+
+  {% end_scope_css %}
+</style>
+
+{% set tagOptions = { id: 'tag' } %}
+
+<div class="faq-with-tags-module_wrp">
+  <div class="faq-with-tags-module faq-with-tags-module--{{module_id}} {{module.style.general.presets.custom_preset}} {% if module.enable_animation %} faq-with-tags-module-animate {% endif %}"
+    data-active-tag="{{ module.style.tag.active_tag }}"
+    data-inactive-tag="{{ module.style.tag.inactive_tag }}"
+  >
+    <div class="faq-with-tags-module__button-tags">
+      {% for group in module.faq_group %}
+        <button data-id="{{module_id}}{{ loop.index0 }}" class="btn-link {{ '{{ module.style.tag.active_tag }}' if loop.index0 == 0 else '{{ module.style.tag.inactive_tag }}' }} btn-regular">
+          {{text_macros.render_text_tmpl(group.tag, none, module, tagOptions)}}
+        </button>
+      {% endfor %}
+    </div>
+
+    {% for group in module.faq_group %}
+      <div class="faq-with-tags-module__tag {{ 'show' if loop.index0 == 0 }}" id="{{module_id}}{{ loop.index0 }}">
+        {% for item in group.questions %}
+          <details class="faq-with-tags-module__details">
+            <summary class="faq-with-tags-module__text h4">
+              <span class="faq-with-tags-module__arrow"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="26" viewBox="0 0 27 26" fill="none">  <path d="M13.8378 1L26 13M26 13L13.8378 25M26 13H1" stroke="#171717" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+              {{text_macros.render_text_tmpl(item.text, module.style.text, module)}}
+            </summary>
+            <div class="faq-with-tags-module__richtext">
+              {{richtext_macros.render_richtext_tmpl(item.richtext, module.style.richtext, module)}}
+            </div>
+          </details>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    
+  </div>
+</div>

@@ -107,6 +107,7 @@
         {%- if data.hubspot_video.player_id -%}
           <div class="iframe-wrp hubspot-video-wrp">
             {% video_player "hubspot_video"
+              autoplay={{data.autoplay}},
               conversion_asset={{data.hubspot_video.conversion_asset|tojson|safe}},
               play_button_color={{data.hubspot_video_play_button_color.css}},
               player_id={{data.hubspot_video.player_id}},

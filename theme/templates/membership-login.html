@@ -1,0 +1,46 @@
+<!--
+    templateType: membership_login_page
+    isAvailableForNewContent: true
+    label: Membership Login Page
+-->
+{% extends "./layouts/base.html" %}
+{% set template_translations = load_translations("@hubspot/cmsdefaultsystempages/templates/_locales", html_lang, "en") %}
+{% set template_css = '../../css/membership.css' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row-fluid-wrapper">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="dnd-section">
+                        <div class="row-fluid">
+                            {% module "login_heading"
+                                path="@hubspot/rich_text",
+                                html={{ "<h1>" ~ template_translations.member_login_heading.message ~ "</h1><p>" ~ template_translations.member_login_subheading.message ~ "</p>" }}
+                            %}
+                        </div>
+                        <div class="row-fluid">
+                            {% member_login "login_form"
+                                extra_classes="form-wrapper form-wrapper--membership-login",
+                                email_label={{ template_translations.member_login_email.message }},
+                                password_label={{ template_translations.member_login_password.message }},
+                                remember_me_label={{ template_translations.member_login_remember_me.message }},
+                                reset_password_text={{ template_translations.member_login_reset_password.message }},
+                                submit_button_text={{ template_translations.member_login_submit.message }},
+                                show_password={{ template_translations.member_login_show_password.message }}
+                            %}
+                        </div>
+                        {% if site_settings.membershipWebsiteAdmin %}
+                            <div class="row-fluid">
+                                {% module "admin_contact"
+                                    path="@hubspot/rich_text",
+                                    html={{ "<p>" ~ template_translations.member_login_contact_admin.message ~ "</p>" }}
+                                %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
