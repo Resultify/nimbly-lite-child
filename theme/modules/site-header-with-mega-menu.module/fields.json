@@ -762,7 +762,26 @@
         "group_occurrence_meta" : null,
         "type" : "group",
         "default" : {
-          "spacing" : { }
+          "spacing" : {
+            "padding" : {
+              "top" : {
+                "value" : 10,
+                "units" : "px"
+              },
+              "bottom" : {
+                "value" : 20,
+                "units" : "px"
+              },
+              "left" : {
+                "value" : 14,
+                "units" : "px"
+              },
+              "right" : {
+                "value" : 14,
+                "units" : "px"
+              }
+            }
+          }
         }
       }, {
         "id" : "941bac4c-5dc6-9c15-8797-018349b08818",
@@ -1029,6 +1048,84 @@
             "opacity" : null
           }
         }
+      }, {
+        "id" : "841ebd83-6f6a-e34e-f2bf-361877d0fefe",
+        "name" : "button_presets",
+        "display_width" : null,
+        "label" : "Button presets",
+        "help_text" : "Button presets",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "59f4330d-7a18-1558-b0a8-1b7b7502bcdc",
+          "name" : "style",
+          "display_width" : null,
+          "label" : "Style",
+          "help_text" : "Button style",
+          "required" : true,
+          "locked" : false,
+          "display" : "select",
+          "placeholder" : "Button style",
+          "choices" : [ [ "btn-primary", "Primary" ], [ "btn-secondary1", "Secondary 1" ], [ "btn-secondary2", "Secondary 2" ], [ "btn-secondary3", "Secondary 3" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "default" : "btn-primary"
+        }, {
+          "id" : "4c4fe383-1db3-018d-e706-8c7461e97edb",
+          "name" : "size",
+          "display_width" : null,
+          "label" : "Size",
+          "help_text" : "Button size",
+          "required" : true,
+          "locked" : false,
+          "display" : "select",
+          "placeholder" : "",
+          "choices" : [ [ "btn-small", "Small" ], [ "btn-regular", "Medium" ], [ "btn-large", "Large" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "default" : "btn-regular"
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "default" : {
+          "style" : "btn-primary",
+          "size" : "btn-regular"
+        }
+      }, {
+        "id" : "3ddbc6e9-4604-48c3-7aca-9dd7318330a3",
+        "name" : "images",
+        "display_width" : null,
+        "label" : "Images",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "f9d6ab61-8cc8-ae9e-37d0-93938f1ae515",
+          "name" : "maximum_size",
+          "display_width" : null,
+          "label" : "Maximum size",
+          "help_text" : "Maximum image size",
+          "required" : true,
+          "locked" : false,
+          "display" : "slider",
+          "min" : 10,
+          "max" : 250,
+          "step" : 1,
+          "type" : "number",
+          "default" : 75
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "default" : {
+          "maximum_size" : 75
+        }
       } ],
       "tab" : "STYLE",
       "expanded" : false,
@@ -1037,7 +1134,26 @@
       "default" : {
         "dropdown_style" : "limit-d-and-c",
         "spacing" : {
-          "spacing" : { }
+          "spacing" : {
+            "padding" : {
+              "top" : {
+                "value" : 10,
+                "units" : "px"
+              },
+              "bottom" : {
+                "value" : 20,
+                "units" : "px"
+              },
+              "left" : {
+                "value" : 14,
+                "units" : "px"
+              },
+              "right" : {
+                "value" : 14,
+                "units" : "px"
+              }
+            }
+          }
         },
         "background" : {
           "color" : {
@@ -1118,6 +1234,13 @@
             "color" : null,
             "opacity" : null
           }
+        },
+        "button_presets" : {
+          "style" : "btn-primary",
+          "size" : "btn-regular"
+        },
+        "images" : {
+          "maximum_size" : 75
         }
       }
     } ],
@@ -1168,7 +1291,26 @@
       "dropdown" : {
         "dropdown_style" : "limit-d-and-c",
         "spacing" : {
-          "spacing" : { }
+          "spacing" : {
+            "padding" : {
+              "top" : {
+                "value" : 10,
+                "units" : "px"
+              },
+              "bottom" : {
+                "value" : 20,
+                "units" : "px"
+              },
+              "left" : {
+                "value" : 14,
+                "units" : "px"
+              },
+              "right" : {
+                "value" : 14,
+                "units" : "px"
+              }
+            }
+          }
         },
         "background" : {
           "color" : {
@@ -1249,6 +1391,13 @@
             "color" : null,
             "opacity" : null
           }
+        },
+        "button_presets" : {
+          "style" : "btn-primary",
+          "size" : "btn-regular"
+        },
+        "images" : {
+          "maximum_size" : 75
         }
       }
     }
@@ -4380,7 +4529,26 @@
       "dropdown" : {
         "dropdown_style" : "limit-d-and-c",
         "spacing" : {
-          "spacing" : { }
+          "spacing" : {
+            "padding" : {
+              "top" : {
+                "value" : 10,
+                "units" : "px"
+              },
+              "bottom" : {
+                "value" : 20,
+                "units" : "px"
+              },
+              "left" : {
+                "value" : 14,
+                "units" : "px"
+              },
+              "right" : {
+                "value" : 14,
+                "units" : "px"
+              }
+            }
+          }
         },
         "background" : {
           "color" : {
@@ -4461,6 +4629,13 @@
             "color" : null,
             "opacity" : null
           }
+        },
+        "button_presets" : {
+          "style" : "btn-primary",
+          "size" : "btn-regular"
+        },
+        "images" : {
+          "maximum_size" : 75
         }
       }
     },
