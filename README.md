@@ -5,7 +5,7 @@ A child theme for the **Nimbly Lite** theme that can be used as a base for any n
 ## General requirements
 1. Create a HubSpot development sandbox for testing and development purposes. [Link](https://app.hubspot.com/signup-hubspot/cms-developers)
 2. Create a personal CMS access key to enable authenticated access to your account. [Link](https://app.hubspot.com/l/personal-access-key)
-3. Instal rh CLI `npm -g install @resultify/rh-cli`
+3. Install rh CLI `npm -g install @resultify/rh-cli`
 
 ## Create a new project based on the Nimbly Lite Child
 `rh init`
