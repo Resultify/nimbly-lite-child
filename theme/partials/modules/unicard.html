@@ -80,7 +80,7 @@
       }
 
       {% if style.spacing.padding.top.value > 45 or style.spacing.padding.bottom.value > 45 or style.spacing.padding.left.value > 45 or style.spacing.padding.right.value > 45 %}
-        @media (max-width: {{theme.layout.maximum_content_width - 0.2 ~ 'px'}}) {
+        @media (max-width: {{theme.layout.maximum_content_width|float - 0.2 ~ 'px'}}) {
           .scope-root.id{{scope_hash}} {
             {% if style.spacing.padding.top.value > 45 %}
               --scope-padding-top: calc(2.8125rem + ({{style.spacing.padding.top.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
