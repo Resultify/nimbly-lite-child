@@ -3029,5 +3029,68 @@
     "default": {
       "vertical_spacing": 60
     }
+  },
+  {
+    "label": "Blog",
+    "name": "blog",
+    "type": "group",
+    "children": [
+      {
+        "label": "Header background color",
+        "name": "header_background_color",
+        "type": "color",
+        "display_width": null,
+        "locked": false,
+        "required": false,
+        "inherited_value": {
+          "property_value_paths": {
+            "color": "theme.global_colors.primary.color"
+          }
+        },
+        "default": {
+          "color": null,
+          "opacity": null
+        }
+      },
+      {
+        "label": "Header text color",
+        "name": "header_text_color",
+        "type": "color",
+        "display_width": null,
+        "locked": false,
+        "required": false,
+        "inherited_value": {
+          "property_value_paths": {
+            "color": "theme.typography.headings.font.color"
+          }
+        },
+        "default": {
+          "color": null,
+          "opacity": null
+        }
+      },
+      {
+        "label": "Header link color",
+        "name": "header_link_color",
+        "type": "color",
+        "display_width": null,
+        "locked": false,
+        "required": false,
+        "inherited_value": {
+          "property_value_paths": {
+            "color": "theme.global_colors.link.color"
+          }
+        },
+        "default": {
+          "color": null,
+          "opacity": null
+        }
+      }
+    ],
+    "display_width": null,
+    "locked": false,
+    "tab": "CONTENT",
+    "expanded": false,
+    "required": false
   }
 ]
