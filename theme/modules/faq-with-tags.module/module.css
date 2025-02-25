@@ -14,8 +14,12 @@
 
 /* Tags container (source) */
 .faq-with-tags-module__button-tags {
-  padding-bottom: 50px;
+  display: none;
+}
+
+.faq-with-tags-module__button-tags.show {
   display: flex;
+  padding-bottom: 50px;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
