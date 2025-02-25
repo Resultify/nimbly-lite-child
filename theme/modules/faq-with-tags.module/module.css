@@ -26,12 +26,6 @@
   gap: 10px;
 }
 
-/* horizontal lines */
-.faq-with-tags-module__details,
-.faq-with-tags-module__button-tags {
-  border-bottom: 1px solid #dbdbdb;
-}
-
 /* Tag containers destination */
 .faq-with-tags-module__tag {
   display: none;
@@ -39,6 +33,7 @@
 
 .faq-with-tags-module__tag.show {
   display: block;
+  border-top: 1px solid #dbdbdb;
 }
 
 /* Question */
@@ -72,6 +67,7 @@
 }
 
 .faq-with-tags-module__details {
+  border-bottom: 1px solid #dbdbdb;
   margin-bottom: 20px;
 }
 
