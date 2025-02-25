@@ -528,6 +528,7 @@
   "name" : "faq_group",
   "display_width" : null,
   "label" : "FAQ group",
+  "inline_help_text" : "NOTE: Tags will be hidden if only 1 FAQ group is set.",
   "required" : false,
   "locked" : false,
   "occurrence" : {
@@ -648,8 +649,9 @@
   "group_occurrence_meta" : null,
   "type" : "group",
   "default" : [ {
-    "field_group" : {
-      "faq_tag" : "Tag text"
+    "field_group" : {},
+    "tag" : {
+      "text" : "Tag text"
     },
     "questions" : [ {
       "text" : {

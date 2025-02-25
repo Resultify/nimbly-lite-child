@@ -47,7 +47,7 @@
     data-active-tag="{{ module.style.tag.active_tag }}"
     data-inactive-tag="{{ module.style.tag.inactive_tag }}"
   >
-    <div class="faq-with-tags-module__button-tags">
+    <div class="faq-with-tags-module__button-tags {{ 'show' if module.faq_group|length > 1 }}">
       {% for group in module.faq_group %}
         <button data-id="{{module_id}}{{ loop.index0 }}" class="btn-link {{ '{{ module.style.tag.active_tag }}' if loop.index0 == 0 else '{{ module.style.tag.inactive_tag }}' }} btn-regular">
           {{text_macros.render_text_tmpl(group.tag, none, module, tagOptions)}}
