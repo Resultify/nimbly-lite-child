@@ -34,6 +34,11 @@
     "description" : null,
     "placeholders" : null
   },
+  "faq_group.default.tag.text" : {
+    "message" : "Tag text",
+    "description" : null,
+    "placeholders" : null
+  },
   "faq_group.heading.default.text" : {
     "message" : "Heading text",
     "description" : null,
@@ -45,7 +50,7 @@
     "placeholders" : null
   },
   "faq_group.inline_help_text" : {
-    "message" : "",
+    "message" : "NOTE: Tags will be hidden if only 1 FAQ group is set.",
     "description" : null,
     "placeholders" : null
   },
