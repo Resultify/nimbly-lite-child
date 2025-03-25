@@ -8,11 +8,9 @@
   "type": "module",
   "scripts": {
     "prepare": "husky",
-    "lint-css": "stylelint --allow-empty-input 'src/css/**/*.css' 'theme/modules/**/*.css' ",
-    "lint-js": "standard -v 'src/js/**/*.js build/**/*.js theme/**/*.js'",
+    "eslint": "eslint .",
     "check-js": "tsc -p jsconfig.json --maxNodeModuleJsDepth 0",
-    "lint-all": "npm run lint-css && npm run lint-js && npm run check-js",
-    "test": "npm run lint-all",
+    "test": "npm run eslint && npm run check-js",
     "build": "cmslib --build",
     "watch": "cmslib --watch",
     "fetch": "cmslib --fetch",
@@ -38,44 +36,19 @@
     "simplelightbox": "~2.11.0"
   },
   "devDependencies": {
+    "@eslint/css": "^0.5.0",
+    "@eslint/js": "^9.23.0",
     "@resultify/hubspot-cms-lib": "~3.7.1",
     "@resultify/hubspot-fields-js": "~1.1.0",
     "browserslist": "~4.24.4",
+    "eslint": "^9.23.0",
+    "globals": "^16.0.0",
     "husky": "~9.1.7",
-    "standard": "~17.1.2",
-    "stylelint": "~16.10.0",
-    "stylelint-config-recommended": "~14.0.1",
-    "stylelint-no-unsupported-browser-features": "~8.0.1",
     "typescript": "~5.6.3"
   },
   "engines": {
     "node": ">=18",
     "npm": ">=8.19"
-  },
-  "standard": {
-    "ignore": [
-      "src/tmp/",
-      "theme/assets/"
-    ]
-  },
-  "stylelint": {
-    "extends": [
-      "stylelint-config-recommended"
-    ],
-    "plugins": [
-      "stylelint-no-unsupported-browser-features"
-    ],
-    "rules": {
-      "custom-property-pattern": null,
-      "selector-class-pattern": null,
-      "selector-pseudo-element-colon-notation": "single",
-      "comment-empty-line-before": null,
-      "plugin/no-unsupported-browser-features": true
-    },
-    "ignoreFiles": [
-      "src/tmp/**/*.css",
-      "theme/assets/**/*.css"
-    ]
   },
   "cmslib": {
     "themeFolder": "theme",

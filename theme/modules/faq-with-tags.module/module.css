@@ -39,6 +39,7 @@
 /* Question */
 .faq-with-tags-module__text > .g-module-macros-text {
   position: relative;
+  /* eslint-disable-next-line css/require-baseline */
   user-select: none;
   display: inline;
 }
@@ -49,6 +50,7 @@
 
 /* Question arrow */
 .faq-with-tags-module__arrow {
+  /* eslint-disable-next-line css/require-baseline */
   user-select: none;
   position: relative;
   z-index: 1;
