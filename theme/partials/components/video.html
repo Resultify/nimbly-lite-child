@@ -228,10 +228,14 @@
       {# HubSpot Video type #}
       {%- elif data.video_type == "hubspot_video" -%}
         {%- if data.hubspot_video.player_id -%}
+          {% set video_hash = hash([
+            name,
+            data.hubspot_video.player_id
+          ]) %}
           {# move embed player into a variable that can be run later #}
           <script>
-            var {{name}}_{{data.hubspot_video.player_id}}_color = '{{data.hubspot_video_play_button_color.css}}'
-            var {{name}}_{{data.hubspot_video.player_id}}_video = `{% video_player "hubspot_video"
+            var video_{{video_hash}}_color = '{{data.hubspot_video_play_button_color.css}}'
+            var video_{{video_hash}} = `{% video_player "hubspot_video"
               autoplay={{data.autoplay}},
               conversion_asset={{data.hubspot_video.conversion_asset|tojson|safe}},
               play_button_color={{data.hubspot_video_play_button_color.css}},
@@ -240,17 +244,12 @@
             %}`
           </script>
           <style>
-            #{{name}}_{{data.hubspot_video.player_id}}_video {
-              line-height: 0;
-            }
-
-            #{{name}}_{{data.hubspot_video.player_id}}_video.placeholder:before {
-              content: '';
-              display: block;
-              padding-top: {{ 100 / data.hubspot_video.width * data.hubspot_video.height }}%;
+            #video_{{video_hash}} {
+              border: 2px solid hotpink;
+              padding-bottom: {{ 100 / data.hubspot_video.width * data.hubspot_video.height }}%;
             }
           </style>
-          <div class="iframe-wrp hubspot-video-wrp placeholder" id="{{name}}_{{data.hubspot_video.player_id}}_video"></div>
+          <div class="iframe-wrp hubspot-video-wrp placeholder" id="video_{{video_hash}}"></div>
         {%- endif -%}
       {%- endif -%}
     </div>
