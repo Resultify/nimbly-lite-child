@@ -31,12 +31,44 @@
           border: 0 none;
           pointer-events: initial;
         }
+
+        .unicard-hs-video-modal__link {
+          position: relative;
+        }
+        .unicard-hs-video-modal__play {
+          width: 100px;
+          height: 100px;
+          padding-bottom: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          border-radius: 50%;
+          background: rgba(33, 37, 41, 1);
+          transform: translate(-50%,-50%);
+          border: 0 none;
+          margin: 0;
+          opacity: .8;
+          transition: opacity 0.3s ease-out;
+        }
+        .unicard-hs-video-modal__play > svg {
+          fill: #fff;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          padding: 20%;
+        }
+        .unicard-hs-video-modal__link:hover .unicard-hs-video-modal__play,
+        .unicard-hs-video-modal__link:focus .unicard-hs-video-modal__play {
+          opacity: 1;
+        }
       </style>
     {% end_require_css %}
 
     {% require_js %}
       <script>
-        const hsVideoModalContainers = document.getElementsByClassName('unicard-video-modal')
+        const hsVideoModalContainers = document.getElementsByClassName('hubspot-video-wrp')
 
         // Function for "Embed type" of "Embed code"
         function loadHsVideoModal (container) {
@@ -149,11 +181,11 @@
         }
 
         // Check to only run embed script if video module with "Embed type" of "Embed code" is present
-        if (hsVideoModalContainers.length !== 0) {
+        {# if (hsVideoModalContainers.length !== 0) {
           Array.prototype.forEach.call(hsVideoModalContainers, function (el) {
             loadHsVideoModal(el)
           })
-        }
+        } #}
       </script>
     {% end_require_js %}
 
@@ -247,9 +279,18 @@
             #video_{{video_hash}} {
               border: 2px solid hotpink;
               padding-bottom: {{ 100 / data.hubspot_video.width * data.hubspot_video.height }}%;
+              background-size: cover;
+              background-position: center;
             }
           </style>
-          <div class="iframe-wrp hubspot-video-wrp placeholder" id="video_{{video_hash}}"></div>
+          <div class="iframe-wrp hubspot-video-wrp" id="video_{{video_hash}}">
+            <a href="#" class="unicard-hs-video-modal__link">
+              <div class="unicard-hs-video-modal__play" style="background-color: {{data.hubspot_video_play_button_color.css}}">
+                <svg viewBox="0 0 32 32" fill="#ffffff" focusable="false" aria-hidden="true"><path id="play" data-testid="play" d="M6.484 4.094l20.75 11.225c0.226 0.121 0.41 0.427 0.41 0.683s-0.184 0.563-0.41 0.683l-20.75 11.222c-0.095 0.051-0.26 0.093-0.367 0.093-0.427 0-0.774-0.346-0.774-0.773v-22.451c0-0.428 0.347-0.774 0.774-0.774 0.108 0 0.272 0.042 0.367 0.093z"></path></svg>
+              </div>
+              {# <img src="https://144522521.fs1.hubspotusercontent-eu1.net/hub/144522521/hubfs/custom-video-thumbnails/Jussi%20Hirvonen-Collective%20Minds-thumb.jpeg?length=1920" alt="Jussi Hirvonen-Collective Minds" width="1920" height="1080" loading="lazy" class="unicard-hs-video-modal__thumbnail"> #}
+            </a>
+          </div>
         {%- endif -%}
       {%- endif -%}
     </div>
