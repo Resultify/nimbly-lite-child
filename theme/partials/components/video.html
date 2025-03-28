@@ -31,11 +31,16 @@
           border: 0 none;
           pointer-events: initial;
         }
-
-        .unicard-hs-video-modal__link {
+        .video .hubspot-video-wrp {
+          display: block;
+          height: 0;
+          padding-bottom: 56.25%;
           position: relative;
+          border: 2px solid hotpink;
+          background-size: cover;
+          background-position: center;
         }
-        .unicard-hs-video-modal__play {
+        .video .hubspot-video-wrp__play {
           width: 100px;
           height: 100px;
           padding-bottom: 0;
@@ -47,10 +52,10 @@
           transform: translate(-50%,-50%);
           border: 0 none;
           margin: 0;
-          opacity: .8;
+          opacity: .7;
           transition: opacity 0.3s ease-out;
         }
-        .unicard-hs-video-modal__play > svg {
+        .video .hubspot-video-wrp__play > svg {
           fill: #fff;
           position: absolute;
           top: 0;
@@ -59,8 +64,8 @@
           height: 100%;
           padding: 20%;
         }
-        .unicard-hs-video-modal__link:hover .unicard-hs-video-modal__play,
-        .unicard-hs-video-modal__link:focus .unicard-hs-video-modal__play {
+        .video .hubspot-video-wrp:hover .hubspot-video-wrp__play,
+        .video .hubspot-video-wrp:focus .hubspot-video-wrp__play {
           opacity: 1;
         }
       </style>
@@ -260,37 +265,42 @@
       {# HubSpot Video type #}
       {%- elif data.video_type == "hubspot_video" -%}
         {%- if data.hubspot_video.player_id -%}
-          {% set video_hash = hash([
-            name,
-            data.hubspot_video.player_id
-          ]) %}
-          {# move embed player into a variable that can be run later #}
-          <script>
-            var video_{{video_hash}}_color = '{{data.hubspot_video_play_button_color.css}}'
-            var video_{{video_hash}} = `{% video_player "hubspot_video"
+          {%- if data.autoplay -%}
+            {% video_player "hubspot_video"
               autoplay={{data.autoplay}},
               conversion_asset={{data.hubspot_video.conversion_asset|tojson|safe}},
               play_button_color={{data.hubspot_video_play_button_color.css}},
               player_id={{data.hubspot_video.player_id}},
               type={{data.hubspot_video.player_type or 'scriptV4'}},
-            %}`
-          </script>
-          <style>
-            #video_{{video_hash}} {
-              border: 2px solid hotpink;
-              padding-bottom: {{ 100 / data.hubspot_video.width * data.hubspot_video.height }}%;
-              background-size: cover;
-              background-position: center;
-            }
-          </style>
-          <div class="iframe-wrp hubspot-video-wrp" id="video_{{video_hash}}">
-            <a href="#" class="unicard-hs-video-modal__link">
-              <div class="unicard-hs-video-modal__play" style="background-color: {{data.hubspot_video_play_button_color.css}}">
+            %}
+          {%- else -%}
+            {%- set video_hash = hash([
+              name,
+              data.hubspot_video.player_id
+            ]) -%}
+            {# move embed player into a variable that can be run later #}
+            <script>
+              var video_{{video_hash}}_color = '{{data.hubspot_video_play_button_color.css}}'
+              var video_{{video_hash}} = `{% video_player "hubspot_video"
+                autoplay={{data.autoplay}},
+                conversion_asset={{data.hubspot_video.conversion_asset|tojson|safe}},
+                play_button_color={{data.hubspot_video_play_button_color.css}},
+                player_id={{data.hubspot_video.player_id}},
+                type={{data.hubspot_video.player_type or 'scriptV4'}},
+              %}`
+            </script>
+            <style>
+              #video_{{video_hash}} {
+                padding-bottom: {{ 100 / data.hubspot_video.width * data.hubspot_video.height }}%;
+              }
+            </style>
+            <a href="#" class="hubspot-video-wrp" id="video_{{video_hash}}" style="background-image: url('https://i.ytimg.com/vi_webp/XfELJU1mRMg/sddefault.webp')">
+              <div class="hubspot-video-wrp__play" style="background-color: {{data.hubspot_video_play_button_color.css}}">
                 <svg viewBox="0 0 32 32" fill="#ffffff" focusable="false" aria-hidden="true"><path id="play" data-testid="play" d="M6.484 4.094l20.75 11.225c0.226 0.121 0.41 0.427 0.41 0.683s-0.184 0.563-0.41 0.683l-20.75 11.222c-0.095 0.051-0.26 0.093-0.367 0.093-0.427 0-0.774-0.346-0.774-0.773v-22.451c0-0.428 0.347-0.774 0.774-0.774 0.108 0 0.272 0.042 0.367 0.093z"></path></svg>
               </div>
               {# <img src="https://144522521.fs1.hubspotusercontent-eu1.net/hub/144522521/hubfs/custom-video-thumbnails/Jussi%20Hirvonen-Collective%20Minds-thumb.jpeg?length=1920" alt="Jussi Hirvonen-Collective Minds" width="1920" height="1080" loading="lazy" class="unicard-hs-video-modal__thumbnail"> #}
             </a>
-          </div>
+          {%- endif -%}
         {%- endif -%}
       {%- endif -%}
     </div>
