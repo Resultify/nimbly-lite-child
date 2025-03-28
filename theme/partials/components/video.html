@@ -5,7 +5,7 @@
 -->
 {% import '../utils/hash.html' %}
 {%- macro video_macro(data) -%}
-  {%- if data.embed.oembed_url or data.embed.embed_html or data.hubspot_video.player_id != null -%}
+  {%- if data.embed.oembed_url or data.embed.embed_html or data.hubspot_video.player_id or data.youtube_lite != null -%}
     {# common styles for video macro #}
     {% require_css %}
       <style data-component="video">
@@ -34,6 +34,11 @@
       </style>
     {% end_require_css %}
 
+    {%- if data.video_type == "youtube_lite" -%}
+      {{require_css(get_asset_url("../../assets/css/lite-youtube-embed.css"), { async: true })}}
+      {{require_js(get_asset_url('../../assets/js/lite-youtube-embed.js'), { defer: true})}}
+    {%- endif -%}
+
     {# hash for scoped styles #}
     {% set item_hash = hash([
       loop.first,
@@ -43,42 +48,44 @@
     ]) %}
 
     {# scoped styles for video macro #}
-    {%- if data.force_full_width_video -%}
-      {% require_css %}
-        <style data-component="video scoped id{{item_hash}}">
-          .video{{item_hash}} {
-            margin-left: calc(var(--scope-padding-left) * -1);
-            margin-right: calc(var(--scope-padding-right) * -1);
-            width: calc(100% + var(--scope-padding-left) + var(--scope-padding-right));
-            {%- if data.force_full_width_video and loop.first -%}
-              margin-top: calc(var(--scope-padding-top) * -1);
-              margin-bottom: 0.8rem;
-            {%- elif data.force_full_width_video and loop.last -%}
-              margin-bottom: calc(var(--scope-padding-bottom) * -1);
-            {%- endif -%}
-          }
-          {% if data.force_full_width_video and loop.first or data.force_full_width_video and loop.last %}
-            .video{{item_hash}} iframe {
+    {%- if data.video_type != "youtube_lite" -%}
+      {%- if data.force_full_width_video -%}
+        {% require_css %}
+          <style data-component="video scoped id{{item_hash}}">
+            .video{{item_hash}} {
+              margin-left: calc(var(--scope-padding-left) * -1);
+              margin-right: calc(var(--scope-padding-right) * -1);
+              width: calc(100% + var(--scope-padding-left) + var(--scope-padding-right));
               {%- if data.force_full_width_video and loop.first -%}
-                border-top-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
-                border-top-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                margin-top: calc(var(--scope-padding-top) * -1);
+                margin-bottom: 0.8rem;
               {%- elif data.force_full_width_video and loop.last -%}
-                border-bottom-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
-                border-bottom-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                margin-bottom: calc(var(--scope-padding-bottom) * -1);
               {%- endif -%}
             }
-          {% endif %}
-        </style>
-      {% end_require_css %}
-    {%- endif -%}
-    {%- if data.video_border_radius is integer and data.force_full_width_video != true -%}
-      {% require_css %}
-        <style data-component="video scoped id{{item_hash}}">
-          .video{{item_hash}} iframe {
-            border-radius: {{data.video_border_radius ~ 'px'}};
-          }
-        </style>
-      {% end_require_css %}
+            {% if data.force_full_width_video and loop.first or data.force_full_width_video and loop.last %}
+              .video{{item_hash}} iframe {
+                {%- if data.force_full_width_video and loop.first -%}
+                  border-top-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                  border-top-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                {%- elif data.force_full_width_video and loop.last -%}
+                  border-bottom-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                  border-bottom-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                {%- endif -%}
+              }
+            {% endif %}
+          </style>
+        {% end_require_css %}
+      {%- endif -%}
+      {%- if data.video_border_radius is integer and data.force_full_width_video != true -%}
+        {% require_css %}
+          <style data-component="video scoped id{{item_hash}}">
+            .video{{item_hash}} iframe {
+              border-radius: {{data.video_border_radius ~ 'px'}};
+            }
+          </style>
+        {% end_require_css %}
+      {%- endif -%}
     {%- endif -%}
 
     <div data-component="video" class="video video{{item_hash}}">
@@ -117,5 +124,17 @@
         {%- endif -%}
       {%- endif -%}
     </div>
+  {%- endif -%}
+
+  {# Youtube type #}
+  {%- if data.video_type == "youtube_lite" -%}
+    {%- if data.youtube_lite -%}
+      <div class="iframe-wrp youtube-lite-wrp">
+        <lite-youtube
+          videoid="{{ data.youtube_lite }}"
+          playlabel="{{ data.youtube_lite.play_label|default('Play') }}"
+        ></lite-youtube>
+      </div>
+    {%- endif -%}
   {%- endif -%}
 {%- endmacro -%}
