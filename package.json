@@ -27,7 +27,7 @@
     "uploadDb": "cmslib --uploadDb"
   },
   "dependencies": {
-    "@lottiefiles/dotlottie-web": "~0.36.0",
+    "@lottiefiles/dotlottie-web": "~0.41.0",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "@splidejs/splide-extension-intersection": "^0.2.0",
