@@ -27,6 +27,12 @@
   {%- endif -%}
 {%- endmacro -%}
 
+{%- macro css_gradient_macro2(color, direction) -%}
+  {%- if direction -%}
+    linear-gradient({{direction}}, {{color|map('css')|join(',')}});
+  {%- endif -%}
+{%- endmacro -%}
+
 {%- macro css_font_macro(data, add_color = true) -%}
   {%- if add_color and data.color -%}
     color: {{data.color}};
@@ -115,4 +121,40 @@
     background-size: cover;
     background-position: {{data.background_image_alignment}};
   }
+{%- endmacro -%}
+
+
+{%- macro css_complex_image_background_macro(data) -%}
+  {%- if data.background_alignment == 'TOP_LEFT' -%}
+    {%- set background_alignment = 'left top' -%}
+  {%- elif data.background_alignment == 'TOP_CENTER' -%}
+    {%- set background_alignment = 'center top' -%}
+  {%- elif data.background_alignment == 'TOP_RIGHT' -%}
+    {%- set background_alignment = 'right top' -%}
+  {%- elif data.background_alignment == 'MIDDLE_LEFT' -%}
+    {%- set background_alignment = 'left center' -%}
+  {%- elif data.background_alignment == 'MIDDLE_CENTER' -%}
+    {%- set background_alignment = 'center center' -%}
+  {%- elif data.background_alignment == 'MIDDLE_RIGHT' -%}
+    {%- set background_alignment = 'right center' -%}
+  {%- elif data.background_alignment == 'BOTTOM_LEFT' -%}
+    {%- set background_alignment = 'left bottom' -%}
+  {%- elif data.background_alignment == 'BOTTOM_CENTER' -%}
+    {%- set background_alignment = 'center bottom' -%}
+  {%- elif data.background_alignment == 'BOTTOM_RIGHT' -%}
+    {%- set background_alignment = 'right bottom' -%}
+  {%- endif -%}
+  {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
+    background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{data.background_image}});
+    background-size: {{data.background_size}};
+    background-position: {{background_alignment}};
+  {% elif data.background_image_overlay_gradient_direction and data.background_image_overlay_type == 'gradient' %}
+    background: linear-gradient({{data.background_image_overlay_gradient_direction}}, {{data.background_image_overlay_gradient_color|map('css')|join(',')}}), url({{data.background_image}});
+    background-size: {{data.background_size}};
+    background-position: {{background_alignment}};
+  {% else %}
+    background-image: url({{data.background_image}});
+    background-size: {{data.background_size}};
+    background-position: {{background_alignment}};
+  {% endif %}
 {%- endmacro -%}

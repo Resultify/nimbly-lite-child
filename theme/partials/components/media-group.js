@@ -41,7 +41,7 @@ const mediaGroup = (parent = '', opt) => {
         operator: 'MATCHES_REGEX',
         controlling_value_regex: 'media'
       },
-      default: opt?.defaultMediaType || null,
+      default: opt?.defaultMediaType || 'full_width_image',
       placeholder: 'None',
       choices: mediaTypeChoices
     }),

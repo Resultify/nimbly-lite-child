@@ -1,6 +1,7 @@
 import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
+import { unicardDefaultContent } from '../modules/unicard-default.js'
 
 /**
  * #### fullWidthImage fields
@@ -15,7 +16,7 @@ const heading = (parent = '', opt) => {
   return [
     fi.text('', 'heading_text', {
       allow_new_line: true,
-      default: opt?.defaultHeading || 'Universal card heading'
+      default: opt?.defaultHeading || unicardDefaultContent.heading,
     }),
     fi.boolean('', 'heading_text_prop_visibility', {
       inline_help_text: '<span style="color:#33475b;">Show/hide</span> additional <span style="color:#007a8c;font-weight:700;font-size:14px;">Heading</span> properties.',

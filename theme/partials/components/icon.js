@@ -1,6 +1,7 @@
 import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
+import { unicardDefaultContent } from '../modules/unicard-default.js'
 
 const icon = (parent = '') => {
   if (typeof parent === 'string' && parent !== '') {
@@ -23,6 +24,7 @@ const icon = (parent = '') => {
       suffix: 'px'
     }),
     fi.icon('Icon', 'icon', {
+      default: unicardDefaultContent.icon ?? null,
       set: 'fontawesome-6.4.2',
       visibility: {
         controlling_field_path: `${parent}icon_type`,
