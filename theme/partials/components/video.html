@@ -36,7 +36,18 @@
           height: 0;
           padding-bottom: 56.25%;
           position: relative;
-          border: 2px solid hotpink;
+        }
+        {# videos that are smaller (uncommon) than container are scaled upwards #}
+        .video .hs-video-container {
+          max-width: unset !important;
+        }
+        .hubspot-video-wrp__bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #000;
           background-size: cover;
           background-position: center;
         }
@@ -75,30 +86,41 @@
       <script>
         const hsVideoModalContainers = document.getElementsByClassName('hubspot-video-wrp')
 
-        // Function for "Embed type" of "Embed code"
+        {# Function for "Embed type" of "Embed code" #}
         function loadHsVideoModal (container) {
-          // fetch variable with video-element
+          {# fetch variable with video-element #}
           let videoElement = window[container.getAttribute('id')]
           const videoElementColor = window[container.getAttribute('id') + '_color']
+          const videoBg = container.getElementsByClassName('hubspot-video-wrp__bg')[0]
+          const videoPlay = container.getElementsByClassName('hubspot-video-wrp__play')[0]
 
           {# TODO:
-          - change how catch error works, so even if json fails, just skip populating the image, but do the rest
-          - change from creating modal to replacing the image with hubspot video
-          - adjust for different aspect ratios
-          - make sure videos that are smaller than the actual area still look nice on transition #}
+          X change how catch error works, so even if json fails, just skip populating the image, but do the rest
+          X change from creating modal to replacing the image with hubspot video
+          X adjust for different aspect ratios
+          X make sure videos that are smaller than the actual area still look nice on transition
+          x posterAlt usage?
+          - replicate same play button (that scales)
+          - check similarities between both versions (iframe or javascript triggered)
+          #}
 
-          // if found, create a video modal backdrop and assign click and keydown events to exit from video
           if (videoElement !== undefined) {
-            // grab the right values from videoElement to compose the url for the video json
+            {# grab the right values from videoElement to compose the url for the video json #}
             const videoUrl = new URL(videoElement.match(/data-hsv-src="([^"]*)"/)[1])
             const videoId = videoUrl.pathname.match(/\/v\/([^/]*)\//)?.[1]
             const hubId = videoElement.match(/data-hsv-id="([^"]*)"/)[1]
             const jsonUrl = `${window.location.protocol}//${window.location.host}/_hcms/video/${hubId}/player?portalId=${videoId}&hs_static_app=video-player-ui&hs_static_app_version=1.25182`
 
-            // replace the data-hsv-src attribute with src so it works multiple times
-            videoElement = videoElement.replace(/data-hsv-src="([^"]*)"/g, 'src="$1"')
+            {# replace loading="lazy" with loading="eager" if present #}
+            videoElement = videoElement.replace(/loading="lazy"/g, 'loading="eager"');
 
-            // use fetch to grab json data
+            {# replace the data-hsv-src attribute with src and add autoplay parameter #}
+            videoElement = videoElement.replace(/data-hsv-src="([^"]*)"/g, function(match, url) {
+              {# Check if URL already has query parameters #}
+              const separator = url.includes('?') ? '&' : '?';
+              return 'src="' + url + separator + 'autoplay=true"';
+            });
+
             fetch(jsonUrl)
               .then(response => {
                 if (!response.ok) {
@@ -107,90 +129,38 @@
                 return response.json()
               })
               .then(data => {
-                // Extract posterUrl from the JSON response
+
+                {# extract posterUrl from the JSON response #}
                 const posterUrl = data.video.posterUrl
-                const posterAlt = data.video.title
-                const posterWidth = data.video.width
-                const posterHeight = data.video.height
+                const posterTitle = data.video.title
 
-                // create placeholder image after we have the posterUrl
-                if (posterUrl && posterUrl.length !== 0) {
-                  const videoImage = document.createElement('img')
-                  videoImage.setAttribute('src', posterUrl)
-                  videoImage.setAttribute('alt', posterAlt)
-                  videoImage.setAttribute('width', posterWidth)
-                  videoImage.setAttribute('height', posterHeight)
-                  videoImage.setAttribute('loading', 'lazy')
-                  videoImage.classList.add('unicard-hs-video-modal__thumbnail')
-
-                  // create linkElement
-                  const linkElement = document.createElement('a')
-                  linkElement.setAttribute('href', '#')
-                  linkElement.classList.add('unicard-hs-video-modal__link')
-
-                  // create play div and SVG element
-                  const playElement = document.createElement('div')
-                  playElement.classList.add('unicard-hs-video-modal__play')
-                  if (videoElementColor) playElement.style.backgroundColor = videoElementColor
-                  playElement.innerHTML = '<svg viewBox="0 0 32 32" fill="#ffffff" focusable="false" aria-hidden="true"><path id="play" data-testid="play" d="M6.484 4.094l20.75 11.225c0.226 0.121 0.41 0.427 0.41 0.683s-0.184 0.563-0.41 0.683l-20.75 11.222c-0.095 0.051-0.26 0.093-0.367 0.093-0.427 0-0.774-0.346-0.774-0.773v-22.451c0-0.428 0.347-0.774 0.774-0.774 0.108 0 0.272 0.042 0.367 0.093z"></path></svg>'
-
-                  linkElement.appendChild(playElement)
-                  linkElement.appendChild(videoImage)
-                  container.appendChild(linkElement)
-                  container.classList.remove('placeholder')
-
-                  // create modal
-                  const videoModal = document.createElement('div')
-                  videoModal.classList.add('unicard-vm__backdrop')
-
-                  // create close button
-                  const closeButton = document.createElement('button')
-                  closeButton.classList.add('unicard-vm__close')
-                  closeButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>'
-
-                  // add overlapping element to body
-                  document.body.appendChild(videoModal)
-
-                  // close flyout if click on blured area
-                  videoModal.addEventListener('click', function (event) {
-                    if (event.target.classList.contains('unicard-vm__backdrop') ||
-                      event.target.classList.contains('unicard-vm__close')) {
-                      videoModal.innerHTML = ''
-                      videoModal.classList.remove('blur')
-                    }
-                  })
-
-                  document.addEventListener('keydown', ({ key }) => {
-                    if (key === 'Escape') {
-                      videoModal.innerHTML = ''
-                      videoModal.classList.remove('blur')
-                    }
-                  })
-
-                  // finally, prevent default and enable video modal on click
-                  linkElement.addEventListener('click', function (event) {
-                    event.preventDefault()
-                    // Check if we're not in edit mode (hs-inline-edit class not on html tag)
-                    if (!document.documentElement.classList.contains('hs-inline-edit')) {
-                      videoModal.innerHTML = '<div><div>' + videoElement + '</div></div>'
-                      videoModal.appendChild(closeButton)
-                      videoModal.classList.add('blur')
-                    }
-                  })
-                }
+                {# set title on container and the poster image as background image #}
+                container.setAttribute('title', posterTitle)
+                videoBg.style.backgroundImage = `url(${posterUrl})`
               })
               .catch(error => {
                 console.error('Error fetching video data:', error)
               })
+
+            {# finally, prevent default and enable video modal on click #}
+            container.addEventListener('click', function (event) {
+              event.preventDefault()
+
+              {# check if we're not in edit mode (hs-inline-edit class not on html tag) #}
+              if (!document.documentElement.classList.contains('hs-inline-edit')) {
+                videoPlay.remove()
+                container.innerHTML += '<div><div>' + videoElement + '</div></div>'
+              }
+            })
           }
         }
 
-        // Check to only run embed script if video module with "Embed type" of "Embed code" is present
-        {# if (hsVideoModalContainers.length !== 0) {
+        {# check to only run embed script if video module with "Embed type" of "Embed code" is present #}
+        if (hsVideoModalContainers.length !== 0) {
           Array.prototype.forEach.call(hsVideoModalContainers, function (el) {
             loadHsVideoModal(el)
           })
-        } #}
+        }
       </script>
     {% end_require_js %}
 
@@ -234,7 +204,8 @@
     {%- if data.video_border_radius is integer and data.force_full_width_video != true -%}
       {% require_css %}
         <style data-component="video scoped id{{item_hash}}">
-          .video{{item_hash}} iframe {
+        .video{{item_hash}} iframe,
+        .video{{item_hash}} .hubspot-video-wrp__bg {
             border-radius: {{data.video_border_radius ~ 'px'}};
           }
         </style>
@@ -272,6 +243,8 @@
               play_button_color={{data.hubspot_video_play_button_color.css}},
               player_id={{data.hubspot_video.player_id}},
               type={{data.hubspot_video.player_type or 'scriptV4'}},
+              height={{ data.hubspot_video.height }},
+              width={{ data.hubspot_video.width }},
             %}
           {%- else -%}
             {%- set video_hash = hash([
@@ -287,6 +260,8 @@
                 play_button_color={{data.hubspot_video_play_button_color.css}},
                 player_id={{data.hubspot_video.player_id}},
                 type={{data.hubspot_video.player_type or 'scriptV4'}},
+                height={{ data.hubspot_video.height }},
+                width={{ data.hubspot_video.width }},
               %}`
             </script>
             <style>
@@ -294,11 +269,11 @@
                 padding-bottom: {{ 100 / data.hubspot_video.width * data.hubspot_video.height }}%;
               }
             </style>
-            <a href="#" class="hubspot-video-wrp" id="video_{{video_hash}}" style="background-image: url('https://i.ytimg.com/vi_webp/XfELJU1mRMg/sddefault.webp')">
+            <a href="#" class="hubspot-video-wrp" id="video_{{video_hash}}">
+              <div class="hubspot-video-wrp__bg"></div>
               <div class="hubspot-video-wrp__play" style="background-color: {{data.hubspot_video_play_button_color.css}}">
                 <svg viewBox="0 0 32 32" fill="#ffffff" focusable="false" aria-hidden="true"><path id="play" data-testid="play" d="M6.484 4.094l20.75 11.225c0.226 0.121 0.41 0.427 0.41 0.683s-0.184 0.563-0.41 0.683l-20.75 11.222c-0.095 0.051-0.26 0.093-0.367 0.093-0.427 0-0.774-0.346-0.774-0.773v-22.451c0-0.428 0.347-0.774 0.774-0.774 0.108 0 0.272 0.042 0.367 0.093z"></path></svg>
               </div>
-              {# <img src="https://144522521.fs1.hubspotusercontent-eu1.net/hub/144522521/hubfs/custom-video-thumbnails/Jussi%20Hirvonen-Collective%20Minds-thumb.jpeg?length=1920" alt="Jussi Hirvonen-Collective Minds" width="1920" height="1080" loading="lazy" class="unicard-hs-video-modal__thumbnail"> #}
             </a>
           {%- endif -%}
         {%- endif -%}
