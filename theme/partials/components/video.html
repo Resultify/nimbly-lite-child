@@ -17,7 +17,6 @@
         }
         .video .iframe-wrp,
         .video .hubspot-video-wrp {
-          outline: 10px solid hotpink;
           display: block;
           height: 0;
           padding-bottom: 56.25%;
@@ -49,9 +48,13 @@
           background-position: center;
         }
         .video .hubspot-video-wrp__play {
-          width: 100px;
-          height: 100px;
-          padding-bottom: 0;
+          display: block;
+          min-width: unset;
+          min-height: unset;
+          width: 16%;
+          height: 1rem;
+          padding: unset;
+          padding-bottom: 16%;
           position: absolute;
           top: 50%;
           left: 50%;
@@ -64,6 +67,8 @@
           transition: opacity 0.3s ease-out;
         }
         .video .hubspot-video-wrp__play > svg {
+          font-size: 3em;
+          line-height: 1.5em;
           fill: #fff;
           position: absolute;
           top: 0;
@@ -90,16 +95,6 @@
           const videoElementColor = window[container.getAttribute('id') + '_color']
           const videoBg = container.getElementsByClassName('hubspot-video-wrp__bg')[0]
           const videoPlay = container.getElementsByClassName('hubspot-video-wrp__play')[0]
-
-          {# TODO:
-          X change how catch error works, so even if json fails, just skip populating the image, but do the rest
-          X change from creating modal to replacing the image with hubspot video
-          X adjust for different aspect ratios
-          X make sure videos that are smaller than the actual area still look nice on transition
-          x posterAlt usage?
-          - replicate same play button (that scales)
-          - check similarities between both versions (iframe or javascript triggered)
-          #}
 
           if (videoElement !== undefined) {
             {# grab the right values from videoElement to compose the url for the video json #}
@@ -145,9 +140,9 @@
 
               {# only trigger video once #}
               if (container.getAttribute('data-video-triggered') == null) {
-                {# remove the play button and background image #}
+                {# remove the play button, add the video and set data-video-triggered #}
                 videoPlay.remove()
-                container.innerHTML += '<div><div>' + videoElement + '</div></div>'
+                container.innerHTML += videoElement
                 container.setAttribute('data-video-triggered', 'true')
               }
             })
@@ -221,7 +216,7 @@
             {%- set video_hash = hash([
               data.embed.oembed_url
             ]) -%}
-            {# set new aspect ratio if not close to 16:9 ( result for 16:9 becomes 56.5 instead of 56.25) #}
+            {# set new aspect ratio if not close to 16:9 (result for 16:9 becomes 56.5% instead of 56.25%) #}
             {%- if (100 / data.embed.width * data.embed.height)|int != '56' -%}
               <style>
                 #video_{{video_hash}} {
@@ -279,12 +274,12 @@
                 padding-bottom: {{ 100 / data.hubspot_video.width * data.hubspot_video.height }}%;
               }
             </style>
-            <a href="#" class="hubspot-video-wrp" id="video_{{video_hash}}">
+            <div class="hubspot-video-wrp" id="video_{{video_hash}}">
               <div class="hubspot-video-wrp__bg"></div>
-              <div class="hubspot-video-wrp__play" style="background-color: {{data.hubspot_video_play_button_color.css}}">
+              <button class="hubspot-video-wrp__play" {{ data.hubspot_video_play_button_color.css ? 'style="background-color: {{data.hubspot_video_play_button_color.css}};"' : '' }}>
                 <svg viewBox="0 0 32 32" fill="#ffffff" focusable="false" aria-hidden="true"><path id="play" data-testid="play" d="M6.484 4.094l20.75 11.225c0.226 0.121 0.41 0.427 0.41 0.683s-0.184 0.563-0.41 0.683l-20.75 11.222c-0.095 0.051-0.26 0.093-0.367 0.093-0.427 0-0.774-0.346-0.774-0.773v-22.451c0-0.428 0.347-0.774 0.774-0.774 0.108 0 0.272 0.042 0.367 0.093z"></path></svg>
-              </div>
-            </a>
+              </button>
+            </div>
           {%- endif -%}
         {%- endif -%}
       {%- endif -%}
