@@ -1,6 +1,7 @@
 import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
+import { unicardDefaultContent } from '../modules/unicard-default.js'
 
 /**
  * #### fullWidthImage fields
@@ -14,6 +15,7 @@ const fullWidthImage = (parent = '', opt) => {
   }
   return [
     fi.image('Image', 'full_width_image', {
+      default: unicardDefaultContent.full_width_image.image ?? null,
       resizable: false,
       show_loading: false,
       responsive: true
@@ -48,7 +50,7 @@ const fullWidthImage = (parent = '', opt) => {
       locked: opt?.hideForceFullWidthImageProp || false,
       help_text: 'This image is already full-width, but with the <strong>Force full width</strong> option enabled, it will take the full width of the parent element, even if there is extra padding around it.',
       display_width: 'half_width',
-      default: false,
+      default: unicardDefaultContent.full_width_image.props.force_full_width_image ?? null,
       visibility: {
         controlling_field_path: `${parent}full_width_image_opt_visibility`,
         operator: 'EQUAL',

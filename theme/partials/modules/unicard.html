@@ -3,6 +3,7 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
+{% import '../css/macros.css' %}
 {%- macro unicard_macro(data, style) -%}
 
   {% import '../components/media-group.html' %}
@@ -46,15 +47,35 @@
     style.border.top.color,
     style.hover.shadow,
     style.hover.animation,
-    style.max_width
+    style.max_width,
+    data.card_style.text_color.css,
+    data.card_style.background_type,
+    data.card_style.background_color.css,
+    data.card_style.background_image_overlay_type,
+    data.card_style.background_image_overlay.css,
+    data.card_style.background_image_overlay_gradient_color,
+    data.card_style.background_image_overlay_gradient_direction,
+    data.card_style.background_gradient_color,
+    data.card_style.background_gradient_direction
   ]) %}
 
   {# scoped styles for unicard module component #}
   {% require_css %}
     <style data-component="unicard scoped id{{scope_hash}}">
+      {% if data.equal_height_cards %}
+        .dnd-section .row-fluid {
+          height: 100%;
+        }
+        .row-fluid > [class*="span"] {
+          display: grid;
+        }
+      {% endif %}
       .scope-root.id{{scope_hash}} {
         {% if style.text_color.css %}
           --scope-color: {{style.text_color.css if style.text_color.css}};
+        {% endif %}
+        {% if data.card_style.text_color.css %}
+          --scope-color: {{data.card_style.text_color.css if data.card_style.text_color.css}};
         {% endif %}
         --scope-alignment: {{css_alignment_macro(style.alignment.horizontal_align)}};
         --scope-border-radius: {{style.border_radius is truthy ? style.border_radius ~ "px" : 0 }};
@@ -67,6 +88,15 @@
           background: {{style.background_gradient.css}};
         {% elif style.background_type == 'background_image' and style.background_image.css %}
           {{css_image_background_macro(style)}}
+        {% endif %}
+        {% if data.card_style.background_type == 'background_color' and data.card_style.background_color.css %}
+          background: none;
+          background-color: var(--scope-background);
+          --scope-background: {{data.card_style.background_color.css}};
+        {% elif data.card_style.background_type == 'background_gradient' and data.card_style.background_gradient_direction %}
+          background: {{css_gradient_macro2(data.card_style.background_gradient_color, data.card_style.background_gradient_direction)}}
+        {% elif data.card_style.background_type == 'background_image' and data.card_style.background_image %}
+          {{css_complex_image_background_macro(data.card_style)}}
         {% endif %}
         --scope-content-gap: {{style.content_gap is truthy ? style.content_gap ~ 'px' : 0 }};
         --scope-border: {{style.border.css && style.border.top.width.value is truthy ? style.border.css|cut('border:') : 'none' }};
@@ -125,7 +155,7 @@
             color: var(--scope-hover-color);
             border-color: var(--scope-hover-border-color);
           }
-          {% if style.background_type == 'background_image' and style.hover.background_color.css or style.background_type == 'background_gradient' and style.hover.background_color.css %}
+          {% if style.background_type == 'background_image' and style.hover.background_color.css or style.background_type == 'background_gradient' and style.hover.background_color.css or data.card_style.background_type == 'background_image' and style.hover.background_color.css or data.card_style.background_type == 'background_gradient' and style.hover.background_color.css %}
             .scope-root.id{{scope_hash}}:after {
               content: "";
               width: 100%;
@@ -166,7 +196,7 @@
   {% endif %}
 
   <div class="unicard scope-root id{{scope_hash}}">
-    <div class="content-block-top">
+    <div class="unicard-fake-class content-block-top">
       {% for component in data.module_components %}
         {% if component == 'media' %}
           {{media_group_macro(data)}}

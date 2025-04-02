@@ -16,6 +16,8 @@ import { meeting } from '../components/meeting.js'
 import { moduleComponents } from '../components/module-components.js'
 import { animationList } from '../data/animation-list.js'
 import { shadowList } from '../data/shadow-list.js'
+import { unicardDefaultContent } from './unicard-default.js'
+import { styleGroup } from './unicard-style.js'
 
 /**
  * #### unicard fields
@@ -32,9 +34,11 @@ import { shadowList } from '../data/shadow-list.js'
  * @param {boolean} [opt.mediaGroup.hideForceFullWidthVideoProp] - hide force_full_width_video property for video component
  * @param {boolean} [opt.mediaGroup.showLottieScaleProp] - show lottie scale property
  * @param {boolean} [opt.hideWholeAreaLinkProp] - hide whole area link property
+ * @param {boolean} [opt.showCardStyle] - show style group
  */
 const unicardFields = (components, parent = '', opt) => {
   const fields = []
+  fields.push(moduleComponents(components))
   components.choices.includes('categories') && fields.push(categoryGroup(parent))
   components.choices.includes('media') && fields.push(mediaGroup(parent, opt?.mediaGroup))
   components.choices.includes('main_heading') && fields.push(group('Heading', 'heading',
@@ -67,9 +71,12 @@ const unicardFields = (components, parent = '', opt) => {
       },
       expanded: true
     },
-    heading(`${parent}subheading.`)
+    heading(`${parent}subheading.`, {
+      defaultHeading: unicardDefaultContent.subheading,
+    })
   ))
   components.choices.includes('richtext') && fields.push(fi.richtext('Rich text', 'richtext', {
+    default: unicardDefaultContent.richtext,
     visibility: {
       controlling_field_path: `${parent}module_components`,
       operator: 'MATCHES_REGEX',
@@ -143,7 +150,7 @@ const unicardFields = (components, parent = '', opt) => {
       ]
     }
   }))
-  fields.push(moduleComponents(components))
+  fields.push(styleGroup(parent, opt))
   return fields
 }
 
@@ -191,6 +198,7 @@ const unicardStyleFields = (parent = '', opt) => {
     fi.choice('Background type', 'background_type', {
       display_width: opt?.showMobileAlignment ? null : 'half_width',
       placeholder: 'No background',
+      default: unicardDefaultContent.style.background_type ?? null,
       choices: [
         ['background_color', 'Background color'],
         ['background_image', 'Background image'],
@@ -198,6 +206,7 @@ const unicardStyleFields = (parent = '', opt) => {
       ]
     }),
     fi.color('Background color', 'background_color', {
+      default: unicardDefaultContent.style.background_color ?? null,
       visibility: {
         controlling_field_path: `${parent}background_type`,
         operator: 'EQUAL',
@@ -267,6 +276,7 @@ const unicardStyleFields = (parent = '', opt) => {
       }
     }),
     fi.spacing('', 'spacing', {
+      default: unicardDefaultContent.style.spacing ?? null,
       visibility: {
         hidden_subfields: {
           margin: true
@@ -275,12 +285,15 @@ const unicardStyleFields = (parent = '', opt) => {
     }),
     fi.border('Border', 'border'),
     fi.number('Border radius', 'border_radius', {
+      default: unicardDefaultContent.style.border_radius ?? null,
       min: 0,
       suffix: 'px',
       display_width: 'half_width'
     }),
     fi.choice('Shadow', 'shadow', {
+      default: unicardDefaultContent.style.shadow ?? null,
       display_width: 'half_width',
+      placeholder: 'No shadow',
       choices: shadowList
     }),
     fi.number('Max width', 'max_width', {
@@ -307,10 +320,12 @@ const unicardStyleFields = (parent = '', opt) => {
       fi.color('Border color', 'border_color'),
       fi.choice('Shadow', 'shadow', {
         display_width: 'half_width',
+        placeholder: 'No shadow',
         choices: shadowList
       }),
       fi.choice('Animation', 'animation', {
         display_width: 'half_width',
+        placeholder: 'No animation',
         choices: animationList
       })
     )

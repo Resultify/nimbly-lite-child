@@ -1,6 +1,7 @@
 import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
+import { unicardDefaultContent } from '../modules/unicard-default.js'
 
 /**
  * #### simpleImage fields
@@ -16,7 +17,8 @@ const simpleImage = (parent = '', opt) => {
     fi.image('Simple image', 'simple_image', {
       resizable: false,
       show_loading: false,
-      responsive: false
+      responsive: false,
+      default: unicardDefaultContent.simpleImage ?? null,
     }),
     fi.number('Width', 'simple_image_width', {
       min: 0,
