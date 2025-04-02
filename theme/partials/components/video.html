@@ -15,7 +15,10 @@
           position: relative;
           width: 100%;
         }
-        .video .iframe-wrp {
+        .video .iframe-wrp,
+        .video .hubspot-video-wrp {
+          outline: 10px solid hotpink;
+          display: block;
           height: 0;
           padding-bottom: 56.25%;
           position: relative;
@@ -30,12 +33,6 @@
           right: 0;
           border: 0 none;
           pointer-events: initial;
-        }
-        .video .hubspot-video-wrp {
-          display: block;
-          height: 0;
-          padding-bottom: 56.25%;
-          position: relative;
         }
         {# videos that are smaller (uncommon) than container are scaled upwards #}
         .video .hs-video-container {
@@ -221,7 +218,18 @@
         {%- if data.embed.source_type == "oembed" -%}
           {% set isSupportedOEmbedType = data.embed.supported_oembed_types.index(data.embed.oembed_response.type) >= 0 %}
           {%- if data.embed.oembed_response.html and isSupportedOEmbedType -%}
-            <div class="iframe-wrp embed-url-wrp">
+            {%- set video_hash = hash([
+              data.embed.oembed_url
+            ]) -%}
+            {# set new aspect ratio if not close to 16:9 ( result for 16:9 becomes 56.5 instead of 56.25) #}
+            {%- if (100 / data.embed.width * data.embed.height)|int != '56' -%}
+              <style>
+                #video_{{video_hash}} {
+                  padding-bottom: {{ 100 / data.embed.width * data.embed.height }}%;
+                }
+              </style>
+            {%- endif -%}
+            <div class="iframe-wrp embed-url-wrp" id="video_{{video_hash}}">
               {{data.embed.oembed_response.html}}
             </div>
           {%- endif -%}
