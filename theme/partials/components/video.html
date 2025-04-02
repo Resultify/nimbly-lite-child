@@ -146,10 +146,12 @@
             container.addEventListener('click', function (event) {
               event.preventDefault()
 
-              {# check if we're not in edit mode (hs-inline-edit class not on html tag) #}
-              if (!document.documentElement.classList.contains('hs-inline-edit')) {
+              {# only trigger video once #}
+              if (container.getAttribute('data-video-triggered') == null) {
+                {# remove the play button and background image #}
                 videoPlay.remove()
                 container.innerHTML += '<div><div>' + videoElement + '</div></div>'
+                container.setAttribute('data-video-triggered', 'true')
               }
             })
           }
