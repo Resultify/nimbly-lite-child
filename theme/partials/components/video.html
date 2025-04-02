@@ -88,8 +88,8 @@
       <script>
         const hsVideoModalContainers = document.getElementsByClassName('hubspot-video-wrp')
 
-        {# Function for "Embed type" of "Embed code" #}
-        function loadHsVideoModal (container) {
+        {# function for "lite hubspot video" #}
+        function liteHubspotVideo (container) {
           {# fetch variable with video-element #}
           let videoElement = window[container.getAttribute('id')]
           const videoElementColor = window[container.getAttribute('id') + '_color']
@@ -149,10 +149,10 @@
           }
         }
 
-        {# check to only run embed script if video module with "Embed type" of "Embed code" is present #}
+        {# check to only run script if video module with "Hubspot Video type" is present #}
         if (hsVideoModalContainers.length !== 0) {
           Array.prototype.forEach.call(hsVideoModalContainers, function (el) {
-            loadHsVideoModal(el)
+            liteHubspotVideo(el)
           })
         }
       </script>
