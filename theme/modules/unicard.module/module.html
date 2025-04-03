@@ -2,6 +2,13 @@
 {% if is_in_module_previewer %}
   {{require_css(get_asset_url("../../css/base.css"))}}
   {{require_css(get_asset_url("../../css/global-theme-settings.css"))}}
+  {% require_css %}
+    <style>
+      .unicard {
+        max-width: 600px;
+      }
+    </style>
+  {% end_require_css %}
 {% endif %}
 {# *** [rmend] #}
 

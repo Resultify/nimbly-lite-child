@@ -3,7 +3,7 @@
   templateType: "none"
   isAvailableForNewContent: false
 -->
-{% import '../css/macros.css' %}
+{% import '../../css/macros.css' %}
 {%- macro unicard_macro(data, style) -%}
 
   {% import '../components/media-group.html' %}
@@ -143,17 +143,17 @@
           .scope-root.id{{scope_hash}}:hover {
             {% if style.hover.text_color.css %}
               --scope-hover-color: {{style.hover.text_color.css}};
+              color: var(--scope-hover-color);
             {% endif %}
             {% if style.hover.border_color.css or style.border.top.color %}
               --scope-hover-border-color: {{style.hover.border_color.css ? style.hover.border_color.css : style.border.top.color}};
+              border-color: var(--scope-hover-border-color);
             {% endif %}
             --scope-hover-background: {{style.hover.background_color.css if style.hover.background_color.css}};
             --scope-hover-shadow: {{style.hover.shadow ? 'var(--' ~ style.hover.shadow ~ ')' : 'var(--scope-shadow)' }};
             --scope-hover-animation: {{style.hover.animation ? 'var(--' ~ style.hover.animation ~ ')' : 'var(--ani-)' }};
             box-shadow: var(--scope-hover-shadow);
             transform: var(--scope-hover-animation);
-            color: var(--scope-hover-color);
-            border-color: var(--scope-hover-border-color);
           }
           {% if style.background_type == 'background_image' and style.hover.background_color.css or style.background_type == 'background_gradient' and style.hover.background_color.css or data.card_style.background_type == 'background_image' and style.hover.background_color.css or data.card_style.background_type == 'background_gradient' and style.hover.background_color.css %}
             .scope-root.id{{scope_hash}}:after {

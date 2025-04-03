@@ -6,7 +6,8 @@ import {
  * #### fullWidthImage fields
  * @param {string} [parent] - parent path
  * @param {object} [opt] - options
- * @param {boolean} [opt.showLottieScaleProp] - show lottie scale prop
+ * @param {object} [opt.mediaGroup] - media group options
+ * @param {boolean} [opt.mediaGroup.showLottieScaleProp] - show lottie scale property
  */
 const lottie = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
@@ -127,7 +128,7 @@ const lottie = (parent = '', opt) => {
       min: 0,
       step: 0.1,
       max: 10,
-      locked: !(opt?.showLottieScaleProp),
+      locked: !(opt?.mediaGroup?.showLottieScaleProp),
       display_width: 'half_width',
       visibility_rules: 'ADVANCED',
       advanced_visibility: {

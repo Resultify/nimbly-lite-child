@@ -1,13 +1,16 @@
 import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
-import { unicardDefaultContent } from '../modules/unicard-default.js'
 
 /**
  * #### simpleImage fields
  * @param {string} [parent] - parent path
  * @param {object} [opt] - options
- * @param {boolean} [opt.hideAlignmentProp] - hide alignment property
+ * @param {object} [opt.mediaGroup] - media group options
+ * @param {boolean} [opt.mediaGroup.hideAlignmentProp] - hide alignment property for simpleImage component
+ * @param {object} [opt.default] - default simple image properties
+ * @param {object} [opt.default.simple_image] - default simple image properties
+ * @param {string} [opt.default.simple_image.src] - default simple image source
  */
 const simpleImage = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
@@ -18,7 +21,9 @@ const simpleImage = (parent = '', opt) => {
       resizable: false,
       show_loading: false,
       responsive: false,
-      default: unicardDefaultContent.simpleImage ?? null,
+      default: {
+        src: opt?.default?.simple_image?.src ?? null
+      }
     }),
     fi.number('Width', 'simple_image_width', {
       min: 0,
@@ -32,7 +37,7 @@ const simpleImage = (parent = '', opt) => {
     }),
     fi.choice('Alignment', 'simple_image_alignment', {
       display_width: 'half_width',
-      locked: opt?.hideAlignmentProp || false,
+      locked: opt?.mediaGroup?.hideAlignmentProp ?? false,
       choices: [
         ['start', 'Left'],
         ['center', 'Center'],

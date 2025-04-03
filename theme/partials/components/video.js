@@ -6,7 +6,8 @@ import {
  * #### fullWidthImage fields
  * @param {string} [parent] - parent path
  * @param {object} [opt] - options
- * @param {boolean} [opt.hideForceFullWidthVideoProp] - hide force full width prop
+ * @param {object} [opt.mediaGroup] - media group options
+ * @param {boolean} [opt.mediaGroup.hideForceFullWidthVideoProp] - hide force_full_width_video property for video component
  */
 const video = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
@@ -45,7 +46,7 @@ const video = (parent = '', opt) => {
       display: 'toggle'
     }),
     fi.boolean('Force full width', 'force_full_width_video', {
-      locked: opt?.hideForceFullWidthVideoProp || false,
+      locked: opt?.mediaGroup?.hideForceFullWidthVideoProp ?? false,
       help_text: 'With the <strong>Force full width</strong> option enabled, it will take the full width of the parent element, even if there is extra padding around it.',
       display_width: 'half_width',
       default: false,

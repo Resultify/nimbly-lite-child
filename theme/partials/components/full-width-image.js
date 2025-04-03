@@ -1,13 +1,19 @@
 import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
-import { unicardDefaultContent } from '../modules/unicard-default.js'
 
 /**
  * #### fullWidthImage fields
  * @param {string} [parent] - parent path
  * @param {object} [opt] - options
- * @param {boolean} [opt.hideForceFullWidthImageProp] - hide force full width image prop
+ * @param {object} [opt.mediaGroup] - media group options
+ * @param {boolean} [opt.mediaGroup.hideForceFullWidthImageProp] - hide force_full_width_image property for fullWidthImage component
+ * @param {object} [opt.default] - default media type properties
+ * @param {'full_width_image'|'simple_image'|'icon'} [opt.default.media_type] - default media type
+ * @param {object} [opt.default.full_width_image] - default full width image properties
+ * @param {boolean} [opt.default.full_width_image.force_full_width_image] - default force full width image
+ * @param {'1/1'|'1.91/1'|'2/1'|'3/1'|'3/2'|'4/3'|'4/5'|'5/4'|'9/16'|'16/9'} [opt.default.full_width_image.full_width_image_aspect_ratio] - default full width image aspect ratio
+ * @param {string} [opt.default.full_width_image.src] - default full width image source
  */
 const fullWidthImage = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
@@ -15,7 +21,9 @@ const fullWidthImage = (parent = '', opt) => {
   }
   return [
     fi.image('Image', 'full_width_image', {
-      default: unicardDefaultContent.full_width_image.image ?? null,
+      default: {
+        src: opt?.default?.full_width_image?.src ?? null,
+      },
       resizable: false,
       show_loading: false,
       responsive: true
@@ -27,7 +35,7 @@ const fullWidthImage = (parent = '', opt) => {
     fi.choice('Aspect ratio', 'full_width_image_aspect_ratio', {
       display_width: 'half_width',
       required: true,
-      default: '16/9',
+      default: opt?.default?.full_width_image?.full_width_image_aspect_ratio ?? '16/9',
       visibility: {
         controlling_field_path: `${parent}full_width_image_opt_visibility`,
         operator: 'EQUAL',
@@ -47,10 +55,10 @@ const fullWidthImage = (parent = '', opt) => {
       ]
     }),
     fi.boolean('Force full width', 'force_full_width_image', {
-      locked: opt?.hideForceFullWidthImageProp || false,
+      locked: opt?.mediaGroup?.hideForceFullWidthImageProp ?? false,
       help_text: 'This image is already full-width, but with the <strong>Force full width</strong> option enabled, it will take the full width of the parent element, even if there is extra padding around it.',
       display_width: 'half_width',
-      default: unicardDefaultContent.full_width_image.props.force_full_width_image ?? null,
+      default: opt?.default?.full_width_image?.force_full_width_image ?? false,
       visibility: {
         controlling_field_path: `${parent}full_width_image_opt_visibility`,
         operator: 'EQUAL',
