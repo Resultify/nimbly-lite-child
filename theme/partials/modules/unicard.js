@@ -17,7 +17,6 @@ import { moduleComponents } from '../components/module-components.js'
 import { animationList } from '../data/animation-list.js'
 import { shadowList } from '../data/shadow-list.js'
 import { styleGroup } from './unicard-style.js'
-import { color } from '../../../../hubspot-fields-js/lib/fields.js'
 
 /**
  * #### module components
