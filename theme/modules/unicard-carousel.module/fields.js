@@ -6,6 +6,7 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
+import { card1, card2, card3 } from './fields-default.js'
 
 init(
   group('Cards', 'card_group',
@@ -22,45 +23,12 @@ init(
         sorting_label_field: 'card_group.heading'
       },
       default: [
-        {
-          media_type: 'full_width_image',
-          full_width_image_group: {
-            full_width_image_aspect_ratio: '16/9'
-          },
-          icon_group: {
-            icon_type: 'fontawesome',
-            icon_size: 80
-          },
-          lottie_group: {
-            lottie_speed: 1,
-            lottie_mode: 'forward',
-            lottie_loop: true
-          },
-          video_group: {
-            video_type: 'hubspot_video',
-            embed: {
-              source_type: 'oembed'
-            }
-          },
-          heading: {
-            heading_tag: 'h2',
-            heading_text: 'Slide 1',
-            heading_icon_position: 'left'
-          },
-          subheading: {
-            heading_tag: 'h3',
-            heading_text: 'Subheading',
-            heading_icon_position: 'left'
-          },
-          accordion_group: {
-            accordion_icon_position: 'left',
-            accordion_border_style: 'border_divider'
-          },
-          form_group: {
-            form_heading_tag: 'h3'
-          },
-          module_components: ['main_heading', 'media']
-        }
+        card1,
+        card2,
+        card3,
+        card1,
+        card3,
+        card2
       ]
     },
     unicardFields({
@@ -179,6 +147,26 @@ init(
       }
     }),
     fi.spacing('', 'spacing', {
+      default: {
+        padding: {
+          bottom: {
+            units: "px",
+            value: 60
+          },
+          left: {
+            units: "px",
+            value: 60
+          },
+          right: {
+            units: "px",
+            value: 60
+          },
+          top: {
+            units: "px",
+            value: 60
+          }
+        }
+      },
       visibility: {
         hidden_subfields: {
           margin: true
@@ -186,7 +174,8 @@ init(
       }
     }),
     fi.boolean('Navigation', 'carousel_navigation', {
-      help_text: 'Determines whether to create navigation arrows or not'
+      help_text: 'Determines whether to create navigation arrows or not',
+      default: true,
     }),
     group('Navigation', 'navigation_group',
       {
@@ -314,7 +303,14 @@ init(
     group('Card', 'card_style_group', {},
       unicardStyleFields('style.card_style_group.', {
         showMobileAlignment: true,
-        showVerticalAlignment: true
+        showVerticalAlignment: true,
+        default: {
+          content_gap: 20,
+          background_type: 'background_color',
+          background_color: '#f6f6f6',
+          padding: 40,
+          border_radius: 20,
+        }
       })
     )
   )
