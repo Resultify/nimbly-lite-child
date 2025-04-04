@@ -39,11 +39,18 @@ import { styleGroup } from './unicard-style.js'
 /**
  * #### module components
  * @typedef {Object} UNICARD_STYLE_DEFAULTS
+ * @property {'LEFT'|'CENTER'|'RIGHT'} [horizontal_align] - horizontal alignment for the component
+ * @property {'TOP'|'MIDDLE'|'BOTTOM'} [vertical_align] - vertical alignment for the component
+ * @property {'LEFT'|'CENTER'|'RIGHT'} [mobile_alignment] - text color for the component
  * @property {string} [text_color] - text color for the component
  * @property {number} [content_gap] - content gap for the component
  * @property {'background_color'|'background_image'|'background_gradient'} [background_type] - background type for the component
  * @property {string} [background_color] - background color for the component
  * @property {string} [background_opacity] - background opacity for the component
+ * @property {string} [background_image_src] - background image for the component
+ * @property {string} [background_image_overlay_type] - background image overlay type for the component
+ * @property {string} [background_image_overlay_color] - background image overlay type for the component
+ * @property {number} [background_image_overlay_opacity] - background image overlay opacity for the component
  * @property {number} [padding] - padding for the component
  * @property {string} [border_color] - border color for the component
  * @property {number} [border_width] - border width for the component
@@ -220,7 +227,8 @@ const unicardStyleFields = (parent = '', opt) => {
       {
         display_width: 'half_width',
         default: {
-          horizontal_align: 'LEFT'
+          horizontal_align: opt?.default?.horizontal_align ?? 'LEFT',
+          vertical_align: opt?.default?.vertical_align ?? null
         },
         alignment_direction: opt?.showVerticalAlignment ? 'BOTH' : 'HORIZONTAL'
       }
@@ -229,7 +237,10 @@ const unicardStyleFields = (parent = '', opt) => {
       {
         display_width: 'half_width',
         locked: !(opt?.showMobileAlignment),
-        alignment_direction: 'HORIZONTAL'
+        alignment_direction: 'HORIZONTAL',
+        default: {
+          horizontal_align: opt?.default?.mobile_alignment ?? null,
+        }
       }
     ),
     fi.color('Text color', 'text_color', {
@@ -266,10 +277,15 @@ const unicardStyleFields = (parent = '', opt) => {
       }
     }),
     fi.backgroundimage('Background image', 'background_image', {
+      default: {
+        src: opt?.default?.background_image_src ?? null,
+        background_position : "MIDDLE_CENTER",
+        background_size : "cover",
+      },
       visibility: {
         controlling_field_path: `${parent}background_type`,
         operator: 'EQUAL',
-        controlling_value_regex: 'background_image'
+        controlling_value_regex: 'background_image',
       }
     }),
     fi.choice('Background image overlay type', 'background_image_overlay_type', {
@@ -278,6 +294,7 @@ const unicardStyleFields = (parent = '', opt) => {
         operator: 'EQUAL',
         controlling_value_regex: 'background_image'
       },
+      default: opt?.default?.background_image_overlay_type ?? null,
       placeholder: 'No overlay',
       choices: [
         ['color', 'Color'],
@@ -285,6 +302,10 @@ const unicardStyleFields = (parent = '', opt) => {
       ]
     }),
     fi.color('Background image overlay', 'background_image_overlay', {
+      default: {
+        color: opt?.default?.background_image_overlay_color ?? null,
+        opacity: opt?.default?.background_image_overlay_opacity ?? null
+      },
       visibility_rules: 'ADVANCED',
       advanced_visibility: {
         boolean_operator: 'AND',

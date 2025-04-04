@@ -3,15 +3,6 @@ export const card1 = {
   custom_text_group: [ {
     custom_text: "RESPONSIVE",
     custom_text_background: { },
-    custom_text_font: {
-      color: "#ff3a69",
-      fallback: "sans-serif",
-      font: "Sora",
-      font_set: "GOOGLE",
-      size: 16,
-      styles: { },
-      variant: "500"
-    },
     custom_text_inline: true,
     gradient_color: [ {
       color: "#999999",
@@ -37,13 +28,6 @@ export const card1 = {
   },
   heading: {
     heading_additional_customization: true,
-    heading_font: {
-      fallback: "sans-serif",
-      font: "Sora",
-      font_set: "GOOGLE",
-      styles: { },
-      variant: "500"
-    },
     heading_icon_position: "left",
     heading_link: {
       no_follow: false,
@@ -104,14 +88,6 @@ export const card2 = {
   custom_text_group: [ {
     custom_text: "NO-CODE",
     custom_text_background: { },
-    custom_text_font: {
-      fallback: "sans-serif",
-      font: "Mulish",
-      font_set: "GOOGLE",
-      size: 16,
-      styles: { },
-      variant: "regular"
-    },
     custom_text_inline: true,
     gradient_color: [ {
       color: "#999999",
@@ -137,13 +113,6 @@ export const card2 = {
   },
   heading: {
     heading_additional_customization: true,
-    heading_font: {
-      fallback: "sans-serif",
-      font: "Mulish",
-      font_set: "GOOGLE",
-      styles: { },
-      variant: "900"
-    },
     heading_icon_position: "left",
     heading_link: {
       no_follow: false,
@@ -232,11 +201,6 @@ export const card3 = {
     custom_button_border_width: 2,
     custom_button_font: {
       color: "#FFFFFF",
-      fallback: "sans-serif",
-      font: "Lato",
-      font_set: "GOOGLE",
-      styles: { },
-      variant: "700"
     },
     custom_button_hover: {
       background: {
@@ -283,14 +247,7 @@ export const card3 = {
     full_width_image_opt_visibility: false
   },
   heading: {
-    heading_additional_customization: true,
-    heading_font: {
-      fallback: "sans-serif",
-      font: "Lato",
-      font_set: "GOOGLE",
-      styles: { },
-      variant: "700"
-    },
+    heading_additional_customization: false,
     heading_icon_position: "left",
     heading_link: {
       no_follow: false,

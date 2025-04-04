@@ -7,6 +7,7 @@ import {
 } from '@resultify/hubspot-fields-js'
 import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
 import { shadowList } from '../../partials/data/shadow-list.js'
+import { card1, card2 } from './fields-default.js'
 
 init(
   group('Card', 'card_group',
@@ -23,84 +24,8 @@ init(
         sorting_label_field: 'card_group.heading'
       },
       default: [
-        {
-          media_type: 'full_width_image',
-          full_width_image_group: {
-            full_width_image_aspect_ratio: '16/9'
-          },
-          icon_group: {
-            icon_type: 'fontawesome',
-            icon_size: 80
-          },
-          lottie_group: {
-            lottie_speed: 1,
-            lottie_mode: 'forward',
-            lottie_loop: true
-          },
-          video_group: {
-            video_type: 'hubspot_video',
-            embed: {
-              source_type: 'oembed'
-            }
-          },
-          heading: {
-            heading_tag: 'h2',
-            heading_text: 'Left card',
-            heading_icon_position: 'left'
-          },
-          subheading: {
-            heading_tag: 'h3',
-            heading_text: 'Subheading',
-            heading_icon_position: 'left'
-          },
-          accordion_group: {
-            accordion_icon_position: 'left',
-            accordion_border_style: 'border_divider'
-          },
-          form_group: {
-            form_heading_tag: 'h3'
-          },
-          module_components: ['main_heading', 'media']
-        },
-        {
-          media_type: 'full_width_image',
-          full_width_image_group: {
-            full_width_image_aspect_ratio: '16/9'
-          },
-          icon_group: {
-            icon_type: 'fontawesome',
-            icon_size: 80
-          },
-          lottie_group: {
-            lottie_speed: 1,
-            lottie_mode: 'forward',
-            lottie_loop: true
-          },
-          video_group: {
-            video_type: 'hubspot_video',
-            embed: {
-              source_type: 'oembed'
-            }
-          },
-          heading: {
-            heading_tag: 'h2',
-            heading_text: 'Right card',
-            heading_icon_position: 'left'
-          },
-          subheading: {
-            heading_tag: 'h3',
-            heading_text: 'Subheading',
-            heading_icon_position: 'left'
-          },
-          accordion_group: {
-            accordion_icon_position: 'left',
-            accordion_border_style: 'border_divider'
-          },
-          form_group: {
-            form_heading_tag: 'h3'
-          },
-          module_components: ['main_heading', 'richtext', 'buttons']
-        }
+        card1,
+        card2
       ]
     },
     unicardFields(
@@ -435,11 +360,13 @@ init(
     }),
     fi.border('Border', 'border'),
     fi.number('Border radius', 'border_radius', {
+      default: 20,
       min: 0,
       suffix: 'px',
       display_width: 'half_width'
     }),
     fi.choice('Shadow', 'shadow', {
+      default: 'shadow-md',
       display_width: 'half_width',
       choices: shadowList
     }),
@@ -452,7 +379,17 @@ init(
         hideHoverProps: true,
         showMobileAlignment: true,
         showVerticalAlignment: true,
-        showMaxWidth: true
+        showMaxWidth: true,
+        default: {
+          horizontal_align: 'CENTER',
+          vertical_align: 'MIDDLE',
+          background_type: 'background_image',
+          background_image_src: 'https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/field-1728099_1280.jpg',
+          background_image_overlay_type: 'color',
+          background_image_overlay_color: '#d4a99a',
+          background_image_overlay_opacity: 50,
+          padding: 64,
+        }
       })
     ),
     group('Card 2', 'card_style_group2', {},
@@ -460,7 +397,14 @@ init(
         hideHoverProps: true,
         showMobileAlignment: true,
         showVerticalAlignment: true,
-        showMaxWidth: true
+        showMaxWidth: true,
+        default: {
+          mobile_alignment: 'CENTER',
+          background_type: 'background_color',
+          background_color: '#FFFFFF',
+          content_gap: 24,
+          padding: 64,
+        }
       })
     )
   )
