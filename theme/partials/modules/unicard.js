@@ -35,6 +35,7 @@ import { styleGroup } from './unicard-style.js'
  * @property {string} [heading] - heading
  * @property {string} [subheading] - subheading
  * @property {string} [richtext] - rich text content
+ * @property {boolean} [buttons] - add default buttons
  */
 
 /**
@@ -78,12 +79,13 @@ import { styleGroup } from './unicard-style.js'
  * @param {boolean} [opt.mediaGroup.hideForceFullWidthVideoProp] - hide force_full_width_video property for video component
  * @param {boolean} [opt.mediaGroup.showLottieScaleProp] - show lottie scale property
  * @param {boolean} [opt.hideWholeAreaLinkProp] - hide whole area link property
+ * @param {boolean} [opt.hideComponentsProp] - hide components selection property
  * @param {boolean} [opt.showCardStyle] - show style group
  * @param {UNICARD_CONTENT_DEFAULTS} [opt.default] - default content
  */
 const unicardFields = (components, parent = '', opt) => {
   const fields = []
-  fields.push(moduleComponents(components))
+  fields.push(moduleComponents(components, opt))
   components.choices.includes('categories') && fields.push(categoryGroup(parent))
   components.choices.includes('media') && fields.push(mediaGroup(parent, opt))
   components.choices.includes('main_heading') && fields.push(group('Heading', 'heading',
@@ -134,7 +136,7 @@ const unicardFields = (components, parent = '', opt) => {
       controlling_value_regex: 'richtext'
     }
   }))
-  components.choices.includes('buttons') && fields.push(buttonGroup(parent))
+  components.choices.includes('buttons') && fields.push(buttonGroup(parent, opt))
   components.choices.includes('custom_text') && fields.push(customTextGroup(parent))
   components.choices.includes('list') && fields.push(listGroup(parent))
   components.choices.includes('accordion') && fields.push(accordionGroup(parent))
@@ -213,10 +215,13 @@ const unicardFields = (components, parent = '', opt) => {
  * #### fullWidthImage fields
  * @param {string} [parent] - parent path
  * @param {object} [opt] - options
- * @param {boolean} [opt.hideHoverProps] - hide hover props
- * @param {boolean} [opt.showVerticalAlignment] - show vertical alignment prop
- * @param {boolean} [opt.showMobileAlignment] - show mobile alignment prop
- * @param {boolean} [opt.showMaxWidth] - show max width prop
+ * @param {object} [opt.hide] - hide options
+ * @param {boolean} [opt.hide.hoverProps] - hide hover props
+ * @param {boolean} [opt.hide.textColorProps] - hide
+ * @param {object} [opt.show] - show options
+ * @param {boolean} [opt.show.verticalAlignment] - show vertical alignment prop
+ * @param {boolean} [opt.show.mobileAlignment] - show mobile alignment prop
+ * @param {boolean} [opt.show.maxWidth] - show max width prop
  * @param {UNICARD_STYLE_DEFAULTS} [opt.default] - default style
  */
 const unicardStyleFields = (parent = '', opt) => {
@@ -231,13 +236,13 @@ const unicardStyleFields = (parent = '', opt) => {
           horizontal_align: opt?.default?.horizontal_align ?? 'LEFT',
           vertical_align: opt?.default?.vertical_align ?? null
         },
-        alignment_direction: opt?.showVerticalAlignment ? 'BOTH' : 'HORIZONTAL'
+        alignment_direction: opt?.show?.verticalAlignment ? 'BOTH' : 'HORIZONTAL'
       }
     ),
     fi.alignment('Mobile alignment', 'mobile_alignment',
       {
         display_width: 'half_width',
-        locked: !(opt?.showMobileAlignment),
+        locked: !(opt?.show?.mobileAlignment),
         alignment_direction: 'HORIZONTAL',
         default: {
           horizontal_align: opt?.default?.mobile_alignment ?? null,
@@ -247,17 +252,18 @@ const unicardStyleFields = (parent = '', opt) => {
     fi.color('Text color', 'text_color', {
       default: opt?.default?.text_color ?? null,
       display_width: 'half_width',
-      show_opacity: false
+      show_opacity: false,
+      locked: opt?.hide?.textColorProps || false,
     }),
     fi.number('Content gap', 'content_gap', {
       min: 0,
       suffix: 'px',
-      default: opt?.default?.content_gap ?? null,
+      default: opt?.default?.content_gap ?? 16,
       display_width: 'half_width',
       help_text: 'General gap between all card components'
     }),
     fi.choice('Background type', 'background_type', {
-      display_width: opt?.showMobileAlignment ? null : 'half_width',
+      display_width: opt?.show?.mobileAlignment ? null : 'half_width',
       placeholder: 'No background',
       default: opt?.default?.background_type ?? null,
       choices: [
@@ -390,19 +396,19 @@ const unicardStyleFields = (parent = '', opt) => {
       choices: shadowList
     }),
     fi.number('Max width', 'max_width', {
-      locked: !(opt?.showMaxWidth),
+      locked: !(opt?.show?.maxWidth),
       min: 0,
       suffix: 'px',
       display_width: 'half_width'
     }),
     fi.boolean('Card hover effects', 'hover_effects', {
       default: opt?.default?.hover_effects ?? null,
-      locked: opt?.hideHoverProps || false
+      locked: opt?.hide?.hoverProps || false
     }),
     group('Hover', 'hover',
       {
         expanded: true,
-        locked: opt?.hideHoverProps || false,
+        locked: opt?.hide?.hoverProps || false,
         visibility: {
           controlling_field_path: `${parent}hover_effects`,
           operator: 'EQUAL',

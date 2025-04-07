@@ -377,10 +377,14 @@ init(
     }),
     group('Card 1', 'card_style_group1', {},
       unicardStyleFields('style.card_style_group1.', {
-        hideHoverProps: true,
-        showMobileAlignment: true,
-        showVerticalAlignment: true,
-        showMaxWidth: true,
+        hide: {
+          hoverProps: true,
+        },
+        show: {
+          mobileAlignment: true,
+          verticalAlignment: true,
+          maxWidth: true,
+        },
         default: {
           horizontal_align: 'CENTER',
           vertical_align: 'MIDDLE',
@@ -395,10 +399,14 @@ init(
     ),
     group('Card 2', 'card_style_group2', {},
       unicardStyleFields('style.card_style_group2.', {
-        hideHoverProps: true,
-        showMobileAlignment: true,
-        showVerticalAlignment: true,
-        showMaxWidth: true,
+        hide: {
+          hoverProps: true,
+        },
+        show: {
+          mobileAlignment: true,
+          verticalAlignment: true,
+          maxWidth: true,
+        },
         default: {
           mobile_alignment: 'CENTER',
           background_type: 'background_color',

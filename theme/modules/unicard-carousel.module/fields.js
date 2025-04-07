@@ -58,6 +58,8 @@ init(
     }),
     fi.number('Per page', 'carousel_per_page', {
       help_text: 'Determines the number of slides to display in a page',
+      default: 3,
+      required: true,
       min: 1,
       max: 20,
       display_width: 'half_width'
@@ -225,7 +227,8 @@ init(
         suffix: 'px'
       }),
       fi.boolean('Hide navigation on mobile', 'hide_navigation_on_mobile', {
-        help_text: 'Determines whether to hide navigation on mobile or not'
+        help_text: 'Determines whether to hide navigation on mobile or not',
+        default: true
       })
     ),
     fi.boolean('Pagination', 'carousel_pagination', {
@@ -305,8 +308,10 @@ init(
     }),
     group('Card', 'card_style_group', {},
       unicardStyleFields('style.card_style_group.', {
-        showMobileAlignment: true,
-        showVerticalAlignment: true,
+        show: {
+          mobileAlignment: true,
+          verticalAlignment: true,
+        },
         default: {
           content_gap: 20,
           background_type: 'background_color',

@@ -55,6 +55,10 @@ init(
     ),
     group('Card', 'card_style_group', {},
       unicardStyleFields('style.card_style_group.', {
+        show: {
+          mobileAlignment: true,
+          verticalAlignment: true,
+        },
         default: {
           content_gap: 20,
           background_type: 'background_color',
