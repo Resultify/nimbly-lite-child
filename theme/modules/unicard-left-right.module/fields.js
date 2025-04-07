@@ -8,6 +8,7 @@ import {
 import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
 import { shadowList } from '../../partials/data/shadow-list.js'
 import { card1, card2 } from './fields-default.js'
+import { globalDefault } from '../global-default.js'
 
 init(
   group('Card', 'card_group',
@@ -384,7 +385,7 @@ init(
           horizontal_align: 'CENTER',
           vertical_align: 'MIDDLE',
           background_type: 'background_image',
-          background_image_src: 'https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/field-1728099_1280.jpg',
+          background_image_src: globalDefault.unicardBackground,
           background_image_overlay_type: 'color',
           background_image_overlay_color: '#d4a99a',
           background_image_overlay_opacity: 50,

@@ -6,6 +6,7 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
+import { globalDefault } from '../global-default.js'
 
 init(
   unicardFields({
@@ -17,15 +18,16 @@ init(
     default: {
       media_type: 'full_width_image',
       full_width_image: {
-        src: 'https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/ChatGPT%20Image%20Apr%201%2c%202025%20at%2005_18_04%20PM.png',
+        src: globalDefault.unicardImage,
         force_full_width_image: true
       },
       simple_image: {
-        src: 'https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/ChatGPT%20Image%20Apr%201%2c%202025%20at%2005_18_04%20PM.png'
+        src: globalDefault.contentHubIcon,
       },
       icon: {
         name: 'address-card',
         type: 'REGULAR',
+        unicode: "f2bb"
       },
       heading: 'The One Content Module for All Your Card Needs!',
       subheading: 'Subheading',

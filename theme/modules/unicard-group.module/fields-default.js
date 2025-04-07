@@ -1,3 +1,4 @@
+import { globalDefault } from '../global-default.js'
 export const card1 = {
   button_group: [ ],
   custom_text_group: [ {
@@ -20,7 +21,7 @@ export const card1 = {
       max_height: 1335.1063829787233,
       max_width: 2000,
       size_type: "auto_custom_max",
-      src: "https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/pexels-moose-photos-170195-1037995.jpg",
+      src: globalDefault.unicardImage,
       width: 6016
     },
     full_width_image_aspect_ratio: "16/9",
@@ -105,7 +106,7 @@ export const card2 = {
       max_height: 1335.1063829787233,
       max_width: 2000,
       size_type: "auto_custom_max",
-      src: "https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/pexels-moose-photos-170195-1037995.jpg",
+      src: globalDefault.unicardImage,
       width: 6016
     },
     full_width_image_aspect_ratio: "16/9",
@@ -225,7 +226,9 @@ export const card3 = {
     }
   } ],
   card_style: {
-    background_image: "https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/leaf-5096502_1280.jpg",
+    background_size: "cover",
+    background_alignment: "MIDDLE_CENTER",
+    background_image: globalDefault.unicardBackground,
     background_image_overlay: {
       color: "#0C343D",
       opacity: 60

@@ -7,6 +7,7 @@ import {
 } from '@resultify/hubspot-fields-js'
 import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
 import { card1, card2, card3 } from './fields-default.js'
+import { globalDefault } from '../global-default.js'
 
 init(
   group('Cards', 'card_group',
@@ -34,7 +35,9 @@ init(
     unicardFields({
       enabledByDefault: ['main_heading'],
       choices: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'list', 'accordion', 'separator', 'buttons', 'additional_images', 'meeting', 'form']
-    }, 'card_group.')
+    }, 'card_group.', {
+      showCardStyle: true
+    })
   ),
   styleGroup(
     fi.choice('Carousel presets', 'carousel_preset', {

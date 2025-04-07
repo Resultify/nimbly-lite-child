@@ -31,6 +31,7 @@ import { styleGroup } from './unicard-style.js'
  * @property {object} [icon] - icon group
  * @property {string} [icon.name] - icon name
  * @property {'SOLID'|'REGULAR'} [icon.type] - icon type
+ * @property {string} [icon.unicode] - icon unicode
  * @property {string} [heading] - heading
  * @property {string} [subheading] - subheading
  * @property {string} [richtext] - rich text content

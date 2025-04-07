@@ -1,3 +1,4 @@
+import { globalDefault } from '../global-default.js'
 export const card1 = {
   accordion_group: {
     accordion_border_style: "border_divider",
@@ -29,7 +30,7 @@ export const card1 = {
     simple_image: {
       alt: "HubSpot_Logo",
       height: 351,
-      src: "https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/HubSpot_Logo.png",
+      src: globalDefault.hubspotLogo,
       width: 1200
     },
     simple_image_width: 350
@@ -81,7 +82,7 @@ export const card2 = {
     simple_image: {
       alt: "OperationsHub_Icon_Gradient_RGB_24px",
       height: 31,
-      src: "https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/OperationsHub_Icon_Gradient_RGB_24px.svg",
+      src: globalDefault.contentHubIcon,
       width: 30
     },
     simple_image_width: 50

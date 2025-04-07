@@ -30,6 +30,7 @@ import { video } from './video.js'
  * @param {object} [opt.default.icon] - default icon properties
  * @param {string} [opt.default.icon.name] - default icon name
  * @param {'SOLID'|'REGULAR'} [opt.default.icon.type] - default icon type
+ * @param {string} [opt.default.icon.unicode] - default icon unicode
  */
 const mediaGroup = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
@@ -134,7 +135,7 @@ const mediaGroup = (parent = '', opt) => {
           ]
         }
       },
-      icon(`${parent}icon_group.`)
+      icon(`${parent}icon_group.`, opt)
     ),
     group('Lottie animation', 'lottie_group',
       {
