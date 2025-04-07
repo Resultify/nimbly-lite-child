@@ -218,6 +218,7 @@ const unicardFields = (components, parent = '', opt) => {
  * @param {object} [opt.hide] - hide options
  * @param {boolean} [opt.hide.hoverProps] - hide hover props
  * @param {boolean} [opt.hide.textColorProps] - hide
+ * @param {boolean} [opt.hide.contentGapProps] - hide content gap prop
  * @param {object} [opt.show] - show options
  * @param {boolean} [opt.show.verticalAlignment] - show vertical alignment prop
  * @param {boolean} [opt.show.mobileAlignment] - show mobile alignment prop
@@ -260,7 +261,8 @@ const unicardStyleFields = (parent = '', opt) => {
       suffix: 'px',
       default: opt?.default?.content_gap ?? 16,
       display_width: 'half_width',
-      help_text: 'General gap between all card components'
+      help_text: 'General gap between all card components',
+      locked: opt?.hide?.contentGapProps || false,
     }),
     fi.choice('Background type', 'background_type', {
       display_width: opt?.show?.mobileAlignment ? null : 'half_width',

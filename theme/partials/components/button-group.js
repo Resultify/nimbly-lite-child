@@ -20,7 +20,7 @@ const defaultButtons = [
       open_in_new_tab: false,
       sponsored: false,
       url: {
-        href: "#gsdgsd",
+        href: "#test",
         type: "EXTERNAL"
       },
       user_generated_content: false
@@ -28,7 +28,7 @@ const defaultButtons = [
     button_position: "inline",
     button_size: "regular",
     button_style: "primary",
-    button_text: "sdfdsg",
+    button_text: "Primary",
     custom_button_background: { },
     custom_button_border_color: { },
     custom_button_font: {
@@ -62,7 +62,7 @@ const defaultButtons = [
       open_in_new_tab: false,
       sponsored: false,
       url: {
-        href: "#gsdgsd",
+        href: "#test",
         type: "EXTERNAL"
       },
       user_generated_content: false
@@ -70,7 +70,7 @@ const defaultButtons = [
     button_position: "inline",
     button_size: "regular",
     button_style: "secondary1",
-    button_text: "sdfdsg",
+    button_text: "Secondary",
     custom_button_background: { },
     custom_button_border_color: { },
     custom_button_font: {
