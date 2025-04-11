@@ -18,13 +18,19 @@
   "hidden_modules": [
     "@hubspot/button",
     "@hubspot/form",
-    "@hubspot/linked_image",
     "@hubspot/icon",
     "@hubspot/divider",
     "@hubspot/horizontal_spacer",
     "@hubspot/page_footer",
     "@hubspot/section_header",
     "@hubspot/header",
-    "@hubspot/image_slider_gallery"
+    "@hubspot/image_slider_gallery",
+    "@hubspot/audio_player",
+    "@hubspot/video",
+    "@hubspot/social_sharing",
+    "@hubspot/social_follow",
+    "@hubspot/search_results",
+    "@hubspot/logo"
+
   ]
 }

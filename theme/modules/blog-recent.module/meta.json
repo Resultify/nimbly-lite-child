@@ -2,9 +2,8 @@
   "global" : false,
   "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "master_language" : "en",
-  "icon" : "../../images/module-icons/social-links.svg",
+  "icon" : "../../images/module-icons/blog-recent.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
-  "module_id" : 99636219595,
-  "label" : "Social sharing.",
+  "label" : "Blog recent",
   "is_available_for_new_content" : false
 }

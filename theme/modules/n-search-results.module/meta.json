@@ -15,7 +15,6 @@
   "global" : false,
   "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "master_language" : "en",
-  "categories" : [ "functionality" ],
   "icon" : "../../images/module-icons/search.svg",
   "host_template_types" : [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
   "module_id" : 115576340473,
