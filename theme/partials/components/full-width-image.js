@@ -9,7 +9,7 @@ import {
  * @param {object} [opt.mediaGroup] - media group options
  * @param {boolean} [opt.mediaGroup.hideForceFullWidthImageProp] - hide force_full_width_image property for fullWidthImage component
  * @param {object} [opt.default] - default media type properties
- * @param {'full_width_image'|'simple_image'|'icon'} [opt.default.media_type] - default media type
+ * @param {'full_width_image'|'simple_image'|'icon'|'video'|'lottie'} [opt.default.media_type] - default media type
  * @param {object} [opt.default.full_width_image] - default full width image properties
  * @param {boolean} [opt.default.full_width_image.force_full_width_image] - default force full width image
  * @param {'1/1'|'1.91/1'|'2/1'|'3/1'|'3/2'|'4/3'|'4/5'|'5/4'|'9/16'|'16/9'} [opt.default.full_width_image.full_width_image_aspect_ratio] - default full width image aspect ratio

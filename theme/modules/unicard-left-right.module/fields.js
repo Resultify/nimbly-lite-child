@@ -8,7 +8,7 @@ import {
 import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
 import { shadowList } from '../../partials/data/shadow-list.js'
 import { card1, card2 } from './fields-default.js'
-import { globalDefault } from '../global-default.js'
+import { globalDefault } from '../unicard-global-default.js'
 
 init(
   group('Card', 'card_group',

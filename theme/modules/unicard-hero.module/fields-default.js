@@ -1,4 +1,4 @@
-import { globalDefault } from '../global-default.js'
+import { globalDefault } from '../unicard-global-default.js'
 export const card1 = {
   accordion_group: {
     accordion_border_style: "border_divider",

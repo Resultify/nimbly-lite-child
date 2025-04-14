@@ -21,7 +21,7 @@ import { styleGroup } from './unicard-style.js'
 /**
  * #### module components
  * @typedef {Object} UNICARD_CONTENT_DEFAULTS
- * @property {'full_width_image'|'simple_image'|'icon'} [media_type] - media type
+ * @property {'full_width_image'|'simple_image'|'icon'|'video'|'lottie'} [media_type] - media type
  * @property {object} [full_width_image] - full width image group
  * @property {boolean} [full_width_image.force_full_width_image] - force full width image
  * @property {'1/1'|'1.91/1'|'2/1'|'3/1'|'3/2'|'4/3'|'4/5'|'5/4'|'9/16'|'16/9'} [full_width_image.full_width_image_aspect_ratio] - full width image aspect ratio
@@ -32,6 +32,12 @@ import { styleGroup } from './unicard-style.js'
  * @property {string} [icon.name] - icon name
  * @property {'SOLID'|'REGULAR'} [icon.type] - icon type
  * @property {string} [icon.unicode] - icon unicode
+ * @property {object} [lottie] - lottie group
+ * @property {string} [lottie.lottie_file_src] - lottie file source
+ * @property {object} [video] - video group
+ * @property {'hubspot_video'|'embed'} [video.video_type] - video type
+ * @property {string} [video.video_url] - video file source
+ * @property {string} [video.video_iframe_url] - video iframe source
  * @property {string} [heading] - heading
  * @property {string} [subheading] - subheading
  * @property {string} [richtext] - rich text content
@@ -74,6 +80,7 @@ import { styleGroup } from './unicard-style.js'
  * @param {object} [opt] - options
  * @param {object} [opt.form] - form options
  * @param {object} [opt.mediaGroup] - media group options
+ * @param {boolean} [opt.mediaGroup.hideMediaTypeProp]
  * @param {boolean} [opt.mediaGroup.hideForceFullWidthImageProp] - hide force_full_width_image property for fullWidthImage component
  * @param {boolean} [opt.mediaGroup.hideAlignmentProp] - hide alignment property for simpleImage component
  * @param {boolean} [opt.mediaGroup.hideForceFullWidthVideoProp] - hide force_full_width_video property for video component

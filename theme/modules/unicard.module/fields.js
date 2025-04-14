@@ -6,7 +6,7 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
-import { globalDefault } from '../global-default.js'
+import { globalDefault } from '../unicard-global-default.js'
 
 init(
   unicardFields({
@@ -29,11 +29,17 @@ init(
         type: 'REGULAR',
         unicode: "f2bb"
       },
-      heading: 'The One Content Module for All Your Card Needs!',
-      subheading: 'Subheading',
-      richtext: `
-        <p>Simplify your toolkit instantly with Unicard, giving you access to <strong>40+ design variations</strong> ready for <strong>No-Code implementation</strong> via an exceptionally <strong>editor-friendly UI.</strong> What makes Unicard truly unique are its <strong>Flexible Components</strong> – choose only the elements you need (like images, text, or CTAs) while unused options stay conveniently hidden, decluttering your view – and its <strong>Content Focus,</strong> which prioritizes easy content input first by keeping complex styling neatly tucked away until needed.</p>
-      `
+      lottie: {
+        lottie_file_src: globalDefault.unicardLottie,
+      },
+      video: {
+        video_type: 'embed',
+        video_url: globalDefault.unicardVideo.videoUrl,
+        video_iframe_url: globalDefault.unicardVideo.videoIframeUrl,
+      },
+      heading: globalDefault.headingText,
+      subheading: globalDefault.subheadingText,
+      richtext: globalDefault.richtextText,
     }
   }
  ),

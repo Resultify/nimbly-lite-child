@@ -6,7 +6,7 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
-import { globalDefault } from '../global-default.js'
+import { globalDefault } from '../unicard-global-default.js'
 
 init(
   unicardFields({
@@ -18,11 +18,12 @@ init(
     hideComponentsProp: true,
     hideWholeAreaLinkProp: true,
     mediaGroup: {
+      hideMediaTypeProp: true,
       hideForceFullWidthImageProp: true,
       hideForceFullWidthVideoProp: true
     },
     default: {
-      media_type: 'full_width_image',
+      media_type: 'video',
       full_width_image: {
         src: globalDefault.unicardImage,
         force_full_width_image: false
@@ -34,6 +35,14 @@ init(
         name: 'address-card',
         type: 'REGULAR',
         unicode: "f2bb"
+      },
+      lottie: {
+        lottie_file_src: globalDefault.unicardLottie,
+      },
+      video: {
+        video_type: 'embed',
+        video_url: globalDefault.unicardVideo.videoUrl,
+        video_iframe_url: globalDefault.unicardVideo.videoIframeUrl,
       },
     }
   }

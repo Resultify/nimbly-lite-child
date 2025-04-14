@@ -6,7 +6,7 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
-import { globalDefault } from '../global-default.js'
+import { globalDefault } from '../unicard-global-default.js'
 
 init(
   unicardFields({
@@ -18,7 +18,7 @@ init(
     hideComponentsProp: true,
     hideWholeAreaLinkProp: true,
     default: {
-      heading: 'The One Content Module for All Your Card Needs!',
+      heading: globalDefault.headingText,
     }
   }
  ),

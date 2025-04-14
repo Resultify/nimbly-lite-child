@@ -3,18 +3,24 @@ import {
 } from '@resultify/hubspot-fields-js'
 
 /**
- * #### fullWidthImage fields
+ * #### lottie fields
  * @param {string} [parent] - parent path
  * @param {object} [opt] - options
  * @param {object} [opt.mediaGroup] - media group options
  * @param {boolean} [opt.mediaGroup.showLottieScaleProp] - show lottie scale property
+ * @param {object} [opt.default] - default lottie properties
+ * @param {object} [opt.default.lottie] - default lottie properties
+ * @param {string} [opt.default.lottie.lottie_file_src] - default full width image source
  */
 const lottie = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
   return [
-    fi.file('Lottie file', 'lottie_file'),
+    fi.file('Lottie file', 'lottie_file', {
+      picker: 'file',
+      default: opt?.default?.lottie?.lottie_file_src ?? null,
+    }),
     fi.boolean('', 'lottie_prop_visibility', {
       inline_help_text: '<span style="color:#33475b;">Show/hide</span> additional <span style="color:#007a8c;font-weight:700;font-size:14px;">Lottie</span> properties.',
       display: 'toggle'
