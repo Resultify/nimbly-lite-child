@@ -1,6 +1,23 @@
 import { globalDefault } from '../unicard-global-default.js'
+import { groupGlobalDefault } from '../unicard-group-global-default.js'
 export const card1 = {
-  button_group: [ ],
+  accordion_group: groupGlobalDefault.accordion_group,
+  button_group: groupGlobalDefault.button_group,
+  form_group: groupGlobalDefault.form_group,
+  full_width_image_group: groupGlobalDefault.full_width_image_group,
+  simple_image_group: groupGlobalDefault.simple_image_group,
+  subheading: groupGlobalDefault.subheading,
+  lottie_group: groupGlobalDefault.lottie_group,
+  video_group: groupGlobalDefault.video_group,
+  icon_group: {
+    icon: {
+      name: "align-left",
+      type: "SOLID",
+      unicode: "f036"
+    },
+    icon_size: 100,
+    icon_type: "fontawesome"
+  },
   custom_text_group: [ {
     custom_text: "RESPONSIVE",
     custom_text_background: { },
@@ -13,20 +30,6 @@ export const card1 = {
       opacity: 100
     } ]
   } ],
-  full_width_image_group: {
-    force_full_width_image: true,
-    full_width_image: {
-      alt: "pexels-moose-photos-170195-1037995",
-      height: 4016,
-      max_height: 1335.1063829787233,
-      max_width: 2000,
-      size_type: "auto_custom_max",
-      src: globalDefault.unicardImage,
-      width: 6016
-    },
-    full_width_image_aspect_ratio: "16/9",
-    full_width_image_opt_visibility: false
-  },
   heading: {
     heading_additional_customization: true,
     heading_icon_position: "left",
@@ -53,51 +56,20 @@ export const card1 = {
     heading_text: "Unicard will automatically adjust for different screen sizes and viewports.",
     heading_text_prop_visibility: false
   },
-  icon_group: {
-    icon: {
-      name: "align-left",
-      type: "SOLID",
-      unicode: "f036"
-    },
-    icon_size: 100,
-    icon_type: "fontawesome"
-  },
-  lottie_group: {
-    lottie_loop: true,
-    lottie_mode: "forward",
-    lottie_speed: 1
-  },
   media_type: "icon",
   module_components: [ "media", "separator", "custom_text", "main_heading" ],
-  richtext: "",
-  subheading: {
-    heading_icon_position: "left",
-    heading_tag: "h3",
-    heading_text: "Subheading"
-  },
-  video_group: {
-    embed: {
-      source_type: "oembed"
-    },
-    video_type: "hubspot_video"
-  },
-  whole_area_link: false
+  whole_area_link: true,
 }
 
 export const card2 = {
-  button_group: [ ],
-  custom_text_group: [ {
-    custom_text: "NO-CODE",
-    custom_text_background: { },
-    custom_text_inline: true,
-    gradient_color: [ {
-      color: "#999999",
-      opacity: 100
-    }, {
-      color: "#999999",
-      opacity: 100
-    } ]
-  } ],
+  accordion_group: groupGlobalDefault.accordion_group,
+  button_group: groupGlobalDefault.button_group,
+  form_group: groupGlobalDefault.form_group,
+  simple_image_group: groupGlobalDefault.simple_image_group,
+  subheading: groupGlobalDefault.subheading,
+  icon_group: groupGlobalDefault.icon_group,
+  lottie_group: groupGlobalDefault.lottie_group,
+  video_group: groupGlobalDefault.video_group,
   full_width_image_group: {
     force_full_width_image: true,
     full_width_image: {
@@ -112,6 +84,18 @@ export const card2 = {
     full_width_image_aspect_ratio: "16/9",
     full_width_image_opt_visibility: false
   },
+  custom_text_group: [ {
+    custom_text: "NO-CODE",
+    custom_text_background: { },
+    custom_text_inline: true,
+    gradient_color: [ {
+      color: "#999999",
+      opacity: 100
+    }, {
+      color: "#999999",
+      opacity: 100
+    } ]
+  } ],
   heading: {
     heading_additional_customization: true,
     heading_icon_position: "left",
@@ -138,33 +122,47 @@ export const card2 = {
     heading_text: "Implement a custom card design without changing the code",
     heading_text_prop_visibility: false
   },
-  icon_group: {
-    icon_size: 80,
-    icon_type: "fontawesome"
-  },
-  lottie_group: {
-    lottie_loop: true,
-    lottie_mode: "forward",
-    lottie_speed: 1
-  },
   media_type: "full_width_image",
   module_components: [ "media", "custom_text", "main_heading" ],
-  richtext: "",
-  subheading: {
-    heading_icon_position: "left",
-    heading_tag: "h3",
-    heading_text: "Subheading"
-  },
-  video_group: {
-    embed: {
-      source_type: "oembed"
-    },
-    video_type: "hubspot_video"
-  },
-  whole_area_link: false
+  whole_area_link: true
 }
 
 export const card3 = {
+  accordion_group: groupGlobalDefault.accordion_group,
+  form_group: groupGlobalDefault.form_group,
+  full_width_image_group: groupGlobalDefault.full_width_image_group,
+  simple_image_group: groupGlobalDefault.simple_image_group,
+  subheading: groupGlobalDefault.subheading,
+  icon_group: groupGlobalDefault.icon_group,
+  lottie_group: groupGlobalDefault.lottie_group,
+  video_group: groupGlobalDefault.video_group,
+  heading: {
+    heading_additional_customization: false,
+    heading_icon_position: "left",
+    heading_link: {
+      no_follow: false,
+      open_in_new_tab: false,
+      sponsored: false,
+      url: {
+        href: "#test",
+        type: "EXTERNAL"
+      },
+      "user_generated_content" : false
+    },
+    heading_link_color: {
+      opacity: 100
+    },
+    heading_link_hover_color: {
+      opacity: 100
+    },
+    heading_link_type: "link",
+    heading_tag: "h2",
+    heading_text: "The One Content Module for All Your Card Needs",
+    heading_text_prop_visibility: false
+  },
+  richtext: `
+  <p>Simplify your toolkit instantly with Unicard, giving you access to <strong>40+ design variations</strong> ready for <strong>No-Code implementation</strong> via an exceptionally <strong>editor-friendly UI.</strong></p>
+  `,
   button_group: [ {
     button_alignment: "start",
     button_hide_text: false,
@@ -225,6 +223,9 @@ export const card3 = {
       color: { }
     }
   } ],
+  media_type: "full_width_image",
+  module_components: [ "separator", "main_heading", "richtext", "buttons" ],
+  whole_area_link: false,
   card_style: {
     background_size: "cover",
     background_alignment: "MIDDLE_CENTER",
@@ -240,71 +241,4 @@ export const card3 = {
       opacity: 100
     }
   },
-  custom_text_group: [ ],
-  full_width_image_group: {
-    force_full_width_image: true,
-    full_width_image: {
-      src: ""
-    },
-    full_width_image_aspect_ratio: "16/9",
-    full_width_image_opt_visibility: false
-  },
-  heading: {
-    heading_additional_customization: false,
-    heading_icon_position: "left",
-    heading_link: {
-      no_follow: false,
-      open_in_new_tab: false,
-      sponsored: false,
-      url: {
-        href: "#test",
-        type: "EXTERNAL"
-      },
-      "user_generated_content" : false
-    },
-    heading_link_color: {
-      opacity: 100
-    },
-    heading_link_hover_color: {
-      opacity: 100
-    },
-    heading_link_type: "link",
-    heading_tag: "h2",
-    heading_text: "The One Content Module for All Your Card Needs",
-    heading_text_prop_visibility: false
-  },
-  icon_group: {
-    icon: {
-      name: ""
-    },
-    icon_size: 100,
-    icon_type: "fontawesome"
-  },
-  lottie_group: {
-    lottie_loop: true,
-    lottie_mode: "forward",
-    lottie_speed: 1
-  },
-  media_type: "full_width_image",
-  module_components: [ "separator", "main_heading", "richtext", "buttons" ],
-  richtext: `
-    <p>Simplify your toolkit instantly with Unicard, giving you access to <strong>40+ design variations</strong> ready for <strong>No-Code implementation</strong> via an exceptionally <strong>editor-friendly UI.</strong></p>
-  `,
-  simple_image_group: {
-    simple_image: {
-      src: ""
-    }
-  },
-  subheading: {
-    heading_icon_position: "left",
-    heading_tag: "h3",
-    heading_text: "Subheading"
-  },
-  video_group: {
-    embed: {
-      source_type: "oembed"
-    },
-    video_type: "hubspot_video"
-  },
-  whole_area_link: false
 }
