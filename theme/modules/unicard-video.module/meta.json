@@ -55,8 +55,7 @@
   "content_types" : [ "KNOWLEDGE_BASE", "MEMBERSHIP", "QUOTE_TEMPLATE", "LANDING_PAGE", "SITE_PAGE", "CUSTOMER_PORTAL", "BLOG_LISTING", "WEB_INTERACTIVE", "BLOG_POST" ],
   "master_language" : "en",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
-  "module_id" : 225778316530,
-  "label" : "Media",
+  "label" : "Video",
   "icon" : "../../images/module-icons/media.svg",
-  "is_available_for_new_content" : false
+  "is_available_for_new_content" : true
 }
