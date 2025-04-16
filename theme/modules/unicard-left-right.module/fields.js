@@ -31,7 +31,7 @@ init(
     },
     unicardFields(
       {
-        enabledByDefault: ['main_heading'],
+        enabledByDefault: ['media', 'main_heading', 'richtext'],
         choices: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'list', 'accordion', 'separator', 'buttons', 'additional_images', 'meeting', 'form']
       },
       'card_group.',
@@ -48,7 +48,8 @@ init(
   fi.boolean('Hero Image mode', 'hero_image_mode', {
     help_text: 'Hero Image mode provides the ability to add various optimized backgrounds with gradients or color overlays to the module.',
     display: 'toggle',
-    default: false
+    default: false,
+    locked: true,
   }),
   group('Hero Image', 'hero_image_group',
     {

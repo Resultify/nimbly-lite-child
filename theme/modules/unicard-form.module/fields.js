@@ -10,8 +10,8 @@ import { globalDefault } from '../unicard-global-default.js'
 
 init(
   unicardFields({
-    enabledByDefault: ['main_heading'],
-    choices: ['main_heading']
+    enabledByDefault: ['form'],
+    choices: ['form']
   },
   '',
   {

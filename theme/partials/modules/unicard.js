@@ -55,7 +55,7 @@ import { styleGroup } from './unicard-style.js'
  * @property {number} [content_gap] - content gap for the component
  * @property {'background_color'|'background_image'|'background_gradient'} [background_type] - background type for the component
  * @property {string} [background_color] - background color for the component
- * @property {string} [background_opacity] - background opacity for the component
+ * @property {number} [background_opacity] - background opacity for the component
  * @property {string} [background_image_src] - background image for the component
  * @property {string} [background_image_overlay_type] - background image overlay type for the component
  * @property {string} [background_image_overlay_color] - background image overlay type for the component

@@ -10,8 +10,8 @@ import { globalDefault } from '../unicard-global-default.js'
 
 init(
   unicardFields({
-    enabledByDefault: ['main_heading'],
-    choices: ['main_heading']
+    enabledByDefault: ['accordion'],
+    choices: ['accordion']
   },
   '',
   {
@@ -19,6 +19,7 @@ init(
     hideWholeAreaLinkProp: true,
     default: {
       heading: globalDefault.headingText,
+      accordion: true,
     }
   }
  ),
