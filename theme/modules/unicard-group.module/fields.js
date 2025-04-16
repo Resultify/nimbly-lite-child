@@ -31,11 +31,39 @@ init(
     },
     unicardFields({
       enabledByDefault: ['media', 'main_heading', 'richtext'],
-      choices: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'list', 'separator', 'buttons', 'additional_images']
+      choices: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'list', 'separator', 'buttons', 'additional_images', 'accordion']
     },
     'card_group.',
     {
-      showCardStyle: true
+      showCardStyle: true,
+      default: {
+        media_type: 'full_width_image',
+        full_width_image: {
+          src: globalDefault.unicardImage,
+          force_full_width_image: true
+        },
+        simple_image: {
+          src: globalDefault.contentHubIcon,
+        },
+        icon: {
+          name: 'address-card',
+          type: 'REGULAR',
+          unicode: "f2bb"
+        },
+        lottie: {
+          lottie_file_src: globalDefault.unicardLottie,
+        },
+        video: {
+          video_type: 'embed',
+          video_url: globalDefault.unicardVideo.videoUrl,
+          video_iframe_url: globalDefault.unicardVideo.videoIframeUrl,
+        },
+        heading: globalDefault.headingText,
+        subheading: globalDefault.subheadingText,
+        richtext: globalDefault.richtextText,
+        accordion: true,
+        buttons: true
+      }
     })
   ),
   styleGroup(

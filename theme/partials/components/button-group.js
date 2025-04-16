@@ -69,7 +69,7 @@ const defaultButtons = [
     },
     button_position: "inline",
     button_size: "regular",
-    button_style: "secondary1",
+    button_style: "secondary2",
     button_text: "Secondary",
     custom_button_background: { },
     custom_button_border_color: { },
@@ -178,6 +178,7 @@ const buttonGroup = (parent = '', opt) => {
         }
       }),
       fi.text('Text', 'button_text', {
+        default: opt?.default?.buttons ? 'Button' : null,
         visibility: {
           controlling_field_path: `${parent}button_group.button_style`,
           operator: 'NOT_EQUAL',

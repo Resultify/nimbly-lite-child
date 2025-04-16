@@ -2,7 +2,15 @@ import { globalDefault } from "./unicard-global-default.js";
 export const groupGlobalDefault = {
   accordion_group: {
     accordion_border_style: "border_divider",
-    accordion_icon_position: "left"
+    accordion_icon_position: "left",
+    accordion_item: [ {
+      accordion_item_text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      accordion_item_title: "Heading 1"
+    }, {
+      accordion_item_text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      accordion_item_title: "Heading 2"
+    } ],
+    accordion_spacing_prop_visibility: false
   },
   button_group: [
     {

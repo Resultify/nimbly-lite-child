@@ -42,6 +42,7 @@ import { styleGroup } from './unicard-style.js'
  * @property {string} [subheading] - subheading
  * @property {string} [richtext] - rich text content
  * @property {boolean} [buttons] - add default buttons
+ * @property {boolean} [accordion] - add default accordion
  */
 
 /**
@@ -146,7 +147,7 @@ const unicardFields = (components, parent = '', opt) => {
   components.choices.includes('buttons') && fields.push(buttonGroup(parent, opt))
   components.choices.includes('custom_text') && fields.push(customTextGroup(parent))
   components.choices.includes('list') && fields.push(listGroup(parent))
-  components.choices.includes('accordion') && fields.push(accordionGroup(parent))
+  components.choices.includes('accordion') && fields.push(accordionGroup(parent, opt))
   components.choices.includes('form') && fields.push(group('Form', 'form_group',
     {
       icon: {
