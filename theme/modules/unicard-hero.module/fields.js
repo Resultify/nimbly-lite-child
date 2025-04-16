@@ -26,12 +26,12 @@ init(
       },
       default: [
         card1,
-        card2
+        card2,
       ]
     },
     unicardFields(
       {
-        enabledByDefault: ['main_heading'],
+        enabledByDefault: ['media', 'main_heading', 'richtext'],
         choices: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'list', 'accordion', 'separator', 'buttons', 'additional_images', 'meeting', 'form']
       },
       'card_group.',
@@ -48,10 +48,12 @@ init(
   fi.boolean('Hero Image mode', 'hero_image_mode', {
     help_text: 'Hero Image mode provides the ability to add various optimized backgrounds with gradients or color overlays to the module.',
     display: 'toggle',
-    default: false
+    locked: true,
+    default: true
   }),
   group('Hero Image', 'hero_image_group',
     {
+      expanded: true,
       inline_help_text: 'Hero Image mode provides the ability to add various optimized backgrounds with gradients or color overlays to the module.<br><br><span style="color:#007a8c;font-weight:700;font-size:14px;">PageSpeed</span> ​​optimization included.',
       visibility: {
         controlling_field_path: 'hero_image_mode',
@@ -61,6 +63,7 @@ init(
     },
     fi.choice('Background type', 'background_type', {
       placeholder: 'No background',
+      default: 'background_image',
       choices: [
         ['background_image', 'Background image'],
         ['background_gradient', 'Background gradient'],
@@ -68,6 +71,9 @@ init(
       ]
     }),
     fi.image(' ', 'background_image', {
+      default: {
+        src: globalDefault.unicardBackground,
+      },
       resizable: false,
       show_loading: false,
       visibility: {
@@ -78,7 +84,7 @@ init(
     }),
     fi.choice('Background image alignment', 'background_image_alignment', {
       placeholder: 'No background',
-      default: 'center center',
+      default: 'center bottom',
       required: true,
       choices: [
         ['left top', 'Top left'],
@@ -257,7 +263,7 @@ init(
   styleGroup(
     fi.number('Proportions', 'proportions', {
       display: 'slider',
-      default: 50,
+      default: 70,
       min: 0,
       max: 100,
       step: 5,
@@ -284,6 +290,10 @@ init(
       ]
     }),
     fi.color('Background color', 'background_color', {
+      default: {
+        color: '#ffffff',
+        opacity: 90
+      },
       visibility: {
         controlling_field_path: 'style.background_type',
         operator: 'EQUAL',
@@ -353,6 +363,26 @@ init(
       }
     }),
     fi.spacing('', 'spacing', {
+      default:{
+        padding : {
+          bottom: {
+            units: "px",
+            value: 70
+          },
+          left: {
+            units: "px",
+            value: 0
+          },
+          right: {
+            units: "px",
+            value: 0
+          },
+          top: {
+            units: "px",
+            value: 70
+          }
+        }
+      },
       visibility: {
         hidden_subfields: {
           margin: true
@@ -361,13 +391,13 @@ init(
     }),
     fi.border('Border', 'border'),
     fi.number('Border radius', 'border_radius', {
-      default: 20,
+      // default: 20,
       min: 0,
       suffix: 'px',
       display_width: 'half_width'
     }),
     fi.choice('Shadow', 'shadow', {
-      default: 'shadow-md',
+      // default: 'shadow-md',
       display_width: 'half_width',
       choices: shadowList
     }),
@@ -386,14 +416,10 @@ init(
           maxWidth: true,
         },
         default: {
-          horizontal_align: 'CENTER',
-          vertical_align: 'MIDDLE',
-          background_type: 'background_image',
-          background_image_src: globalDefault.unicardBackground,
-          background_image_overlay_type: 'color',
-          background_image_overlay_color: '#d4a99a',
-          background_image_overlay_opacity: 50,
-          padding: 64,
+          background_type: 'background_color',
+          background_opacity: 90,
+          background_color: '#D0E0E3',
+          padding: 40,
         }
       })
     ),
@@ -408,11 +434,6 @@ init(
           maxWidth: true,
         },
         default: {
-          mobile_alignment: 'CENTER',
-          background_type: 'background_color',
-          background_color: '#FFFFFF',
-          content_gap: 24,
-          padding: 64,
         }
       })
     )
