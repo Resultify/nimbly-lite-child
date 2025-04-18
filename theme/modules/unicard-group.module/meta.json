@@ -57,10 +57,9 @@
   "global" : false,
   "content_types" : [ "KNOWLEDGE_BASE", "QUOTE_TEMPLATE", "MEMBERSHIP", "LANDING_PAGE", "SITE_PAGE", "CUSTOMER_PORTAL", "BLOG_LISTING", "WEB_INTERACTIVE", "BLOG_POST" ],
   "master_language" : "en",
-  "categories" : [ "DESIGN", "BODY_CONTENT", "MEDIA" ],
   "icon" : "../../images/module-icons/unicard-group.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "module_id" : 104250577352,
-  "label" : "Unicard group",
+  "label" : "Card group",
   "is_available_for_new_content" : true
 }

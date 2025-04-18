@@ -3,13 +3,110 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
-const buttonGroup = (parent = '') => {
+const defaultButtons = [
+  {
+    button_alignment: "start",
+    button_hide_text: false,
+    button_icon: {
+      type: "REGULAR"
+    },
+    button_icon_position: "left",
+    button_image: {
+      loading: "disabled",
+      src: ""
+    },
+    button_link: {
+      no_follow: false,
+      open_in_new_tab: false,
+      sponsored: false,
+      url: {
+        href: "#test",
+        type: "EXTERNAL"
+      },
+      user_generated_content: false
+    },
+    button_position: "inline",
+    button_size: "regular",
+    button_style: "primary",
+    button_text: "Primary",
+    custom_button_background: { },
+    custom_button_border_color: { },
+    custom_button_font: {
+      font_set: "DEFAULT"
+    },
+    custom_button_hover: {
+      background: { },
+      border_color: { },
+      color: { }
+    },
+    custom_link_color: { },
+    custom_link_font: {
+      font_set: "DEFAULT"
+    },
+    custom_link_hover: {
+      color: { }
+    }
+  }, {
+    button_alignment: "start",
+    button_hide_text: false,
+    button_icon: {
+      type: "REGULAR"
+    },
+    button_icon_position: "left",
+    button_image: {
+      loading: "disabled",
+      src: ""
+    },
+    button_link: {
+      no_follow: false,
+      open_in_new_tab: false,
+      sponsored: false,
+      url: {
+        href: "#test",
+        type: "EXTERNAL"
+      },
+      user_generated_content: false
+    },
+    button_position: "inline",
+    button_size: "regular",
+    button_style: "secondary2",
+    button_text: "Secondary",
+    custom_button_background: { },
+    custom_button_border_color: { },
+    custom_button_font: {
+      font_set: "DEFAULT"
+    },
+    custom_button_hover: {
+      background: { },
+      border_color: { },
+      color: { }
+    },
+    custom_link_color: { },
+    custom_link_font: {
+      font_set: "DEFAULT"
+    },
+    custom_link_hover: {
+      color: { }
+    }
+  }
+]
+
+
+/**
+ * #### simpleImage fields
+ * @param {string} [parent] - parent path
+ * @param {object} [opt] - options
+ * @param {object} [opt.default] - default button properties
+ * @param {boolean} [opt.default.buttons] - render default buttons
+ */
+const buttonGroup = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
   return [
     group('Buttons', 'button_group',
       {
+        default: opt?.default?.buttons ? defaultButtons : null,
         icon: {
           name: 'audio-description',
           set: 'fontawesome-6.4.2',
@@ -23,6 +120,7 @@ const buttonGroup = (parent = '') => {
         occurrence: {
           min: 0,
           max: 100,
+          default: opt?.default?.buttons ? 2 : null,
           sorting_label_field: `${parent}button_group.button_text`
         }
       },
@@ -80,6 +178,7 @@ const buttonGroup = (parent = '') => {
         }
       }),
       fi.text('Text', 'button_text', {
+        default: opt?.default?.buttons ? 'Button' : null,
         visibility: {
           controlling_field_path: `${parent}button_group.button_style`,
           operator: 'NOT_EQUAL',

@@ -145,17 +145,18 @@
       <div class="iso-gutter-sizer"></div>
       {%- for item in module.card_group -%}
 
-        {# filter categories class #}
-        {%- if item.categories|length > 0 -%}
+        {# filter category_group class #}
+        {%- if item.category_group|length > 0 -%}
           {%- set data_filter_classes = {class:""} -%}
-          {%- for item2 in item.categories -%}
-            {%- do data_filter_classes.update({class: data_filter_classes.class ~ ' ' ~ item2|lower|trim|regex_replace("[^a-z0-9]", "")}) -%}
+          {%- for category in item.category_group -%}
+            {%- do data_filter_classes.update({class: data_filter_classes.class ~ ' ' ~ category|lower|trim|regex_replace("[^a-z0-9]", "")}) -%}
           {%- endfor -%}
         {%- endif -%}
 
         <div class="iso-item {{data_filter_classes.class}}">
           {{unicard_macro(item, module.style.card_style_group)}}
         </div>
+        {%- set data_filter_classes = {class:""} -%}
 
       {%- endfor -%}
     </div>

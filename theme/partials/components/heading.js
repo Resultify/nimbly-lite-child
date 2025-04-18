@@ -6,7 +6,9 @@ import {
  * #### fullWidthImage fields
  * @param {string} [parent] - parent path
  * @param {object} [opt] - options
- * @param {string} [opt.defaultHeading] - default heading text
+ * @param {object} [opt.default] - default heading properties
+ * @param {string} [opt.default.heading] - default heading text
+
  */
 const heading = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
@@ -15,7 +17,7 @@ const heading = (parent = '', opt) => {
   return [
     fi.text('', 'heading_text', {
       allow_new_line: true,
-      default: opt?.defaultHeading || 'Universal card heading'
+      default: opt?.default?.heading || 'Heading',
     }),
     fi.boolean('', 'heading_text_prop_visibility', {
       inline_help_text: '<span style="color:#33475b;">Show/hide</span> additional <span style="color:#007a8c;font-weight:700;font-size:14px;">Heading</span> properties.',

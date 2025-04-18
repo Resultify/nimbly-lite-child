@@ -2,7 +2,17 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
-const icon = (parent = '') => {
+/**
+ * #### simpleImage fields
+ * @param {string} [parent] - parent path
+ * @param {object} [opt] - options
+ * @param {object} [opt.default] - default simple image properties
+ * @param {object} [opt.default.icon] - default icon properties
+ * @param {string} [opt.default.icon.name] - default icon name
+ * @param {'SOLID'|'REGULAR'} [opt.default.icon.type] - default icon type
+ * @param {string} [opt.default.icon.unicode] - default icon unicode
+ */
+const icon = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
@@ -23,6 +33,11 @@ const icon = (parent = '') => {
       suffix: 'px'
     }),
     fi.icon('Icon', 'icon', {
+      default: {
+        name: opt?.default?.icon?.name ?? null,
+        type: opt?.default?.icon?.type ?? null,
+        unicode: opt?.default?.icon?.unicode ?? null
+      },
       set: 'fontawesome-6.4.2',
       visibility: {
         controlling_field_path: `${parent}icon_type`,
