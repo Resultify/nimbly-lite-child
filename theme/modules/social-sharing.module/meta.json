@@ -6,5 +6,5 @@
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "module_id" : 99636219595,
   "label" : "Social sharing.",
-  "is_available_for_new_content" : true
+  "is_available_for_new_content" : false
 }

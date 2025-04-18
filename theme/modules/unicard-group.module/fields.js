@@ -6,6 +6,8 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 import { unicardFields, unicardStyleFields } from '../../partials/modules/unicard.js'
+import { card1, card2, card3 } from './fields-default.js'
+import { globalDefault } from '../unicard-global-default.js'
 
 init(
   group('Cards', 'card_group',
@@ -22,51 +24,47 @@ init(
         sorting_label_field: 'card_group.heading'
       },
       default: [
-        {
-          media_type: 'full_width_image',
-          full_width_image_group: {
-            full_width_image_aspect_ratio: '16/9'
-          },
-          icon_group: {
-            icon_type: 'fontawesome',
-            icon_size: 80
-          },
-          lottie_group: {
-            lottie_speed: 1,
-            lottie_mode: 'forward',
-            lottie_loop: true
-          },
-          video_group: {
-            video_type: 'hubspot_video',
-            embed: {
-              source_type: 'oembed'
-            }
-          },
-          heading: {
-            heading_tag: 'h2',
-            heading_text: 'Card 1',
-            heading_icon_position: 'left'
-          },
-          subheading: {
-            heading_tag: 'h3',
-            heading_text: 'Subheading',
-            heading_icon_position: 'left'
-          },
-          accordion_group: {
-            accordion_icon_position: 'left',
-            accordion_border_style: 'border_divider'
-          },
-          form_group: {
-            form_heading_tag: 'h3'
-          },
-          module_components: ['media', 'main_heading', 'richtext', 'buttons']
-        }
+        card1,
+        card2,
+        card3
       ]
     },
     unicardFields({
-      enabledByDefault: ['media', 'main_heading', 'richtext', 'buttons'],
-      choices: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'list', 'accordion', 'separator', 'buttons', 'additional_images', 'meeting', 'form']
-    }, 'card_group.')
+      enabledByDefault: ['media', 'main_heading', 'richtext'],
+      choices: ['media', 'main_heading', 'sub_heading', 'richtext', 'custom_text', 'list', 'separator', 'buttons', 'additional_images', 'accordion']
+    },
+    'card_group.',
+    {
+      showCardStyle: true,
+      default: {
+        media_type: 'full_width_image',
+        full_width_image: {
+          src: globalDefault.unicardImage,
+          force_full_width_image: true
+        },
+        simple_image: {
+          src: globalDefault.contentHubIcon,
+        },
+        icon: {
+          name: 'address-card',
+          type: 'REGULAR',
+          unicode: "f2bb"
+        },
+        lottie: {
+          lottie_file_src: globalDefault.unicardLottie,
+        },
+        video: {
+          video_type: 'embed',
+          video_url: globalDefault.unicardVideo.videoUrl,
+          video_iframe_url: globalDefault.unicardVideo.videoIframeUrl,
+        },
+        heading: globalDefault.headingText,
+        subheading: globalDefault.subheadingText,
+        richtext: globalDefault.richtextText,
+        accordion: true,
+        buttons: true
+      }
+    })
   ),
   styleGroup(
     group('Grid layout', 'grid_layout', { expanded: true },
@@ -84,7 +82,24 @@ init(
       })
     ),
     group('Card', 'card_style_group', {},
-      unicardStyleFields('style.card_style_group.')
+      unicardStyleFields('style.card_style_group.', {
+        show: {
+          mobileAlignment: true,
+          verticalAlignment: true,
+        },
+        default: {
+          content_gap: 20,
+          background_type: 'background_color',
+          background_color: '#f6f6f6',
+          padding: 40,
+          border_radius: 20,
+          shadow: 'shadow-sm',
+          hover_effects: true,
+          hover_shadow: 'shadow-lg',
+          hover_background_color: '#D9D2E9',
+          hover_background_opacity: 30,
+        }
+      })
     )
   )
 )

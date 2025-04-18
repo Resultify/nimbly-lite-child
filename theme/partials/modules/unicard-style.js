@@ -57,6 +57,7 @@ const styleGroup = (parent = '', opt) => {
       fi.choice('Background size', 'background_size', {
         default: 'cover',
         display_width: 'half_width',
+        required: true,
         choices: [
           ['contain', 'Resize to show entire image'],
           ['cover', 'Resize to fill container'],
@@ -71,6 +72,7 @@ const styleGroup = (parent = '', opt) => {
       fi.choice('Bgr. alignment', 'background_alignment', {
         default: 'MIDDLE_CENTER',
         display_width: 'half_width',
+        required: true,
         choices: [
           ['TOP_LEFT', 'Top left'],
           ['TOP_CENTER', 'Top center'],

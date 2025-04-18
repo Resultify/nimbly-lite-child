@@ -3,7 +3,25 @@ import {
   moduleFields as fi
 } from '@resultify/hubspot-fields-js'
 
-const accordionGroup = (parent = '') => {
+
+const defaultAccordion = [
+  {
+    accordion_item_title: "Heading 1",
+    accordion_item_text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  }, {
+    accordion_item_title: "Heading 2",
+    accordion_item_text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  }
+]
+
+/**
+ * #### simpleImage fields
+ * @param {string} [parent] - parent path
+ * @param {object} [opt] - options
+ * @param {object} [opt.default] - default button properties
+ * @param {boolean} [opt.default.accordion] - render default buttons
+ */
+const accordionGroup = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
     parent = `${parent}`
   }
@@ -23,14 +41,20 @@ const accordionGroup = (parent = '') => {
       },
       group('Accordion item', 'accordion_item',
         {
+          default: opt?.default?.accordion ? defaultAccordion : null,
           occurrence: {
             min: 0,
             max: 100,
+            default: opt?.default?.accordion ? 2 : null,
             sorting_label_field: `${parent}accordion_group.accordion_item.accordion_item_title`
           }
         },
-        fi.text('Accordion heading', 'accordion_item_title'),
-        fi.richtext('Accordion item text', 'accordion_item_text')
+        fi.text('Accordion heading', 'accordion_item_title', {
+          default: opt?.default?.accordion ? 'Accordion heading' : null,
+        }),
+        fi.richtext('Accordion item text', 'accordion_item_text', {
+          default: opt?.default?.accordion ? 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.' : null,
+        })
       ),
       fi.boolean('', 'accordion_title_prop_visibility', {
         inline_help_text: '<span style="color:#33475b;">Show/hide</span> accordion <span style="color:#007a8c;font-weight:700;font-size:14px;">Title</span> properties.',
