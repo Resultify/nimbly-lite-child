@@ -1557,8 +1557,52 @@
     </div>
   {%- endif -%}
 {%- endmacro -%}
+{# add base styles to module previewer #}
+{% if is_in_module_previewer %}
+    {{require_css(get_asset_url("../../css/stest/global/base/browser-defaults.css"))}}
+    {{require_css(get_asset_url("../../css/stest/global/base/button-defaults.css"))}}
+    {{require_css(get_asset_url("../../css/stest/global/base/headings-defaults.css"))}}
+    {{require_css(get_asset_url("../../css/stest/global/base/link-defaults.css"))}}
+    {{require_css(get_asset_url("../../css/stest/global/base/stretched-link.css"))}}
+    {{require_css(get_asset_url("../../css/stest/global/base/visually-hidden.css"))}}
+    {{require_css(get_asset_url("../../css/stest/global/root.css"))}}
+  {% require_css %}
+    <style>
+      .unicard-group {
+        max-width: 1400px;
+      }
+    </style>
+  {% end_require_css %}
+{% endif %}
+{# *** #}
 
 
+<style>
+  {% scope_css %}
+    {% if module.style.grid_layout.columns < 5 %}
+      .unicard-group {
+        --min: 280px;
+      }
+    {% endif %}
+    {% if module.style.grid_layout.columns > 4 and module.style.grid_layout.columns < 7 %}
+      .unicard-group {
+        --min: 200px;
+      }
+    {% endif %}
+    {% if module.style.grid_layout.columns > 6 %}
+      .unicard-group {
+        --min: 136px;
+      }
+    {% endif %}
+  {% end_scope_css %}
+</style>
 
+{% if module.card_group|length > 0 %}
+  {{require_css(get_asset_url("../../partials/modules/unicard.css"))}}
 
-{{unicard_macro(module, module.style)}}
+  <div class="unicard-group" style="--col: {{module.style.grid_layout.columns}}; gap:{{module.style.grid_layout.gap ~ 'px'}};">
+    {% for item in module.card_group %}
+      {{unicard_macro(item, module.style.card_style_group)}}
+    {% endfor %}
+  </div>
+{% endif %}
