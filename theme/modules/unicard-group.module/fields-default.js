@@ -2,7 +2,7 @@ import { globalDefault } from '../unicard-global-default.js'
 import { groupGlobalDefault } from '../unicard-group-global-default.js'
 export const card1 = {
   accordion_group: groupGlobalDefault.accordion_group,
-  button_group: groupGlobalDefault.button_group,
+  button_group: groupGlobalDefault.button_group_custom,
   form_group: groupGlobalDefault.form_group,
   full_width_image_group: groupGlobalDefault.full_width_image_group,
   simple_image_group: groupGlobalDefault.simple_image_group,
@@ -33,37 +33,18 @@ export const card1 = {
   heading: {
     heading_additional_customization: true,
     heading_icon_position: "left",
-    heading_link: {
-      no_follow: false,
-      open_in_new_tab: false,
-      sponsored: false,
-      url: {
-        href: "#test",
-        type: "EXTERNAL"
-      },
-      user_generated_content: false
-    },
-    heading_link_color: {
-      color: "#134F5C",
-      opacity: 100
-    },
-    heading_link_hover_color: {
-      color: "#20124D",
-      opacity: 100
-    },
-    heading_link_type: "link",
     heading_tag: "h2",
     heading_text: "Unicard will automatically adjust for different screen sizes and viewports.",
     heading_text_prop_visibility: false
   },
   media_type: "icon",
   module_components: [ "media", "separator", "custom_text", "main_heading" ],
-  whole_area_link: true,
+  whole_area_link: false,
 }
 
 export const card2 = {
   accordion_group: groupGlobalDefault.accordion_group,
-  button_group: groupGlobalDefault.button_group,
+  button_group: groupGlobalDefault.button_group_custom,
   form_group: groupGlobalDefault.form_group,
   simple_image_group: groupGlobalDefault.simple_image_group,
   subheading: groupGlobalDefault.subheading,
@@ -99,32 +80,13 @@ export const card2 = {
   heading: {
     heading_additional_customization: true,
     heading_icon_position: "left",
-    heading_link: {
-      no_follow: false,
-      open_in_new_tab: false,
-      sponsored: false,
-      url: {
-        href: "#test",
-        type: "EXTERNAL"
-      },
-      user_generated_content: false
-    },
-    heading_link_color: {
-      color: "#000000",
-      opacity: 100
-    },
-    heading_link_hover_color: {
-      color: "#20124D",
-      opacity: 100
-    },
-    heading_link_type: "link",
     heading_tag: "h2",
     heading_text: "Implement a custom card design without changing the code",
     heading_text_prop_visibility: false
   },
   media_type: "full_width_image",
   module_components: [ "media", "custom_text", "main_heading" ],
-  whole_area_link: true
+  whole_area_link: false
 }
 
 export const card3 = {
@@ -139,23 +101,6 @@ export const card3 = {
   heading: {
     heading_additional_customization: false,
     heading_icon_position: "left",
-    heading_link: {
-      no_follow: false,
-      open_in_new_tab: false,
-      sponsored: false,
-      url: {
-        href: "#test",
-        type: "EXTERNAL"
-      },
-      "user_generated_content" : false
-    },
-    heading_link_color: {
-      opacity: 100
-    },
-    heading_link_hover_color: {
-      opacity: 100
-    },
-    heading_link_type: "link",
     heading_tag: "h2",
     heading_text: "The One Content Module for All Your Card Needs",
     heading_text_prop_visibility: false
