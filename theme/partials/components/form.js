@@ -15,7 +15,9 @@ const form = (parent = '', opt) => {
     fi.text('Title', 'form_heading_text', {
       allow_new_line: true
     }),
-    fi.form('Form', 'form'),
+    fi.form('Form', 'form', {
+      embed_versions: [ "v2", "v4" ],
+    }),
     fi.boolean('', 'form_prop_visibility', {
       inline_help_text: '<span style="color:#33475b;">Show/hide</span> additional <span style="color:#007a8c;font-weight:700;font-size:14px;">Form</span> properties.',
       display: 'toggle'
