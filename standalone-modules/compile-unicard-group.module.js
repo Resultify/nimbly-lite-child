@@ -38,6 +38,7 @@ export default {
   template: {
     files: [
       'theme/css/macros.css',
+      'theme/partials/components/accordion-group.html',
       'theme/partials/components/button-group.html',
       'theme/partials/components/custom-text-group.html',
       'theme/partials/components/heading.html',
