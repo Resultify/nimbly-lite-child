@@ -1,4 +1,4 @@
-:where(a:not(.btn-link)) {
+.unicard-group :where(a:not(.btn-link)) {
   --_color: var(--color, blue);
 
   display: inline-flex;
@@ -8,17 +8,17 @@
   color: var(--_color);
 }
 
-:where(a:not(.btn-link):hover) {
+.unicard-group :where(a:not(.btn-link):hover) {
   color: var(--hover-color, var(--_color));
 }
 
-:where(a:not(.btn-link)) :where(.icon) {
+.unicard-group :where(a:not(.btn-link)) :where(.icon) {
   display: inline-flex;
   justify-content: center;
   align-items: center;
 }
 
-:where(a:not(.btn-link)) :where(svg, .icon > svg) {
+.unicard-group :where(a:not(.btn-link)) :where(svg, .icon > svg) {
   height: 1.5ch;
   width: 1.5ch;
   flex-shrink: 0;

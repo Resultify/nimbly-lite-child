@@ -1,4 +1,4 @@
-:where(
+.unicard-group :where(
 .btn-link,
 button,
 input[type="button"],
@@ -37,7 +37,7 @@ input[type="reset"]),
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  :where(
+  .unicard-group :where(
   .btn-link,
   button,
   input[type="button"],
@@ -47,7 +47,7 @@ input[type="reset"]),
   }
 }
 
-:where(
+.unicard-group :where(
 .btn-link,
 button,
 input[type="button"],
@@ -63,7 +63,7 @@ input[type="reset"]
   outline-offset: 5px;
 }
 
-:where(
+.unicard-group :where(
 .btn-link,
 button,
 input[type="button"],
@@ -76,22 +76,22 @@ input[type="reset"]
   --color: hsl(210deg 7% 40%);
 }
 
-:where(input[type="file"]) {
+.unicard-group :where(input[type="file"]) {
   font: inherit;
   inline-size: 100%;
   max-inline-size: max-content;
 }
 
-:where(input[type="button"]),
-:where(input[type="file"])::file-selector-button {
+.unicard-group :where(input[type="button"]),
+.unicard-group :where(input[type="file"])::file-selector-button {
   appearance: none; /* stylelint-disable-line */
 }
 
-:where(input[type="file"])::file-selector-button {
+.unicard-group :where(input[type="file"])::file-selector-button {
   margin-inline-end: 1.5ch;
 }
 
-:where(
+.unicard-group :where(
 .btn-link,
 button,
 input[type="button"],
@@ -103,7 +103,7 @@ input[type="reset"]
   align-items: center;
 }
 
-:where(
+.unicard-group :where(
 .btn-link,
 button,
 input[type="button"],
@@ -116,7 +116,7 @@ input[type="reset"]
   fill: currentcolor;
 }
 
-:where(
+.unicard-group :where(
 .btn-link,
 button,
 input[type="button"],
@@ -126,7 +126,7 @@ input[type="reset"]
   width: 100%;
 }
 
-:where(
+.unicard-group :where(
 .btn-link,
 button,
 input[type="button"],
