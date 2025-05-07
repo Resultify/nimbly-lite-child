@@ -1,6 +1,5 @@
 .unicard-group {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr));
 }
 
 .unicard-group .unicard {

@@ -15,6 +15,17 @@
 {% import '../../partials/modules/unicard.html' %}
 <style>
   {% scope_css %}
+    {% if module.style.grid_layout.columns < 2 %}
+      .unicard-group {
+        grid-template-columns: repeat(var(--col), minmax(0, 1fr));
+      }
+    {% endif %}
+    {% if module.style.grid_layout.columns > 1 %}
+      .unicard-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr));
+      }
+    {% endif %}
     {% if module.style.grid_layout.columns < 3 %}
       .unicard-group {
         --min: 280px;

@@ -70,7 +70,7 @@ init(
     group('Grid layout', 'grid_layout', { expanded: true },
       fi.number('Columns', 'columns', {
         default: 3,
-        min: 2,
+        min: 1,
         max: 20,
         display_width: 'half_width'
       }),
