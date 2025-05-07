@@ -1,3 +1,13 @@
+.unicard .btn-small {
+  padding: var(--btn-small, 10px 20px);
+}
+.unicard .btn-regular {
+  padding: var(--btn-regular, 12px 28px);
+}
+.unicard .btn-large {
+  padding: var(--btn-large, 16px 36px);
+}
+
 .unicard :where(
 .btn-link,
 button,
