@@ -65,225 +65,6 @@ summary {
   display: list-item;
   cursor: pointer;
 }
-:where(
-.btn-link,
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"]),
-:where(input[type="file"])::file-selector-button {
-  --_border-radius: var(--border-radius, none);
-  --_bg: var(--bg, #fff);
-  --_color: var(--color, #333);
-
-  font: inherit;
-  letter-spacing: inherit;
-  line-height: 1.5;
-  border-radius: var(--_border-radius);
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 700;
-  font-style: initial;
-  background: var(--_bg);
-  color: var(--_color);
-  border: 1px solid #c8c8c8;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 0.5ch;
-  padding: 8px 20px;
-
-  /* eslint-disable-next-line css/use-baseline */
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  min-width: 100px;
-  text-decoration: none;
-  vertical-align: middle;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  :where(
-  .btn-link,
-  button,
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"]) {
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
-  }
-}
-
-:where(
-.btn-link,
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"]
-):where(:not(:active):hover) {
-  background: var(--hover-bg, var(--_bg));
-  color: var(--hover-color, var(--_color));
-  border-color: var(--hover-border, #999) !important;
-}
-
-:where(.btn-link, button, input):where(:not(:active)):focus-visible {
-  outline-offset: 5px;
-}
-
-:where(
-.btn-link,
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"]
-)[disabled] {
-  background: none;
-  cursor: not-allowed; /* stylelint-disable-line */
-
-  --color: hsl(210deg 7% 40%);
-}
-
-:where(input[type="file"]) {
-  font: inherit;
-  inline-size: 100%;
-  max-inline-size: max-content;
-}
-
-:where(input[type="button"]),
-:where(input[type="file"])::file-selector-button {
-  appearance: none; /* stylelint-disable-line */
-}
-
-:where(input[type="file"])::file-selector-button {
-  margin-inline-end: 1.5ch;
-}
-
-:where(
-.btn-link,
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"]
-) :where(.icon) {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
-
-:where(
-.btn-link,
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"]
-) :where(svg, .icon > svg) {
-  height: 1.8ch;
-  width: 1.8ch;
-  flex-shrink: 0;
-  fill: currentcolor;
-}
-
-:where(
-.btn-link,
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"]
-):where(.btn-w100) {
-  width: 100%;
-}
-
-:where(
-.btn-link,
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"]
-):where(.btn-w100 + .btn-w100) {
-  margin-top: 0.5rem;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  line-height: 1.2;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  font-weight: 500;
-  font-style: initial;
-  font-family: var(--system-fonts);
-}
-
-/* heading link */
-.heading-link {
-  font-size: inherit;
-  font-family: inherit;
-  font-weight: inherit;
-  font-style: inherit;
-}
-
-.heading-link:hover {
-  font-size: inherit;
-  font-family: inherit;
-  font-weight: inherit;
-  font-style: inherit;
-}
-
-.margin-collapse :where(
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6,
-.display-1,
-.display-2,
-.display-3,
-.display-4,
-.display-5,
-.display-6) {
-  margin-top: 0;
-}
-:where(a:not(.btn-link)) {
-  --_color: var(--color, blue);
-
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5ch;
-  color: var(--_color);
-}
-
-:where(a:not(.btn-link):hover) {
-  color: var(--hover-color, var(--_color));
-}
-
-:where(a:not(.btn-link)) :where(.icon) {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
-
-:where(a:not(.btn-link)) :where(svg, .icon > svg) {
-  height: 1.5ch;
-  width: 1.5ch;
-  flex-shrink: 0;
-  fill: currentcolor;
-}
 .stretched-link::after,
 .cta-stretched-link a::after {
   position: absolute;
@@ -335,6 +116,225 @@ h6,
     --root-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --root-transition-duration: 150ms;
   }
+}
+.unicard :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]),
+:where(input[type="file"])::file-selector-button {
+  --_border-radius: var(--border-radius, none);
+  --_bg: var(--bg, #fff);
+  --_color: var(--color, #333);
+
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: 1.5;
+  border-radius: var(--_border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  font-style: initial;
+  background: var(--_bg);
+  color: var(--_color);
+  border: 1px solid #c8c8c8;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.5ch;
+  padding: 8px 20px;
+
+  /* eslint-disable-next-line css/use-baseline */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  min-width: 100px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .unicard :where(
+  .btn-link,
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"]) {
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  }
+}
+
+.unicard :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+):where(:not(:active):hover) {
+  background: var(--hover-bg, var(--_bg));
+  color: var(--hover-color, var(--_color));
+  border-color: var(--hover-border, #999) !important;
+}
+
+:where(.btn-link, button, input):where(:not(:active)):focus-visible {
+  outline-offset: 5px;
+}
+
+.unicard :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+)[disabled] {
+  background: none;
+  cursor: not-allowed; /* stylelint-disable-line */
+
+  --color: hsl(210deg 7% 40%);
+}
+
+.unicard :where(input[type="file"]) {
+  font: inherit;
+  inline-size: 100%;
+  max-inline-size: max-content;
+}
+
+.unicard :where(input[type="button"]),
+.unicard :where(input[type="file"])::file-selector-button {
+  appearance: none; /* stylelint-disable-line */
+}
+
+.unicard :where(input[type="file"])::file-selector-button {
+  margin-inline-end: 1.5ch;
+}
+
+.unicard :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+) :where(.icon) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.unicard :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+) :where(svg, .icon > svg) {
+  height: 1.8ch;
+  width: 1.8ch;
+  flex-shrink: 0;
+  fill: currentcolor;
+}
+
+.unicard :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+):where(.btn-w100) {
+  width: 100%;
+}
+
+.unicard :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+):where(.btn-w100 + .btn-w100) {
+  margin-top: 0.5rem;
+}
+.unicard :where(
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6) {
+  line-height: 1.2;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  font-style: initial;
+  font-family: var(--system-fonts);
+}
+
+/* heading link */
+.unicard .heading-link {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+}
+
+.unicard .heading-link:hover {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+}
+
+.margin-collapse :where(
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.display-1,
+.display-2,
+.display-3,
+.display-4,
+.display-5,
+.display-6) {
+  margin-top: 0;
+}
+.unicard :where(a:not(.btn-link)) {
+  --_color: var(--color, blue);
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5ch;
+  color: var(--_color);
+}
+
+.unicard :where(a:not(.btn-link):hover) {
+  color: var(--hover-color, var(--_color));
+}
+
+.unicard :where(a:not(.btn-link)) :where(.icon) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.unicard :where(a:not(.btn-link)) :where(svg, .icon > svg) {
+  height: 1.5ch;
+  width: 1.5ch;
+  flex-shrink: 0;
+  fill: currentcolor;
 }
 .unicard {
   color: var(--scope-color);

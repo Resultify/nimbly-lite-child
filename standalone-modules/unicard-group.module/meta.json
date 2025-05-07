@@ -86,7 +86,7 @@
     "BLOG_POST"
   ],
   "master_language": "en",
-  "icon": "./card.svg",
+  "icon": "fontawesome-5.14.0:File",
   "host_template_types": [
     "PAGE",
     "BLOG_LISTING",
