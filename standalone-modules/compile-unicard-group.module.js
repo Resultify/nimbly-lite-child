@@ -60,12 +60,12 @@ export default {
   js: { files: [], dirs: [] },
   css: { files: [
     'standalone-modules/src/css/global/base/browser-defaults-overrides.css',
-    'standalone-modules/src/css/global/base/button-defaults.css',
-    'standalone-modules/src/css/global/base/headings-defaults.css',
-    'standalone-modules/src/css/global/base/link-defaults.css',
     'standalone-modules/src/css/global/base/stretched-link.css',
     'standalone-modules/src/css/global/base/visually-hidden.css',
     'standalone-modules/src/css/global/root.css',
+    'standalone-modules/src/css/unicard-group/button-defaults.css',
+    'standalone-modules/src/css/unicard-group/headings-defaults.css',
+    'standalone-modules/src/css/unicard-group/link-defaults.css',
     'theme/partials/modules/unicard.css',
   ], dirs: [] }
 }
