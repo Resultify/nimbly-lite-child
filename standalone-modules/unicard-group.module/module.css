@@ -105,6 +105,15 @@ summary {
   --ani-slideup1x: translateY(-4px);
   --ani-slideup2x: translateY(-8px);
   --ani-slideup3x: translateY(-12px);
+  --btn-small: 10px 20px;
+  --btn-regular: 12px 28px;
+  --btn-large: 16px 36px;
+  --h1-font-size: 3rem;
+  --h2-font-size: 2.5rem;
+  --h3-font-size: 2rem;
+  --h4-font-size: 1.5rem;
+  --h5-font-size: 1rem;
+  --h6-font-size: 0.875rem;
 }
 
 /*
@@ -117,6 +126,16 @@ summary {
     --root-transition-duration: 150ms;
   }
 }
+.unicard-group .btn-small {
+  padding: var(--btn-small, 10px 20px);
+}
+.unicard-group .btn-regular {
+  padding: var(--btn-regular, 12px 28px);
+}
+.unicard-group .btn-large {
+  padding: var(--btn-large, 16px 36px);
+}
+
 .unicard-group :where(
 .btn-link,
 button,
@@ -280,6 +299,7 @@ h6,
   font-family: inherit;
   font-weight: inherit;
   font-style: inherit;
+  text-decoration: none;
 }
 
 .unicard-group .heading-link:hover {
@@ -310,7 +330,26 @@ h6,
 .display-6) {
   margin-top: 0;
 }
-.unicard-group :where(a:not(.btn-link)) {
+
+.unicard-group h1 {
+  font-size: var(--h1-font-size, 2.25rem);
+}
+.unicard-group h2 {
+  font-size: var(--h2-font-size, 1.5rem);
+}
+.unicard-group h3 {
+  font-size: var(--h3-font-size, 1.25rem);
+}
+.unicard-group h4 {
+  font-size: var(--h4-font-size, 1.125rem);
+}
+.unicard-group h5 {
+  font-size: var(--h5-font-size, 1rem);
+}
+.unicard-group h6 {
+  font-size: var(--h6-font-size, 0.875rem);
+}
+:where(.unicard-group a:not(.btn-link)) {
   --_color: var(--color, blue);
 
   display: inline-flex;
@@ -320,17 +359,17 @@ h6,
   color: var(--_color);
 }
 
-.unicard-group :where(a:not(.btn-link):hover) {
+:where(.unicard-group a:not(.btn-link):hover) {
   color: var(--hover-color, var(--_color));
 }
 
-.unicard-group :where(a:not(.btn-link)) :where(.icon) {
+:where(.unicard-group a:not(.btn-link)) :where(.icon) {
   display: inline-flex;
   justify-content: center;
   align-items: center;
 }
 
-.unicard-group :where(a:not(.btn-link)) :where(svg, .icon > svg) {
+:where(.unicard-group a:not(.btn-link)) :where(svg, .icon > svg) {
   height: 1.5ch;
   width: 1.5ch;
   flex-shrink: 0;

@@ -1400,9 +1400,9 @@
 
 {%- macro lottie_macro(data) -%}
   {%- if data.lottie_file -%}
-    {{require_js(get_asset_url('../../assets/js/dotlottie.js'), {defer: true})}}
     {% require_js %}
-      <script>
+      <script type="module">
+        import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
         function runDotLottie () {
           const dotLottieCanvas = document.getElementsByClassName('dotlottie-canvas')
           if (!dotLottieCanvas) return
@@ -1419,7 +1419,7 @@
               lottieAlignment = [0, 0.5]
             }
             // initialize dotLottie
-            const dotLottie = new window.DotLottie({ // eslint-disable-line
+            const dotLottie = new DotLottie({ // eslint-disable-line
               loop: item.hasAttribute('data-loop'),
               speed: item.dataset.speed,
               mode: item.dataset.mode,
