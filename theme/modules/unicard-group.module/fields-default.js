@@ -9,6 +9,7 @@ export const card1 = {
   subheading: groupGlobalDefault.subheading,
   lottie_group: groupGlobalDefault.lottie_group,
   video_group: groupGlobalDefault.video_group,
+  card_style: groupGlobalDefault.card_style,
   icon_group: {
     icon: {
       name: "align-left",
@@ -51,6 +52,7 @@ export const card2 = {
   icon_group: groupGlobalDefault.icon_group,
   lottie_group: groupGlobalDefault.lottie_group,
   video_group: groupGlobalDefault.video_group,
+  card_style: groupGlobalDefault.card_style,
   full_width_image_group: {
     force_full_width_image: true,
     full_width_image: {

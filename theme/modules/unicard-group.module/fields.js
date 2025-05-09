@@ -94,10 +94,7 @@ init(
           padding: 40,
           border_radius: 20,
           shadow: 'shadow-sm',
-          hover_effects: true,
-          hover_shadow: 'shadow-lg',
-          hover_background_color: '#D9D2E9',
-          hover_background_opacity: 30,
+          hover_effects: false,
         }
       })
     )

@@ -151,7 +151,8 @@ export const groupGlobalDefault = {
     full_width_image: {
       src: globalDefault.unicardImage,
     },
-    full_width_image_aspect_ratio: "16/9"
+    full_width_image_aspect_ratio: "16/9",
+    force_full_width_image: false,
   },
   heading: {
     heading_icon_position: "left",
@@ -195,6 +196,11 @@ export const groupGlobalDefault = {
       source_type: "oembed"
     },
     video_type: "embed"
-  }
+  },
+  card_style: {
+    background_alignment: "MIDDLE_CENTER",
+    background_size: "cover",
+  },
+
 };
 

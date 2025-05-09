@@ -1,13 +1,3 @@
-.unicard-group .btn-small {
-  padding: var(--btn-small, 10px 20px);
-}
-.unicard-group .btn-regular {
-  padding: var(--btn-regular, 12px 28px);
-}
-.unicard-group .btn-large {
-  padding: var(--btn-large, 16px 36px);
-}
-
 .unicard-group :where(
 .btn-link,
 button,
@@ -144,4 +134,14 @@ input[type="submit"],
 input[type="reset"]
 ):where(.btn-w100 + .btn-w100) {
   margin-top: 0.5rem;
+}
+
+.unicard-group :where(.btn-small) {
+  padding: var(--btn-small, 10px 20px);
+}
+.unicard-group :where(.btn-regular) {
+  padding: var(--btn-regular, 12px 28px);
+}
+.unicard-group :where(.btn-large) {
+  padding: var(--btn-large, 16px 36px);
 }
