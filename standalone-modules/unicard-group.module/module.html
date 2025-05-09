@@ -1624,7 +1624,7 @@
   {%- if data.lottie_file -%}
     {% require_js %}
       <script type="module">
-        import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
+        import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web@0.40.0/+esm";
         function runDotLottie () {
           const dotLottieCanvas = document.getElementsByClassName('dotlottie-canvas')
           if (!dotLottieCanvas) return

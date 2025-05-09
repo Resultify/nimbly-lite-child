@@ -83,7 +83,8 @@
           "full_width_image": {
             "src": "https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/unicard-public/unicard.png"
           },
-          "full_width_image_aspect_ratio": "16/9"
+          "full_width_image_aspect_ratio": "16/9",
+          "force_full_width_image": false
         },
         "simple_image_group": {
           "simple_image": {
@@ -111,6 +112,10 @@
             "source_type": "oembed"
           },
           "video_type": "embed"
+        },
+        "card_style": {
+          "background_alignment": "MIDDLE_CENTER",
+          "background_size": "cover"
         },
         "icon_group": {
           "icon": {
@@ -254,6 +259,10 @@
           },
           "video_type": "embed"
         },
+        "card_style": {
+          "background_alignment": "MIDDLE_CENTER",
+          "background_size": "cover"
+        },
         "full_width_image_group": {
           "force_full_width_image": true,
           "full_width_image": {
@@ -323,7 +332,8 @@
           "full_width_image": {
             "src": "https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/unicard-public/unicard.png"
           },
-          "full_width_image_aspect_ratio": "16/9"
+          "full_width_image_aspect_ratio": "16/9",
+          "force_full_width_image": false
         },
         "simple_image_group": {
           "simple_image": {
@@ -4627,7 +4637,7 @@
           {
             "label": "Card hover effects",
             "name": "hover_effects",
-            "default": true,
+            "default": false,
             "locked": false,
             "type": "boolean"
           },
@@ -4656,8 +4666,8 @@
                 "label": "Background color",
                 "name": "background_color",
                 "default": {
-                  "color": "#D9D2E9",
-                  "opacity": 30
+                  "color": null,
+                  "opacity": null
                 },
                 "type": "color"
               },
@@ -4674,7 +4684,7 @@
               {
                 "label": "Shadow",
                 "name": "shadow",
-                "default": "shadow-lg",
+                "default": null,
                 "display_width": "half_width",
                 "placeholder": "No shadow",
                 "choices": [

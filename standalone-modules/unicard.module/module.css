@@ -126,16 +126,6 @@ summary {
     --root-transition-duration: 150ms;
   }
 }
-.unicard .btn-small {
-  padding: var(--btn-small, 10px 20px);
-}
-.unicard .btn-regular {
-  padding: var(--btn-regular, 12px 28px);
-}
-.unicard .btn-large {
-  padding: var(--btn-large, 16px 36px);
-}
-
 .unicard :where(
 .btn-link,
 button,
@@ -272,6 +262,16 @@ input[type="submit"],
 input[type="reset"]
 ):where(.btn-w100 + .btn-w100) {
   margin-top: 0.5rem;
+}
+
+.unicard :where(.btn-small) {
+  padding: var(--btn-small, 10px 20px);
+}
+.unicard :where(.btn-regular) {
+  padding: var(--btn-regular, 12px 28px);
+}
+.unicard :where(.btn-large) {
+  padding: var(--btn-large, 16px 36px);
 }
 .unicard :where(
 h2,
