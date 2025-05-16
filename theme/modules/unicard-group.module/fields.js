@@ -61,8 +61,8 @@ init(
         heading: globalDefault.headingText,
         subheading: globalDefault.subheadingText,
         richtext: globalDefault.richtextText,
-        accordion: true,
-        buttons: true
+        accordion: false,
+        buttons: false
       }
     })
   ),
