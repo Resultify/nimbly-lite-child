@@ -1,0 +1,104 @@
+<!--
+  templateType: error_page
+  isAvailableForNewContent: true
+  label: 404 error
+  screenshotPath: ../../images/template-previews/404.jpg
+-->
+
+{% set template_css = '../../css/templates/system/error-pages.css' %}
+{% extends '../layouts/base.html' %}
+{% set pageTitle = "Error 404 | Page not found" %}
+
+{% block body %}
+
+  <div class="error-page_wrp system-page_wrp">
+    <div class="error-page error404 system-page" data-error="404">
+      {% module 'heading-404'
+        path="../../modules/unicard-heading",
+        offset=0,
+        width=12,
+        heading={
+          "heading_text" : "Page not found."
+        },
+        style={
+          "alignment" : {
+            "horizontal_align" : "CENTER"
+          },
+          "spacing" : {
+            "padding" : {
+              "bottom" : {
+                "value" : 40,
+                "units" : "px"
+              },
+              "left" : {
+                "units" : "px"
+              },
+              "right" : {
+                "units" : "px"
+              },
+              "top" : {
+                "units" : "px"
+              }
+            }
+          }
+        }
+      %}
+
+      {% module 'button-404'
+        path="../../modules/unicard-button",
+        offset=0,
+        width=12,
+        button_group=[ {
+          "button_alignment" : "start",
+          "button_hide_text" : false,
+          "button_icon" : {
+            "type" : "REGULAR"
+          },
+          "button_icon_position" : "left",
+          "button_image" : {
+            "loading" : "disabled",
+            "src" : ""
+          },
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "sponsored" : false,
+            "url" : {
+              "href" : "/",
+              "type" : "EXTERNAL"
+            },
+            "user_generated_content" : false
+          },
+          "button_position" : "inline",
+          "button_size" : "regular",
+          "button_style" : "primary",
+          "button_text" : "Go home",
+          "custom_button_background" : { },
+          "custom_button_border_color" : { },
+          "custom_button_font" : {
+            "font_set" : "DEFAULT"
+          },
+          "custom_button_hover" : {
+            "background" : { },
+            "border_color" : { },
+            "color" : { }
+          },
+          "custom_link_color" : { },
+          "custom_link_font" : {
+            "font_set" : "DEFAULT"
+          },
+          "custom_link_hover" : {
+            "color" : { }
+          }
+        } ],
+        style={
+          "alignment" : {
+            "horizontal_align" : "CENTER"
+          }
+        }
+      %}
+
+    </div>
+  </div>
+
+{% endblock body %}
