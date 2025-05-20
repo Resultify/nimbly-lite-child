@@ -24,6 +24,7 @@
   {%- endif -%}
 {%- endmacro -%}
 
+
 {%- macro unicard_macro(data, style) -%}
 
   
@@ -66,15 +67,39 @@
     style.hover.border_color.css,
     style.border.top.color,
     style.hover.shadow,
-    style.hover.animation
+    style.hover.animation,
+    style.max_width,
+    data.card_style.text_color.css,
+    data.card_style.background_type,
+    data.card_style.background_image,
+    data.card_style.background_size,
+    data.card_style.background_alignment,
+    data.card_style.background_color.css,
+    data.card_style.background_image_overlay_type,
+    data.card_style.background_image_overlay.css,
+    data.card_style.background_image_overlay_gradient_color,
+    data.card_style.background_image_overlay_gradient_direction,
+    data.card_style.background_gradient_color,
+    data.card_style.background_gradient_direction
   ]) %}
 
   {# scoped styles for unicard module component #}
   {% require_css %}
     <style data-component="unicard scoped id{{scope_hash}}">
+      {% if data.equal_height_cards %}
+        .dnd-section .row-fluid {
+          height: 100%;
+        }
+        .row-fluid > [class*="span"] {
+          display: grid;
+        }
+      {% endif %}
       .scope-root.id{{scope_hash}} {
         {% if style.text_color.css %}
           --scope-color: {{style.text_color.css if style.text_color.css}};
+        {% endif %}
+        {% if data.card_style.text_color.css %}
+          --scope-color: {{data.card_style.text_color.css if data.card_style.text_color.css}};
         {% endif %}
         --scope-alignment: {{css_alignment_macro(style.alignment.horizontal_align)}};
         --scope-border-radius: {{style.border_radius is truthy ? style.border_radius ~ "px" : 0 }};
@@ -88,6 +113,15 @@
         {% elif style.background_type == 'background_image' and style.background_image.css %}
           {{css_image_background_macro(style)}}
         {% endif %}
+        {% if data.card_style.background_type == 'background_color' and data.card_style.background_color.css %}
+          background: none;
+          background-color: var(--scope-background);
+          --scope-background: {{data.card_style.background_color.css}};
+        {% elif data.card_style.background_type == 'background_gradient' and data.card_style.background_gradient_direction %}
+          background: {{css_gradient_macro2(data.card_style.background_gradient_color, data.card_style.background_gradient_direction)}}
+        {% elif data.card_style.background_type == 'background_image' and data.card_style.background_image %}
+          {{css_complex_image_background_macro(data.card_style)}}
+        {% endif %}
         --scope-content-gap: {{style.content_gap is truthy ? style.content_gap ~ 'px' : 0 }};
         --scope-border: {{style.border.css && style.border.top.width.value is truthy ? style.border.css|cut('border:') : 'none' }};
         --scope-border-width: {{style.border.css && style.border.top.width.value is truthy ? style.border.top.width.value ~ style.border.top.width.units : '0px' }};
@@ -98,6 +132,29 @@
         --scope-padding-right: {{style.spacing.padding.right.value is truthy ? style.spacing.padding.right.value ~ style.spacing.padding.right.units : 0 }};
         --scope-padding: {{style.spacing.padding.top.value ~ style.spacing.padding.top.units if style.spacing.css|length <= 17 }};
       }
+
+      {% if style.spacing.padding.top.value > 45 or style.spacing.padding.bottom.value > 45 or style.spacing.padding.left.value > 45 or style.spacing.padding.right.value > 45 %}
+        @media (max-width: {{theme.layout.maximum_content_width|float - 0.2 ~ 'px'}}) {
+          .scope-root.id{{scope_hash}} {
+            {% if style.spacing.padding.top.value > 45 %}
+              --scope-padding-top: calc(2.8125rem + ({{style.spacing.padding.top.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+            {% endif %}
+            {% if style.spacing.padding.bottom.value > 45 %}
+              --scope-padding-bottom: calc(2.8125rem + ({{style.spacing.padding.bottom.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+            {% endif %}
+            {% if style.spacing.padding.left.value > 45 %}
+              --scope-padding-left: calc(2.8125rem + ({{style.spacing.padding.left.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+            {% endif %}
+            {% if style.spacing.padding.right.value > 45 %}
+              --scope-padding-right: calc(2.8125rem + ({{style.spacing.padding.right.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+            {% endif %}
+            {% if style.spacing.css|length <= 17 %}
+              --scope-padding: calc(2.8125rem + ({{style.spacing.padding.top.value}} - 45) *  (100vw - 24rem) / ({{theme.layout.maximum_content_width}} - 375));
+            {% endif %}
+          }
+        }
+      {% endif %}
+
       {% if style.mobile_alignment.horizontal_align %}
         @media (max-width: 767.8px) {
           .scope-root.id{{scope_hash}} {
@@ -110,19 +167,19 @@
           .scope-root.id{{scope_hash}}:hover {
             {% if style.hover.text_color.css %}
               --scope-hover-color: {{style.hover.text_color.css}};
+              color: var(--scope-hover-color);
             {% endif %}
             {% if style.hover.border_color.css or style.border.top.color %}
               --scope-hover-border-color: {{style.hover.border_color.css ? style.hover.border_color.css : style.border.top.color}};
+              border-color: var(--scope-hover-border-color);
             {% endif %}
             --scope-hover-background: {{style.hover.background_color.css if style.hover.background_color.css}};
             --scope-hover-shadow: {{style.hover.shadow ? 'var(--' ~ style.hover.shadow ~ ')' : 'var(--scope-shadow)' }};
             --scope-hover-animation: {{style.hover.animation ? 'var(--' ~ style.hover.animation ~ ')' : 'var(--ani-)' }};
             box-shadow: var(--scope-hover-shadow);
             transform: var(--scope-hover-animation);
-            color: var(--scope-hover-color);
-            border-color: var(--scope-hover-border-color);
           }
-          {% if style.background_type == 'background_image' and style.hover.background_color.css or style.background_type == 'background_gradient' and style.hover.background_color.css %}
+          {% if style.background_type == 'background_image' and style.hover.background_color.css or style.background_type == 'background_gradient' and style.hover.background_color.css or data.card_style.background_type == 'background_image' and style.hover.background_color.css or data.card_style.background_type == 'background_gradient' and style.hover.background_color.css %}
             .scope-root.id{{scope_hash}}:after {
               content: "";
               width: 100%;
@@ -147,6 +204,11 @@
           {% endif %}
         }
       {% endif %}
+      {% if style.max_width is truthy %}
+        .scope-root.id{{scope_hash}} .content-block-top {
+          max-width: {{style.max_width ~ 'px'}};
+        }
+      {% endif %}
     </style>
   {% end_require_css %}
 
@@ -158,7 +220,7 @@
   {% endif %}
 
   <div class="unicard scope-root id{{scope_hash}}">
-    <div class="content-block-top">
+    <div class="unicard-fake-class content-block-top">
       {% for component in data.module_components %}
         {% if component == 'media' %}
           {{media_group_macro(data)}}
@@ -215,227 +277,165 @@
   </div>
 
 {%- endmacro -%}
-
-
-
-
-{# render accordion-group icon internal macro #}
-{%- macro add_accordion_icon(data, position) -%}
-  {%- if data.accordion_icon_position is containing position -%}
-    {%- if data.accordion_icon_inline_svg -%}
-      {{data.accordion_icon_inline_svg}}
-    {%- else -%}
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#6ea8fe"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
-    {%- endif -%}
+{%- macro css_alignment_macro(data) -%}
+  {%- if data == 'LEFT' -%}
+    start
+  {%- elif data == 'CENTER' -%}
+    center
+  {%- elif data == 'RIGHT' -%}
+    end
   {%- endif -%}
 {%- endmacro -%}
 
-
-{%- macro accordion_group_macro(data) -%}
-
-  {# common styles for accordion-group macro #}
-  {% require_css %}
-    <style data-component="accordion-group">
-      .accordion-group {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        width: 100%;
-      }
-      .accordion-group.border-divider .accordion-item {
-        border-bottom: var(--custom-accordion-border-width, 1px) solid var(--custom-accordion-border-color, #bcc4ce);
-      }
-      .accordion-group.border-wrapper {
-        gap: var(--custom-accordion-border-gap, 20px);
-      }
-      .accordion-group.border-wrapper .accordion-item {
-        border: var(--custom-accordion-border-width, 1px) solid var(--custom-accordion-border-color, #bcc4ce);
-      }
-      .accordion-item {
-        --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
-        color: var(--_macro-color, inherit);
-        overflow: hidden;
-      }
-      .accordion-item-summary {
-        --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
-        color: var(--_macro-color, inherit);
-        text-wrap: pretty;
-        overflow-wrap: break-word;
-        -webkit-hyphens: auto; /* for Safari */
-        hyphens: auto;
-        font-size: 22px;
-        align-items: center;
-        cursor: pointer;
-        display: flex;
-        list-style-type: none;
-        padding-left: 30px;
-        padding-top: 30px;
-        padding-right: 30px;
-        padding-bottom: 30px;
-        position: relative;
-        gap: 20px;
-      }
-      .accordion-item-summary:focus-visible {
-        outline-style: auto;
-      }
-      .accordion-group summary::marker {
-        content: none;
-      }
-      .accordion-group summary::-webkit-details-marker {
-        display: none;
-      }
-      .accordion-item-summary svg {
-        height: auto;
-        width: var(--custom-accordion-icon-size, 1em);
-        fill: var(--custom-accordion-icon-color, currentColor);
-        transition-property: transform, fill;
-        flex-shrink: 0;
-        transition-duration: var(--root-transition-duration);
-        transition-timing-function: var(--root-transition-timing-function);
-      }
-      .accordion-item[open] .accordion-item-summary svg {
-        transform: rotate(180deg);
-      }
-      .accordion-item-content {
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-bottom: 30px;
-      }
-    </style>
-  {% end_require_css %}
-
-  {# hash for scoped styles #}
-  {% set accordion_hash = hash([
-    data.accordion_group.accordion_title_font.css,
-    data.accordion_group.accordion_title_color.css,
-    data.accordion_group.accordion_title_size,
-    data.accordion_group.accordion_spacing_top,
-    data.accordion_group.accordion_spacing_bottom,
-    data.accordion_group.accordion_spacing_left,
-    data.accordion_group.accordion_spacing_right,
-    data.accordion_group.accordion_icon_size,
-    data.accordion_group.accordion_icon_gap,
-    data.accordion_group.accordion_icon_color.css,
-    data.accordion_group.accordion_border_style,
-    data.accordion_group.accordion_border_width,
-    data.accordion_group.accordion_border_color.css,
-    data.accordion_group.accordion_border_gap,
-    data.accordion_group.accordion_border_radius,
-    data.accordion_group.accordion_bg_color,
-    data.accordion_group.accordion_show_top_border,
-    data.accordion_group.accordion_show_bottom_border
-  ]) %}
-
-
-  {% require_css %}
-    <style data-component="accordion-group scoped id{{accordion_hash}}">
-      {%- if data.accordion_group.accordion_icon_color.css or data.accordion_group.accordion_icon_size or data.accordion_group.accordion_border_width is integer or data.accordion_group.accordion_border_color.css -%}
-        .accordion{{accordion_hash}} {
-          {%- if data.accordion_group.accordion_icon_color.css -%}
-            --custom-accordion-icon-color: {{data.accordion_group.accordion_icon_color.css}};
-          {%- endif -%}
-          {%- if data.accordion_group.accordion_icon_size is integer -%}
-            --custom-accordion-icon-size: {{data.accordion_group.accordion_icon_size ~ 'px'}};
-          {%- endif -%}
-          {%- if data.accordion_group.accordion_border_width is integer -%}
-            --custom-accordion-border-width: {{data.accordion_group.accordion_border_width ~ 'px'}};
-          {%- endif -%}
-          {%- if data.accordion_group.accordion_border_color.css -%}
-            --custom-accordion-border-color: {{data.accordion_group.accordion_border_color.css}};
-          {%- endif -%}
-        }
-      {%- endif -%}
-
-      {%- if data.accordion_group.accordion_title_color.css or data.accordion_group.accordion_title_font.css or data.accordion_group.accordion_title_size -%}
-        .accordion{{accordion_hash}} .accordion-item-summary {
-          {%- if data.accordion_group.accordion_title_color.css -%}
-            --custom-color: {{data.accordion_group.accordion_title_color.css}};
-          {%- endif -%}
-          {%- if data.accordion_group.accordion_title_font.css -%}
-            {{css_font_macro(data.accordion_group.accordion_title_font, false)}}
-          {%- endif -%}
-          {%- if data.accordion_group.accordion_title_size is integer -%}
-            font-size: {{data.accordion_group.accordion_title_size ~ 'px'}};
-          {%- endif -%}
-        }
-      {%- endif -%}
-
-      {%- if data.accordion_group.accordion_icon_gap is integer and data.accordion_group.accordion_icon_position == 'left' -%}
-        .accordion{{accordion_hash}} .accordion-item-summary {
-          gap: {{data.accordion_group.accordion_icon_gap ~ 'px'}};
-        }
-      {%- endif -%}
-
-      {%- if data.accordion_group.accordion_spacing_top is integer -%}
-        .accordion{{accordion_hash}} .accordion-item-summary {
-          padding-top: {{data.accordion_group.accordion_spacing_top ~ 'px'}};
-        }
-      {%- endif -%}
-      {%- if data.accordion_group.accordion_spacing_bottom is integer -%}
-        .accordion{{accordion_hash}} :where(.accordion-item-summary, .accordion-item-content) {
-          padding-bottom: {{data.accordion_group.accordion_spacing_bottom ~ 'px'}};
-        }
-      {%- endif -%}
-      {%- if data.accordion_group.accordion_spacing_left is integer -%}
-        .accordion{{accordion_hash}} :where(.accordion-item-summary, .accordion-item-content) {
-          padding-left: {{data.accordion_group.accordion_spacing_left ~ 'px'}};
-        }
-      {%- endif -%}
-      {%- if data.accordion_group.accordion_spacing_right is integer -%}
-        .accordion{{accordion_hash}} :where(.accordion-item-summary, .accordion-item-content) {
-          padding-right: {{data.accordion_group.accordion_spacing_right ~ 'px'}};
-        }
-      {%- endif -%}
-
-      {%- if data.accordion_group.accordion_show_top_border == 'true' and data.accordion_group.accordion_border_style == 'border_divider' -%}
-        .accordion{{accordion_hash}}.border-divider .accordion-item:first-child {
-          border-top: var(--custom-accordion-border-width, 1px) solid var(--custom-accordion-border-color, #bcc4ce);
-        }
-      {%- endif -%}
-      {%- if data.accordion_group.accordion_show_bottom_border == 'false' and data.accordion_group.accordion_border_style == 'border_divider' -%}
-        .accordion{{accordion_hash}}.border-divider .accordion-item:last-child {
-          border-bottom: none;
-        }
-      {%- endif -%}
-
-      {%- if data.accordion_group.accordion_border_gap is integer and data.accordion_group.accordion_border_style == 'border_wrapper' -%}
-        .accordion{{accordion_hash}} {
-          --custom-accordion-border-gap: {{data.accordion_group.accordion_border_gap ~ 'px'}};
-        }
-      {%- endif -%}
-      {%- if data.accordion_group.accordion_border_radius is integer and data.accordion_group.accordion_border_style == 'border_wrapper' -%}
-        .accordion{{accordion_hash}}.border-wrapper .accordion-item {
-          border-radius: {{data.accordion_group.accordion_border_radius ~ 'px'}};
-        }
-      {%- endif -%}
-      {%- if data.accordion_group.accordion_bg_color.css and data.accordion_group.accordion_border_style == 'border_wrapper' -%}
-        .accordion{{accordion_hash}}.border-wrapper .accordion-item {
-          background-color: {{data.accordion_group.accordion_bg_color.css}};
-        }
-      {%- endif -%}
-    </style>
-  {% end_require_css %}
-
-
-  {%- if data.accordion_group.accordion_item|length > 0 -%}
-    <div data-component="accordion-group" class="accordion-group accordion{{accordion_hash}} {{'border-wrapper' if data.accordion_group.accordion_border_style == 'border_wrapper'}} {{'border-divider' if data.accordion_group.accordion_border_style == 'border_divider'}}">
-
-      {%- for item in data.accordion_group.accordion_item -%}
-        {%- if item.accordion_item_title and item.accordion_item_text -%}
-          <details class="accordion-item">
-            <summary class="accordion-item-summary" style="{{'justify-content: space-between;' if data.accordion_group.accordion_icon_position == 'right'}}">
-              {{add_accordion_icon(data.accordion_group, 'left')}}
-              <span class="accordion-item-summary-text">{{item.accordion_item_title}}</span>
-              {{add_accordion_icon(data.accordion_group, 'right')}}
-            </summary>
-            <div class="accordion-item-content">{{item.accordion_item_text}}</div>
-          </details>
-        {%- endif -%}
-      {%- endfor -%}
-
-    </div>
+{%- macro css_vertical_alignment_macro(data) -%}
+  {%- if data == 'TOP' -%}
+    start
+  {%- elif data == 'MIDDLE' -%}
+    center
+  {%- elif data == 'BOTTOM' -%}
+    end
   {%- endif -%}
+{%- endmacro -%}
 
+{%- macro css_gradient_macro(data) -%}
+  {%- if data.gradient_direction -%}
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient({{data.gradient_direction}}, {{data.gradient_color|map('css')|join(',')}});
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro css_gradient_macro2(color, direction) -%}
+  {%- if direction -%}
+    linear-gradient({{direction}}, {{color|map('css')|join(',')}});
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro css_font_macro(data, add_color = true) -%}
+  {%- if add_color and data.color -%}
+    color: {{data.color}};
+  {%- endif -%}
+  {%- if data.size -%}
+    font-size: {{data.size ~ 'px'}};
+  {%- endif -%}
+  {%- if data.style -%}
+    {{data.style}};
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro css_image_background_macro(data) -%}
+  {%- if data.background_image.background_position == 'TOP_LEFT' -%}
+    {%- set background_position = 'left top' -%}
+  {%- elif data.background_image.background_position == 'TOP_CENTER' -%}
+    {%- set background_position = 'center top' -%}
+  {%- elif data.background_image.background_position == 'TOP_RIGHT' -%}
+    {%- set background_position = 'right top' -%}
+  {%- elif data.background_image.background_position == 'MIDDLE_LEFT' -%}
+    {%- set background_position = 'left center' -%}
+  {%- elif data.background_image.background_position == 'MIDDLE_CENTER' -%}
+    {%- set background_position = 'center center' -%}
+  {%- elif data.background_image.background_position == 'MIDDLE_RIGHT' -%}
+    {%- set background_position = 'right center' -%}
+  {%- elif data.background_image.background_position == 'BOTTOM_LEFT' -%}
+    {%- set background_position = 'left bottom' -%}
+  {%- elif data.background_image.background_position == 'BOTTOM_CENTER' -%}
+    {%- set background_position = 'center bottom' -%}
+  {%- elif data.background_image.background_position == 'BOTTOM_RIGHT' -%}
+    {%- set background_position = 'right bottom' -%}
+  {%- endif -%}
+  {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
+    background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{data.background_image.src}});
+    background-size: {{data.background_image.background_size}};
+    background-position: {{background_position}};
+  {% elif data.background_image_overlay_gradient.css and data.background_image_overlay_type == 'gradient' %}
+    background: {{data.background_image_overlay_gradient.css}}, url({{data.background_image.src}});
+    background-size: {{data.background_image.background_size}};
+    background-position: {{background_position}};
+  {% else %}
+    {{data.background_image.css}}
+  {% endif %}
+{%- endmacro -%}
+
+{%- macro css_hero_image_background_macro(data, class) -%}
+  {% if data.background_image_lowres.src and data.add_lowres_image %}
+    {% if data.background_image_lowres.src != data.background_image.src %}
+      {% set lowres_img = ', url({{resize_image_url(data.background_image_lowres.src, 0, 0, 720)}})' %}
+    {% else %}
+      {% set lowres_img = '' %}
+    {% endif %}
+  {% endif %}
+  {{class}} {
+    {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
+      background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{resize_image_url(data.background_image.src, 0, 0, 700)}}){{lowres_img}};
+    {% elif data.background_image_overlay_type == 'gradient' and module.hero_image_group.gradient_direction and module.hero_image_group.gradient_color|length > 1 %}
+      background: linear-gradient({{module.hero_image_group.gradient_direction}}, {{module.hero_image_group.gradient_color|map('css')|join(',')}}), url({{resize_image_url(data.background_image.src, 0, 0, 700)}}){{lowres_img}};
+    {% else %}
+      background-image: url({{resize_image_url(data.background_image.src, 0, 0, 700)}}){{lowres_img}};
+    {% endif %}
+  }
+  @media (min-width: 768px) {
+    {{class}} {
+      {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
+        background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{resize_image_url(data.background_image.src, 0, 0, 1024)}}){{lowres_img}};
+      {% elif data.background_image_overlay_type == 'gradient' and module.hero_image_group.gradient_direction and module.hero_image_group.gradient_color|length > 1 %}
+        background: linear-gradient({{module.hero_image_group.gradient_direction}}, {{module.hero_image_group.gradient_color|map('css')|join(',')}}), url({{resize_image_url(data.background_image.src, 0, 0, 1024)}}){{lowres_img}};
+      {% else %}
+        background-image: url({{resize_image_url(data.background_image.src, 0, 0, 1024)}}){{lowres_img}};
+      {% endif %}
+    }
+  }
+  @media (min-width: 1024px) {
+    {{class}} {
+      {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
+        background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{resize_image_url(data.background_image.src, 0, 0, 1800)}}){{lowres_img}};
+      {% elif data.background_image_overlay_type == 'gradient' and module.hero_image_group.gradient_direction and module.hero_image_group.gradient_color|length > 1 %}
+        background: linear-gradient({{module.hero_image_group.gradient_direction}}, {{module.hero_image_group.gradient_color|map('css')|join(',')}}), url({{resize_image_url(data.background_image.src, 0, 0, 1800)}}){{lowres_img}};
+      {% else %}
+        background-image: url({{resize_image_url(data.background_image.src, 0, 0, 1800)}}){{lowres_img}};
+      {% endif %}
+    }
+  }
+  {{class}} {
+    background-size: cover;
+    background-position: {{data.background_image_alignment}};
+  }
+{%- endmacro -%}
+
+
+{%- macro css_complex_image_background_macro(data) -%}
+  {%- if data.background_alignment == 'TOP_LEFT' -%}
+    {%- set background_alignment = 'left top' -%}
+  {%- elif data.background_alignment == 'TOP_CENTER' -%}
+    {%- set background_alignment = 'center top' -%}
+  {%- elif data.background_alignment == 'TOP_RIGHT' -%}
+    {%- set background_alignment = 'right top' -%}
+  {%- elif data.background_alignment == 'MIDDLE_LEFT' -%}
+    {%- set background_alignment = 'left center' -%}
+  {%- elif data.background_alignment == 'MIDDLE_CENTER' -%}
+    {%- set background_alignment = 'center center' -%}
+  {%- elif data.background_alignment == 'MIDDLE_RIGHT' -%}
+    {%- set background_alignment = 'right center' -%}
+  {%- elif data.background_alignment == 'BOTTOM_LEFT' -%}
+    {%- set background_alignment = 'left bottom' -%}
+  {%- elif data.background_alignment == 'BOTTOM_CENTER' -%}
+    {%- set background_alignment = 'center bottom' -%}
+  {%- elif data.background_alignment == 'BOTTOM_RIGHT' -%}
+    {%- set background_alignment = 'right bottom' -%}
+  {%- endif -%}
+  {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
+    background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{data.background_image}});
+    background-size: {{data.background_size}};
+    background-position: {{background_alignment}};
+  {% elif data.background_image_overlay_gradient_direction and data.background_image_overlay_type == 'gradient' %}
+    background: linear-gradient({{data.background_image_overlay_gradient_direction}}, {{data.background_image_overlay_gradient_color|map('css')|join(',')}}), url({{data.background_image}});
+    background-size: {{data.background_size}};
+    background-position: {{background_alignment}};
+  {% else %}
+    background-image: url({{data.background_image}});
+    background-size: {{data.background_size}};
+    background-position: {{background_alignment}};
+  {% endif %}
 {%- endmacro -%}
 
 
@@ -679,92 +679,6 @@
 
 
 
-{%- macro category_group_macro(data) -%}
-  {%- if data.category_group|length > 0 and data.show_categories -%}
-
-    {# common styles for category-group macro #}
-    {% require_css %}
-      <style data-component="category-group">
-        .category-group {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: var(--root-custom-text-gap, .9ch);
-          justify-content: var(--scope-alignment);
-        }
-        .category {
-          color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
-          border-color: var(--scope-hover-color, var(--custom-border-color, var(--scope-color)));
-          transition-property: color, border-color;
-          transition-duration: var(--root-transition-duration);
-          transition-timing-function: var(--root-transition-timing-function);
-        }
-      </style>
-    {% end_require_css %}
-
-    {# hash for scoped styles #}
-    {% set item_hash = hash([
-      data.categories_style_group.category_font.css,
-      data.categories_style_group.category_color.css,
-      data.categories_style_group.category_background.css,
-      data.categories_style_group.category_vertical_spacing,
-      data.categories_style_group.category_horizontal_spacing,
-      data.categories_style_group.category_border_width,
-      data.categories_style_group.category_border_radius,
-      data.categories_style_group.category_border_color.css
-    ]) %}
-
-    {# scoped styles for category-group macro #}
-    {% require_css %}
-      <style data-component="category-group scoped id{{item_hash}}">
-        .category{{item_hash}} {
-          {% if data.categories_style_group.category_color.color %}
-            --custom-color: {{data.categories_style_group.category_color.color}};
-          {% endif %}
-          {%- if data.categories_style_group.category_border_radius is integer -%}
-            border-radius: {{data.categories_style_group.category_border_radius ~ 'px'}};
-          {%- endif -%}
-          {%- if data.categories_style_group.category_background.css -%}
-            background-color: {{data.categories_style_group.category_background.css}};
-            --scope-hover-color: var(--custom-color);
-          {%- endif -%}
-          {% if data.categories_style_group.category_vertical_spacing is integer %}
-            padding-top: {{data.categories_style_group.category_vertical_spacing ~ 'px'}};
-            padding-bottom: {{data.categories_style_group.category_vertical_spacing ~ 'px'}};
-          {% endif %}
-          {% if data.categories_style_group.category_horizontal_spacing is integer %}
-            padding-left: {{data.categories_style_group.category_horizontal_spacing ~ 'px'}};
-            padding-right: {{data.categories_style_group.category_horizontal_spacing ~ 'px'}};
-          {% endif %}
-          {% if data.categories_style_group.category_font.size >= 30 and data.categories_style_group.category_font.size < 45 %}
-            line-height: 1.2;
-          {% endif %}
-          {% if data.categories_style_group.category_font.size >= 45 %}
-            line-height: 1;
-          {% endif %}
-          {% if data.categories_style_group.category_border_width is integer %}
-            border-width: {{data.categories_style_group.category_border_width ~ 'px'}};
-            border-style: solid;
-          {% endif %}
-          {% if data.categories_style_group.category_border_color.css %}
-            --custom-border-color: {{data.categories_style_group.category_border_color.css}};
-          {% endif %}
-          {{css_font_macro(data.categories_style_group.category_font, false)}}
-        }
-      </style>
-    {% end_require_css %}
-
-    <div data-component="category-group" class="category-group">
-      {%- for category in data.category_group -%}
-        <span class="category category{{item_hash}}">{{category|capitalize}}</span>
-      {%- endfor -%}
-    </div>
-
-  {%- endif -%}
-{%- endmacro -%}
-
-
-
 {%- macro custom_text_group_macro(data) -%}
   {%- if data.custom_text_group|length > 0 -%}
 
@@ -877,148 +791,6 @@
 
         {%- endif -%}
       {%- endfor -%}
-    </div>
-  {%- endif -%}
-{%- endmacro -%}
-
-
-  {%- macro form_macro(data) -%}
-    {%- if data.form.form_id -%}
-      {# common styles for form macro #}
-      {% require_css %}
-        <style data-component="form">
-          .form-wrp.form-default {
-            width: 100%;
-          }
-          .form-wrp.form-default.center .hs-submit {
-            text-align: center;
-          }
-          .form-wrp.form-default.right .hs-submit {
-            text-align: right;
-          }
-        </style>
-      {% end_require_css %}
-      {# hash for scoped styles #}
-      {% set item_hash = hash([
-        data.form_text_color.css
-      ]) %}
-      {# scoped styles for form macro #}
-      {%- if data.form_text_color.css -%}
-         {% require_css %}
-           <style data-component="form scoped id{{item_hash}}">
-             .form{{item_hash}} input:not([type="submit"]),
-             .form{{item_hash}} textarea,
-             .form{{item_hash}} select {
-                color: {{data.form_text_color.css}};
-             }
-             .form{{item_hash}} select option {
-               color: initial;
-               background-color: initial;
-             }
-           </style>
-         {% end_require_css %}
-      {%- endif -%}
-      {%- if data.button_style -%}
-        {% set button_preset_style = 'form--btn-' ~ data.button_style %}
-      {%- else -%}
-        {% set button_preset_style = theme.forms.button.presets.style %}
-      {%- endif -%}
-      {%- if data.button_size -%}
-        {% set button_preset_size = 'form--btn-' ~ data.button_size %}
-      {%- else -%}
-        {% set button_preset_size = theme.forms.button.presets.size %}
-      {%- endif -%}
-      <div data-component="form" class="form-wrp form-default form{{item_hash}} {{button_preset_style}} {{button_preset_size}} {{data.button_position}}">
-        {%- if data.form_heading_text -%}
-          <{{data.form_heading_tag}} class="{{data.form_heading_style}} heading">
-            {{data.form_heading_text}}
-          </{{data.form_heading_tag}}>
-        {%- endif -%}
-        {% form
-          form_key='{{ name }}',
-          form_to_use='{{ data.form.form_id }}',
-          no_title=true
-        %}
-      </div>
-    {%- endif -%}
-  {%- endmacro -%}
-
-
-{%- macro full_width_image_macro(data) -%}
-  {%- if data.full_width_image.src -%}
-
-    {# common styles for full-width-image macro #}
-    {% require_css %}
-      <style data-component="full-width-image">
-        .full-width-image {
-          width: 100%;
-          z-index: -15;
-        }
-        .full-width-image-item {
-          object-fit: cover;
-          width: 100%;
-          display: block;
-          max-width: 100%;
-          height: auto;
-        }
-      </style>
-    {% end_require_css %}
-
-    {# hash for scoped styles #}
-    {% set item_hash = hash([
-      loop.first,
-      loop.last,
-      data.force_full_width_image,
-      data.full_width_image_border_radius
-    ]) %}
-
-    {# scoped styles for full-width-image macro #}
-    {%- if data.force_full_width_image -%}
-      {% require_css %}
-        <style data-component="full-width-image scoped id{{item_hash}}">
-          .fullwidthimage{{item_hash}} {
-            margin-left: calc(var(--scope-padding-left) * -1);
-            margin-right: calc(var(--scope-padding-right) * -1);
-            width: calc(100% + var(--scope-padding-left) + var(--scope-padding-right));
-            {%- if data.force_full_width_image and loop.first -%}
-              margin-top: calc(var(--scope-padding-top) * -1);
-              margin-bottom: 0.8rem;
-            {%- elif data.force_full_width_image and loop.last -%}
-              margin-bottom: calc(var(--scope-padding-bottom) * -1);
-            {%- endif -%}
-          }
-          {% if data.force_full_width_image and loop.first or data.force_full_width_image and loop.last %}
-            .fullwidthimage{{item_hash}} .full-width-image-item {
-              {%- if data.force_full_width_image and loop.first -%}
-                border-top-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
-                border-top-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
-              {%- elif data.force_full_width_image and loop.last -%}
-                border-bottom-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
-                border-bottom-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
-              {%- endif -%}
-            }
-          {% endif %}
-        </style>
-      {% end_require_css %}
-    {%- endif -%}
-    {%- if data.full_width_image_border_radius is integer and data.force_full_width_image != true -%}
-      {% require_css %}
-        <style data-component="full-width-image scoped id{{item_hash}}">
-          .fullwidthimage{{item_hash}} .full-width-image-item {
-            border-radius: {{data.full_width_image_border_radius ~ 'px'}};
-          }
-        </style>
-      {% end_require_css %}
-    {%- endif -%}
-
-    <div data-component="full-width-image" class="full-width-image fullwidthimage{{item_hash}}">
-      <img class="full-width-image-item"
-        style="aspect-ratio: {{data.full_width_image_aspect_ratio}}"
-        alt="{{data.full_width_image.alt}}"
-        src="{{data.full_width_image.src}}"
-        width="{{data.full_width_image.width}}"
-        height="{{data.full_width_image.height}}"
-        loading="lazy">
     </div>
   {%- endif -%}
 {%- endmacro -%}
@@ -1178,7 +950,7 @@
 
 
 {%- macro icon_macro(data) -%}
-  {%- if data.icon.icon_inline_svg or data.icon.name -%}
+  {%- if data.icon_inline_svg or data.icon.name -%}
 
     {# common styles for icon macro #}
     {% require_css %}
@@ -1385,300 +1157,6 @@
 
 {%- endmacro -%}
 
-{%- macro lottie_dimensions(data) -%}
-  {%- if data.lottie_width is integer -%}
-    width="{{data.lottie_width}}"
-  {%- endif -%}
-  {%- if data.lottie_height is integer -%}
-    height="{{data.lottie_height}}"
-  {%- endif -%}
-  {%- if data.lottie_scale is float -%}
-    style="--lottie-custom-scale: scale({{data.lottie_scale}});"
-  {%- endif -%}
-{%- endmacro -%}
-
-{%- macro lottie_macro(data) -%}
-  {%- if data.lottie_file -%}
-    {{require_js(get_asset_url('../../assets/js/dotlottie.js'), {defer: true})}}
-    {% require_js %}
-      <script>
-        function runDotLottie () {
-          const dotLottieCanvas = document.getElementsByClassName('dotlottie-canvas')
-          if (!dotLottieCanvas) return
-          for (const item of dotLottieCanvas) {
-            // set lottie alignment based on scope alignment
-            let lottieAlignment = window.getComputedStyle(item.closest('[class*="scope-root"]')).getPropertyValue('--scope-alignment')
-            if (lottieAlignment === 'start') {
-              lottieAlignment = [0, 0.5]
-            } else if (lottieAlignment === 'center') {
-              lottieAlignment = [0.5, 0.5]
-            } else if (lottieAlignment === 'end') {
-              lottieAlignment = [1, 0.5]
-            } else {
-              lottieAlignment = [0, 0.5]
-            }
-            // initialize dotLottie
-            const dotLottie = new window.DotLottie({ // eslint-disable-line
-              loop: item.hasAttribute('data-loop'),
-              speed: item.dataset.speed,
-              mode: item.dataset.mode,
-              autoplay: true,
-              layout: {
-                fit: 'contain',
-                align: lottieAlignment
-              },
-              canvas: item,
-              src: item.dataset.lottieSrc
-            })
-            // dotLottie load event
-            dotLottie.addEventListener('load', (event) => {
-              // run animation when in browser view
-              const observer = new window.IntersectionObserver(function (entries) {
-                entries.forEach(entry => {
-                  if (entry.isIntersecting) {
-                    dotLottie.play()
-                  } else {
-                    dotLottie.pause()
-                  }
-                })
-              })
-              for (const elem of dotLottieCanvas) {
-                observer.observe(elem)
-              }
-            })
-          }
-        }
-        // run dotLottie when document is ready
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', runDotLottie)
-        } else {
-          runDotLottie()
-        }
-      </script>
-    {% end_require_js %}
-    {# common styles for lottie macro #}
-    {% require_css %}
-      <style data-component="lottie">
-        .lottie {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          transform: var(--lottie-custom-scale, scale(1));
-        }
-      </style>
-    {% end_require_css %}
-    <canvas data-component="lottie" class="lottie dotlottie-canvas"
-      {{lottie_dimensions(data)}}
-      data-lottie-src="{{data.lottie_file}}"
-      data-speed="{{data.lottie_speed}}"
-      data-mode="{{data.lottie_mode}}"
-      {{"data-loop" if data.lottie_loop}}>
-    </canvas>
-  {%- endif -%}
-{%- endmacro -%}
-
-
-
-
-
-
-
-{%- macro media_group_macro(data) -%}
-  {% if data.media_type == 'full_width_image' %}
-    {{full_width_image_macro(data.full_width_image_group)}}
-  {% elif data.media_type == 'simple_image' %}
-    {{simple_image_macro(data.simple_image_group)}}
-  {% elif data.media_type == 'icon' %}
-    {{icon_macro(data.icon_group)}}
-  {% elif data.media_type == 'lottie' %}
-    {{lottie_macro(data.lottie_group)}}
-  {% elif data.media_type == 'video' %}
-    {{video_macro(data.video_group)}}
-  {% endif %}
-{%- endmacro -%}
-
-{%- macro meeting_macro(data) -%}
-  {% if data.meeting %}
-    {# common styles for meeting macro #}
-    {% require_css %}
-      <style data-component="meeting">
-        .meeting-wrp {
-          width: 100%;
-          overflow-y: auto;
-        }
-      </style>
-    {% end_require_css %}
-    <div data-component="meeting" class="meeting-wrp">
-      <div class="meetings-iframe-container" data-src="{{ data.meeting ~ '?embed=true'|escape_url }}" data-ab="{{ content.ab|escape_attr }}" data-ab-status="{{ content.abStatus|escape_attr }}" data-content-id="{{ content.id|escape_attr }}"></div>
-      <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" data-hs-ignore="true"></script>
-    </div>
-  {% endif %}
-{%- endmacro -%}
-
-
-
-
-{# real-button-group main macro #}
-{%- macro real_button_group_macro(data) -%}
-  {%- if data.button_group|length > 0 -%}
-
-    {# common styles for real-button-group macro #}
-    {% require_css %}
-      <style data-component="real-button-group">
-        .real-button-group,
-        .real-btn-block {
-          justify-content: var(--scope-alignment);
-        }
-        .real-button-group {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          align-items: center;
-          width: 100%;
-          gap: var(--scope-content-gap);
-        }
-        .real-btn-block {
-          flex-basis: 100%;
-          display: flex;
-          flex-wrap: wrap;
-        }
-        :where(.real-button-group) :where(.btn-full-width) {
-          width: 100%;
-        }
-        :where(.real-button-group) :where(.btn-link) {
-          gap: var(--root-button-icon-gap, .5ch);
-        }
-        :where(.real-button-group button svg) {
-          width: auto;
-          height: var(--root-buttonlink-icon-size, 1.4em);
-          fill: currentcolor;
-        }
-        :where(.real-button-group) :where(svg, span) {
-          pointer-events: none;
-        }
-        :where(.real-button-group .close-icon) {
-          display: none;
-        }
-      </style>
-    {% end_require_css %}
-    <div data-component="real-button-group" class="real-button-group">
-      {%- for item in data.button_group -%}
-        {# hash for scoped styles #}
-        {% set item_hash = hash([
-          item.custom_button_font.css,
-          item.custom_button_background.css,
-          item.custom_button_vertical_spacing,
-          item.custom_button_horizontal_spacing,
-          item.custom_button_border_width,
-          item.custom_button_border_radius,
-          item.custom_button_border_color.css,
-          item.custom_button_hover.color.css,
-          item.custom_button_hover.background.css,
-          item.custom_button_hover.border_color.css,
-          item.active_state_style.color.css,
-          item.active_state_style.background.css,
-          item.active_state_style.border_color.css,
-          item.active_state_style.show_close_icon
-        ]) %}
-
-        {# scoped styles for button-group macro #}
-        {%- if item.button_style == "custombutton" -%}
-          {% require_css %}
-            <style data-component="real-button-group scoped id{{item_hash}}">
-              .btn{{item_hash}} {
-                {%- if item.custom_button_border_radius is integer -%}
-                  --border-radius: {{item.custom_button_border_radius ~ 'px'}};
-                {%- endif -%}
-                {%- if item.custom_button_font.color -%}
-                  --color: {{item.custom_button_font.color}};
-                {%- endif -%}
-                {%- if item.custom_button_background.css -%}
-                  --bg: {{item.custom_button_background.css}};
-                {%- endif -%}
-                {% if item.custom_button_vertical_spacing is integer %}
-                  padding-top: {{item.custom_button_vertical_spacing ~ 'px'}};
-                  padding-bottom: {{item.custom_button_vertical_spacing ~ 'px'}};
-                {% endif %}
-                {% if item.custom_button_horizontal_spacing is integer %}
-                  padding-left: {{item.custom_button_horizontal_spacing ~ 'px'}};
-                  padding-right: {{item.custom_button_horizontal_spacing ~ 'px'}};
-                {% endif %}
-                {%- if item.custom_button_border_width is integer -%}
-                  border-width: {{item.custom_button_border_width ~ 'px'}};
-                {%- endif -%}
-                {%- if item.custom_button_border_color.css -%}
-                  border-color: {{item.custom_button_border_color.css}};
-                {%- endif -%}
-                {{css_font_macro(item.custom_button_font, false)}}
-              }
-              .btn{{item_hash}}:not(:active):hover {
-                {%- if item.custom_button_hover.background.css -%}
-                  --hover-bg: {{item.custom_button_hover.background.color}};
-                {%- endif -%}
-                {%- if item.custom_button_hover.color.css -%}
-                  --hover-color: {{item.custom_button_hover.color.css}};
-                {%- endif -%}
-                {%- if item.custom_button_hover.border_color.css -%}
-                  --hover-border: {{item.custom_button_hover.border_color.css}};
-                {%- endif -%}
-              }
-            </style>
-          {% end_require_css %}
-        {%- endif -%}
-
-        {%- if item.active_state_style.color.css or item.active_state_style.background.css or item.active_state_style.border_color.css or item.active_state_style.show_close_icon -%}
-          {% require_css %}
-            <style data-component="real-button-group scoped id{{item_hash}}">
-              .btn{{item_hash}}.active {
-                {%- if item.active_state_style.color.css -%}
-                  --color: {{item.active_state_style.color.css}};
-                {%- endif -%}
-                {%- if item.active_state_style.background.css -%}
-                  --bg: {{item.active_state_style.background.css}};
-                {%- endif -%}
-                {%- if item.active_state_style.border_color.css -%}
-                  border-color: {{item.active_state_style.border_color.css}};
-                {%- endif -%}
-              }
-              {% if item.active_state_style.show_close_icon %}
-                .btn{{item_hash}}.active .close-icon {
-                  display: block;
-                }
-              {% endif %}
-            </style>
-          {% end_require_css %}
-        {%- endif -%}
-
-        {# button categories filter #}
-        {%- if item.category -%}
-          {%- set categorie_filter = 'data-filter="' ~ item.category|lower|trim|regex_replace("[^a-z0-9]", "") ~ '"' -%}
-        {%- endif -%}
-
-        {%- if item.button_text or item.category -%}
-          {% set button_link_class = "btn-link btn-{{item.button_style}} btn-{{item.button_size}} {{'btn-full-width' if item.button_position == 'fullwidth'}}" %}
-          {%- if item.button_position == 'separate' -%}
-            <div class="real-btn-block">
-          {%- endif -%}
-          <button class="btn{{item_hash}} {{button_link_class}}" {{categorie_filter}}>
-            {% if item.button_text %}
-              <span>{{item.button_text}}</span>
-            {% elif item.category %}
-              <span>{{item.category|capitalize}}</span>
-            {% endif %}
-            {% if item.active_state_style.show_close_icon %}
-              <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
-            {% endif %}
-          </button>
-          {%- if item.button_position == 'separate' -%}
-            </div>
-          {%- endif -%}
-        {%- endif -%}
-
-      {%- endfor -%}
-    </div>
-  {%- endif -%}
-{%- endmacro -%}
-
 {%- macro richtext_macro(data) -%}
   {%- if data.richtext -%}
     {# common styles for richtext macro #}
@@ -1875,6 +1353,7 @@
         {%- if data.hubspot_video.player_id -%}
           <div class="iframe-wrp hubspot-video-wrp">
             {% video_player "hubspot_video"
+              autoplay={{data.autoplay}},
               conversion_asset={{data.hubspot_video.conversion_asset|tojson|safe}},
               play_button_color={{data.hubspot_video_play_button_color.css}},
               player_id={{data.hubspot_video.player_id}},
@@ -1886,123 +1365,197 @@
     </div>
   {%- endif -%}
 {%- endmacro -%}
-{%- macro css_alignment_macro(data) -%}
-  {%- if data == 'LEFT' -%}
-    start
-  {%- elif data == 'CENTER' -%}
-    center
-  {%- elif data == 'RIGHT' -%}
-    end
-  {%- endif -%}
-{%- endmacro -%}
 
-{%- macro css_vertical_alignment_macro(data) -%}
-  {%- if data == 'TOP' -%}
-    start
-  {%- elif data == 'MIDDLE' -%}
-    center
-  {%- elif data == 'BOTTOM' -%}
-    end
-  {%- endif -%}
-{%- endmacro -%}
 
-{%- macro css_gradient_macro(data) -%}
-  {%- if data.gradient_direction -%}
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
-    background-image: linear-gradient({{data.gradient_direction}}, {{data.gradient_color|map('css')|join(',')}});
-  {%- endif -%}
-{%- endmacro -%}
 
-{%- macro css_font_macro(data, add_color = true) -%}
-  {%- if add_color and data.color -%}
-    color: {{data.color}};
-  {%- endif -%}
-  {%- if data.size -%}
-    font-size: {{data.size ~ 'px'}};
-  {%- endif -%}
-  {%- if data.style -%}
-    {{data.style}};
-  {%- endif -%}
-{%- endmacro -%}
 
-{%- macro css_image_background_macro(data) -%}
-  {%- if data.background_image.background_position == 'TOP_LEFT' -%}
-    {%- set background_position = 'left top' -%}
-  {%- elif data.background_image.background_position == 'TOP_CENTER' -%}
-    {%- set background_position = 'center top' -%}
-  {%- elif data.background_image.background_position == 'TOP_RIGHT' -%}
-    {%- set background_position = 'right top' -%}
-  {%- elif data.background_image.background_position == 'MIDDLE_LEFT' -%}
-    {%- set background_position = 'left center' -%}
-  {%- elif data.background_image.background_position == 'MIDDLE_CENTER' -%}
-    {%- set background_position = 'center center' -%}
-  {%- elif data.background_image.background_position == 'MIDDLE_RIGHT' -%}
-    {%- set background_position = 'right center' -%}
-  {%- elif data.background_image.background_position == 'BOTTOM_LEFT' -%}
-    {%- set background_position = 'left bottom' -%}
-  {%- elif data.background_image.background_position == 'BOTTOM_CENTER' -%}
-    {%- set background_position = 'center bottom' -%}
-  {%- elif data.background_image.background_position == 'BOTTOM_RIGHT' -%}
-    {%- set background_position = 'right bottom' -%}
-  {%- endif -%}
-  {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
-    background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{data.background_image.src}});
-    background-size: {{data.background_image.background_size}};
-    background-position: {{background_position}};
-  {% elif data.background_image_overlay_gradient.css and data.background_image_overlay_type == 'gradient' %}
-    background: {{data.background_image_overlay_gradient.css}}, url({{data.background_image.src}});
-    background-size: {{data.background_image.background_size}};
-    background-position: {{background_position}};
-  {% else %}
-    {{data.background_image.css}}
+
+
+
+{%- macro media_group_macro(data) -%}
+  {% if data.media_type == 'full_width_image' %}
+    {{full_width_image_macro(data.full_width_image_group)}}
+  {% elif data.media_type == 'simple_image' %}
+    {{simple_image_macro(data.simple_image_group)}}
+  {% elif data.media_type == 'icon' %}
+    {{icon_macro(data.icon_group)}}
+  {% elif data.media_type == 'lottie' %}
+    {{lottie_macro(data.lottie_group)}}
+  {% elif data.media_type == 'video' %}
+    {{video_macro(data.video_group)}}
   {% endif %}
 {%- endmacro -%}
 
-{%- macro css_hero_image_background_macro(data, class) -%}
-  {% if data.background_image_lowres.src and data.add_lowres_image %}
-    {% if data.background_image_lowres.src != data.background_image.src %}
-      {% set lowres_img = ', url({{resize_image_url(data.background_image_lowres.src, 0, 0, 720)}})' %}
-    {% else %}
-      {% set lowres_img = '' %}
-    {% endif %}
-  {% endif %}
-  {{class}} {
-    {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
-      background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{resize_image_url(data.background_image.src, 0, 0, 700)}}){{lowres_img}};
-    {% elif data.background_image_overlay_type == 'gradient' and module.hero_image_group.gradient_direction and module.hero_image_group.gradient_color|length > 1 %}
-      background: linear-gradient({{module.hero_image_group.gradient_direction}}, {{module.hero_image_group.gradient_color|map('css')|join(',')}}), url({{resize_image_url(data.background_image.src, 0, 0, 700)}}){{lowres_img}};
-    {% else %}
-      background-image: url({{resize_image_url(data.background_image.src, 0, 0, 700)}}){{lowres_img}};
-    {% endif %}
-  }
-  @media screen and (min-width: 768px) {
-    {{class}} {
-      {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
-        background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{resize_image_url(data.background_image.src, 0, 0, 1024)}}){{lowres_img}};
-      {% elif data.background_image_overlay_type == 'gradient' and module.hero_image_group.gradient_direction and module.hero_image_group.gradient_color|length > 1 %}
-        background: linear-gradient({{module.hero_image_group.gradient_direction}}, {{module.hero_image_group.gradient_color|map('css')|join(',')}}), url({{resize_image_url(data.background_image.src, 0, 0, 1024)}}){{lowres_img}};
-      {% else %}
-        background-image: url({{resize_image_url(data.background_image.src, 0, 0, 1024)}}){{lowres_img}};
-      {% endif %}
-    }
-  }
-  @media screen and (min-width: 1024px) {
-    {{class}} {
-      {% if data.background_image_overlay.css and data.background_image_overlay_type == 'color' %}
-        background: linear-gradient({{data.background_image_overlay.css}}, {{data.background_image_overlay.css}}), url({{resize_image_url(data.background_image.src, 0, 0, 1800)}}){{lowres_img}};
-      {% elif data.background_image_overlay_type == 'gradient' and module.hero_image_group.gradient_direction and module.hero_image_group.gradient_color|length > 1 %}
-        background: linear-gradient({{module.hero_image_group.gradient_direction}}, {{module.hero_image_group.gradient_color|map('css')|join(',')}}), url({{resize_image_url(data.background_image.src, 0, 0, 1800)}}){{lowres_img}};
-      {% else %}
-        background-image: url({{resize_image_url(data.background_image.src, 0, 0, 1800)}}){{lowres_img}};
-      {% endif %}
-    }
-  }
-  {{class}} {
-    background-size: cover;
-    background-position: {{data.background_image_alignment}};
-  }
+{%- macro lottie_dimensions(data) -%}
+  {%- if data.lottie_width is integer -%}
+    width="{{data.lottie_width}}"
+  {%- endif -%}
+  {%- if data.lottie_height is integer -%}
+    height="{{data.lottie_height}}"
+  {%- endif -%}
+  {%- if data.lottie_scale is float -%}
+    style="--lottie-custom-scale: scale({{data.lottie_scale}});"
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro lottie_macro(data) -%}
+  {%- if data.lottie_file -%}
+    {% require_js %}
+      <script type="module">
+        import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web@0.40.0/+esm";
+        function runDotLottie () {
+          const dotLottieCanvas = document.getElementsByClassName('dotlottie-canvas')
+          if (!dotLottieCanvas) return
+          for (const item of dotLottieCanvas) {
+            // set lottie alignment based on scope alignment
+            let lottieAlignment = window.getComputedStyle(item.closest('[class*="scope-root"]')).getPropertyValue('--scope-alignment')
+            if (lottieAlignment === 'start') {
+              lottieAlignment = [0, 0.5]
+            } else if (lottieAlignment === 'center') {
+              lottieAlignment = [0.5, 0.5]
+            } else if (lottieAlignment === 'end') {
+              lottieAlignment = [1, 0.5]
+            } else {
+              lottieAlignment = [0, 0.5]
+            }
+            // initialize dotLottie
+            const dotLottie = new DotLottie({ // eslint-disable-line
+              loop: item.hasAttribute('data-loop'),
+              speed: item.dataset.speed,
+              mode: item.dataset.mode,
+              autoplay: true,
+              layout: {
+                fit: 'contain',
+                align: lottieAlignment
+              },
+              canvas: item,
+              src: item.dataset.lottieSrc
+            })
+            // dotLottie load event
+            dotLottie.addEventListener('load', (event) => {
+              // run animation when in browser view
+              const observer = new window.IntersectionObserver(function (entries) {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    dotLottie.play()
+                  } else {
+                    dotLottie.pause()
+                  }
+                })
+              })
+              for (const elem of dotLottieCanvas) {
+                observer.observe(elem)
+              }
+            })
+          }
+        }
+        // run dotLottie when document is ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', runDotLottie)
+        } else {
+          runDotLottie()
+        }
+      </script>
+    {% end_require_js %}
+    {# common styles for lottie macro #}
+    {% require_css %}
+      <style data-component="lottie">
+        .lottie {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          transform: var(--lottie-custom-scale, scale(1));
+        }
+      </style>
+    {% end_require_css %}
+    <canvas data-component="lottie" class="lottie dotlottie-canvas"
+      {{lottie_dimensions(data)}}
+      data-lottie-src="{{data.lottie_file}}"
+      data-speed="{{data.lottie_speed}}"
+      data-mode="{{data.lottie_mode}}"
+      {{"data-loop" if data.lottie_loop}}>
+    </canvas>
+  {%- endif -%}
+{%- endmacro -%}
+
+
+{%- macro full_width_image_macro(data) -%}
+  {%- if data.full_width_image.src -%}
+
+    {# common styles for full-width-image macro #}
+    {% require_css %}
+      <style data-component="full-width-image">
+        .full-width-image {
+          width: 100%;
+          z-index: -15;
+        }
+        .full-width-image-item {
+          object-fit: cover;
+          width: 100%;
+          display: block;
+          max-width: 100%;
+          height: auto;
+        }
+      </style>
+    {% end_require_css %}
+
+    {# hash for scoped styles #}
+    {% set item_hash = hash([
+      loop.first,
+      loop.last,
+      data.force_full_width_image,
+      data.full_width_image_border_radius
+    ]) %}
+
+    {# scoped styles for full-width-image macro #}
+    {%- if data.force_full_width_image -%}
+      {% require_css %}
+        <style data-component="full-width-image scoped id{{item_hash}}">
+          .fullwidthimage{{item_hash}} {
+            margin-left: calc(var(--scope-padding-left) * -1);
+            margin-right: calc(var(--scope-padding-right) * -1);
+            width: calc(100% + var(--scope-padding-left) + var(--scope-padding-right));
+            {%- if data.force_full_width_image and loop.first -%}
+              margin-top: calc(var(--scope-padding-top) * -1);
+              margin-bottom: 0.8rem;
+            {%- elif data.force_full_width_image and loop.last -%}
+              margin-bottom: calc(var(--scope-padding-bottom) * -1);
+            {%- endif -%}
+          }
+          {% if data.force_full_width_image and loop.first or data.force_full_width_image and loop.last %}
+            .fullwidthimage{{item_hash}} .full-width-image-item {
+              {%- if data.force_full_width_image and loop.first -%}
+                border-top-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                border-top-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+              {%- elif data.force_full_width_image and loop.last -%}
+                border-bottom-left-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+                border-bottom-right-radius: calc(var(--scope-border-radius) - var(--scope-border-width));
+              {%- endif -%}
+            }
+          {% endif %}
+        </style>
+      {% end_require_css %}
+    {%- endif -%}
+    {%- if data.full_width_image_border_radius is integer and data.force_full_width_image != true -%}
+      {% require_css %}
+        <style data-component="full-width-image scoped id{{item_hash}}">
+          .fullwidthimage{{item_hash}} .full-width-image-item {
+            border-radius: {{data.full_width_image_border_radius ~ 'px'}};
+          }
+        </style>
+      {% end_require_css %}
+    {%- endif -%}
+
+    <div data-component="full-width-image" class="full-width-image fullwidthimage{{item_hash}}">
+      <img class="full-width-image-item"
+        style="aspect-ratio: {{data.full_width_image_aspect_ratio}}"
+        alt="{{data.full_width_image.alt}}"
+        src="{{data.full_width_image.src}}"
+        width="{{data.full_width_image.width}}"
+        height="{{data.full_width_image.height}}"
+        loading="lazy">
+    </div>
+  {%- endif -%}
 {%- endmacro -%}
 
 

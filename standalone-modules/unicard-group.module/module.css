@@ -1,0 +1,426 @@
+/* browser-defaults-overrides */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+input,
+select,
+optgroup,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+select {
+  text-transform: none;
+}
+
+[role="button"] {
+  cursor: pointer;
+}
+
+::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+textarea {
+  /* eslint-disable-next-line css/use-baseline */
+  resize: vertical;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+figure {
+  margin: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+::-webkit-inner-spin-button {
+  height: auto;
+}
+
+::-webkit-file-upload-button {
+  font: inherit;
+  -webkit-appearance: button;
+}
+
+summary {
+  display: list-item;
+  cursor: pointer;
+}
+.stretched-link::after,
+.cta-stretched-link a::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: auto;
+  content: "";
+  background-color: rgba(0, 0, 0, 0);
+}
+.visually-hidden,
+.visually-hidden-focusable:not(:focus):not(:focus-within) { /* stylelint-disable-line */
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  /* eslint-disable-next-line css/use-baseline */
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+:root {
+  --system-fonts: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --shadow-color: rgb(154 161 177 / 30%);
+  --shadow-sm: 0 1px 2px 0 var(--shadow-color);
+  --shadow-md: 0 1px 3px 0 var(--shadow-color), 0 1px 2px -1px var(--shadow-color);
+  --shadow-lg: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
+  --shadow-xl: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
+  --shadow-2xl: 0 20px 25px -5px var(--shadow-color), 0 8px 10px -6px var(--shadow-color);
+  --ani-scale1x: scale(1.01);
+  --ani-scale2x: scale(1.03);
+  --ani-scale3x: scale(1.05);
+  --ani-scale4x: scale(1.08);
+  --ani-slideup1x: translateY(-4px);
+  --ani-slideup2x: translateY(-8px);
+  --ani-slideup3x: translateY(-12px);
+  --btn-small: 10px 20px;
+  --btn-regular: 12px 28px;
+  --btn-large: 16px 36px;
+  --h1-font-size: 3rem;
+  --h2-font-size: 2.5rem;
+  --h3-font-size: 2rem;
+  --h4-font-size: 1.5rem;
+  --h5-font-size: 1rem;
+  --h6-font-size: 0.875rem;
+}
+
+/*
+  If the browser understands the media query and the user
+  explicitly hasn't set a preference, then use animations transition on components and modules.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    --root-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --root-transition-duration: 150ms;
+  }
+}
+.unicard-group :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]),
+:where(input[type="file"])::file-selector-button {
+  --_border-radius: var(--border-radius, none);
+  --_bg: var(--bg, #fff);
+  --_color: var(--color, #333);
+
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: 1.5;
+  border-radius: var(--_border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  font-style: initial;
+  background: var(--_bg);
+  color: var(--_color);
+  border: 1px solid #c8c8c8;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.5ch;
+  padding: 8px 20px;
+
+  /* eslint-disable-next-line css/use-baseline */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  min-width: 100px;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .unicard-group :where(
+  .btn-link,
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"]) {
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  }
+}
+
+.unicard-group :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+):where(:not(:active):hover) {
+  background: var(--hover-bg, var(--_bg));
+  color: var(--hover-color, var(--_color));
+  border-color: var(--hover-border, #999) !important;
+}
+
+:where(.btn-link, button, input):where(:not(:active)):focus-visible {
+  outline-offset: 5px;
+}
+
+.unicard-group :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+)[disabled] {
+  background: none;
+  cursor: not-allowed; /* stylelint-disable-line */
+
+  --color: hsl(210deg 7% 40%);
+}
+
+.unicard-group :where(input[type="file"]) {
+  font: inherit;
+  inline-size: 100%;
+  max-inline-size: max-content;
+}
+
+.unicard-group :where(input[type="button"]),
+.unicard-group :where(input[type="file"])::file-selector-button {
+  appearance: none; /* stylelint-disable-line */
+}
+
+.unicard-group :where(input[type="file"])::file-selector-button {
+  margin-inline-end: 1.5ch;
+}
+
+.unicard-group :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+) :where(.icon) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.unicard-group :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+) :where(svg, .icon > svg) {
+  height: 1.8ch;
+  width: 1.8ch;
+  flex-shrink: 0;
+  fill: currentcolor;
+}
+
+.unicard-group :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+):where(.btn-w100) {
+  width: 100%;
+}
+
+.unicard-group :where(
+.btn-link,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+):where(.btn-w100 + .btn-w100) {
+  margin-top: 0.5rem;
+}
+
+.unicard-group :where(.btn-small) {
+  padding: var(--btn-small, 10px 20px);
+}
+.unicard-group :where(.btn-regular) {
+  padding: var(--btn-regular, 12px 28px);
+}
+.unicard-group :where(.btn-large) {
+  padding: var(--btn-large, 16px 36px);
+}
+.unicard-group :where(
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6) {
+  line-height: 1.2;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  font-style: initial;
+  font-family: var(--system-fonts);
+}
+
+/* heading link */
+.unicard-group .heading-link {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  text-decoration: none;
+}
+
+.unicard-group .heading-link:hover {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+}
+
+.margin-collapse :where(
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.display-1,
+.display-2,
+.display-3,
+.display-4,
+.display-5,
+.display-6) {
+  margin-top: 0;
+}
+
+.unicard-group h1 {
+  font-size: var(--h1-font-size, 2.25rem);
+}
+.unicard-group h2 {
+  font-size: var(--h2-font-size, 1.5rem);
+}
+.unicard-group h3 {
+  font-size: var(--h3-font-size, 1.25rem);
+}
+.unicard-group h4 {
+  font-size: var(--h4-font-size, 1.125rem);
+}
+.unicard-group h5 {
+  font-size: var(--h5-font-size, 1rem);
+}
+.unicard-group h6 {
+  font-size: var(--h6-font-size, 0.875rem);
+}
+:where(.unicard-group a:not(.btn-link)) {
+  --_color: var(--color, blue);
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5ch;
+  color: var(--_color);
+}
+
+:where(.unicard-group a:not(.btn-link):hover) {
+  color: var(--hover-color, var(--_color));
+}
+
+:where(.unicard-group a:not(.btn-link)) :where(.icon) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:where(.unicard-group a:not(.btn-link)) :where(svg, .icon > svg) {
+  height: 1.5ch;
+  width: 1.5ch;
+  flex-shrink: 0;
+  fill: currentcolor;
+}
+.unicard {
+  color: var(--scope-color);
+  background-color: var(--scope-background);
+  border: var(--scope-border);
+  border-radius: var(--scope-border-radius);
+  box-shadow: var(--scope-shadow);
+  gap: var(--scope-content-gap);
+  padding-left: var(--scope-padding-left);
+  padding-right: var(--scope-padding-right);
+  padding-top: var(--scope-padding-top);
+  padding-bottom: var(--scope-padding-bottom);
+  justify-content: var(--scope-vertical-alignment, space-between);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition-property: box-shadow, transform, background-color, border-color;
+  transition-duration: var(--root-transition-duration);
+  transition-timing-function: var(--root-transition-timing-function);
+  transform: translateZ(0);
+  will-change: box-shadow, transform, background-color, border-color;
+}
+
+/* content blocks styles */
+.unicard .content-block-top,
+.unicard .content-block-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: var(--scope-alignment);
+  justify-content: var(--scope-vertical-alignment);
+  gap: var(--scope-content-gap);
+}
+
+.unicard .additional-images {
+  justify-content: var(--scope-alignment);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--scope-content-gap);
+}
+
+.unicard-group {
+  display: grid;
+}
+
+.unicard-group .unicard {
+  min-height: auto;
+}

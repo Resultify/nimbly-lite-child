@@ -6,7 +6,13 @@ import {
  * #### fullWidthImage fields
  * @param {string} [parent] - parent path
  * @param {object} [opt] - options
- * @param {boolean} [opt.hideForceFullWidthVideoProp] - hide force full width prop
+ * @param {object} [opt.mediaGroup] - media group options
+ * @param {boolean} [opt.mediaGroup.hideForceFullWidthVideoProp] - hide force_full_width_video property for video component
+ * @param {object} [opt.default] - default video properties
+ * @param {object} [opt.default.video] - default video properties
+ * @param {'hubspot_video'|'embed'} [opt.default.video.video_type] - video type
+ * @param {string} [opt.default.video.video_url] - video file source
+ * @param {string} [opt.default.video.video_iframe_url] - video iframe source
  */
 const video = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
@@ -15,7 +21,7 @@ const video = (parent = '', opt) => {
   return [
     fi.choice('Video type', 'video_type', {
       required: true,
-      default: 'hubspot_video',
+      default: opt?.default?.video?.video_type ?? 'hubspot_video',
       choices: [
         ['hubspot_video', 'HubSpot video'],
         ['embed', 'Embed'],
@@ -33,6 +39,14 @@ const video = (parent = '', opt) => {
       }
     }),
     fi.embed('Embed', 'embed', {
+      default: {
+        source_type : "oembed",
+        oembed_url : opt?.default?.video?.video_url ?? null,
+        oembed_response: {
+          type: "video",
+          html: `<iframe width="200" height="113" src="${opt?.default?.video?.video_iframe_url}?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="What is HubSpot?"></iframe>`,
+        },
+      },
       show_preview: true,
       resizable: false,
       visibility: {
@@ -60,7 +74,7 @@ const video = (parent = '', opt) => {
       }
     }),
     fi.boolean('Force full width', 'force_full_width_video', {
-      locked: opt?.hideForceFullWidthVideoProp || false,
+      locked: opt?.mediaGroup?.hideForceFullWidthVideoProp ?? false,
       help_text: 'With the <strong>Force full width</strong> option enabled, it will take the full width of the parent element, even if there is extra padding around it.',
       display_width: 'half_width',
       default: false,

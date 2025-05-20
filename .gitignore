@@ -10,6 +10,15 @@ theme/modules/unicard-filter.module/fields.json
 theme/modules/unicard-blog-list.module/fields.json
 theme/modules/unicard-blog-recent.module/fields.json
 theme/modules/n-search-results.module/fields.json
+theme/modules/unicard-button.module/fields.json
+theme/modules/unicard-heading.module/fields.json
+theme/modules/unicard-hero.module/fields.json
+theme/modules/unicard-form.module/fields.json
+theme/modules/unicard-accordion.module/fields.json
+theme/modules/unicard-icon.module/fields.json
+theme/modules/unicard-video.module/fields.json
+theme/modules/unicard-lottie.module/fields.json
+standalone-modules/unicard-group.module/fields-default.js
 
 # IDE ignore config
 .vscode/*

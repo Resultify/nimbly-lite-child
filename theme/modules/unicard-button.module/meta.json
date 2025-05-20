@@ -1,0 +1,62 @@
+{
+  "content_tags" : [ {
+    "name" : "TEXT",
+    "source" : "USER"
+  }, {
+    "name" : "VIDEO",
+    "source" : "USER"
+  }, {
+    "name" : "RICH_TEXT",
+    "source" : "USER"
+  }, {
+    "name" : "LISTS",
+    "source" : "USER"
+  }, {
+    "name" : "IMAGE",
+    "source" : "USER"
+  }, {
+    "name" : "ICON",
+    "source" : "USER"
+  }, {
+    "name" : "CTA",
+    "source" : "USER"
+  }, {
+    "name" : "BUTTONS",
+    "source" : "USER"
+  }, {
+    "name" : "ANIMATION",
+    "source" : "USER"
+  }, {
+    "name" : "BRANDING",
+    "source" : "USER"
+  }, {
+    "name" : "CONVERSION",
+    "source" : "USER"
+  }, {
+    "name" : "HEADERS",
+    "source" : "USER"
+  }, {
+    "name" : "INTERACTION",
+    "source" : "USER"
+  }, {
+    "name" : "LAYOUT",
+    "source" : "USER"
+  }, {
+    "name" : "MULTIMEDIA",
+    "source" : "USER"
+  }, {
+    "name" : "ACCORDION",
+    "source" : "USER"
+  }, {
+    "name" : "FORM",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "content_types" : [ "KNOWLEDGE_BASE", "MEMBERSHIP", "QUOTE_TEMPLATE", "LANDING_PAGE", "SITE_PAGE", "CUSTOMER_PORTAL", "BLOG_LISTING", "WEB_INTERACTIVE", "BLOG_POST" ],
+  "master_language" : "en",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 225778316522,
+  "label" : "Button",
+  "icon" : "../../images/module-icons/button.svg",
+  "is_available_for_new_content" : true
+}

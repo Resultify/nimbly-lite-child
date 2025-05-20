@@ -19,8 +19,105 @@ const realButtonGroup = (parent = '') => {
         occurrence: {
           min: 0,
           max: 100,
+          default: 3,
           sorting_label_field: `${parent}button_group.button_text`
-        }
+        },
+        default: [
+          {
+            active_state_style: {
+              background: {
+                color: "#E06666",
+                opacity: 100
+              },
+              border_color: {
+                color: "#E06666",
+                opacity: 100
+              },
+              color: {
+                color: "#FFFFFF",
+                opacity: 100
+              },
+              show_close_icon: true
+            },
+            button_position: "inline",
+            button_size: "regular",
+            button_style: "primary",
+            button_text: "Style 1",
+            category: categoryList[0][0],
+            custom_button_background: { },
+            custom_button_border_color: { },
+            custom_button_font: {
+              font_set: "DEFAULT"
+            },
+            custom_button_hover: {
+              background: { },
+              border_color: { },
+              color: { }
+            }
+          }, {
+            active_state_style: {
+              background: {
+                color: "#E06666",
+                opacity: 100
+              },
+              border_color: {
+                color: "#E06666",
+                opacity: 100
+              },
+              color: {
+                color: "#FFFFFF",
+                opacity: 100
+              },
+              show_close_icon: true
+            },
+            button_position: "inline",
+            button_size: "regular",
+            button_style: "primary",
+            button_text: "Style 2",
+            category: categoryList[0][1],
+            custom_button_background: { },
+            custom_button_border_color: { },
+            custom_button_font: {
+              font_set: "DEFAULT"
+            },
+            custom_button_hover: {
+              background: { },
+              border_color: { },
+              color: { }
+            }
+          }, {
+            active_state_style: {
+              background: {
+                color: "#E06666",
+                opacity: 100
+              },
+              border_color: {
+                color: "#E06666",
+                opacity: 100
+              },
+              color: {
+                color: "#FFFFFF",
+                opacity: 100
+              },
+              show_close_icon: true
+            },
+            button_position: "inline",
+            button_size: "regular",
+            button_style: "primary",
+            button_text: "Style 3",
+            category: categoryList[0][2],
+            custom_button_background: { },
+            custom_button_border_color: { },
+            custom_button_font: {
+              font_set: "DEFAULT"
+            },
+            custom_button_hover: {
+              background: { },
+              border_color: { },
+              color: { }
+            }
+          },
+        ]
       },
       fi.choice('Category', 'category', {
         choices: categoryList

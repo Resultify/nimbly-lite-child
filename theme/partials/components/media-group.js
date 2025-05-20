@@ -13,12 +13,31 @@ import { video } from './video.js'
  * @memberof command
  * @param {string} [parent] - parent path
  * @param {object} [opt] - options
- * @param {string} [opt.defaultMediaType] - default media type
- * @param {boolean} [opt.hideForceFullWidthImageProp] - hide force_full_width_image property for fullWidthImage component
- * @param {boolean} [opt.hideAlignmentProp] - hide alignment property for simpleImage component
- * @param {boolean} [opt.hideForceFullWidthVideoProp] - hide force_full_width_video property for video component
- * @param {boolean} [opt.showLottieScaleProp] - show lottie scale property
+ * @param {object} [opt.mediaGroup] - media group options
+ * @param {boolean} [opt.mediaGroup.hideMediaTypeProp] - hide media type property
+ * @param {boolean} [opt.mediaGroup.hideForceFullWidthImageProp] - hide force_full_width_image property for fullWidthImage component
+ * @param {boolean} [opt.mediaGroup.hideAlignmentProp] - hide alignment property for simpleImage component
+ * @param {boolean} [opt.mediaGroup.hideForceFullWidthVideoProp] - hide force_full_width_video property for video component
+ * @param {boolean} [opt.mediaGroup.showLottieScaleProp] - show lottie scale property
  * @param {Array<Array<string, string>>} [opt.additional_media_types] - additional media types
+ * @param {object} [opt.default] - default media type properties
+ * @param {'full_width_image'|'simple_image'|'icon'|'video'|'lottie'} [opt.default.media_type] - default media type
+ * @param {object} [opt.default.full_width_image] - default full width image properties
+ * @param {boolean} [opt.default.full_width_image.force_full_width_image] - default force full width image
+ * @param {'1/1'|'1.91/1'|'2/1'|'3/1'|'3/2'|'4/3'|'4/5'|'5/4'|'9/16'|'16/9'} [opt.default.full_width_image.full_width_image_aspect_ratio] - default full width image aspect ratio
+ * @param {object} [opt.default.full_width_image.src] - default full width image source
+ * @param {object} [opt.default.simple_image] - default simple image properties
+ * @param {object} [opt.default.simple_image.src] - default simple image source
+ * @param {object} [opt.default.icon] - default icon properties
+ * @param {string} [opt.default.icon.name] - default icon name
+ * @param {'SOLID'|'REGULAR'} [opt.default.icon.type] - default icon type
+ * @param {string} [opt.default.icon.unicode] - default icon unicode
+ * @param {object} [opt.default.lottie] - lottie group
+ * @param {string} [opt.default.lottie.lottie_file_src] - lottie file source
+ * @param {object} [opt.default.video] - video group
+ * @param {'hubspot_video'|'embed'} [opt.default.video.video_type] - video type
+ * @param {string} [opt.default.video.video_url] - video file source
+ * @param {string} [opt.default.video.video_iframe_url] - video iframe source
  */
 const mediaGroup = (parent = '', opt) => {
   if (typeof parent === 'string' && parent !== '') {
@@ -41,9 +60,10 @@ const mediaGroup = (parent = '', opt) => {
         operator: 'MATCHES_REGEX',
         controlling_value_regex: 'media'
       },
-      default: opt?.defaultMediaType || null,
+      default: opt?.default?.media_type ?? 'full_width_image',
       placeholder: 'None',
-      choices: mediaTypeChoices
+      choices: mediaTypeChoices,
+      locked: opt?.mediaGroup?.hideMediaTypeProp ?? false,
     }),
     group('Full width image', 'full_width_image_group',
       {
@@ -123,7 +143,7 @@ const mediaGroup = (parent = '', opt) => {
           ]
         }
       },
-      icon(`${parent}icon_group.`)
+      icon(`${parent}icon_group.`, opt)
     ),
     group('Lottie animation', 'lottie_group',
       {
