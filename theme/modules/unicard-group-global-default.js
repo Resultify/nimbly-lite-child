@@ -99,6 +99,51 @@ export const groupGlobalDefault = {
       }
     }
   ],
+  button_group_custom: [
+    {
+      button_alignment: "start",
+      button_hide_text: false,
+      button_icon: {
+        type: "REGULAR"
+      },
+      button_icon_position: "left",
+      button_image: {
+        loading: "disabled",
+        src: ""
+      },
+      button_link: {
+        no_follow: false,
+        open_in_new_tab: false,
+        sponsored: false,
+        url: {
+          href: "#test",
+          type: "EXTERNAL"
+        },
+        user_generated_content: false
+      },
+      button_position: "inline",
+      button_size: "regular",
+      button_style: "custombutton",
+      button_text: "Button",
+      custom_button_background: { },
+      custom_button_border_color: { },
+      custom_button_font: {
+        font_set: "DEFAULT"
+      },
+      custom_button_hover: {
+        background: { },
+        border_color: { },
+        color: { }
+      },
+      custom_link_color: { },
+      custom_link_font: {
+        font_set: "DEFAULT"
+      },
+      custom_link_hover: {
+        color: { }
+      }
+    }
+  ],
   form_group: {
     form_heading_tag: "h3"
   },
@@ -106,7 +151,8 @@ export const groupGlobalDefault = {
     full_width_image: {
       src: globalDefault.unicardImage,
     },
-    full_width_image_aspect_ratio: "16/9"
+    full_width_image_aspect_ratio: "16/9",
+    force_full_width_image: false,
   },
   heading: {
     heading_icon_position: "left",
@@ -150,6 +196,11 @@ export const groupGlobalDefault = {
       source_type: "oembed"
     },
     video_type: "embed"
-  }
+  },
+  card_style: {
+    background_alignment: "MIDDLE_CENTER",
+    background_size: "cover",
+  },
+
 };
 

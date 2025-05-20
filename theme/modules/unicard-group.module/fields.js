@@ -70,7 +70,7 @@ init(
     group('Grid layout', 'grid_layout', { expanded: true },
       fi.number('Columns', 'columns', {
         default: 3,
-        min: 2,
+        min: 1,
         max: 20,
         display_width: 'half_width'
       }),
@@ -94,10 +94,7 @@ init(
           padding: 40,
           border_radius: 20,
           shadow: 'shadow-sm',
-          hover_effects: true,
-          hover_shadow: 'shadow-lg',
-          hover_background_color: '#D9D2E9',
-          hover_background_opacity: 30,
+          hover_effects: false,
         }
       })
     )

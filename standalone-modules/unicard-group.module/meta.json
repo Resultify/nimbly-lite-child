@@ -67,6 +67,10 @@
     {
       "name": "FORM",
       "source": "USER"
+    },
+    {
+      "name": "BANNER",
+      "source": "USER"
     }
   ],
   "global": false,
@@ -82,14 +86,14 @@
     "BLOG_POST"
   ],
   "master_language": "en",
-  "icon": "./card.svg",
+  "icon": "fontawesome-5.14.0:File",
   "host_template_types": [
     "PAGE",
     "BLOG_LISTING",
     "BLOG_POST"
   ],
-  "module_id": 104250576632,
-  "label": "Card",
+  "module_id": 104250577352,
+  "label": "Unicard",
   "is_available_for_new_content": true,
   "categories": [
     "BODY_CONTENT",

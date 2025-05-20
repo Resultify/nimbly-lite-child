@@ -18,6 +18,7 @@ theme/modules/unicard-accordion.module/fields.json
 theme/modules/unicard-icon.module/fields.json
 theme/modules/unicard-video.module/fields.json
 theme/modules/unicard-lottie.module/fields.json
+standalone-modules/unicard-group.module/fields-default.js
 
 # IDE ignore config
 .vscode/*

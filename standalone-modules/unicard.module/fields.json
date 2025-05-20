@@ -1,147 +1,54 @@
 [
   {
-    "label": "Categories",
-    "name": "category_group",
-    "visibility": {
-      "controlling_field_path": "module_components",
-      "operator": "MATCHES_REGEX",
-      "controlling_value_regex": "categories"
-    },
+    "label": "Module components",
+    "name": "module_components",
+    "locked": false,
     "multiple": true,
+    "reordering_enabled": true,
+    "default": [
+      "media",
+      "main_heading",
+      "richtext"
+    ],
     "choices": [
       [
-        "category 1",
-        "Category 1"
+        "media",
+        "Media"
       ],
       [
-        "category 2",
-        "Category 2"
+        "main_heading",
+        "Main heading"
       ],
       [
-        "category 3",
-        "Category 3"
+        "sub_heading",
+        "Sub heading"
       ],
       [
-        "category 4",
-        "Category 4"
+        "richtext",
+        "Richtext"
       ],
       [
-        "category 5",
-        "Category 5"
+        "custom_text",
+        "Custom text"
       ],
       [
-        "category 6",
-        "Category 6"
+        "list",
+        "List"
       ],
       [
-        "category 7",
-        "Category 7"
+        "separator",
+        "Separator"
       ],
       [
-        "category 8",
-        "Category 8"
+        "buttons",
+        "Buttons"
       ],
       [
-        "category 9",
-        "Category 9"
-      ],
-      [
-        "category 10",
-        "Category 10"
+        "additional_images",
+        "Additional images"
       ]
     ],
     "type": "choice"
-  },
-  {
-    "label": "Show categories",
-    "name": "show_categories",
-    "help_text": "Show categories inside the module as a content block",
-    "visibility": {
-      "controlling_field_path": "module_components",
-      "operator": "MATCHES_REGEX",
-      "controlling_value_regex": "categories"
-    },
-    "type": "boolean"
-  },
-  {
-    "label": "Categories style",
-    "name": "categories_style_group",
-    "type": "group",
-    "visibility_rules": "ADVANCED",
-    "advanced_visibility": {
-      "boolean_operator": "AND",
-      "criteria": [
-        {
-          "controlling_field_path": "module_components",
-          "operator": "MATCHES_REGEX",
-          "controlling_value_regex": "categories"
-        },
-        {
-          "controlling_field_path": "show_categories",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        }
-      ]
-    },
-    "children": [
-      {
-        "label": "Font",
-        "name": "category_font",
-        "visibility": {
-          "hidden_subfields": {
-            "color": true
-          }
-        },
-        "type": "font"
-      },
-      {
-        "label": "Color",
-        "name": "category_color",
-        "type": "color"
-      },
-      {
-        "label": "Background",
-        "name": "category_background",
-        "type": "color"
-      },
-      {
-        "label": "Vertical spacing",
-        "name": "category_vertical_spacing",
-        "min": 0,
-        "display_width": "half_width",
-        "suffix": "px",
-        "type": "number"
-      },
-      {
-        "label": "Horizontal",
-        "name": "category_horizontal_spacing",
-        "min": 0,
-        "display_width": "half_width",
-        "suffix": "px",
-        "type": "number"
-      },
-      {
-        "label": "Border width",
-        "name": "category_border_width",
-        "min": 0,
-        "display_width": "half_width",
-        "suffix": "px",
-        "type": "number"
-      },
-      {
-        "label": "Border radius",
-        "name": "category_border_radius",
-        "min": 0,
-        "suffix": "px",
-        "display_width": "half_width",
-        "type": "number"
-      },
-      {
-        "label": "Border color",
-        "name": "category_border_color",
-        "type": "color"
-      }
-    ]
   },
   {
     "label": "Media type",
@@ -151,7 +58,7 @@
       "operator": "MATCHES_REGEX",
       "controlling_value_regex": "media"
     },
-    "default": null,
+    "default": "full_width_image",
     "placeholder": "None",
     "choices": [
       [
@@ -175,6 +82,7 @@
         "Video"
       ]
     ],
+    "locked": false,
     "type": "choice"
   },
   {
@@ -206,6 +114,9 @@
       {
         "label": "Image",
         "name": "full_width_image",
+        "default": {
+          "src": "https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/unicard-public/unicard.png"
+        },
         "resizable": false,
         "show_loading": false,
         "responsive": true,
@@ -279,7 +190,7 @@
         "locked": false,
         "help_text": "This image is already full-width, but with the <strong>Force full width</strong> option enabled, it will take the full width of the parent element, even if there is extra padding around it.",
         "display_width": "half_width",
-        "default": false,
+        "default": true,
         "visibility": {
           "controlling_field_path": "full_width_image_group.full_width_image_opt_visibility",
           "operator": "EQUAL",
@@ -346,6 +257,9 @@
         "resizable": false,
         "show_loading": false,
         "responsive": false,
+        "default": {
+          "src": "https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/unicard-public/content-hub-icon.svg"
+        },
         "type": "image"
       },
       {
@@ -446,6 +360,11 @@
       {
         "label": "Icon",
         "name": "icon",
+        "default": {
+          "name": "address-card",
+          "type": "REGULAR",
+          "unicode": "f2bb"
+        },
         "set": "fontawesome-6.4.2",
         "visibility": {
           "controlling_field_path": "icon_group.icon_type",
@@ -549,6 +468,8 @@
       {
         "label": "Lottie file",
         "name": "lottie_file",
+        "picker": "file",
+        "default": "https://144691243.fs1.hubspotusercontent-eu1.net/hubfs/144691243/unicard-public/lottie-animation1.lottie",
         "type": "file"
       },
       {
@@ -748,7 +669,7 @@
         "label": "Video type",
         "name": "video_type",
         "required": true,
-        "default": "hubspot_video",
+        "default": "embed",
         "choices": [
           [
             "hubspot_video",
@@ -777,6 +698,14 @@
       {
         "label": "Embed",
         "name": "embed",
+        "default": {
+          "source_type": "oembed",
+          "oembed_url": "https://youtu.be/GnIREMgz-SQ",
+          "oembed_response": {
+            "type": "video",
+            "html": "<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/GnIREMgz-SQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"What is HubSpot?\"></iframe>"
+          }
+        },
         "show_preview": true,
         "resizable": false,
         "visibility": {
@@ -798,6 +727,18 @@
         "name": "force_full_width_video",
         "locked": false,
         "help_text": "With the <strong>Force full width</strong> option enabled, it will take the full width of the parent element, even if there is extra padding around it.",
+        "display_width": "half_width",
+        "default": false,
+        "visibility": {
+          "controlling_field_path": "video_group.video_prop_visibility",
+          "operator": "EQUAL",
+          "controlling_value_regex": "true"
+        },
+        "type": "boolean"
+      },
+      {
+        "label": "Autoplay",
+        "name": "autoplay",
         "display_width": "half_width",
         "default": false,
         "visibility": {
@@ -880,7 +821,7 @@
         "label": "",
         "name": "heading_text",
         "allow_new_line": true,
-        "default": "Universal card heading",
+        "default": "The One Content Module for All Your Card Needs!",
         "type": "text"
       },
       {
@@ -990,7 +931,8 @@
           "operator": "EQUAL",
           "controlling_value_regex": "true"
         },
-        "type": "choice"
+        "type": "choice",
+        "locked": true
       },
       {
         "label": "Link type",
@@ -1286,7 +1228,10 @@
             "color": true
           }
         },
-        "type": "font"
+        "type": "font",
+        "inherited_value": {
+          "default_value_path": "theme.heading_font"
+        }
       },
       {
         "label": "Color",
@@ -1423,7 +1368,7 @@
         "label": "",
         "name": "heading_text",
         "allow_new_line": true,
-        "default": "Universal card heading",
+        "default": "Subheading",
         "type": "text"
       },
       {
@@ -1533,7 +1478,8 @@
           "operator": "EQUAL",
           "controlling_value_regex": "true"
         },
-        "type": "choice"
+        "type": "choice",
+        "locked": true
       },
       {
         "label": "Link type",
@@ -1829,7 +1775,10 @@
             "color": true
           }
         },
-        "type": "font"
+        "type": "font",
+        "inherited_value": {
+          "default_value_path": "theme.heading_font"
+        }
       },
       {
         "label": "Color",
@@ -1949,6 +1898,7 @@
   {
     "label": "Rich text",
     "name": "richtext",
+    "default": "\n    <p>Simplify your toolkit instantly with Unicard, giving you access to <strong>40+ design variations</strong> ready for <strong>No-Code implementation</strong> via an exceptionally <strong>editor-friendly UI.</strong> What makes Unicard truly unique are its <strong>Flexible Components</strong> – choose only the elements you need (like images, text, or CTAs) while unused options stay conveniently hidden, decluttering your view – and its <strong>Content Focus,</strong> which prioritizes easy content input first by keeping complex styling neatly tucked away until needed.</p>\n  ",
     "visibility": {
       "controlling_field_path": "module_components",
       "operator": "MATCHES_REGEX",
@@ -1960,6 +1910,94 @@
     "label": "Buttons",
     "name": "button_group",
     "type": "group",
+    "default": [
+      {
+        "button_alignment": "start",
+        "button_hide_text": false,
+        "button_icon": {
+          "type": "REGULAR"
+        },
+        "button_icon_position": "left",
+        "button_image": {
+          "loading": "disabled",
+          "src": ""
+        },
+        "button_link": {
+          "no_follow": false,
+          "open_in_new_tab": false,
+          "sponsored": false,
+          "url": {
+            "href": "#test",
+            "type": "EXTERNAL"
+          },
+          "user_generated_content": false
+        },
+        "button_position": "inline",
+        "button_size": "regular",
+        "button_style": "primary",
+        "button_text": "Primary",
+        "custom_button_background": {},
+        "custom_button_border_color": {},
+        "custom_button_font": {
+          "font_set": "DEFAULT"
+        },
+        "custom_button_hover": {
+          "background": {},
+          "border_color": {},
+          "color": {}
+        },
+        "custom_link_color": {},
+        "custom_link_font": {
+          "font_set": "DEFAULT"
+        },
+        "custom_link_hover": {
+          "color": {}
+        }
+      },
+      {
+        "button_alignment": "start",
+        "button_hide_text": false,
+        "button_icon": {
+          "type": "REGULAR"
+        },
+        "button_icon_position": "left",
+        "button_image": {
+          "loading": "disabled",
+          "src": ""
+        },
+        "button_link": {
+          "no_follow": false,
+          "open_in_new_tab": false,
+          "sponsored": false,
+          "url": {
+            "href": "#test",
+            "type": "EXTERNAL"
+          },
+          "user_generated_content": false
+        },
+        "button_position": "inline",
+        "button_size": "regular",
+        "button_style": "secondary2",
+        "button_text": "Secondary",
+        "custom_button_background": {},
+        "custom_button_border_color": {},
+        "custom_button_font": {
+          "font_set": "DEFAULT"
+        },
+        "custom_button_hover": {
+          "background": {},
+          "border_color": {},
+          "color": {}
+        },
+        "custom_link_color": {},
+        "custom_link_font": {
+          "font_set": "DEFAULT"
+        },
+        "custom_link_hover": {
+          "color": {}
+        }
+      }
+    ],
     "icon": {
       "name": "audio-description",
       "set": "fontawesome-6.4.2",
@@ -1973,30 +2011,15 @@
     "occurrence": {
       "min": 0,
       "max": 100,
+      "default": 2,
       "sorting_label_field": "button_group.button_text"
     },
     "children": [
       {
         "label": "Style",
         "name": "button_style",
-        "default": "primary",
+        "default": "custombutton",
         "choices": [
-          [
-            "primary",
-            "Primary"
-          ],
-          [
-            "secondary1",
-            "Button 2"
-          ],
-          [
-            "secondary2",
-            "Button 3"
-          ],
-          [
-            "secondary3",
-            "Button 4"
-          ],
           [
             "linkonly",
             "Link"
@@ -2074,6 +2097,7 @@
       {
         "label": "Text",
         "name": "button_text",
+        "default": "Button",
         "visibility": {
           "controlling_field_path": "button_group.button_style",
           "operator": "NOT_EQUAL",
@@ -2518,7 +2542,10 @@
             }
           ]
         },
-        "type": "color"
+        "type": "color",
+        "inherited_value": {
+          "default_value_path": "theme.primary_color"
+        }
       },
       {
         "label": "Vertical spacing",
@@ -3023,700 +3050,6 @@
     ]
   },
   {
-    "label": "Accordion",
-    "name": "accordion_group",
-    "type": "group",
-    "icon": {
-      "name": "indent",
-      "set": "fontawesome-6.4.2",
-      "type": "SOLID"
-    },
-    "visibility": {
-      "controlling_field_path": "module_components",
-      "operator": "MATCHES_REGEX",
-      "controlling_value_regex": "accordion"
-    },
-    "children": [
-      {
-        "label": "Accordion item",
-        "name": "accordion_item",
-        "type": "group",
-        "occurrence": {
-          "min": 0,
-          "max": 100,
-          "sorting_label_field": "accordion_group.accordion_item.accordion_item_title"
-        },
-        "children": [
-          {
-            "label": "Accordion heading",
-            "name": "accordion_item_title",
-            "type": "text"
-          },
-          {
-            "label": "Accordion item text",
-            "name": "accordion_item_text",
-            "type": "richtext"
-          }
-        ]
-      },
-      {
-        "label": "",
-        "name": "accordion_title_prop_visibility",
-        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> accordion <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Title</span> properties.",
-        "display": "toggle",
-        "type": "boolean"
-      },
-      {
-        "label": "Title font",
-        "name": "accordion_title_font",
-        "visibility": {
-          "hidden_subfields": {
-            "color": true,
-            "size": true,
-            "bold": true,
-            "italic": true,
-            "underline": true
-          },
-          "controlling_field_path": "accordion_group.accordion_title_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "font"
-      },
-      {
-        "label": "Title color",
-        "name": "accordion_title_color",
-        "visibility": {
-          "controlling_field_path": "accordion_group.accordion_title_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "color"
-      },
-      {
-        "label": "Title size",
-        "name": "accordion_title_size",
-        "min": 0,
-        "display_width": "half_width",
-        "suffix": "px",
-        "visibility": {
-          "controlling_field_path": "accordion_group.accordion_title_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "number"
-      },
-      {
-        "label": "",
-        "name": "accordion_spacing_prop_visibility",
-        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> accordion <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Spacing</span> properties.",
-        "display": "toggle",
-        "type": "boolean"
-      },
-      {
-        "label": "Top",
-        "name": "accordion_spacing_top",
-        "min": 0,
-        "display_width": "half_width",
-        "suffix": "px",
-        "visibility": {
-          "controlling_field_path": "accordion_group.accordion_spacing_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "number"
-      },
-      {
-        "label": "Bottom",
-        "name": "accordion_spacing_bottom",
-        "min": 0,
-        "display_width": "half_width",
-        "suffix": "px",
-        "visibility": {
-          "controlling_field_path": "accordion_group.accordion_spacing_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "number"
-      },
-      {
-        "label": "Left",
-        "name": "accordion_spacing_left",
-        "min": 0,
-        "display_width": "half_width",
-        "suffix": "px",
-        "visibility": {
-          "controlling_field_path": "accordion_group.accordion_spacing_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "number"
-      },
-      {
-        "label": "Right",
-        "name": "accordion_spacing_right",
-        "min": 0,
-        "display_width": "half_width",
-        "suffix": "px",
-        "visibility": {
-          "controlling_field_path": "accordion_group.accordion_spacing_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "number"
-      },
-      {
-        "label": "",
-        "name": "accordion_icon_prop_visibility",
-        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> accordion <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Icon</span> properties.",
-        "display": "toggle",
-        "type": "boolean"
-      },
-      {
-        "label": "Icon position",
-        "name": "accordion_icon_position",
-        "choices": [
-          [
-            "left",
-            "Left"
-          ],
-          [
-            "right",
-            "Right"
-          ]
-        ],
-        "default": "left",
-        "display_width": "half_width",
-        "required": true,
-        "visibility": {
-          "controlling_field_path": "accordion_group.accordion_icon_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "choice"
-      },
-      {
-        "label": "Icon size",
-        "name": "accordion_icon_size",
-        "display_width": "half_width",
-        "min": 0,
-        "suffix": "px",
-        "visibility": {
-          "controlling_field_path": "accordion_group.accordion_icon_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "number"
-      },
-      {
-        "label": "Icon gap",
-        "name": "accordion_icon_gap",
-        "display_width": "half_width",
-        "min": 0,
-        "suffix": "px",
-        "visibility_rules": "ADVANCED",
-        "advanced_visibility": {
-          "boolean_operator": "AND",
-          "criteria": [
-            {
-              "controlling_field_path": "accordion_group.accordion_icon_prop_visibility",
-              "operator": "EQUAL",
-              "controlling_value_regex": "true"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_icon_position",
-              "operator": "NOT_EQUAL",
-              "controlling_value_regex": "right"
-            }
-          ]
-        },
-        "type": "number"
-      },
-      {
-        "label": "Inline SVG",
-        "name": "accordion_icon_inline_svg",
-        "visibility": {
-          "controlling_field_path": "accordion_group.accordion_icon_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "html"
-      },
-      {
-        "label": "Icon color",
-        "name": "accordion_icon_color",
-        "visibility": {
-          "controlling_field_path": "accordion_group.accordion_icon_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "color"
-      },
-      {
-        "label": "",
-        "name": "accordion_border_prop_visibility",
-        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> accordion <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Border</span> properties.",
-        "display": "toggle",
-        "type": "boolean"
-      },
-      {
-        "label": "Border style",
-        "name": "accordion_border_style",
-        "choices": [
-          [
-            "no_border",
-            "No border"
-          ],
-          [
-            "border_divider",
-            "Border divider"
-          ],
-          [
-            "border_wrapper",
-            "Border wrapper"
-          ]
-        ],
-        "default": "border_divider",
-        "display_width": "half_width",
-        "required": true,
-        "visibility_rules": "ADVANCED",
-        "advanced_visibility": {
-          "boolean_operator": "AND",
-          "criteria": [
-            {
-              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
-              "operator": "EQUAL",
-              "controlling_value_regex": "true"
-            }
-          ]
-        },
-        "type": "choice"
-      },
-      {
-        "label": "Border width",
-        "name": "accordion_border_width",
-        "min": 0,
-        "display_width": "half_width",
-        "suffix": "px",
-        "visibility_rules": "ADVANCED",
-        "advanced_visibility": {
-          "boolean_operator": "AND",
-          "criteria": [
-            {
-              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
-              "operator": "EQUAL",
-              "controlling_value_regex": "true"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_border_style",
-              "operator": "NOT_EQUAL",
-              "controlling_value_regex": "no_border"
-            }
-          ]
-        },
-        "type": "number"
-      },
-      {
-        "label": "Border color",
-        "name": "accordion_border_color",
-        "visibility_rules": "ADVANCED",
-        "advanced_visibility": {
-          "boolean_operator": "AND",
-          "criteria": [
-            {
-              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
-              "operator": "EQUAL",
-              "controlling_value_regex": "true"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_border_style",
-              "operator": "NOT_EQUAL",
-              "controlling_value_regex": "no_border"
-            }
-          ]
-        },
-        "type": "color"
-      },
-      {
-        "label": "Border radius",
-        "name": "accordion_border_radius",
-        "min": 0,
-        "display_width": "half_width",
-        "suffix": "px",
-        "visibility_rules": "ADVANCED",
-        "advanced_visibility": {
-          "boolean_operator": "AND",
-          "criteria": [
-            {
-              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
-              "operator": "EQUAL",
-              "controlling_value_regex": "true"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_border_style",
-              "operator": "NOT_EQUAL",
-              "controlling_value_regex": "no_border"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_border_style",
-              "operator": "EQUAL",
-              "controlling_value_regex": "border_wrapper"
-            }
-          ]
-        },
-        "type": "number"
-      },
-      {
-        "label": "Gap",
-        "name": "accordion_border_gap",
-        "min": 0,
-        "display_width": "half_width",
-        "suffix": "px",
-        "visibility_rules": "ADVANCED",
-        "advanced_visibility": {
-          "boolean_operator": "AND",
-          "criteria": [
-            {
-              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
-              "operator": "EQUAL",
-              "controlling_value_regex": "true"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_border_style",
-              "operator": "NOT_EQUAL",
-              "controlling_value_regex": "no_border"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_border_style",
-              "operator": "EQUAL",
-              "controlling_value_regex": "border_wrapper"
-            }
-          ]
-        },
-        "type": "number"
-      },
-      {
-        "label": "Background color",
-        "name": "accordion_bg_color",
-        "visibility_rules": "ADVANCED",
-        "advanced_visibility": {
-          "boolean_operator": "AND",
-          "criteria": [
-            {
-              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
-              "operator": "EQUAL",
-              "controlling_value_regex": "true"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_border_style",
-              "operator": "NOT_EQUAL",
-              "controlling_value_regex": "no_border"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_border_style",
-              "operator": "EQUAL",
-              "controlling_value_regex": "border_wrapper"
-            }
-          ]
-        },
-        "type": "color"
-      },
-      {
-        "label": "Show top border",
-        "name": "accordion_show_top_border",
-        "display_width": "half_width",
-        "visibility_rules": "ADVANCED",
-        "advanced_visibility": {
-          "boolean_operator": "AND",
-          "criteria": [
-            {
-              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
-              "operator": "EQUAL",
-              "controlling_value_regex": "true"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_border_style",
-              "operator": "NOT_EQUAL",
-              "controlling_value_regex": "no_border"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_border_style",
-              "operator": "EQUAL",
-              "controlling_value_regex": "border_divider"
-            }
-          ]
-        },
-        "type": "boolean"
-      },
-      {
-        "label": "Show bottom border",
-        "name": "accordion_show_bottom_border",
-        "display_width": "half_width",
-        "default": true,
-        "visibility_rules": "ADVANCED",
-        "advanced_visibility": {
-          "boolean_operator": "AND",
-          "criteria": [
-            {
-              "controlling_field_path": "accordion_group.accordion_border_prop_visibility",
-              "operator": "EQUAL",
-              "controlling_value_regex": "true"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_border_style",
-              "operator": "NOT_EQUAL",
-              "controlling_value_regex": "no_border"
-            },
-            {
-              "controlling_field_path": "accordion_group.accordion_border_style",
-              "operator": "EQUAL",
-              "controlling_value_regex": "border_divider"
-            }
-          ]
-        },
-        "type": "boolean"
-      }
-    ]
-  },
-  {
-    "label": "Form",
-    "name": "form_group",
-    "type": "group",
-    "icon": {
-      "name": "wpforms",
-      "set": "fontawesome-6.4.2",
-      "type": "REGULAR"
-    },
-    "visibility": {
-      "controlling_field_path": "module_components",
-      "operator": "MATCHES_REGEX",
-      "controlling_value_regex": "form"
-    },
-    "children": [
-      {
-        "label": "Title",
-        "name": "form_heading_text",
-        "allow_new_line": true,
-        "type": "text"
-      },
-      {
-        "label": "Form",
-        "name": "form",
-        "type": "form"
-      },
-      {
-        "label": "",
-        "name": "form_prop_visibility",
-        "inline_help_text": "<span style=\"color:#33475b;\">Show/hide</span> additional <span style=\"color:#007a8c;font-weight:700;font-size:14px;\">Form</span> properties.",
-        "display": "toggle",
-        "type": "boolean"
-      },
-      {
-        "label": "Title tag",
-        "name": "form_heading_tag",
-        "choices": [
-          [
-            "h1",
-            "H1"
-          ],
-          [
-            "h2",
-            "H2"
-          ],
-          [
-            "h3",
-            "H3"
-          ],
-          [
-            "h4",
-            "H4"
-          ],
-          [
-            "h5",
-            "H5"
-          ],
-          [
-            "h6",
-            "H6"
-          ]
-        ],
-        "default": "h3",
-        "required": true,
-        "help_text": "Semantic heading tag (h1-h6)",
-        "display_width": "half_width",
-        "visibility": {
-          "controlling_field_path": "form_group.form_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "choice"
-      },
-      {
-        "label": "Title style",
-        "name": "form_heading_style",
-        "choices": [
-          [
-            "display-1",
-            "Style 12"
-          ],
-          [
-            "display-2",
-            "Style 11"
-          ],
-          [
-            "display-3",
-            "Style 10"
-          ],
-          [
-            "display-4",
-            "Style 9"
-          ],
-          [
-            "display-5",
-            "Style 8"
-          ],
-          [
-            "display-6",
-            "Style 7"
-          ],
-          [
-            "h1",
-            "Style 6 [H1]"
-          ],
-          [
-            "h2",
-            "Style 5 [H2]"
-          ],
-          [
-            "h3",
-            "Style 4 [H3]"
-          ],
-          [
-            "h4",
-            "Style 3 [H4]"
-          ],
-          [
-            "h5",
-            "Style 2 [H5]"
-          ],
-          [
-            "h6",
-            "Style 1 [H6]"
-          ]
-        ],
-        "help_text": "Display different heading styles not related to semantic heading type (tag h1-h6)",
-        "display_width": "half_width",
-        "visibility": {
-          "controlling_field_path": "form_group.form_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "choice"
-      },
-      {
-        "label": "Button style",
-        "name": "button_style",
-        "choices": [
-          [
-            "primary",
-            "Primary"
-          ],
-          [
-            "secondary1",
-            "Button 2"
-          ],
-          [
-            "secondary2",
-            "Button 3"
-          ],
-          [
-            "secondary3",
-            "Button 4"
-          ]
-        ],
-        "display_width": "half_width",
-        "visibility": {
-          "controlling_field_path": "form_group.form_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "choice"
-      },
-      {
-        "label": "Button size",
-        "name": "button_size",
-        "choices": [
-          [
-            "small",
-            "Small"
-          ],
-          [
-            "regular",
-            "Regular"
-          ],
-          [
-            "large",
-            "Large"
-          ]
-        ],
-        "display_width": "half_width",
-        "visibility": {
-          "controlling_field_path": "form_group.form_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "choice"
-      },
-      {
-        "label": "Button position",
-        "name": "button_position",
-        "display_width": "half_width",
-        "choices": [
-          [
-            "left",
-            "Left"
-          ],
-          [
-            "center",
-            "Center"
-          ],
-          [
-            "right",
-            "Right"
-          ]
-        ],
-        "default": "left",
-        "required": true,
-        "visibility": {
-          "controlling_field_path": "form_group.form_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "choice"
-      },
-      {
-        "label": "Text color",
-        "name": "form_text_color",
-        "visibility": {
-          "controlling_field_path": "form_group.form_prop_visibility",
-          "operator": "EQUAL",
-          "controlling_value_regex": "true"
-        },
-        "type": "color"
-      }
-    ]
-  },
-  {
-    "label": "Meeting",
-    "name": "meeting",
-    "visibility": {
-      "controlling_field_path": "module_components",
-      "operator": "MATCHES_REGEX",
-      "controlling_value_regex": "meeting"
-    },
-    "type": "meeting"
-  },
-  {
     "label": "Additional images",
     "name": "additional_images_group",
     "type": "group",
@@ -3741,6 +3074,9 @@
         "resizable": false,
         "show_loading": false,
         "responsive": false,
+        "default": {
+          "src": null
+        },
         "type": "image"
       },
       {
@@ -3785,17 +3121,6 @@
     ]
   },
   {
-    "label": "Simple text",
-    "name": "simple_text",
-    "visibility": {
-      "controlling_field_path": "module_components",
-      "operator": "MATCHES_REGEX",
-      "controlling_value_regex": "simple_text"
-    },
-    "allow_new_line": true,
-    "type": "text"
-  },
-  {
     "label": "Whole area link",
     "name": "whole_area_link",
     "help_text": "When enabled, the whole area of the module will be clickable as a link.<br>To make this work, you need to add a link to any of the heading, subheading or button components.",
@@ -3826,106 +3151,24 @@
     "type": "boolean"
   },
   {
-    "label": "Module components",
-    "name": "module_components",
-    "multiple": true,
-    "reordering_enabled": true,
-    "default": [
-      "media",
-      "main_heading",
-      "richtext",
-      "buttons"
-    ],
-    "choices": [
-      [
-        "media",
-        "Media"
-      ],
-      [
-        "main_heading",
-        "Main heading"
-      ],
-      [
-        "sub_heading",
-        "Sub heading"
-      ],
-      [
-        "richtext",
-        "Richtext"
-      ],
-      [
-        "custom_text",
-        "Custom text"
-      ],
-      [
-        "list",
-        "List"
-      ],
-      [
-        "accordion",
-        "Accordion"
-      ],
-      [
-        "separator",
-        "Separator"
-      ],
-      [
-        "buttons",
-        "Buttons"
-      ],
-      [
-        "additional_images",
-        "Additional images"
-      ],
-      [
-        "meeting",
-        "Meeting"
-      ],
-      [
-        "form",
-        "Form"
-      ]
-    ],
-    "type": "choice"
-  },
-  {
-    "name": "style",
-    "label": "Style",
+    "label": "Card style",
+    "name": "card_style",
+    "type": "group",
+    "icon": {
+      "name": "paint-brush",
+      "set": "fontawesome-6.4.2",
+      "type": "SOLID"
+    },
+    "expanded": false,
+    "locked": true,
+    "inline_help_text": "Customize the card style. You can set the background color, image, and text color.",
     "children": [
-      {
-        "label": "Alignment",
-        "name": "alignment",
-        "display_width": "half_width",
-        "default": {
-          "horizontal_align": "LEFT"
-        },
-        "alignment_direction": "HORIZONTAL",
-        "type": "alignment"
-      },
-      {
-        "label": "Mobile alignment",
-        "name": "mobile_alignment",
-        "display_width": "half_width",
-        "locked": true,
-        "alignment_direction": "HORIZONTAL",
-        "type": "alignment"
-      },
       {
         "label": "Text color",
         "name": "text_color",
         "display_width": "half_width",
         "show_opacity": false,
         "type": "color"
-      },
-      {
-        "label": "Content gap",
-        "name": "content_gap",
-        "min": 0,
-        "suffix": "px",
-        "default": 16,
-        "display_width": "half_width",
-        "help_text": "General gap between all card components",
-        "type": "number"
       },
       {
         "label": "Background type",
@@ -3952,7 +3195,7 @@
         "label": "Background color",
         "name": "background_color",
         "visibility": {
-          "controlling_field_path": "style.background_type",
+          "controlling_field_path": "card_style.background_type",
           "operator": "EQUAL",
           "controlling_value_regex": "background_color"
         },
@@ -3961,18 +3204,97 @@
       {
         "label": "Background image",
         "name": "background_image",
+        "picker": "image",
         "visibility": {
-          "controlling_field_path": "style.background_type",
+          "controlling_field_path": "card_style.background_type",
           "operator": "EQUAL",
           "controlling_value_regex": "background_image"
         },
-        "type": "backgroundimage"
+        "type": "file"
+      },
+      {
+        "label": "Background size",
+        "name": "background_size",
+        "default": "cover",
+        "display_width": "half_width",
+        "required": true,
+        "choices": [
+          [
+            "contain",
+            "Resize to show entire image"
+          ],
+          [
+            "cover",
+            "Resize to fill container"
+          ],
+          [
+            "auto",
+            "Display full size"
+          ]
+        ],
+        "visibility": {
+          "controlling_field_path": "card_style.background_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "background_image"
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Bgr. alignment",
+        "name": "background_alignment",
+        "default": "MIDDLE_CENTER",
+        "display_width": "half_width",
+        "required": true,
+        "choices": [
+          [
+            "TOP_LEFT",
+            "Top left"
+          ],
+          [
+            "TOP_CENTER",
+            "Top center"
+          ],
+          [
+            "TOP_RIGHT",
+            "Top right"
+          ],
+          [
+            "MIDDLE_LEFT",
+            "Middle left"
+          ],
+          [
+            "MIDDLE_CENTER",
+            "Middle center"
+          ],
+          [
+            "MIDDLE_RIGHT",
+            "Middle right"
+          ],
+          [
+            "BOTTOM_LEFT",
+            "Bottom left"
+          ],
+          [
+            "BOTTOM_CENTER",
+            "Bottom center"
+          ],
+          [
+            "BOTTOM_RIGHT",
+            "Bottom right"
+          ]
+        ],
+        "visibility": {
+          "controlling_field_path": "card_style.background_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "background_image"
+        },
+        "type": "choice"
       },
       {
         "label": "Background image overlay type",
         "name": "background_image_overlay_type",
         "visibility": {
-          "controlling_field_path": "style.background_type",
+          "controlling_field_path": "card_style.background_type",
           "operator": "EQUAL",
           "controlling_value_regex": "background_image"
         },
@@ -3992,6 +3314,304 @@
       {
         "label": "Background image overlay",
         "name": "background_image_overlay",
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "card_style.background_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "background_image"
+            },
+            {
+              "controlling_field_path": "card_style.background_image_overlay_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "color"
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Gradient color",
+        "name": "background_image_overlay_gradient_color",
+        "display_width": "half_width",
+        "occurrence": {
+          "min": 2,
+          "max": 7,
+          "default": 2
+        },
+        "default": [
+          {
+            "color": "#999999",
+            "opacity": 100
+          },
+          {
+            "color": "#999999",
+            "opacity": 100
+          }
+        ],
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "card_style.background_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "background_image"
+            },
+            {
+              "controlling_field_path": "card_style.background_image_overlay_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "gradient"
+            }
+          ]
+        },
+        "type": "color"
+      },
+      {
+        "label": "Gradient direction",
+        "name": "background_image_overlay_gradient_direction",
+        "help_text": "Unset any gradient direction to turn off the color gradient style for the text",
+        "display_width": "half_width",
+        "placeholder": "No gradient",
+        "choices": [
+          [
+            "to top",
+            "Bottom to top"
+          ],
+          [
+            "to bottom",
+            "Top to bottom"
+          ],
+          [
+            "to left",
+            "Right to left"
+          ],
+          [
+            "to right",
+            "Left to right"
+          ],
+          [
+            "to bottom right",
+            "Top left to bottom right"
+          ],
+          [
+            "to bottom left",
+            "Top right to bottom left"
+          ]
+        ],
+        "visibility_rules": "ADVANCED",
+        "advanced_visibility": {
+          "boolean_operator": "AND",
+          "criteria": [
+            {
+              "controlling_field_path": "card_style.background_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "background_image"
+            },
+            {
+              "controlling_field_path": "card_style.background_image_overlay_type",
+              "operator": "EQUAL",
+              "controlling_value_regex": "gradient"
+            }
+          ]
+        },
+        "type": "choice"
+      },
+      {
+        "label": "Gradient color",
+        "name": "background_gradient_color",
+        "display_width": "half_width",
+        "occurrence": {
+          "min": 2,
+          "max": 7,
+          "default": 2
+        },
+        "default": [
+          {
+            "color": "#999999",
+            "opacity": 100
+          },
+          {
+            "color": "#999999",
+            "opacity": 100
+          }
+        ],
+        "visibility": {
+          "controlling_field_path": "card_style.background_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "background_gradient"
+        },
+        "type": "color"
+      },
+      {
+        "label": "Gradient direction",
+        "name": "background_gradient_direction",
+        "help_text": "Unset any gradient direction to turn off the color gradient style for the text",
+        "display_width": "half_width",
+        "placeholder": "No gradient",
+        "choices": [
+          [
+            "to top",
+            "Bottom to top"
+          ],
+          [
+            "to bottom",
+            "Top to bottom"
+          ],
+          [
+            "to left",
+            "Right to left"
+          ],
+          [
+            "to right",
+            "Left to right"
+          ],
+          [
+            "to bottom right",
+            "Top left to bottom right"
+          ],
+          [
+            "to bottom left",
+            "Top right to bottom left"
+          ]
+        ],
+        "visibility": {
+          "controlling_field_path": "card_style.background_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "background_gradient"
+        },
+        "type": "choice"
+      }
+    ]
+  },
+  {
+    "name": "style",
+    "label": "Style",
+    "children": [
+      {
+        "label": "Alignment",
+        "name": "alignment",
+        "display_width": "half_width",
+        "default": {
+          "horizontal_align": "LEFT",
+          "vertical_align": null
+        },
+        "alignment_direction": "HORIZONTAL",
+        "type": "alignment"
+      },
+      {
+        "label": "Mobile alignment",
+        "name": "mobile_alignment",
+        "display_width": "half_width",
+        "locked": true,
+        "alignment_direction": "HORIZONTAL",
+        "default": {
+          "horizontal_align": null
+        },
+        "type": "alignment"
+      },
+      {
+        "label": "Text color",
+        "name": "text_color",
+        "default": null,
+        "display_width": "half_width",
+        "show_opacity": false,
+        "locked": false,
+        "type": "color"
+      },
+      {
+        "label": "Content gap",
+        "name": "content_gap",
+        "min": 0,
+        "suffix": "px",
+        "default": 20,
+        "display_width": "half_width",
+        "help_text": "General gap between all card components",
+        "locked": false,
+        "type": "number"
+      },
+      {
+        "label": "Background type",
+        "name": "background_type",
+        "display_width": "half_width",
+        "placeholder": "No background",
+        "default": "background_color",
+        "choices": [
+          [
+            "background_color",
+            "Background color"
+          ],
+          [
+            "background_image",
+            "Background image"
+          ],
+          [
+            "background_gradient",
+            "Background gradient"
+          ]
+        ],
+        "type": "choice"
+      },
+      {
+        "label": "Background color",
+        "name": "background_color",
+        "default": {
+          "color": "#f6f6f6",
+          "opacity": null
+        },
+        "visibility": {
+          "controlling_field_path": "style.background_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "background_color"
+        },
+        "type": "color"
+      },
+      {
+        "label": "Background image",
+        "name": "background_image",
+        "default": {
+          "src": null,
+          "background_position": "MIDDLE_CENTER",
+          "background_size": "cover"
+        },
+        "visibility": {
+          "controlling_field_path": "style.background_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "background_image"
+        },
+        "type": "backgroundimage"
+      },
+      {
+        "label": "Background image overlay type",
+        "name": "background_image_overlay_type",
+        "visibility": {
+          "controlling_field_path": "style.background_type",
+          "operator": "EQUAL",
+          "controlling_value_regex": "background_image"
+        },
+        "default": null,
+        "placeholder": "No overlay",
+        "choices": [
+          [
+            "color",
+            "Color"
+          ],
+          [
+            "gradient",
+            "Gradient"
+          ]
+        ],
+        "type": "choice"
+      },
+      {
+        "label": "Background image overlay",
+        "name": "background_image_overlay",
+        "default": {
+          "color": null,
+          "opacity": null
+        },
         "visibility_rules": "ADVANCED",
         "advanced_visibility": {
           "boolean_operator": "AND",
@@ -4044,6 +3664,26 @@
       {
         "label": "",
         "name": "spacing",
+        "default": {
+          "padding": {
+            "bottom": {
+              "units": "px",
+              "value": 40
+            },
+            "left": {
+              "units": "px",
+              "value": 40
+            },
+            "right": {
+              "units": "px",
+              "value": 40
+            },
+            "top": {
+              "units": "px",
+              "value": 40
+            }
+          }
+        },
         "visibility": {
           "hidden_subfields": {
             "margin": true
@@ -4059,6 +3699,7 @@
       {
         "label": "Border radius",
         "name": "border_radius",
+        "default": 20,
         "min": 0,
         "suffix": "px",
         "display_width": "half_width",
@@ -4067,7 +3708,9 @@
       {
         "label": "Shadow",
         "name": "shadow",
+        "default": "shadow-md",
         "display_width": "half_width",
+        "placeholder": "No shadow",
         "choices": [
           [
             "shadow-sm",
@@ -4105,8 +3748,18 @@
         "type": "choice"
       },
       {
+        "label": "Max width",
+        "name": "max_width",
+        "locked": true,
+        "min": 0,
+        "suffix": "px",
+        "display_width": "half_width",
+        "type": "number"
+      },
+      {
         "label": "Card hover effects",
         "name": "hover_effects",
+        "default": true,
         "locked": false,
         "type": "boolean"
       },
@@ -4125,22 +3778,37 @@
           {
             "label": "Text color",
             "name": "text_color",
+            "default": {
+              "color": null,
+              "opacity": 100
+            },
             "type": "color"
           },
           {
             "label": "Background color",
             "name": "background_color",
+            "default": {
+              "color": null,
+              "opacity": null
+            },
             "type": "color"
           },
           {
             "label": "Border color",
             "name": "border_color",
+            "default": {
+              "color": null,
+              "opacity": 100
+            },
+            "help_text": "Will be applied only if regular card border is added at least transparent",
             "type": "color"
           },
           {
             "label": "Shadow",
             "name": "shadow",
+            "default": "shadow-xl",
             "display_width": "half_width",
+            "placeholder": "No shadow",
             "choices": [
               [
                 "shadow-sm",
@@ -4180,7 +3848,9 @@
           {
             "label": "Animation",
             "name": "animation",
+            "default": null,
             "display_width": "half_width",
+            "placeholder": "No animation",
             "choices": [
               [
                 "ani-scale1x",

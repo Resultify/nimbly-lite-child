@@ -1,0 +1,76 @@
+.unicard :where(
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6) {
+  line-height: 1.2;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  font-style: initial;
+  font-family: var(--system-fonts);
+}
+
+/* heading link */
+.unicard .heading-link {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  text-decoration: none;
+}
+
+.unicard .heading-link:hover {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+}
+
+.margin-collapse :where(
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.display-1,
+.display-2,
+.display-3,
+.display-4,
+.display-5,
+.display-6) {
+  margin-top: 0;
+}
+
+.unicard h1 {
+  font-size: var(--h1-font-size, 2.25rem);
+}
+.unicard h2 {
+  font-size: var(--h2-font-size, 1.5rem);
+}
+.unicard h3 {
+  font-size: var(--h3-font-size, 1.25rem);
+}
+.unicard h4 {
+  font-size: var(--h4-font-size, 1.125rem);
+}
+.unicard h5 {
+  font-size: var(--h5-font-size, 1rem);
+}
+.unicard h6 {
+  font-size: var(--h6-font-size, 0.875rem);
+}

@@ -441,6 +441,228 @@
 
 
 
+{# render accordion-group icon internal macro #}
+{%- macro add_accordion_icon(data, position) -%}
+  {%- if data.accordion_icon_position is containing position -%}
+    {%- if data.accordion_icon_inline_svg -%}
+      {{data.accordion_icon_inline_svg}}
+    {%- else -%}
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#6ea8fe"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
+    {%- endif -%}
+  {%- endif -%}
+{%- endmacro -%}
+
+
+{%- macro accordion_group_macro(data) -%}
+
+  {# common styles for accordion-group macro #}
+  {% require_css %}
+    <style data-component="accordion-group">
+      .accordion-group {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+      }
+      .accordion-group.border-divider .accordion-item {
+        border-bottom: var(--custom-accordion-border-width, 1px) solid var(--custom-accordion-border-color, #bcc4ce);
+      }
+      .accordion-group.border-wrapper {
+        gap: var(--custom-accordion-border-gap, 20px);
+      }
+      .accordion-group.border-wrapper .accordion-item {
+        border: var(--custom-accordion-border-width, 1px) solid var(--custom-accordion-border-color, #bcc4ce);
+      }
+      .accordion-item {
+        --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
+        color: var(--_macro-color, inherit);
+        overflow: hidden;
+      }
+      .accordion-item-summary {
+        --_macro-color: var(--scope-hover-color, var(--custom-color, var(--scope-color)));
+        color: var(--_macro-color, inherit);
+        text-wrap: pretty;
+        overflow-wrap: break-word;
+        -webkit-hyphens: auto; /* for Safari */
+        hyphens: auto;
+        font-size: 22px;
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        list-style-type: none;
+        padding-left: 30px;
+        padding-top: 30px;
+        padding-right: 30px;
+        padding-bottom: 30px;
+        position: relative;
+        gap: 20px;
+      }
+      .accordion-item-summary:focus-visible {
+        outline-style: auto;
+      }
+      .accordion-group summary::marker {
+        content: none;
+      }
+      .accordion-group summary::-webkit-details-marker {
+        display: none;
+      }
+      .accordion-item-summary svg {
+        height: auto;
+        width: var(--custom-accordion-icon-size, 1em);
+        fill: var(--custom-accordion-icon-color, currentColor);
+        transition-property: transform, fill;
+        flex-shrink: 0;
+        transition-duration: var(--root-transition-duration);
+        transition-timing-function: var(--root-transition-timing-function);
+      }
+      .accordion-item[open] .accordion-item-summary svg {
+        transform: rotate(180deg);
+      }
+      .accordion-item-content {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-bottom: 30px;
+      }
+    </style>
+  {% end_require_css %}
+
+  {# hash for scoped styles #}
+  {% set accordion_hash = hash([
+    data.accordion_group.accordion_title_font.css,
+    data.accordion_group.accordion_title_color.css,
+    data.accordion_group.accordion_title_size,
+    data.accordion_group.accordion_spacing_top,
+    data.accordion_group.accordion_spacing_bottom,
+    data.accordion_group.accordion_spacing_left,
+    data.accordion_group.accordion_spacing_right,
+    data.accordion_group.accordion_icon_size,
+    data.accordion_group.accordion_icon_gap,
+    data.accordion_group.accordion_icon_color.css,
+    data.accordion_group.accordion_border_style,
+    data.accordion_group.accordion_border_width,
+    data.accordion_group.accordion_border_color.css,
+    data.accordion_group.accordion_border_gap,
+    data.accordion_group.accordion_border_radius,
+    data.accordion_group.accordion_bg_color,
+    data.accordion_group.accordion_show_top_border,
+    data.accordion_group.accordion_show_bottom_border
+  ]) %}
+
+
+  {% require_css %}
+    <style data-component="accordion-group scoped id{{accordion_hash}}">
+      {%- if data.accordion_group.accordion_icon_color.css or data.accordion_group.accordion_icon_size or data.accordion_group.accordion_border_width is integer or data.accordion_group.accordion_border_color.css -%}
+        .accordion{{accordion_hash}} {
+          {%- if data.accordion_group.accordion_icon_color.css -%}
+            --custom-accordion-icon-color: {{data.accordion_group.accordion_icon_color.css}};
+          {%- endif -%}
+          {%- if data.accordion_group.accordion_icon_size is integer -%}
+            --custom-accordion-icon-size: {{data.accordion_group.accordion_icon_size ~ 'px'}};
+          {%- endif -%}
+          {%- if data.accordion_group.accordion_border_width is integer -%}
+            --custom-accordion-border-width: {{data.accordion_group.accordion_border_width ~ 'px'}};
+          {%- endif -%}
+          {%- if data.accordion_group.accordion_border_color.css -%}
+            --custom-accordion-border-color: {{data.accordion_group.accordion_border_color.css}};
+          {%- endif -%}
+        }
+      {%- endif -%}
+
+      {%- if data.accordion_group.accordion_title_color.css or data.accordion_group.accordion_title_font.css or data.accordion_group.accordion_title_size -%}
+        .accordion{{accordion_hash}} .accordion-item-summary {
+          {%- if data.accordion_group.accordion_title_color.css -%}
+            --custom-color: {{data.accordion_group.accordion_title_color.css}};
+          {%- endif -%}
+          {%- if data.accordion_group.accordion_title_font.css -%}
+            {{css_font_macro(data.accordion_group.accordion_title_font, false)}}
+          {%- endif -%}
+          {%- if data.accordion_group.accordion_title_size is integer -%}
+            font-size: {{data.accordion_group.accordion_title_size ~ 'px'}};
+          {%- endif -%}
+        }
+      {%- endif -%}
+
+      {%- if data.accordion_group.accordion_icon_gap is integer and data.accordion_group.accordion_icon_position == 'left' -%}
+        .accordion{{accordion_hash}} .accordion-item-summary {
+          gap: {{data.accordion_group.accordion_icon_gap ~ 'px'}};
+        }
+      {%- endif -%}
+
+      {%- if data.accordion_group.accordion_spacing_top is integer -%}
+        .accordion{{accordion_hash}} .accordion-item-summary {
+          padding-top: {{data.accordion_group.accordion_spacing_top ~ 'px'}};
+        }
+      {%- endif -%}
+      {%- if data.accordion_group.accordion_spacing_bottom is integer -%}
+        .accordion{{accordion_hash}} :where(.accordion-item-summary, .accordion-item-content) {
+          padding-bottom: {{data.accordion_group.accordion_spacing_bottom ~ 'px'}};
+        }
+      {%- endif -%}
+      {%- if data.accordion_group.accordion_spacing_left is integer -%}
+        .accordion{{accordion_hash}} :where(.accordion-item-summary, .accordion-item-content) {
+          padding-left: {{data.accordion_group.accordion_spacing_left ~ 'px'}};
+        }
+      {%- endif -%}
+      {%- if data.accordion_group.accordion_spacing_right is integer -%}
+        .accordion{{accordion_hash}} :where(.accordion-item-summary, .accordion-item-content) {
+          padding-right: {{data.accordion_group.accordion_spacing_right ~ 'px'}};
+        }
+      {%- endif -%}
+
+      {%- if data.accordion_group.accordion_show_top_border == 'true' and data.accordion_group.accordion_border_style == 'border_divider' -%}
+        .accordion{{accordion_hash}}.border-divider .accordion-item:first-child {
+          border-top: var(--custom-accordion-border-width, 1px) solid var(--custom-accordion-border-color, #bcc4ce);
+        }
+      {%- endif -%}
+      {%- if data.accordion_group.accordion_show_bottom_border == 'false' and data.accordion_group.accordion_border_style == 'border_divider' -%}
+        .accordion{{accordion_hash}}.border-divider .accordion-item:last-child {
+          border-bottom: none;
+        }
+      {%- endif -%}
+
+      {%- if data.accordion_group.accordion_border_gap is integer and data.accordion_group.accordion_border_style == 'border_wrapper' -%}
+        .accordion{{accordion_hash}} {
+          --custom-accordion-border-gap: {{data.accordion_group.accordion_border_gap ~ 'px'}};
+        }
+      {%- endif -%}
+      {%- if data.accordion_group.accordion_border_radius is integer and data.accordion_group.accordion_border_style == 'border_wrapper' -%}
+        .accordion{{accordion_hash}}.border-wrapper .accordion-item {
+          border-radius: {{data.accordion_group.accordion_border_radius ~ 'px'}};
+        }
+      {%- endif -%}
+      {%- if data.accordion_group.accordion_bg_color.css and data.accordion_group.accordion_border_style == 'border_wrapper' -%}
+        .accordion{{accordion_hash}}.border-wrapper .accordion-item {
+          background-color: {{data.accordion_group.accordion_bg_color.css}};
+        }
+      {%- endif -%}
+    </style>
+  {% end_require_css %}
+
+
+  {%- if data.accordion_group.accordion_item|length > 0 -%}
+    <div data-component="accordion-group" class="accordion-group accordion{{accordion_hash}} {{'border-wrapper' if data.accordion_group.accordion_border_style == 'border_wrapper'}} {{'border-divider' if data.accordion_group.accordion_border_style == 'border_divider'}}">
+
+      {%- for item in data.accordion_group.accordion_item -%}
+        {%- if item.accordion_item_title and item.accordion_item_text -%}
+          <details class="accordion-item">
+            <summary class="accordion-item-summary" style="{{'justify-content: space-between;' if data.accordion_group.accordion_icon_position == 'right'}}">
+              {{add_accordion_icon(data.accordion_group, 'left')}}
+              <span class="accordion-item-summary-text">{{item.accordion_item_title}}</span>
+              {{add_accordion_icon(data.accordion_group, 'right')}}
+            </summary>
+            <div class="accordion-item-content">{{item.accordion_item_text}}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+
+    </div>
+  {%- endif -%}
+
+{%- endmacro -%}
+
+
+
+
 
 {# render button icon internal macro #}
 {%- macro add_button_icon(data, position) -%}
@@ -1560,5 +1782,78 @@
 
 
 
+<style>
+  {% scope_css %}
+    {% if module.style.grid_layout.columns < 2 %}
+      .unicard-group {
+        grid-template-columns: repeat(var(--col), minmax(0, 1fr));
+      }
+    {% endif %}
+    {% if module.style.grid_layout.columns > 1 %}
+      .unicard-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr));
+      }
+    {% endif %}
+    {% if module.style.grid_layout.columns < 3 %}
+      .unicard-group {
+        --min: 280px;
+      }
+      @media screen and (max-width: 460px) {
+        .unicard-group {
+          grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+      }
+      @media (min-width: 700px) {
+        .unicard-group {
+          grid-template-columns: repeat(var(--col), minmax(0, 1fr));
+        }
+      }
+    {% endif %}
+    {% if module.style.grid_layout.columns > 2 and module.style.grid_layout.columns < 5 %}
+      .unicard-group {
+        --min: 280px;
+      }
+      @media screen and (max-width: 460px) {
+        .unicard-group {
+          grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+      }
+      @media (min-width: 1100px) {
+        .unicard-group {
+          grid-template-columns: repeat(var(--col), minmax(0, 1fr));
+        }
+      }
+    {% endif %}
+    {% if module.style.grid_layout.columns > 4 and module.style.grid_layout.columns < 7 %}
+      .unicard-group {
+        --min: 200px;
+      }
+      @media (min-width: 1200px) {
+        .unicard-group {
+          grid-template-columns: repeat(var(--col), minmax(0, 1fr));
+        }
+      }
+    {% endif %}
+    {% if module.style.grid_layout.columns > 6 %}
+      .unicard-group {
+        --min: 136px;
+      }
+      @media (min-width: 1200px) {
+        .unicard-group {
+          grid-template-columns: repeat(var(--col), minmax(0, 1fr));
+        }
+      }
+    {% endif %}
+  {% end_scope_css %}
+</style>
 
-{{unicard_macro(module, module.style)}}
+{% if module.card_group|length > 0 %}
+  
+
+  <div class="unicard-group" style="--col: {{module.style.grid_layout.columns}}; gap:{{module.style.grid_layout.gap ~ 'px'}};">
+    {% for item in module.card_group %}
+      {{unicard_macro(item, module.style.card_style_group)}}
+    {% endfor %}
+  </div>
+{% endif %}
