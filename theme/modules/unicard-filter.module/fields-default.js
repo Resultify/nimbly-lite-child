@@ -1,5 +1,7 @@
 import { globalDefault } from '../unicard-global-default.js'
 import { groupGlobalDefault } from '../unicard-group-global-default.js'
+import { categoryList } from '../../partials/data/category-list.js'
+
 export const card1 = {
   accordion_group: groupGlobalDefault.accordion_group,
   button_group: groupGlobalDefault.button_group,
@@ -59,7 +61,7 @@ export const card1 = {
   media_type: "icon",
   module_components: [ "media", "separator", "custom_text", "main_heading", "categories" ],
   whole_area_link: true,
-  category_group: [ "category 1" ],
+  category_group: [ categoryList[0][0] ],
 }
 
 export const card2 = {
@@ -126,7 +128,7 @@ export const card2 = {
   media_type: "full_width_image",
   module_components: [ "media", "custom_text", "main_heading", "categories" ],
   whole_area_link: true,
-  category_group: [ "category 2" ],
+  category_group: [ categoryList[0][1] ],
 }
 
 export const card3 = {
@@ -228,7 +230,7 @@ export const card3 = {
   media_type: "full_width_image",
   module_components: [ "separator", "main_heading", "richtext", "buttons", "categories" ],
   whole_area_link: false,
-  category_group: [ "category 3" ],
+  category_group: [ categoryList[0][2] ],
   card_style: {
     background_size: "cover",
     background_alignment: "MIDDLE_CENTER",

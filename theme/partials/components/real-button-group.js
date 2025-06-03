@@ -43,7 +43,7 @@ const realButtonGroup = (parent = '') => {
             button_size: "regular",
             button_style: "primary",
             button_text: "Style 1",
-            category: "category 1",
+            category: categoryList[0][0],
             custom_button_background: { },
             custom_button_border_color: { },
             custom_button_font: {
@@ -74,7 +74,7 @@ const realButtonGroup = (parent = '') => {
             button_size: "regular",
             button_style: "primary",
             button_text: "Style 2",
-            category: "category 2",
+            category: categoryList[0][1],
             custom_button_background: { },
             custom_button_border_color: { },
             custom_button_font: {
@@ -105,7 +105,7 @@ const realButtonGroup = (parent = '') => {
             button_size: "regular",
             button_style: "primary",
             button_text: "Style 3",
-            category: "category 3",
+            category: categoryList[0][2],
             custom_button_background: { },
             custom_button_border_color: { },
             custom_button_font: {

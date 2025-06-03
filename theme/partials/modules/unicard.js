@@ -441,7 +441,8 @@ const unicardStyleFields = (parent = '', opt) => {
         default: {
           color: opt?.default?.hover_border_color ?? null,
           opacity: 100
-        }
+        },
+        help_text: 'Will be applied only if regular card border is added at least transparent',
       }),
       fi.choice('Shadow', 'shadow', {
         default: opt?.default?.hover_shadow ?? null,

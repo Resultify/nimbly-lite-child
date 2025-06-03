@@ -139,7 +139,7 @@
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
-  /* eslint-disable-next-line css/require-baseline */
+  /* eslint-disable-next-line css/use-baseline */
   user-select: none;
   background-color: transparent;
   border: none;
