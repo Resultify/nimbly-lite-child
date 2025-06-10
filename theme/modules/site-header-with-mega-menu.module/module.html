@@ -742,10 +742,19 @@
 
     .main-nav__list-item-link {
       justify-content: flex-start;
-      {% if link_font.font != 'null' %}
-        {{link_font.style}};
-      {% else %}
-        {{link_font.style}};
+      {% if link_font.styles.font-weight %}
+        font-weight: {{link_font.styles.font-weight}};
+      {% endif %}
+      {% if link_font.styles.text-decoration %}
+        text-decoration: {{link_font.styles.text-decoration}};
+      {% endif %}
+      {% if link_font.styles.font-family %}
+        font-family: {{link_font.styles.font-family}};
+      {% endif %}
+      {% if link_font.styles.font-style %}
+        font-style: {{link_font.styles.font-style}};
+      {% endif %}
+      {% if link_font.font == 'null' %}
         font-family: var(--system-fonts);
       {% endif %}
       {% if link_font.color %}
@@ -765,12 +774,23 @@
     }
 
     .main-nav__list--sublevel .main-nav__title {
-      {{module.style.menu.dropdown.links.spacing.css}}
-      {{link_font.style}};
+      {% if link_font.styles.font-weight %}
+        font-weight: {{link_font.styles.font-weight}};
+      {% endif %}
+      {% if link_font.styles.text-decoration %}
+        text-decoration: {{link_font.styles.text-decoration}};
+      {% endif %}
+      {% if link_font.styles.font-family %}
+        font-family: {{link_font.styles.font-family}};
+      {% endif %}
+      {% if link_font.styles.font-style %}
+        font-style: {{link_font.styles.font-style}};
+      {% endif %}
       {% if link_font.size %}
         {# use mega_menu.first_level_title_font_size #}
         font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.first_level_title_font_size }} * 0.01));
       {% endif %}
+      {{module.style.menu.dropdown.links.spacing.css}}
     }
 
     .main-nav__list--sublevel .main-nav__description {
@@ -899,10 +919,19 @@
     {% endif %}
 
     .header-language-btn {
-      {% if lang_link_font.font != 'null' %}
-        {{lang_link_font.style}};
-      {% else %}
-        {{lang_link_font.style}};
+      {% if lang_link_font.styles.font-weight %}
+        font-weight: {{lang_link_font.styles.font-weight}};
+      {% endif %}
+      {% if lang_link_font.styles.text-decoration %}
+        text-decoration: {{lang_link_font.styles.text-decoration}};
+      {% endif %}
+      {% if lang_link_font.styles.font-family %}
+        font-family: {{lang_link_font.styles.font-family}};
+      {% endif %}
+      {% if lang_link_font.styles.font-style %}
+        font-style: {{lang_link_font.styles.font-style}};
+      {% endif %}
+      {% if lang_link_font.font == 'null' %}
         font-family: var(--system-fonts);
       {% endif %}
       {% if lang_link_font.color %}
