@@ -774,7 +774,6 @@
     }
 
     .main-nav__list--sublevel .main-nav__title {
-      {{module.style.menu.dropdown.links.spacing.css}}
       {% if link_font.styles.font-weight %}
         font-weight: {{link_font.styles.font-weight}};
       {% endif %}
@@ -791,6 +790,7 @@
         {# use mega_menu.first_level_title_font_size #}
         font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.first_level_title_font_size }} * 0.01));
       {% endif %}
+      {{module.style.menu.dropdown.links.spacing.css}}
     }
 
     .main-nav__list--sublevel .main-nav__description {
