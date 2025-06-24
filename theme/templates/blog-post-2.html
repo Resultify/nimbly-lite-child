@@ -9,6 +9,17 @@
 
 {% block body %}
 
+{% if html_lang == "sv" %}
+  {% set all_articles = 'Alla artiklar' %}
+  {% set read_more = 'Läs mer' %}
+{% elif html_lang == "da" %}
+  {% set all_articles = 'Alle artikler' %}
+  {% set read_more = 'Læs mere' %}
+{% else %}
+  {% set all_articles = 'All articles' %}
+  {% set read_more = 'Read more' %}
+{% endif %}
+
   <div class="blog-post-template">
 
     <div class="blog-post_wrp">
@@ -50,7 +61,7 @@
 
         {% if content.featured_image %}
           <div class="blog-post-featured-image-wrp">
-            <img class="blog-post-featured-image" src="{{content.featured_image}}" alt="{{content.featured_image_alt_text}}">
+            <img class="blog-post-featured-image" src="{{content.featured_image}}" alt="{{content.featured_image_alt_text}}" width="924">
           </div>
         {% endif %}
 
@@ -186,6 +197,10 @@
           general_heading={
             "text" : ""
           },
+          button={
+            "show" : true,
+            "text" : "{{ read_more }}"
+          },
           style={
             "button" : {
               "presets" : {
@@ -236,7 +251,7 @@
           path="../modules/n-button",
           offset=0,
           width=12,
-          text="ALL ARTICLES",
+          text="{{ all_articles }}",
           link={
             "no_follow" : false,
             "open_in_new_tab" : false,
