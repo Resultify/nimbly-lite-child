@@ -123,18 +123,20 @@
           </div>
         {%- endif -%}
       {%- endif -%}
+
+      {# Youtube lite type #}
+      {%- if data.video_type == "youtube_lite" -%}
+        {%- if data.youtube_lite -%}
+          <div class="iframe-wrp youtube-lite-wrp">
+            <lite-youtube
+              videoid="{{ data.youtube_lite }}"
+              playlabel="{{ data.youtube_lite.play_label|default('Play') }}"
+            ></lite-youtube>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+
     </div>
   {%- endif -%}
 
-  {# Youtube type #}
-  {%- if data.video_type == "youtube_lite" -%}
-    {%- if data.youtube_lite -%}
-      <div class="iframe-wrp youtube-lite-wrp">
-        <lite-youtube
-          videoid="{{ data.youtube_lite }}"
-          playlabel="{{ data.youtube_lite.play_label|default('Play') }}"
-        ></lite-youtube>
-      </div>
-    {%- endif -%}
-  {%- endif -%}
 {%- endmacro -%}
