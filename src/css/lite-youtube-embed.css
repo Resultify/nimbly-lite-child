@@ -1,0 +1,6 @@
+@import 'lite-youtube-embed/src/lite-yt-embed.css';
+
+/* don't limit max-width */
+lite-youtube {
+    max-width: unset !important;
+}

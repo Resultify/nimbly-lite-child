@@ -5,7 +5,7 @@
 -->
 {% import '../utils/hash.html' %}
 {%- macro video_macro(data) -%}
-  {%- if data.embed.oembed_url or data.embed.embed_html or data.hubspot_video.player_id != null -%}
+  {%- if data.embed.oembed_url or data.embed.embed_html or data.hubspot_video.player_id or data.youtube_lite != null -%}
     {# common styles for video macro #}
     {% require_css %}
       <style data-component="video">
@@ -158,6 +158,11 @@
       </script>
     {% end_require_js %}
 
+    {%- if data.video_type == "youtube_lite" -%}
+      {{require_css(get_asset_url("../../assets/css/lite-youtube-embed.css"), { async: true })}}
+      {{require_js(get_asset_url('../../assets/js/lite-youtube-embed.js'), { defer: true})}}
+    {%- endif -%}
+
     {# hash for scoped styles #}
     {% set item_hash = hash([
       loop.first,
@@ -281,6 +286,18 @@
               </button>
             </div>
           {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      {# Youtube lite type #}
+      {%- if data.video_type == "youtube_lite" -%}
+        {%- if data.youtube_lite -%}
+          <div class="iframe-wrp youtube-lite-wrp">
+            <lite-youtube
+              videoid="{{ data.youtube_lite }}"
+              playlabel="{{ data.youtube_lite.play_label|default('Play') }}"
+            ></lite-youtube>
+          </div>
         {%- endif -%}
       {%- endif -%}
     </div>
