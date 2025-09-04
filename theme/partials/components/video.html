@@ -86,8 +86,6 @@
 
     {% require_js %}
       <script>
-        const hsVideoModalContainers = document.getElementsByClassName('hubspot-video-wrp')
-
         {# function for "lite hubspot video" #}
         function liteHubspotVideo (container) {
           {# fetch variable with video-element #}
@@ -150,6 +148,8 @@
         }
 
         {# check to only run script if video module with "Hubspot Video type" is present #}
+        const hsVideoModalContainers = document.getElementsByClassName('hubspot-video-wrp')
+
         if (hsVideoModalContainers.length !== 0) {
           Array.prototype.forEach.call(hsVideoModalContainers, function (el) {
             liteHubspotVideo(el)
@@ -230,7 +230,31 @@
               </style>
             {%- endif -%}
             <div class="iframe-wrp embed-url-wrp" id="video_{{video_hash}}">
-              {{data.embed.oembed_response.html}}
+              {# Store the embed HTML from the oembed response #}
+              {%- set embed_html = data.embed.oembed_response.html -%}
+              {# Check if autoplay is enabled #}
+              {%- if data.autoplay == true -%}
+                {# Extract the src attribute from the embed HTML #}
+                {%- set src_parts = embed_html | split('src="') -%}
+                {%- if src_parts[1] is defined -%}
+                  {%- set url_parts = src_parts[1] | split('"') -%}
+                  {# Extract the URL from the src attribute #}
+                  {%- set src_url = url_parts[0] -%}
+                  {# Check if URL already has query parameters #}
+                  {%- set url_parts_query = src_url | split("?") -%}
+                  {%- if url_parts_query[1] is defined -%}
+                    {# Append autoplay parameter with & if query parameters exist #}
+                    {%- set new_src_url = src_url ~ "&autoplay=1" -%}
+                  {%- else -%}
+                    {# Append autoplay parameter with ? if no query parameters exist #}
+                    {%- set new_src_url = src_url ~ "?autoplay=1" -%}
+                  {%- endif -%}
+                  {# Replace the original URL with the new URL that includes autoplay #}
+                  {%- set embed_html = embed_html | replace(src_url, new_src_url) -%}
+                {%- endif -%}
+              {%- endif -%}
+              {# Output the (possibly modified) embed HTML #}
+              {{ embed_html }}
             </div>
           {%- endif -%}
 
@@ -246,6 +270,7 @@
       {# HubSpot Video type #}
       {%- elif data.video_type == "hubspot_video" -%}
         {%- if data.hubspot_video.player_id -%}
+          {# if autoplay is true, just embed the player directly #}
           {%- if data.autoplay -%}
             {% video_player "hubspot_video"
               autoplay={{data.autoplay}},
@@ -256,12 +281,12 @@
               height={{ data.hubspot_video.height }},
               width={{ data.hubspot_video.width }},
             %}
+          {# else, move embed player into a variable that can be run later and show lite-hubspot-video #}
           {%- else -%}
             {%- set video_hash = hash([
               name,
               data.hubspot_video.player_id
             ]) -%}
-            {# move embed player into a variable that can be run later #}
             <script>
               var video_{{video_hash}}_color = '{{data.hubspot_video_play_button_color.css}}'
               var video_{{video_hash}} = `{% video_player "hubspot_video"
