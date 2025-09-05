@@ -5,7 +5,7 @@
 -->
 {% import '../utils/hash.html' %}
 {%- macro video_macro(data) -%}
-  {%- if data.embed.oembed_url or data.embed.embed_html or data.hubspot_video.player_id != null -%}
+  {%- if data.embed.oembed_url or data.embed.embed_html or data.hubspot_video.player_id or data.youtube_lite != null -%}
     {# common styles for video macro #}
     {% require_css %}
       <style data-component="video">
@@ -15,7 +15,9 @@
           position: relative;
           width: 100%;
         }
-        .video .iframe-wrp {
+        .video .iframe-wrp,
+        .video .hubspot-video-wrp {
+          display: block;
           height: 0;
           padding-bottom: 56.25%;
           position: relative;
@@ -31,8 +33,135 @@
           border: 0 none;
           pointer-events: initial;
         }
+        {# videos that are smaller (uncommon) than container are scaled upwards #}
+        .video .hs-video-container {
+          max-width: unset !important;
+        }
+        .hubspot-video-wrp__bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #000;
+          background-size: cover;
+          background-position: center;
+        }
+        .video .hubspot-video-wrp__play {
+          display: block;
+          min-width: unset;
+          min-height: unset;
+          width: 16%;
+          height: 1rem;
+          padding: unset;
+          padding-bottom: 16%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          border-radius: 50%;
+          background: rgba(33, 37, 41, 1);
+          transform: translate(-50%,-50%);
+          border: 0 none;
+          margin: 0;
+          opacity: .7;
+          transition: opacity 0.3s ease-out;
+        }
+        .video .hubspot-video-wrp__play > svg {
+          font-size: 3em;
+          line-height: 1.5em;
+          fill: #fff;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          padding: 20%;
+        }
+        .video .hubspot-video-wrp:hover .hubspot-video-wrp__play,
+        .video .hubspot-video-wrp:focus .hubspot-video-wrp__play {
+          opacity: 1;
+        }
       </style>
     {% end_require_css %}
+
+    {% require_js %}
+      <script>
+        {# function for "lite hubspot video" #}
+        function liteHubspotVideo (container) {
+          {# fetch variable with video-element #}
+          let videoElement = window[container.getAttribute('id')]
+          const videoElementColor = window[container.getAttribute('id') + '_color']
+          const videoBg = container.getElementsByClassName('hubspot-video-wrp__bg')[0]
+          const videoPlay = container.getElementsByClassName('hubspot-video-wrp__play')[0]
+
+          if (videoElement !== undefined) {
+            {# grab the right values from videoElement to compose the url for the video json #}
+            const videoUrl = new URL(videoElement.match(/data-hsv-src="([^"]*)"/)[1])
+            const videoId = videoUrl.pathname.match(/\/v\/([^/]*)\//)?.[1]
+            const hubId = videoElement.match(/data-hsv-id="([^"]*)"/)[1]
+            const jsonUrl = `${window.location.protocol}//${window.location.host}/_hcms/video/${hubId}/player?portalId=${videoId}&hs_static_app=video-player-ui&hs_static_app_version=1.25182`
+
+            {# replace loading="lazy" with loading="eager" if present #}
+            videoElement = videoElement.replace(/loading="lazy"/g, 'loading="eager"');
+
+            {# replace the data-hsv-src attribute with src and add autoplay parameter #}
+            videoElement = videoElement.replace(/data-hsv-src="([^"]*)"/g, function(match, url) {
+              {# Check if URL already has query parameters #}
+              const separator = url.includes('?') ? '&' : '?';
+              return 'src="' + url + separator + 'autoplay=true"';
+            });
+
+            fetch(jsonUrl)
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`)
+                }
+                return response.json()
+              })
+              .then(data => {
+
+                {# extract posterUrl from the JSON response #}
+                const posterUrl = data.video.posterUrl
+                const posterTitle = data.video.title
+
+                {# set title on container and the poster image as background image #}
+                container.setAttribute('title', posterTitle)
+                videoBg.style.backgroundImage = `url(${posterUrl})`
+              })
+              .catch(error => {
+                console.error('Error fetching video data:', error)
+              })
+
+            {# finally, prevent default and enable video modal on click #}
+            container.addEventListener('click', function (event) {
+              event.preventDefault()
+
+              {# only trigger video once #}
+              if (container.getAttribute('data-video-triggered') == null) {
+                {# remove the play button, add the video and set data-video-triggered #}
+                videoPlay.remove()
+                container.innerHTML += videoElement
+                container.setAttribute('data-video-triggered', 'true')
+              }
+            })
+          }
+        }
+
+        {# check to only run script if video module with "Hubspot Video type" is present #}
+        const hsVideoModalContainers = document.getElementsByClassName('hubspot-video-wrp')
+
+        if (hsVideoModalContainers.length !== 0) {
+          Array.prototype.forEach.call(hsVideoModalContainers, function (el) {
+            liteHubspotVideo(el)
+          })
+        }
+      </script>
+    {% end_require_js %}
+
+    {%- if data.video_type == "youtube_lite" -%}
+      {{require_css(get_asset_url("../../assets/css/lite-youtube-embed.css"), { async: true })}}
+      {{require_js(get_asset_url('../../assets/js/lite-youtube-embed.js'), { defer: true})}}
+    {%- endif -%}
 
     {# hash for scoped styles #}
     {% set item_hash = hash([
@@ -74,7 +203,8 @@
     {%- if data.video_border_radius is integer and data.force_full_width_video != true -%}
       {% require_css %}
         <style data-component="video scoped id{{item_hash}}">
-          .video{{item_hash}} iframe {
+        .video{{item_hash}} iframe,
+        .video{{item_hash}} .hubspot-video-wrp__bg {
             border-radius: {{data.video_border_radius ~ 'px'}};
           }
         </style>
@@ -88,8 +218,43 @@
         {%- if data.embed.source_type == "oembed" -%}
           {% set isSupportedOEmbedType = data.embed.supported_oembed_types.index(data.embed.oembed_response.type) >= 0 %}
           {%- if data.embed.oembed_response.html and isSupportedOEmbedType -%}
-            <div class="iframe-wrp embed-url-wrp">
-              {{data.embed.oembed_response.html}}
+            {%- set video_hash = hash([
+              data.embed.oembed_url
+            ]) -%}
+            {# set new aspect ratio if not close to 16:9 (result for 16:9 becomes 56.5% instead of 56.25%) #}
+            {%- if (100 / data.embed.width * data.embed.height)|int != '56' -%}
+              <style>
+                #video_{{video_hash}} {
+                  padding-bottom: {{ 100 / data.embed.width * data.embed.height }}%;
+                }
+              </style>
+            {%- endif -%}
+            <div class="iframe-wrp embed-url-wrp" id="video_{{video_hash}}">
+              {# Store the embed HTML from the oembed response #}
+              {%- set embed_html = data.embed.oembed_response.html -%}
+              {# Check if autoplay is enabled #}
+              {%- if data.autoplay == true -%}
+                {# Extract the src attribute from the embed HTML #}
+                {%- set src_parts = embed_html | split('src="') -%}
+                {%- if src_parts[1] is defined -%}
+                  {%- set url_parts = src_parts[1] | split('"') -%}
+                  {# Extract the URL from the src attribute #}
+                  {%- set src_url = url_parts[0] -%}
+                  {# Check if URL already has query parameters #}
+                  {%- set url_parts_query = src_url | split("?") -%}
+                  {%- if url_parts_query[1] is defined -%}
+                    {# Append autoplay parameter with & if query parameters exist #}
+                    {%- set new_src_url = src_url ~ "&autoplay=1" -%}
+                  {%- else -%}
+                    {# Append autoplay parameter with ? if no query parameters exist #}
+                    {%- set new_src_url = src_url ~ "?autoplay=1" -%}
+                  {%- endif -%}
+                  {# Replace the original URL with the new URL that includes autoplay #}
+                  {%- set embed_html = embed_html | replace(src_url, new_src_url) -%}
+                {%- endif -%}
+              {%- endif -%}
+              {# Output the (possibly modified) embed HTML #}
+              {{ embed_html }}
             </div>
           {%- endif -%}
 
@@ -105,14 +270,58 @@
       {# HubSpot Video type #}
       {%- elif data.video_type == "hubspot_video" -%}
         {%- if data.hubspot_video.player_id -%}
-          <div class="iframe-wrp hubspot-video-wrp">
+          {# if autoplay is true, just embed the player directly #}
+          {%- if data.autoplay -%}
             {% video_player "hubspot_video"
               autoplay={{data.autoplay}},
               conversion_asset={{data.hubspot_video.conversion_asset|tojson|safe}},
               play_button_color={{data.hubspot_video_play_button_color.css}},
               player_id={{data.hubspot_video.player_id}},
               type={{data.hubspot_video.player_type or 'scriptV4'}},
+              height={{ data.hubspot_video.height }},
+              width={{ data.hubspot_video.width }},
             %}
+          {# else, move embed player into a variable that can be run later and show lite-hubspot-video #}
+          {%- else -%}
+            {%- set video_hash = hash([
+              name,
+              data.hubspot_video.player_id
+            ]) -%}
+            <script>
+              var video_{{video_hash}}_color = '{{data.hubspot_video_play_button_color.css}}'
+              var video_{{video_hash}} = `{% video_player "hubspot_video"
+                autoplay={{data.autoplay}},
+                conversion_asset={{data.hubspot_video.conversion_asset|tojson|safe}},
+                play_button_color={{data.hubspot_video_play_button_color.css}},
+                player_id={{data.hubspot_video.player_id}},
+                type={{data.hubspot_video.player_type or 'scriptV4'}},
+                height={{ data.hubspot_video.height }},
+                width={{ data.hubspot_video.width }},
+              %}`
+            </script>
+            <style>
+              #video_{{video_hash}} {
+                padding-bottom: {{ 100 / data.hubspot_video.width * data.hubspot_video.height }}%;
+              }
+            </style>
+            <div class="hubspot-video-wrp" id="video_{{video_hash}}">
+              <div class="hubspot-video-wrp__bg"></div>
+              <button class="hubspot-video-wrp__play" {{ data.hubspot_video_play_button_color.css ? 'style="background-color: {{data.hubspot_video_play_button_color.css}};"' : '' }}>
+                <svg viewBox="0 0 32 32" fill="#ffffff" focusable="false" aria-hidden="true"><path id="play" data-testid="play" d="M6.484 4.094l20.75 11.225c0.226 0.121 0.41 0.427 0.41 0.683s-0.184 0.563-0.41 0.683l-20.75 11.222c-0.095 0.051-0.26 0.093-0.367 0.093-0.427 0-0.774-0.346-0.774-0.773v-22.451c0-0.428 0.347-0.774 0.774-0.774 0.108 0 0.272 0.042 0.367 0.093z"></path></svg>
+              </button>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      {# Youtube lite type #}
+      {%- if data.video_type == "youtube_lite" -%}
+        {%- if data.youtube_lite -%}
+          <div class="iframe-wrp youtube-lite-wrp">
+            <lite-youtube
+              videoid="{{ data.youtube_lite }}"
+              playlabel="{{ data.youtube_lite.play_label|default('Play') }}"
+            ></lite-youtube>
           </div>
         {%- endif -%}
       {%- endif -%}
