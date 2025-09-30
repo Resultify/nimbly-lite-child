@@ -15,9 +15,14 @@
     class='blog-list-template'
   %}
 
-    {% include_dnd_partial path='../sections/subpage-banner.html' context={headingText:"Blog"} %}
-
-    {% dnd_section %}
+    {% dnd_section
+      padding={
+        "default" : {
+          "bottom" : "0px"
+        }
+      },
+      full_width=false
+    %}
       {% dnd_column
         offset=0,
         width=12
