@@ -1,0 +1,105 @@
+
+{# ========START=========== #}
+{# experimental solution for sorting tags #}
+ <style>
+{% scope_css %}
+    .blog-tag-filter {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+
+      {% if module.style.general.spacing.spacing.css %}
+        {{module.style.general.spacing.spacing.css}}
+      {% endif %}
+      {% if module.style.general.alignment.alignment.horizontal_align %}
+        justify-content: {{module.style.general.alignment.alignment.horizontal_align}};
+      {% endif %}
+      {% if module.style.general.background.color.css %}
+        background-color: {{module.style.general.background.color.css}};
+      {% endif %}
+      {% if module.style.general.border.border.css %}
+        {{module.style.general.border.border.css}};
+      {% endif %}
+      {% if module.style.general.border.border_radius != null %}
+        border-radius: {{module.style.general.border.border_radius ~ 'px'}};
+      {% endif %}
+      gap: {{module.style.link.spacing.gap ~ 'px'}};
+    }
+
+    .blog-tag-filter a {
+      {% if module.style.link.background.color.css %}
+        background-color: {{module.style.link.background.color.css}};
+      {% endif %}
+      {% if module.style.link.spacing.spacing.css %}
+        {{module.style.link.spacing.spacing.css}}
+      {% endif %}
+      {% if module.style.link.border.border.css %}
+        {{module.style.link.border.border.css}};
+      {% endif %}
+      {% if module.style.link.border.border_radius != null %}
+        border-radius: {{module.style.link.border.border_radius ~ 'px'}};
+      {% endif %}
+      {% if module.style.link.custom_theme_overrides.font %}
+        font-family: {{ module.style.link.custom_theme_overrides.font.font }};
+        color: {{ module.style.link.custom_theme_overrides.font.color }}; font-size: {{ module.style.link.custom_theme_overrides.font.size ~ 'px'}};
+      {% endif%}
+      {% if module.style.link.custom_theme_overrides.underline %}
+        text-decoration: {{ module.style.link.custom_theme_overrides.underline }};
+      {% endif %}
+    }
+
+    .blog-tag-filter a:hover,
+    .blog-tag-filter a:focus {
+      {% if module.style.link.custom_theme_overrides.hover.underline %}
+        text-decoration: {{ module.style.link.custom_theme_overrides.hover.underline }};
+      {% endif %}
+      {% if module.style.link.custom_theme_overrides.hover.color.css %}
+        color: {{ module.style.link.custom_theme_overrides.hover.color.css }};
+      {% endif %}
+    }
+
+  {% end_scope_css %}
+
+</style>
+
+{% set my_tags = blog_tags(group.id, 250) %}
+{% set currentURL = content.absolute_url|regex_replace("^(http|https):", "")|regex_replace("/page/.*", "") %}
+{% set sorted_tags = my_tags|sort(False, False, "slug") %}
+
+{# Custom order of tags #}
+{% set custom_order = ["press-releases", "news", "events", "blog"] %}
+{% set ordered_tags = [] %}
+
+{# first sort tags that are in custom_order #}
+{% for tag in custom_order %}
+  {% for item in sorted_tags %}
+    {% if item.slug == tag %}
+      {% do ordered_tags.append(item) %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{# then sort the rest of the tags #}
+{% for item in sorted_tags %}
+  {# variables and scoping issue solved: https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template/49699589#49699589 #}
+  {% set found = namespace(value=false) %}
+  {% for custom_tag in custom_order %}
+    {% if item.slug == custom_tag %}
+      {% set found.value = true %}
+    {% endif %}
+  {% endfor %}
+  {% if found.value == false %}
+    {% do ordered_tags.append(item) %}
+  {% endif %}
+{% endfor %}
+
+<div class="blog-tag-filter">
+  <a class="{% if currentURL == group.absolute_url|regex_replace("^(http|https):", "") %}active{% else %}{% endif %}" href="{{ group.absolute_url }}"><span>{{ module.label_for_all_categories }}</span></a>
+
+  {% for item in ordered_tags %}
+    <a class="{% if currentURL|urldecode == blog_tag_url(group.id, item.slug)|regex_replace("^(http|https):", "") %}active{% else %}{% endif %}" href="{{ blog_tag_url(group.id, item.slug)|regex_replace("^(http|https):", "") }}"><span>{{ item }}</span></a>
+  {% endfor %}
+</div>
+{# experimental solution for sorting tags #}
+{# ========END=========== #}
