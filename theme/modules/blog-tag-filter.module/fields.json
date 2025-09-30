@@ -512,4 +512,16 @@
   "type" : "text",
   "display_width" : null,
   "default" : "All categories"
+}, {
+  "id" : "custom_tag_order_field",
+  "name" : "custom_tag_order",
+  "label" : "Custom tag order",
+  "help_text" : "Enter tag slugs separated by commas to set a custom order (e.g., 'press-releases,news,events,blog'). Tags not listed here will appear after these in alphabetical order.",
+  "required" : false,
+  "locked" : false,
+  "placeholder" : "press-releases,news,events,blog",
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : ""
 } ]

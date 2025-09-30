@@ -42,8 +42,9 @@
       {% endif %}
       {% if module.style.link.custom_theme_overrides.font %}
         font-family: {{ module.style.link.custom_theme_overrides.font.font }};
-        color: {{ module.style.link.custom_theme_overrides.font.color }}; font-size: {{ module.style.link.custom_theme_overrides.font.size ~ 'px'}};
-      {% endif%}
+        color: {{ module.style.link.custom_theme_overrides.font.color }};
+        font-size: {{ module.style.link.custom_theme_overrides.font.size ~ 'px'}};
+      {% endif %}
       {% if module.style.link.custom_theme_overrides.underline %}
         text-decoration: {{ module.style.link.custom_theme_overrides.underline }};
       {% endif %}
@@ -68,7 +69,12 @@
 {% set sorted_tags = my_tags|sort(False, False, "slug") %}
 
 {# Custom order of tags #}
-{% set custom_order = ["press-releases", "news", "events", "blog"] %}
+{% if module.custom_tag_order %}
+  {% set custom_order = module.custom_tag_order|split(',') %}
+  {% for i in range(custom_order|length) %}
+    {% set custom_order = custom_order[:i] + [custom_order[i]|trim] + custom_order[i+1:] %}
+  {% endfor %}
+{% endif %}
 {% set ordered_tags = [] %}
 
 {# first sort tags that are in custom_order #}
