@@ -290,10 +290,10 @@
   {% endif %}
 {%- endmacro -%}
 
-{# Description #}
+{# Description with strip tags #}
 {%- macro render_description(content) -%}
   <div class="blog-listing-module__article-description blog-listing-module__article-item">
-    {%- set richtext_data = {"rich_text":content.post_list_content,"truncate":module.description.truncate}%}{{richtext_macros.render_richtext_tmpl(richtext_data, module.style.richtext, module)}}
+    {%- set richtext_data = {"rich_text":content.post_list_content,"truncate":module.description.truncate}%}{{richtext_macros.render_richtext_tmpl(richtext_data, module.style.richtext, module)|striptags}}
   </div>
 {%- endmacro -%}
 
