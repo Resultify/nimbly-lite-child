@@ -1,0 +1,418 @@
+{% import '../macros/image.html' as image_macros %}
+{% import '../macros/heading.html' as heading_macros %}
+{% import '../macros/text.html' as text_macros %}
+{% import '../macros/richtext.html' as richtext_macros %}
+{% import '../macros/link.html' as link_macros %}
+{% import '../macros/button.html' as button_macros %}
+
+{# module scope css #}
+<style>
+  {% scope_css %}
+
+    .blog-listing-module {
+      {{module.style.general.spacing.spacing.css}}
+    }
+
+    .blog-listing-module__author-heading,
+    .blog-listing-module__tag-heading {
+      {% if module.style.general_heading.background.color.css %}
+        background-color: {{module.style.general_heading.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.general_heading.alignment.alignment.horizontal_align}};
+      {{module.style.general_heading.spacing.spacing.css}}
+    }
+
+    .blog-listing-module__article_wrp,
+    .blog-listing-module__author-heading_wrp,
+    .blog-listing-module__tag-heading_wrp {
+      {{module.style.article.spacing.spacing.css}}
+    }
+
+    {# basic-grid #}
+    {% if module.layout.layout == 'basic-grid' %}
+      .basic-grid .blog-listing-module__article_wrp {
+        width: calc(100% / {{module.layout.columns}});
+      }
+      @media (max-width: 991.98px) {
+        .basic-grid .blog-listing-module__article_wrp {
+          width: 50%;
+        }
+      }
+      @media (max-width: 700px) {
+        .basic-grid .blog-listing-module__article_wrp {
+          width: 100%;
+        }
+      }
+    {% endif %}
+
+    {# mosaic grid #}
+    {% if module.layout.layout == 'mosaic-grid' %}
+      {% set mosaic_big_element_height = module.layout.height %}
+      {% set mosaic_small_element_height = module.layout.height/2 - module.style.article.spacing.spacing.padding.top.value %}
+      .mosaic-grid .blog-listing-module__article {
+        height: {{mosaic_big_element_height ~ 'px'}};
+      }
+
+      .mosaic-grid-box .blog-listing-module__article {
+        height: {{mosaic_small_element_height|int ~ 'px'}};
+      }
+    {% endif %}
+
+    .blog-listing-module__article {
+      {% if module.style.article.border.border_radius %}
+        border-radius: {{module.style.article.border.border_radius ~ 'px'}};
+      {% endif %}
+      {% if module.style.article.background.color.css %}
+        background-color: {{module.style.article.background.color.css}};
+      {% endif %}
+      {{module.style.article.border.border.css}}
+      {{module.style.article.internal_spacing.spacing.css}}
+    }
+
+    .blog-listing-module__article-image {
+      text-align: {{module.style.image.alignment.alignment.horizontal_align}};
+      {% if module.style.image.background.color.css %}
+        background-color: {{module.style.image.background.color.css}};
+      {% endif %}
+      {{module.style.image.spacing.spacing.css}}
+    }
+
+    .blog-listing-module__article-tags {
+      text-align: {{module.style.link.alignment.alignment.horizontal_align}};
+      {% if module.style.link.background.color.css %}
+        background-color: {{module.style.link.background.color.css}};
+      {% endif %}
+      {{module.style.link.spacing.spacing.css}}
+    }
+
+    .blog-listing-module__article-heading {
+      {% if module.style.heading.background.color.css %}
+        background-color: {{module.style.heading.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.heading.alignment.alignment.horizontal_align}};
+      {{module.style.heading.spacing.spacing.css}}
+    }
+
+    .blog-listing-module__article-author-link,
+    .blog-listing-module__article-authordate-link {
+      text-align: {{module.style.secondary_link.alignment.alignment.horizontal_align}};
+      {% if module.style.secondary_link.background.color.css %}
+        background-color: {{module.style.secondary_link.background.color.css}};
+      {% endif %}
+      {{module.style.secondary_link.spacing.spacing.css}}
+    }
+
+    .blog-listing-module__article-author-avatar,
+    .blog-listing-module__article-authordate-avatar {
+      text-align: {{module.style.author_avatar.alignment.alignment.horizontal_align}};
+      {% if module.style.author_avatar.background.color.css %}
+        background-color: {{module.style.author_avatar.background.color.css}};
+      {% endif %}
+      {{module.style.author_avatar.spacing.spacing.css}}
+    }
+
+    .blog-listing-module__article-date,
+    .blog-listing-module__article-authordate-date {
+      {% if module.style.text.background.color.css %}
+        background-color: {{module.style.text.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.text.alignment.alignment.horizontal_align}};
+      {{module.style.text.spacing.spacing.css}}
+    }
+
+    .blog-listing-module__article-description {
+      {% if module.style.richtext.background.color.css %}
+        background-color: {{module.style.richtext.background.color.css}};
+      {% endif %}
+      {{module.style.richtext.spacing.spacing.css}}
+    }
+
+    .blog-listing-module__article-button {
+      text-align: {{module.style.button.alignment.alignment.horizontal_align}};
+      {% if module.style.button.background.color.css %}
+        background-color: {{module.style.button.background.color.css}};
+      {% endif %}
+      {{module.style.button.spacing.spacing.css}}
+    }
+
+  {% end_scope_css %}
+</style>
+
+{# Featured image #}
+{%- macro render_image(content) -%}
+  {% if content.featured_image %}
+
+    <div class="blog-listing-module__article-image blog-listing-module__article-item">
+      {%- set image_link_aria = 'aria-label="{% if content.featured_image_alt_text %}Featured image: {{content.featured_image_alt_text }} - {% endif %}Read full post: {{content.name}}"' -%}
+      {%- set image_data = {
+        "image":{
+          "size_type":"auto","src":content.featured_image,"alt":content.featured_image_alt_text,
+          "loading":"lazy","width":"1024","height":"1024","max_width":null,"max_height":null
+        },
+        "link":{"link":{"url":{"href":content.absolute_url,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""} },
+        "caption":{"rich_text":""}
+      }%}{{image_macros.render_image_tmpl(image_data, module.style.image, module,
+        {
+          link_data_attrs: image_link_aria
+        }
+      )}}
+    </div>
+
+  {% endif %}
+{%- endmacro -%}
+
+{# Tags #}
+{%- macro render_tags(content) -%}
+  {% if content.tag_list %}
+
+    <div class="blog-listing-module__article-tags blog-listing-module__article-item">
+      {%- for tag in content.tag_list -%}
+        {%- set blogTagUrl = blog_tag_url(group.id, tag.slug) -%}
+        {% if blogTagUrl %}
+          {%- set link_data = {
+            "text":tag.name,"accessible_link":true,
+            "link":{"url":{"href":blogTagUrl,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+            "icon":{
+              "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+              "icon_position":"left"
+            }
+          }%}{{link_macros.render_link_tmpl(link_data, module.style.link, module)}}
+        {% endif %}
+      {%- endfor -%}
+    </div>
+
+  {% endif %}
+{%- endmacro -%}
+
+{# Heading #}
+{%- macro render_heading(content) -%}
+
+  <div class="blog-listing-module__article-heading blog-listing-module__article-item">
+    {%- set heading_data = {
+      "display":module.heading.display,"heading_tag":module.heading.heading_tag,"text":content.name,
+      "link":{"link":{"url":{"href":content.absolute_url,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},"accessible_link":true},
+      "icon":{
+        "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+        "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+      }
+    }%}{{heading_macros.render_heading_tmpl(heading_data, module.style.heading, module)}}
+  </div>
+
+{%- endmacro -%}
+
+{# Author #}
+{%- macro render_author(content) -%}
+  {% if content.blog_author %}
+
+    <div class="blog-listing-module__article-author blog-listing-module__article-item">
+      {% if content.blog_author.avatar %}
+        <div class="blog-listing-module__article-author-avatar">
+          {%- set author_image_data = {
+            "image":{
+              "size_type":"auto","src":content.blog_author.avatar,"alt":"Picture of {{content.blog_author.display_name}}",
+              "loading":"lazy","width":"50","height":"50","max_width":null,"max_height":null
+            },
+            "link":{"link":{"url":{"href":"","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""} },
+            "caption":{"rich_text":""}
+          }%}{{image_macros.render_image_tmpl(author_image_data, module.style.author_avatar, module,
+            {
+              id: 'avatar'
+            }
+          )}}
+        </div>
+      {% endif %}
+      <div class="blog-listing-module__article-author-link">
+        {%- set author_link_data = {
+          "text":content.blog_author.display_name,"accessible_link":true,
+          "link":{"url":{"href":blog_author_url(group.id, content.blog_post_author.slug),"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+          "icon":{
+            "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+            "icon_position":"left"
+          }
+        }%}{{link_macros.render_link_tmpl(author_link_data, module.style.secondary_link, module,
+          {
+            id: 'author'
+          }
+        )}}
+      </div>
+    </div>
+
+  {% endif %}
+{%- endmacro -%}
+
+{# Date #}
+{%- macro render_date(content) -%}
+  <time class="blog-listing-module__article-date blog-listing-module__article-item" datetime="{{content.publish_date}}">
+    {%- set text_data = {"text": content.publish_date_localized}%}{{text_macros.render_text_tmpl(text_data, module.style.text, module)}}</time>
+{%- endmacro -%}
+
+{# Author and date #}
+{%- macro render_author_and_date(content) -%}
+  {% if content.blog_author %}
+    <div class="blog-listing-module__article-authordate blog-listing-module__article-item">
+      {% if content.blog_author.avatar %}
+        <div class="blog-listing-module__article-authordate-avatar">
+          {%- set author_image_data = {
+            "image":{
+              "size_type":"auto","src":content.blog_author.avatar,"alt":"Picture of {{content.blog_author.display_name}}",
+              "loading":"lazy","width":"50","height":"50","max_width":null,"max_height":null
+            },
+            "link":{"link":{"url":{"href":"","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""} },
+            "caption":{"rich_text":""}
+          }%}{{image_macros.render_image_tmpl(author_image_data, module.style.author_avatar, module,
+            {
+              id: 'avatar'
+            }
+          )}}
+        </div>
+      {% endif %}
+      <div class="blog-listing-module__article-authordate-info">
+        <div class="blog-listing-module__article-authordate-link">
+          {%- set author_link_data = {
+            "text":content.blog_author.display_name,"accessible_link":true,
+            "link":{"url":{"href":blog_author_url(group.id, content.blog_post_author.slug),"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+            "icon":{
+              "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+              "icon_position":"left"
+            }
+          }%}{{link_macros.render_link_tmpl(author_link_data, module.style.secondary_link, module,
+            {
+              id: 'author2'
+            }
+          )}}
+        </div>
+        <div class="blog-listing-module__article-authordate-date">
+          <time class="blog-listing-module__article-authordate-date-time" datetime="{{content.publish_date}}">
+            {%- set text_data = {"text": content.publish_date_localized}%}{{text_macros.render_text_tmpl(text_data, module.style.text, module)}}</time>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+{# Description with strip tags #}
+{%- macro render_description(content) -%}
+  <div class="blog-listing-module__article-description blog-listing-module__article-item">
+    {%- set richtext_data = {"rich_text":content.post_list_content|striptags,"truncate":module.description.truncate}%}{{richtext_macros.render_richtext_tmpl(richtext_data, module.style.richtext, module)}}
+  </div>
+{%- endmacro -%}
+
+{# Button #}
+{%- macro render_button(content) -%}
+  <div class="blog-listing-module__article-button blog-listing-module__article-item">
+    {%- set button_data = {
+      "text":module.button.text,"accessible_link_label":"Read full post: {{content.name}}","accessible_link":true,
+      "link":{"url":{"href":content.absolute_url,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+      "icon":{
+        "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+        "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+      }
+    }%}{{button_macros.render_btn_tmpl(button_data, module.style.button, module)}}
+  </div>
+{%- endmacro -%}
+
+<div class="blog-listing-module_wrp">
+  <div class="blog-listing-module blog-listing-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
+
+    {# Blog author listing header #}
+    {% if blog_author %}
+      <div class="blog-listing-module__author-heading_wrp">
+        <div class="blog-listing-module__author-heading">
+          {%- set heading_data = {
+            "display":module.author_listing_header.display,"heading_tag":module.author_listing_header.heading_tag,"text":module.author_listing_header.text ~ " " ~ blog_author.display_name,
+            "link":{"link":{"url":{"href":"","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},"accessible_link":true},
+            "icon":{
+              "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+              "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+            }
+          }%}{{heading_macros.render_heading_tmpl(heading_data, module.style.general_heading, module,
+            {
+              id: 'general'
+            }
+          )}}
+        </div>
+      </div>
+    {% endif %}
+
+    {# Blog tag listing header #}
+    {% if tag %}
+      <div class="blog-listing-module__tag-heading_wrp">
+        <div class="blog-listing-module__tag-heading">
+          {%- set heading_data = {
+            "display":module.tag_listing_header.display,"heading_tag":module.tag_listing_header.heading_tag,"text":module.tag_listing_header.text ~ " " ~ page_meta.html_title|split(" | ")|last,
+            "link":{"link":{"url":{"href":"","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},"accessible_link":true},
+            "icon":{
+              "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+              "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+            }
+          }%}{{heading_macros.render_heading_tmpl(heading_data, module.style.general_heading, module,
+            {
+              id: 'general'
+            }
+          )}}
+        </div>
+      </div>
+    {% endif %}
+
+    {# Blog post listing #}
+    <div class="blog-listing-module__articles {{module.layout.layout}}">
+      {% for content in contents %}
+        {% set content_index = loop.index %}
+        {% set content_last = loop.last %}
+
+        {# if mosaic-grid #}
+        {% if module.layout.layout == 'mosaic-grid' %}
+          {% set start_mosaic_wrp_positions = [2,6,12,16,22,26,32,36] %}
+          {% for position in start_mosaic_wrp_positions %}
+            {% if position == content_index %}
+              <div class="mosaic-grid-box">
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {# endif mosaic-grid #}
+
+        <div class="blog-listing-module__article_wrp">
+          <article class="blog-listing-module__article" aria-label="Blog post summary: {{content.name}}">
+            {% for blog_component in module.blog_components %}
+              {% if blog_component.component|lower == 'image' %}
+                {{render_image(content) if blog_component.show}}
+              {% elif blog_component.component|lower == 'tags' %}
+                {{render_tags(content) if blog_component.show}}
+              {% elif blog_component.component|lower == 'heading' %}
+                {{render_heading(content) if blog_component.show}}
+              {% elif blog_component.component|lower == 'author' %}
+                {{render_author(content) if blog_component.show}}
+              {% elif blog_component.component|lower == 'date' %}
+                {{render_date(content) if blog_component.show}}
+              {% elif blog_component.component|cut(" ")|lower == 'authoranddate' %}
+                {{render_author_and_date(content) if blog_component.show}}
+              {% elif blog_component.component|lower == 'description' %}
+                {{render_description(content) if blog_component.show}}
+              {% endif %}
+            {% endfor %}
+            {% if module.button.show %}
+              {{render_button(content)}}
+            {% endif %}
+          </article>
+        </div>
+
+        {# if mosaic-grid #}
+        {% if module.layout.layout == 'mosaic-grid' %}
+          {% set end_mosaic_wrp_positions = [5,9,15,19,25,29,35,39] %}
+          {% for position in end_mosaic_wrp_positions %}
+            {% if position|int == content_index %}
+              </div>
+            {% elif content_last and position != content_index and position > content_index %}
+              {% if position|int - 1 == content_index or position|int - 2 == content_index or position|int - 3 == content_index %}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {# endif mosaic-grid #}
+
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
