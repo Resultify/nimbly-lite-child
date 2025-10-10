@@ -146,13 +146,13 @@ class FaqModuleSearch {
 
     // If search term exists, hide tag navigation and show all tag containers
     if (searchTerm) {
-      if (this.tagDisplay) this.tagDisplay.style.display = 'none'
+      if (this.tagDisplay) this.tagDisplay.classList.add('hidden')
       this.tagContainers.forEach(container => {
         container.classList.add('show')
       })
     } else {
       // If no search term, restore tag navigation and original visibility
-      if (this.tagDisplay) this.tagDisplay.style.display = ''
+      if (this.tagDisplay) this.tagDisplay.classList.remove('hidden')
       this.tagContainers.forEach(container => {
         if (activeTagId) {
           container.classList.toggle('show', container.id === activeTagId)
