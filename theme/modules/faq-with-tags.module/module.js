@@ -162,8 +162,10 @@ class FaqModuleSearch {
 
     // Filter each FAQ item
     this.faqItems.forEach(item => {
-      const question = item.querySelector('.faq-with-tags-module__text').textContent.toLowerCase()
-      const answer = item.querySelector('.faq-with-tags-module__richtext').textContent.toLowerCase()
+      const questionEl = item.querySelector('.faq-with-tags-module__text');
+      const answerEl = item.querySelector('.faq-with-tags-module__richtext');
+      const question = questionEl && questionEl.textContent ? questionEl.textContent.toLowerCase() : '';
+      const answer = answerEl && answerEl.textContent ? answerEl.textContent.toLowerCase() : '';
 
       if (!searchTerm || question.includes(searchTerm) || answer.includes(searchTerm)) {
         item.style.display = ''
