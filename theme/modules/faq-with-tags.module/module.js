@@ -105,6 +105,77 @@ class FaqModuleTagSwitching {
   }
 }
 
+class FaqModuleSearch {
+  constructor (el) {
+    // Store the whole element
+    this.el = el
+    // Store the search input element
+    this.searchInput = el.querySelector('.faq-with-tags-module__search-input')
+    // Store the no results message
+    this.noResults = el.querySelector('.faq-with-tags-module__no-results')
+    // Store all FAQ items
+    this.faqItems = el.querySelectorAll('.faq-with-tags-module__details')
+    // Store active tag display
+    this.tagDisplay = el.querySelector('.faq-with-tags-module__button-tags')
+    // Store all tag containers
+    this.tagContainers = el.querySelectorAll('.faq-with-tags-module__tag')
+  }
+
+  init () {
+    if (!this.searchInput) return
+
+    this.searchInput.addEventListener('input', (e) => this.onSearch(e))
+  }
+
+  onSearch (e) {
+    const searchTerm = e.target.value.toLowerCase().trim()
+    let hasVisibleItems = false
+    let activeTagId = null
+
+    // Find which tag is currently active
+    if (this.tagDisplay && this.tagDisplay.classList.contains('show')) {
+      const activeTagBtn = this.tagDisplay.querySelector('.' + this.el.getAttribute('data-active-tag'))
+      if (activeTagBtn) {
+        activeTagId = activeTagBtn.getAttribute('data-id')
+      }
+    }
+
+    // If search term exists, hide tag navigation and show all tag containers
+    if (searchTerm) {
+      if (this.tagDisplay) this.tagDisplay.style.display = 'none'
+      this.tagContainers.forEach(container => {
+        container.classList.add('show')
+      })
+    } else {
+      // If no search term, restore tag navigation and original visibility
+      if (this.tagDisplay) this.tagDisplay.style.display = ''
+      this.tagContainers.forEach(container => {
+        if (activeTagId) {
+          container.classList.toggle('show', container.id === activeTagId)
+        }
+      })
+    }
+
+    // Filter each FAQ item
+    this.faqItems.forEach(item => {
+      const question = item.querySelector('.faq-with-tags-module__text').textContent.toLowerCase()
+      const answer = item.querySelector('.faq-with-tags-module__richtext').textContent.toLowerCase()
+
+      if (!searchTerm || question.includes(searchTerm) || answer.includes(searchTerm)) {
+        item.style.display = ''
+        hasVisibleItems = true
+      } else {
+        item.style.display = 'none'
+      }
+    })
+
+    // Show/hide no results message
+    if (this.noResults) {
+      this.noResults.style.display = searchTerm && !hasVisibleItems ? 'block' : 'none'
+    }
+  }
+}
+
 window.addEventListener('load', function () {
   document.querySelectorAll('.faq-with-tags-module-animate .faq-with-tags-module__details').forEach((el) => {
     const t = new FaqModuleAnimations(el)
@@ -114,5 +185,9 @@ window.addEventListener('load', function () {
   document.querySelectorAll('.faq-with-tags-module').forEach((el) => {
     const t = new FaqModuleTagSwitching(el)
     t.init()
+
+    // Initialize search functionality
+    const search = new FaqModuleSearch(el)
+    search.init()
   })
 })
