@@ -303,11 +303,11 @@
     {% if module.button.button_type == "link" %}
       {# Render as simple link #}
       {%- set link_data = {
-        "text":module.button.text,"accessible_link":true,
-        "link":{"url":{"href":content.absolute_url,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
-        "icon":{
-          "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
-          "icon_position":"left"
+        "text": module.button.text, "accessible_link": true,
+        "link": {"url": {"href": content.absolute_url, "type": "EXTERNAL"}, "open_in_new_tab": false, "rel": ""},
+        "icon": {
+          "icon": {"name": "", "unicode": "", "type": "REGULAR", "icon_set": "fontawesome-5.14.0"},
+          "icon_position": "left"
         }
       }%}{{link_macros.render_link_tmpl(link_data, module.style.link, module)}}
     {% else %}
