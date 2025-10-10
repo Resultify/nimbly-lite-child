@@ -2453,6 +2453,21 @@
     "show_emoji_picker" : false,
     "type" : "text",
     "default" : "Read more"
+  }, {
+    "id" : "button_type_field",
+    "name" : "button_type",
+    "display_width" : null,
+    "label" : "Button type",
+    "help_text" : "Choose whether to display as a styled button or a simple text link",
+    "required" : false,
+    "locked" : false,
+    "display" : "radio",
+    "choices" : [ [ "button", "Button" ], [ "link", "Link" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "button"
   } ],
   "tab" : "CONTENT",
   "expanded" : false,
@@ -2460,7 +2475,8 @@
   "type" : "group",
   "default" : {
     "show" : true,
-    "text" : "Read more"
+    "text" : "Read more",
+    "button_type" : "button"
   }
 }, {
   "id" : "dbcfc66b-308a-5d3c-e968-a48c1ad876bc",
