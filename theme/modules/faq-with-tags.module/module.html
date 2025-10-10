@@ -37,6 +37,26 @@
       {% endif %}
     }
 
+    .faq-with-tags-module__search {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .faq-with-tags-module__search-input {
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .faq-with-tags-module__no-results {
+      padding: 20px;
+      text-align: center;
+      display: none;
+      font-style: italic;
+    }
+
   {% end_scope_css %}
 </style>
 
@@ -47,6 +67,14 @@
     data-active-tag="{{ module.style.tag.active_tag }}"
     data-inactive-tag="{{ module.style.tag.inactive_tag }}"
   >
+
+    {% if module.search_options.enable_search %}
+      <div class="faq-with-tags-module__search">
+        <input type="text" class="faq-with-tags-module__search-input" placeholder="{{ module.search_options.placeholder_text }}" aria-label="Search FAQs">
+      </div>
+      <div class="faq-with-tags-module__no-results">{{ module.search_options.no_results_text }}</div>
+    {% endif %}
+
     <div class="faq-with-tags-module__button-tags {{ 'show' if module.faq_group|length > 1 }}">
       {% for group in module.faq_group %}
         <button data-id="{{module_id}}{{ loop.index0 }}" class="btn-link {{ '{{ module.style.tag.active_tag }}' if loop.index0 == 0 else '{{ module.style.tag.inactive_tag }}' }} btn-regular">
@@ -70,6 +98,6 @@
         {% endfor %}
       </div>
     {% endfor %}
-    
+
   </div>
 </div>
