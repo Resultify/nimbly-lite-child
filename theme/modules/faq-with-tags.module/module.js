@@ -134,9 +134,13 @@ class FaqModuleSearch {
 
     // Find which tag is currently active
     if (this.tagDisplay && this.tagDisplay.classList.contains('show')) {
-      const activeTagBtn = this.tagDisplay.querySelector('.' + this.el.getAttribute('data-active-tag'))
-      if (activeTagBtn) {
-        activeTagId = activeTagBtn.getAttribute('data-id')
+      const activeTagClass = this.el.getAttribute('data-active-tag');
+      // Validate class name: only allow letters, numbers, underscores, and hyphens
+      if (/^[A-Za-z0-9_-]+$/.test(activeTagClass)) {
+        const activeTagBtn = this.tagDisplay.querySelector(`[class~="${activeTagClass}"]`);
+        if (activeTagBtn) {
+          activeTagId = activeTagBtn.getAttribute('data-id');
+        }
       }
     }
 
