@@ -661,7 +661,7 @@ const buttonGroup = (parent = '', opt) => {
               controlling_value_regex: 'true'
             }
           ]
-        },
+        }
       }),
       fi.number('Modal height', 'modal_height', {
         min: 0,
@@ -677,7 +677,7 @@ const buttonGroup = (parent = '', opt) => {
               controlling_value_regex: 'true'
             }
           ]
-        },
+        }
       }),
       fi.color('Modal background color', 'modal_background_color', {
         visibility_rules: 'ADVANCED',
