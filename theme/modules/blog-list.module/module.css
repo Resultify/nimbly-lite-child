@@ -1,0 +1,113 @@
+/* module css / no hubl variables */
+
+.basic-grid.blog-listing-module__articles {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+}
+
+.blog-listing-module__article-author {
+  display: flex;
+  align-items: center;
+}
+
+.blog-listing-module__article-author-link {
+  flex-grow: 1;
+}
+
+.blog-listing-module__article-date {
+  display: block;
+}
+
+.blog-listing-module__article-authordate {
+  display: flex;
+  align-items: center;
+}
+
+.blog-listing-module__article-authordate-info {
+  flex-grow: 1;
+}
+
+/* mosaic-grid */
+.mosaic-grid.blog-listing-module__articles {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+}
+
+.mosaic-grid-box {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mosaic-grid .blog-listing-module__article_wrp {
+  width: 50%;
+}
+
+.mosaic-grid .blog-listing-module__article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.blog-listing-module__article-item {
+  position: relative;
+  z-index: 2;
+}
+
+.mosaic-grid .blog-listing-module__article-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.mosaic-grid .blog-listing-module__article-image .g-module-macros-image {
+  display: inline-block;
+  height: 100%;
+}
+
+.mosaic-grid .blog-listing-module__article-image .g-module-macros-image--img {
+  max-width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+@media (max-width: 1200px) {
+  .mosaic-grid .blog-listing-module__article_wrp {
+    width: 40%;
+  }
+
+  .mosaic-grid-box {
+    width: 60%;
+  }
+
+  .mosaic-grid-box .blog-listing-module__article_wrp {
+    width: 50%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .mosaic-grid .blog-listing-module__article_wrp {
+    width: 100%;
+  }
+
+  .mosaic-grid-box {
+    width: 100%;
+  }
+
+  .mosaic-grid-box .blog-listing-module__article_wrp {
+    width: 50%;
+  }
+}
+
+@media (max-width: 700px) {
+  .mosaic-grid-box .blog-listing-module__article_wrp {
+    width: 100%;
+  }
+}
