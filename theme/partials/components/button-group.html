@@ -227,7 +227,7 @@
               <div class="btn-block btn-block{{item_hash}}">
             {%- endif -%}
             {%- if item.modal_button -%}
-              <a href="#" 
+              <a href="javascript:void(0)" 
                 data-modal-url="{{ item.button_link.url.href }}" 
                 {% if item.modal_background_color.color or item.modal_width or item.modal_height or item.modal_close_color.color or item.modal_close_hover_color.color %}
                   style="{% if item.modal_background_color.color %}--modal-content-bg: {{ item.modal_background_color.color }}; {% endif %}{% if item.modal_width %}--modal-width: {{ item.modal_width }}; {% endif %}{% if item.modal_height %}--modal-height: {{ item.modal_height }}; {% endif %}{% if item.modal_close_color.color %}--modal-close-color: {{ item.modal_close_color.color }}; {% endif %}{% if item.modal_close_hover_color.color %}--modal-close-hover-color: {{ item.modal_close_hover_color.color }}; {% endif %}"
