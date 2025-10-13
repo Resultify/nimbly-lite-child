@@ -186,7 +186,7 @@ const buttonGroup = (parent = '', opt) => {
         }
       }),
       fi.boolean('Modal button', 'modal_button', {
-        help_text: 'Open the linked URL in an modal (loads the page inside an iframe)',
+        help_text: 'Open the linked URL in a modal (loads the page inside an iframe)',
         default: false,
         visibility: {
           controlling_field_path: `${parent}button_group.button_style`,
