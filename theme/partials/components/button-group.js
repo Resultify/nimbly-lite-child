@@ -185,6 +185,15 @@ const buttonGroup = (parent = '', opt) => {
           controlling_value_regex: 'cta'
         }
       }),
+      fi.boolean('Modal button', 'modal_button', {
+        help_text: 'Open the linked URL in a modal (loads the page inside an iframe)',
+        default: false,
+        visibility: {
+          controlling_field_path: `${parent}button_group.button_style`,
+          operator: 'NOT_EQUAL',
+          controlling_value_regex: 'cta'
+        }
+      }),
       fi.link('', 'button_link', {
         supported_types: ['BLOG', 'CALL_TO_ACTION', 'CONTENT', 'EMAIL_ADDRESS', 'FILE', 'EXTERNAL', 'PAYMENT', 'PHONE_NUMBER', 'WHATSAPP_NUMBER'],
         visibility: {
@@ -637,7 +646,78 @@ const buttonGroup = (parent = '', opt) => {
         fi.color('Color', 'color'),
         fi.color('Background', 'background'),
         fi.color('Border color', 'border_color')
-      )
+      ),
+      fi.number('Modal width', 'modal_width', {
+        min: 0,
+        default: 60,
+        suffix: '%',
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}button_group.modal_button`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        }
+      }),
+      fi.number('Modal height', 'modal_height', {
+        min: 0,
+        default: 60,
+        suffix: '%',
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}button_group.modal_button`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        }
+      }),
+      fi.color('Modal background color', 'modal_background_color', {
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}button_group.modal_button`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        },
+      }),
+      fi.color('Modal close button color', 'modal_close_color', {
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}button_group.modal_button`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        },
+      }),
+      fi.color('Modal close button hover color', 'modal_close_hover_color', {
+        visibility_rules: 'ADVANCED',
+        advanced_visibility: {
+          boolean_operator: 'AND',
+          criteria: [
+            {
+              controlling_field_path: `${parent}button_group.modal_button`,
+              operator: 'EQUAL',
+              controlling_value_regex: 'true'
+            }
+          ]
+        },
+      })
     )
   ]
 }

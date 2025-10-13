@@ -226,11 +226,24 @@
             {%- if item.button_position == 'separate' -%}
               <div class="btn-block btn-block{{item_hash}}">
             {%- endif -%}
-            <a {{link_attributes(item.button_link)}} class="btn{{item_hash}} {{button_link_class}} {{"stretched-link" if button_stretched_link and loop.last}} {{hide_text_wrp_class}}">
-              {{add_button_icon(item, "left")}}
-              <span {{hide_text_class}}>{{item.button_text}}</span>
-              {{add_button_icon(item, "right")}}
-            </a>
+            {%- if item.modal_button -%}
+              <a href="javascript:void(0)" 
+                data-modal-url="{{ item.button_link.url.href }}" 
+                {% if item.modal_background_color.color or item.modal_width or item.modal_height or item.modal_close_color.color or item.modal_close_hover_color.color %}
+                  style="{% if item.modal_background_color.color %}--modal-content-bg: {{ item.modal_background_color.color }}; {% endif %}{% if item.modal_width %}--modal-width: {{ item.modal_width }}; {% endif %}{% if item.modal_height %}--modal-height: {{ item.modal_height }}; {% endif %}{% if item.modal_close_color.color %}--modal-close-color: {{ item.modal_close_color.color }}; {% endif %}{% if item.modal_close_hover_color.color %}--modal-close-hover-color: {{ item.modal_close_hover_color.color }}; {% endif %}"
+                {% endif %}
+                class="modal-trigger btn{{item_hash}} {{button_link_class}} {{"stretched-link" if button_stretched_link and loop.last}} {{hide_text_wrp_class}}">
+                {{add_button_icon(item, "left")}}
+                <span {{hide_text_class}}>{{item.button_text}}</span>
+                {{add_button_icon(item, "right")}}
+              </a>
+            {%- else -%}
+              <a {{link_attributes(item.button_link)}} class="btn{{item_hash}} {{button_link_class}} {{"stretched-link" if button_stretched_link and loop.last}} {{hide_text_wrp_class}}">
+                {{add_button_icon(item, "left")}}
+                <span {{hide_text_class}}>{{item.button_text}}</span>
+                {{add_button_icon(item, "right")}}
+              </a>
+            {%- endif -%}
             {%- if item.button_position == 'separate' -%}
               </div>
             {%- endif -%}

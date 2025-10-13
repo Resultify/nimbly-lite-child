@@ -47,4 +47,5 @@
 {% include './global-theme-settings/icons.css' %}
 {% include './global-theme-settings/forms.css' %}
 {% include './utils.css' %}
+{% include './modal.css' %}
 
