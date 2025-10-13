@@ -1,0 +1,146 @@
+
+{# ========START=========== #}
+{# Blog Tag Filter Module with Custom Ordering #}
+{# This module creates a horizontal list of clickable blog tags with customizable priority ordering #}
+
+{# CSS Styles - Dynamic styling based on module field settings #}
+ <style>
+{% scope_css %}
+    .blog-tag-filter {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+
+      {% if module.style.general.spacing.spacing.css %}
+        {{module.style.general.spacing.spacing.css}}
+      {% endif %}
+      {% if module.style.general.alignment.alignment.horizontal_align %}
+        justify-content: {{module.style.general.alignment.alignment.horizontal_align}};
+      {% endif %}
+      {% if module.style.general.background.color.css %}
+        background-color: {{module.style.general.background.color.css}};
+      {% endif %}
+      {% if module.style.general.border.border.css %}
+        {{module.style.general.border.border.css}}
+      {% endif %}
+      {% if module.style.general.border.border_radius != null %}
+        border-radius: {{module.style.general.border.border_radius ~ 'px'}};
+      {% endif %}
+      gap: {{module.style.link.spacing.gap ~ 'px'}};
+    }
+
+    .blog-tag-filter a {
+      {% if module.style.link.background.color.css %}
+        background-color: {{module.style.link.background.color.css}};
+      {% endif %}
+      {% if module.style.link.spacing.spacing.css %}
+        {{module.style.link.spacing.spacing.css}}
+      {% endif %}
+      {% if module.style.link.border.border.css %}
+        {{module.style.link.border.border.css}}
+      {% endif %}
+      {% if module.style.link.border.border_radius != null %}
+        border-radius: {{module.style.link.border.border_radius ~ 'px'}};
+      {% endif %}
+      {% if module.style.link.custom_theme_overrides.font %}
+        font-family: {{ module.style.link.custom_theme_overrides.font.font }};
+        color: {{ module.style.link.custom_theme_overrides.font.color }};
+        font-size: {{ module.style.link.custom_theme_overrides.font.size ~ 'px'}};
+      {% endif %}
+      {% if module.style.link.custom_theme_overrides.underline %}
+        text-decoration: {{ module.style.link.custom_theme_overrides.underline }};
+      {% endif %}
+    }
+
+    .blog-tag-filter a:hover,
+    .blog-tag-filter a:focus {
+      {% if module.style.link.custom_theme_overrides.hover.underline %}
+        text-decoration: {{ module.style.link.custom_theme_overrides.hover.underline }};
+      {% endif %}
+      {% if module.style.link.custom_theme_overrides.hover.color.css %}
+        color: {{ module.style.link.custom_theme_overrides.hover.color.css }};
+      {% endif %}
+    }
+
+  {% end_scope_css %}
+
+</style>
+
+{# DATA PREPARATION - Get and process blog tags #}
+
+{# Get all blog tags for this blog group (limit: 250 tags) #}
+{% set my_tags = blog_tags(group.id, 250) %}
+
+{# Get current page URL (used to determine which tag is active) #}
+{# Remove protocol and pagination from URL for clean comparison #}
+{% set currentURL = content.absolute_url|regex_replace("^(http|https):", "")|regex_replace("/page/.*", "") %}
+
+{# Sort all tags alphabetically by slug as starting point #}
+{% set sorted_tags = my_tags|sort(False, False, "slug") %}
+
+{# CUSTOM TAG ORDERING LOGIC #}
+{# Process user-defined custom tag order from module field #}
+{% if module.custom_tag_order %}
+  {# Split comma-separated string into array and trim whitespace #}
+  {% set custom_order = module.custom_tag_order|split(',') %}
+  {% for i in range(custom_order|length) %}
+    {% set custom_order = custom_order[:i] + [custom_order[i]|trim] + custom_order[i+1:] %}
+  {% endfor %}
+{% endif %}
+
+{# Initialize empty array to hold final ordered tags #}
+{% set ordered_tags = [] %}
+
+{# STEP 1: Add priority tags in custom order #}
+{# Loop through custom_order array and find matching tags from sorted_tags #}
+{% if module.custom_tag_order %}
+  {% for tag in custom_order %}
+    {% for item in sorted_tags %}
+      {% if item.slug == tag %}
+        {% do ordered_tags.append(item) %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endif %}
+
+{# STEP 2: Add remaining tags in alphabetical order #}
+{# Loop through all sorted tags and add any that weren't already added in step 1 #}
+{% for item in sorted_tags %}
+  {# Use namespace to handle Jinja variable scoping in loops #}
+  {# Reference: https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template/49699589#49699589 #}
+  {% set found = namespace(value=false) %}
+
+  {# Check if this tag was already added in the custom order step #}
+  {% if module.custom_tag_order %}
+    {% for custom_tag in custom_order %}
+      {% if item.slug == custom_tag %}
+        {% set found.value = true %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {# If tag wasn't found in custom order, add it to the end #}
+  {% if found.value == false %}
+    {% do ordered_tags.append(item) %}
+  {% endif %}
+{% endfor %}
+
+{# RENDER TAG FILTER HTML #}
+<div class="blog-tag-filter">
+  {# "All Categories" link - always appears first #}
+  {# Add 'active' class if current URL matches the blog group's main URL #}
+  <a class="{% if currentURL == group.absolute_url|regex_replace("^(http|https):", "") %}active{% else %}{% endif %}" href="{{ group.absolute_url }}">
+    <span>{{ module.label_for_all_categories }}</span>
+  </a>
+
+  {# Individual tag links in custom + alphabetical order #}
+  {% for item in ordered_tags %}
+    {# Add 'active' class if current URL matches this specific tag's URL #}
+    {# URL decode handles special characters in tag names #}
+    <a class="{% if currentURL|urldecode == blog_tag_url(group.id, item.slug)|regex_replace("^(http|https):", "") %}active{% else %}{% endif %}" href="{{ blog_tag_url(group.id, item.slug)|regex_replace("^(http|https):", "") }}">
+      <span>{{ item }}</span>
+    </a>
+  {% endfor %}
+</div>
+{# ========END=========== #}

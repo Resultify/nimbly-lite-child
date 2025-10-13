@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "BLOG_LISTING" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 280131611869,
+  "label" : "Blog tag filter",
+  "icon" : "fontawesome-5.14.0:List:SOLID",
+  "is_available_for_new_content" : true
+}
