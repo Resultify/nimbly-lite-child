@@ -242,7 +242,6 @@ function openModal(modal, url, options = {}) {
     const iframe = document.createElement('iframe')
     iframe.src = url
     iframe.title = 'Modal content'
-    iframe.setAttribute('allow', 'same-origin')
     iframe.style.width = '100%'
     iframe.style.height = '100%'
     iframe.loading = 'lazy'
