@@ -44,10 +44,10 @@
 
     .faq-with-tags-module__search-input {
       padding: 10px 15px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      border: 1px solid {{ module.style.search.border_color.css | default('#ddd') }};
+      border-radius: {{ module.style.search.border_radius | default(4) }}px;
       width: 100%;
-      font-size: 16px;
+      font-size: {{ module.style.search.font_size | default(16) }}px;
     }
 
     .faq-with-tags-module__no-results {

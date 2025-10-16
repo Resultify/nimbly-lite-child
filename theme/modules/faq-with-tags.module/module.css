@@ -13,7 +13,8 @@
 }
 
 /* Tags container (source) */
-.faq-with-tags-module__button-tags {
+.faq-with-tags-module__button-tags,
+.faq-with-tags-module__button-tags.show.hidden {
   display: none;
 }
 

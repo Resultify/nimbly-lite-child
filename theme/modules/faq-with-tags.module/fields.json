@@ -456,6 +456,69 @@
         }
       }
     }
+  }, {
+    "id" : "search_style_group",
+    "name" : "search",
+    "display_width" : null,
+    "label" : "Search",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "search_border_color",
+      "name" : "border_color",
+      "display_width" : null,
+      "label" : "Border color",
+      "help_text" : "Color of the search input border",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "default" : {
+        "color" : "#cccccc",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "search_border_radius",
+      "name" : "border_radius",
+      "display_width" : null,
+      "label" : "Border radius",
+      "help_text" : "Corner radius of the search input",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 0,
+      "max" : 50,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "default" : 4
+    }, {
+      "id" : "search_font_size",
+      "name" : "font_size",
+      "display_width" : null,
+      "label" : "Font size",
+      "help_text" : "Font size of the search input text",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 8,
+      "max" : 32,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "default" : 16
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "default" : {
+      "border_color" : {
+        "color" : "#cccccc",
+        "opacity" : 100
+      },
+      "border_radius" : 4,
+      "font_size" : 16
+    }
   } ],
   "tab" : "STYLE",
   "expanded" : false,
@@ -521,6 +584,14 @@
           "opacity" : null
         }
       }
+    },
+    "search" : {
+      "border_color" : {
+        "color" : "#cccccc",
+        "opacity" : 100
+      },
+      "border_radius" : 4,
+      "font_size" : 16
     }
   }
 }, {
