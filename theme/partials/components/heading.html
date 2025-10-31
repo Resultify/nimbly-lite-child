@@ -123,7 +123,9 @@
                 --custom-hover-color: {{data.heading_link_hover_color.css}};
               {%- endif -%}
             {%- elif data.heading_link_type != 'link' or data.heading_link_type != 'anchor' -%}
-              --custom-color: {{data.heading_color.css}};
+              {%- if data.heading_color.css -%}
+                --custom-color: {{data.heading_color.css}};
+              {%- endif -%}
             {%- endif -%}
             {{css_font_macro(data.heading_font)}}
           }
