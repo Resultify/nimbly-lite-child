@@ -28,7 +28,7 @@
       src="{{data.simple_image.src}}"
       {%- if data.simple_image_width -%}
         width="{{data.simple_image_width}}"
-        height="{{data.simple_image.height}}"
+        height="{{(data.simple_image.height / data.simple_image.width * data.simple_image_width)|int}}"
       {%- else -%}
         width="{{data.simple_image.width}}"
         height="{{data.simple_image.height}}"
