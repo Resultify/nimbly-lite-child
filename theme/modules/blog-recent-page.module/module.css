@@ -1,0 +1,49 @@
+/* module css / no hubl variables */
+.blog-recent-page-module.blog-recent_wrp {
+  padding: 0 12px;
+}
+
+.blog-recent-page-module .blog-recent__article-container {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  gap: var(--column-gap);
+}
+
+.blog-recent-page-module .blog-recent__article-author {
+  display: flex;
+  align-items: center;
+}
+
+.blog-recent-page-module .blog-recent__article-author-link {
+  flex-grow: 1;
+}
+
+.blog-recent-page-module .blog-recent__article-date {
+  display: block;
+}
+
+.blog-recent-page-module .blog-recent__article-authordate {
+  display: flex;
+  align-items: center;
+}
+
+.blog-recent-page-module .blog-recent__article-authordate-info {
+  flex-grow: 1;
+}
+
+/* grid */
+.blog-recent-page-module .blog-recent__article_wrp {
+  width: calc((100% - (var(--cols) - 1)* var(--column-gap)) / var(--cols))
+
+}
+@media (max-width: 991.98px) {
+  .blog-recent-page-module .blog-recent__article_wrp {
+    width: calc((100% - var(--column-gap)) / 2);
+  }
+}
+@media (max-width: 700px) {
+  .blog-recent-page-module .blog-recent__article_wrp {
+    width: 100%;
+  }
+}
