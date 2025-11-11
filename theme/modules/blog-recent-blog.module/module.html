@@ -1,0 +1,332 @@
+{% import '../macros/image.html' as image_macros %}
+{% import '../macros/heading.html' as heading_macros %}
+{% import '../macros/text.html' as text_macros %}
+{% import '../macros/link.html' as link_macros %}
+{% import '../macros/button.html' as button_macros %}
+{% import '../../css/macros/macros.css' %}
+
+{# module scope css #}
+<style>
+  {% scope_css %}
+
+    .blog-recent {
+      --column-gap: {{module.style.article.spacing.spacing.padding.right.value ~ 'px'}};
+      --cols: {{module.layout.number_of_posts}};
+      {{module.style.general.spacing.spacing.css}};
+    }
+
+    .blog-recent__article {
+      {% if module.style.article.border.border_radius %}
+        border-radius: {{module.style.article.border.border_radius ~ 'px'}};
+      {% endif %}
+      {% if module.style.article.background.color.css %}
+        background-color: {{module.style.article.background.color.css}};
+      {% endif %}
+      {{module.style.article.border.border.css}}
+    }
+
+    .blog-recent__heading {
+      {% if module.style.general_heading.background.color.css %}
+        background-color: {{module.style.general_heading.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.general_heading.alignment.alignment.horizontal_align}};
+      {{module.style.general_heading.spacing.spacing.css}}
+    }
+
+    .blog-recent__article-image {
+      text-align: {{module.style.image.alignment.alignment.horizontal_align}};
+      {% if module.style.image.background.color.css %}
+        background-color: {{module.style.image.background.color.css}};
+      {% endif %}
+      {{module.style.image.spacing.spacing.css}}
+    }
+
+    .blog-recent__article-tags {
+      text-align: {{module.style.link.alignment.alignment.horizontal_align}};
+      {% if module.style.link.background.color.css %}
+        background-color: {{module.style.link.background.color.css}};
+      {% endif %}
+      {{module.style.link.spacing.spacing.css}}
+    }
+
+    .blog-recent__article-heading {
+      {% if module.style.heading.background.color.css %}
+        background-color: {{module.style.heading.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.heading.alignment.alignment.horizontal_align}};
+      {{module.style.heading.spacing.spacing.css}}
+    }
+
+    .blog-recent__article-author-link,
+    .blog-recent__article-authordate-link {
+      text-align: {{module.style.secondary_link.alignment.alignment.horizontal_align}};
+      {% if module.style.secondary_link.background.color.css %}
+        background-color: {{module.style.secondary_link.background.color.css}};
+      {% endif %}
+      {{module.style.secondary_link.spacing.spacing.css}}
+    }
+
+    .blog-recent__article-author-avatar,
+    .blog-recent__article-authordate-avatar {
+      text-align: {{module.style.author_avatar.alignment.alignment.horizontal_align}};
+      {% if module.style.author_avatar.background.color.css %}
+        background-color: {{module.style.author_avatar.background.color.css}};
+      {% endif %}
+      {{module.style.author_avatar.spacing.spacing.css}}
+    }
+
+    .blog-recent__article-date,
+    .blog-recent__article-authordate-date {
+      {% if module.style.text.background.color.css %}
+        background-color: {{module.style.text.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.text.alignment.alignment.horizontal_align}};
+      {{module.style.text.spacing.spacing.css}}
+    }
+
+    .blog-recent__article-description {
+      {% if module.style.richtext.background.color.css %}
+        background-color: {{module.style.richtext.background.color.css}};
+      {% endif %}
+      {{module.style.richtext.spacing.spacing.css}}
+    }
+
+    .blog-recent__article-button {
+      text-align: {{module.style.button.alignment.alignment.horizontal_align}};
+      {% if module.style.button.background.color.css %}
+        background-color: {{module.style.button.background.color.css}};
+      {% endif %}
+      {{module.style.button.spacing.spacing.css}}
+    }
+
+  {% end_scope_css %}
+</style>
+
+{# Featured image #}
+{%- macro render_image(content) -%}
+  {% if content.featured_image %}
+
+    <div class="blog-recent__article-image">
+      {%- set image_link_aria = 'aria-label="{% if content.featured_image_alt_text %}Featured image: {{content.featured_image_alt_text}} - {% endif %}Read full post: {{content.name}}"' -%}
+      {%- set image_data = {
+        "image":{
+          "size_type":"auto","src":content.featured_image,"alt":content.featured_image_alt_text,
+          "loading":"lazy","width":"1024","height":"1024","max_width":null,"max_height":null
+        },
+        "link":{"link":{"url":{"href":content.absolute_url,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""} },
+        "caption":{"rich_text":""}
+      }%}{{image_macros.render_image_tmpl(image_data, module.style.image, module,
+        {
+          link_data_attrs: image_link_aria
+        }
+      )}}
+    </div>
+
+  {% endif %}
+{%- endmacro -%}
+
+{# Tags #}
+{%- macro render_tags(content) -%}
+  {% if content.tag_list %}
+
+    <div class="blog-recent__article-tags">
+      {% for tag in content.tag_list %}
+        {%- set blogTagUrl = blog_tag_url(group.id, tag.slug) -%}
+        {% if blogTagUrl %}
+          {%- set link_data = {
+            "text":tag.name,"accessible_link":true,
+            "link":{"url":{"href":blogTagUrl,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+            "icon":{
+              "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+              "icon_position":"left"
+            }
+          }%}{{link_macros.render_link_tmpl(link_data, module.style.link, module)}}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  {% endif %}
+{%- endmacro -%}
+
+{# Heading #}
+{%- macro render_heading(content) -%}
+
+  <div class="blog-recent__article-heading">
+    {%- set heading_data = {
+      "display":module.heading.display,"heading_tag":module.heading.heading_tag,"text":content.name,
+      "link":{"link":{"url":{"href":content.absolute_url,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},"accessible_link":true},
+      "icon":{
+        "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+        "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+      }
+    }%}{{heading_macros.render_heading_tmpl(heading_data, module.style.heading, module)}}
+  </div>
+
+{%- endmacro -%}
+
+{# Author #}
+{%- macro render_author(content) -%}
+  {% if content.blog_author %}
+
+    <div class="blog-recent__article-author">
+      {% if content.blog_author.avatar %}
+        <div class="blog-recent__article-author-avatar">
+          {%- set author_image_data = {
+            "image":{
+              "size_type":"auto","src":content.blog_author.avatar,"alt":"Picture of {{content.blog_author.display_name}}",
+              "loading":"lazy","width":"50","height":"50","max_width":null,"max_height":null
+            },
+            "link":{"link":{"url":{"href":"","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""} },
+            "caption":{"rich_text":""}
+          }%}{{image_macros.render_image_tmpl(author_image_data, module.style.author_avatar, module,
+            {
+              id: 'avatar'
+            }
+          )}}
+        </div>
+      {% endif %}
+      <div class="blog-recent__article-author-link">
+        {%- set author_link_data = {
+          "text":content.blog_author.display_name,"accessible_link":true,
+          "link":{"url":{"href":blog_author_url(group.id, content.blog_post_author.slug),"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+          "icon":{
+            "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+            "icon_position":"left"
+          }
+        }%}{{link_macros.render_link_tmpl(author_link_data, module.style.secondary_link, module,
+          {
+            id: 'author'
+          }
+        )}}
+      </div>
+    </div>
+
+  {% endif %}
+{%- endmacro -%}
+
+{# Date #}
+{%- macro render_date(content) -%}
+  <time class="blog-recent__article-date" datetime="{{content.publish_date}}">
+    {%- set text_data = {"text": content.publish_date_localized}%}{{text_macros.render_text_tmpl(text_data, module.style.text, module)}}</time>
+{%- endmacro -%}
+
+{# Author and date #}
+{%- macro render_author_and_date(content) -%}
+  {% if content.blog_author %}
+    <div class="blog-recent__article-authordate blog-recent__article-item">
+      {% if content.blog_author.avatar %}
+        <div class="blog-recent__article-authordate-avatar">
+          {%- set author_image_data = {
+            "image":{
+              "size_type":"auto","src":content.blog_author.avatar,"alt":"Picture of {{content.blog_author.display_name}}",
+              "loading":"lazy","width":"50","height":"50","max_width":null,"max_height":null
+            },
+            "link":{"link":{"url":{"href":"","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""} },
+            "caption":{"rich_text":""}
+          }%}{{image_macros.render_image_tmpl(author_image_data, module.style.author_avatar, module,
+            {
+              id: 'avatar'
+            }
+          )}}
+        </div>
+      {% endif %}
+      <div class="blog-recent__article-authordate-info">
+        <div class="blog-recent__article-authordate-link">
+          {%- set author_link_data = {
+            "text":content.blog_author.display_name,"accessible_link":true,
+            "link":{"url":{"href":blog_author_url(group.id, content.blog_post_author.slug),"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+            "icon":{
+              "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+              "icon_position":"left"
+            }
+          }%}{{link_macros.render_link_tmpl(author_link_data, module.style.secondary_link, module,
+            {
+              id: 'author2'
+            }
+          )}}
+        </div>
+        <div class="blog-recent__article-authordate-date">
+          <time class="blog-recent__article-authordate-date-time" datetime="{{content.publish_date}}">
+            {%- set text_data = {"text": content.publish_date_localized}%}{{text_macros.render_text_tmpl(text_data, module.style.text, module)}}</time>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+{# Description #}
+{%- macro render_description(content) -%}
+  <div class="blog-recent__article-description">
+    <p>
+      {{content.post_summary|truncatehtml(module.description.truncate)|sanitize_html("STRIP")}}
+    </p>
+  </div>
+{%- endmacro -%}
+
+{# Button #}
+{%- macro render_button(content) -%}
+  <div class="blog-recent__article-button">
+    {%- set button_data = {
+      "text":module.button.text,"accessible_link_label":"Read full post: {{content.name}}","accessible_link":true,
+      "link":{"url":{"href":content.absolute_url,"type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+      "icon":{
+        "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+        "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+      }
+    }%}{{button_macros.render_btn_tmpl(button_data, module.style.button, module)}}
+  </div>
+{%- endmacro -%}
+
+
+{%- macro related_posts(post) -%}
+  <div class="blog-recent__article_wrp">
+    <article class="blog-recent__article" aria-label="Blog post summary: {{post.name}}">
+      {% for blog_component in module.blog_components %}
+        {% if blog_component.component|lower == 'image' %}
+          {{render_image(post) if blog_component.show}}
+        {% elif blog_component.component|lower == 'tags' %}
+          {{render_tags(post) if blog_component.show}}
+        {% elif blog_component.component|lower == 'heading' %}
+          {{render_heading(post) if blog_component.show}}
+        {% elif blog_component.component|lower == 'author' %}
+          {{render_author(post) if blog_component.show}}
+        {% elif blog_component.component|lower == 'date' %}
+          {{render_date(post) if blog_component.show}}
+        {% elif blog_component.component|cut(" ")|lower == 'authoranddate' %}
+          {{render_author_and_date(post) if blog_component.show}}
+        {% elif blog_component.component|lower == 'description' %}
+          {{render_description(post) if blog_component.show}}
+        {% endif %}
+      {% endfor %}
+      {% if module.button.show %}
+        {{render_button(post)}}
+      {% endif %}
+    </article>
+  </div>
+{%- endmacro -%}
+
+
+<div class="blog-recent_wrp blog-recent-blog-module">
+  <div class="blog-recent blog-recent--{{module_id}} {{module.layout.layout}} {{module.style.general.presets.custom_preset}}">
+    <div class="blog-recent__heading">
+      {{heading_macros.render_heading_tmpl(module.general_heading, module.style.general_heading, module,
+        {
+          id: 'general'
+        }
+      )}}
+    </div>
+
+    <div class="blog-recent__article-container">
+      {% set posts_amount = module.layout.number_of_posts %}
+      {% set filter_operator = module.filter.tag_filter %}
+      {% set init_recent_by_tag_posts = blog_recent_tag_posts(group.id, content.tag_list, posts_amount + 1, filter_operator) %}
+      {% set recent_by_tag__posts = init_recent_by_tag_posts|selectattr("id", "!=", content.id) %}
+      {% if recent_by_tag__posts|length > posts_amount %}
+        {% do recent_by_tag__posts.pop(posts_amount) %}
+      {% endif %}
+      {% for tag_post in recent_by_tag__posts %}
+        {{related_posts(tag_post)}}
+      {% endfor %}
+    </div>
+  </div>
+</div>

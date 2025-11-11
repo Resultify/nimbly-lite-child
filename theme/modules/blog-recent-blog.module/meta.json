@@ -1,0 +1,18 @@
+{
+  "content_tags" : [ {
+    "name" : "BLOG_POST",
+    "source" : "USER"
+  }, {
+    "name" : "BLOG",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "master_language" : "en",
+  "categories" : [ "blog" ],
+  "icon" : "../../images/module-icons/blog-related.svg",
+  "host_template_types" : [ "ANY" ],
+  "module_id" : 96451595972,
+  "label" : "Blog recent blog",
+  "is_available_for_new_content" : false
+}
