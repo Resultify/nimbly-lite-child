@@ -5,6 +5,25 @@
 
 {% require_css %}
   <style>
+    {# icon color values can be overriden in module #}
+    {% import '../../css/global-theme-settings/buttons.css' %}
+    .social-links-module .icon-style {
+      {% if btn_primary_background.css %}
+        background-color: {{btn_primary_background.css}};
+      {% endif %}
+    }
+    .social-links-module .icon-style:hover {
+      background-color: {{rgb(btn_primary_hover_background_color, btn_primary_hover_background_opacity)}};
+    }
+    .social-links-module .icon-style svg {
+      {% if btn_primary_font.color %}
+        fill: {{btn_primary_font.color}};
+      {% endif %}
+    }
+    .social-links-module .icon-style:hover svg {
+      fill: {{btn_primary_hover_color}};
+    }
+
     .global-footer_wrp .widget-type-simple_menu ul[role="menu"] {
       list-style: none;
       margin: 0;
@@ -15,7 +34,6 @@
     }
     .global-footer_wrp .widget-type-simple_menu .hs-menu-flow-vertical a[role="menuitem"] {
       padding: 6px 0;
-      color: #000;
     }
     .global-footer_wrp .widget-type-simple_menu .hs-menu-flow-horizontal ul[role="menu"] {
       display: flex;
@@ -26,7 +44,7 @@
       flex-grow: 0;
     }
     @media (max-width: 991.98px) {
-    .global-footer_wrp .widget-type-simple_menu .hs-menu-flow-horizontal ul[role="menu"] {
+      .global-footer_wrp .widget-type-simple_menu .hs-menu-flow-horizontal ul[role="menu"] {
         justify-content: flex-start;
       }
     }
@@ -40,7 +58,7 @@
     class='global-footer global-partial'
   %}
 
-  {% dnd_section
+    {% dnd_section
       padding={
         "default" : {
           "top" : "100px"
@@ -48,7 +66,8 @@
         "mobile" : {
           "top" : "60px"
         }
-      }
+      },
+      full_width=false
     %}
       {% dnd_column
         offset=0,
@@ -68,7 +87,6 @@
                   "heading_text" : ""
                 },
                 media_type="simple_image",
-                module_components=[ "media", "richtext" ],
                 simple_image_group={
                   "simple_image" : {
                     "alt" : "nimbly",
@@ -79,8 +97,35 @@
                   }
                 },
                 style={
-                  "content_gap" : 34
-                }
+                  "background_color" : {
+                    "opacity" : 100
+                  },
+                  "background_type" : "",
+                  "content_gap" : 34,
+                  "hover_effects" : false,
+                  "shadow" : "",
+                  "spacing" : {
+                    "padding" : {
+                      "bottom" : {
+                        "units" : "px",
+                        "value" : 0
+                      },
+                      "left" : {
+                        "units" : "px",
+                        "value" : 0
+                      },
+                      "right" : {
+                        "units" : "px",
+                        "value" : 0
+                      },
+                      "top" : {
+                        "units" : "px",
+                        "value" : 0
+                      }
+                    }
+                  }
+                },
+                module_components=[ "media", "richtext" ]
               %}
                 {% module_attribute "richtext" %}
                   <p style="line-height: 1;"><span>Drottninggatan 38</span></p>
@@ -94,13 +139,110 @@
                 path="../../modules/social-links",
                 offset=0,
                 width=12,
+                style={
+                  "general" : {
+                    "spacing" : {
+                      "spacing" : {
+                        "padding" : {
+                          "bottom" : { },
+                          "left" : { },
+                          "right" : {
+                            "units" : "px",
+                            "value" : 10
+                          },
+                          "top" : {
+                            "units" : "px",
+                            "value" : 30
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "icon" : {
+                    "background" : { },
+                    "custom_theme_overrides" : {
+                      "background" : {
+                        "color" : "",
+                        "opacity" : 100
+                      },
+                      "border" : {
+                        "bottom" : {
+                          "style" : "none"
+                        },
+                        "left" : {
+                          "style" : "none"
+                        },
+                        "right" : {
+                          "style" : "none"
+                        },
+                        "top" : {
+                          "style" : "none"
+                        }
+                      },
+                      "color" : {
+                        "color" : "",
+                        "opacity" : 100
+                      },
+                      "spacing" : {
+                        "padding" : {
+                          "bottom" : {
+                            "units" : "px",
+                            "value" : 5
+                          },
+                          "left" : {
+                            "units" : "px",
+                            "value" : 5
+                          },
+                          "right" : {
+                            "units" : "px",
+                            "value" : 5
+                          },
+                          "top" : {
+                            "units" : "px",
+                            "value" : 5
+                          }
+                        }
+                      }
+                    },
+                    "hover" : {
+                      "background" : {
+                        "color" : " ",
+                        "opacity" : 100
+                      },
+                      "color" : {
+                        "color" : " ",
+                        "opacity" : 100
+                      }
+                    },
+                    "presets" : {
+                      "icon_shape" : "circle",
+                      "icon_size" : "small"
+                    },
+                    "spacing" : {
+                      "spacing" : {
+                        "padding" : {
+                          "bottom" : {
+                            "units" : "px",
+                            "value" : 5
+                          },
+                          "left" : { },
+                          "right" : {
+                            "units" : "px",
+                            "value" : 5
+                          },
+                          "top" : { }
+                        }
+                      }
+                    }
+                  }
+                },
                 link_group=[ {
                   "icon" : {
                     "icon" : {
-                      "name" : "X-Twitter",
+                      "name" : "LinkedIn In",
                       "type" : "REGULAR",
-                      "unicode" : "e61b"
-                    },
+                      "unicode" : "f0e1"
+                    }
                   },
                   "link" : {
                     "accessible_link" : false,
@@ -108,13 +250,35 @@
                       "no_follow" : false,
                       "open_in_new_tab" : false,
                       "url" : {
-                        "href" : "https://www.x.com",
+                        "href" : "https://www.linkedin.com",
                         "type" : "EXTERNAL"
                       }
                     }
                   },
                   "link_label" : {
-                    "link_label" : "Twitter"
+                    "link_label" : "LinkedIn"
+                  }
+                }, {
+                  "icon" : {
+                    "icon" : {
+                      "name" : "Facebook F",
+                      "type" : "REGULAR",
+                      "unicode" : "f39e"
+                    }
+                  },
+                  "link" : {
+                    "accessible_link" : false,
+                    "link" : {
+                      "no_follow" : false,
+                      "open_in_new_tab" : false,
+                      "url" : {
+                        "href" : "https://www.facebook.com",
+                        "type" : "EXTERNAL"
+                      }
+                    }
+                  },
+                  "link_label" : {
+                    "link_label" : "Facebook"
                   }
                 }, {
                   "icon" : {
@@ -122,7 +286,7 @@
                       "name" : "Instagram",
                       "type" : "REGULAR",
                       "unicode" : "f16d"
-                    },
+                    }
                   },
                   "link" : {
                     "accessible_link" : false,
@@ -141,32 +305,10 @@
                 }, {
                   "icon" : {
                     "icon" : {
-                      "name" : "LinkedIn",
-                      "type" : "REGULAR",
-                      "unicode" : "f08c"
-                    },
-                  },
-                  "link" : {
-                    "accessible_link" : false,
-                    "link" : {
-                      "no_follow" : false,
-                      "open_in_new_tab" : false,
-                      "url" : {
-                        "href" : "https://www.facebook.com",
-                        "type" : "EXTERNAL"
-                      }
-                    }
-                  },
-                  "link_label" : {
-                    "link_label" : "LinkedIn"
-                  }
-                }, {
-                  "icon" : {
-                    "icon" : {
                       "name" : "YouTube",
                       "type" : "REGULAR",
                       "unicode" : "f167"
-                    },
+                    }
                   },
                   "link" : {
                     "accessible_link" : false,
@@ -182,24 +324,29 @@
                   "link_label" : {
                     "link_label" : "Youtube"
                   }
-                } ],
-                style={
-                  "general" : {
-                    "spacing" : {
-                      "spacing" : {
-                        "padding" : {
-                          "bottom" : { },
-                          "left" : { },
-                          "right" : { },
-                          "top" : {
-                            "units" : "px",
-                            "value" : 30
-                          }
-                        }
+                }, {
+                  "icon" : {
+                    "icon" : {
+                      "name" : "X-Twitter",
+                      "type" : "REGULAR",
+                      "unicode" : "e61b"
+                    }
+                  },
+                  "link" : {
+                    "accessible_link" : false,
+                    "link" : {
+                      "no_follow" : false,
+                      "open_in_new_tab" : false,
+                      "url" : {
+                        "href" : "https://www.x.com",
+                        "type" : "EXTERNAL"
                       }
                     }
+                  },
+                  "link_label" : {
+                    "link_label" : "Twitter"
                   }
-                }
+                } ]
               %}
               {% end_dnd_module %}
             {% end_dnd_row %}
@@ -215,23 +362,38 @@
                 width=12,
                 heading={
                   "heading_style" : "h6",
-                  "heading_text" : "QUICK LINKS",
+                  "heading_text" : "Quick Links",
                   "heading_text_prop_visibility" : false
                 },
-                module_components=[ "main_heading" ],
                 style={
+                  "background_color" : {
+                    "opacity" : 100
+                  },
+                  "background_type" : "",
+                  "hover_effects" : false,
+                  "shadow" : "",
                   "spacing" : {
                     "padding" : {
                       "bottom" : {
                         "units" : "px",
                         "value" : 10
                       },
-                      "left" : { },
-                      "right" : { },
-                      "top" : { }
+                      "left" : {
+                        "units" : "px",
+                        "value" : 0
+                      },
+                      "right" : {
+                        "units" : "px",
+                        "value" : 0
+                      },
+                      "top" : {
+                        "units" : "px",
+                        "value" : 0
+                      }
                     }
                   }
-                }
+                },
+                module_components=[ "main_heading" ]
               %}
               {% end_dnd_module %}
             {% end_dnd_row %}
@@ -244,28 +406,33 @@
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "How Nimbly works",
-                  "type" : "NO_LINK"
+                  "linkUrl" : "/how-nimbly-works",
+                  "type" : "URL_LINK"
                 }, {
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "Use Cases",
-                  "type" : "NO_LINK"
+                  "linkUrl" : "/use-cases",
+                  "type" : "URL_LINK"
                 }, {
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "Support",
-                  "type" : "NO_LINK"
+                  "linkUrl" : "/support",
+                  "type" : "URL_LINK"
                 }, {
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "About",
-                  "type" : "NO_LINK"
+                  "linkUrl" : "/about",
+                  "type" : "URL_LINK"
                 }, {
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "Contact",
-                  "type" : "NO_LINK"
-                }]
+                  "linkUrl" : "/contact",
+                  "type" : "URL_LINK"
+                } ]
               %}
               {% end_dnd_module %}
             {% end_dnd_row %}
@@ -281,23 +448,38 @@
                 width=12,
                 heading={
                   "heading_style" : "h6",
-                  "heading_text" : "QUICK LINKS",
+                  "heading_text" : "Quick Links",
                   "heading_text_prop_visibility" : false
                 },
-                module_components=[ "main_heading" ],
                 style={
+                  "background_color" : {
+                    "opacity" : 100
+                  },
+                  "background_type" : "",
+                  "hover_effects" : false,
+                  "shadow" : "",
                   "spacing" : {
                     "padding" : {
                       "bottom" : {
                         "units" : "px",
                         "value" : 10
                       },
-                      "left" : { },
-                      "right" : { },
-                      "top" : { }
+                      "left" : {
+                        "units" : "px",
+                        "value" : 0
+                      },
+                      "right" : {
+                        "units" : "px",
+                        "value" : 0
+                      },
+                      "top" : {
+                        "units" : "px",
+                        "value" : 0
+                      }
                     }
                   }
-                }
+                },
+                module_components=[ "main_heading" ]
               %}
               {% end_dnd_module %}
             {% end_dnd_row %}
@@ -310,28 +492,33 @@
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "How Nimbly works",
-                  "type" : "NO_LINK"
+                  "linkUrl" : "/how-nimbly-works",
+                  "type" : "URL_LINK"
                 }, {
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "Use Cases",
-                  "type" : "NO_LINK"
+                  "linkUrl" : "/use-cases",
+                  "type" : "URL_LINK"
                 }, {
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "Support",
-                  "type" : "NO_LINK"
+                  "linkUrl" : "/support",
+                  "type" : "URL_LINK"
                 }, {
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "About",
-                  "type" : "NO_LINK"
+                  "linkUrl" : "/about",
+                  "type" : "URL_LINK"
                 }, {
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "Contact",
-                  "type" : "NO_LINK"
-                }]
+                  "linkUrl" : "/contact",
+                  "type" : "URL_LINK"
+                } ]
               %}
               {% end_dnd_module %}
             {% end_dnd_row %}
@@ -347,23 +534,38 @@
                 width=12,
                 heading={
                   "heading_style" : "h6",
-                  "heading_text" : "QUICK LINKS",
+                  "heading_text" : "Quick Links",
                   "heading_text_prop_visibility" : false
                 },
-                module_components=[ "main_heading" ],
                 style={
+                  "background_color" : {
+                    "opacity" : 100
+                  },
+                  "background_type" : "",
+                  "hover_effects" : false,
+                  "shadow" : "",
                   "spacing" : {
                     "padding" : {
                       "bottom" : {
                         "units" : "px",
                         "value" : 10
                       },
-                      "left" : { },
-                      "right" : { },
-                      "top" : { }
+                      "left" : {
+                        "units" : "px",
+                        "value" : 0
+                      },
+                      "right" : {
+                        "units" : "px",
+                        "value" : 0
+                      },
+                      "top" : {
+                        "units" : "px",
+                        "value" : 0
+                      }
                     }
                   }
-                }
+                },
+                module_components=[ "main_heading" ]
               %}
               {% end_dnd_module %}
             {% end_dnd_row %}
@@ -376,28 +578,33 @@
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "How Nimbly works",
-                  "type" : "NO_LINK"
+                  "linkUrl" : "/how-nimbly-works",
+                  "type" : "URL_LINK"
                 }, {
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "Use Cases",
-                  "type" : "NO_LINK"
+                  "linkUrl" : "/use-cases",
+                  "type" : "URL_LINK"
                 }, {
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "Support",
-                  "type" : "NO_LINK"
+                  "linkUrl" : "/support",
+                  "type" : "URL_LINK"
                 }, {
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "About",
-                  "type" : "NO_LINK"
+                  "linkUrl" : "/about",
+                  "type" : "URL_LINK"
                 }, {
                   "children" : [ ],
                   "isPublished" : false,
                   "linkLabel" : "Contact",
-                  "type" : "NO_LINK"
-                }]
+                  "linkUrl" : "/contact",
+                  "type" : "URL_LINK"
+                } ]
               %}
               {% end_dnd_module %}
             {% end_dnd_row %}
@@ -420,15 +627,12 @@
           %}
             {% dnd_row %}
               {% dnd_module
-                path="../../modules/n-divider",
+                path="/nimbly-lite/modules/n-divider",
                 offset=0,
                 width=12,
                 style={
                   "color" : {
-                    "color" : {
-                      "color" : "#DBDBDB",
-                      "opacity" : 100
-                    }
+                    "color" : { }
                   }
                 }
               %}
@@ -454,7 +658,7 @@
                 path="@hubspot/text",
                 offset=0,
                 width=12,
-                value="©{{ local_dt|datetimeformat('%Y') }} Nimbly"
+                value="© {{ local_dt|datetimeformat('%Y') }} Nimbly"
               %}
               {% end_dnd_module %}
             {% end_dnd_row %}
