@@ -25,13 +25,6 @@
     <div class="blog-post_wrp">
       <div class="blog-post-header-wrp {{"blog-post-header-wrp-featured-image" if content.featured_image }}">
         <div class="blog-post-header">
-          {% if content.tag_list %}
-            <div class="blog-post__tags">
-              {% for tag in content.tag_list %}
-                <a class="blog-post__tag-link" href="{{blog_tag_url(group.id, tag.slug)}}" rel="tag">{{tag.name|escape_html}}</a>
-              {% endfor %}
-            </div>
-          {% endif %}
           <h1 class="blog-post__heading">
             {%- if is_in_blog_post_editor -%}
               {{content.name}}
@@ -39,7 +32,7 @@
               {{content.name|sanitize_html("STRIP")}}
             {%- endif -%}
           </h1>
-          <div class="blog-post__meta">
+          {# <div class="blog-post__meta">
             {% if content.blog_author.avatar %}
               <div class="blog-post__meta-author-avatar_wrp">
                 <img class="blog-post__meta-author-avatar" src="{{content.blog_author.avatar}}" width="50" loading="eager" alt="Picture of {{content.blog_author.display_name}}">
@@ -49,15 +42,23 @@
               <a class="blog-post__meta-info-author-link" href="{{blog_author_url(group.id, content.blog_post_author.slug)|escape_url}}" rel="author">
                 {{content.blog_post_author.display_name|escape_html}}
               </a>
-
-              <div class="blog-post__meta-info-date_wrp">
-                <time datetime="{{content.publish_date|escape_attr}}" class="blog-post__meta-info-date">
-                  {{content.publish_date_localized|escape_html}}
-                </time>
-              </div>
+            </div>
+          </div> #}
+          <div class="blog-post__meta">
+            <div class="blog-post__meta-info-date_wrp">
+              <time datetime="{{content.publish_date|escape_attr}}" class="blog-post__meta-info-date">
+                {{content.publish_date_localized|escape_html}}
+              </time>
             </div>
           </div>
         </div>
+        {% if content.tag_list %}
+          <div class="blog-post__tags">
+            {% for tag in content.tag_list %}
+              <a class="blog-post__tag-link" href="{{blog_tag_url(group.id, tag.slug)}}" rel="tag">{{tag.name|escape_html}}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
 
         {% if content.featured_image %}
           <div class="blog-post-featured-image-wrp">
@@ -127,34 +128,63 @@
               "size_type" : "exact",
               "src" : ""
             },
-            "share_on" : "pinterest",
-            "twitter_icon" : "x-twitter",
-            "twitter_link" : ""
-          }, {
-            "email_link" : "",
-            "facebook_link" : "",
-            "linkedin_link" : "",
-            "pinterest_link" : "",
-            "pinterest_pin_image" : {
-              "loading" : "lazy",
-              "size_type" : "exact",
-              "src" : ""
-            },
             "share_on" : "email",
             "twitter_icon" : "x-twitter",
             "twitter_link" : ""
           } ],
           style={
-            "general" : {
+            "icon" : {
+              "custom_theme_overrides" : {
+                "background" : {
+                  "color" : "",
+                  "opacity" : 100
+                },
+                "color" : {
+                  "color" : "",
+                  "opacity" : 100
+                },
+                "spacing" : {
+                  "padding" : {
+                    "bottom" : {
+                      "units" : "px",
+                      "value" : 5
+                    },
+                    "left" : {
+                      "units" : "px",
+                      "value" : 5
+                    },
+                    "right" : {
+                      "units" : "px",
+                      "value" : 5
+                    },
+                    "top" : {
+                      "units" : "px",
+                      "value" : 5
+                    }
+                  }
+                }
+              },
+              "presets" : {
+                "icon_size" : "small"
+              },
               "spacing" : {
                 "spacing" : {
                   "padding" : {
-                    "bottom" : { },
-                    "left" : { },
-                    "right" : { },
+                    "bottom" : {
+                      "units" : "px",
+                      "value" : 4
+                    },
+                    "left" : {
+                      "units" : "px",
+                      "value" : 0
+                    },
+                    "right" : {
+                      "units" : "px",
+                      "value" : 4
+                    },
                     "top" : {
                       "units" : "px",
-                      "value" : 30
+                      "value" : 0
                     }
                   }
                 }

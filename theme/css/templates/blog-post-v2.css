@@ -1,6 +1,6 @@
-/* Blog Post Template v2 */
+{# Blog Post Template v2 #}
 
-/* global blog variables */
+{# global blog variables #}
 .blog-post-header,
 .blog-post-header-wrp.blog-post-header-wrp-featured-image:before {
   background-color: {{theme.blog.header_background_color.css}};
@@ -11,12 +11,11 @@
   color: {{theme.blog.header_text_color.css}};
 }
 
-.blog-post__tags a,
 .blog-post__meta a {
   color: {{theme.blog.header_link_color.css}};
 }
 
-/* general */
+{# general #}
 .blog-post,
 .blog-post__tags,
 .blog-post__heading,
@@ -37,10 +36,6 @@
  .blog-post__heading,
  .blog-post__meta {
   margin-bottom: 28px;
-}
-
-.blog-post__tag-link:not(:last-child):after {
-  content: ' | ';
 }
 
 .blog-post__meta {
@@ -74,8 +69,7 @@
   max-width: 100%;
 }
 
-
-/* featured-image */
+{# featured-image #}
 .blog-post-header-wrp-featured-image .blog-post-header {
   padding-bottom: 0;
 }
@@ -109,7 +103,7 @@
   }
 }
 
-/* blog sharing buttons */
+{# blog sharing buttons #}
 .blog-post__sharing-buttons .hs-blog-social-share {
   height: auto;
 }
@@ -123,4 +117,57 @@
 .blog-post__sharing-buttons .hs-blog-social-share li > iframe,
 .blog-post__sharing-buttons .hs-blog-social-share li > div {
   vertical-align: top !important;
+}
+
+.blog-all-posts__button {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  margin-bottom: -5px;
+}
+
+{# social sharing module #}
+.social-sharing-module_wrp {
+  padding-top: 15px;
+}
+
+.social-sharing-module:before {
+  content: 'Share:';
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+{# swedish #}
+html[lang^="sv"] .social-sharing-module:before {
+  content: 'Dela:';
+}
+
+{# danish #}
+html[lang^="da"] .social-sharing-module:before {
+  content: 'Del:';
+}
+
+{# icon color values can be overriden in module #}
+{% import '../global-theme-settings/buttons.css' %}
+
+.social-sharing-module__icon .icon-style {
+  {% if btn_primary_background.css %}
+    background-color: {{btn_primary_background.css}};
+  {% endif %}
+}
+
+.social-sharing-module__icon .icon-style:hover {
+  background-color: {{rgb(btn_primary_hover_background_color, btn_primary_hover_background_opacity)}};
+}
+
+.social-sharing-module__icon .icon-style svg {
+  {% if btn_primary_font.color %}
+    fill: {{btn_primary_font.color}};
+  {% endif %}
+}
+
+.social-sharing-module__icon .icon-style:hover svg {
+  fill: {{btn_primary_hover_color}};
 }
