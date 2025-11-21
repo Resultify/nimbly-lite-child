@@ -5,6 +5,10 @@
   screenshotPath: ../images/template-previews/blog-post-2.jpg
 -->
 {% set template_css = '../../css/templates/blog-post-v2.css' %}
+
+{# using replace_color_in_svg #}
+{% import '../../css/macros.css' %}
+
 {% extends './layouts/base.html' %}
 
 {% block body %}
@@ -25,6 +29,9 @@
     <div class="blog-post_wrp">
       <div class="blog-post-header-wrp {{"blog-post-header-wrp-featured-image" if content.featured_image }}">
         <div class="blog-post-header">
+          <div class="blog-post__all-posts">
+            <a href="{{ blog_all_posts_url("default") }}">{{ content.parentBlog.htmlTitle }}</a>
+          </div>
           <h1 class="blog-post__heading">
             {%- if is_in_blog_post_editor -%}
               {{content.name}}
@@ -228,15 +235,10 @@
             "text" : ""
           },
           button={
-            "show" : true,
+            "show" : false,
             "text" : "{{ read_more }}"
           },
           style={
-            "button" : {
-              "presets" : {
-                "size" : "btn-small"
-              }
-            },
             "general" : {
               "spacing" : {
                 "spacing" : {
@@ -253,6 +255,11 @@
                     }
                   }
                 }
+              }
+            },
+            "button" : {
+              "presets" : {
+                "size" : "btn-small"
               }
             },
             "image" : {
