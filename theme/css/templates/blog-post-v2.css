@@ -18,6 +18,26 @@
   color: {{theme.blog.header_link_color.css}};
 }
 
+{# return to all posts - link #}
+.blog-post__all-posts a {
+  font-size: calc({{ theme.typography.text.font.size ~ theme.typography.text.font.size_unit }} * 1.5);
+  text-decoration: none;
+  color: {{theme.blog.header_text_color.css}};
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.blog-post__all-posts a:hover {
+  color: {{theme.blog.header_text_color.css}};
+  opacity: 0.8;
+}
+
+.blog-post__all-posts a:before {
+  display: flex;
+  height: {{ theme.typography.text.font.size ~ theme.typography.text.font.size_unit }};
+  content: {{ replace_color_in_svg('#000000', theme.blog.header_text_color.css, 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iMTYiIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAxOSAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0ibTE3LjUgOWMwLjU1MjMgMCAxLTAuNDQ3NzIgMS0xcy0wLjQ0NzctMS0xLTF2MnptLTE2LjcwNy0xLjcwNzFjLTAuMzkwNTIgMC4zOTA1My0wLjM5MDUyIDEuMDIzNyAwIDEuNDE0Mmw2LjM2NCA2LjM2NGMwLjM5MDUzIDAuMzkwNSAxLjAyMzcgMC4zOTA1IDEuNDE0MiAwIDAuMzkwNTItMC4zOTA2IDAuMzkwNTItMS4wMjM3IDAtMS40MTQybC01LjY1NjktNS42NTY5IDUuNjU2OS01LjY1NjhjMC4zOTA1Mi0wLjM5MDUzIDAuMzkwNTItMS4wMjM3IDAtMS40MTQyLTAuMzkwNTMtMC4zOTA1Mi0xLjAyMzctMC4zOTA1Mi0xLjQxNDIgMGwtNi4zNjQgNi4zNjR6bTE2LjcwNy0wLjI5Mjg5aC0xNnYyaDE2di0yeiIgZmlsbD0iIzAwMDAwMCIvPgo8L3N2Zz4K') }};
+}
+
 {# general #}
 .blog-post,
 .blog-post__tags,
@@ -40,20 +60,6 @@
  .blog-post__heading,
  .blog-post__meta {
   margin-bottom: 28px;
-}
-
-.blog-post__all-posts a {
-  color: {{theme.blog.header_text_color.css}};
-  {# responsive styling using h5 class #}
-  font-size: 20px;
-  position: relative;
-  margin-bottom: 15px;
-}
-
-.blog-post__all-posts a:before {
-  padding-right: 5px;
-  display: inline-block;
-  content: {{ replace_color_in_svg('#000000', theme.blog.header_text_color.css, 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iMTYiIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAxOSAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0ibTE3LjUgOWMwLjU1MjMgMCAxLTAuNDQ3NzIgMS0xcy0wLjQ0NzctMS0xLTF2MnptLTE2LjcwNy0xLjcwNzFjLTAuMzkwNTIgMC4zOTA1My0wLjM5MDUyIDEuMDIzNyAwIDEuNDE0Mmw2LjM2NCA2LjM2NGMwLjM5MDUzIDAuMzkwNSAxLjAyMzcgMC4zOTA1IDEuNDE0MiAwIDAuMzkwNTItMC4zOTA2IDAuMzkwNTItMS4wMjM3IDAtMS40MTQybC01LjY1NjktNS42NTY5IDUuNjU2OS01LjY1NjhjMC4zOTA1Mi0wLjM5MDUzIDAuMzkwNTItMS4wMjM3IDAtMS40MTQyLTAuMzkwNTMtMC4zOTA1Mi0xLjAyMzctMC4zOTA1Mi0xLjQxNDIgMGwtNi4zNjQgNi4zNjR6bTE2LjcwNy0wLjI5Mjg5aC0xNnYyaDE2di0yeiIgZmlsbD0iIzAwMDAwMCIvPgo8L3N2Zz4K') }};
 }
 
 .blog-post__meta {
@@ -137,34 +143,16 @@
   vertical-align: top !important;
 }
 
-.blog-all-posts__button {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  margin-bottom: -5px;
-}
-
 {# social sharing module #}
 .social-sharing-module_wrp {
   padding-top: 15px;
 }
 
+{# --share-text is translated in blog-post-2.html #}
 .social-sharing-module:before {
-  content: 'Share:';
+  content: var(--share-label);
   margin-right: 10px;
   margin-top: 5px;
-}
-
-{# swedish #}
-html[lang^="sv"] .social-sharing-module:before {
-  content: 'Dela:';
-}
-
-{# danish #}
-html[lang^="da"] .social-sharing-module:before {
-  content: 'Del:';
 }
 
 {# icon color values can be overriden in module #}

@@ -13,16 +13,20 @@
 
 {% block body %}
 
-{% if html_lang == "sv" %}
-  {% set all_articles = 'Alla artiklar' %}
-  {% set read_more = 'Läs mer' %}
-{% elif html_lang == "da" %}
-  {% set all_articles = 'Alle artikler' %}
-  {% set read_more = 'Læs mere' %}
-{% else %}
-  {% set all_articles = 'All articles' %}
-  {% set read_more = 'Read more' %}
-{% endif %}
+  {% if html_lang == "sv" %}
+    {% set all_articles = 'Alla artiklar' %}
+    {% set read_more = 'Läs mer' %}
+    {% set share = 'Dela:' %}
+  {% elif html_lang == "da" %}
+    {% set all_articles = 'Alle artikler' %}
+    {% set read_more = 'Læs mere' %}
+    {% set share = 'Del:' %}
+  {% else %}
+    {% set all_articles = 'All articles' %}
+    {% set read_more = 'Read more' %}
+    {% set share = 'Share:' %}
+  {% endif %}
+  <style>:root{ --share-label: '{{ share }}'}</style>
 
   <div class="blog-post-template">
 
@@ -30,7 +34,7 @@
       <div class="blog-post-header-wrp {{"blog-post-header-wrp-featured-image" if content.featured_image }}">
         <div class="blog-post-header">
           <div class="blog-post__all-posts">
-            <a href="{{ blog_all_posts_url("default") }}">{{ content.parentBlog.htmlTitle }}</a>
+            <a href="{{ group.absolute_url }}">{{ content.parentBlog.htmlTitle }}</a>
           </div>
           <h1 class="blog-post__heading">
             {%- if is_in_blog_post_editor -%}
@@ -243,16 +247,10 @@
               "spacing" : {
                 "spacing" : {
                   "padding" : {
-                    "bottom" : {
-                      "units" : "px",
-                      "value" : 50
-                    },
+                    "bottom" : { },
                     "left" : { },
                     "right" : { },
-                    "top" : {
-                      "units" : "px",
-                      "value" : 100
-                    }
+                    "top" : { }
                   }
                 }
               }
@@ -281,48 +279,74 @@
             }
           }
         %}
-      </div>
 
-      <div class="blog-all-posts__button">
-        {% module 'blog_button'
-          path="../modules/n-button",
+        {% module "blog-recent-blog-2"
+          path="../modules/unicard-button",
           offset=0,
           width=12,
-          text="{{ all_articles }}",
-          link={
-            "no_follow" : false,
-            "open_in_new_tab" : false,
-            "url" : {
-              "href" : group.absolute_url,
-              "type" : "EXTERNAL"
-            }
-          },
-          style={
-            "presets" : {
-              "style" : "btn-secondary2"
+          button_group=[ {
+            "button_alignment" : "left",
+            "button_hide_text" : false,
+            "button_icon" : {
+              "type" : "REGULAR"
             },
+            "button_icon_position" : "left",
+            "button_image" : {
+              "loading" : "disabled",
+              "src" : ""
+            },
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "sponsored" : false,
+              "url" : {
+                "href" : group.absolute_url,
+                "type" : "EXTERNAL"
+              },
+              "user_generated_content" : false
+            },
+            "button_position" : "inline",
+            "button_size" : "regular",
+            "button_style" : "primary",
+            "button_text" : "{{ all_articles }}",
+            "custom_button_background" : { },
+            "custom_button_border_color" : { },
+            "custom_button_font" : {
+              "font_set" : "DEFAULT"
+            },
+            "custom_button_hover" : {
+              "background" : { },
+              "border_color" : { },
+              "color" : { }
+            },
+            "custom_link_color" : { },
+            "custom_link_font" : {
+              "font_set" : "DEFAULT"
+            },
+            "custom_link_hover" : {
+              "color" : { }
+            }
+          } ],
+          style={
             "alignment" : {
-              "alignment" : {
-                "horizontal_align" : "CENTER"
-              }
+              "horizontal_align" : "CENTER"
             },
             "spacing" : {
-              "spacing" : {
-                "padding" : {
-                  "bottom" : {
-                    "units" : "px",
-                    "value" : 100
-                  },
-                  "top" : {
-                    "units" : "px",
-                    "value" : 0
-                  }
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 100
+                },
+                "left" : { },
+                "right" : { },
+                "top" : {
+                  "units" : "px",
+                  "value" : 50
                 }
               }
             }
           }
         %}
-
       </div>
     </div>
 
