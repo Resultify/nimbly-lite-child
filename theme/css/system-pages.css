@@ -1,0 +1,26 @@
+{# system page (search result, 404 etc) - more spacing #}
+.system-page_wrp {
+  position: relative;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: var(--section-horizontal-spacing-mobile);
+  padding-right: var(--section-horizontal-spacing-mobile);
+}
+
+@media (min-width: 640px) {
+  .system-page_wrp {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    padding-left: calc(var(--section-horizontal-spacing)/2);
+    padding-right: calc(var(--section-horizontal-spacing)/2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .system-page_wrp {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+    padding-left: var(--section-horizontal-spacing);
+    padding-right: var(--section-horizontal-spacing);
+  }
+}
