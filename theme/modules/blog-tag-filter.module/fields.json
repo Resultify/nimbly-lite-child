@@ -511,7 +511,7 @@
   "allow_new_line" : false,
   "type" : "text",
   "display_width" : null,
-  "default" : "All categories"
+  "default" : "All"
 }, {
   "id" : "custom_tag_order_field",
   "name" : "custom_tag_order",

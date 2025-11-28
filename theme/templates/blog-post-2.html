@@ -5,33 +5,37 @@
   screenshotPath: ../images/template-previews/blog-post-2.jpg
 -->
 {% set template_css = '../../css/templates/blog-post-v2.css' %}
+
+{# using replace_color_in_svg #}
+{% import '../../css/macros.css' %}
+
 {% extends './layouts/base.html' %}
 
 {% block body %}
 
-{% if html_lang == "sv" %}
-  {% set all_articles = 'Alla artiklar' %}
-  {% set read_more = 'Läs mer' %}
-{% elif html_lang == "da" %}
-  {% set all_articles = 'Alle artikler' %}
-  {% set read_more = 'Læs mere' %}
-{% else %}
-  {% set all_articles = 'All articles' %}
-  {% set read_more = 'Read more' %}
-{% endif %}
+  {% if html_lang == "sv" %}
+    {% set all_articles = 'Alla artiklar' %}
+    {% set read_more = 'Läs mer' %}
+    {% set share = 'Dela:' %}
+  {% elif html_lang == "da" %}
+    {% set all_articles = 'Alle artikler' %}
+    {% set read_more = 'Læs mere' %}
+    {% set share = 'Del:' %}
+  {% else %}
+    {% set all_articles = 'All articles' %}
+    {% set read_more = 'Read more' %}
+    {% set share = 'Share:' %}
+  {% endif %}
+  <style>:root{ --share-label: '{{ share }}'}</style>
 
   <div class="blog-post-template">
 
     <div class="blog-post_wrp">
       <div class="blog-post-header-wrp {{"blog-post-header-wrp-featured-image" if content.featured_image }}">
         <div class="blog-post-header">
-          {% if content.tag_list %}
-            <div class="blog-post__tags">
-              {% for tag in content.tag_list %}
-                <a class="blog-post__tag-link" href="{{blog_tag_url(group.id, tag.slug)}}" rel="tag">{{tag.name|escape_html}}</a>
-              {% endfor %}
-            </div>
-          {% endif %}
+          <div class="blog-post__all-posts">
+            <a href="{{ group.absolute_url }}">{{ content.parentBlog.htmlTitle }}</a>
+          </div>
           <h1 class="blog-post__heading">
             {%- if is_in_blog_post_editor -%}
               {{content.name}}
@@ -39,7 +43,7 @@
               {{content.name|sanitize_html("STRIP")}}
             {%- endif -%}
           </h1>
-          <div class="blog-post__meta">
+          {# <div class="blog-post__meta">
             {% if content.blog_author.avatar %}
               <div class="blog-post__meta-author-avatar_wrp">
                 <img class="blog-post__meta-author-avatar" src="{{content.blog_author.avatar}}" width="50" loading="eager" alt="Picture of {{content.blog_author.display_name}}">
@@ -49,15 +53,23 @@
               <a class="blog-post__meta-info-author-link" href="{{blog_author_url(group.id, content.blog_post_author.slug)|escape_url}}" rel="author">
                 {{content.blog_post_author.display_name|escape_html}}
               </a>
-
-              <div class="blog-post__meta-info-date_wrp">
-                <time datetime="{{content.publish_date|escape_attr}}" class="blog-post__meta-info-date">
-                  {{content.publish_date_localized|escape_html}}
-                </time>
-              </div>
+            </div>
+          </div> #}
+          <div class="blog-post__meta">
+            <div class="blog-post__meta-info-date_wrp">
+              <time datetime="{{content.publish_date|escape_attr}}" class="blog-post__meta-info-date">
+                {{content.publish_date_localized|escape_html}}
+              </time>
             </div>
           </div>
         </div>
+        {% if content.tag_list %}
+          <div class="blog-post__tags">
+            {% for tag in content.tag_list %}
+              <a class="blog-post__tag-link" href="{{blog_tag_url(group.id, tag.slug)}}" rel="tag">{{tag.name|escape_html}}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
 
         {% if content.featured_image %}
           <div class="blog-post-featured-image-wrp">
@@ -127,34 +139,63 @@
               "size_type" : "exact",
               "src" : ""
             },
-            "share_on" : "pinterest",
-            "twitter_icon" : "x-twitter",
-            "twitter_link" : ""
-          }, {
-            "email_link" : "",
-            "facebook_link" : "",
-            "linkedin_link" : "",
-            "pinterest_link" : "",
-            "pinterest_pin_image" : {
-              "loading" : "lazy",
-              "size_type" : "exact",
-              "src" : ""
-            },
             "share_on" : "email",
             "twitter_icon" : "x-twitter",
             "twitter_link" : ""
           } ],
           style={
-            "general" : {
+            "icon" : {
+              "custom_theme_overrides" : {
+                "background" : {
+                  "color" : "",
+                  "opacity" : 100
+                },
+                "color" : {
+                  "color" : "",
+                  "opacity" : 100
+                },
+                "spacing" : {
+                  "padding" : {
+                    "bottom" : {
+                      "units" : "px",
+                      "value" : 5
+                    },
+                    "left" : {
+                      "units" : "px",
+                      "value" : 5
+                    },
+                    "right" : {
+                      "units" : "px",
+                      "value" : 5
+                    },
+                    "top" : {
+                      "units" : "px",
+                      "value" : 5
+                    }
+                  }
+                }
+              },
+              "presets" : {
+                "icon_size" : "small"
+              },
               "spacing" : {
                 "spacing" : {
                   "padding" : {
-                    "bottom" : { },
-                    "left" : { },
-                    "right" : { },
+                    "bottom" : {
+                      "units" : "px",
+                      "value" : 4
+                    },
+                    "left" : {
+                      "units" : "px",
+                      "value" : 0
+                    },
+                    "right" : {
+                      "units" : "px",
+                      "value" : 4
+                    },
                     "top" : {
                       "units" : "px",
-                      "value" : 30
+                      "value" : 0
                     }
                   }
                 }
@@ -198,31 +239,25 @@
             "text" : ""
           },
           button={
-            "show" : true,
+            "show" : false,
             "text" : "{{ read_more }}"
           },
           style={
-            "button" : {
-              "presets" : {
-                "size" : "btn-small"
-              }
-            },
             "general" : {
               "spacing" : {
                 "spacing" : {
                   "padding" : {
-                    "bottom" : {
-                      "units" : "px",
-                      "value" : 50
-                    },
+                    "bottom" : { },
                     "left" : { },
                     "right" : { },
-                    "top" : {
-                      "units" : "px",
-                      "value" : 100
-                    }
+                    "top" : { }
                   }
                 }
+              }
+            },
+            "button" : {
+              "presets" : {
+                "size" : "btn-small"
               }
             },
             "image" : {
@@ -244,48 +279,74 @@
             }
           }
         %}
-      </div>
 
-      <div class="blog-all-posts__button">
-        {% module 'blog_button'
-          path="../modules/n-button",
+        {% module "blog-recent-blog-2"
+          path="../modules/unicard-button",
           offset=0,
           width=12,
-          text="{{ all_articles }}",
-          link={
-            "no_follow" : false,
-            "open_in_new_tab" : false,
-            "url" : {
-              "href" : group.absolute_url,
-              "type" : "EXTERNAL"
-            }
-          },
-          style={
-            "presets" : {
-              "style" : "btn-secondary2"
+          button_group=[ {
+            "button_alignment" : "left",
+            "button_hide_text" : false,
+            "button_icon" : {
+              "type" : "REGULAR"
             },
+            "button_icon_position" : "left",
+            "button_image" : {
+              "loading" : "disabled",
+              "src" : ""
+            },
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "sponsored" : false,
+              "url" : {
+                "href" : group.absolute_url,
+                "type" : "EXTERNAL"
+              },
+              "user_generated_content" : false
+            },
+            "button_position" : "inline",
+            "button_size" : "regular",
+            "button_style" : "primary",
+            "button_text" : "{{ all_articles }}",
+            "custom_button_background" : { },
+            "custom_button_border_color" : { },
+            "custom_button_font" : {
+              "font_set" : "DEFAULT"
+            },
+            "custom_button_hover" : {
+              "background" : { },
+              "border_color" : { },
+              "color" : { }
+            },
+            "custom_link_color" : { },
+            "custom_link_font" : {
+              "font_set" : "DEFAULT"
+            },
+            "custom_link_hover" : {
+              "color" : { }
+            }
+          } ],
+          style={
             "alignment" : {
-              "alignment" : {
-                "horizontal_align" : "CENTER"
-              }
+              "horizontal_align" : "CENTER"
             },
             "spacing" : {
-              "spacing" : {
-                "padding" : {
-                  "bottom" : {
-                    "units" : "px",
-                    "value" : 100
-                  },
-                  "top" : {
-                    "units" : "px",
-                    "value" : 0
-                  }
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 100
+                },
+                "left" : { },
+                "right" : { },
+                "top" : {
+                  "units" : "px",
+                  "value" : 50
                 }
               }
             }
           }
         %}
-
       </div>
     </div>
 

@@ -181,12 +181,12 @@
         "required" : true,
         "locked" : false,
         "display" : "select",
-        "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ] ],
+        "choices" : [ [ "default", "Default" ], [ "primary", "Primary" ], [ "secondary", "Secondary" ] ],
         "multiple" : false,
         "reordering_enabled" : true,
         "preset" : null,
         "type" : "choice",
-        "default" : "primary"
+        "default" : "default"
       }, {
         "id" : "d47b86f5-8aa4-0a85-e1f0-e9c8968fb70a",
         "name" : "icon_size",

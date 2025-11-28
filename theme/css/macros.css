@@ -158,3 +158,10 @@
     background-position: {{background_alignment}};
   {% endif %}
 {%- endmacro -%}
+
+{% macro replace_color_in_svg(source_color, replacement_color, base64_svg) -%}
+  {%- set svg_string = base64_svg|b64decode -%}
+  {%- set updated_svg = svg_string|replace(source_color, replacement_color) -%}
+  {%- set encoded_svg = updated_svg|b64encode -%}
+  url("data:image/svg+xml;base64,{{ encoded_svg }}")
+{%- endmacro -%}
