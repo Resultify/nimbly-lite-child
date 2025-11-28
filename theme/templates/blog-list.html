@@ -29,6 +29,61 @@
       %}
         {% dnd_row %}
           {% dnd_module
+            path="../modules/unicard",
+            offset=0,
+            width=12,
+            heading={
+              "heading_style" : "",
+              "heading_tag" : "h1",
+              "heading_text" : "Blog",
+              "heading_text_prop_visibility" : true
+            },
+            module_components=[ "main_heading" ],
+            style={
+              "background_type" : "",
+              "hover_effects" : false,
+              "shadow" : "",
+              "spacing" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 0
+                  }
+                }
+              }
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {% dnd_section
+      padding={
+        "default" : {
+          "bottom" : "0px"
+        }
+      },
+      full_width=false
+    %}
+      {% dnd_column
+        offset=0,
+        width=12
+      %}
+        {% dnd_row %}
+          {% dnd_module
             path="../modules/blog-tag-filter",
             offset=0,
             width=12
@@ -38,7 +93,13 @@
       {% end_dnd_column %}
     {% end_dnd_section %}
 
-    {% dnd_section %}
+    {% dnd_section
+      padding={
+        "default" : {
+          "top" : "30px"
+        }
+      }
+    %}
       {% dnd_column
         offset=0,
         width=12,
@@ -77,35 +138,28 @@
               "show" : true
             } ],
             button={
-              "show" : true,
+              "show" : false,
               "button_type" : "button"
             },
             style={
               "button" : {
                 "presets" : {
-                  "size" : "btn-small",
-                  "style" : "btn-secondary2"
+                  "size" : "btn-small"
                 }
               },
-              "heading" : {
-                "custom_theme_overrides" : {
-                  "color" : {
-                    "color" : "#000000",
-                    "opacity" : 100
-                  }
-                }
-              },
-              "link" : {
+              "image" : {
+                "custom_image_fit" : {
+                  "image_aspect_ratio" : "3/2",
+                  "image_fit" : "cover"
+                },
                 "spacing" : {
                   "spacing" : {
-                    "padding" : {
-                      "bottom" : { },
-                      "left" : { },
-                      "right" : { },
-                      "top" : {
+                    "margin" : {
+                      "bottom" : {
                         "units" : "px",
                         "value" : 16
-                      }
+                      },
+                      "top" : { }
                     }
                   }
                 }
