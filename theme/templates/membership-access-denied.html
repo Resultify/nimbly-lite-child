@@ -29,37 +29,70 @@
                             %}
                         </div>
                         <div class="row-fluid">
-                            {% module 'return_button'
-                                path="../modules/n-button",
-                                offset=0,
-                                width=12,
-                                text={{ template_translations.member_access_denied_button.message }},
-                                link={
-                                    "no_follow" : false,
-                                    "open_in_new_tab" : false,
-                                    "url" : {
-                                        "href": "/",
-                                        "type" : "EXTERNAL"
-                                    }
+                            {% module "return-button"
+                              path="../modules/unicard-button",
+                              offset=0,
+                              width=12,
+                              button_group=[ {
+                                "button_alignment" : "left",
+                                "button_hide_text" : false,
+                                "button_icon" : {
+                                  "type" : "REGULAR"
                                 },
-                                style={
-                                    "presets" : { },
-                                    "alignment" : { },
-                                    "spacing" : {
-                                        "spacing" : {
-                                            "padding" : {
-                                                "bottom" : {
-                                                    "units" : "px",
-                                                    "value" : 0
-                                                },
-                                                "top" : {
-                                                    "units" : "px",
-                                                    "value" : 0
-                                                }
-                                            }
-                                        }
-                                    }
+                                "button_icon_position" : "left",
+                                "button_image" : {
+                                  "loading" : "disabled",
+                                  "src" : ""
+                                },
+                                "button_link" : {
+                                  "no_follow" : false,
+                                  "open_in_new_tab" : false,
+                                  "sponsored" : false,
+                                  "url" : {
+                                    "href" : "/",
+                                    "type" : "EXTERNAL"
+                                  },
+                                  "user_generated_content" : false
+                                },
+                                "button_position" : "inline",
+                                "button_size" : "regular",
+                                "button_style" : "primary",
+                                "button_text" : "{{ template_translations.member_access_denied_button.message }}",
+                                "custom_button_background" : { },
+                                "custom_button_border_color" : { },
+                                "custom_button_font" : {
+                                  "font_set" : "DEFAULT"
+                                },
+                                "custom_button_hover" : {
+                                  "background" : { },
+                                  "border_color" : { },
+                                  "color" : { }
+                                },
+                                "custom_link_color" : { },
+                                "custom_link_font" : {
+                                  "font_set" : "DEFAULT"
+                                },
+                                "custom_link_hover" : {
+                                  "color" : { }
                                 }
+                              } ],
+                              style={
+                                "alignment" : { },
+                                "spacing" : {
+                                  "padding" : {
+                                    "bottom" : {
+                                      "units" : "px",
+                                      "value" : 0
+                                    },
+                                    "left" : { },
+                                    "right" : { },
+                                    "top" : {
+                                      "units" : "px",
+                                      "value" : 0
+                                    }
+                                  }
+                                }
+                              }
                             %}
                         </div>
                     </div>
