@@ -86,6 +86,29 @@
 
     {% require_js %}
       <script>
+        {# function to calculate contrast color for video play button #}
+        function calculateVideoButtonContrast(buttonColor) {
+          let hex = buttonColor || 'fff'
+
+          {# expand shorthand hex (#123 -> #112233) #}
+          if (hex.length === 3) {
+            hex = hex.split('').map(char => char + char).join('')
+          }
+
+          const rLinear = parseInt(hex.substring(0, 2), 16) / 255
+          const gLinear = parseInt(hex.substring(2, 4), 16) / 255
+          const bLinear = parseInt(hex.substring(4, 6), 16) / 255
+
+          {# WCAG 2.x relative luminance calculation for sRGB #}
+          const rLum = rLinear <= 0.03928 ? rLinear / 12.92 : Math.pow((rLinear + 0.055) / 1.055, 2.4)
+          const gLum = gLinear <= 0.03928 ? gLinear / 12.92 : Math.pow((gLinear + 0.055) / 1.055, 2.4)
+          const bLum = bLinear <= 0.03928 ? bLinear / 12.92 : Math.pow((bLinear + 0.055) / 1.055, 2.4)
+
+          const luminance = (0.2126 * rLum) + (0.7152 * gLum) + (0.0722 * bLum)
+          const contrast = luminance > 0.179 ? '#000' : '#fff'
+          return contrast
+        }
+
         {# function for "lite hubspot video" #}
         function liteHubspotVideo (container) {
           {# fetch variable with video-element #}
@@ -96,6 +119,9 @@
           if (videoElement !== undefined) {
             {# grab the right values from videoElement to compose the url for the video json #}
             const videoUrl = new URL(videoElement.match(/data-hsv-src="([^"]*)"/)[1])
+            const videoPlayButtonColor = videoElement.match(/data-hsv-play-button-color="([^"]*)"/)[1]
+            videoPlay.style.setProperty('--play-button-icon', calculateVideoButtonContrast(videoPlayButtonColor))
+
             const videoId = videoUrl.pathname.match(/\/v\/([^/]*)\//)?.[1]
             const hubId = videoElement.match(/data-hsv-id="([^"]*)"/)[1]
             const jsonUrl = `${window.location.protocol}//${window.location.host}/_hcms/video/${hubId}/player?portalId=${videoId}&hs_static_app=video-player-ui&hs_static_app_version=1.25182`
@@ -298,35 +324,6 @@
                 width={{ data.hubspot_video.width }},
               %}`
             </script>
-
-            <script>
-              {# calculate contrast color (black or white) for video play button #}
-              const buttonColor = '{{data.hubspot_video_play_button_color.css}}'
-              let hex = buttonColor.replace('#', '')
-
-              {# expand shorthand hex (#123 -> #112233) #}
-              if (hex.length === 3) {
-                hex = hex.split('').map(char => char + char).join('')
-              }
-
-              const r = parseInt(hex.substring(0, 2), 16)
-              const g = parseInt(hex.substring(2, 4), 16)
-              const b = parseInt(hex.substring(4, 6), 16)
-
-              const rLinear = r / 255
-              const gLinear = g / 255
-              const bLinear = b / 255
-
-              const rLum = rLinear <= 0.03928 ? rLinear / 12.92 : Math.pow((rLinear + 0.055) / 1.055, 2.4)
-              const gLum = gLinear <= 0.03928 ? gLinear / 12.92 : Math.pow((gLinear + 0.055) / 1.055, 2.4)
-              const bLum = bLinear <= 0.03928 ? bLinear / 12.92 : Math.pow((bLinear + 0.055) / 1.055, 2.4)
-
-              const luminance = (0.2126 * rLum) + (0.7152 * gLum) + (0.0722 * bLum)
-              const contrast_{{video_hash}} = luminance > 0.179 ? '#000' : '#fff'
-
-              document.documentElement.style.setProperty('--contrast-{{video_hash}}', contrast_{{video_hash}})
-            </script>
-
             <style>
               #video_{{video_hash}} {
                 padding-bottom: {{ 100 / data.hubspot_video.width * data.hubspot_video.height }}%;
@@ -336,7 +333,7 @@
             <div class="hubspot-video-wrp" id="video_{{video_hash}}">
               <div class="hubspot-video-wrp__bg"></div>
               <button class="hubspot-video-wrp__play" {{ data.hubspot_video_play_button_color.css ? 'style="background-color: {{data.hubspot_video_play_button_color.css}};"' : '' }}>
-                <svg viewBox="0 0 32 32" {{ data.hubspot_video_play_button_color.css ? 'style="fill: var(--contrast-{{video_hash}});"' : '' }} focusable="false" aria-hidden="true"><path id="play" data-testid="play" d="M6.484 4.094l20.75 11.225c0.226 0.121 0.41 0.427 0.41 0.683s-0.184 0.563-0.41 0.683l-20.75 11.222c-0.095 0.051-0.26 0.093-0.367 0.093-0.427 0-0.774-0.346-0.774-0.773v-22.451c0-0.428 0.347-0.774 0.774-0.774 0.108 0 0.272 0.042 0.367 0.093z"></path></svg>
+                <svg viewBox="0 0 32 32" {{ data.hubspot_video_play_button_color.css ? 'style="fill: var(--play-button-icon);"' : '' }} focusable="false" aria-hidden="true"><path id="play" data-testid="play" d="M6.484 4.094l20.75 11.225c0.226 0.121 0.41 0.427 0.41 0.683s-0.184 0.563-0.41 0.683l-20.75 11.222c-0.095 0.051-0.26 0.093-0.367 0.093-0.427 0-0.774-0.346-0.774-0.773v-22.451c0-0.428 0.347-0.774 0.774-0.774 0.108 0 0.272 0.042 0.367 0.093z"></path></svg>
               </button>
             </div>
           {%- endif -%}
