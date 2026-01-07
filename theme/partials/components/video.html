@@ -86,9 +86,10 @@
 
     {% require_js %}
       <script>
-        {# function to calculate contrast color for video play button #}
+        {# function to calculate automatic contrast color for video play button #}
         function calculateVideoButtonContrast(buttonColor) {
-          let hex = buttonColor || 'fff'
+          {# fallback to dark button color #}
+          let hex = buttonColor || '000'
 
           {# expand shorthand hex (#123 -> #112233) #}
           if (hex.length === 3) {
