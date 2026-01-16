@@ -239,10 +239,22 @@
         example: link title||Icon.png
     #}
     {% if names[2] and names[2] != '' %}
-      {% set imgUrl = get_asset_url('../../images/content/' + names[2]) %}
-      {# if no asset was found, test if it's a full url instead #}
-      {% if imgUrl == '' %}
-        {% set imgUrl = names[2]|escape_url %}
+      {# check for number (limit the amount of calls to file_by_id) #}
+      {% if names[2]|int > 0%}
+        {# check for image file id #}
+        {% set imageObj = file_by_id(names[2]) %}
+        {% if imageObj %}
+          {% set imgUrl = '{{ imageObj.friendlyUrl }}' %}
+          {% set imgWidth = '{{ imageObj.width }}' %}{{ imageObj.width }}
+          {% set imgHeight = '{{ imageObj.height }}' %}{{ imageObj.height }}
+        {% endif %}
+      {# else check for image in theme #}
+      {% else %}
+        {% set imgUrl = get_asset_url('../../images/content/' + names[2]) %}
+        {# if no asset was found, test if it's a full url instead #}
+        {% if imgUrl == '' %}
+          {% set imgUrl = names[2]|escape_url %}
+        {% endif %}
       {% endif %}
     {% endif %}
 
@@ -261,7 +273,10 @@
           {{'aria-current="page"' if link.activeNode}}
           {{'target="_blank" rel="noopener"' if link.linkTarget}}>
           {% if imgUrl and imgUrl != '' and link.level > 1 %}
-            <img src="{{ imgUrl }}" alt="{{ names[0] }}" loading="lazy" class="main-nav__list-icon">
+            <img src="{{ imgUrl }}" alt="{{ names[0] }}" loading="lazy"
+              {% if imgWidth != '' %} width="{{ imgWidth }}"{% endif %}
+              {% if imgHeight != '' %} height="{{ imgHeight }}"{% endif %}
+              class="main-nav__list-icon">
           {% endif %}
           {{names[0]}}
           {% if link.linkTarget %}
@@ -292,7 +307,10 @@
         {{'aria-current="page"' if link.activeNode}}
         {{'target="_blank" rel="noopener"' if link.linkTarget}}>
         {% if imgUrl and imgUrl != '' and link.level > 1 %}
-          <img src="{{ imgUrl }}" alt="{{ names[0] }}" loading="lazy" class="main-nav__list-icon">
+          <img src="{{ imgUrl }}" alt="{{ names[0] }}" loading="lazy"
+            {% if imgWidth != '' %} width="{{ imgWidth }}"{% endif %}
+            {% if imgHeight != '' %} height="{{ imgHeight }}"{% endif %}
+            class="main-nav__list-icon">
         {% endif %}
         {{names[0]}}
         {% if link.linkTarget %}
@@ -326,7 +344,10 @@
         {{'aria-current="page"' if link.activeNode}}
         {{'target="_blank" rel="noopener"' if link.linkTarget}}>
         {% if imgUrl and imgUrl != '' and link.level > 1 %}
-          <img src="{{ imgUrl }}" alt="{{ names[0] }}" loading="lazy" class="main-nav__list-icon">
+          <img src="{{ imgUrl }}" alt="{{ names[0] }}" loading="lazy"
+            {% if imgWidth != '' %} width="{{ imgWidth }}"{% endif %}
+            {% if imgHeight != '' %} height="{{ imgHeight }}"{% endif %}
+            class="main-nav__list-icon">
         {% endif %}
         {{link.label || link.pageTitle}}
         {% if link.linkTarget %}
