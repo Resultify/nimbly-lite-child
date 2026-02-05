@@ -44,8 +44,8 @@ GITHUB_TOKEN=GitHub Classic Personal access token with full repo scope is requir
 
 ## Events
 
-There are two ways to set up events in HubSpot. You can either upload the predefined HubDb tables with random events data or generate random data for them with updated dates information.
-**First option is easier, but the placeholder events will be out of date.**
+There are a couple of ways to set up events in HubSpot. You can either upload the predefined HubDb tables with random events data, setup the tables without sample event date and event or generate random data for them with updated dates information.
+**First option is the easiest, but the placeholder events will be out of date.**
 
 ### Upload events HubDb data tables random data.
 __*\*Events will be out of date, if necessary update them manually in the HubDb tables.*__
@@ -54,7 +54,7 @@ __*\*Events will be out of date, if necessary update them manually in the HubDb 
 ```bash
 hs uploadDb
 ```
-2. Copy tabele ID from just uploaded 'event_information' table and paste it to `event_date.json` file in `foreignTableId` field.
+2. Copy table ID from just uploaded 'event_information' table and paste it to `event_date.json` file in `foreignTableId` field.
 3. Upload `event_date` table (pick `event_date.json` file in CLI select box)
 ```bash
 hs uploadDb
@@ -108,6 +108,15 @@ hs hubdb create .hubdb/event_date_with_sample_data.hubdb.json
 
 4. Edit file `.hubdb/event_date_with_sample_data.hubdb.json` and restore "foreignTableId" value in "event_information" field.
 
+### Upload GraphQL file in the Design Manager ###
+
+The "Event list module" is dependent on GraphQL to fetch the information from HubDB.
+
+1. Go to the Design Manager.
+
+2. Create a folder in the theme and name it `data-queries`.
+
+3. Inside the folder, create a new file. Select GraphQL in the filetype dropdown selector. Name it `events`. Then publish the empty file once (make sure it succeeds). Then paste in the contents from `/theme/data-queries/events.graphql` and publish it again.
 
 If a page displaying events already exists in HubSpot, remember to set "Dynamic pages" -> "Data source" to "Event information" in page advanced settings.
 
