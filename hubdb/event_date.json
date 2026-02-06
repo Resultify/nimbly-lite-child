@@ -81,7 +81,7 @@
           "name": "sv_shopping_handel",
           "label": "Shopping & Handel",
           "type": "option",
-          "order": 1
+          "order": 2
         },
         {
           "id": "4",
@@ -102,7 +102,7 @@
           "name": "sv_musik_scen",
           "label": "Musik & scen",
           "type": "option",
-          "order": 6
+          "order": 1
         },
         {
           "id": "7",
@@ -116,7 +116,7 @@
           "name": "sv_sport_fritid",
           "label": "Sport & fritid",
           "type": "option",
-          "order": 1
+          "order": 8
         },
         {
           "id": "9",
@@ -130,21 +130,21 @@
           "name": "sv_forelasning_seminarium",
           "label": "Föreläsning & seminarium",
           "type": "option",
-          "order": 10
+          "order": 1
         },
         {
           "id": "11",
           "name": "en_culture_entertainment",
           "label": "Culture & Entertainment",
           "type": "option",
-          "order": 11
+          "order": 3
         },
         {
           "id": "12",
           "name": "en_art_craft",
           "label": "Art & Craft",
           "type": "option",
-          "order": 2
+          "order": 12
         },
         {
           "id": "13",
@@ -158,21 +158,21 @@
           "name": "en_nature_outdoor_life",
           "label": "Nature & Outdoor Life",
           "type": "option",
-          "order": 2
+          "order": 1
         },
         {
           "id": "15",
           "name": "en_museums_exhibitions",
           "label": "Museums & Exhibitions",
           "type": "option",
-          "order": 3
+          "order": 15
         },
         {
           "id": "16",
           "name": "en_music_stage",
           "label": "Music & Stage",
           "type": "option",
-          "order": 16
+          "order": 2
         },
         {
           "id": "17",
@@ -193,26 +193,27 @@
           "name": "en_children_family",
           "label": "Children & Family",
           "type": "option",
-          "order": 19
+          "order": 2
         },
         {
           "id": "20",
           "name": "en_lecture_seminar",
           "label": "Lecture & Seminar",
           "type": "option",
-          "order": 1
+          "order": 20
         }
       ],
       "description": "",
       "type": "MULTISELECT",
-      "optionCount": 20
+      "optionCount": 4
     },
     {
       "name": "event_information",
       "label": "Event information",
-      "foreignTableId": 70908870,
+      "foreignTableId": 1126537449,
       "foreignColumnId": 1,
       "description": "This field is used to select the \"Event information\" this \"Event date\" should be associated with. ",
+      "foreignIds": [],
       "type": "FOREIGN_ID"
     },
     {
@@ -321,21 +322,55 @@
       "path": null,
       "name": null,
       "values": {
-        "end_date": 1728496800000,
         "name": "Non recurring event sv",
+        "publish_date": 1767225600000,
+        "start_date": 1771524000000,
+        "end_date": 1771531200000,
         "language": {
-          "id": "1",
+          "id": 1,
           "name": "sv",
           "label": "sv",
           "type": "option",
           "order": 0
         },
-        "recurrence_end_date": 0,
-        "recurrence_interval": 0,
-        "publish_date": 1722470400000,
-        "recurrence_days": [],
-        "start_date": 1728489600000,
         "tags": [
+          {
+            "id": "10",
+            "name": "sv_forelasning_seminarium",
+            "label": "Föreläsning & seminarium",
+            "type": "option",
+            "order": 1
+          }
+        ],
+        "recurrence_frequency": null,
+        "recurrence_days": [],
+        "recurrence_interval": 0,
+        "recurrence_end_date": 0
+      }
+    },
+    {
+      "path": null,
+      "name": null,
+      "values": {
+        "name": "Weekly recurring event sv",
+        "publish_date": 1767225600000,
+        "start_date": 1769706000000,
+        "end_date": 1769734800000,
+        "language": {
+          "id": 1,
+          "name": "sv",
+          "label": "sv",
+          "type": "option",
+          "order": 0
+        },
+        "tags": [
+          {
+            "id": "4",
+            "name": "sv_natur_friluftsliv",
+            "label": "Natur & friluftsliv",
+            "type": "option",
+            "order": 2
+          },
           {
             "id": "3",
             "name": "sv_shopping_handel",
@@ -343,31 +378,13 @@
             "type": "option",
             "order": 2
           }
-        ]
-      }
-    },
-    {
-      "path": null,
-      "name": null,
-      "values": {
-        "end_date": 1726700400000,
-        "name": "Weekly recurring event sv",
-        "language": {
-          "id": "1",
-          "name": "sv",
-          "label": "sv",
-          "type": "option",
-          "order": 0
-        },
-        "recurrence_end_date": 1737583200000,
-        "recurrence_interval": 0,
-        "publish_date": 1722470400000,
+        ],
         "recurrence_frequency": {
           "id": "2",
           "name": "weekly",
           "label": "Weekly",
           "type": "option",
-          "order": 1
+          "order": 2
         },
         "recurrence_days": [
           {
@@ -375,96 +392,71 @@
             "name": "5",
             "label": "Friday",
             "type": "option",
-            "order": 4
+            "order": 5
           },
           {
             "id": "6",
             "name": "6",
             "label": "Saturday",
             "type": "option",
-            "order": 5
+            "order": 6
           }
         ],
-        "start_date": 1726671600000,
-        "tags": [
-          {
-            "id": "3",
-            "name": "sv_shopping_handel",
-            "label": "Shopping & Handel",
-            "type": "option",
-            "order": 2
-          }
-        ]
+        "recurrence_interval": 0,
+        "recurrence_end_date": 1780610400000
       }
     },
     {
       "path": null,
       "name": null,
       "values": {
-        "end_date": 1726938000000,
         "name": "Weekly recurring event sv",
+        "publish_date": 1767225600000,
+        "start_date": 1769950800000,
+        "end_date": 1769972400000,
         "language": {
-          "id": "1",
+          "id": 1,
           "name": "sv",
           "label": "sv",
           "type": "option",
           "order": 0
         },
-        "recurrence_end_date": 1742767200000,
-        "recurrence_interval": 14,
-        "publish_date": 1722470400000,
+        "tags": [
+          {
+            "id": "6",
+            "name": "sv_musik_scen",
+            "label": "Musik & scen",
+            "type": "option",
+            "order": 1
+          }
+        ],
         "recurrence_frequency": {
           "id": "1",
           "name": "daily",
           "label": "Daily",
           "type": "option",
-          "order": 0
+          "order": 1
         },
         "recurrence_days": [],
-        "start_date": 1726916400000,
-        "tags": [
-          {
-            "id": "8",
-            "name": "sv_sport_fritid",
-            "label": "Sport & fritid",
-            "type": "option",
-            "order": 7
-          },
-          {
-            "id": "4",
-            "name": "sv_natur_friluftsliv",
-            "label": "Natur & friluftsliv",
-            "type": "option",
-            "order": 3
-          }
-        ]
+        "recurrence_interval": 14,
+        "recurrence_end_date": 1785794400000
       }
     },
     {
       "path": null,
       "name": null,
       "values": {
-        "end_date": 1726920000000,
         "name": "Weekly recurring event sv",
+        "publish_date": 1767225600000,
+        "start_date": 1769943600000,
+        "end_date": 1769954400000,
         "language": {
-          "id": "1",
+          "id": 1,
           "name": "sv",
           "label": "sv",
           "type": "option",
           "order": 0
         },
-        "recurrence_end_date": 1758315600000,
-        "recurrence_interval": 1,
-        "publish_date": 1722470400000,
-        "recurrence_frequency": {
-          "id": "3",
-          "name": "monthly",
-          "label": "Monthly",
-          "type": "option",
-          "order": 2
-        },
-        "recurrence_days": [],
-        "start_date": 1726909200000,
         "tags": [
           {
             "id": "2",
@@ -472,68 +464,115 @@
             "label": "Konst & hantverk",
             "type": "option",
             "order": 1
+          },
+          {
+            "id": "4",
+            "name": "sv_natur_friluftsliv",
+            "label": "Natur & friluftsliv",
+            "type": "option",
+            "order": 2
           }
-        ]
+        ],
+        "recurrence_frequency": {
+          "id": "3",
+          "name": "monthly",
+          "label": "Monthly",
+          "type": "option",
+          "order": 3
+        },
+        "recurrence_days": [],
+        "recurrence_interval": 1,
+        "recurrence_end_date": 1801350000000
       }
     },
     {
       "path": null,
       "name": null,
       "values": {
-        "end_date": 1728496800000,
         "name": "Non recurring event en",
+        "publish_date": 1767225600000,
+        "start_date": 1771524000000,
+        "end_date": 1771531200000,
         "language": {
-          "id": "2",
+          "id": 2,
           "name": "en",
           "label": "en",
           "type": "option",
-          "order": 1
+          "order": 0
         },
-        "recurrence_end_date": 0,
-        "recurrence_interval": 0,
-        "publish_date": 1722470400000,
-        "recurrence_days": [],
-        "start_date": 1728489600000,
         "tags": [
           {
-            "id": "20",
-            "name": "en_lecture_seminar",
-            "label": "Lecture & Seminar",
+            "id": "19",
+            "name": "en_children_family",
+            "label": "Children & Family",
             "type": "option",
-            "order": 19
+            "order": 2
+          },
+          {
+            "id": "14",
+            "name": "en_nature_outdoor_life",
+            "label": "Nature & Outdoor Life",
+            "type": "option",
+            "order": 1
+          },
+          {
+            "id": "11",
+            "name": "en_culture_entertainment",
+            "label": "Culture & Entertainment",
+            "type": "option",
+            "order": 3
+          }
+        ],
+        "recurrence_frequency": null,
+        "recurrence_days": [],
+        "recurrence_interval": 0,
+        "recurrence_end_date": 0
+      }
+    },
+    {
+      "path": null,
+      "name": null,
+      "values": {
+        "name": "Weekly recurring event en",
+        "publish_date": 1767225600000,
+        "start_date": 1769706000000,
+        "end_date": 1769734800000,
+        "language": {
+          "id": 2,
+          "name": "en",
+          "label": "en",
+          "type": "option",
+          "order": 0
+        },
+        "tags": [
+          {
+            "id": "16",
+            "name": "en_music_stage",
+            "label": "Music & Stage",
+            "type": "option",
+            "order": 2
           },
           {
             "id": "18",
             "name": "en_sport_leisure",
             "label": "Sport & Leisure",
             "type": "option",
-            "order": 17
+            "order": 2
+          },
+          {
+            "id": "19",
+            "name": "en_children_family",
+            "label": "Children & Family",
+            "type": "option",
+            "order": 2
           }
-        ]
-      }
-    },
-    {
-      "path": null,
-      "name": null,
-      "values": {
-        "end_date": 1726700400000,
-        "name": "Weekly recurring event en",
-        "language": {
-          "id": "2",
-          "name": "en",
-          "label": "en",
-          "type": "option",
-          "order": 1
-        },
-        "recurrence_end_date": 1737583200000,
-        "recurrence_interval": 0,
-        "publish_date": 1722470400000,
+        ],
         "recurrence_frequency": {
           "id": "2",
           "name": "weekly",
           "label": "Weekly",
           "type": "option",
-          "order": 1
+          "order": 2
         },
         "recurrence_days": [
           {
@@ -541,119 +580,111 @@
             "name": "5",
             "label": "Friday",
             "type": "option",
-            "order": 4
+            "order": 5
           },
           {
             "id": "6",
             "name": "6",
             "label": "Saturday",
             "type": "option",
-            "order": 5
+            "order": 6
           }
         ],
-        "start_date": 1726671600000,
-        "tags": [
-          {
-            "id": "17",
-            "name": "en_food_drink",
-            "label": "Food & Drink",
-            "type": "option",
-            "order": 16
-          },
-          {
-            "id": "12",
-            "name": "en_art_craft",
-            "label": "Art & Craft",
-            "type": "option",
-            "order": 11
-          },
-          {
-            "id": "15",
-            "name": "en_museums_exhibitions",
-            "label": "Museums & Exhibitions",
-            "type": "option",
-            "order": 14
-          }
-        ]
+        "recurrence_interval": 0,
+        "recurrence_end_date": 1780610400000
       }
     },
     {
       "path": null,
       "name": null,
       "values": {
-        "end_date": 1726938000000,
         "name": "Weekly recurring event en",
+        "publish_date": 1767225600000,
+        "start_date": 1769950800000,
+        "end_date": 1769972400000,
         "language": {
-          "id": "2",
+          "id": 2,
           "name": "en",
           "label": "en",
-          "type": "option",
-          "order": 1
-        },
-        "recurrence_end_date": 1742767200000,
-        "recurrence_interval": 14,
-        "publish_date": 1722470400000,
-        "recurrence_frequency": {
-          "id": "1",
-          "name": "daily",
-          "label": "Daily",
           "type": "option",
           "order": 0
         },
-        "recurrence_days": [],
-        "start_date": 1726916400000,
         "tags": [
-          {
-            "id": "17",
-            "name": "en_food_drink",
-            "label": "Food & Drink",
-            "type": "option",
-            "order": 16
-          }
-        ]
-      }
-    },
-    {
-      "path": null,
-      "name": null,
-      "values": {
-        "end_date": 1726920000000,
-        "name": "Weekly recurring event en",
-        "language": {
-          "id": "2",
-          "name": "en",
-          "label": "en",
-          "type": "option",
-          "order": 1
-        },
-        "recurrence_end_date": 1758315600000,
-        "recurrence_interval": 1,
-        "publish_date": 1722470400000,
-        "recurrence_frequency": {
-          "id": "3",
-          "name": "monthly",
-          "label": "Monthly",
-          "type": "option",
-          "order": 2
-        },
-        "recurrence_days": [],
-        "start_date": 1726909200000,
-        "tags": [
-          {
-            "id": "20",
-            "name": "en_lecture_seminar",
-            "label": "Lecture & Seminar",
-            "type": "option",
-            "order": 19
-          },
           {
             "id": "14",
             "name": "en_nature_outdoor_life",
             "label": "Nature & Outdoor Life",
             "type": "option",
-            "order": 13
+            "order": 1
+          },
+          {
+            "id": "19",
+            "name": "en_children_family",
+            "label": "Children & Family",
+            "type": "option",
+            "order": 2
+          },
+          {
+            "id": "17",
+            "name": "en_food_drink",
+            "label": "Food & Drink",
+            "type": "option",
+            "order": 1
           }
-        ]
+        ],
+        "recurrence_frequency": {
+          "id": "1",
+          "name": "daily",
+          "label": "Daily",
+          "type": "option",
+          "order": 1
+        },
+        "recurrence_days": [],
+        "recurrence_interval": 14,
+        "recurrence_end_date": 1785794400000
+      }
+    },
+    {
+      "path": null,
+      "name": null,
+      "values": {
+        "name": "Weekly recurring event en",
+        "publish_date": 1767225600000,
+        "start_date": 1769943600000,
+        "end_date": 1769954400000,
+        "language": {
+          "id": 2,
+          "name": "en",
+          "label": "en",
+          "type": "option",
+          "order": 0
+        },
+        "tags": [
+          {
+            "id": "17",
+            "name": "en_food_drink",
+            "label": "Food & Drink",
+            "type": "option",
+            "order": 1
+          },
+          {
+            "id": "16",
+            "name": "en_music_stage",
+            "label": "Music & Stage",
+            "type": "option",
+            "order": 2
+          }
+        ],
+        "recurrence_frequency": {
+          "id": "3",
+          "name": "monthly",
+          "label": "Monthly",
+          "type": "option",
+          "order": 3
+        },
+        "recurrence_days": [],
+        "recurrence_interval": 1,
+        "recurrence_end_date": 1801350000000
       }
     }
   ]
