@@ -10,6 +10,7 @@
     {
       "name": "description",
       "label": "Description",
+      "width" : 500,
       "description": "Description for the metric",
       "limit": 1000,
       "type": "TEXT"
@@ -17,6 +18,7 @@
     {
       "name": "value",
       "label": "Metric Value",
+      "width" : 400,
       "description": "The actual metric value (e.g., 300%, 10x, $1M)",
       "limit": 100,
       "type": "TEXT"
@@ -24,6 +26,7 @@
     {
       "name": "name",
       "label": "Metric Name",
+      "width" : 400,
       "description": "Name or label of the metric (e.g., Revenue Growth, Customer Satisfaction)",
       "limit": 255,
       "type": "TEXT"

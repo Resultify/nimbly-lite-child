@@ -10,12 +10,14 @@
     {
       "name": "company_logo",
       "label": "Company logo",
+      "width": 340,
       "description": "",
       "type": "IMAGE"
     },
     {
       "name": "title",
       "label": "Title",
+      "width": 650,
       "description": "",
       "limit": 10000,
       "type": "TEXT"
@@ -23,12 +25,14 @@
     {
       "name": "summary_featured_image",
       "label": "Featured Image",
+      "width": 380,
       "description": "",
       "type": "IMAGE"
     },
     {
       "name": "summary_industry_label",
       "label": "Industry Label",
+      "width": 380,
       "description": "",
       "limit": 255,
       "type": "TEXT"
@@ -36,6 +40,7 @@
     {
       "name": "summary_industry",
       "label": "Industry",
+      "width": 300,
       "description": "",
       "options": [
         {
@@ -93,6 +98,7 @@
     {
       "name": "summary_challenge_summary_label",
       "label": "Challenge Summary Label",
+      "width": 460,
       "description": "",
       "limit": 255,
       "type": "TEXT"
@@ -100,6 +106,7 @@
     {
       "name": "summary_challenge",
       "label": "Challenge Summary",
+      "width": 440,
       "description": "",
       "limit": 65000,
       "type": "RICHTEXT"
@@ -107,6 +114,7 @@
     {
       "name": "summary_results_label",
       "label": "Results Summary Label",
+      "width": 420,
       "description": "",
       "limit": 255,
       "type": "TEXT"
@@ -114,6 +122,7 @@
     {
       "name": "summary_results",
       "label": "Results Summary",
+      "width": 300,
       "description": "",
       "limit": 65000,
       "type": "RICHTEXT"
@@ -121,6 +130,7 @@
     {
       "name": "summary_key_products_label",
       "label": "Key Products Label",
+      "width": 360,
       "description": "",
       "limit": 255,
       "type": "TEXT"
@@ -128,6 +138,7 @@
     {
       "name": "summary_key_products",
       "label": "Key Products",
+      "width": 340,
       "description": "",
       "options": [
         {
@@ -157,12 +168,14 @@
     {
       "name": "summary_company_website",
       "label": "Company Website",
+      "width": 300,
       "description": "",
       "type": "URL"
     },
     {
       "name": "success_metrics",
       "label": "Success Metrics",
+      "width": 300,
       "description": "",
       "type": "FOREIGN_ID",
       "foreignTableId": 1189797083,
@@ -171,12 +184,14 @@
     {
       "name": "testimonial_author_image",
       "label": "Testimonial Author Image",
+      "width": 480,
       "description": "",
       "type": "IMAGE"
     },
     {
       "name": "testimonial_author_name",
       "label": "Testimonial Author Name",
+      "width": 460,
       "description": "",
       "limit": 255,
       "type": "TEXT"
@@ -184,6 +199,7 @@
     {
       "name": "testimonial_author_role",
       "label": "Testimonial Author Role",
+      "width": 460,
       "description": "",
       "limit": 255,
       "type": "TEXT"
@@ -191,6 +207,7 @@
     {
       "name": "testimonial_quote",
       "label": "Testimonial Quote",
+      "width": 340,
       "description": "",
       "limit": 65000,
       "type": "RICHTEXT"
@@ -198,12 +215,14 @@
     {
       "name": "company_image",
       "label": "Company Image",
+      "width": 360,
       "description": "",
       "type": "IMAGE"
     },
     {
       "name": "company_name",
       "label": "Company Name",
+      "width": 400,
       "description": "",
       "limit": 255,
       "type": "TEXT"
@@ -211,6 +230,7 @@
     {
       "name": "company_summary",
       "label": "Company Summary",
+      "width": 300,
       "description": "",
       "limit": 65000,
       "type": "RICHTEXT"
@@ -218,6 +238,7 @@
     {
       "name": "case_study_body",
       "label": "Case study body",
+      "width": 300,
       "description": "",
       "limit": 65000,
       "type": "RICHTEXT"
@@ -229,11 +250,11 @@
       "name": "Acme Tech: Digital Transformation Success",
       "values": {
         "company_logo": {
-          "url": "https://ui-avatars.com/api/?name=Acme+Tech&size=300&background=0D47A1&color=fff&bold=true&format=png",
-          "width": 300,
-          "height": 300,
+          "url": "https://ui-avatars.com/api/?name=Acme+Tech&size=600&background=0D47A1&color=fff&bold=true&format=png",
+          "width": 600,
+          "height": 600,
           "type": "image",
-          "alt": "Acme Tech Logo"
+          "altText": "Acme Tech Logo"
         },
         "title": "How Acme Tech Achieved 300% Revenue Growth",
         "summary_featured_image": {
@@ -241,7 +262,7 @@
           "width": 1200,
           "height": 630,
           "type": "image",
-          "alt": "Modern office with technology"
+          "altText": "Modern office with technology"
         },
         "summary_industry_label": "Industry",
         "summary_industry": {
@@ -275,7 +296,7 @@
           "width": 200,
           "height": 200,
           "type": "image",
-          "alt": "Jane Smith headshot"
+          "altText": "Jane Smith headshot"
         },
         "testimonial_author_name": "Jane Smith",
         "testimonial_author_role": "CTO, Acme Tech",
@@ -285,7 +306,7 @@
           "width": 800,
           "height": 600,
           "type": "image",
-          "alt": "Acme Tech office"
+          "altText": "Acme Tech office"
         },
         "company_name": "Acme Technology Solutions",
         "company_summary": "<p>Acme Technology Solutions is a leading provider of enterprise software solutions, serving over 500 companies worldwide with innovative technology platforms.</p>",
@@ -297,11 +318,11 @@
       "name": "HealthPlus: Revolutionizing Patient Care",
       "values": {
         "company_logo": {
-          "url": "https://ui-avatars.com/api/?name=HealthPlus&size=300&background=00897B&color=fff&bold=true&format=png",
-          "width": 300,
-          "height": 300,
+          "url": "https://ui-avatars.com/api/?name=HealthPlus&size=600&background=00897B&color=fff&bold=true&format=png",
+          "width": 600,
+          "height": 600,
           "type": "image",
-          "alt": "HealthPlus Logo"
+          "altText": "HealthPlus Logo"
         },
         "title": "HealthPlus Improves Patient Engagement by 250%",
         "summary_featured_image": {
@@ -309,7 +330,7 @@
           "width": 1200,
           "height": 630,
           "type": "image",
-          "alt": "Healthcare professional with tablet"
+          "altText": "Healthcare professional with tablet"
         },
         "summary_industry_label": "Industry",
         "summary_industry": {
@@ -343,17 +364,17 @@
           "width": 200,
           "height": 200,
           "type": "image",
-          "alt": "Dr. Michael Chen headshot"
+          "altText": "Dr. Michael Chen headshot"
         },
         "testimonial_author_name": "Dr. Michael Chen",
         "testimonial_author_role": "Chief Medical Officer, HealthPlus",
         "testimonial_quote": "<p>\"The platform has revolutionized how we interact with our patients. The improvement in engagement and satisfaction has been remarkable.\"</p>",
         "company_image": {
-          "url": "https://picsum.photos/id/45/800/600",
+          "url": "https://picsum.photos/id/57/800/600",
           "width": 800,
           "height": 600,
           "type": "image",
-          "alt": "HealthPlus clinic"
+          "altText": "HealthPlus clinic"
         },
         "company_name": "HealthPlus Medical Group",
         "company_summary": "<p>HealthPlus Medical Group operates 15 clinics across the region, providing comprehensive healthcare services to over 50,000 patients annually.</p>",
@@ -365,19 +386,19 @@
       "name": "Global Retail Co: Omnichannel Excellence",
       "values": {
         "company_logo": {
-          "url": "https://ui-avatars.com/api/?name=Global+Retail&size=300&background=C62828&color=fff&bold=true&format=png",
-          "width": 300,
-          "height": 300,
+          "url": "https://ui-avatars.com/api/?name=Global+Retail&size=600&background=C62828&color=fff&bold=true&format=png",
+          "width": 600,
+          "height": 600,
           "type": "image",
-          "alt": "Global Retail Co Logo"
+          "altText": "Global Retail Co Logo"
         },
         "title": "Creating a Seamless Omnichannel Experience",
         "summary_featured_image": {
-          "url": "https://picsum.photos/id/78/1200/630",
+          "url": "https://picsum.photos/id/160/1200/630",
           "width": 1200,
           "height": 630,
           "type": "image",
-          "alt": "Modern retail store"
+          "altText": "Modern retail store"
         },
         "summary_industry_label": "Industry",
         "summary_industry": {
@@ -411,17 +432,17 @@
           "width": 200,
           "height": 200,
           "type": "image",
-          "alt": "Sarah Johnson headshot"
+          "altText": "Sarah Johnson headshot"
         },
         "testimonial_author_name": "Sarah Johnson",
         "testimonial_author_role": "VP of Digital Commerce, Global Retail Co",
         "testimonial_quote": "<p>\"This platform enabled us to truly compete in the modern retail landscape. Our customers now enjoy a seamless experience whether they shop online or in-store.\"</p>",
         "company_image": {
-          "url": "https://picsum.photos/id/80/800/600",
+          "url": "https://picsum.photos/id/444/800/600",
           "width": 800,
           "height": 600,
           "type": "image",
-          "alt": "Global Retail Co storefront"
+          "altText": "Global Retail Co storefront"
         },
         "company_name": "Global Retail Co",
         "company_summary": "<p>Global Retail Co is a leading international retailer with over 200 stores across North America, specializing in fashion and lifestyle products.</p>",
