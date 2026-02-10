@@ -1,0 +1,66 @@
+{
+  "name": "success_metrics",
+  "useForPages": false,
+  "label": "Success Metrics",
+  "allowChildTables": false,
+  "allowPublicApiAccess": false,
+  "dynamicMetaTags": {},
+  "enableChildTablePages": false,
+  "columns": [
+    {
+      "name": "description",
+      "label": "Description",
+      "description": "Description for the metric",
+      "limit": 1000,
+      "type": "TEXT"
+    },
+    {
+      "name": "value",
+      "label": "Metric Value",
+      "description": "The actual metric value (e.g., 300%, 10x, $1M)",
+      "limit": 100,
+      "type": "TEXT"
+    },
+    {
+      "name": "name",
+      "label": "Metric Name",
+      "description": "Name or label of the metric (e.g., Revenue Growth, Customer Satisfaction)",
+      "limit": 255,
+      "type": "TEXT"
+    }
+  ],
+  "rows": [
+    {
+      "name": "Revenue Growth",
+      "values": {
+        "description": "Increase in annual recurring revenue after implementation",
+        "value": "300%",
+        "name": "Revenue Growth"
+      }
+    },
+    {
+      "name": "Time Savings",
+      "values": {
+        "description": "Reduction in manual processing time per month",
+        "value": "150 hours",
+        "name": "Time Savings"
+      }
+    },
+    {
+      "name": "Customer Satisfaction",
+      "values": {
+        "description": "Improvement in Net Promoter Score (NPS)",
+        "value": "+45 points",
+        "name": "Customer Satisfaction"
+      }
+    },
+    {
+      "name": "Cost Reduction",
+      "values": {
+        "description": "Decrease in operational costs year-over-year",
+        "value": "40%",
+        "name": "Cost Reduction"
+      }
+    }
+  ]
+}

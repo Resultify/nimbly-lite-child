@@ -1,0 +1,432 @@
+{
+  "name": "case_study",
+  "useForPages": true,
+  "label": "Case Study",
+  "allowChildTables": false,
+  "allowPublicApiAccess": false,
+  "dynamicMetaTags": {},
+  "enableChildTablePages": false,
+  "columns": [
+    {
+      "name": "company_logo",
+      "label": "Company logo",
+      "description": "",
+      "type": "IMAGE"
+    },
+    {
+      "name": "title",
+      "label": "Title",
+      "description": "",
+      "limit": 10000,
+      "type": "TEXT"
+    },
+    {
+      "name": "summary_featured_image",
+      "label": "Featured Image",
+      "description": "",
+      "type": "IMAGE"
+    },
+    {
+      "name": "summary_industry_label",
+      "label": "Industry Label",
+      "description": "",
+      "limit": 255,
+      "type": "TEXT"
+    },
+    {
+      "name": "summary_industry",
+      "label": "Industry",
+      "description": "",
+      "options": [
+        {
+          "id": "1",
+          "name": "technology",
+          "label": "Technology",
+          "type": "option",
+          "order": 1
+        },
+        {
+          "id": "2",
+          "name": "healthcare",
+          "label": "Healthcare",
+          "type": "option",
+          "order": 2
+        },
+        {
+          "id": "3",
+          "name": "finance",
+          "label": "Finance",
+          "type": "option",
+          "order": 3
+        },
+        {
+          "id": "4",
+          "name": "retail",
+          "label": "Retail",
+          "type": "option",
+          "order": 4
+        },
+        {
+          "id": "5",
+          "name": "manufacturing",
+          "label": "Manufacturing",
+          "type": "option",
+          "order": 5
+        },
+        {
+          "id": "6",
+          "name": "education",
+          "label": "Education",
+          "type": "option",
+          "order": 6
+        },
+        {
+          "id": "7",
+          "name": "other",
+          "label": "Other",
+          "type": "option",
+          "order": 7
+        }
+      ],
+      "type": "SELECT"
+    },
+    {
+      "name": "summary_challenge_summary_label",
+      "label": "Challenge Summary Label",
+      "description": "",
+      "limit": 255,
+      "type": "TEXT"
+    },
+    {
+      "name": "summary_challenge",
+      "label": "Challenge Summary",
+      "description": "",
+      "limit": 65000,
+      "type": "RICHTEXT"
+    },
+    {
+      "name": "summary_results_label",
+      "label": "Results Summary Label",
+      "description": "",
+      "limit": 255,
+      "type": "TEXT"
+    },
+    {
+      "name": "summary_results",
+      "label": "Results Summary",
+      "description": "",
+      "limit": 65000,
+      "type": "RICHTEXT"
+    },
+    {
+      "name": "summary_key_products_label",
+      "label": "Key Products Label",
+      "description": "",
+      "limit": 255,
+      "type": "TEXT"
+    },
+    {
+      "name": "summary_key_products",
+      "label": "Key Products",
+      "description": "",
+      "options": [
+        {
+          "id": "1",
+          "name": "product_1",
+          "label": "Product 1",
+          "type": "option",
+          "order": 1
+        },
+        {
+          "id": "2",
+          "name": "product_2",
+          "label": "Product 2",
+          "type": "option",
+          "order": 2
+        },
+        {
+          "id": "3",
+          "name": "product_3",
+          "label": "Product 3",
+          "type": "option",
+          "order": 3
+        }
+      ],
+      "type": "MULTISELECT"
+    },
+    {
+      "name": "summary_company_website",
+      "label": "Company Website",
+      "description": "",
+      "type": "URL"
+    },
+    {
+      "name": "success_metrics",
+      "label": "Success Metrics",
+      "description": "",
+      "type": "FOREIGN_ID",
+      "foreignTableId": 1189797083,
+      "foreignColumnId": 1
+    },
+    {
+      "name": "testimonial_author_image",
+      "label": "Testimonial Author Image",
+      "description": "",
+      "type": "IMAGE"
+    },
+    {
+      "name": "testimonial_author_name",
+      "label": "Testimonial Author Name",
+      "description": "",
+      "limit": 255,
+      "type": "TEXT"
+    },
+    {
+      "name": "testimonial_author_role",
+      "label": "Testimonial Author Role",
+      "description": "",
+      "limit": 255,
+      "type": "TEXT"
+    },
+    {
+      "name": "testimonial_quote",
+      "label": "Testimonial Quote",
+      "description": "",
+      "limit": 65000,
+      "type": "RICHTEXT"
+    },
+    {
+      "name": "company_image",
+      "label": "Company Image",
+      "description": "",
+      "type": "IMAGE"
+    },
+    {
+      "name": "company_name",
+      "label": "Company Name",
+      "description": "",
+      "limit": 255,
+      "type": "TEXT"
+    },
+    {
+      "name": "company_summary",
+      "label": "Company Summary",
+      "description": "",
+      "limit": 65000,
+      "type": "RICHTEXT"
+    },
+    {
+      "name": "case_study_body",
+      "label": "Case study body",
+      "description": "",
+      "limit": 65000,
+      "type": "RICHTEXT"
+    }
+  ],
+  "rows": [
+    {
+      "path": "acme-tech-digital-transformation",
+      "name": "Acme Tech: Digital Transformation Success",
+      "values": {
+        "company_logo": {
+          "url": "https://ui-avatars.com/api/?name=Acme+Tech&size=300&background=0D47A1&color=fff&bold=true&format=png",
+          "width": 300,
+          "height": 300,
+          "type": "image",
+          "alt": "Acme Tech Logo"
+        },
+        "title": "How Acme Tech Achieved 300% Revenue Growth",
+        "summary_featured_image": {
+          "url": "https://picsum.photos/id/1/1200/630",
+          "width": 1200,
+          "height": 630,
+          "type": "image",
+          "alt": "Modern office with technology"
+        },
+        "summary_industry_label": "Industry",
+        "summary_industry": {
+          "id": "1",
+          "name": "technology",
+          "label": "Technology",
+          "type": "option"
+        },
+        "summary_challenge_summary_label": "The Challenge",
+        "summary_challenge": "<p>Acme Tech was struggling with legacy systems that couldn't scale with their growing customer base. Manual processes were causing delays and customer satisfaction was declining.</p>",
+        "summary_results_label": "The Results",
+        "summary_results": "<p>After implementing our solution, Acme Tech saw a 300% increase in revenue, 150 hours saved per month, and a 45-point improvement in NPS scores.</p>",
+        "summary_key_products_label": "Products Used",
+        "summary_key_products": [
+          {
+            "id": "1",
+            "name": "product_1",
+            "label": "Product 1",
+            "type": "option"
+          },
+          {
+            "id": "2",
+            "name": "product_2",
+            "label": "Product 2",
+            "type": "option"
+          }
+        ],
+        "summary_company_website": "https://example.com/acme-tech",
+        "testimonial_author_image": {
+          "url": "https://8310787.fs1.hubspotusercontent-na1.net/hubfs/8310787/pexels-sora-shimazaki-5668875_crop_case_study.jpg",
+          "width": 200,
+          "height": 200,
+          "type": "image",
+          "alt": "Jane Smith headshot"
+        },
+        "testimonial_author_name": "Jane Smith",
+        "testimonial_author_role": "CTO, Acme Tech",
+        "testimonial_quote": "<p>\"This solution transformed our entire operation. We went from struggling to keep up with demand to exceeding our customers' expectations.\"</p>",
+        "company_image": {
+          "url": "https://picsum.photos/id/2/800/600",
+          "width": 800,
+          "height": 600,
+          "type": "image",
+          "alt": "Acme Tech office"
+        },
+        "company_name": "Acme Technology Solutions",
+        "company_summary": "<p>Acme Technology Solutions is a leading provider of enterprise software solutions, serving over 500 companies worldwide with innovative technology platforms.</p>",
+        "case_study_body": "<h2>The Challenge</h2><p>Acme Tech was facing significant challenges with their legacy infrastructure. As their customer base grew from 100 to 500 clients, their systems couldn't keep pace. Manual data entry was consuming 150+ hours per month, and customer complaints were increasing.</p><h2>Our Solution</h2><p>We implemented a comprehensive digital transformation strategy, including automated workflows, cloud migration, and real-time analytics. The new platform integrated seamlessly with their existing tools while providing the scalability they needed.</p><h2>Implementation Process</h2><p>The project was completed in three phases over six months, with minimal disruption to operations. We provided comprehensive training and ongoing support throughout the transition.</p><h2>Results</h2><p>Within the first year, Acme Tech saw remarkable improvements across all key metrics. Revenue increased by 300%, operational costs decreased by 40%, and customer satisfaction scores improved dramatically.</p>"
+      }
+    },
+    {
+      "path": "healthplus-patient-engagement",
+      "name": "HealthPlus: Revolutionizing Patient Care",
+      "values": {
+        "company_logo": {
+          "url": "https://ui-avatars.com/api/?name=HealthPlus&size=300&background=00897B&color=fff&bold=true&format=png",
+          "width": 300,
+          "height": 300,
+          "type": "image",
+          "alt": "HealthPlus Logo"
+        },
+        "title": "HealthPlus Improves Patient Engagement by 250%",
+        "summary_featured_image": {
+          "url": "https://picsum.photos/id/42/1200/630",
+          "width": 1200,
+          "height": 630,
+          "type": "image",
+          "alt": "Healthcare professional with tablet"
+        },
+        "summary_industry_label": "Industry",
+        "summary_industry": {
+          "id": "2",
+          "name": "healthcare",
+          "label": "Healthcare",
+          "type": "option"
+        },
+        "summary_challenge_summary_label": "The Challenge",
+        "summary_challenge": "<p>HealthPlus needed a way to improve patient engagement and reduce no-show rates while maintaining HIPAA compliance and data security.</p>",
+        "summary_results_label": "The Results",
+        "summary_results": "<p>Patient engagement increased by 250%, no-show rates dropped by 60%, and staff reported saving 20 hours per week on administrative tasks.</p>",
+        "summary_key_products_label": "Products Used",
+        "summary_key_products": [
+          {
+            "id": "1",
+            "name": "product_1",
+            "label": "Product 1",
+            "type": "option"
+          },
+          {
+            "id": "3",
+            "name": "product_3",
+            "label": "Product 3",
+            "type": "option"
+          }
+        ],
+        "summary_company_website": "https://example.com/healthplus",
+        "testimonial_author_image": {
+          "url": "https://8310787.fs1.hubspotusercontent-na1.net/hubfs/8310787/pexels-sora-shimazaki-5668773_crop_case_study.jpg",
+          "width": 200,
+          "height": 200,
+          "type": "image",
+          "alt": "Dr. Michael Chen headshot"
+        },
+        "testimonial_author_name": "Dr. Michael Chen",
+        "testimonial_author_role": "Chief Medical Officer, HealthPlus",
+        "testimonial_quote": "<p>\"The platform has revolutionized how we interact with our patients. The improvement in engagement and satisfaction has been remarkable.\"</p>",
+        "company_image": {
+          "url": "https://picsum.photos/id/45/800/600",
+          "width": 800,
+          "height": 600,
+          "type": "image",
+          "alt": "HealthPlus clinic"
+        },
+        "company_name": "HealthPlus Medical Group",
+        "company_summary": "<p>HealthPlus Medical Group operates 15 clinics across the region, providing comprehensive healthcare services to over 50,000 patients annually.</p>",
+        "case_study_body": "<h2>Background</h2><p>HealthPlus Medical Group was experiencing high no-show rates and low patient engagement through traditional communication channels. Their staff was overwhelmed with phone calls and manual appointment management.</p><h2>The Solution</h2><p>We implemented a patient engagement platform with automated reminders, secure messaging, and online appointment scheduling. The system was fully HIPAA-compliant and integrated with their existing EHR system.</p><h2>Results</h2><p>No-show rates decreased by 60% within three months. Patient satisfaction scores increased significantly, and staff reported major time savings on administrative tasks.</p>"
+      }
+    },
+    {
+      "path": "global-retail-omnichannel",
+      "name": "Global Retail Co: Omnichannel Excellence",
+      "values": {
+        "company_logo": {
+          "url": "https://ui-avatars.com/api/?name=Global+Retail&size=300&background=C62828&color=fff&bold=true&format=png",
+          "width": 300,
+          "height": 300,
+          "type": "image",
+          "alt": "Global Retail Co Logo"
+        },
+        "title": "Creating a Seamless Omnichannel Experience",
+        "summary_featured_image": {
+          "url": "https://picsum.photos/id/78/1200/630",
+          "width": 1200,
+          "height": 630,
+          "type": "image",
+          "alt": "Modern retail store"
+        },
+        "summary_industry_label": "Industry",
+        "summary_industry": {
+          "id": "4",
+          "name": "retail",
+          "label": "Retail",
+          "type": "option"
+        },
+        "summary_challenge_summary_label": "The Challenge",
+        "summary_challenge": "<p>Global Retail needed to unify their online and in-store experiences while managing inventory across 200+ locations in real-time.</p>",
+        "summary_results_label": "The Results",
+        "summary_results": "<p>Online sales increased by 180%, inventory accuracy improved to 99.5%, and customer satisfaction reached an all-time high.</p>",
+        "summary_key_products_label": "Products Used",
+        "summary_key_products": [
+          {
+            "id": "2",
+            "name": "product_2",
+            "label": "Product 2",
+            "type": "option"
+          },
+          {
+            "id": "3",
+            "name": "product_3",
+            "label": "Product 3",
+            "type": "option"
+          }
+        ],
+        "summary_company_website": "https://example.com/global-retail",
+        "testimonial_author_image": {
+          "url": "https://8310787.fs1.hubspotusercontent-na1.net/hubfs/8310787/pexels-edmond-dantes-4342352_crop_case_study.jpg",
+          "width": 200,
+          "height": 200,
+          "type": "image",
+          "alt": "Sarah Johnson headshot"
+        },
+        "testimonial_author_name": "Sarah Johnson",
+        "testimonial_author_role": "VP of Digital Commerce, Global Retail Co",
+        "testimonial_quote": "<p>\"This platform enabled us to truly compete in the modern retail landscape. Our customers now enjoy a seamless experience whether they shop online or in-store.\"</p>",
+        "company_image": {
+          "url": "https://picsum.photos/id/80/800/600",
+          "width": 800,
+          "height": 600,
+          "type": "image",
+          "alt": "Global Retail Co storefront"
+        },
+        "company_name": "Global Retail Co",
+        "company_summary": "<p>Global Retail Co is a leading international retailer with over 200 stores across North America, specializing in fashion and lifestyle products.</p>",
+        "case_study_body": "<h2>The Challenge</h2><p>Global Retail Co was struggling to provide a unified shopping experience across their online store and 200+ physical locations. Customers couldn't check in-store inventory online, and the disconnect between channels was causing lost sales.</p><h2>Our Approach</h2><p>We implemented a comprehensive omnichannel platform that unified inventory management, enabled buy-online-pickup-in-store (BOPIS), and provided real-time inventory visibility across all channels.</p><h2>Implementation</h2><p>The rollout was executed in phases, starting with 20 pilot stores before expanding network-wide. We provided extensive training and support to ensure smooth adoption.</p><h2>The Impact</h2><p>Within six months, online sales increased by 180%, with BOPIS becoming one of the most popular fulfillment options. Inventory accuracy improved dramatically, reducing stockouts and overstock situations.</p>"
+      }
+    }
+  ]
+}
