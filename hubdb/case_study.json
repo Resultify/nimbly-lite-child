@@ -4,21 +4,46 @@
   "label": "Case Study",
   "allowChildTables": false,
   "allowPublicApiAccess": false,
-  "dynamicMetaTags": {},
+  "dynamicMetaTags": {
+    "DESCRIPTION": 0,
+    "FEATURED_IMAGE_URL": 5
+  },
   "enableChildTablePages": false,
   "columns": [
+    {
+      "name": "meta_description",
+      "label": "Meta description",
+      "description": "A good meta description is around 150 characters.",
+      "limit": 500,
+      "width": 400,
+      "type": "TEXT"
+    },
+    {
+      "name": "feature",
+      "label": "Feature",
+      "description": "Featured case studies will be highlighted on the website.",
+      "width": 300,
+      "type": "BOOLEAN"
+    },
+    {
+      "name": "hide",
+      "label": "Hide",
+      "description": "Hidden case studies will not be visible on the website but can still be accessed via direct URL.",
+      "width": 300,
+      "type": "BOOLEAN"
+    },
     {
       "name": "company_logo",
       "label": "Company logo",
       "width": 340,
-      "description": "",
+      "description": "The logo of the company featured in the case study.",
       "type": "IMAGE"
     },
     {
       "name": "title",
       "label": "Title",
       "width": 650,
-      "description": "",
+      "description": "The title of the case study.",
       "limit": 10000,
       "type": "TEXT"
     },
@@ -26,14 +51,14 @@
       "name": "summary_featured_image",
       "label": "Featured Image",
       "width": 380,
-      "description": "",
+      "description": "The main image representing the case study.",
       "type": "IMAGE"
     },
     {
       "name": "summary_industry_label",
       "label": "Industry Label",
       "width": 380,
-      "description": "",
+      "description": "A short label for the industry field (e.g., 'Industry').",
       "limit": 255,
       "type": "TEXT"
     },
@@ -41,7 +66,7 @@
       "name": "summary_industry",
       "label": "Industry",
       "width": 300,
-      "description": "",
+      "description": "The industry associated with the case study.",
       "options": [
         {
           "id": "1",
@@ -99,7 +124,7 @@
       "name": "summary_challenge_summary_label",
       "label": "Challenge Summary Label",
       "width": 460,
-      "description": "",
+      "description": "A short label for the challenge summary section (e.g., 'The Challenge').",
       "limit": 255,
       "type": "TEXT"
     },
@@ -107,7 +132,7 @@
       "name": "summary_challenge",
       "label": "Challenge Summary",
       "width": 440,
-      "description": "",
+      "description": "A detailed description of the challenges faced in the case study.",
       "limit": 65000,
       "type": "RICHTEXT"
     },
@@ -115,7 +140,7 @@
       "name": "summary_results_label",
       "label": "Results Summary Label",
       "width": 420,
-      "description": "",
+      "description": "A short label for the results summary section (e.g., 'The Results').",
       "limit": 255,
       "type": "TEXT"
     },
@@ -123,7 +148,7 @@
       "name": "summary_results",
       "label": "Results Summary",
       "width": 300,
-      "description": "",
+      "description": "A detailed description of the results achieved in the case study.",
       "limit": 65000,
       "type": "RICHTEXT"
     },
@@ -131,7 +156,7 @@
       "name": "summary_key_products_label",
       "label": "Key Products Label",
       "width": 360,
-      "description": "",
+      "description": "A short label for the key products section (e.g., 'Key Products').",
       "limit": 255,
       "type": "TEXT"
     },
@@ -139,7 +164,7 @@
       "name": "summary_key_products",
       "label": "Key Products",
       "width": 340,
-      "description": "",
+      "description": "The key products featured in the case study.",
       "options": [
         {
           "id": "1",
@@ -169,30 +194,30 @@
       "name": "summary_company_website",
       "label": "Company Website",
       "width": 300,
-      "description": "",
+      "description": "The URL of the company's website.",
       "type": "URL"
     },
     {
       "name": "success_metrics",
       "label": "Success Metrics",
       "width": 300,
-      "description": "",
+      "description": "The success metrics associated with the case study.",
       "type": "FOREIGN_ID",
-      "foreignTableId": 1189797083,
+      "foreignTableId": 1196956866,
       "foreignColumnId": 1
     },
     {
       "name": "testimonial_author_image",
       "label": "Testimonial Author Image",
       "width": 480,
-      "description": "",
+      "description": "The image of the testimonial author.",
       "type": "IMAGE"
     },
     {
       "name": "testimonial_author_name",
       "label": "Testimonial Author Name",
       "width": 460,
-      "description": "",
+      "description": "The name of the testimonial author.",
       "limit": 255,
       "type": "TEXT"
     },
@@ -200,7 +225,7 @@
       "name": "testimonial_author_role",
       "label": "Testimonial Author Role",
       "width": 460,
-      "description": "",
+      "description": "The role or title of the testimonial author.",
       "limit": 255,
       "type": "TEXT"
     },
@@ -208,7 +233,7 @@
       "name": "testimonial_quote",
       "label": "Testimonial Quote",
       "width": 340,
-      "description": "",
+      "description": "The quote provided by the testimonial author.",
       "limit": 65000,
       "type": "RICHTEXT"
     },
@@ -216,14 +241,14 @@
       "name": "company_image",
       "label": "Company Image",
       "width": 360,
-      "description": "",
+      "description": "The image representing the company featured in the case study.",
       "type": "IMAGE"
     },
     {
       "name": "company_name",
       "label": "Company Name",
       "width": 400,
-      "description": "",
+      "description": "The name of the company featured in the case study.",
       "limit": 255,
       "type": "TEXT"
     },
@@ -231,7 +256,7 @@
       "name": "company_summary",
       "label": "Company Summary",
       "width": 300,
-      "description": "",
+      "description": "A brief summary of the company featured in the case study.",
       "limit": 65000,
       "type": "RICHTEXT"
     },
@@ -239,7 +264,7 @@
       "name": "case_study_body",
       "label": "Case study body",
       "width": 300,
-      "description": "",
+      "description": "The main content of the case study.",
       "limit": 65000,
       "type": "RICHTEXT"
     }
@@ -249,6 +274,9 @@
       "path": "acme-tech-digital-transformation",
       "name": "Acme Tech: Digital Transformation Success",
       "values": {
+        "meta_description": "Discover how Acme Tech achieved a 300% revenue growth through digital transformation. Learn about the challenges they faced, the solutions implemented, and the impressive results that followed.",
+        "feature": 0,
+        "hide": 0,
         "company_logo": {
           "url": "https://ui-avatars.com/api/?name=Acme+Tech&size=600&background=0D47A1&color=fff&bold=true&format=png",
           "width": 600,
@@ -317,6 +345,9 @@
       "path": "healthplus-patient-engagement",
       "name": "HealthPlus: Revolutionizing Patient Care",
       "values": {
+        "meta_description": "Learn how HealthPlus improved patient engagement by 250% and reduced no-show rates by 60% with our healthcare solutions. Discover the challenges they faced, the strategies implemented, and the impressive results achieved in this detailed case study.",
+        "feature": 0,
+        "hide": 0,
         "company_logo": {
           "url": "https://ui-avatars.com/api/?name=HealthPlus&size=600&background=00897B&color=fff&bold=true&format=png",
           "width": 600,
@@ -385,6 +416,9 @@
       "path": "global-retail-omnichannel",
       "name": "Global Retail Co: Omnichannel Excellence",
       "values": {
+        "meta_description": "Explore how Global Retail Co created a seamless omnichannel experience, resulting in a 180% increase in online sales and improved inventory accuracy. This case study details the challenges they faced, the solutions implemented, and the impressive results achieved in the competitive retail landscape.",
+        "feature": 0,
+        "hide": 0,
         "company_logo": {
           "url": "https://ui-avatars.com/api/?name=Global+Retail&size=600&background=C62828&color=fff&bold=true&format=png",
           "width": 600,
