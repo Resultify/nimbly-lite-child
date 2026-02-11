@@ -146,3 +146,18 @@ The sample events are in sv and en, so page language needs to be selected.
 5. **Configure Dynamic Pages**:
    - Set the "Data source" to "Event information".
 
+***
+
+## Case Study
+
+To setup the database tables, start with uploading "Success Metrics" table, followed by "Case Study", in the following way:
+
+1. **Upload Success Metrics**
+   - In the terminal, run `rh uploadDb`
+   - Select your portal, choose Yes and then pick the file `success_metrics.json` and upload it.
+   - Now run `rh fetchDb` instead, select your portal and choose Yes. You will now see a list of the tables including their id. Copy the id from success_metrics. Then press Ctrl-C to abort from 'rh'.
+
+2. **Upload Case Study**
+   - Edit the file `/hubdb/case_study.json` and search for `success_metrics`. Paste the id into the `foreignTableId` value and save.
+   - Now run `rh uploadDb`, select your portal, choose Yes and then pick the file `case_study.json`.
+   - Now you should have 2 tables in your HubDb (in your portal) complete with some example content. You will still need to hook up some of the Success Metrics to each row in the Case Study table manually, if you want to use them.
