@@ -150,12 +150,12 @@ The sample events are in sv and en, so page language needs to be selected.
 
 ## Case Study
 
-To setup the database tables, start with uploading "Success Metrics" table, followed by "Case Study", in the following way:
+To setup the database tables in your Hub portal, start by uploading "Success Metrics" table, followed by "Case Study", in the following way:
 
 1. **Upload Success Metrics**
    - In the terminal, run `rh uploadDb`
    - Select your portal, choose Yes and then pick the file `success_metrics.json` and upload it.
-   - Now run `rh fetchDb` instead, select your portal and choose Yes. You will now see a list of the tables including their id. Copy the id from success_metrics. Then press Ctrl-C to abort from 'rh'.
+   - Now run `rh fetchDb` instead, select your portal and choose Yes. You will now see a list of the tables, including their id. Copy the id from success_metrics. Then exit by pressing enter without selecting anything.
 
 2. **Upload Case Study**
    - Edit the file `/hubdb/case_study.json` and search for `success_metrics`. Paste the id into the `foreignTableId` value and save.
