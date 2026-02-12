@@ -158,8 +158,8 @@ To setup the database tables in your Hub portal, start by uploading "Success Met
    - Now run `rh fetchDb` instead, select your portal and choose Yes. You will now see a list of the tables, including their id. Copy the id from `success_metrics`. Then exit by pressing enter without selecting anything.
 
 2. **Upload Case Study**
-   - Edit the file `/hubdb/case_study.json` and search for `success_metrics`. Update the `foreignTableId` by pasting your new id into the value and save the file.
+   - Edit the file `/hubdb/case_study.json` and search for `success_metrics`. Update the **foreignTableId** by pasting your new id into the value and save the file.
    - Now run `rh uploadDb`, select your portal, choose Yes and then pick the file `case_study.json`.
    - You should now have 2 new tables in your HubDb (in your portal) complete with some example content. You will still need to hook up some of the Success Metrics to each row in the Case Study table manually, if you want to use them.
 
-**Note:** In HubDB, for the `case_study` table, please check the Actions > Manage settings. Make sure `Meta description column` is set to `meta_description` and `Featured image column` is set to `summary_featured_image` (or whatever image you like). In our testing, these fields seems to not be selected properly when uploaded.
+**Note:** In HubDB, for the `case_study` table, please check the Actions > Manage settings. Make sure **Meta description column** is set to `meta_description` and **Featured image column** is set to `summary_featured_image` (or whatever image you like). In our testing, these fields seems to not be selected properly when uploaded.
