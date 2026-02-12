@@ -1,0 +1,46 @@
+{# Case Study #}
+
+.case-study_wrp {
+  border: 5px solid gold;
+}
+
+{# general #}
+.case-study__header,
+.case-study__article,
+.case-study__related-case-studies {
+  max-width: 924px;
+  margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+{# case study header part #}
+.case-study__header {
+  padding-top: 100px;
+  padding-bottom: 64px;
+}
+
+.case-study__company-logo-wrp {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.case-study__company-logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.case-study__title {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+{# case study header part #}
+.case-study__article {
+  padding-bottom: 100px;
+  padding-top: 28px;
+}
+
+.case-study__summary {
+  background-color: {{theme.blog.header_background_color.css}};
+}
