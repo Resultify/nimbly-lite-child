@@ -9,6 +9,18 @@
 {% extends "./layouts/base.html" %}
 
 {% block body %}
+
+  {% if html_lang == "sv" %}
+    {% set website = 'Webbplats' %}
+    {% set related_case_studies = 'Relaterade fallstudier' %}
+  {% elif html_lang == "da" %}
+    {% set website = 'Hjemmeside' %}
+    {% set related_case_studies = 'Relaterede casestudier' %}
+  {% else %}
+    {% set website = 'Website' %}
+    {% set related_case_studies = 'Related case studies' %}
+  {% endif %}
+
   {% if dynamic_page_hubdb_row %}
     {# Create settings #}
     {% set settings = {} %}
@@ -106,7 +118,7 @@
             {# Company website #}
             {% if dynamic_page_hubdb_row.summary_company_website %}
               <div class="case-study-summary-company-website">
-                <h6 class="case-study-summary-company-website-label">Website</h6>
+                <h6 class="case-study-summary-company-website-label">{{ website }}</h6>
                 <a href="{{dynamic_page_hubdb_row.summary_company_website}}" target="_blank" rel="noopener">
                   {{dynamic_page_hubdb_row.summary_company_website}}
                 </a>
@@ -180,6 +192,50 @@
           {% endif %}
         </article>
 
+        {# Related Case Studies - same industry #}
+        {% if dynamic_page_hubdb_row.summary_industry %}
+          {% set current_industry = dynamic_page_hubdb_row.summary_industry %}
+          {% set current_row_id = dynamic_page_hubdb_row.hs_id %}
+          {% set related_cases = hubdb_table_rows(dynamic_page_hubdb_table_id, "summary_industry=" ~ current_industry.name) %}
+
+          {% set filtered_cases = [] %}
+          {% for case in related_cases %}
+            {% if case.hs_id != current_row_id and not case.hide %}
+              {% do filtered_cases.append(case) %}
+              {% if filtered_cases|length >= 3 %}
+                {% break %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
+          {% if filtered_cases|length > 0 %}
+            <div class="related-case-studies" style="border: 10px solid purple; padding: 20px; margin-top: 20px;">
+              <h2>{{ related_case_studies }}</h2>
+              <ul>
+                {% for case in filtered_cases %}
+                  <li class="related-case-study-item" style="margin-bottom: 10px;">
+
+                    {% if case.company_logo %}
+                      <img class="related-case-study-company-logo"
+                        src="{{case.company_logo.url}}"
+                        alt="{{case.company_logo.altText}}"
+                        width="500"
+                        height="500">
+                    {% endif %}
+
+                    <h2><a href="{{ '/' ~ content.slug ~ '/' ~ case.hs_path }}">{{ case.title }}</a></h2>
+
+                    {% if case.company_name %}
+                      - {{ case.company_name }}
+                    {% endif %}
+
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+
+          {% endif %}
+        {% endif %}
       </div>
     </div>
 
