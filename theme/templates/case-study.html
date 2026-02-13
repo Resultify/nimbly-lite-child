@@ -127,6 +127,20 @@
 
           </div>
 
+          {% if dynamic_page_hubdb_row.success_metrics %}
+            <div class="case-study__success-metrics">
+              <h2 class="case-study__success-metrics-title">Success metrics</h2>
+              <div class="case-study__success-metrics-container">
+                {% for metric in dynamic_page_hubdb_row.success_metrics %}
+                  <div class="case-study__success-metric">
+                    <div class="case-study__success-metric-value">{{ metric.value }}</div>
+                    <div class="case-study__success-metric-name">{{ metric.name }}</div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+
           {# Testimonial - includes author image, name, role and quote #}
           {% if dynamic_page_hubdb_row.testimonial_quote %}
             <div class="case-study__testimonial-wrp">
@@ -210,10 +224,10 @@
 
           {% if filtered_cases|length > 0 %}
             <div class="case-study__related-case-studies">
-              <h2>{{ related_case_studies }}</h2>
-              <ul>
+              <h2 class="case-study__related-case-studies-title">{{ related_case_studies }}</h2>
+              <div class="case-study__related-case-studies-container">
                 {% for case in filtered_cases %}
-                  <li class="related-case-study-item">
+                  <a href="{{ '/' ~ content.slug ~ '/' ~ case.hs_path }}" class="case-study__related-case-study-item">
 
                     {% if case.company_logo %}
                       <img class="case-study__related-case-study-company-logo"
@@ -223,13 +237,13 @@
                         height="500">
                     {% endif %}
 
-                    <h2><a href="{{ '/' ~ content.slug ~ '/' ~ case.hs_path }}">{{ case.title }}</a></h2>
-
-                    {% if case.company_name %}
-                      - {{ case.company_name }}
+                    {% if case.summary_industry %}
+                      <span class="case-study__related-case-study-industry">{{ case.summary_industry.label }}</span>
                     {% endif %}
 
-                  </li>
+                    <h3>{{ case.title }}</h3>
+
+                  </a>
                 {% endfor %}
               </ul>
             </div>
