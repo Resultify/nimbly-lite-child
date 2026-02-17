@@ -37,7 +37,9 @@
                 src="{{dynamic_page_hubdb_row.company_logo.url}}"
                 alt="{{dynamic_page_hubdb_row.company_logo.altText}}"
                 width="{{dynamic_page_hubdb_row.company_logo.width}}"
-                height="{{dynamic_page_hubdb_row.company_logo.height}}">
+                height="{{dynamic_page_hubdb_row.company_logo.height}}"
+                srcset="{{ resize_image_url(dynamic_page_hubdb_row.company_logo.url, 0, 0, 1024) }}"
+              >
             </div>
           {% endif %}
 
@@ -59,77 +61,80 @@
                   src="{{dynamic_page_hubdb_row.summary_featured_image.url}}"
                   alt="{{dynamic_page_hubdb_row.summary_featured_image.altText}}"
                   width="{{dynamic_page_hubdb_row.summary_featured_image.width}}"
-                  height="{{dynamic_page_hubdb_row.summary_featured_image.height}}">
+                  height="{{dynamic_page_hubdb_row.summary_featured_image.height}}"
+                  srcset="{{ resize_image_url(dynamic_page_hubdb_row.summary_featured_image.url, 0, 0, 1024) }}"
+                >
               </div>
             {% endif %}
 
-            {# Industry #}
-            {% if dynamic_page_hubdb_row.summary_industry %}
-              <div class="case-study__summary-industry">
+            <div class="case-study__summary-content">
+              {# Industry #}
+              {% if dynamic_page_hubdb_row.summary_industry %}
+                <div class="case-study__summary-industry">
 
-                {% if dynamic_page_hubdb_row.summary_industry_label %}
-                  <h6 class="case-study__summary-industry-label">
-                    {{dynamic_page_hubdb_row.summary_industry_label}}
-                  </h6>
-                {% endif %}
-                {{ dynamic_page_hubdb_row.summary_industry.label }}
-              </div>
-            {% endif %}
+                  {% if dynamic_page_hubdb_row.summary_industry_label %}
+                    <h6 class="case-study__summary-industry-label">
+                      {{dynamic_page_hubdb_row.summary_industry_label}}
+                    </h6>
+                  {% endif %}
+                  {{ dynamic_page_hubdb_row.summary_industry.label }}
+                </div>
+              {% endif %}
 
-            {# Challenge #}
-            {% if dynamic_page_hubdb_row.summary_challenge %}
-              <div class="case-study__summary-challenge">
-                {% if dynamic_page_hubdb_row.summary_challenge_label %}
-                  <h6 class="case-study__summary-challenge-label">
-                    {{dynamic_page_hubdb_row.summary_challenge_label}}
-                  </h6>
-                {% endif %}
-                {{dynamic_page_hubdb_row.summary_challenge}}
-              </div>
-            {% endif %}
+              {# Challenge #}
+              {% if dynamic_page_hubdb_row.summary_challenge %}
+                <div class="case-study__summary-challenge">
+                  {% if dynamic_page_hubdb_row.summary_challenge_summary_label %}
+                    <h6 class="case-study__summary-challenge-label">
+                      {{dynamic_page_hubdb_row.summary_challenge_summary_label}}
+                    </h6>
+                  {% endif %}
+                  {{dynamic_page_hubdb_row.summary_challenge}}
+                </div>
+              {% endif %}
 
-            {# Results #}
-            {% if dynamic_page_hubdb_row.summary_results %}
-              <div class="case-study__summary-results">
-                {% if dynamic_page_hubdb_row.summary_results_label %}
-                  <h6 class="case-study__summary-results-label">
-                    {{dynamic_page_hubdb_row.summary_results_label}}
-                  </h6>
-                {% endif %}
-                {{dynamic_page_hubdb_row.summary_results}}
-              </div>
-            {% endif %}
+              {# Results #}
+              {% if dynamic_page_hubdb_row.summary_results %}
+                <div class="case-study__summary-results">
+                  {% if dynamic_page_hubdb_row.summary_results_label %}
+                    <h6 class="case-study__summary-results-label">
+                      {{dynamic_page_hubdb_row.summary_results_label}}
+                    </h6>
+                  {% endif %}
+                  {{dynamic_page_hubdb_row.summary_results}}
+                </div>
+              {% endif %}
 
-            {# Key Products #}
-            {% if dynamic_page_hubdb_row.summary_key_products %}
-              <div class="case-study__summary-key-products">
-                {% if dynamic_page_hubdb_row.summary_key_products_label %}
-                  <h6 class="case-study__summary-key-products-label">
-                    {{dynamic_page_hubdb_row.summary_key_products_label}}
-                  </h6>
-                {% endif %}
+              {# Key Products #}
+              {% if dynamic_page_hubdb_row.summary_key_products %}
+                <div class="case-study__summary-key-products">
+                  {% if dynamic_page_hubdb_row.summary_key_products_label %}
+                    <h6 class="case-study__summary-key-products-label">
+                      {{dynamic_page_hubdb_row.summary_key_products_label}}
+                    </h6>
+                  {% endif %}
 
-                {% for product in dynamic_page_hubdb_row.summary_key_products %}
-                  <span class="case-study__summary-key-product">{{ product.label }}</span>
-                {% endfor %}
-              </div>
-            {% endif %}
+                  {% for product in dynamic_page_hubdb_row.summary_key_products %}
+                    <span class="case-study__summary-key-product">{{ product.label }}</span>
+                  {% endfor %}
+                </div>
+              {% endif %}
 
-            {# Company website #}
-            {% if dynamic_page_hubdb_row.summary_company_website %}
-              <div class="case-study__summary-company-website">
-                <h6 class="case-study__summary-company-website-label">{{ website }}</h6>
-                <a href="{{dynamic_page_hubdb_row.summary_company_website}}" target="_blank" rel="noopener">
-                  {{dynamic_page_hubdb_row.summary_company_website}}
-                </a>
-              </div>
-            {% endif %}
+              {# Company website #}
+              {% if dynamic_page_hubdb_row.summary_company_website %}
+                <div class="case-study__summary-company-website">
+                  <h6 class="case-study__summary-company-website-label">{{ website }}</h6>
+                  <a href="{{dynamic_page_hubdb_row.summary_company_website}}" target="_blank" rel="noopener">
+                    {{dynamic_page_hubdb_row.summary_company_website}}
+                  </a>
+                </div>
+              {% endif %}
+            </div>
 
           </div>
 
           {% if dynamic_page_hubdb_row.success_metrics %}
             <div class="case-study__success-metrics">
-              <h2 class="case-study__success-metrics-title">Success metrics</h2>
               <div class="case-study__success-metrics-container">
                 {% for metric in dynamic_page_hubdb_row.success_metrics %}
                   <div class="case-study__success-metric-item">
@@ -148,28 +153,32 @@
                 {{dynamic_page_hubdb_row.testimonial_quote}}
               </blockquote>
 
-              <div class="case-study__testimonial-author-info">
+              <div class="case-study__testimonial-author">
+
                 {% if dynamic_page_hubdb_row.testimonial_author_image %}
                   <div class="case-study__testimonial-author-image-wrp">
                     <img class="case-study__testimonial-author-image"
                       src="{{dynamic_page_hubdb_row.testimonial_author_image.url}}"
                       alt="{{dynamic_page_hubdb_row.testimonial_author_image.altText}}"
                       width="{{dynamic_page_hubdb_row.testimonial_author_image.width}}"
-                      height="{{dynamic_page_hubdb_row.testimonial_author_image.height}}">
+                      height="{{dynamic_page_hubdb_row.testimonial_author_image.height}}"
+                      srcset="{{ resize_image_url(dynamic_page_hubdb_row.testimonial_author_image.url, 0, 0, 1024) }}">
                   </div>
                 {% endif %}
 
-                {% if dynamic_page_hubdb_row.testimonial_author_name %}
-                  <div class="case-study__testimonial-author-name">
-                    {{dynamic_page_hubdb_row.testimonial_author_name}}
-                  </div>
-                {% endif %}
+                <div class="case-study__testimonial-author-info">
+                  {% if dynamic_page_hubdb_row.testimonial_author_name %}
+                    <div class="case-study__testimonial-author-name">
+                      {{dynamic_page_hubdb_row.testimonial_author_name}}
+                    </div>
+                  {% endif %}
 
-                {% if dynamic_page_hubdb_row.testimonial_author_role %}
-                  <div class="case-study__testimonial-author-role">
-                    {{dynamic_page_hubdb_row.testimonial_author_role}}
-                  </div>
-                {% endif %}
+                  {% if dynamic_page_hubdb_row.testimonial_author_role %}
+                    <div class="case-study__testimonial-author-role">
+                      {{dynamic_page_hubdb_row.testimonial_author_role}}
+                    </div>
+                  {% endif %}
+                </div>
               </div>
             </div>
           {% endif %}
@@ -183,7 +192,9 @@
                     src="{{dynamic_page_hubdb_row.company_image.url}}"
                     alt="{{dynamic_page_hubdb_row.company_image.altText}}"
                     width="{{dynamic_page_hubdb_row.company_image.width}}"
-                    height="{{dynamic_page_hubdb_row.company_image.height}}">
+                    height="{{dynamic_page_hubdb_row.company_image.height}}"
+                    srcset="{{ resize_image_url(dynamic_page_hubdb_row.company_image.url, 0, 0, 1024) }}"
+                  >
                 </div>
               {% endif %}
 
@@ -233,8 +244,9 @@
                       <img class="case-study__related-case-study-company-logo"
                         src="{{case.company_logo.url}}"
                         alt="{{case.company_logo.altText}}"
-                        width="500"
-                        height="500">
+                        width="{{case.company_logo.width}}"
+                        height="{{case.company_logo.height}}"
+                        srcset="{{ resize_image_url(case.company_logo.url, 0, 0, 500) }}">
                     {% endif %}
 
                     {% if case.summary_industry %}
