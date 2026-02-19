@@ -39,12 +39,98 @@
       "open_in_new_tab" : false,
       "no_follow" : false
     }
+  }, {
+    "id" : "case_study_list_show_filter",
+    "name" : "show_filter",
+    "display_width" : null,
+    "label" : "Show Industry Filter",
+    "help_text" : "Display dropdown to filter case studies by industry",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "default" : true
   } ],
   "tab" : "CONTENT",
   "expanded" : false,
   "group_occurrence_meta" : null,
   "type" : "group",
   "default" : {
-    "number_of_articles" : 6
+    "number_of_articles" : 6,
+    "show_filter" : true
+  }
+}, {
+  "id" : "case_study_list_layout",
+  "name" : "layout",
+  "display_width" : null,
+  "label" : "Layout",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "case_study_list_layout_style",
+    "name" : "layout",
+    "display_width" : null,
+    "label" : "Layout Style",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "basic-grid", "Basic Grid" ], [ "mosaic-grid", "Mosaic Grid" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "basic-grid"
+  }, {
+    "id" : "case_study_list_layout_columns",
+    "name" : "columns",
+    "display_width" : null,
+    "label" : "Columns",
+    "help_text" : "Number of columns per row",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "case_study_list_layout_style",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "basic-grid",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "step" : 1,
+    "min" : 1,
+    "max" : 6,
+    "type" : "number",
+    "default" : 3
+  }, {
+    "id" : "case_study_list_layout_height",
+    "name" : "height",
+    "display_width" : null,
+    "label" : "Height",
+    "help_text" : "Height of the larger element",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "case_study_list_layout_style",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "mosaic-grid",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "type" : "number",
+    "default" : 500
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "default" : {
+    "layout" : "basic-grid",
+    "columns" : 3,
+    "height" : 500
   }
 } ]

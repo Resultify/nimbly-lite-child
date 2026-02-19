@@ -1,4 +1,81 @@
 <!-- Case Study List Module -->
+
+{#
+  CSS ORGANIZATION:
+  - Layout styles (container, grid, widths, responsive) = HERE in scoped CSS (dynamic module values)
+  - Component styles (colors, padding, borders, hover) = module.css (static styles)
+#}
+
+{# Scoped CSS for layout styles #}
+<style>
+  {% scope_css %}
+    {# Container base layout - applies to all layouts #}
+    .case-study-list__container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--gap);
+      justify-content: center;
+    }
+
+    {# Basic Grid Layout #}
+    {% if module.layout.layout == 'basic-grid' %}
+      .basic-grid .case-study-list__item {
+        width: calc(100% / {{module.layout.columns}} - (var(--gap) * ({{module.layout.columns}} - 1) / {{module.layout.columns}}));
+      }
+      
+      @media (max-width: 991.98px) {
+        .basic-grid .case-study-list__item {
+          width: calc(50% - (var(--gap) / 2));
+        }
+      }
+      
+      @media (max-width: 700px) {
+        .basic-grid .case-study-list__item {
+          width: 100%;
+        }
+      }
+    {% endif %}
+
+    {# Mosaic Grid Layout #}
+    {% if module.layout.layout == 'mosaic-grid' %}
+      {% set mosaic_big_element_height = module.layout.height %}
+      {% set mosaic_small_element_height = (module.layout.height / 2) - 10 %}
+      
+      .mosaic-grid .case-study-list__container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: var(--gap);
+      }
+      
+      .mosaic-grid .case-study-list__item {
+        width: 100%;
+        height: {{mosaic_small_element_height|int}}px;
+      }
+      
+      .mosaic-grid .case-study-list__item:first-child {
+        grid-column: span 2;
+        grid-row: span 2;
+        height: {{mosaic_big_element_height}}px;
+      }
+      
+      .mosaic-grid .case-study-list__item-image {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      
+      @media (max-width: 991.98px) {
+        .mosaic-grid .case-study-list__item:first-child {
+          grid-column: span 1;
+          grid-row: span 1;
+          height: {{mosaic_small_element_height|int}}px;
+        }
+      }
+    {% endif %}
+  {% end_scope_css %}
+</style>
+
 {# Fetch all case studies from HubDB #}
 {% set all_case_studies = hubdb_table_rows('case_study') %}
   
@@ -33,10 +110,10 @@
 
 {# Display case studies #}
 {% if limited_case_studies|length > 0 %}
-  <div class="case-study-list-module">
+  <div class="case-study-list-module {{ module.layout.layout }}">
     
     {# Industry Filter Dropdown #}
-    {% if industries|length > 1 %}
+    {% if module.content.show_filter and industries|length > 1 %}
       <div class="case-study-list__filter-wrapper">
         <label for="case-study-industry-filter" class="case-study-list__filter-label">Filter by Industry:</label>
         <select id="case-study-industry-filter" class="case-study-list__filter-dropdown">

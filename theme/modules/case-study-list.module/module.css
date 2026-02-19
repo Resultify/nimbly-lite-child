@@ -1,64 +1,88 @@
 /* Case Study List Module Styles */
+/* Layout styles are in module.html scoped CSS - this file contains only component-level styling */
 
 .case-study-list-module {
   width: 100%;
+  
+  /* Module CSS Variables */
+  /* Note: --gap and --primary-color are inherited from global theme */
+  /* Note: --case-bg-* variables have fallbacks as they may not exist on all pages */
+  --filter-gap: 12px;
+  --filter-dropdown-padding: 10px 16px;
+  --filter-dropdown-font-size: 1rem;
+  --filter-dropdown-border-width: 2px;
+  --filter-dropdown-min-width: 200px;
+  
+  --item-hover-transform: -4px;
+  --item-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  --industry-font-size: 0.875rem;
+  --industry-padding: 5px 10px;
+  --industry-bg: #fff;
+  --industry-color: #333;
+  
+  --title-font-size: 1.25rem;
+  
+  --focus-shadow-color: rgba(0, 123, 255, 0.1);
+  --focus-shadow-width: 3px;
+}
+
+/* Responsive Variable Adjustments */
+@media (max-width: 700px) {
+  .case-study-list-module {
+    --filter-gap: 8px;
+    --filter-dropdown-min-width: 100%;
+    --title-font-size: 1.125rem;
+  }
 }
 
 /* Filter Dropdown Styles */
 .case-study-list__filter-wrapper {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: calc(var(--gap, 20px) * 1.5);
+  gap: var(--filter-gap);
+  margin-bottom: calc(var(--gap) * 1.5);
   justify-content: center;
 }
 
 .case-study-list__filter-label {
-  font-size: 1rem;
+  font-size: var(--filter-dropdown-font-size);
   font-weight: 500;
   color: inherit;
   margin: 0;
 }
 
 .case-study-list__filter-dropdown {
-  padding: 10px 16px;
-  font-size: 1rem;
-  border: 2px solid var(--case-bg-border, #ccc);
+  padding: var(--filter-dropdown-padding);
+  font-size: var(--filter-dropdown-font-size);
+  border: var(--filter-dropdown-border-width) solid var(--case-bg-border, #ccc);
   border-radius: var(--case-border-radius, 8px);
   background: #fff;
   color: inherit;
   cursor: pointer;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  min-width: 200px;
+  min-width: var(--filter-dropdown-min-width);
 }
 
 .case-study-list__filter-dropdown:hover {
-  border-color: var(--primary-color, #007bff);
+  border-color: var(--primary-color);
 }
 
 .case-study-list__filter-dropdown:focus {
   outline: none;
-  border-color: var(--primary-color, #007bff);
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 var(--focus-shadow-width) var(--focus-shadow-color);
 }
 
-.case-study-list__container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: var(--gap, 20px);
-  justify-content: center;
-}
-
+/* Case Study Item Component Styles */
 .case-study-list__item {
-  width: calc(33.333% - (var(--gap, 20px) * 2 / 3));
   display: flex;
   flex-direction: column;
-  gap: calc(var(--gap, 20px) * 0.5);
+  gap: calc(var(--gap) * 0.5);
   overflow: hidden;
   justify-content: flex-start;
   text-decoration: none;
-  padding: calc(var(--gap, 20px) * 0.5);
+  padding: calc(var(--gap) * 0.5);
   background: var(--case-bg-color, #eeeeee);
   border-radius: var(--case-border-radius, 8px);
   border: var(--case-bg-border, 1px solid #ccc);
@@ -72,14 +96,14 @@
 }
 
 .case-study-list__item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(var(--item-hover-transform));
+  box-shadow: var(--item-hover-shadow);
 }
 
 .case-study-list__item-image {
-  margin: calc(var(--gap, 20px) * -0.5);
+  margin: calc(var(--gap) * -0.5);
   margin-bottom: 0;
-  width: calc(100% + var(--gap, 20px));
+  width: calc(100% + var(--gap));
   height: auto;
   object-fit: cover;
   object-position: center;
@@ -89,45 +113,30 @@
 .case-study-list__item-industry {
   align-self: flex-start;
   display: flex;
-  font-size: 0.875rem;
-  background: #fff;
-  color: #333;
+  font-size: var(--industry-font-size);
+  background: var(--industry-bg);
+  color: var(--industry-color);
   justify-content: center;
   line-height: normal;
-  padding: 5px 10px;
+  padding: var(--industry-padding);
   text-decoration: none;
   border-radius: 4px;
 }
 
 .case-study-list__item-title {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: var(--title-font-size);
   color: inherit;
 }
 
-/* Responsive styles */
-@media (max-width: 991.98px) {
-  .case-study-list__item {
-    width: calc(50% - (var(--gap, 20px) / 2));
-  }
-}
-
+/* Mobile Layout Adjustments */
 @media (max-width: 700px) {
-  .case-study-list__item {
-    width: 100%;
-  }
-  
   .case-study-list__filter-wrapper {
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
   }
   
   .case-study-list__filter-label {
     text-align: center;
-  }
-  
-  .case-study-list__filter-dropdown {
-    width: 100%;
   }
 }
