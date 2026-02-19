@@ -219,53 +219,23 @@
           {% endif %}
         </article>
 
-        {# Related Case Studies - same industry #}
-        {% if dynamic_page_hubdb_row.summary_industry %}
-          {% set current_industry = dynamic_page_hubdb_row.summary_industry %}
-          {% set current_row_id = dynamic_page_hubdb_row.hs_id %}
-          {% set related_cases = hubdb_table_rows(dynamic_page_hubdb_table_id, "summary_industry=" ~ current_industry.name) %}
+        <div class="case-study__related-case-studies-wrp">
+          <div class="case-study__related-case-studies">
+            <h2 class="case-study__related-case-studies-title">{{ related_case_studies }}</h2>
+            <div class="case-study__related-case-studies-container">
 
-          {% set filtered_cases = [] %}
-          {% for case in related_cases %}
-            {% if case.hs_id != current_row_id and not case.hide %}
-              {% do filtered_cases.append(case) %}
-              {% if filtered_cases|length >= 3 %}
-                {% break %}
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-
-          {% if filtered_cases|length > 0 %}
-            <div class="case-study__related-case-studies-wrp">
-              <div class="case-study__related-case-studies">
-                <h2 class="case-study__related-case-studies-title">{{ related_case_studies }}</h2>
-                <div class="case-study__related-case-studies-container">
-                  {% for case in filtered_cases %}
-                    <a href="{{ '/' ~ content.slug ~ '/' ~ case.hs_path }}" class="case-study__related-case-study-item">
-
-                      {% if case.summary_featured_image %}
-                        <img class="case-study__related-case-study-featured-image"
-                          src="{{case.summary_featured_image.url}}"
-                          alt="{{case.summary_featured_image.altText}}"
-                          width="{{case.summary_featured_image.width}}"
-                          height="{{case.summary_featured_image.height}}"
-                          srcset="{{ resize_image_url(case.summary_featured_image.url, 0, 0, 500) }}">
-                      {% endif %}
-
-                      {% if case.summary_industry %}
-                        <span class="case-study__related-case-study-industry">{{ case.summary_industry.label }}</span>
-                      {% endif %}
-
-                      <h3>{{ case.title }}</h3>
-
-                    </a>
-                  {% endfor %}
-                </ul>
-              </div>
+              {% module 'related-case-studies'
+                path="../modules/case-study-list",
+                offset=0,
+                width=12,
+                content={
+                  "mode" : "related"
+                }
+              %}
             </div>
+          </div>
+        </div>
 
-          {% endif %}
-        {% endif %}
       </div>
     </div>
 
@@ -280,12 +250,12 @@
           width=12
         %}
           {% dnd_row %}
-            {#{% dnd_module
+            {% dnd_module
               path="../modules/case-study-list",
               offset=0,
               width=12,
             %}
-            {% end_dnd_module %}#}
+            {% end_dnd_module %}
           {% end_dnd_row %}
         {% end_dnd_column %}
       {% end_dnd_section %}

@@ -6,6 +6,21 @@
   "required" : false,
   "locked" : false,
   "children" : [ {
+    "id" : "case_study_list_mode",
+    "name" : "mode",
+    "display_width" : null,
+    "label" : "Mode",
+    "help_text" : "Standard: configurable list. Related: shows case studies from the same industry as the current page (excludes current case study).",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "standard", "Standard List" ], [ "related", "Related Case Studies" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "standard"
+  }, {
     "id" : "case_study_list_number_of_articles",
     "name" : "number_of_articles",
     "display_width" : null,
@@ -13,6 +28,14 @@
     "help_text" : "How many case studies to display",
     "required" : false,
     "locked" : false,
+    "visibility" : {
+      "controlling_field" : "case_study_list_mode",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "standard",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
     "display" : "text",
     "step" : 1,
     "min" : 1,
@@ -27,6 +50,14 @@
     "help_text" : "Select the page template used for case study details. Leave empty to use current page.",
     "required" : false,
     "locked" : false,
+    "visibility" : {
+      "controlling_field" : "case_study_list_mode",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "standard",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
     "supported_types" : [ "CONTENT" ],
     "show_advanced_rel_options" : false,
     "type" : "link",
@@ -47,6 +78,14 @@
     "help_text" : "Display dropdown to filter case studies by industry",
     "required" : false,
     "locked" : false,
+    "visibility" : {
+      "controlling_field" : "case_study_list_mode",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "standard",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
     "display" : "toggle",
     "type" : "boolean",
     "default" : true
@@ -56,6 +95,7 @@
   "group_occurrence_meta" : null,
   "type" : "group",
   "default" : {
+    "mode" : "standard",
     "number_of_articles" : 6,
     "show_filter" : true
   }

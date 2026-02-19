@@ -76,44 +76,77 @@
   {% end_scope_css %}
 </style>
 
-{# Fetch all case studies from HubDB #}
-{% set all_case_studies = hubdb_table_rows('case_study') %}
+{# MODE BRANCHING: Related vs Standard #}
+{% if module.content.mode == 'related' %}
   
-{# Filter out hidden case studies #}
-{% set visible_case_studies = [] %}
-{% for case in all_case_studies %}
-  {% if not case.hide %}
-    {% do visible_case_studies.append(case) %}
-  {% endif %}
-{% endfor %}
-
-{# Extract unique industries for filter dropdown #}
-{% set industries = [] %}
-{% for case in visible_case_studies %}
-  {% if case.summary_industry and case.summary_industry.name not in industries %}
-    {% do industries.append(case.summary_industry.name) %}
-  {% endif %}
-{% endfor %}
-
-{# Limit to the configured number of articles #}
-{% set limited_case_studies = visible_case_studies[:module.content.number_of_articles] %}
-
-{# Set base slug for case study detail pages #}
-{% if module.content.detail_page.url.content_id %}
-  {% set selected_page = content_by_id(module.content.detail_page.url.content_id) %}
-  {% set base_slug = selected_page.slug if selected_page else content.slug %}
-{% elif module.content.detail_page.url.href %}
-  {% set base_slug = module.content.detail_page.url.href|replace('/', '', 1) if module.content.detail_page.url.href.startswith('/') else module.content.detail_page.url.href %}
-{% else %}
+  {# RELATED MODE: Show case studies from same industry, excluding current case #}
+  {% set limited_case_studies = [] %}
+  {% set industries = [] %}
   {% set base_slug = content.slug %}
+  {% set show_filter_dropdown = false %}
+  
+  {% if dynamic_page_hubdb_row and dynamic_page_hubdb_row.summary_industry %}
+    {% set current_industry = dynamic_page_hubdb_row.summary_industry %}
+    {% set current_row_id = dynamic_page_hubdb_row.hs_id %}
+    {% set related_cases = hubdb_table_rows('case_study', "summary_industry=" ~ current_industry.name) %}
+    
+    {# Filter: exclude current case study and hidden ones, limit to 3 #}
+    {% for case in related_cases %}
+      {% if case.hs_id != current_row_id and not case.hide %}
+        {% do limited_case_studies.append(case) %}
+        {% if limited_case_studies|length >= 3 %}
+          {% break %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  
+{% else %}
+  
+  {# STANDARD MODE: Original configurable list #}
+  {# Fetch all case studies from HubDB #}
+  {% set all_case_studies = hubdb_table_rows('case_study') %}
+    
+  {# Filter out hidden case studies #}
+  {% set visible_case_studies = [] %}
+  {% for case in all_case_studies %}
+    {% if not case.hide %}
+      {% do visible_case_studies.append(case) %}
+    {% endif %}
+  {% endfor %}
+  
+  {# Extract unique industries for filter dropdown #}
+  {% set industries = [] %}
+  {% for case in visible_case_studies %}
+    {% if case.summary_industry and case.summary_industry.name not in industries %}
+      {% do industries.append(case.summary_industry.name) %}
+    {% endif %}
+  {% endfor %}
+  
+  {# Limit to the configured number of articles #}
+  {% set limited_case_studies = visible_case_studies[:module.content.number_of_articles] %}
+  
+  {# Set base slug for case study detail pages #}
+  {% if module.content.detail_page.url.content_id %}
+    {% set selected_page = content_by_id(module.content.detail_page.url.content_id) %}
+    {% set base_slug = selected_page.slug if selected_page else content.slug %}
+  {% elif module.content.detail_page.url.href %}
+    {% set base_slug = module.content.detail_page.url.href|replace('/', '', 1) if module.content.detail_page.url.href.startswith('/') else module.content.detail_page.url.href %}
+  {% else %}
+    {% set base_slug = content.slug %}
+  {% endif %}
+  
+  {# Show filter if enabled and multiple industries exist #}
+  {% set show_filter_dropdown = module.content.show_filter and industries|length > 1 %}
+  
 {% endif %}
 
 {# Display case studies #}
 {% if limited_case_studies|length > 0 %}
   <div class="case-study-list-module {{ module.layout.layout }}">
     
-    {# Industry Filter Dropdown #}
-    {% if module.content.show_filter and industries|length > 1 %}
+    {# Industry Filter Dropdown - only in standard mode with multiple industries #}
+    {% if show_filter_dropdown %}
       <div class="case-study-list__filter-wrapper">
         <label for="case-study-industry-filter" class="case-study-list__filter-label">Filter by Industry:</label>
         <select id="case-study-industry-filter" class="case-study-list__filter-dropdown">
