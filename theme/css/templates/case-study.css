@@ -350,7 +350,7 @@
   overflow: hidden;
   justify-content: start;
   text-decoration: none;
-  padding: calc(var(--gap) / 2);
+  padding: calc(var(--gap) / 1);
   background: #fff;
   border-radius: var(--case-border-radius);
   border: var(--case-bg-border);
@@ -363,9 +363,9 @@
 }
 
 .case-study__related-case-study-featured-image {
-  margin: calc(var(--gap) / -2);
-  margin-bottom: 0;
-  width: calc(100% + (var(--gap) * 1));
+  margin: calc(var(--gap) / -1);
+  margin-bottom: calc(var(--gap) / 2);
+  width: calc(100% + (var(--gap) * 2));
   height: auto;
   object-fit: cover;
   object-position: center;

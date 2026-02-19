@@ -1,0 +1,82 @@
+<!-- Case Study List Module -->
+{# Fetch all case studies from HubDB #}
+{% set all_case_studies = hubdb_table_rows('case_study') %}
+  
+{# Filter out hidden case studies #}
+{% set visible_case_studies = [] %}
+{% for case in all_case_studies %}
+  {% if not case.hide %}
+    {% do visible_case_studies.append(case) %}
+  {% endif %}
+{% endfor %}
+
+{# Extract unique industries for filter dropdown #}
+{% set industries = [] %}
+{% for case in visible_case_studies %}
+  {% if case.summary_industry and case.summary_industry.name not in industries %}
+    {% do industries.append(case.summary_industry.name) %}
+  {% endif %}
+{% endfor %}
+
+{# Limit to the configured number of articles #}
+{% set limited_case_studies = visible_case_studies[:module.content.number_of_articles] %}
+
+{# Set base slug for case study detail pages #}
+{% if module.content.detail_page.url.content_id %}
+  {% set selected_page = content_by_id(module.content.detail_page.url.content_id) %}
+  {% set base_slug = selected_page.slug if selected_page else content.slug %}
+{% elif module.content.detail_page.url.href %}
+  {% set base_slug = module.content.detail_page.url.href|replace('/', '', 1) if module.content.detail_page.url.href.startswith('/') else module.content.detail_page.url.href %}
+{% else %}
+  {% set base_slug = content.slug %}
+{% endif %}
+
+{# Display case studies #}
+{% if limited_case_studies|length > 0 %}
+  <div class="case-study-list-module">
+    
+    {# Industry Filter Dropdown #}
+    {% if industries|length > 1 %}
+      <div class="case-study-list__filter-wrapper">
+        <label for="case-study-industry-filter" class="case-study-list__filter-label">Filter by Industry:</label>
+        <select id="case-study-industry-filter" class="case-study-list__filter-dropdown">
+          <option value="all">All Industries</option>
+          {% for industry in industries %}
+            <option value="{{ industry }}">{{ industry|replace('_', ' ')|title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    {% endif %}
+    
+    <div class="case-study-list__container">
+      {% for case in limited_case_studies %}
+        <a href="{{ '/' ~ base_slug ~ '/' ~ case.hs_path }}" 
+           class="case-study-list__item" 
+           data-industry="{{ case.summary_industry.name if case.summary_industry else 'none' }}">
+          
+        {% if case.summary_featured_image %}
+            <img class="case-study-list__item-image"
+              src="{{case.summary_featured_image.url}}"
+              alt="{{case.summary_featured_image.altText}}"
+              width="{{case.summary_featured_image.width}}"
+              height="{{case.summary_featured_image.height}}"
+              srcset="{{ resize_image_url(case.summary_featured_image.url, 0, 0, 500) }}">
+          {% endif %}
+          
+          {% if case.summary_industry %}
+            <span class="case-study-list__item-industry">{{ case.summary_industry.label }}</span>
+          {% endif %}
+          
+          {% if case.title %}
+            <h3 class="case-study-list__item-title">{{ case.title }}</h3>
+          {% endif %}
+          
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% else %}
+  <div class="case-study-list-module">
+    <p>No case studies found.</p>
+  </div>
+{% endif %}
