@@ -23,8 +23,14 @@
   
   --title-font-size: 1.25rem;
   
-  --focus-shadow-color: rgba(0, 123, 255, 0.1);
+  --focus-shadow-color: rgba(0, 0, 0, 0.8);
   --focus-shadow-width: 3px;
+  
+  /* Mosaic Grid Variables */
+  --mosaic-text-color: #fff;
+  --mosaic-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  --mosaic-gradient-start: transparent;
+  --mosaic-gradient-end: rgba(0, 0, 0, 0.7);
 }
 
 /* Responsive Variable Adjustments */
@@ -128,6 +134,41 @@
   margin: 0;
   font-size: var(--title-font-size);
   color: inherit;
+}
+
+/* Mosaic Grid Specific Styles - Overlay Text on Images */
+.mosaic-grid .case-study-list__item {
+  position: relative;
+  padding: 0;
+  min-height: 0;
+}
+
+.mosaic-grid .case-study-list__item-image {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+/* Content wrapper at bottom of mosaic items */
+.mosaic-grid .case-study-list__item-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: calc(var(--gap) * 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+  z-index: 2;
+  background: linear-gradient(to bottom, var(--mosaic-gradient-start), var(--mosaic-gradient-end));
+}
+
+.mosaic-grid .case-study-list__item-title {
+  margin: 0;
+  color: var(--mosaic-text-color);
+  text-shadow: var(--mosaic-text-shadow);
 }
 
 /* Mobile Layout Adjustments */

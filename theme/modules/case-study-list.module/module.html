@@ -60,37 +60,21 @@
 
     {# Mosaic Grid Layout #}
     {% if module.layout.layout == 'mosaic-grid' %}
-      {% set mosaic_big_element_height = module.layout.height %}
-      {% set mosaic_small_element_height = (module.layout.height / 2) - 10 %}
-      
       .mosaic-grid .case-study-list__container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: var(--gap);
       }
       
-      .mosaic-grid .case-study-list__item {
-        width: 100%;
-        height: {{mosaic_small_element_height|int}}px;
-      }
-      
       .mosaic-grid .case-study-list__item:first-child {
         grid-column: span 2;
         grid-row: span 2;
-        height: {{mosaic_big_element_height}}px;
-      }
-      
-      .mosaic-grid .case-study-list__item-image {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
       }
       
       @media (max-width: 991.98px) {
         .mosaic-grid .case-study-list__item:first-child {
           grid-column: span 1;
           grid-row: span 1;
-          height: {{mosaic_small_element_height|int}}px;
         }
       }
     {% endif %}
@@ -214,12 +198,24 @@
               srcset="{{ resize_image_url(case.summary_featured_image.url, 0, 0, 500) }}">
           {% endif %}
           
-          {% if case.summary_industry %}
-            <span class="case-study-list__item-industry">{{ case.summary_industry.label }}</span>
-          {% endif %}
-          
-          {% if case.title %}
-            <h3 class="case-study-list__item-title">{{ case.title }}</h3>
+          {% if module.layout.layout == 'mosaic-grid' %}
+            <div class="case-study-list__item-content">
+              {% if case.summary_industry %}
+                <span class="case-study-list__item-industry">{{ case.summary_industry.label }}</span>
+              {% endif %}
+              
+              {% if case.title %}
+                <h3 class="case-study-list__item-title">{{ case.title }}</h3>
+              {% endif %}
+            </div>
+          {% else %}
+            {% if case.summary_industry %}
+              <span class="case-study-list__item-industry">{{ case.summary_industry.label }}</span>
+            {% endif %}
+            
+            {% if case.title %}
+              <h3 class="case-study-list__item-title">{{ case.title }}</h3>
+            {% endif %}
           {% endif %}
           
         </a>

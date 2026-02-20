@@ -142,27 +142,6 @@
     "max" : 3,
     "type" : "number",
     "default" : 3
-  }, {
-    "id" : "case_study_list_layout_height",
-    "name" : "height",
-    "display_width" : null,
-    "label" : "Height",
-    "help_text" : "Height of the larger element",
-    "required" : false,
-    "locked" : false,
-    "visibility" : {
-      "controlling_field" : "case_study_list_layout_style",
-      "controlling_field_path" : null,
-      "controlling_value_regex" : "mosaic-grid",
-      "property" : null,
-      "operator" : "EQUAL",
-      "access" : null
-    },
-    "display" : "text",
-    "step" : 1,
-    "suffix" : "px",
-    "type" : "number",
-    "default" : 500
   } ],
   "tab" : "CONTENT",
   "expanded" : false,
@@ -170,7 +149,6 @@
   "type" : "group",
   "default" : {
     "layout" : "basic-grid",
-    "columns" : 3,
-    "height" : 500
+    "columns" : 3
   }
 } ]
