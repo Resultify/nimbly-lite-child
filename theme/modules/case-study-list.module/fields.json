@@ -21,6 +21,25 @@
     "type" : "choice",
     "default" : "standard"
   }, {
+    "id" : "case_study_list_show_filter",
+    "name" : "show_filter",
+    "display_width" : null,
+    "label" : "Show Industry Filter",
+    "help_text" : "Display dropdown to filter case studies by industry",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "case_study_list_mode",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "standard",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "toggle",
+    "type" : "boolean",
+    "default" : true
+  }, {
     "id" : "case_study_list_number_of_articles",
     "name" : "number_of_articles",
     "display_width" : null,
@@ -70,25 +89,6 @@
       "open_in_new_tab" : false,
       "no_follow" : false
     }
-  }, {
-    "id" : "case_study_list_show_filter",
-    "name" : "show_filter",
-    "display_width" : null,
-    "label" : "Show Industry Filter",
-    "help_text" : "Display dropdown to filter case studies by industry",
-    "required" : false,
-    "locked" : false,
-    "visibility" : {
-      "controlling_field" : "case_study_list_mode",
-      "controlling_field_path" : null,
-      "controlling_value_regex" : "standard",
-      "property" : null,
-      "operator" : "EQUAL",
-      "access" : null
-    },
-    "display" : "toggle",
-    "type" : "boolean",
-    "default" : true
   } ],
   "tab" : "CONTENT",
   "expanded" : false,
@@ -139,7 +139,7 @@
     "display" : "text",
     "step" : 1,
     "min" : 1,
-    "max" : 6,
+    "max" : 3,
     "type" : "number",
     "default" : 3
   }, {

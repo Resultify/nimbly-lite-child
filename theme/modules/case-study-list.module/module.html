@@ -1,5 +1,20 @@
 <!-- Case Study List Module -->
 
+{# Localization #}
+{% if html_lang == "sv" %}
+  {% set filter_label = 'Filtrera efter bransch:' %}
+  {% set all_industries = 'Alla branscher' %}
+  {% set no_cases_found = 'Inga fallstudier hittades.' %}
+{% elif html_lang == "da" %}
+  {% set filter_label = 'Filtrer efter branche:' %}
+  {% set all_industries = 'Alle brancher' %}
+  {% set no_cases_found = 'Ingen casestudier fundet.' %}
+{% else %}
+  {% set filter_label = 'Filter by Industry:' %}
+  {% set all_industries = 'All Industries' %}
+  {% set no_cases_found = 'No case studies found.' %}
+{% endif %}
+
 {#
   CSS ORGANIZATION:
   - Layout styles (container, grid, widths, responsive) = HERE in scoped CSS (dynamic module values)
@@ -15,18 +30,24 @@
       flex-direction: row;
       flex-wrap: wrap;
       gap: var(--gap);
-      justify-content: center;
+      justify-content: start;
     }
 
     {# Basic Grid Layout #}
     {% if module.layout.layout == 'basic-grid' %}
+      {% if module.layout.columns == 1 %}
+        {% set tablet_columns = 1 %}
+      {% else %}
+        {% set tablet_columns = 2 %}
+      {% endif %}
+      
       .basic-grid .case-study-list__item {
         width: calc(100% / {{module.layout.columns}} - (var(--gap) * ({{module.layout.columns}} - 1) / {{module.layout.columns}}));
       }
       
       @media (max-width: 991.98px) {
         .basic-grid .case-study-list__item {
-          width: calc(50% - (var(--gap) / 2));
+          width: calc(100% / {{tablet_columns}} - (var(--gap) * ({{tablet_columns}} - 1) / {{tablet_columns}}));
         }
       }
       
@@ -168,9 +189,9 @@
     {# Industry Filter Dropdown - only in standard mode with multiple industries #}
     {% if show_filter_dropdown %}
       <div class="case-study-list__filter-wrapper">
-        <label for="case-study-industry-filter" class="case-study-list__filter-label">Filter by Industry:</label>
+        <label for="case-study-industry-filter" class="case-study-list__filter-label">{{ filter_label }}</label>
         <select id="case-study-industry-filter" class="case-study-list__filter-dropdown">
-          <option value="all">All Industries</option>
+          <option value="all">{{ all_industries }}</option>
           {% for industry in industries %}
             <option value="{{ industry }}">{{ industry|replace('_', ' ')|title }}</option>
           {% endfor %}
@@ -207,6 +228,6 @@
   </div>
 {% else %}
   <div class="case-study-list-module">
-    <p>No case studies found.</p>
+    <p>{{ no_cases_found }}</p>
   </div>
 {% endif %}
