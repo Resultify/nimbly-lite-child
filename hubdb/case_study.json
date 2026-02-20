@@ -279,8 +279,8 @@
         "hide": 0,
         "company_logo": {
           "url": "https://8310787.fs1.hubspotusercontent-na1.net/hubfs/8310787/acme-tech_case_study.png",
-          "width": 652,
-          "height": 361,
+          "width": 400,
+          "height": 221,
           "type": "image",
           "altText": "Acme Tech Logo"
         },
@@ -350,8 +350,8 @@
         "hide": 0,
         "company_logo": {
           "url": "https://8310787.fs1.hubspotusercontent-na1.net/hubfs/8310787/healthplus_case_study.png",
-          "width": 652,
-          "height": 361,
+          "width": 400,
+          "height": 221,
           "type": "image",
           "altText": "HealthPlus Logo"
         },
@@ -421,8 +421,8 @@
         "hide": 0,
         "company_logo": {
           "url": "https://8310787.fs1.hubspotusercontent-na1.net/hubfs/8310787/global-retail_case_study.png",
-          "width": 652,
-          "height": 361,
+          "width": 400,
+          "height": 221,
           "type": "image",
           "altText": "Global Retail Co Logo"
         },

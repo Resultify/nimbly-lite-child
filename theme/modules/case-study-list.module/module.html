@@ -115,16 +115,36 @@
     {% endif %}
   {% endfor %}
   
+  {# Sort: featured items first, then by ID descending (newest first) #}
+  {% set featured_cases = [] %}
+  {% set regular_cases = [] %}
+  {% for case in visible_case_studies %}
+    {% if case.feature %}
+      {% do featured_cases.append(case) %}
+    {% else %}
+      {% do regular_cases.append(case) %}
+    {% endif %}
+  {% endfor %}
+  
+  {# Build sorted list: featured first (reversed), then regular (reversed) #}
+  {% set sorted_case_studies = [] %}
+  {% for case in (featured_cases|sort(attribute='hs_id'))|reverse %}
+    {% do sorted_case_studies.append(case) %}
+  {% endfor %}
+  {% for case in (regular_cases|sort(attribute='hs_id'))|reverse %}
+    {% do sorted_case_studies.append(case) %}
+  {% endfor %}
+  
   {# Extract unique industries for filter dropdown #}
   {% set industries = [] %}
-  {% for case in visible_case_studies %}
+  {% for case in sorted_case_studies %}
     {% if case.summary_industry and case.summary_industry.name not in industries %}
       {% do industries.append(case.summary_industry.name) %}
     {% endif %}
   {% endfor %}
   
   {# Limit to the configured number of articles #}
-  {% set limited_case_studies = visible_case_studies[:module.content.number_of_articles] %}
+  {% set limited_case_studies = sorted_case_studies[:module.content.number_of_articles] %}
   
   {# Set base slug for case study detail pages #}
   {% if module.content.detail_page.url.content_id %}
