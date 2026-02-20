@@ -5,8 +5,9 @@
   width: 100%;
   
   /* Module CSS Variables */
-  /* Note: --gap and --primary-color are inherited from global theme */
+  /* Note: --gap and --primary-color are inherited from global theme with fallbacks */
   /* Note: --case-bg-* variables have fallbacks as they may not exist on all pages */
+  --gap: var(--gap, 24px);
   --filter-gap: 12px;
   --filter-dropdown-padding: 10px 16px;
   --filter-dropdown-font-size: 1rem;

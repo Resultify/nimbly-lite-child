@@ -4,6 +4,7 @@
 }
 
 .case-study_wrp {
+  --gap: var(--gap, 24px);
   --case-bg-color: #eeeeee;
   --case-bg-border: 1px solid #ccc;
   --case-border-radius: calc(var(--gap) / 2);
