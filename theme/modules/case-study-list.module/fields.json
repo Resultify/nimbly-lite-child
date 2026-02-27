@@ -25,7 +25,7 @@
     "name" : "show_filter",
     "display_width" : null,
     "label" : "Show Industry Filter",
-    "help_text" : "Display dropdown to filter case studies by industry",
+    "help_text" : "Display filter to filter case studies by industry",
     "required" : false,
     "locked" : false,
     "visibility" : {
@@ -39,6 +39,75 @@
     "display" : "toggle",
     "type" : "boolean",
     "default" : true
+  }, {
+    "id" : "case_study_list_filter_type",
+    "name" : "filter_type",
+    "display_width" : null,
+    "label" : "Filter Display Type",
+    "help_text" : "Choose between dropdown or button list for filtering",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "case_study_list_show_filter",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "dropdown", "Dropdown" ], [ "button-list", "Button List" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "dropdown"
+  }, {
+    "id" : "case_study_list_inactive_button_style",
+    "name" : "inactive_button_style",
+    "display_width" : null,
+    "label" : "Inactive Button Style",
+    "help_text" : "Button style for inactive/unselected filter buttons",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "case_study_list_filter_type",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "button-list",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "btn-primary", "Primary" ], [ "btn-secondary1", "Secondary 1" ], [ "btn-secondary2", "Secondary 2" ], [ "btn-secondary3", "Secondary 3" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "btn-primary"
+  }, {
+    "id" : "case_study_list_active_button_style",
+    "name" : "active_button_style",
+    "display_width" : null,
+    "label" : "Active Button Style",
+    "help_text" : "Button style for active/selected filter buttons",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "case_study_list_filter_type",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "button-list",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "btn-primary", "Primary" ], [ "btn-secondary1", "Secondary 1" ], [ "btn-secondary2", "Secondary 2" ], [ "btn-secondary3", "Secondary 3" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "btn-secondary1"
   }, {
     "id" : "case_study_list_number_of_articles",
     "name" : "number_of_articles",
@@ -97,7 +166,10 @@
   "default" : {
     "mode" : "standard",
     "number_of_articles" : 6,
-    "show_filter" : true
+    "show_filter" : true,
+    "filter_type" : "dropdown",
+    "inactive_button_style" : "btn-secondary1",
+    "active_button_style" : "btn-primary"
   }
 }, {
   "id" : "case_study_list_layout",

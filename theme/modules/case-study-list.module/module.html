@@ -170,17 +170,33 @@
 {% if limited_case_studies|length > 0 %}
   <div class="case-study-list-module {{ module.layout.layout }}">
     
-    {# Industry Filter Dropdown - only in standard mode with multiple industries #}
+    {# Industry Filter - only in standard mode with multiple industries #}
     {% if show_filter_dropdown %}
-      <div class="case-study-list__filter-wrapper">
-        <label for="case-study-industry-filter" class="case-study-list__filter-label">{{ filter_label }}</label>
-        <select id="case-study-industry-filter" class="case-study-list__filter-dropdown">
-          <option value="all">{{ all_industries }}</option>
-          {% for industry in industries %}
-            <option value="{{ industry }}">{{ industry|replace('_', ' ')|title }}</option>
-          {% endfor %}
-        </select>
-      </div>
+
+      {# Dropdown Filter #}
+      {% if module.content.filter_type == 'dropdown' %}
+        <div class="case-study-list__filter-wrapper">
+          <label for="case-study-industry-filter" class="case-study-list__filter-label">{{ filter_label }}</label>
+          <select id="case-study-industry-filter" class="case-study-list__filter-dropdown">
+            <option value="all">{{ all_industries }}</option>
+            {% for industry in industries %}
+              <option value="{{ industry }}">{{ industry|replace('_', ' ')|title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+      {# Button List Filter #}
+      {% else %}
+        <div class="case-study-list__filter-wrapper">
+          <ul class="case-study-list__filter-buttons">
+            <li><button class="case-study-list__filter-btn btn-link {{ module.content.active_button_style }} btn-regular" data-filter="all">{{ all_industries }}</button></li>
+            {% for industry in industries %}
+              <li><button class="case-study-list__filter-btn btn-link {{ module.content.inactive_button_style }} btn-regular" data-filter="{{ industry }}">{{ industry|replace('_', ' ')|title }}</button></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
     {% endif %}
     
     <div class="case-study-list__container">
