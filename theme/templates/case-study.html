@@ -25,7 +25,7 @@
     {# Create settings #}
     {% set settings = {} %}
 
-    <div class="case-study-template">
+    <div class="case-study-template case-study-template__detail">
 
       <div class="case-study_wrp">
 
@@ -242,7 +242,7 @@
   {% elif dynamic_page_hubdb_table_id %}
     {% dnd_area 'dnd_area'
       label='Case study template',
-      class='case-study-template'
+      class='case-study-template case-study-template__list'
     %}
       {% dnd_section %}
         {% dnd_column
