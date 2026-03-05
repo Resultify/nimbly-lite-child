@@ -10,30 +10,18 @@ document.addEventListener('DOMContentLoaded', function () {
   let inactiveButtonStyle = ''
   let activeButtonStyle = ''
 
-  // Extract button styles from existing buttons if available
+  // Extract button styles from existing buttons
   if (filterButtons.length > 0) {
-    const firstButton = filterButtons[0]
-    // Get all button classes and extract the style classes
-    const classes = Array.from(firstButton.classList)
-    // Find the style classes (btn-primary, btn-secondary1, etc.)
-    activeButtonStyle = classes.find(c => c.match(/btn-(primary|secondary\d)/)) || 'btn-primary'
-    // Find the alternate by checking the data attribute or template values
-    // For now, we'll determine it from the button state
-  }
+    // The active button is the "all" button (first button)
+    const activeButton = filterButtons[0]
+    const activeClasses = Array.from(activeButton.classList)
+    activeButtonStyle = activeClasses.find(c => c.match(/btn-(primary|secondary\d)/)) || 'btn-primary'
 
-  // If we have buttons, extract the styles from HTML data attributes or current state
-  if (filterButtons.length > 0) {
-    // The active button is the "all" button initially
-    const allButton = filterButtons[0]
-    // Get style classes (excluding btn-link, btn-regular)
-    const allClasses = Array.from(allButton.classList)
-    activeButtonStyle = allClasses.find(c => c.match(/btn-(primary|secondary\d)/)) || 'btn-primary'
-
-    // Get inactive style from second button
+    // Get inactive style from second button if available
     if (filterButtons.length > 1) {
-      const secondButton = filterButtons[1]
-      const secondClasses = Array.from(secondButton.classList)
-      inactiveButtonStyle = secondClasses.find(c => c.match(/btn-(primary|secondary\d)/)) || 'btn-secondary1'
+      const inactiveButton = filterButtons[1]
+      const inactiveClasses = Array.from(inactiveButton.classList)
+      inactiveButtonStyle = inactiveClasses.find(c => c.match(/btn-(primary|secondary\d)/)) || 'btn-secondary1'
     }
   }
 
@@ -89,6 +77,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // If filter buttons exist, add filtering functionality
   if (filterButtons.length > 0) {
+    // Initialize: mark the first button (all) as active
+    filterButtons[0].classList.add('is-active')
+
     filterButtons.forEach(function (button) {
       button.addEventListener('click', function (e) {
         e.preventDefault()
@@ -102,8 +93,10 @@ document.addEventListener('DOMContentLoaded', function () {
           // Add appropriate style based on selection
           if (btn.getAttribute('data-filter') === selectedIndustry) {
             btn.classList.add(activeButtonStyle)
+            btn.classList.add('is-active')
           } else {
             btn.classList.add(inactiveButtonStyle)
+            btn.classList.remove('is-active')
           }
         })
 
