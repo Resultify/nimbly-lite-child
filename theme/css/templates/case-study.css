@@ -71,11 +71,20 @@
   }
 }
 
+@media (min-width: 1200px) {
+  .case-study__summary {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
 .case-study__summary-content {
   padding: var(--gap);
   justify-content: center;
   display: flex;
   flex-direction: column;
+  zoom: 0.9;
 }
 
 .case-study__summary-featured-image-wrp {
