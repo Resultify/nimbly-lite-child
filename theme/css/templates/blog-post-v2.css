@@ -1,7 +1,7 @@
 {# Blog Post Template v2 #}
 
 {# using replace_color_in_svg #}
-{% import '../../css/macros.css' %}
+{% import '../macros.css' %}
 
 {# global blog variables #}
 .blog-post-header,
