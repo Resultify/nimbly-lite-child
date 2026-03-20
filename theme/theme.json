@@ -1,6 +1,6 @@
 {
-  "label": "Nimbly Lite Grownup Child",
-  "name": "nimbly-lite-grownup-child",
+  "label": "Nimbly Lite Grownup",
+  "name": "nimbly-lite-grownup",
   "preview_path": "./templates/home.html",
   "screenshot_path": "./images/template-previews/home.jpg",
   "enable_domain_stylesheets": false,
