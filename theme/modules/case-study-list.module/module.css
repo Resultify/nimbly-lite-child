@@ -1,0 +1,202 @@
+/* Case Study List Module Styles */
+/* Layout styles are in module.html scoped CSS - this file contains only component-level styling */
+
+.case-study-list-module {
+  width: 100%;
+  
+  /* Module CSS Variables */
+  /* Note: --gap and --primary-color are inherited from global theme with fallbacks */
+  /* Note: --case-bg-* variables have fallbacks as they may not exist on all pages */
+  --gap: 24px;
+  --filter-gap: 12px;
+  --filter-dropdown-padding: 10px 16px;
+  --filter-dropdown-font-size: 1rem;
+  --filter-dropdown-border-width: 2px;
+  --filter-dropdown-min-width: 200px;
+  
+  --item-hover-transform: -4px;
+  --item-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  --industry-font-size: 0.875rem;
+  --industry-padding: 5px 10px;
+  --industry-bg: #fff;
+  --industry-color: #333;
+  
+  --title-font-size: 1.25rem;
+  
+  --focus-shadow-color: rgba(0, 0, 0, 0.8);
+  --focus-shadow-width: 3px;
+  
+  /* Mosaic Grid Variables */
+  --mosaic-text-color: #fff;
+  --mosaic-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  --mosaic-gradient-start: transparent;
+  --mosaic-gradient-end: rgba(0, 0, 0, 0.7);
+}
+
+/* Responsive Variable Adjustments */
+@media (max-width: 700px) {
+  .case-study-list-module {
+    --filter-gap: 8px;
+    --filter-dropdown-min-width: 100%;
+    --title-font-size: 1.125rem;
+  }
+}
+
+/* Filter Dropdown Styles */
+.case-study-list__filter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--filter-gap);
+  margin-bottom: calc(var(--gap) * 1.5);
+  justify-content: center;
+}
+
+.case-study-list__filter-label {
+  font-size: var(--filter-dropdown-font-size);
+  font-weight: 500;
+  color: inherit;
+  margin: 0;
+}
+
+.case-study-list__filter-dropdown {
+  padding: var(--filter-dropdown-padding);
+  font-size: var(--filter-dropdown-font-size);
+  border: var(--filter-dropdown-border-width) solid var(--case-bg-border, #ccc);
+  border-radius: var(--case-border-radius, 8px);
+  background: #fff;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-width: var(--filter-dropdown-min-width);
+}
+
+.case-study-list__filter-dropdown:hover {
+  border-color: var(--primary-color);
+}
+
+.case-study-list__filter-dropdown:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 var(--focus-shadow-width) var(--focus-shadow-color);
+}
+
+/* Filter Button List Styles */
+.case-study-list__filter-buttons {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--filter-gap);
+  padding: 0;
+  margin: 0;
+  justify-content: start;
+  width: 100%;
+}
+
+/* Case Study Item Component Styles */
+.case-study-list__item {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+  overflow: hidden;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-decoration: none;
+  padding: calc(var(--gap) * 0.5);
+  background: var(--case-bg-color, #eeeeee);
+  border-radius: var(--case-border-radius, 8px);
+  border: var(--case-bg-border, 1px solid #ccc);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+.case-study-list__item--hidden {
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
+.case-study-list__item:hover {
+  transform: translateY(var(--item-hover-transform));
+  box-shadow: var(--item-hover-shadow);
+}
+
+.case-study-list__item-image {
+  margin: calc(var(--gap) * -0.5);
+  margin-bottom: 0;
+  width: calc(100% + var(--gap));
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 4 / 3;
+}
+
+.case-study-list__item-industry {
+  align-self: flex-start;
+  display: flex;
+  font-size: var(--industry-font-size);
+  background: var(--industry-bg);
+  color: var(--industry-color);
+  justify-content: center;
+  line-height: normal;
+  padding: var(--industry-padding);
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.case-study-list__item-title {
+  margin: 0;
+  font-size: var(--title-font-size);
+  color: inherit;
+}
+
+/* Mosaic Grid Specific Styles - Overlay Text on Images */
+.mosaic-grid .case-study-list__item {
+  position: relative;
+  padding: 0;
+  min-height: 0;
+}
+
+.mosaic-grid .case-study-list__item-image {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+/* Content wrapper at bottom of mosaic items */
+.mosaic-grid .case-study-list__item-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: calc(var(--gap) * 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 0.5);
+  z-index: 2;
+  background: linear-gradient(to bottom, var(--mosaic-gradient-start), var(--mosaic-gradient-end));
+}
+
+.mosaic-grid .case-study-list__item-title {
+  margin: 0;
+  color: var(--mosaic-text-color);
+  text-shadow: var(--mosaic-text-shadow);
+}
+
+/* Mobile Layout Adjustments */
+@media (max-width: 700px) {
+  .case-study-list__filter-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .case-study-list__filter-label {
+    text-align: center;
+  }
+}
+
+.case-study-list-module__message {
+  text-align: center;
+}
