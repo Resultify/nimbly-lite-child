@@ -176,8 +176,8 @@
       {# Dropdown Filter #}
       {% if module.content.filter_type == 'dropdown' %}
         <div class="case-study-list__filter-wrapper">
-          <label class="case-study-list__filter-label">{{ filter_label }}</label>
-          <select class="case-study-list__filter-dropdown">
+          <label class="case-study-list__filter-label" for="case-study-industry-filter">{{ filter_label }}</label>
+          <select id="case-study-industry-filter" class="case-study-list__filter-dropdown">
             <option value="all">{{ all_industries }}</option>
             {% for industry in industries %}
               <option value="{{ industry }}">{{ industry|replace('_', ' ')|title }}</option>
