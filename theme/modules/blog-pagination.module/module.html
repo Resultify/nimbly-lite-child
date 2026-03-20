@@ -1,0 +1,158 @@
+{% import '../macros/link.html' as link_macros %}
+
+{# module scope css #}
+<style>
+  {% scope_css %}
+
+    .pagination-module {
+      {{module.style.general.spacing.spacing.css}}
+    }
+    .pagination-module_internal-wrp {
+      justify-content: {{module.style.general.alignment.alignment.horizontal_align}};
+    }
+
+    .pagination-module__link {
+      {% if module.style.link.background.color.css %}
+        background-color: {{module.style.link.background.color.css}};
+      {% endif %}
+      {{module.style.link.spacing.spacing.css}}
+    }
+
+    @media (max-width: 575.98px) {
+      .pagination-module__link .g-module-macros-link__text {
+        display: none;
+      }
+    }
+
+    .pagination-module__page-link {
+      {% if module.style.secondary_link.background.color.css %}
+        background-color: {{module.style.secondary_link.background.color.css}};
+      {% endif %}
+      {{module.style.secondary_link.spacing.spacing.css}}
+    }
+
+    .pagination-module__page-link--active .g-module-macros-link {
+      {% if module.style.secondary_link.active.background.css %}
+        background-color: {{module.style.secondary_link.active.background.css}};
+      {% endif %}
+      {{module.style.secondary_link.active.border.css}}
+      {% if module.style.secondary_link.active.border_radius %}
+        border-radius: {{module.style.secondary_link.active.border_radius ~ 'px'}};
+      {% endif %}
+    }
+
+  {% end_scope_css %}
+</style>
+
+{%- macro pagination_link(url, text, icon_name, icon_unicode, icon_position) -%}
+  {
+    "text":"{{text}}","accessible_link":true,
+    "link":{"url":{"href":"{{url}}","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+    "icon":{
+      "icon":{"name":"{{icon_name}}","unicode":"{{icon_unicode}}","type":"SOLID","icon_set":"fontawesome-5.14.0"},
+      "icon_position":"{{icon_position}}"
+    }
+  }
+{%- endmacro -%}
+
+<div class="pagination-module_wrp">
+  <div class="pagination-module pagination-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
+
+    {% if contents.total_page_count > 1 %}
+      <nav aria-label="Pagination navigation" class="pagination-module_internal-wrp">
+        {% set page_list = [-2, -1, 0, 1, 2] %}
+        {% if contents.total_page_count - current_page_num == 1 %}
+            {% set offset = -1 %}
+        {% elif contents.total_page_count - current_page_num == 0 %}
+          {% set offset = -2 %}
+        {% elif current_page_num == 2 %}
+          {% set offset = 1 %}
+        {% elif current_page_num == 1 %}
+          {% set offset = 2 %}
+        {% else %}
+          {% set offset = 0 %}
+        {% endif %}
+
+        {# First page link #}
+        {% if module.show_first_and_last_links == true %}
+          <span class="pagination-module__link pagination-module__link--first-page {{'pagination-module__link--disabled' if !last_page_num}}">
+            {% if last_page_num %}
+              {% if current_page_num == 2 %}
+                {% set first_page_url = group.absolute_url %}
+              {% else %}
+                {% set first_page_url = blog_page_link(1) %}
+              {% endif %}
+            {% else %}
+              {% set first_page_url = '#' %}
+            {% endif %}
+            {% set first_page_link = pagination_link(first_page_url, module.first_label, 'Angle Double Left', 'f100', 'left')|fromjson %}
+            {{link_macros.render_link_tmpl(first_page_link, module.style.link, module)}}
+          </span>
+        {% endif %}
+
+        {# Previous page link #}
+        {% if module.show_previous_and_next_links == true %}
+          <span class="pagination-module__link pagination-module__link--previous-page {{'pagination-module__link--disabled' if !last_page_num}}">
+            {% if last_page_num %}
+              {% if current_page_num == 2 %}
+                {% set previous_page_url = group.absolute_url %}
+              {% else %}
+                {% set previous_page_url = blog_page_link(last_page_num) %}
+              {% endif %}
+            {% else %}
+              {% set previous_page_url = '#' %}
+            {% endif %}
+            {% set previous_page_link = pagination_link(previous_page_url, module.previous_label, 'angle-left', 'f104', 'left')|fromjson %}
+            {{link_macros.render_link_tmpl(previous_page_link, module.style.link, module)}}
+          </span>
+        {% endif %}
+
+        {# Numbered pagination #}
+        {% for page in page_list %}
+          {% set this_page = current_page_num + page + offset %}
+          {% if this_page > 0 and this_page <= contents.total_page_count %}
+            <span class="pagination-module__page-link pagination-module__page-link--number {{'pagination-module__page-link--active' if this_page == current_page_num}}">
+              {% set page_link_aria = 'aria-label="Go to Page {{this_page}}"' ~ 'aria-current="true"' if this_page == current_page_num %}
+              {% set page_link_url = "{% if this_page == 1 %}{{group.absolute_url}}{% else %}{{blog_page_link(this_page)}}#{% endif %}" %}
+              {% set page_link = pagination_link(page_link_url, this_page)|fromjson %}
+              {{link_macros.render_link_tmpl(page_link, module.style.secondary_link, module,
+                {
+                  id: 'secondary',
+                  data_attrs: page_link_aria
+                }
+              )}}
+            </span>
+          {% endif %}
+        {% endfor %}
+
+        {# Next page link #}
+        {% if module.show_previous_and_next_links == true %}
+          <span class="pagination-module__link pagination-module__link--next-page {{'pagination-module__link--disabled' if !next_page_num}}">
+            {% if next_page_num %}
+              {% set next_page_url = blog_page_link(current_page_num + 1) %}
+            {% else %}
+              {% set next_page_url = '#' %}
+            {% endif %}
+            {% set next_page_link = pagination_link(next_page_url, module.next_label, 'angle-right', 'f105', 'right')|fromjson %}
+            {{link_macros.render_link_tmpl(next_page_link, module.style.link, module)}}
+          </span>
+        {% endif %}
+
+        {# Last page link #}
+        {% if module.show_first_and_last_links == true %}
+          <span class="pagination-module__link pagination-module__link--last-page {{'pagination-module__link--disabled' if !next_page_num}}">
+            {% if next_page_num %}
+                {% set last_page_url = blog_page_link(contents.total_page_count) %}
+            {% else %}
+              {% set last_page_url = '#' %}
+            {% endif %}
+            {% set last_page_link = pagination_link(last_page_url, module.last_label, 'Angle Double Right', 'f101', 'right')|fromjson %}
+            {{link_macros.render_link_tmpl(last_page_link, module.style.link, module)}}
+          </span>
+        {% endif %}
+
+      </nav>
+    {% endif %}
+
+  </div>
+</div>

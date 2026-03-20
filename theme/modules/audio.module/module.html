@@ -1,0 +1,29 @@
+{% import '../macros/audio.html' as audio_macros %}
+
+{# module scope css #}
+<style>
+  {% scope_css %}
+
+    .audio-module {
+      text-align: {{module.style.alignment.alignment.horizontal_align}};
+      {% if module.style.background.color.css %}
+        background-color: {{module.style.background.color.css}};
+      {% endif %}
+      {{module.style.spacing.spacing.css}}
+    }
+
+  {% end_scope_css %}
+</style>
+
+
+{% if module.audio_source.href %}
+  <div class="audio-module_wrp">
+    <div class="audio-module audio-module--{{module_id}} {{module.style.presets.custom_preset}}">
+
+      {{audio_macros.render_audio_tmpl(module, module.style)}}
+
+    </div>
+  </div>
+{% else %}
+  {% editor_placeholder %}
+{% endif %}

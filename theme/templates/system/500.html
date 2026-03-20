@@ -1,0 +1,27 @@
+<!--
+  templateType: error_page
+  isAvailableForNewContent: true
+  label: 500 error
+  screenshotPath: ../../images/template-previews/500.jpg
+-->
+
+{% set template_css = '../../css/templates/system/error-pages.css' %}
+{% extends '../layouts/base.html' %}
+{% set pageTitle = "Error 500 | Server error" %}
+
+{% block body %}
+
+  <div class="error-page_wrp system-page_wrp">
+    <div class="error-page error500 system-page" data-error="500">
+
+      {% module_block module 'richtext' path="../../modules/richtext"  %}
+        {% module_attribute "rich_text" %}
+          <h1 style="text-align: center;">Something isn't quite right</h1>
+          <div style="text-align: center;">Sorry, an internal server error occurred. But have no fear, we're on the case!</div>
+        {% end_module_attribute %}
+      {% end_module_block %}
+
+    </div>
+  </div>
+
+{% endblock body %}

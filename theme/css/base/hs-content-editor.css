@@ -1,0 +1,58 @@
+.hs-inline-edit .hs_cos_wrapper:not(.icon),
+.hs-inline-edit .hs_cos_wrapper:not(.g-module-macros-text), {
+  display: inline;
+}
+
+.hs-inline-edit .filter-content .filter-content__item,
+.hs-inline-edit .filter-content .filter-content__sizer {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  width: auto !important;
+}
+
+.hs-inline-edit .filter-content > .row-fluid > .dnd-column > .dnd-row > .row-fluid > .dnd-column {
+  height: auto !important;
+  padding-right: 3px !important;
+}
+
+/* inline editor tooltip bt hover */
+.hs-inline-edit .editor-tooltip:after {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1;
+  content: attr(data-field-name);
+  position: absolute;
+  top: calc(100% + 8px);
+  transform: translateY(-50%);
+  left: 0;
+  padding: 4px 8px;
+  background: #fbf196;
+  color: #000;
+  border-radius: 4px;
+  display: none;
+  margin-left: 6px;
+  text-align: center;
+  z-index: 1200;
+}
+
+.hs-inline-edit .editor-tooltip:hover:after {
+  display: block;
+}
+
+.hs-inline-edit .editor-tooltip {
+  position: relative;
+}
+
+.hs-inline-edit .editor-tooltip:not(button,.btn-link,input[type="button"],input[type="submit"]):hover,
+.hs-inline-edit .editor-tooltip:hover p {
+  background-color: rgb(0 0 0 / 15%);
+}
+
+.hs-inline-edit .editor-tooltip.editor-hs-tooltip:after {
+  content: attr(data-hs-cos-type);
+}
+
+.hs-inline-edit .editor-tooltip.editor-nimbly-tooltip:after {
+  content: attr(data-field-name);
+}

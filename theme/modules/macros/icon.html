@@ -1,0 +1,143 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{# macro attributes scheme #}
+{# render_icon_tmpl(data, style, global_data, options) #}
+
+{# 1 #}
+{# data - [object: module.icon] #}
+{# 'macro main data' #}
+{# {% set icon_data = {
+  "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+  "accessibility_options":{"purpose":"decorative"}
+}%} #}
+
+{# 2 #}
+{# style [object: module.style.icon] #}
+{# macro main style #}
+
+{# 3 #}
+{# global_data [object: module] #}
+{# global data [module], usualy for general style setting [style tab -> general panel] #}
+
+{# 4 #}
+{# options [object: {key: value}] #}
+{# add additional options for the icon #}
+{# Supported features #}
+{# {% set options = {
+  id:'secondary-icon',
+  class:['additional-class-1','additional-class-2']
+  no_wrapper:true|false
+}%} #}
+{# id - macro id to add a unique class if we have two or more same macros in one module as a components #}
+
+{# 5 #}
+{# inline svg #}
+
+{# example #}
+{# {{render_icon_tmpl(module.icon, module.style.icon, module, options, inline_svg)}} #}
+{# ========================= #}
+
+
+{%- macro render_icon_tmpl(data, style, global_data, options, inline_svg) -%}
+  {%- if data.icon.name -%}
+
+    {%- if options.id -%}
+      {%- set icon_class = 'icon-style--' ~ options.id -%}
+    {%- else -%}
+      {%- set icon_class = 'icon-style' -%}
+    {%- endif -%}
+    {%- if options.class -%}
+      {% set class = options.class|join(' ') %}
+    {%- endif -%}
+
+    {# module scope css #}
+    <style>
+      {%- scope_css -%}
+
+        {% set icon_spacing = style.custom_theme_overrides.spacing.css %}
+        {% set icon_background = style.custom_theme_overrides.background.css %}
+        {% set icon_fill_color = style.custom_theme_overrides.color.css %}
+        {% set icon_size = style.custom_theme_overrides.size %}
+        {% set icon_border_radius = style.custom_theme_overrides.border_radius %}
+        {% set icon_border = style.custom_theme_overrides.border.css %}
+
+        {% if global_data.style.general.custom_theme_overrides.color.css %}
+          .g-module-macros-heading__icon svg {
+            fill: {{global_data.style.general.custom_theme_overrides.color.css}};
+          }
+        {% endif %}
+
+        {% if icon_spacing or icon_background or icon_border_radius or icon_border %}
+          .{{icon_class}} {
+            {% if icon_background %}
+              background-color: {{icon_background}};
+            {% endif %}
+            {% if icon_border_radius %}
+              border-radius: {{icon_border_radius ~ '%'}};
+            {% endif %}
+            {{icon_border}}
+            {{icon_spacing}}
+          }
+        {% endif %}
+
+        {% if icon_fill_color or icon_size %}
+          .{{icon_class}} svg {
+            {% if icon_fill_color %}
+              fill: {{icon_fill_color}};
+            {% endif %}
+            {% if icon_size %}
+              height: {{icon_size ~ 'px'}};
+              width: {{icon_size ~ 'px'}};
+            {% endif %}
+          }
+        {% endif %}
+
+      {%- end_scope_css -%}
+    </style>
+
+    {%- if style.presets.icon_size == 'small' -%}
+      {%- set icon_size = 'icon--small' -%}
+    {%- elif style.presets.icon_size == 'large' -%}
+      {%- set icon_size = 'icon--large' -%}
+    {%- elif style.presets.icon_size == 'regular' -%}
+      {%- set icon_size = 'icon--regular' -%}
+    {%- endif -%}
+
+    {%- if style.presets.icon_color == 'primary' -%}
+      {%- set icon_color = 'icon--primary' -%}
+    {%- elif style.presets.icon_color == 'secondary' -%}
+      {%- set icon_color = 'icon--secondary' -%}
+    {%- endif -%}
+
+    {%- if style.presets.icon_shape == 'square' -%}
+      {%- set icon_shape = 'icon--square' -%}
+    {%- elif style.presets.icon_shape == 'circle' -%}
+      {%- set icon_shape = 'icon--circle' -%}
+    {%- endif -%}
+
+    {%- set no_wrapper = false -%}
+    {%- if options.no_wrapper == true -%}
+      {%- set no_wrapper = true -%}
+    {%- endif -%}
+
+    {%- set extra_classes = 'g-module-macros-icon icon ' ~ icon_class ~ ' ' ~ icon_size ~ ' ' ~ icon_color ~ ' ' ~ icon_shape ~ ' ' ~ class ~ ' editor-tooltip editor-hs-tooltip'  -%}
+
+    {%- if inline_svg == true -%}
+      <span class="{{extra_classes}}" name="{{data.accessibility_options.title}}" data-hs-cos-general-type="widget" data-hs-cos-type="icon">{{inline_svg}}</span>
+    {%- else -%}
+      {%- icon
+        extra_classes={{extra_classes}}
+        name={{data.icon.name}}
+        purpose={{data.accessibility_options.purpose}}
+        style={{data.icon.type}}
+        title={{data.accessibility_options.title}}
+        unicode={{data.icon.unicode}}
+        icon_set={{data.icon.icon_set}}
+        no_wrapper={{no_wrapper}}
+      %}
+    {%- endif -%}
+  {%- endif -%}
+{%- endmacro -%}

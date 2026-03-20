@@ -14,5 +14,5 @@
   "host_template_types" : [ "ANY" ],
   "module_id" : 96451595972,
   "label" : "Blog recent by tag",
-  "is_available_for_new_content" : false
+  "is_available_for_new_content" : true
 }

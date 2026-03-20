@@ -1,0 +1,247 @@
+{
+  "cover.choices.bottom" : {
+    "message" : "Cover bottom element",
+    "description" : "",
+    "placeholders" : null
+  },
+  "cover.choices.top" : {
+    "message" : "Cover top element",
+    "description" : "",
+    "placeholders" : null
+  },
+  "cover.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "cover.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "cover.label" : {
+    "message" : "Cover",
+    "description" : "",
+    "placeholders" : null
+  },
+  "cover.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.choices.custom" : {
+    "message" : "Custom",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.choices.slanted_line_left_cover_bottom" : {
+    "message" : "Slanted line (left) - cover bottom elem",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.choices.slanted_line_left_cover_top" : {
+    "message" : "Slanted line (left) - cover top elem",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.choices.slanted_line_right_cover_bottom" : {
+    "message" : "Slanted line (right) - cover bottom elem",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.choices.slanted_line_right_cover_top" : {
+    "message" : "Slanted line (right) - cover top elem",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.choices.wave_left_cover_bottom" : {
+    "message" : "Wave (left) - cover bottom elem",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.choices.wave_left_cover_top" : {
+    "message" : "Wave (left) - cover top elem",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.choices.wave_right_cover_bottom" : {
+    "message" : "Wave (right) - cover bottom elem",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.choices.wave_right_cover_top" : {
+    "message" : "Wave (right) - cover top elem",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.label" : {
+    "message" : "Divider",
+    "description" : "",
+    "placeholders" : null
+  },
+  "divider.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "svg-divider",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.label" : {
+    "message" : "Style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.choices.preset1" : {
+    "message" : "Preset 1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.choices.preset2" : {
+    "message" : "Preset 2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.choices.preset3" : {
+    "message" : "Preset 3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.help_text" : {
+    "message" : "Custom presets to globally restyle module",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.label" : {
+    "message" : "Custom preset",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.label" : {
+    "message" : "Presets",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "svg.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "svg.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "svg.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "svg.label" : {
+    "message" : "Inline SVG",
+    "description" : "",
+    "placeholders" : null
+  },
+  "svg.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "svg.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  }
+}

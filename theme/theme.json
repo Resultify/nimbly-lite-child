@@ -1,11 +1,10 @@
 {
-  "label": "Nimbly Lite Child",
-  "name": "nimbly-lite-child",
+  "label": "Nimbly Lite Grownup Child",
+  "name": "nimbly-lite-grownup-child",
   "preview_path": "./templates/home.html",
   "screenshot_path": "./images/template-previews/home.jpg",
   "enable_domain_stylesheets": false,
   "is_available_for_new_content": true,
-  "extends": "/nimbly-lite",
   "responsive_breakpoints": [
     {
       "name": "mobile",

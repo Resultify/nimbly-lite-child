@@ -1,0 +1,80 @@
+{# module scope css #}
+<style>
+  {% scope_css %}
+    {% if module.cover == 'bottom' and module.divider == 'custom' %}
+      .svg-divider-module {
+        top: 0;
+      }
+    {% endif %}
+
+    {% if module.divider == 'slanted_line_left_cover_bottom' or module.divider == 'slanted_line_right_cover_bottom' or module.divider == 'wave_left_cover_bottom' or module.divider == 'wave_right_cover_bottom' %}
+      .svg-divider-module {
+        top: 0;
+      }
+    {% endif %}
+
+    {% if module.style.background.color.css %}
+      .svg-divider-module svg {
+        color: {{module.style.background.color.css}};
+        fill: {{module.style.background.color.css}};
+      }
+    {% endif %}
+  {% end_scope_css %}
+</style>
+
+{%- macro render_slanted_line_left_cover_top() -%}
+<svg viewBox="0 0 1920 100" xmlns="http://www.w3.org/2000/svg"><path d="m.604394 100 1919.265606-.0717c.06-.5082.13-8.5131.13-9.4696l-1919.335175-90.45737893c-.080735-.00409012-.162036.00133966-.239222.01597673-.077185.014637-.148731.0381922-.210516.0693092s-.11259.069181-.1494895.112001c-.0368993.042819-.05916399.089549-.06551218.137497v99.299195c-.00133372.0471.01297988.0939.04212328.1378.0291434.0438.0725454.0838.1277274.1176.055183.0339.121064.061.193881.0797.072817.0188.151143.0288.230505.0296z"/></svg>
+{%- endmacro -%}
+{%- macro render_slanted_line_left_cover_bottom() -%}
+<svg viewBox="0 0 1920 100" xmlns="http://www.w3.org/2000/svg"><path d="m.604394 0 1919.265606.0717456c.06.5081534.13 8.5130644.13 9.4695944l-1919.335175 90.45736c-.080735.0043-.162036-.0014-.239222-.016-.077185-.0146-.148731-.0382-.210516-.0693s-.11259-.0692-.1494895-.112c-.0368993-.0428-.05916399-.0896-.06551218-.1375v-99.299225c-.00133372-.047106.01297988-.093903.04212328-.137726.0291434-.043822.0725454-.08381.1277274-.117675.055183-.0338645.121064-.0609417.193881-.0796909.072817-.0187493.151143-.02880453.230505-.0295831z"/></svg>
+{%- endmacro -%}
+{%- macro render_slanted_line_right_cover_top() -%}
+<svg viewBox="0 0 1920 100" xmlns="http://www.w3.org/2000/svg"><path d="m1919.4 100-1919.269002-.0717c-.0604312-.5082-.13093882-8.5131-.13093882-9.4696l1919.33994082-90.45737893c.08-.00409012.16.00133966.23.01597673.08.014637.15.0381922.21.0693092.07.031117.12.069181.15.112001.04.042819.06.089549.07.137497v99.299195c0 .0471-.01.0939-.04.1378-.03.0438-.07.0838-.13.1176-.06.0339-.12.061-.19.0797-.08.0188-.15.0288-.23.0296z"/></svg>
+{%- endmacro -%}
+{%- macro render_slanted_line_right_cover_bottom() -%}
+<svg viewBox="0 0 1920 100" xmlns="http://www.w3.org/2000/svg"><path d="m1919.4 0-1919.269002.0717456c-.0604312.5081534-.13093882 8.5130644-.13093882 9.4695944l1919.33994082 90.45736c.08.0043.16-.0014.23-.016.08-.0146.15-.0382.21-.0693.07-.0311.12-.0692.15-.112.04-.0428.06-.0896.07-.1375v-99.299225c0-.047106-.01-.093903-.04-.137726-.03-.043822-.07-.08381-.13-.117675-.06-.0338645-.12-.0609417-.19-.0796909-.08-.0187493-.15-.02880453-.23-.0295831z"/></svg>
+{%- endmacro -%}
+
+{%- macro render_wave_left_cover_top() -%}
+<svg viewBox="0 0 1920 120" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1920 120H0V43.9434C194.959 13.9753 379.215 -0.664744 552.767 0.0231545C845.48 1.18362 1111.06 78.1814 1375.29 85.4258C1548.27 90.1696 1729.84 73.0482 1920 34.0615V120Z"/></svg>
+{%- endmacro -%}
+{%- macro render_wave_left_cover_bottom() -%}
+<svg viewBox="0 0 1920 120" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m1920 0h-1920v76.0566c194.959 29.9684 379.215 44.6084 552.767 43.9204 292.713-1.161 558.293-78.1584 822.523-85.4028 172.98-4.7438 354.55 12.3776 544.71 51.3643z" fill-rule="evenodd"/></svg>
+{%- endmacro -%}
+{%- macro render_wave_right_cover_top() -%}
+<svg viewBox="0 0 1920 120" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 120H1920V43.9434C1725.04 13.9753 1540.79 -0.664744 1367.23 0.0231545C1074.52 1.18362 808.942 78.1814 544.712 85.4258C371.733 90.1696 190.162 73.0482 0 34.0615V120Z"/></svg>
+{%- endmacro -%}
+{%- macro render_wave_right_cover_bottom() -%}
+<svg viewBox="0 0 1920 120" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m0 0h1920v76.0566c-194.96 29.9684-379.21 44.6084-552.77 43.9204-292.71-1.161-558.288-78.1584-822.518-85.4028-172.979-4.7438-354.55 12.3776-544.712 51.3643z" fill-rule="evenodd"/></svg>
+{%- endmacro -%}
+
+{%- macro render_divider() -%}
+  {% if module.divider == 'custom' %}
+    {{module.svg}}
+  {% elif module.divider == 'slanted_line_left_cover_top' %}
+    {{render_slanted_line_left_cover_top()}}
+  {% elif module.divider == 'slanted_line_left_cover_bottom' %}
+    {{render_slanted_line_left_cover_bottom()}}
+  {% elif module.divider == 'slanted_line_right_cover_top' %}
+    {{render_slanted_line_right_cover_top()}}
+  {% elif module.divider == 'slanted_line_right_cover_bottom' %}
+    {{render_slanted_line_right_cover_bottom()}}
+  {% elif module.divider == 'wave_left_cover_top' %}
+    {{render_wave_left_cover_top()}}
+  {% elif module.divider == 'wave_left_cover_bottom' %}
+    {{render_wave_left_cover_bottom()}}
+  {% elif module.divider == 'wave_right_cover_top' %}
+    {{render_wave_right_cover_top()}}
+  {% elif module.divider == 'wave_right_cover_bottom' %}
+    {{render_wave_right_cover_bottom()}}
+  {% endif %}
+{%- endmacro -%}
+
+
+<div class="svg-divider-module-container">
+  <div class="svg-divider-module_wrp">
+    <div class="svg-divider-module svg-divider-module--{{module_id}} {{module.style.presets.custom_preset}}">
+      {{render_divider()}}
+    </div>
+  </div>
+</div>

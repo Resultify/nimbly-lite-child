@@ -1,0 +1,43 @@
+{# module global css #}
+{% require_css %}
+  <style>
+    .divider-module {
+      display: flex;
+    }
+  </style>
+{% end_require_css %}
+
+{# module scope css #}
+<style>
+  {% scope_css %}
+
+    .divider-module {
+      {% if module.style.background.color.css %}
+        background-color: {{module.style.background.color.css}};
+      {% endif %}
+      justify-content: {{module.style.alignment.alignment.horizontal_align}};
+      {{module.style.spacing.spacing.css}}
+    }
+
+    {% if  module.style.size.width or module.style.size.height or module.style.color.color.css %}
+      .divider-module__line {
+        {% if module.style.size.width %}
+          width: {{module.style.size.width ~ '%'}};
+        {% endif %}
+        {% if module.style.size.height %}
+          border-top-width: {{module.style.size.height ~ 'px'}};
+        {% endif %}
+        {% if module.style.color.color.css %}
+          border-top-color: {{module.style.color.color.css}};
+        {% endif %}
+      }
+    {% endif %}
+
+  {% end_scope_css %}
+</style>
+
+<div class="divider-module_wrp">
+  <div class="divider-module divider-module--{{module_id}} {{module.style.presets.custom_preset}}">
+    <hr class="divider-module__line">
+  </div>
+</div>

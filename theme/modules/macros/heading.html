@@ -1,0 +1,202 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{# macro attributes scheme #}
+{# render_heading_tmpl(data, style, global_data, options) #}
+
+{# 1 #}
+{# data - [object: module.heading] #}
+{# 'macro main data' #}
+{# {% set heading_data = {
+  "display":"","heading_tag":"h2","text":"",
+  "link":{"link":{"url":{"href":"","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},"accessible_link":true},
+  "icon":{
+    "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+    "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+  }
+}%} #}
+
+{# 2 #}
+{# style [object: module.style.heading] #}
+{# macro main style #}
+
+{# 3 #}
+{# global_data [object: module] #}
+{# global data [module], usualy for general style setting [style tab -> general panel] #}
+
+{# 4 #}
+{# options [object: {key: value}] #}
+{# add additional options for the heading #}
+{# Supported features #}
+{# {% set options = {
+  id:'secondary-heading',
+  stretched_link:true|false,
+  data_attrs:['data-filter="test"', 'data-bs-toggle="super-dropdown"', 'role="ROLE_NAME"'],
+  link_data_attrs:['data-filter="test"', 'data-bs-toggle="super-dropdown"', 'role="ROLE_NAME"'],
+  class:['additional-class-1','additional-class-2'],
+  tooltip: 'Subheading'
+}%} #}
+{# id - macro id to add a unique class if we have two or more same macros in one module as a components #}
+{# stretched_link - enable/disable stretched_link option #}
+
+
+{# example #}
+{# {{render_heading_tmpl(module.heading, module.style.heading, module, options)}} #}
+{# ========================= #}
+
+
+{% import './target-blank.html' as target_blank_macros %}
+{% import './icon.html' as icon_macros %}
+{% import '../../css/macros/macros.css' %}
+
+{%- macro render_heading_tmpl(data, style, global_data, options) -%}
+  {%- if data.text -%}
+
+    {%- if options.id -%}
+      {%- set heading_class = 'heading-style--' ~ options.id -%}
+    {%- else -%}
+      {%- set heading_class = 'heading-style' -%}
+    {%- endif -%}
+    {%- if options.data_attrs -%}
+      {% set data_attrs = options.data_attrs|join(' ') %}
+    {%- endif -%}
+    {%- if options.link_data_attrs -%}
+      {% set link_data_attrs = options.link_data_attrs|join(' ') %}
+    {%- endif -%}
+    {%- if options.class -%}
+      {% set class = options.class|join(' ') %}
+    {%- endif -%}
+
+    {# module scope css #}<style>
+      {%- scope_css -%}
+        {% if data.icon.icon.name %}
+          .{{heading_class}} {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.3ch;
+            vertical-align: middle;
+          }
+          .{{heading_class}} .icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+          }
+          .{{heading_class}} svg {
+            height: 1.5ch;
+            width: 1.5ch;
+            flex-shrink: 0;
+            fill: currentColor;
+          }
+        {% endif %}
+
+        {% if style.custom_theme_overrides.spacing.css %}
+          .{{heading_class}} {
+            {{style.custom_theme_overrides.spacing.css}}
+          }
+        {% endif %}
+
+        {% if global_data.style.general.custom_theme_overrides.color.css %}
+          .{{heading_class}} {
+            color: {{global_data.style.general.custom_theme_overrides.color.css}};
+          }
+          .{{heading_class}} .g-module-macros-heading__link {
+            --color: {{global_data.style.general.custom_theme_overrides.color.css}};
+          }
+          .{{heading_class}} .g-module-macros-heading__link:hover {
+            --hover-color: {{rgb(global_data.style.general.custom_theme_overrides.color.color, global_data.style.general.custom_theme_overrides.color.opacity, +20, -15)}};
+          }
+        {% endif %}
+
+        {% if style.custom_theme_overrides.color.css %}
+          .{{heading_class}} {
+            color: {{style.custom_theme_overrides.color.css}};
+          }
+          .{{heading_class}} .g-module-macros-heading__link {
+            --color: {{style.custom_theme_overrides.color.css}};
+          }
+          .{{heading_class}} .g-module-macros-heading__link:hover {
+            --hover-color: {{rgb(style.custom_theme_overrides.color.color, style.custom_theme_overrides.color.opacity, +20, -15)}};
+          }
+        {% endif %}
+
+        {% if options.stretched_link %}
+          .{{heading_class}} .g-module-macros-heading__link.stretched-link {
+            position: static;
+          }
+        {% endif %}
+
+      {%- end_scope_css -%}</style>
+
+    {%- if data.display -%}
+      {%- set heading_style = data.display -%}
+    {%- else -%}
+      {%- set heading_style = data.heading_tag -%}
+    {%- endif -%}
+
+    {%- if data.link.link.url.href -%}
+      {%- set href = data.link.link.url.href -%}
+    {%- endif -%}
+
+    {%- if data.link.link.url.type is equalto 'EMAIL_ADDRESS' -%}
+      {%- set href = 'mailto:' + href -%}
+    {%- endif -%}
+
+    {%- if data.link.link.rel -%}
+      {%- set rel = 'rel="{{data.link.link.rel}}"' -%}
+    {%- endif -%}
+
+    {%- if data.link.link.open_in_new_tab -%}
+      {%- set open_in_new_tab_class = 'target-blank-link'  -%}
+    {%- endif -%}
+
+    {%- if options.stretched_link -%}
+      {%- set stretched_link_class = 'stretched-link' -%}
+    {%- endif -%}
+
+
+    {%- macro render_heading() -%}
+      {%- if data.icon.icon.name -%}
+        {%- if data.icon.icon_position == 'left' -%}
+          {{icon_macros.render_icon_tmpl(data.icon, style.icon, global_data,
+            {
+              id: 'heading'
+            }
+          )}}
+        {%- endif -%}
+      {%- endif -%}
+      {{data.text}}
+      {%- if data.icon.icon.name -%}
+        {%- if data.icon.icon_position == 'right' -%}
+          {{icon_macros.render_icon_tmpl(data.icon, style.icon, global_data,
+            {
+              id: 'heading'
+            }
+          )}}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endmacro -%}
+
+
+      <{{data.heading_tag}} {% if data_attrs %} {{data_attrs}} {% endif %} data-field-name={{options.tooltip || 'Heading'}}
+        class="{{heading_style}} g-module-macros-heading {{heading_class}} {{class}} editor-tooltip editor-nimbly-tooltip">
+        {%- if href -%}
+          <a href="{{href}}" class="{{open_in_new_tab_class}} {{stretched_link_class}} heading-link g-module-macros-heading__link"
+          {% if data.link.link.open_in_new_tab %} target="_blank" {% endif %}
+          {% if link_data_attrs %} {{link_data_attrs}} {% endif %}
+          {{rel}}>{{render_heading()}}
+            {%- if data.link.link.open_in_new_tab -%}
+              {%- if data.link.accessible_link -%}
+                {{target_blank_macros.render_target_blank_tmpl()}}
+              {%- endif -%}
+            {%- endif -%}
+          </a>
+        {%- else -%}
+          {{render_heading()}}
+        {%- endif -%}
+      </{{data.heading_tag}}>
+
+  {%- endif -%}
+{%- endmacro -%}

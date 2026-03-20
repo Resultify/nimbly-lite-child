@@ -1,0 +1,11 @@
+[ {
+  "id" : "boolean",
+  "name" : "boolean",
+  "display_width" : null,
+  "label" : "",
+  "required" : false,
+  "locked" : false,
+  "display" : "toggle",
+  "type" : "boolean",
+  "default" : false
+} ]

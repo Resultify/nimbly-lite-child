@@ -1,0 +1,93 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{# macro attributes scheme #}
+{# render_richtext_tmpl(data, style, global_data, options) #}
+
+{# 1 #}
+{# data - [object: module.richtext] #}
+{# 'macro main data' #}
+{# {% set richtext_data = {"rich_text":"","truncate":""}%} #}
+
+{# 2 #}
+{# style [object: module.style.richtext] #}
+{# macro main style #}
+
+{# 3 #}
+{# global_data [object: module] #}
+{# global data [module], usualy for general style setting [style tab -> general panel] #}
+
+{# 4 #}
+{# options [object: {key: value}] #}
+{# add additional options for the rechtext #}
+{# Supported features #}
+{# {% set options = {
+  id:'secondary-rechtext',
+  class:['additional-class-1','additional-class-2'],
+  no_wrapper:true|false
+}%} #}
+{# id - macro id to add a unique class if we have two or more same macros in one module as a components #}
+
+
+{# example #}
+{# {{render_richtext_tmpl(module.richtext, module.style.richtext, module, options)}} #}
+{# ========================= #}
+
+
+{% import '../../css/macros/macros.css' %}
+
+{%- macro render_richtext_tmpl(data, style, global_data, options) -%}
+  {%- if data.rich_text -%}
+
+    {%- if options.id -%}
+      {%- set richtext_class = 'richtext-style--' ~ options.id -%}
+    {%- else -%}
+      {%- set richtext_class = 'richtext-style' -%}
+    {%- endif -%}
+    {%- if options.class -%}
+      {% set class = options.class|join(' ') %}
+    {%- endif -%}
+
+    {# module scope css #}<style>
+      {%- scope_css -%}
+        {% if global_data.style.general.custom_theme_overrides.color.css %}
+          .{{richtext_class}},
+          .{{richtext_class}} a,
+          .{{richtext_class}} blockquote,
+          .{{richtext_class}} h1,
+          .{{richtext_class}} h2,
+          .{{richtext_class}} h3,
+          .{{richtext_class}} h4,
+          .{{richtext_class}} h5,
+          .{{richtext_class}} h6 {
+            color: {{global_data.style.general.custom_theme_overrides.color.css}};
+          }
+          .{{richtext_class}} a:hover {
+            color: {{rgb(global_data.style.general.custom_theme_overrides.color.color, global_data.style.general.custom_theme_overrides.color.opacity, +30, -20)}};
+          }
+        {% endif %}
+      {%- end_scope_css -%}
+    </style>
+
+    {%- set no_wrapper = false -%}
+    {%- if options.no_wrapper == true -%}
+      {%- set no_wrapper = true -%}
+    {%- endif -%}
+
+    {%- set extra_classes = 'g-module-macros-richtext ' ~ richtext_class ~ ' ' ~ class ~ ' editor-tooltip editor-hs-tooltip' -%}
+
+    {%- if data.truncate -%}
+      {%- rich_text 'richtext'
+        extra_classes={{extra_classes}}
+        html={{data.rich_text|truncatehtml(data.truncate, "..." , false)}} -%}
+    {%- else -%}
+      {%- rich_text 'richtext'
+        extra_classes={{extra_classes}}
+        html={{data.rich_text}}
+        no_wrapper={{no_wrapper}} -%}
+    {%- endif -%}
+
+  {%- endif -%}
+{%- endmacro -%}

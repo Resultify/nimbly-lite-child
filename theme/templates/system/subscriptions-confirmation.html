@@ -1,0 +1,21 @@
+<!--
+  templateType: email_subscriptions_confirmation_page
+  isAvailableForNewContent: true
+  label: Email subscriptions confirmation
+  screenshotPath: ../../images/template-previews/subscriptions-confirmation.jpg
+-->
+{% set template_css = "../../css/templates/system/subscriptions-confirmation.css" %}
+{% extends "../layouts/base.html" %}
+{% set pageTitle = "Confirm subscriptions" %}
+{% set form_class = 'subscriptions-confirmation-module' ~ ' ' ~ 'form-default' ~ ' ' ~ theme.forms.button.presets.style ~ ' ' ~ theme.forms.button.presets.size %}
+
+{% block body %}
+  <div class="subscriptions-confirmation_wrp system-page_wrp">
+    <div class="subscriptions-confirmation system-page">
+      {% module "subscriptions_confirmation"
+        extra_classes={{form_class}}
+        path="@hubspot/email_subscriptions_confirmation"
+      %}
+    </div>
+  </div>
+{% endblock body %}

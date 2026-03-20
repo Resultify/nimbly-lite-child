@@ -1,0 +1,145 @@
+/* Grid / DND area */
+{% if theme.layout.maximum_content_width == 'custom' %}
+  {% set container_width = theme.layout.custom_maximum_content_width ~ 'px' %}
+{% else %}
+  {% set container_width = theme.layout.maximum_content_width ~ 'px' %}
+{% endif %}
+{% set vertical_spacing = theme.layout.vertical_spacing %}
+
+.dnd-section > .row-fluid {
+  max-width: {{container_width}};
+}
+
+.dnd-section {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.dnd-section > .row-fluid,
+.dnd-row > .row-fluid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.dnd-section > .row-fluid > *,
+.dnd-row > .row-fluid > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+.dnd-module.span12 {
+  padding: 0;
+}
+
+.custom-section {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: {{container_width}};
+}
+
+.blog-post-section {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: {{container_width}};
+}
+
+.system-page {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: {{container_width}};
+    flex-direction: column;
+    padding: 0 12px;
+}
+
+@media (min-width: 992px) {
+  .dnd-column.span1 {
+    flex: 0 0 auto;
+    width: 8.33333333%; /* stylelint-disable-line */
+  }
+
+  .dnd-column.span2 {
+    flex: 0 0 auto;
+    width: 16.66666667%; /* stylelint-disable-line */
+  }
+
+  .dnd-column.span3 {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+
+  .dnd-column.span4 {
+    flex: 0 0 auto;
+    width: 33.33333333%; /* stylelint-disable-line */
+  }
+
+  .dnd-column.span5 {
+    flex: 0 0 auto;
+    width: 41.66666667%; /* stylelint-disable-line */
+  }
+
+  .dnd-column.span6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+
+  .dnd-column.span7 {
+    flex: 0 0 auto;
+    width: 58.33333333%; /* stylelint-disable-line */
+  }
+
+  .dnd-column.span8 {
+    flex: 0 0 auto;
+    width: 66.66666667%; /* stylelint-disable-line */
+  }
+
+  .dnd-column.span9 {
+    flex: 0 0 auto;
+    width: 75%;
+  }
+
+  .dnd-column.span10 {
+    flex: 0 0 auto;
+    width: 83.33333333%; /* stylelint-disable-line */
+  }
+
+  .dnd-column.span11 {
+    flex: 0 0 auto;
+    width: 91.66666667%; /* stylelint-disable-line */
+  }
+
+  .dnd-column.span12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+/* vertical spacing setup */
+.dnd-section {
+  padding: {{vertical_spacing ~ 'px'}} 0;
+}
+
+@media (max-width: 991.98px) {
+  .dnd-section {
+    padding: {{vertical_spacing / 1.5 ~ 'px'}} 0;
+  }
+  .dnd-section > .row-fluid > .dnd-column:not(.span12),
+  .dnd-row > .row-fluid > .dnd-column:not(.span12) {
+    padding-top: {{vertical_spacing / 4 ~ 'px'}};
+    padding-bottom: {{vertical_spacing / 4 ~ 'px'}};
+  }
+  .dnd-section > .row-fluid > .dnd-column:first-of-type:not(.span12),
+  .dnd-row > .row-fluid > .dnd-column:first-of-type:not(.span12) {
+    padding-top: 0;
+  }
+  .dnd-section > .row-fluid > .dnd-column:last-of-type:not(.span12),
+  .dnd-row > .row-fluid > .dnd-column:last-of-type:not(.span12) {
+    padding-bottom: 0;
+  }
+}
