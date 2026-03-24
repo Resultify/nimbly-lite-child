@@ -1,0 +1,26 @@
+{% import '../../macros/macros.css' %}
+
+{% set link_font = theme.typography.link.font %}
+{% if theme.typography.link.hover.color.color %}
+  {% set link_hover_color = theme.typography.link.hover.color.color %}
+  {% set link_hover_opacity = theme.typography.link.hover.color.opacity %}
+{% else %}
+  {% set link_hover_color = color_variant(theme.typography.link.font.color, +30) %}
+  {% set link_hover_opacity = 90 %}
+{% endif %}
+
+:where(a:not(.btn-link)) {
+  {% if link_font.font == null %}
+    font-family: var(--system-fonts);
+  {% endif %}
+  {% if link_font.style %}
+    {{link_font.style}};
+  {% endif %}
+  font-size: {{link_font.size ~ 'px'}};
+  --color: {{link_font.color}};
+}
+
+:where(a:not(.btn-link):hover) {
+  --hover-color: {{rgb(link_hover_color, link_hover_opacity)}};
+  text-decoration: {{theme.typography.link.hover.underline}};
+}
