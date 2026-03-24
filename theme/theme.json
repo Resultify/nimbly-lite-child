@@ -15,11 +15,14 @@
     }
   ],
   "hidden_modules": [
+    "@hubspot/rich_text",
     "@hubspot/button",
     "@hubspot/form",
+    "@hubspot/linked_image",
     "@hubspot/icon",
     "@hubspot/divider",
     "@hubspot/horizontal_spacer",
+    "@hubspot/text",
     "@hubspot/page_footer",
     "@hubspot/section_header",
     "@hubspot/header",
