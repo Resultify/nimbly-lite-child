@@ -1,0 +1,13 @@
+{
+  "content_tags" : [ {
+    "name" : "INTERACTION",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "content_types" : [ "SITE_PAGE" ],
+  "categories" : [ "FUNCTIONALITY" ],
+  "icon" : "fontawesome-5.14.0:Briefcase",
+  "host_template_types" : [ "ANY" ],
+  "label" : "Case Study List",
+  "is_available_for_new_content" : true
+}
