@@ -1,0 +1,232 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{# macro attributes scheme #}
+{# render_btn_tmpl(data, style, global_data, options) #}
+
+{# 1 #}
+{# data - [object: module.button] #}
+{# 'macro main data' #}
+{# {% set button_data = {
+  "text":"","accessible_link_label":"","accessible_link":true,
+  "link":{"url":{"href":"#","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+  "icon":{
+    "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0","svg":""},
+    "icon_position":"left","accessibility_options":{"purpose":"decorative"}
+  }
+}%} #}
+
+{# 2 #}
+{# style [object: module.style.button] #}
+{# macro main style #}
+
+{# 3 #}
+{# global_data [object: module] #}
+{# global data [module], usualy for general style setting [style tab -> general panel] #}
+
+{# 4 #}
+{# options [object: {key: value}] #}
+{# add additional options for the button #}
+{# Supported features #}
+{# {% set options = {
+  id:'secondary-button',
+  stretched_link:true|false,
+  is_btn:true|false,
+  data_attrs:['data-filter="test"', 'data-bs-toggle="super-dropdown"', 'role="ROLE_NAME"'],
+  class:['additional-class-1','additional-class-2'],
+  tooltip: 'Secondary button'
+}%} #}
+{# id - macro id to add a unique class if we have two or more same macros in one module as a components #}
+{# stretched_link - enable/disable stretched_link option #}
+{# is_btn - button tag or link with 'a' tag #}
+
+{# example #}
+{# {{render_btn_tmpl(module.button, module.style.button, module, options)}} #}
+{# ========================= #}
+
+
+{% import './target-blank.html' as target_blank_macros %}
+{% import './icon.html' as icon_macros %}
+{% import '../../css/macros/macros.css' %}
+
+{%- macro render_btn_tmpl(data, style, global_data, options) -%}
+
+  {%- if data.text -%}
+
+    {%- if options.id -%}
+      {% set btn_class = 'btn-style--' ~ options.id -%}
+    {%- else -%}
+      {%- set btn_class = 'btn-style' -%}
+    {%- endif -%}
+    {%- if options.is_btn -%}
+      {% set btn_tag = 'button' -%}
+    {%- else -%}
+      {%- set btn_tag = 'a' -%}
+    {%- endif -%}
+    {%- if options.data_attrs -%}
+      {% set data_attrs = options.data_attrs|join(' ') %}
+    {%- endif -%}
+    {%- if options.class -%}
+      {% set class = options.class|join(' ') %}
+    {%- endif -%}
+    {% set btn_border = style.custom_theme_overrides.border %}
+
+
+    <style>
+      {%- scope_css -%}
+
+        {% set btn_spacing = style.custom_theme_overrides.spacing.css %}
+        {% set btn_border = style.custom_theme_overrides.border %}
+        {% set btn_border_radius = style.custom_theme_overrides.border_radius %}
+
+        {% set btn_background = style.custom_theme_overrides.background %}
+        {% set btn_text_font = style.custom_theme_overrides.font %}
+
+        {% if style.custom_theme_overrides.hover.color.color %}
+          {% set btn_hover_color = style.custom_theme_overrides.hover.color.color %}
+        {% else %}
+          {% set btn_hover_color = color_variant(btn_text_font.color, -20) %}
+        {% endif %}
+
+        {% if style.custom_theme_overrides.hover.background.color %}
+          {% set btn_hover_background_color = style.custom_theme_overrides.hover.background.color %}
+          {% set btn_hover_background_opacity = style.custom_theme_overrides.hover.background.opacity %}
+        {% else %}
+          {% set btn_hover_background_color = color_variant(btn_background.color, -25) %}
+          {% set btn_hover_background_opacity = btn_background.opacity %}
+        {% endif %}
+
+        {% if style.custom_theme_overrides.hover.border_color.color %}
+          {% set btn_hover_border_color = style.custom_theme_overrides.hover.border_color.color %}
+          {% set btn_hover_border_opacity = style.custom_theme_overrides.hover.border_color.opacity %}
+        {% else %}
+          {% set btn_hover_border_color = color_variant(btn_border.top.color, -25) %}
+          {% set btn_hover_border_opacity = btn_border.top.opacity %}
+        {% endif %}
+
+        {% if btn_border_radius or btn_text_font.color or btn_text_font.size or btn_background.css or btn_text_font.style or btn_border.css or btn_spacing %}
+          .{{btn_class}} {
+            {% if btn_border_radius != null %}
+              --border-radius: {{btn_border_radius ~ 'px'}};
+            {% endif %}
+            {% if btn_text_font.color %}
+              --color: {{btn_text_font.color}};
+            {% endif %}
+            {% if btn_text_font.size %}
+              font-size: {{btn_text_font.size ~ 'px'}};
+            {% endif %}
+            {% if btn_background.css %}
+              --bg: {{btn_background.css}};
+            {% endif %}
+            {% if btn_text_font.style %}
+              {{btn_text_font.style}};
+            {% endif %}
+            {{btn_border.css}}
+            {{btn_spacing}}
+          }
+        {% endif %}
+
+        {% if btn_hover_color or btn_hover_background_color or btn_hover_border_color %}
+          .{{btn_class}}:hover {
+            {% if btn_hover_color %}
+              --hover-color: {{btn_hover_color}};
+            {% endif %}
+            {% if btn_hover_background_color %}
+              --hover-bg: {{rgb(btn_hover_background_color, btn_hover_background_opacity)}};
+            {% endif %}
+            {% if btn_hover_border_color %}
+              --hover-border: {{rgb(btn_hover_border_color, btn_hover_border_opacity)}};
+            {% endif %}
+          }
+        {% endif %}
+
+        {% if options.stretched_link %}
+          .{{btn_class}}.stretched-link {
+            position: static;
+          }
+        {% endif %}
+
+      {%- end_scope_css -%}
+    </style>
+    {%- set button_style = style.presets.style -%}
+    {%- set button_size = style.presets.size -%}
+
+    {%- unless button_size -%}
+      {%- set button_size = 'btn-regular' -%}
+    {%- endunless -%}
+
+    {%- unless button_style -%}
+      {%- set button_style = 'btn-primary' -%}
+    {%- endunless -%}
+
+    {%- if style.alignment.full_width -%}
+      {%- set full_width = 'btn-w100' -%}
+    {%- endif -%}
+
+    {%- if data.link.url.href -%}
+      {%- set href = data.link.url.href -%}
+    {%- endif -%}
+
+    {%- if data.link.url.type is equalto 'EMAIL_ADDRESS' -%}
+      {%- set href = 'mailto:' + href -%}
+    {%- endif -%}
+
+    {%- if data.link.rel -%}
+      {%- set rel = 'rel="{{data.link.rel}}"' -%}
+    {%- endif -%}
+
+    {%- if options.stretched_link -%}
+      {%- set stretched_link_class = 'stretched-link' -%}
+    {%- endif -%}
+
+    {%- if data.link.open_in_new_tab -%}
+      {%- set open_in_new_tab_class = 'target-blank-link' -%}
+    {%- endif -%}
+
+
+    <{{btn_tag}}
+      {% if options.is_btn == null || options.is_btn == false %} href="{{href}}" {% endif %}
+      data-field-name={{options.tooltip || 'Button'}}
+      {{'aria-label="{{data.accessible_link_label}}"' if data.accessible_link_label}}
+      class="g-module-macros-btn {{btn_class}} editor-tooltip editor-nimbly-tooltip
+        {{' btn-link ' if options.is_btn == null || options.is_btn == false}}
+        {{button_style}}
+        {{button_size}}
+        {{full_width}}
+        {{open_in_new_tab_class}}
+        {{stretched_link_class}}
+        {{class}}"
+      {% if data.link.open_in_new_tab %} target="_blank" {% endif %}
+      {% if data_attrs %} {{data_attrs}} {% endif %}
+      {{rel}}>
+
+        {%- if data.icon.icon.name -%}
+          {%- if data.icon.icon_position == 'left' -%}
+            {{icon_macros.render_icon_tmpl(data.icon, style.icon, global_data,
+              {
+                id: options.id is truthy ? "button-" ~ options.id : "button"
+              }, data.icon.svg
+            )}}
+          {%- endif -%}
+        {%- endif -%}
+        {{data.text}}
+        {%- if data.icon.icon.name -%}
+          {%- if data.icon.icon_position == 'right' -%}
+            {{icon_macros.render_icon_tmpl(data.icon, style.icon, global_data,
+              {
+                id: options.id is truthy ? "button-" ~ options.id : "button"
+              }, data.icon.svg
+             )}}
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if data.link.open_in_new_tab -%}
+          {%- if data.accessible_link -%}
+            {{target_blank_macros.render_target_blank_tmpl()}}
+          {%- endif -%}
+        {%- endif -%}
+      </{{btn_tag}}>
+  {%- endif -%}
+{%- endmacro -%}

@@ -1,0 +1,21 @@
+<!--
+  templateType: email_subscription_preferences_page
+  isAvailableForNewContent: true
+  label: Email subscription preferences
+  screenshotPath: ../../images/template-previews/subscription-preferences.jpg
+-->
+{% set template_css = "../../css/templates/system/subscription-preferences.css" %}
+{% extends "../layouts/base.html" %}
+{% set pageTitle = "Subscription preferences" %}
+{% set form_class = 'subscription-preferences-module' ~ ' ' ~ 'form-default' ~ ' ' ~ theme.forms.button.presets.style ~ ' ' ~ theme.forms.button.presets.size %}
+
+{% block body %}
+  <div class="subscription-preferences_wrp system-page_wrp">
+    <div class="subscription-preferences system-page">
+      {% module "subscription_preferences"
+        extra_classes={{form_class}}
+        path="@hubspot/email_subscriptions"
+      %}
+    </div>
+  </div>
+{% endblock body %}

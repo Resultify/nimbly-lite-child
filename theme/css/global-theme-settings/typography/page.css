@@ -1,0 +1,27 @@
+{% set main_text_font = theme.typography.text.font %}
+
+body {
+  overflow-wrap: break-word;
+  color: {{main_text_font.color}};
+  background-color: {{theme.typography.text.background.color}};
+  line-height: 1.5;
+  font-size: {{main_text_font.size ~ main_text_font.size_unit}};
+
+  {% if main_text_font.font == null %}
+    font-family: var(--system-fonts);
+  {% else %}
+    {% if main_text_font.fallback %}
+      font-family: {{main_text_font.font ~ ',' ~ main_text_font.fallback}};
+    {% else %}
+      font-family: {{main_text_font.font}};
+    {% endif %}
+  {% endif %}
+  {% if main_text_font.style %}
+    {{main_text_font.style}};
+  {% endif %}
+}
+
+/* Automatically add a bold variant of the global external font if defined to add the ability to use a "bold" text style in the RTE module. */
+.secondary-global-font {
+  {{theme.typography.text.secondary_global_font.style}};
+}

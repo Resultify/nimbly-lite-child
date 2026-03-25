@@ -1,0 +1,180 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{# macro attributes scheme #}
+{# render_link_tmpl(data, style, global_data, options) #}
+
+{# 1 #}
+{# data - [object: module.link] #}
+{# 'macro main data' #}
+{# {% set link_data = {
+  "text":"","accessible_link":true,
+  "link":{"url":{"href":"#","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""},
+  "icon":{
+    "icon":{"name":"","unicode":"","type":"REGULAR","icon_set":"fontawesome-5.14.0"},
+    "icon_position":"left"
+  }
+}%} #}
+
+{# 2 #}
+{# style [object: module.style.link] #}
+{# macro main style #}
+
+{# 3 #}
+{# global_data [object: module] #}
+{# global data [module], usualy for general style setting [style tab -> general panel] #}
+
+{# 4 #}
+{# options [object: {key: value}] #}
+{# add additional options for the link #}
+{# Supported features #}
+{# {% set options = {
+  id:'secondary-link',
+  stretched_link:true|false,
+  data_attrs:['data-filter="test"', 'data-bs-toggle="super-dropdown"', 'role="ROLE_NAME"'],
+  class:['additional-class-1','additional-class-2'],
+  tooltip: 'Secondary link'
+}%} #}
+{# id - macro id to add a unique class if we have two or more same macros in one module as a components #}
+{# stretched_link - enable/disable stretched_link option #}
+
+{# example #}
+{# {{render_link_tmpl(module.link, module.style.link, module, options)}} #}
+{# ========================= #}
+
+
+{% import './target-blank.html' as target_blank_macros %}
+{% import './icon.html' as icon_macros %}
+{% import '../../css/macros/macros.css' %}
+
+{%- macro render_link_tmpl(data, style, global_data, options) -%}
+  {%- if data.text -%}
+
+    {%- if options.id -%}
+      {%- set link_class = 'link-style--' ~ options.id -%}
+    {%- else -%}
+      {%- set link_class = 'link-style' -%}
+    {%- endif -%}
+    {%- if options.data_attrs -%}
+      {% set data_attrs = options.data_attrs|join(' ') %}
+    {%- endif -%}
+    {%- if options.class -%}
+      {% set class = options.class|join(' ') %}
+    {%- endif -%}
+
+    <style>
+      {%- scope_css -%}
+
+        {% set link_font = style.custom_theme_overrides.font %}
+        {% if style.custom_theme_overrides.hover.color.color %}
+          {% set link_hover_color = style.custom_theme_overrides.hover.color.color %}
+          {% set link_hover_opacity = style.custom_theme_overrides.hover.color.opacity %}
+        {% else %}
+          {% set link_hover_color = color_variant(link_font.color, +30) %}
+          {% set link_hover_opacity = 90 %}
+        {% endif %}
+
+        {% if global_data.style.general.custom_theme_overrides.color.css %}
+          .{{link_class}} {
+            --color: {{global_data.style.general.custom_theme_overrides.color.css}};
+          }
+          .{{link_class}}:hover {
+            --hover-color: {{rgb(global_data.style.general.custom_theme_overrides.color.color, global_data.style.general.custom_theme_overrides.color.opacity, +30, -20)}};
+          }
+        {% endif %}
+
+        {% if link_font.style or link_font.size or link_font.color or style.custom_theme_overrides.underline %}
+          .{{link_class}} {
+            {% if link_font.style %}
+              {{link_font.style}};
+            {% endif %}
+            {% if link_font.size %}
+              font-size: {{link_font.size ~ 'px'}};
+            {% endif %}
+            {% if link_font.color %}
+              --color: {{link_font.color}};
+            {% endif %}
+            {% if style.custom_theme_overrides.underline %}
+              text-decoration: {{style.custom_theme_overrides.underline}};
+            {% endif %}
+          }
+        {% endif %}
+
+        {% if link_hover_color or style.custom_theme_overrides.hover.underline %}
+          .{{link_class}}:hover {
+            {% if link_hover_color %}
+              --hover-color: {{rgb(link_hover_color, link_hover_opacity)}};
+            {% endif %}
+            {% if style.custom_theme_overrides.hover.underline %}
+              text-decoration: {{style.custom_theme_overrides.hover.underline}};
+            {% endif %}
+          }
+        {% endif %}
+
+        {% if options.stretched_link %}
+          .{{link_class}}.stretched-link {
+            position: static;
+          }
+        {% endif %}
+
+      {%- end_scope_css -%}
+    </style>
+
+    {%- if data.link.url.href -%}
+      {% set href = data.link.url.href %}
+    {%- endif -%}
+    {%- if data.link.url.type is equalto 'EMAIL_ADDRESS' -%}
+      {% set href = 'mailto:' + href %}
+    {%- endif -%}
+    {%- if data.link.rel -%}
+      {% set rel = 'rel="{{data.link.rel}}"' %}
+    {%- endif -%}
+    {%- if data.link.open_in_new_tab -%}
+      {% set open_in_new_tab_class = "target-blank-link" %}
+    {%- endif- %}
+    {%- if options.stretched_link -%}
+      {% set stretched_link_class = 'stretched-link' %}
+    {%- endif -%}
+
+    {%- if data.text -%}
+      <a href="{{href}}"
+      class="g-module-macros-link {{link_class}} editor-tooltip editor-nimbly-tooltip
+      {{open_in_new_tab_class}}
+      {{stretched_link_class}}
+      {{class}}"
+      data-field-name={{options.tooltip || 'Link'}}
+      {% if data.link.open_in_new_tab %} target="_blank" {% endif %}
+      {% if data_attrs %} {{data_attrs}} {% endif %}
+      {{rel}}>
+
+        {%- if data.icon.icon.name -%}
+          {%- if data.icon.icon_position == 'left' -%}
+            {{icon_macros.render_icon_tmpl(data.icon, style.icon, global_data,
+              {
+                id: 'link'
+              }
+            )}}
+          {%- endif -%}
+        {%- endif -%}
+        <span class="g-module-macros-link__text">{{data.text}}</span>
+        {%- if data.icon.icon.name %}
+          {%- if data.icon.icon_position == 'right' -%}
+            {{icon_macros.render_icon_tmpl(data.icon, style.icon, global_data,
+              {
+                id: 'link'
+              }
+            )}}
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if data.link.open_in_new_tab -%}
+          {%- if data.accessible_link -%}
+            {{target_blank_macros.render_target_blank_tmpl()}}
+          {%- endif -%}
+        {%- endif -%}
+      </a>
+    {%- endif -%}
+  {%- endif -%}
+{%- endmacro -%}

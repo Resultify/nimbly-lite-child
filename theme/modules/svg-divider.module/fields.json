@@ -1,0 +1,136 @@
+[ {
+  "id" : "ea5d7916-ee8c-e68a-2bb7-368f18852e6f",
+  "name" : "style",
+  "display_width" : null,
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "86239cba-61a8-7ca2-3a2a-3136d2ed376b",
+    "name" : "presets",
+    "display_width" : null,
+    "label" : "Presets",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "a236874f-9df1-7011-1d79-505966862ea0",
+      "name" : "custom_preset",
+      "display_width" : null,
+      "label" : "Custom preset",
+      "help_text" : "Custom presets to globally restyle module",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "preset1", "Preset 1" ], [ "preset2", "Preset 2" ], [ "preset3", "Preset 3" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice"
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "default" : { }
+  }, {
+    "id" : "d6ee3629-222b-39cb-7d80-a48762d358a9",
+    "name" : "background",
+    "display_width" : null,
+    "label" : "Background",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "cd10b959-eaaf-1354-93fc-5b9e0c5d9dcb",
+      "name" : "color",
+      "display_width" : null,
+      "label" : "Color",
+      "help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "default" : {
+      "color" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "default" : {
+    "presets" : { },
+    "background" : {
+      "color" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }
+  }
+}, {
+  "id" : "89df90fb-b82b-dee8-8cd9-039621166247",
+  "name" : "divider",
+  "display_width" : null,
+  "label" : "Divider",
+  "required" : true,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "slanted_line_left_cover_top", "Slanted line (left) - cover top elem" ], [ "slanted_line_left_cover_bottom", "Slanted line (left) - cover bottom elem" ], [ "slanted_line_right_cover_top", "Slanted line (right) - cover top elem" ], [ "slanted_line_right_cover_bottom", "Slanted line (right) - cover bottom elem" ], [ "wave_left_cover_top", "Wave (left) - cover top elem" ], [ "wave_left_cover_bottom", "Wave (left) - cover bottom elem" ], [ "wave_right_cover_top", "Wave (right) - cover top elem" ], [ "wave_right_cover_bottom", "Wave (right) - cover bottom elem" ], [ "custom", "Custom" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "default" : "wave_right_cover_top"
+}, {
+  "id" : "c65b2ef2-41ba-fb8b-4fa8-3d6ec7ec94a1",
+  "name" : "svg",
+  "display_width" : null,
+  "label" : "Inline SVG",
+  "help_text" : "",
+  "required" : false,
+  "locked" : false,
+  "validation_regex" : "",
+  "visibility" : {
+    "controlling_field" : "89df90fb-b82b-dee8-8cd9-039621166247",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "custom",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "allow_new_line" : true,
+  "show_emoji_picker" : false,
+  "type" : "text"
+}, {
+  "id" : "288da807-d329-ebcb-608a-c40eee182c0c",
+  "name" : "cover",
+  "display_width" : null,
+  "label" : "Cover",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "89df90fb-b82b-dee8-8cd9-039621166247",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "custom",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "display" : "select",
+  "choices" : [ [ "top", "Cover top element" ], [ "bottom", "Cover bottom element" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "default" : "top"
+} ]

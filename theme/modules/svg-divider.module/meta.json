@@ -1,0 +1,15 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "master_language" : "en",
+  "placeholder" : {
+    "show_module_icon" : true,
+    "title" : "SVG Divider",
+    "description" : "SVG divider"
+  },
+  "icon" : "../../images/module-icons/svg-divider.svg",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 53809647824,
+  "label" : "Svg divider",
+  "is_available_for_new_content" : true
+}

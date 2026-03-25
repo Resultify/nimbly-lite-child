@@ -1,0 +1,334 @@
+{% import '../macros/image.html' as image_macros %}
+{% import '../macros/figure.html' as figure_macros %}
+{% import '../macros/icon.html' as icon_macros %}
+{% import '../macros/heading.html' as heading_macros %}
+{% import '../macros/text.html' as text_macros %}
+{% import '../macros/richtext.html' as richtext_macros %}
+{% import '../macros/link.html' as link_macros %}
+{% import '../macros/button.html' as button_macros %}
+{% import '../../css/macros/macros.css' %}
+
+{# #1 part filter content #}
+{# only if using filter content option #}
+{# parse filter content categories #}
+{% if module.filter_content.filter %}
+  {% set filter_content = module.filter_content.filter %}
+  {% set data_filter = {class:""} %}
+  {% if module.style.filter_content.width %}
+    {% set item_width = module.style.filter_content.width %}
+  {% endif %}
+  {% for filter in module.filter_content.filter %}
+      {% do data_filter.update({class: data_filter.class ~ ' ' ~ filter.columns.filter|lower|trim|replace(" ","")}) %}
+  {% endfor %}
+  {% set filter_content_classes = 'filter-content__item {{data_filter.class}}' %}
+  <div class="filter-content__item--sizer"></div>
+{% endif %}
+{# ================================= #}
+
+{# module global css #}
+{% require_css %}
+  <style>
+    .template-module {
+      position: relative;
+    }
+    .template-module--container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 10px;
+    }
+    .template-module--item {
+      flex-basis: 100%;
+    }
+    .template-module--item-inline {
+      flex-basis: auto;
+      align-self: center;
+    }
+  </style>
+{% end_require_css %}
+
+{# module scope css #}
+<style>
+  {% scope_css %}
+    .template-module {
+      {% if module.style.general.alignment.alignment.horizontal_align %}
+        text-align: {{module.style.general.alignment.alignment.horizontal_align}};
+      {% endif %}
+      {% if module.style.general.border.border_radius != null %}
+        border-radius: {{module.style.general.border.border_radius ~ 'px'}};
+      {% endif %}
+      {% if module.style.general.background.color.css %}
+        background-color: {{module.style.general.background.color.css}};
+      {% endif %}
+      {{module.style.general.border.border.css}}
+      {{module.style.general.spacing.spacing.css}}
+    }
+
+    .template-module--container {
+      justify-content: {{module.style.general.alignment.inline_alignment}};
+    }
+
+    .template-module__image {
+      text-align: {{module.style.image.alignment.alignment.horizontal_align}};
+      {% if module.style.image.background.color.css %}
+        background-color: {{module.style.image.background.color.css}};
+      {% endif %}
+      {{module.style.image.spacing.spacing.css}}
+    }
+
+    .template-module__figure {
+      text-align: {{module.style.figure.alignment.alignment.horizontal_align}};
+      {% if module.style.figure.background.color.css %}
+        background-color: {{module.style.figure.background.color.css}};
+      {% endif %}
+      {{module.style.figure.spacing.spacing.css}}
+    }
+
+    .template-module__icon {
+      text-align: {{module.style.icon.alignment.alignment.horizontal_align}};
+      {% if module.style.icon.background.color.css %}
+        background-color: {{module.style.icon.background.color.css}};
+      {% endif %}
+      {{module.style.icon.spacing.spacing.css}}
+    }
+
+    .template-module__heading {
+      {% if module.style.heading.background.color.css %}
+        background-color: {{module.style.heading.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.heading.alignment.alignment.horizontal_align}};
+      {{module.style.heading.spacing.spacing.css}}
+    }
+
+    .template-module__subheading {
+      {% if module.style.subheading.background.color.css %}
+        background-color: {{module.style.subheading.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.subheading.alignment.alignment.horizontal_align}};
+      {{module.style.subheading.spacing.spacing.css}}
+    }
+
+    .template-module__text {
+      {% if module.style.text.background.color.css %}
+        background-color: {{module.style.text.background.color.css}};
+      {% endif %}
+      text-align: {{module.style.text.alignment.alignment.horizontal_align}};
+      {{module.style.text.spacing.spacing.css}}
+    }
+
+    .template-module__richtext {
+      {% if module.style.richtext.background.color.css %}
+        background-color: {{module.style.richtext.background.color.css}};
+      {% endif %}
+      {{module.style.richtext.spacing.spacing.css}}
+    }
+
+    .template-module__link {
+      text-align: {{module.style.link.alignment.alignment.horizontal_align}};
+      {% if module.style.link.background.color.css %}
+        background-color: {{module.style.link.background.color.css}};
+      {% endif %}
+      {{module.style.link.spacing.spacing.css}}
+    }
+
+    .template-module__secondary-link {
+      text-align: {{module.style.secondary_link.alignment.alignment.horizontal_align}};
+      {% if module.style.secondary_link.background.color.css %}
+        background-color: {{module.style.secondary_link.background.color.css}};
+      {% endif %}
+      {{module.style.secondary_link.spacing.spacing.css}}
+    }
+
+    .template-module__button {
+      text-align: {{module.style.button.alignment.alignment.horizontal_align}};
+      {% if module.style.button.background.color.css %}
+        background-color: {{module.style.button.background.color.css}};
+      {% endif %}
+      {{module.style.button.spacing.spacing.css}}
+    }
+
+    .template-module__secondary-button {
+      text-align: {{module.style.secondary_button.alignment.alignment.horizontal_align}};
+      {% if module.style.secondary_button.background.color.css %}
+        background-color: {{module.style.secondary_button.background.color.css}};
+      {% endif %}
+      {{module.style.secondary_button.spacing.spacing.css}}
+    }
+
+    {# #2 part filter content #}
+    {# only if using filter content option #}
+    {% if module.filter_content.filter %}
+      {% if item_width %}
+        .filter-content__item,
+        .filter-content__item--sizer {
+          width: {{item_width ~ '%'}};
+        }
+      {% endif %}
+      {% if module.style.filter_content.spacing %}
+        .filter-content__item {
+          {{module.style.filter_content.spacing.css}}
+        }
+      {% endif %}
+    {% endif %}
+    {# ================================= #}
+
+  {% end_scope_css %}
+</style>
+
+{# stretched_link #}
+{% if module.additional_settings.enable_whole_area_link %}
+  {% if module.button.link.url.href %}
+    {% set btn_stretched_link = true %}
+  {% elif module.link.link.url.href %}
+    {% set link_stretched_link = true %}
+  {% elif module.heading.link.link.url.href %}
+    {% set heading_stretched_link = true %}
+  {% elif module.image.link.link.url.href %}
+    {% set image_stretched_link = true %}
+  {% endif %}
+{% endif %}
+
+{%- macro render_image() -%}
+  {% if module.image.image.src %}
+    <div class="template-module__image template-module--item">
+      {{image_macros.render_image_tmpl(module.image, module.style.image, module,
+        {
+          stretched_link: image_stretched_link
+        }
+      )}}
+    </div>
+  {% endif %}
+{%- endmacro -%}
+{# <div class="template-module__figure template-module--item">
+  {{figure_macros.render_figure_tmpl(module.figure, module.style.figure, module)}}
+</div> #}
+
+{%- macro render_icon() -%}
+  {% if module.icon.icon.name %}
+    <div class="template-module__icon template-module--item">
+      {{icon_macros.render_icon_tmpl(module.icon, module.style.icon, module)}}
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+{%- macro render_heading() -%}
+  {% if module.heading.text %}
+    <div class="template-module__heading template-module--item">
+      {{heading_macros.render_heading_tmpl(module.heading, module.style.heading, module,
+        {
+          stretched_link: heading_stretched_link
+        }
+      )}}
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+{%- macro render_subheading() -%}
+  {% if module.subheading.text %}
+    <div class="template-module__subheading template-module--item margin-collapse">
+      {{heading_macros.render_heading_tmpl(module.subheading, module.style.subheading, module,
+        {
+          id: 'subheading',
+          tooltip: 'Subheading'
+        }
+      )}}
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+{%- macro render_text() -%}
+  {% if module.text.text %}
+    <div class="template-module__text template-module--item">
+      {{text_macros.render_text_tmpl(module.text, module.style.text, module)}}
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+{%- macro render_richtext() -%}
+  {% if module.richtext.rich_text %}
+    <div class="template-module__richtext template-module--item">
+      {{richtext_macros.render_richtext_tmpl(module.richtext, module.style.richtext, module)}}
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+{%- macro render_link() -%}
+  {% if module.link.text %}
+    <div class="template-module__link template-module--item
+    {{' template-module--item-inline' if module.style.link.alignment.inline}}">
+      {{link_macros.render_link_tmpl(module.link, module.style.link, module,
+        {
+          stretched_link: link_stretched_link
+        }
+      )}}
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+{%- macro render_secondarylink() -%}
+  {% if module.secondary_link.text %}
+    <div class="template-module__secondary-link template-module--item
+    {{' template-module--item-inline' if module.style.secondary_link.alignment.inline}}">
+      {{link_macros.render_link_tmpl(module.secondary_link, module.style.secondary_link, module,
+        {
+          id: 'secondary',
+          tooltip: 'Secondary-link'
+        }
+      )}}
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+{%- macro render_button() -%}
+  {% if module.button.text %}
+    <div class="template-module__button template-module--item
+    {{' template-module--item-inline' if module.style.button.alignment.inline}}">
+      {{button_macros.render_btn_tmpl(module.button, module.style.button, module,
+        {
+          stretched_link: btn_stretched_link
+        }
+      )}}
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+{%- macro render_secondarybutton() -%}
+  {% if module.secondary_button.text %}
+    <div class="template-module__secondary-button template-module--item
+      {{' template-module--item-inline' if module.style.secondary_button.alignment.inline}}">
+      {{button_macros.render_btn_tmpl(module.secondary_button, module.style.secondary_button, module,
+        {
+          id: 'secondary',
+          tooltip: 'Secondary-button'
+        }
+      )}}
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+<div class="template-module_wrp {{filter_content_classes}}">
+  <div class="template-module template-module--container template-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
+    {% for template_component in module.template_components %}
+      {% if template_component.component|lower == 'image' %}
+        {{render_image() if template_component.show}}
+      {% elif template_component.component|lower == 'icon' %}
+        {{render_icon() if template_component.show}}
+      {% elif template_component.component|lower == 'text' %}
+        {{render_text() if template_component.show}}
+      {% elif template_component.component|lower == 'heading' %}
+        {{render_heading() if template_component.show}}
+      {% elif template_component.component|lower == 'subheading' %}
+        {{render_subheading() if template_component.show}}
+      {% elif template_component.component|cut(" ")|lower == 'richtext' %}
+        {{render_richtext() if template_component.show}}
+      {% elif template_component.component|lower == 'link' %}
+        {{render_link() if template_component.show}}
+      {% elif template_component.component|cut(" ")|lower == 'secondarylink' %}
+        {{render_secondarylink() if template_component.show}}
+      {% elif template_component.component|lower == 'button' %}
+        {{render_button() if template_component.show}}
+      {% elif template_component.component|cut(" ")|lower == 'secondarybutton' %}
+        {{render_secondarybutton() if template_component.show}}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

@@ -11,7 +11,7 @@
     "display_width" : null,
     "label" : "Mode",
     "help_text" : "Standard: configurable list. Related: shows case studies from the same industry as the current page (excludes current case study).",
-    "required" : true,
+    "required" : false,
     "locked" : false,
     "display" : "select",
     "choices" : [ [ "standard", "Standard List" ], [ "related", "Related Case Studies" ] ],
@@ -19,7 +19,7 @@
     "reordering_enabled" : true,
     "preset" : null,
     "type" : "choice",
-    "default" : "standard"
+    "default" : null
   }, {
     "id" : "case_study_list_show_filter",
     "name" : "show_filter",

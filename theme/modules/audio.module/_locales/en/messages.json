@@ -1,0 +1,347 @@
+{
+  "additional_settings.autoplay.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.autoplay.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.autoplay.label" : {
+    "message" : "Autoplay",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.autoplay.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.label" : {
+    "message" : "Additional settings",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.loop.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.loop.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.loop.label" : {
+    "message" : "Loop",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.loop.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.muted.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.muted.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.muted.label" : {
+    "message" : "Muted",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.muted.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "audio_source.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "audio_source.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "audio_source.label" : {
+    "message" : "Audio source",
+    "description" : "",
+    "placeholders" : null
+  },
+  "audio_source.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "caption.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "caption.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "caption.label" : {
+    "message" : "Caption",
+    "description" : "",
+    "placeholders" : null
+  },
+  "caption.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "caption.rich_text.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "caption.rich_text.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "caption.rich_text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "caption.rich_text.label" : {
+    "message" : "Rich text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "caption.rich_text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "audio",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.alignment.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.alignment.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.alignment.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.alignment.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.label" : {
+    "message" : "Style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.choices.preset1" : {
+    "message" : "Preset 1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.choices.preset2" : {
+    "message" : "Preset 2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.choices.preset3" : {
+    "message" : "Preset 3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.help_text" : {
+    "message" : "Custom presets to globally restyle module",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.label" : {
+    "message" : "Custom preset",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.custom_preset.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.label" : {
+    "message" : "Presets",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.presets.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  }
+}

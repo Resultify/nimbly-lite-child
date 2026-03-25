@@ -1,0 +1,69 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{# macro attributes scheme #}
+{# render_audio_tmpl(data, style, global_data, options) #}
+
+{# 1 #}
+{# data - [object: module.audio] #}
+{# 'macro main data' #}
+
+{# 2 #}
+{# style [object: module.style.audio] #}
+{# macro main style #}
+
+{# 3 #}
+{# global_data [object: module] #}
+{# global data [module], usualy for general style setting [style tab -> general panel] #}
+
+{# 4 #}
+{# options [object: {key: value}] #}
+{# add additional options for the audio #}
+{# Supported features #}
+{# {% set options = {
+  id:'secondary-audio',
+  data_attrs:['data-filter="test"', 'data-bs-toggle="super-dropdown"', 'role="ROLE_NAME"'],
+  class:['additional-class-1','additional-class-2'],
+  tooltip: 'Secondary audio'
+}%} #}
+{# id - macro id to add a unique class if we have two or more same macros in one module as a components #}
+
+
+{# example #}
+{# {{render_audio_tmpl(module.audio, module.style.audio, module, options)}} #}
+{# ========================= #}
+
+
+{%- macro render_audio_tmpl(data, style, global_data, options) -%}
+  {%- if data.audio_source.href -%}
+
+    {%- if options.id -%}
+      {%- set audio_class = 'audio-style--' ~ options.id -%}
+    {%- else -%}
+      {% set audio_class = 'audio-style' %}
+    {%- endif -%}
+    {%- if options.data_attrs -%}
+      {% set data_attrs = options.data_attrs|join(' ') %}
+    {%- endif -%}
+    {%- if options.class -%}
+      {% set class = options.class|join(' ') %}
+    {%- endif -%}
+
+     {# g-module-macros... = global module macros #}
+    <figure class="g-module-macros-audio_wrp {{audio_class}} {{class}}">
+        {%- if data.caption.rich_text -%}
+          <figcaption class="g-module-macros-audio__caption">{{data.caption.rich_text}}</figcaption>
+        {%- endif -%}
+        <audio data-field-name={{options.tooltip || 'Audio'}} {% if data_attrs %} {{data_attrs}} {% endif %} class="g-module-macros-audio editor-tooltip editor-nimbly-tooltip"
+          controls
+          {% if data.additional_settings.loop %} loop {% endif %}
+          {% if data.additional_settings.muted %} muted {% endif %}
+          {% if data.additional_settings.autoplay %} autoplay {% endif %}
+          src="{{data.audio_source.href}}">
+        </audio>
+    </figure>
+
+  {%- endif -%}
+{%- endmacro -%}

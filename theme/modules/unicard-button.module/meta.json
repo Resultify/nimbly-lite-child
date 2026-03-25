@@ -56,7 +56,7 @@
   "master_language" : "en",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
   "module_id" : 225778316522,
-  "label" : "Button",
+  "label" : "Button.",
   "icon" : "../../images/module-icons/button.svg",
   "is_available_for_new_content" : true
 }

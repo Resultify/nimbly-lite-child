@@ -1,0 +1,172 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{# macro attributes scheme #}
+{# render_figure_tmpl(data, style, global_data, options) #}
+
+{# 1 #}
+{# data - [object: module.figure] #}
+{# 'macro main data' #}
+{# {% set figure_data = {
+  "image":{
+  "size_type":"auto","src":"","alt":"",
+  "loading":"lazy","width":null,"height":null,"max_width":null,"max_height":null
+  },
+  "link":{"link":{"url":{"href":"","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""} },
+  "caption":{"rich_text":""}
+}%} #}
+
+{# 2 #}
+{# style [object: module.style.figure] #}
+{# macro main style #}
+
+{# 3 #}
+{# global_data [object: module] #}
+{# global data [module], usualy for general style setting [style tab -> general panel] #}
+
+{# 4 #}
+{# options [object: {key: value}] #}
+{# add additional options for the figure #}
+{# Supported features #}
+{# {% set options = {
+  id:'secondary-figure',
+  stretched_link:true|false,
+  data_attrs:['data-filter="test"', 'data-bs-toggle="super-dropdown"', 'role="ROLE_NAME"'],
+  link_data_attrs:['data-filter="test"', 'data-bs-toggle="super-dropdown"', 'role="ROLE_NAME"'],
+  class:['additional-class-1','additional-class-2'],
+  tooltip: 'Secondary image'
+}%} #}
+{# id - macro id to add a unique class if we have two or more same macros in one module as a components #}
+{# stretched_link - enable/disable stretched_link option #}
+
+
+{# example #}
+{# {{render_figure_tmpl(module.figure, module.style.figure, module, options)}} #}
+{# ========================= #}
+
+
+{%- macro render_figure_tmpl(data, style, global_data, options) -%}
+  {%- if data.image.src -%}
+
+    {%- if options.id -%}
+      {%- set figure_class = 'figure-style--' ~ options.id -%}
+    {%- else -%}
+      {%- set figure_class = 'figure-style' -%}
+    {%- endif -%}
+    {%- if options.data_attrs -%}
+      {% set data_attrs = options.data_attrs|join(' ') %}
+    {%- endif -%}
+    {%- if options.link_data_attrs -%}
+      {% set link_data_attrs = options.link_data_attrs|join(' ') %}
+    {%- endif -%}
+    {%- if options.class -%}
+      {% set class = options.class|join(' ') %}
+    {%- endif -%}
+
+
+    {%- if data.additional_settings.image_zoom -%}
+      {{require_css(get_asset_url(theme_meta.name ~ '/assets/css/lightbox.css'), { async: true })}}
+      {{require_js(get_asset_url(theme_meta.name ~ '/assets/js/lightbox.js'), { position: 'footer', async: true, defer: false })}}
+    {%- endif -%}
+
+    {%- require_js -%}
+      <script>
+        {% if data.additional_settings.image_zoom %}
+          window.addEventListener('load', () => {
+            window.simpleLightbox('.g-module-macros-figure__zoom-link', {
+              captionSelector: 'self',
+              captionType: 'data',
+              captionsData: 'caption'
+            })
+          });
+        {% endif %}
+      </script>
+    {%- end_require_js -%}
+
+    {# module scope css #}
+    <style>
+      {%- scope_css -%}
+        {% if data.caption.rich_text %}
+          .g-module-macros-figure {
+            display: inline-flex;
+            flex-direction: column;
+          }
+          .g-module-macros-figure__caption_wrp {
+            padding: 0.3rem 0;
+            line-height: 1.1;
+          }
+        {% endif %}
+
+        {% if style.border.border_radius or style.custom_image_fit.image_aspect_ratio or style.custom_image_fit.image_fit %}
+          .{{figure_class}} .g-module-macros-figure--image {
+            {% if style.border.border_radius %}
+              border-radius: {{style.border.border_radius ~ 'px'}};
+            {% endif %}
+            {% if style.custom_image_fit.image_aspect_ratio %}
+              aspect-ratio: {{style.custom_image_fit.image_aspect_ratio}};
+            {% endif %}
+            {% if style.custom_image_fit.image_fit %}
+              object-fit: {{style.custom_image_fit.image_fit}};
+            {% endif %}
+          }
+        {% endif %}
+      {%- end_scope_css -%}
+    </style>
+
+    <figure data-field-name={{options.tooltip || 'Image'}} class="editor-tooltip editor-nimbly-tooltip g-module-macros-figure {{figure_class}} {{class}}">
+      {%- set loadingAttr = data.image.loading != 'disabled' ? 'loading="{{data.image.loading}}"' : '' -%}
+      {%- set styleAttr = data.image.size_type != 'exact' ? 'style="max-width: 100%; height: auto;"' : '' -%}
+      {%- set widthAttr = data.image.width -%}
+      {%- set heightAttr = data.image.height -%}
+
+      {%- if data.image.size_type == 'auto_custom_max' -%}
+        {%- set widthAttr = data.image.max_width -%}
+        {%- set heightAttr = data.image.max_height -%}
+      {%- endif -%}
+
+      {%- if data.link.link.url.href -%}
+        {%- set href = data.link.link.url.href -%}
+      {%- endif -%}
+
+      {%- if data.link.link.url.type is equalto 'EMAIL_ADDRESS' -%}
+        {%- set href = 'mailto:' + href -%}
+      {%- endif -%}
+
+      {%- if data.link.link.rel -%}
+        {%- set rel = 'rel="{{data.link.link.rel}}"' -%}
+      {%- endif -%}
+
+      {%- macro render_image() -%}
+        <img id="{{name}}_image" {% if data_attrs %} {{data_attrs}} {% endif %} class="g-module-macros-figure--image"
+          alt="{{data.image.alt}}"
+          src="{{data.image.src}}"
+          width="{{widthAttr}}"
+          height="{{heightAttr}}"
+          {{loadingAttr}}
+          {{styleAttr}}>
+      {%- endmacro -%}
+
+      {%- if data.additional_settings.image_zoom -%}<a href="{{data.image.src}}"
+        data-caption="{{data.caption.rich_text|striptags}}"
+        rel="g-module-macros-figure__zoom-link--{{module_id}}"
+        class="g-module-macros-figure__zoom-link">{{render_image()}}</a>
+      {%- elif href -%}<a href="{{href}}" class=" g-module-macros-figure__link"
+        {% if data.link.link.open_in_new_tab %} target="_blank" {% endif %}
+        {% if link_data_attrs %} {{link_data_attrs}} {% endif %}
+        {{rel}}>{{render_image()}}</a>
+      {%- else -%}{{render_image()}}
+      {%- endif -%}
+
+      {%- if data.caption.rich_text -%}
+        <figcaption class="g-module-macros-figure__caption_wrp" style="max-width:{{widthAttr ~ 'px'}};">
+          {%- rich_text
+            'image-caption'
+            extra_classes='g-module-macros-figure__caption'
+            html='{{data.caption.rich_text}}'
+          %}</figcaption>
+      {%- endif -%}
+    </figure>
+  {%- endif -%}
+{%- endmacro -%}

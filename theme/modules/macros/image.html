@@ -1,0 +1,158 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{# macro attributes scheme #}
+{# render_image_tmpl(data, style, global_data, options) #}
+
+{# 1 #}
+{# data - [object: module.image] #}
+{# 'macro main data' #}
+{# {% set image_data = {
+  "image":{
+  "size_type":"auto","src":"","alt":"",
+  "loading":"lazy","width":null,"height":null,"max_width":null,"max_height":null
+  },
+  "link":{"link":{"url":{"href":"","type":"EXTERNAL"},"open_in_new_tab":false,"rel":""} },
+  "caption":{"rich_text":""}
+}%} #}
+
+{# 2 #}
+{# style [object: module.style.image] #}
+{# macro main style #}
+
+{# 3 #}
+{# global_data [object: module] #}
+{# global data [module], usualy for general style setting [style tab -> general panel] #}
+
+{# 4 #}
+{# options [object: {key: value}] #}
+{# add additional options for the image #}
+{# Supported features #}
+{# {% set options = {
+  id:'secondary-image',
+  stretched_link:true|false,
+  data_attrs:['data-filter="test"', 'data-bs-toggle="super-dropdown"', 'role="ROLE_NAME"'],
+  link_data_attrs:['data-filter="test"', 'data-bs-toggle="super-dropdown"', 'role="ROLE_NAME"'],
+  class:['additional-class-1','additional-class-2'],
+  no_wrapper:true|false,
+  tooltip: 'Secondary image'
+}%} #}
+{# id - macro id to add a unique class if we have two or more same macros in one module as a components #}
+{# stretched_link - enable/disable stretched_link option #}
+
+
+{# example #}
+{# {{render_image_tmpl(module.image, module.style.image, module, options)}} #}
+{# ========================= #}
+
+
+{%- macro render_image_tmpl(data, style, global_data, options) -%}
+  {%- if data.image.src -%}
+
+    {%- if options.id -%}
+      {%- set image_class = 'image-style--' ~ options.id -%}
+    {%- else -%}
+      {%- set image_class = 'image-style' -%}
+    {%- endif -%}
+    {%- if options.data_attrs -%}
+      {% set data_attrs = options.data_attrs|join(' ') %}
+    {%- endif -%}
+    {%- if options.link_data_attrs -%}
+      {% set link_data_attrs = options.link_data_attrs|join(' ') %}
+    {%- endif -%}
+    {%- if options.class -%}
+      {% set class = options.class|join(' ') %}
+    {%- endif -%}
+
+    {# module scope css #}<style>
+      {%- scope_css -%}
+
+        {% if data.caption.rich_text %}
+          .g-module-macros-image_wrp {
+            display: inline-flex;
+            flex-direction: column;
+          }
+          .g-module-macros-image__caption_wrp {
+            padding: 0.3rem 0;
+            line-height: 1.1;
+          }
+        {% endif %}
+
+        {% if style.border.border_radius or style.custom_image_fit.image_aspect_ratio or style.custom_image_fit.image_fit %}
+          .{{image_class}} {
+            {% if style.border.border_radius %}
+              border-radius: {{style.border.border_radius ~ 'px'}};
+            {% endif %}
+            {% if style.custom_image_fit.image_aspect_ratio %}
+              aspect-ratio: {{style.custom_image_fit.image_aspect_ratio}};
+            {% endif %}
+            {% if style.custom_image_fit.image_fit %}
+              object-fit: {{style.custom_image_fit.image_fit}};
+            {% endif %}
+          }
+        {% endif %}
+      {%- end_scope_css -%}
+    </style>
+
+
+    {%- set loadingAttr = data.image.loading != 'disabled' ? 'loading="{{data.image.loading}}"' : '' -%}
+    {%- set styleAttr = data.image.size_type != 'exact' ? 'style="max-width: 100%; height: auto;"' : '' -%}
+    {%- set widthAttr = data.image.width -%}
+    {%- set heightAttr = data.image.height -%}
+
+    {%- if data.image.size_type == 'auto_custom_max' -%}
+      {%- set widthAttr = data.image.max_width -%}
+      {%- set heightAttr = data.image.max_height -%}
+    {%- endif -%}
+
+    {%- if data.link.link.url.href -%}
+      {%- set href = data.link.link.url.href -%}
+    {%- endif -%}
+
+    {%- if data.link.link.url.type is equalto 'EMAIL_ADDRESS' -%}
+      {%- set href = 'mailto:' + href -%}
+    {%- endif -%}
+
+    {%- if data.link.link.rel -%}
+      {%- set rel = 'rel="{{data.link.link.rel}}"' -%}
+    {%- endif -%}
+
+    {%- if options.stretched_link -%}
+      {%- set stretched_link_class = 'stretched-link' -%}
+    {%- endif -%}
+
+    {%- macro render_image() -%}
+      <img id="{{name}}_image" {% if data_attrs %} {{data_attrs}} {% endif %}
+        class="{{image_class}} g-module-macros-image {%- if options.no_wrapper == true -%} {{' ' ~ class ~ ' '}} {%- endif -%}"
+        alt="{{data.image.alt}}"
+        src="{{data.image.src}}"
+        width="{{widthAttr}}"
+        height="{{heightAttr}}"
+        {{loadingAttr}}
+        {{styleAttr}}>
+    {%- endmacro -%}
+
+    {%- if options.no_wrapper == false or options.no_wrapper == null -%}<span data-field-name={{options.tooltip || 'Image'}} class="g-module-macros-image_wrp editor-tooltip editor-nimbly-tooltip {{class}}">{% endif %}
+      {%- if href -%}
+        <a href="{{href}}"
+        class=" g-module-macros-image__link {{stretched_link_class}}"
+        {% if data.link.link.open_in_new_tab %} target="_blank" {% endif %}
+        {% if link_data_attrs %} {{link_data_attrs}} {% endif %}
+        {{rel}}>{{render_image()}}</a>
+      {%- else -%}{{render_image()}}
+      {%- endif -%}
+
+      {%- if data.caption.rich_text -%}
+        <span class="g-module-macros-image__caption_wrp" style="max-width:{{widthAttr ~ 'px'}};">
+          {%- rich_text
+            'image-caption'
+            extra_classes='g-module-macros-image__caption'
+            html={{data.caption.rich_text}}
+          %}</span>
+      {%- endif -%}
+    {%- if options.no_wrapper == false or options.no_wrapper == null -%}</span>{%- endif -%}
+
+  {%- endif -%}
+{%- endmacro -%}

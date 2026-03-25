@@ -1,0 +1,53 @@
+{% set icon_small_size = theme.icons.size.small.size ~ 'px' %}
+{% set icon_regular_size = theme.icons.size.regular.size ~ 'px' %}
+{% set icon_large_size = theme.icons.size.large.size  ~ 'px' %}
+
+.icon--primary {
+  {% if theme.icons.primary.background.color.css %}
+    background-color: {{theme.icons.primary.background.color.css}};
+  {% endif %}
+}
+
+.icon--primary svg {
+  fill: {{theme.icons.primary.color.color.css}};
+}
+
+.icon--secondary {
+  {% if theme.icons.secondary.background.color.css %}
+    background-color: {{theme.icons.secondary.background.color.css}};
+  {% endif %}
+}
+
+.icon--secondary svg {
+  fill: {{theme.icons.secondary.color.color.css}};
+}
+
+.icon--small svg {
+  height: {{icon_small_size}};
+  width: {{icon_small_size}};
+}
+.icon--small {
+  {{theme.icons.size.small.spacing.css}}
+}
+
+.icon--regular svg {
+  height: {{icon_regular_size}};
+  width: {{icon_regular_size}};
+}
+
+.icon--regular {
+  {{theme.icons.size.regular.spacing.css}}
+}
+
+.icon--large svg {
+  height: {{icon_large_size}};
+  width: {{icon_large_size}};
+}
+
+.icon--large {
+  {{theme.icons.size.large.spacing.css}}
+}
+
+.icon--circle {
+  border-radius: 50%;
+}

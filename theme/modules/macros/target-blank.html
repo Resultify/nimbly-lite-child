@@ -1,0 +1,52 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+{%- macro render_target_blank_tmpl() -%}
+
+  {%- require_css -%}
+    <style>
+
+      .target-blank-link {
+        position: relative;
+      }
+
+      .target-blank-link__msg {
+        position: absolute;
+        display: block;
+        text-align: center;
+        bottom: -1.5rem;
+        width: 12rem;
+        left: 0.5rem;
+        background-color: #fff;
+        color: #555;
+        box-shadow: 0 2px 2px 0 rgb(0 0 0 / 16%), 0 0 0 1px rgb(0 0 0 / 8%);
+        z-index: 1030;
+        cursor: default;
+        font-size: 0.9rem;
+        text-transform: initial;
+        font-family: var(--system-fonts);
+        font-weight: 400;
+      }
+
+      .target-blank-link:not(:focus-visible) .target-blank-link__msg {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+      }
+
+      .target-blank-link__icon {
+        fill: currentColor;
+        opacity: 60%;
+      }
+
+    </style>
+  {%- end_require_css -%}
+  <span class="target-blank-link__msg">Opens a new window</span><svg class="target-blank-link__icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 003 14.5h8a1.5 1.5 0 001.5-1.5V9a.5.5 0 00-1 0v4a.5.5 0 01-.5.5H3a.5.5 0 01-.5-.5V5a.5.5 0 01.5-.5h4a.5.5 0 000-1H3A1.5 1.5 0 001.5 5v8zm7-11a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v5a.5.5 0 01-1 0V2.5H9a.5.5 0 01-.5-.5z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M14.354 1.646a.5.5 0 010 .708l-8 8a.5.5 0 01-.708-.708l8-8a.5.5 0 01.708 0z" clip-rule="evenodd"/></svg>
+{%- endmacro -%}

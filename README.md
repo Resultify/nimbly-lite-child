@@ -1,5 +1,5 @@
-# Nimbly Lite Child
-A child theme for the **Nimbly Lite** theme that can be used as a base for any new Nimbly dependent project.
+# Nimbly Lite Grownup
+A fully self-contained HubSpot CMS theme that can be used as a base for any new project. Previously a child theme, it now includes all necessary assets and operates as an independent theme.
 ***
 
 ## General requirements
@@ -7,10 +7,10 @@ A child theme for the **Nimbly Lite** theme that can be used as a base for any n
 2. Create a personal CMS access key to enable authenticated access to your account. [Link](https://app.hubspot.com/l/personal-access-key)
 3. Install rh CLI `npm -g install @resultify/rh-cli`
 
-## Create a new project based on the Nimbly Lite Child
+## Create a new project based on Nimbly Lite Grownup
 `rh init`
 
-## Commands for working with a new project based on Nimbly Lite Child
+## Commands for working with a Nimbly Lite Grownup project
 - `rh` - list of possible commands to run based on current working directory
 - `rh upload` - uploads all files to the HubSpot portal
 - `rh fetch` - fetches all files from the HubSpot portal

@@ -1,0 +1,23 @@
+/* Render rgb color */
+{% macro rgb(color, opacity_val, variant, opacity_variant) -%}
+  {%- if color -%}
+    {%- set rgbcolor = color|convert_rgb -%}
+    {%- if opacity_val != null %}
+      {%- set opacity = opacity_val -%}
+    {%- else -%}
+      {%- set opacity = 100 -%}
+    {%- endif -%}
+    {%- if variant -%}
+      {%- set rgbcolor = color_variant(color, variant)|convert_rgb -%}
+    {%- endif -%}
+    {%- if opacity_variant > 0 -%}
+      {%- set opacity = opacity + opacity_variant -%}
+    {%- elif opacity_variant < 0 -%}
+      {%- set opacity = opacity + opacity_variant -%}
+    {%- endif -%}
+    {%- if opacity > 100 -%}
+      {%- set opacity = 100 -%}
+    {%- endif -%}
+    rgb({{rgbcolor}}, {{opacity}}%)
+  {%- endif -%}
+{%- endmacro -%}

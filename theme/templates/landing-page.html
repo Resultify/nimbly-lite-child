@@ -1,0 +1,485 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  enableDomainStylesheets: false
+  label: Landing page
+  screenshotPath: ../images/template-previews/landing-page.jpg
+-->
+{% extends "./layouts/blank.html" %}
+
+{% block body %}
+
+  {% dnd_area 'dnd_area'
+    label='Landing page template',
+    class='Landing-page-template'
+  %}
+
+    {% dnd_section
+      background_image={
+        "background_position" : "MIDDLE_CENTER",
+        "background_size" : "cover",
+        "image_url" : get_asset_url("../images/content/images/hero-image2-overlay.jpg")
+      },
+      padding={
+        "default" : {
+          "bottom" : "190px",
+          "top" : "30px"
+        },
+        "mobile" : {
+          "bottom" : "100px"
+        }
+      },
+      full_width=false
+    %}
+      {% dnd_column
+        offset=0,
+        width=12
+      %}
+        {% dnd_row %}
+          {% dnd_column
+            offset=0,
+            width=12,
+            padding={
+              "default" : {
+                "bottom" : "120px"
+              },
+              "mobile" : {
+                "bottom" : "60px"
+              }
+            }
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../modules/image",
+                offset=0,
+                width=12,
+                image={
+                  "alt" : "Nimbly logo",
+                  "height" : 47,
+                  "loading" : "eager",
+                  "max_height" : 47,
+                  "max_width" : 187,
+                  "size_type" : "auto",
+                  "src" : "../images/content/images/nimbly-logo-white.svg",
+                  "width" : 187
+                },
+                style={ }
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_column
+            offset=0,
+            width=8
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../modules/text",
+                offset=0,
+                width=12,
+                style={
+                  "custom_theme_overrides" : {
+                    "font" : {
+                      "color" : "#ae7efb",
+                      "css" : "color: #ae7efb;font-size: 14px;",
+                      "font_set" : "DEFAULT",
+                      "size" : 14
+                    }
+                  }
+                },
+                text="NIMBLY EVENT"
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../modules/heading",
+                offset=0,
+                width=12,
+                display="display-1",
+                heading_tag="h1",
+                style={
+                  "custom_theme_overrides" : {
+                    "color" : {
+                      "color" : "#FFFFFF",
+                      "css" : "#FFFFFF",
+                      "hex" : "#FFFFFF",
+                      "opacity" : 100,
+                      "rgb" : "rgb(255, 255, 255)",
+                      "rgba" : "rgba(255, 255, 255, 1)"
+                    }
+                  }
+                },
+                text="Get in on the</br>largest event</br>of your life"
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+          {% dnd_column
+            offset=8,
+            width=4
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../modules/card",
+                offset=0,
+                width=12,
+                button={
+                  "text" : ""
+                },
+                heading={
+                  "text" : ""
+                },
+                icon={
+                  "icon" : {
+                    "icon_set" : "fontawesome-5.14.0",
+                    "name" : ""
+                  }
+                },
+                richtext={
+                  "rich_text" : "<div style=\"text-align: center; font-size: 24px; line-height: 1;\"><strong><span style=\"color: #ffffff;\">OCTOBER</span></strong></div><div style=\"text-align: center; font-size: 188px; line-height: 1;\"><span style=\"color: #ae7efb;\">25</span></div><div style=\"text-align: center; font-size: 24px;\"><strong><span style=\"color: #ffffff;\">13.00 - 15.00 CET</span></strong></div>"
+                },
+                style={
+                  "general" : {
+                    "background" : {
+                      "color" : {
+                        "color" : "#2d243b",
+                        "css" : "rgba(45, 36, 59, 60%)",
+                        "hex" : "#2d243b",
+                        "opacity" : 60,
+                        "rgb" : "rgb(45, 36, 59)",
+                        "rgba" : "rgba(45, 36, 59, 0.6)"
+                      }
+                    },
+                    "border" : {
+                      "border" : {
+                        "bottom" : {
+                          "color" : "#C099FB",
+                          "opacity" : 100,
+                          "style" : "solid",
+                          "width" : {
+                            "units" : "px",
+                            "value" : 1
+                          }
+                        },
+                        "css" : "border: 1px solid #C099FB;",
+                        "left" : {
+                          "color" : "#C099FB",
+                          "opacity" : 100,
+                          "style" : "solid",
+                          "width" : {
+                            "units" : "px",
+                            "value" : 1
+                          }
+                        },
+                        "right" : {
+                          "color" : "#C099FB",
+                          "opacity" : 100,
+                          "style" : "solid",
+                          "width" : {
+                            "units" : "px",
+                            "value" : 1
+                          }
+                        },
+                        "top" : {
+                          "color" : "#C099FB",
+                          "opacity" : 100,
+                          "style" : "solid",
+                          "width" : {
+                            "units" : "px",
+                            "value" : 1
+                          }
+                        }
+                      },
+                      "border_radius" : 60
+                    },
+                    "spacing" : {
+                      "spacing" : {
+                        "css" : "padding-top: 75px;padding-bottom: 75px;",
+                        "padding" : {
+                          "bottom" : {
+                            "units" : "px",
+                            "value" : 75
+                          },
+                          "left" : { },
+                          "right" : { },
+                          "top" : {
+                            "units" : "px",
+                            "value" : 75
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {% dnd_section
+      padding={
+        "default" : {
+          "bottom" : "150px",
+          "top" : "80px"
+        },
+        "mobile" : {
+          "left" : "12px",
+          "right" : "12px"
+        }
+      },
+      full_width=false
+    %}
+      {% dnd_column
+        offset=0,
+        width=8,
+        padding={
+          "default" : {
+            "left" : "24px",
+            "right" : "100px"
+          },
+          "mobile" : {
+            "left" : "12px",
+            "right" : "12px"
+          }
+        }
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/heading",
+            offset=0,
+            width=12,
+            display="display-6",
+            text="Lorem ipsum dolor sit amet"
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/richtext",
+            offset=0,
+            width=12,
+            style={
+              "spacing" : {
+                "spacing" : {
+                  "margin" : {
+                    "bottom" : {
+                      "units" : "px",
+                      "value" : 20
+                    },
+                    "top" : { }
+                  }
+                }
+              }
+            }
+          %}
+            {% module_attribute "rich_text" %}
+              Lorem ipsum dolor sit amet consectetur. Aliquet nibh nec interdum nulla. Quam volutpat cras duis feugiat pellentesque mi. Mattis elit arcu faucibus nisi congue nunc. Malesuada cursus netus nunc mi turpis faucibus viverra. Amet sit a fringilla tortor. Eget augue odio diam eget turpis integer ac. In convallis ut tristique est euismod tristique diam ut urna. Sed nisi ornare amet vestibulum. Risus ultricies lectus aliquam sem in vivamus vel praesent. Commodo congue etiam enim turpis velit sed sollicitudin lectus vivamus. Fusce id mattis urna dui. Ut imperdiet quis tellus aliquet vel. Aliquam rutrum aliquam egestas ultricies ligula. Enim ipsum dolor suspendisse vulputate feugiat. In et amet tellus aenean tortor quis amet. Adipiscing lorem tellus dignissim feugiat mattis pellentesque mattis sagittis integer.
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/heading",
+            offset=0,
+            width=12,
+            display="",
+            heading_tag="h3",
+            text="Lorem ipsum dolor sit amet"
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/richtext",
+            offset=0,
+            width=12
+          %}
+            {% module_attribute "rich_text" %}
+              Lorem ipsum dolor sit amet consectetur. Aliquet nibh nec interdum nulla. Quam volutpat cras duis feugiat pellentesque mi. Mattis elit arcu faucibus nisi congue nunc. Malesuada cursus netus nunc mi turpis faucibus viverra. Amet sit a fringilla tortor. Eget augue odio diam eget turpis integer ac. In convallis ut tristique est euismod tristique diam ut urna. Sed nisi ornare amet vestibulum. Risus ultricies lectus aliquam sem in vivamus vel praesent. Commodo congue etiam enim turpis velit sed sollicitudin lectus vivamus. Fusce id mattis urna dui. Ut imperdiet quis tellus aliquet vel. Aliquam rutrum aliquam egestas ultricies ligula. Enim ipsum dolor suspendisse vulputate feugiat. In et amet tellus aenean tortor quis amet. Adipiscing lorem tellus dignissim feugiat mattis pellentesque mattis sagittis integer.
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+      {% dnd_column
+        offset=8,
+        width=4,
+        padding={
+          "default" : {
+            "right" : "24px"
+          },
+          "mobile" : {
+            "right" : "12px"
+          }
+        },
+        margin={
+          "default" : {
+            "top" : "-170px"
+          },
+          "mobile" : {
+            "top" : "0px"
+          }
+        }
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/n-form",
+            offset=0,
+            width=12,
+            form={
+              "form_id" : "8c4608a6-4991-427f-9e2d-ba0b63898bb3",
+              "form_type" : "HUBSPOT",
+              "message" : "Thanks for submitting the form.",
+              "response_type" : "inline"
+            },
+            style={
+              "button" : {
+                "alignment" : {
+                  "alignment" : {
+                    "css" : "",
+                    "horizontal_align" : "CENTER"
+                  }
+                },
+                "spacing" : {
+                  "spacing" : {
+                    "css" : "margin-top: 30px;",
+                    "margin" : {
+                      "bottom" : { },
+                      "top" : {
+                        "units" : "px",
+                        "value" : 30
+                      }
+                    }
+                  }
+                }
+              },
+              "general" : {
+                "background" : {
+                  "color" : {
+                    "color" : "#2D243B",
+                    "css" : "#2D243B",
+                    "hex" : "#2D243B",
+                    "opacity" : 100,
+                    "rgb" : "rgb(45, 36, 59)",
+                    "rgba" : "rgba(45, 36, 59, 1)"
+                  }
+                },
+                "border" : {
+                  "border_radius" : 60
+                },
+                "spacing" : {
+                  "spacing" : {
+                    "css" : "padding-top: 62px;padding-right: 50px;padding-bottom: 62px;padding-left: 50px;",
+                    "padding" : {
+                      "bottom" : {
+                        "units" : "px",
+                        "value" : 62
+                      },
+                      "left" : {
+                        "units" : "px",
+                        "value" : 50
+                      },
+                      "right" : {
+                        "units" : "px",
+                        "value" : 50
+                      },
+                      "top" : {
+                        "units" : "px",
+                        "value" : 62
+                      }
+                    }
+                  }
+                }
+              },
+              "input_field" : {
+                "spacing" : {
+                  "css" : "margin-bottom: 20px;",
+                  "margin" : {
+                    "bottom" : {
+                      "units" : "px",
+                      "value" : 20
+                    },
+                    "top" : { }
+                  }
+                }
+              },
+              "input_label" : {
+                "font" : {
+                  "color" : "#FFFFFF",
+                  "css" : "color: #FFFFFF;",
+                  "font_set" : "DEFAULT"
+                }
+              }
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {% dnd_section
+      background_color="rgba(45, 36, 59, 1)"
+    %}
+      {% dnd_column
+        offset=0,
+        width=12,
+        padding={
+          "default" : {
+            "left" : "24px",
+            "right" : "24px"
+          }
+        }
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/image",
+            offset=0,
+            width=12,
+            image={
+              "alt" : "Nimbly logo",
+              "height" : 47,
+              "loading" : "lazy",
+              "max_height" : 47,
+              "max_width" : 187,
+              "size_type" : "auto",
+              "src" : "../images/content/images/nimbly-logo-white.svg",
+              "width" : 187
+            },
+            style={
+              "spacing" : {
+                "spacing" : {
+                  "margin" : {
+                    "bottom" : {
+                      "units" : "px",
+                      "value" : 17
+                    },
+                    "top" : { }
+                  }
+                }
+              }
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/richtext",
+            offset=0,
+            width=12
+          %}
+            {% module_attribute "rich_text" %}
+              <div><span style="color: #ffffff;">Drottninggatan 38, 211 41 MALMÖ, TEL +46 (0) 40 617 12 30</span></div>
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+  {% end_dnd_area %}
+
+{% endblock body %}

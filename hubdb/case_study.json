@@ -203,7 +203,7 @@
       "width": 300,
       "description": "The success metrics associated with the case study.",
       "type": "FOREIGN_ID",
-      "foreignTableId": 1196956866,
+      "foreignTableId": 1234567890,
       "foreignColumnId": 1
     },
     {

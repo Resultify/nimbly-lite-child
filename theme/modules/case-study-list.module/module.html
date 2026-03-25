@@ -106,7 +106,7 @@
     {% endfor %}
   {% endif %}
   
-{% else %}
+{% elif module.content.mode == 'standard' %}
   
   {# STANDARD MODE: Original configurable list #}
   {# Fetch all case studies from HubDB #}
@@ -163,7 +163,13 @@
   
   {# Show filter if enabled and multiple industries exist #}
   {% set show_filter_dropdown = module.content.show_filter and industries|length > 1 %}
-  
+
+{% else %}
+  {# Fallback if mode is somehow not set correctly (if mode is not 'related' or 'standard') #}
+  {% set limited_case_studies = [] %}
+  {% set industries = [] %}
+  {% set base_slug = content.slug %}
+  {% set show_filter_dropdown = false %}
 {% endif %}
 
 {# Display case studies #}

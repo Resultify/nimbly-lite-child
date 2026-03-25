@@ -1,0 +1,105 @@
+<!--
+  templateType: "none"
+  isAvailableForNewContent: false
+-->
+
+{# macro attributes scheme #}
+{# render_text_tmpl(data, style, global_data, options) #}
+
+{# 1 #}
+{# data - [object: module.text] #}
+{# 'macro main data' #}
+{# {% set text_data = {"text": ""}%} #}
+
+{# 2 #}
+{# style [object: module.style.text] #}
+{# macro main style #}
+
+{# 3 #}
+{# global_data [object: module] #}
+{# global data [module], usualy for general style setting [style tab -> general panel] #}
+
+{# 4 #}
+{# options [object: {key: value}] #}
+{# add additional options for the text #}
+{# Supported features #}
+{# {% set options = {
+  id:'secondary-text',
+  class:['additional-class-1','additional-class-2'],
+  no_wrapper:true|false
+}%} #}
+{# id - macro id to add a unique class if we have two or more same macros in one module as a components #}
+
+
+{# example #}
+{# {{render_text_tmpl(module.text, module.style.text, module, options)}} #}
+{# ========================= #}
+
+
+{%- macro render_text_tmpl(data, style, global_data, options) -%}
+  {%- if data.text -%}
+
+    {%- if options.id -%}
+      {%- set text_class = 'text-style--' ~ options.id -%}
+    {%- else -%}
+      {%- set text_class = 'text-style' -%}
+    {%- endif -%}
+    {%- if options.class -%}
+      {% set class = options.class|join(' ') %}
+    {%- endif -%}
+
+    {# module global css #}
+    {%- require_css -%}
+      <style>
+        .g-module-macros-text {
+          display: inline-block;
+        }
+      </style>
+    {%- end_require_css -%}
+
+    {# module scope css #}<style>
+      {%- scope_css -%}
+
+        {% if global_data.style.general.custom_theme_overrides.color.css %}
+          .{{text_class}} {
+            color: {{global_data.style.general.custom_theme_overrides.color.css}};
+          }
+        {% endif %}
+
+        {% if style.custom_theme_overrides.font.color or style.custom_theme_overrides.background.color or style.custom_theme_overrides.font.size or style.custom_theme_overrides.font.style or style.custom_theme_overrides.spacing.css %}
+          .{{text_class}} {
+            {% if style.custom_theme_overrides.font.color %}
+              color: {{style.custom_theme_overrides.font.color}};
+            {% endif %}
+            {% if style.custom_theme_overrides.background.color %}
+              background-color: {{style.custom_theme_overrides.background.color}};
+            {% endif %}
+            {% if style.custom_theme_overrides.font.size %}
+              font-size: {{style.custom_theme_overrides.font.size ~ 'px'}};
+            {% endif %}
+            {% if style.custom_theme_overrides.font.style %}
+              {{style.custom_theme_overrides.font.style}};
+            {% endif %}
+            {{style.custom_theme_overrides.spacing.css}}
+          }
+        {% endif %}
+
+      {%- end_scope_css -%}
+    </style>
+
+    {%- set no_wrapper = false -%}
+    {%- if options.no_wrapper == true -%}
+      {%- set no_wrapper = true -%}
+    {%- endif -%}
+
+    {%- set extra_classes = 'g-module-macros-text ' ~ text_class ~ ' ' ~ class ~ ' editor-tooltip editor-hs-tooltip' -%}
+
+    {%- text 'text'
+      extra_classes={{extra_classes}}
+      label='Text'
+      value={{data.text}}
+      no_wrapper={{no_wrapper}}
+    %}
+
+  {%- endif -%}
+{%- endmacro -%}

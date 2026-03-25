@@ -1,0 +1,287 @@
+{% import '../macros/macros.css' %}
+
+/* Buttons */
+/* Primary button */
+{% set btn_primary_border = theme.buttons.primary.border.border %}
+{% set btn_primary_radius = theme.buttons.primary.border.border_radius %}
+{% set btn_primary_font = theme.buttons.primary.text.font %}
+{% set btn_primary_background = theme.buttons.primary.background.color %}
+/* hover color */
+{% if theme.buttons.primary.hover.color.color %}
+  {% set btn_primary_hover_color = theme.buttons.primary.hover.color.color %}
+{% else %}
+  {% set btn_primary_hover_color = color_variant(btn_primary_font.color, -20) %}
+{% endif %}
+/* hover background */
+{% if theme.buttons.primary.hover.background.color %}
+  {% set btn_primary_hover_background_color = theme.buttons.primary.hover.background.color %}
+  {% set btn_primary_hover_background_opacity = theme.buttons.primary.hover.background.opacity %}
+{% else %}
+  {% set btn_primary_hover_background_color = color_variant(btn_primary_background.color, -25) %}
+  {% set btn_primary_hover_background_opacity = btn_primary_background.opacity %}
+{% endif %}
+/* hover border */
+{% if theme.buttons.primary.hover.border.color %}
+  {% set btn_primary_hover_border_color = theme.buttons.primary.hover.border.color %}
+  {% set btn_primary_hover_border_opacity = theme.buttons.primary.hover.border.opacity %}
+{% else %}
+  {% set btn_primary_hover_border_color = color_variant(btn_primary_border.top.color, -25) %}
+  {% set btn_primary_hover_border_opacity = btn_primary_border.top.opacity %}
+{% endif %}
+
+/* secondary1 button */
+{% set btn_secondary1_border = theme.buttons.secondary1.border.border %}
+{% set btn_secondary1_radius = theme.buttons.secondary1.border.border_radius %}
+{% set btn_secondary1_font = theme.buttons.secondary1.text.font %}
+{% set btn_secondary1_background = theme.buttons.secondary1.background.color %}
+/* hover color */
+{% if theme.buttons.secondary1.hover.color.color %}
+  {% set btn_secondary1_hover_color = theme.buttons.secondary1.hover.color.color %}
+{% else %}
+  {% set btn_secondary1_hover_color = color_variant(btn_secondary1_font.color, -20) %}
+{% endif %}
+/* hover background */
+{% if theme.buttons.secondary1.hover.background.color %}
+  {% set btn_secondary1_hover_background_color = theme.buttons.secondary1.hover.background.color %}
+  {% set btn_secondary1_hover_background_opacity = theme.buttons.secondary1.hover.background.opacity %}
+{% else %}
+  {% set btn_secondary1_hover_background_color = color_variant(btn_secondary1_background.color, -25) %}
+  {% set btn_secondary1_hover_background_opacity = btn_secondary1_background.opacity %}
+{% endif %}
+/* hover border */
+{% if theme.buttons.secondary1.hover.border.color %}
+  {% set btn_secondary1_hover_border_color = theme.buttons.secondary1.hover.border.color %}
+  {% set btn_secondary1_hover_border_opacity = theme.buttons.secondary1.hover.border.opacity %}
+{% else %}
+  {% set btn_secondary1_hover_border_color = color_variant(btn_secondary1_border.top.color, -25) %}
+  {% set btn_secondary1_hover_border_opacity = btn_secondary1_border.top.opacity %}
+{% endif %}
+
+/* secondary2 button */
+{% set btn_secondary2_border = theme.buttons.secondary2.border.border %}
+{% set btn_secondary2_radius = theme.buttons.secondary2.border.border_radius %}
+{% set btn_secondary2_font = theme.buttons.secondary2.text.font %}
+{% set btn_secondary2_background = theme.buttons.secondary2.background.color %}
+/* hover color */
+{% if theme.buttons.secondary2.hover.color.color %}
+  {% set btn_secondary2_hover_color = theme.buttons.secondary2.hover.color.color %}
+{% else %}
+  {% set btn_secondary2_hover_color = color_variant(btn_secondary2_font.color, -20) %}
+{% endif %}
+/* hover background */
+{% if theme.buttons.secondary2.hover.background.color %}
+  {% set btn_secondary2_hover_background_color = theme.buttons.secondary2.hover.background.color %}
+  {% set btn_secondary2_hover_background_opacity = theme.buttons.secondary2.hover.background.opacity %}
+{% else %}
+  {% set btn_secondary2_hover_background_color = color_variant(btn_secondary2_background.color, -25) %}
+  {% set btn_secondary2_hover_background_opacity = btn_secondary2_background.opacity %}
+{% endif %}
+/* hover border */
+{% if theme.buttons.secondary2.hover.border.color %}
+  {% set btn_secondary2_hover_border_color = theme.buttons.secondary2.hover.border.color %}
+  {% set btn_secondary2_hover_border_opacity = theme.buttons.secondary2.hover.border.opacity %}
+{% else %}
+  {% set btn_secondary2_hover_border_color = color_variant(btn_secondary2_border.top.color, -25) %}
+  {% set btn_secondary2_hover_border_opacity = btn_secondary2_border.top.opacity %}
+{% endif %}
+
+/* secondary3 button */
+{% set btn_secondary3_border = theme.buttons.secondary3.border.border %}
+{% set btn_secondary3_radius = theme.buttons.secondary3.border.border_radius %}
+{% set btn_secondary3_font = theme.buttons.secondary3.text.font %}
+{% set btn_secondary3_background = theme.buttons.secondary3.background.color %}
+/* hover color */
+{% if theme.buttons.secondary3.hover.color.color %}
+  {% set btn_secondary3_hover_color = theme.buttons.secondary3.hover.color.color %}
+{% else %}
+  {% set btn_secondary3_hover_color = color_variant(btn_secondary3_font.color, -20) %}
+{% endif %}
+/* hover background */
+{% if theme.buttons.secondary3.hover.background.color %}
+  {% set btn_secondary3_hover_background_color = theme.buttons.secondary3.hover.background.color %}
+  {% set btn_secondary3_hover_background_opacity = theme.buttons.secondary3.hover.background.opacity %}
+{% else %}
+  {% set btn_secondary3_hover_background_color = color_variant(btn_secondary3_background.color, -25) %}
+  {% set btn_secondary3_hover_background_opacity = btn_secondary3_background.opacity %}
+{% endif %}
+/* hover border */
+{% if theme.buttons.secondary3.hover.border.color %}
+  {% set btn_secondary3_hover_border_color = theme.buttons.secondary3.hover.border.color %}
+  {% set btn_secondary3_hover_border_opacity = theme.buttons.secondary3.hover.border.opacity %}
+{% else %}
+  {% set btn_secondary3_hover_border_color = color_variant(btn_secondary3_border.top.color, -25) %}
+  {% set btn_secondary3_hover_border_opacity = btn_secondary3_border.top.opacity %}
+{% endif %}
+
+.btn-small,
+.form--btn-small input[type="submit"],
+.form--btn-small input[type="file"]::file-selector-button {
+
+  font-size: {{theme.buttons.size.small.font_size ~ 'px'}};
+  {{theme.buttons.size.small.spacing.css}}
+}
+.btn-regular,
+.form--btn-regular input[type="submit"],
+.form--btn-regular input[type="file"]::file-selector-button {
+
+  font-size: {{theme.buttons.size.regular.font_size ~ 'px'}};
+  {{theme.buttons.size.regular.spacing.css}}
+}
+.btn-large,
+.form--btn-large input[type="submit"],
+.form--btn-large input[type="file"]::file-selector-button {
+  font-size: {{theme.buttons.size.large.font_size ~ 'px'}};
+  {{theme.buttons.size.large.spacing.css}}
+}
+
+/* button primary */
+.btn-primary,
+.form--btn-primary input[type="submit"],
+.form--btn-primary input[type="file"]::file-selector-button {
+  {% if btn_primary_radius %}
+    --border-radius: {{btn_primary_radius ~ 'px'}};
+  {% endif %}
+  {% if btn_primary_font.color %}
+    --color: {{btn_primary_font.color}};
+  {% endif %}
+  {% if btn_primary_font.size %}
+    font-size: {{btn_primary_font.size ~ 'px'}};
+  {% endif %}
+  {% if btn_primary_background.css %}
+    --bg: {{btn_primary_background.css}};
+  {% endif %}
+  {% if btn_primary_font.font == null %}
+    font-family: var(--system-fonts);
+  {% endif %}
+  {% if btn_primary_font.style %}
+    {{btn_primary_font.style}};
+  {% endif %}
+  {{btn_primary_border.css}}
+}
+
+.btn-primary:hover,
+.form--btn-primary input[type="submit"]:hover {
+  {% if btn_primary_hover_color %}
+    --hover-color: {{btn_primary_hover_color}};
+  {% endif %}
+  {% if btn_primary_hover_background_color %}
+    --hover-bg: {{rgb(btn_primary_hover_background_color, btn_primary_hover_background_opacity)}};
+  {% endif %}
+  {% if btn_primary_hover_border_color %}
+    --hover-border: {{rgb(btn_primary_hover_border_color, btn_primary_hover_border_opacity)}};
+  {% endif %}
+}
+
+/* button secondary1 */
+.btn-secondary1,
+.form--btn-secondary1 input[type="submit"],
+.form--btn-secondary1 input[type="file"]::file-selector-button {
+  {% if btn_secondary1_radius %}
+    --border-radius: {{btn_secondary1_radius ~ 'px'}};
+  {% endif %}
+  {% if btn_secondary1_font.color %}
+    --color: {{btn_secondary1_font.color}};
+  {% endif %}
+  {% if btn_secondary1_font.size %}
+    font-size: {{btn_secondary1_font.size ~ 'px'}};
+  {% endif %}
+  {% if btn_secondary1_background.css %}
+    --bg: {{btn_secondary1_background.css}};
+  {% endif %}
+  {% if btn_secondary1_font.font == null %}
+    font-family: var(--system-fonts);
+  {% endif %}
+  {% if btn_secondary1_font.style %}
+    {{btn_secondary1_font.style}};
+  {% endif %}
+  {{btn_secondary1_border.css}}
+}
+
+.btn-secondary1:hover,
+.form--btn-secondary1 input[type="submit"]:hover {
+  {% if btn_secondary1_hover_color %}
+    --hover-color: {{btn_secondary1_hover_color}};
+  {% endif %}
+  {% if btn_secondary1_hover_background_color %}
+    --hover-bg: {{rgb(btn_secondary1_hover_background_color, btn_secondary1_hover_background_opacity)}};
+  {% endif %}
+  {% if btn_secondary1_hover_border_color %}
+    --hover-border: {{rgb(btn_secondary1_hover_border_color, btn_secondary1_hover_border_opacity)}};
+  {% endif %}
+}
+
+/* button secondary2 */
+.btn-secondary2,
+.form--btn-secondary2 input[type="submit"],
+.form--btn-secondary2 input[type="file"]::file-selector-button {
+  {% if btn_secondary2_radius %}
+    --border-radius: {{btn_secondary2_radius ~ 'px'}};
+  {% endif %}
+  {% if btn_secondary2_font.color %}
+    --color: {{btn_secondary2_font.color}};
+  {% endif %}
+  {% if btn_secondary2_font.size %}
+    font-size: {{btn_secondary2_font.size ~ 'px'}};
+  {% endif %}
+  {% if btn_secondary2_background.css %}
+    --bg: {{btn_secondary2_background.css}};
+  {% endif %}
+  {% if btn_secondary2_font.font == null %}
+    font-family: var(--system-fonts);
+  {% endif %}
+  {% if btn_secondary2_font.style %}
+    {{btn_secondary2_font.style}};
+  {% endif %}
+  {{btn_secondary2_border.css}}
+}
+
+.btn-secondary2:hover,
+.form--btn-secondary2 input[type="submit"]:hover {
+  {% if btn_secondary2_hover_color %}
+    --hover-color: {{btn_secondary2_hover_color}};
+  {% endif %}
+  {% if btn_secondary2_hover_background_color %}
+    --hover-bg: {{rgb(btn_secondary2_hover_background_color, btn_secondary2_hover_background_opacity)}};
+  {% endif %}
+  {% if btn_secondary2_hover_border_color %}
+    --hover-border: {{rgb(btn_secondary2_hover_border_color, btn_secondary2_hover_border_opacity)}};
+  {% endif %}
+}
+
+/* button secondary3 */
+.btn-secondary3,
+.form--btn-secondary3 input[type="submit"],
+.form--btn-secondary3 input[type="file"]::file-selector-button {
+  {% if btn_secondary3_radius %}
+    --border-radius: {{btn_secondary3_radius ~ 'px'}};
+  {% endif %}
+  {% if btn_secondary3_font.color %}
+    --color: {{btn_secondary3_font.color}};
+  {% endif %}
+  {% if btn_secondary3_font.size %}
+    font-size: {{btn_secondary3_font.size ~ 'px'}};
+  {% endif %}
+  {% if btn_secondary3_background.css %}
+    --bg: {{btn_secondary3_background.css}};
+  {% endif %}
+  {% if btn_secondary3_font.font == null %}
+    font-family: var(--system-fonts);
+  {% endif %}
+  {% if btn_secondary3_font.style %}
+    {{btn_secondary3_font.style}};
+  {% endif %}
+  {{btn_secondary3_border.css}}
+}
+
+.btn-secondary3:hover,
+.form--btn-secondary3 input[type="submit"]:hover {
+  {% if btn_secondary3_hover_color %}
+    --hover-color: {{btn_secondary3_hover_color}};
+  {% endif %}
+  {% if btn_secondary3_hover_background_color %}
+    --hover-bg: {{rgb(btn_secondary3_hover_background_color, btn_secondary3_hover_background_opacity)}};
+  {% endif %}
+  {% if btn_secondary3_hover_border_color %}
+    --hover-border: {{rgb(btn_secondary3_hover_border_color, btn_secondary3_hover_border_opacity)}};
+  {% endif %}
+}

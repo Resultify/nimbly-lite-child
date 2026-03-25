@@ -1,0 +1,21 @@
+<!--
+  templateType: email_backup_unsubscribe_page
+  isAvailableForNewContent: true
+  label: Email backup unsubscribe
+  screenshotPath: ../../images/template-previews/backup-unsubscribe.jpg
+-->
+{% set template_css = "../../css/templates/system/backup-unsubscribe.css" %}
+{% extends "../layouts/base.html" %}
+{% set pageTitle = "Unsubscribe" %}
+{% set form_class = 'backup-unsubscribe-module' ~ ' ' ~ 'form-default' ~ ' ' ~ theme.forms.button.presets.style ~ ' ' ~ theme.forms.button.presets.size %}
+
+{% block body %}
+  <div class="backup-unsubscribe_wrp system-page_wrp">
+    <div class="backup-unsubscribe system-page">
+      {% module "backup_unsubscribe"
+        extra_classes={{form_class}}
+        path="@hubspot/email_simple_subscription"
+      %}
+    </div>
+  </div>
+{% endblock body %}

@@ -1,0 +1,6792 @@
+{
+  "additional_settings.enable_whole_area_link.help_text" : {
+    "message" : "Make the whole element clickable by “stretching” a nested link.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.enable_whole_area_link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.enable_whole_area_link.label" : {
+    "message" : "Enable whole area link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.enable_whole_area_link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.label" : {
+    "message" : "Additional settings",
+    "description" : "",
+    "placeholders" : null
+  },
+  "additional_settings.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.accessible_link.help_text" : {
+    "message" : "Accessible link. Inform when a link opens a new window.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.accessible_link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.accessible_link.label" : {
+    "message" : "Accessible link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.accessible_link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.accessible_link_label.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.accessible_link_label.help_text" : {
+    "message" : "If the link title is added at the end of repeated blocks of text, for example “Read more” links at the end of short teasers for blog posts, then you can provide more descriptive link text specifically for screen reader users using Accessible link label. It will be visually hidden for a normal view.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.accessible_link_label.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.accessible_link_label.label" : {
+    "message" : "Accessible link label",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.accessible_link_label.placeholder" : {
+    "message" : "Accessible link label",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.accessible_link_label.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.help_text" : {
+    "message" : "Button icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.icon.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.icon_position.choices.left" : {
+    "message" : "Left",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.icon_position.choices.right" : {
+    "message" : "Right",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.icon_position.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.icon_position.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.icon_position.label" : {
+    "message" : "Icon position",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.icon_position.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.label" : {
+    "message" : "Button",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.link.help_text" : {
+    "message" : "Button link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.text.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.text.help_text" : {
+    "message" : "Button text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.text.label" : {
+    "message" : "Text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button.text.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.additional_settings.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.additional_settings.image_zoom.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.additional_settings.image_zoom.inline_help_text" : {
+    "message" : "Enlarge on Click or Tap",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.additional_settings.image_zoom.label" : {
+    "message" : "Image zoom",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.additional_settings.image_zoom.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.additional_settings.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.additional_settings.label" : {
+    "message" : "Additional settings",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.additional_settings.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.caption.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.caption.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.caption.label" : {
+    "message" : "Caption",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.caption.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.caption.rich_text.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.caption.rich_text.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.caption.rich_text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.caption.rich_text.label" : {
+    "message" : "Rich text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.caption.rich_text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.help_text" : {
+    "message" : "Self-contained image element with an optional caption and image zoom functionality",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.image.default.alt" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.image.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.image.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.image.label" : {
+    "message" : "Image",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.image.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.label" : {
+    "message" : "Image figure",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.link.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.link.link.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.link.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.link.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.link.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "figure.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "filter_content.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "filter_content.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "filter_content.label" : {
+    "message" : "Filter content",
+    "description" : "",
+    "placeholders" : null
+  },
+  "filter_content.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.additional_settings.header_above_image.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.additional_settings.header_above_image.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.additional_settings.header_above_image.label" : {
+    "message" : "Header above image",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.additional_settings.header_above_image.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.additional_settings.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.additional_settings.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.additional_settings.label" : {
+    "message" : "Additional settings",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.additional_settings.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.choices.display-1" : {
+    "message" : "Heading display 1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.choices.display-2" : {
+    "message" : "Heading display 2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.choices.display-3" : {
+    "message" : "Heading display 3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.choices.display-4" : {
+    "message" : "Heading display 4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.choices.display-5" : {
+    "message" : "Heading display 5",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.choices.display-6" : {
+    "message" : "Heading display 6",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.choices.h1" : {
+    "message" : "Heading 1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.choices.h2" : {
+    "message" : "Heading 2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.choices.h3" : {
+    "message" : "Heading 3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.choices.h4" : {
+    "message" : "Heading 4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.choices.h5" : {
+    "message" : "Heading 5",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.choices.h6" : {
+    "message" : "Heading 6",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.help_text" : {
+    "message" : "Display different heading styles not related to semantic heading type (tag h1-h6)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.inline_help_text" : {
+    "message" : "Display different heading style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.label" : {
+    "message" : "Display",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.display.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.heading_tag.choices.h1" : {
+    "message" : "Heading 1 (H1)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.heading_tag.choices.h2" : {
+    "message" : "Heading 2 (H2)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.heading_tag.choices.h3" : {
+    "message" : "Heading 3 (H3)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.heading_tag.choices.h4" : {
+    "message" : "Heading 4 (H4)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.heading_tag.choices.h5" : {
+    "message" : "Heading 5 (H5)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.heading_tag.choices.h6" : {
+    "message" : "Heading 6 (H6)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.heading_tag.help_text" : {
+    "message" : "Semantic heading tag (h1-h6)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.heading_tag.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.heading_tag.label" : {
+    "message" : "Tag",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.heading_tag.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.label" : {
+    "message" : "Accessibility options",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.purpose.choices.decorative" : {
+    "message" : "Ignored by screen reader (Decorative images)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.purpose.choices.semantic" : {
+    "message" : "Read by screen reader (Informative images)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.purpose.help_text" : {
+    "message" : "Categorize the purpose of this icon for screen readers. <a href='https://www.w3.org/WAI/tutorials/images/' target='blank' rel='noopener noreferrer'>Learn More</a>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.purpose.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.purpose.label" : {
+    "message" : "Purpose",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.purpose.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.title.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.title.help_text" : {
+    "message" : "This text will be read by screen readers to describe the icon.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.title.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.title.label" : {
+    "message" : "Title",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.title.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.accessibility_options.title.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.help_text" : {
+    "message" : "Heading icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.icon.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.icon_position.choices.left" : {
+    "message" : "Left",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.icon_position.choices.right" : {
+    "message" : "Right",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.icon_position.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.icon_position.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.icon_position.label" : {
+    "message" : "Icon position",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.icon_position.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.label" : {
+    "message" : "Heading",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.link.accessible_link.help_text" : {
+    "message" : "Accessible link. Inform when a link opens a new window.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.link.accessible_link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.link.accessible_link.label" : {
+    "message" : "Accessible link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.link.accessible_link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.link.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.link.link.help_text" : {
+    "message" : "Heading link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.link.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.link.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.link.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.text.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.text.help_text" : {
+    "message" : "Heading text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.text.label" : {
+    "message" : "Text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "heading.text.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.label" : {
+    "message" : "Accessibility options",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.purpose.choices.decorative" : {
+    "message" : "Ignored by screen reader (Decorative images)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.purpose.choices.semantic" : {
+    "message" : "Read by screen reader (Informative images)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.purpose.help_text" : {
+    "message" : "Categorize the purpose of this icon for screen readers. <a href='https://www.w3.org/WAI/tutorials/images/' target='blank' rel='noopener noreferrer'>Learn More</a>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.purpose.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.purpose.label" : {
+    "message" : "Purpose",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.purpose.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.title.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.title.help_text" : {
+    "message" : "This text will be read by screen readers to describe the icon.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.title.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.title.label" : {
+    "message" : "Title",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.title.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.accessibility_options.title.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.icon.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.caption.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.caption.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.caption.label" : {
+    "message" : "Caption",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.caption.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.caption.rich_text.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.caption.rich_text.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.caption.rich_text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.caption.rich_text.label" : {
+    "message" : "Rich text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.caption.rich_text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.image.default.alt" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.image.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.image.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.image.label" : {
+    "message" : "Image",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.image.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.label" : {
+    "message" : "Image",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.link.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.link.link.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.link.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.link.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.link.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "image.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.accessible_link.help_text" : {
+    "message" : "Accessible link. Inform when a link opens a new window.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.accessible_link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.accessible_link.label" : {
+    "message" : "Accessible link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.accessible_link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.help_text" : {
+    "message" : "Heading icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.icon.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.icon_position.choices.left" : {
+    "message" : "Left",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.icon_position.choices.right" : {
+    "message" : "Right",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.icon_position.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.icon_position.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.icon_position.label" : {
+    "message" : "Icon position",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.icon_position.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.link.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.text.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.text.help_text" : {
+    "message" : "Link text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.text.label" : {
+    "message" : "Text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "link.text.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "template",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.label" : {
+    "message" : "Rich text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.rich_text.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.rich_text.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.rich_text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.rich_text.label" : {
+    "message" : "Rich text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.rich_text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.truncate.help_text" : {
+    "message" : "Number of characters to truncate the text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.truncate.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.truncate.label" : {
+    "message" : "Truncate",
+    "description" : "",
+    "placeholders" : null
+  },
+  "richtext.truncate.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.accessible_link.help_text" : {
+    "message" : "Accessible link. Inform when a link opens a new window.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.accessible_link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.accessible_link.label" : {
+    "message" : "Accessible link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.accessible_link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.accessible_link_label.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.accessible_link_label.help_text" : {
+    "message" : "If the link title is added at the end of repeated blocks of text, for example “Read more” links at the end of short teasers for blog posts, then you can provide more descriptive link text specifically for screen reader users using Accessible link label. It will be visually hidden for a normal view.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.accessible_link_label.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.accessible_link_label.label" : {
+    "message" : "Accessible link label",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.accessible_link_label.placeholder" : {
+    "message" : "Accessible link label",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.accessible_link_label.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.help_text" : {
+    "message" : "Button icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.icon.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.icon_position.choices.left" : {
+    "message" : "Left",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.icon_position.choices.right" : {
+    "message" : "Right",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.icon_position.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.icon_position.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.icon_position.label" : {
+    "message" : "Icon position",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.icon_position.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.label" : {
+    "message" : "Secondary button",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.link.help_text" : {
+    "message" : "Button link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.text.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.text.help_text" : {
+    "message" : "Button text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.text.label" : {
+    "message" : "Text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_button.text.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.accessible_link.help_text" : {
+    "message" : "Accessible link. Inform when a link opens a new window.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.accessible_link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.accessible_link.label" : {
+    "message" : "Accessible link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.accessible_link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.help_text" : {
+    "message" : "Heading icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.icon.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.icon_position.choices.left" : {
+    "message" : "Left",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.icon_position.choices.right" : {
+    "message" : "Right",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.icon_position.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.icon_position.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.icon_position.label" : {
+    "message" : "Icon position",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.icon_position.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.label" : {
+    "message" : "Secondary link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.link.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.text.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.text.help_text" : {
+    "message" : "Link text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.text.label" : {
+    "message" : "Text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "secondary_link.text.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.alignment.default.horizontal_align" : {
+    "message" : "LEFT",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.full_width.help_text" : {
+    "message" : "Button full width",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.full_width.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.full_width.label" : {
+    "message" : "Full width",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.full_width.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.inline.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.inline.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.inline.label" : {
+    "message" : "Inline",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.inline.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.border_radius.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.border_radius.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.border_radius.label" : {
+    "message" : "Border radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.border_radius.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.font.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.font.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.font.label" : {
+    "message" : "Font",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.font.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.border_color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.border_color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.border_color.label" : {
+    "message" : "Border color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.border_color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.color.help_text" : {
+    "message" : "Text color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.help_text" : {
+    "message" : "Hover settings",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.label" : {
+    "message" : "Hover",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.hover.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.custom_theme_overrides.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.border_radius.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.border_radius.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.border_radius.label" : {
+    "message" : "Border radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.border_radius.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.size.help_text" : {
+    "message" : "Icon size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.size.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.size.label" : {
+    "message" : "Size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.size.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.custom_theme_overrides.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.help_text" : {
+    "message" : "Button icon styling",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.label" : {
+    "message" : "Button",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.help_text" : {
+    "message" : "Button presets",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.label" : {
+    "message" : "Presets",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.size.choices.btn-large" : {
+    "message" : "Large",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.size.choices.btn-regular" : {
+    "message" : "Medium",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.size.choices.btn-small" : {
+    "message" : "Small",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.size.help_text" : {
+    "message" : "Button size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.size.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.size.label" : {
+    "message" : "Size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.size.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.style.choices.btn-primary" : {
+    "message" : "Primary",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.style.choices.btn-secondary1" : {
+    "message" : "Secondary 1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.style.choices.btn-secondary2" : {
+    "message" : "Secondary 2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.style.choices.btn-secondary3" : {
+    "message" : "Secondary 3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.style.help_text" : {
+    "message" : "Button style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.style.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.style.label" : {
+    "message" : "Style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.presets.style.placeholder" : {
+    "message" : "Button style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.alignment.alignment.default.horizontal_align" : {
+    "message" : "LEFT",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.alignment.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.alignment.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.alignment.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.alignment.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.border.border_radius.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.border.border_radius.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.border.border_radius.label" : {
+    "message" : "Border radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.border.border_radius.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.label" : {
+    "message" : "Image figure",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.figure.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.label" : {
+    "message" : "Filter content",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.spacing.default.padding.bottom.units" : {
+    "message" : "px",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.spacing.default.padding.left.units" : {
+    "message" : "px",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.spacing.default.padding.right.units" : {
+    "message" : "px",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.spacing.default.padding.top.units" : {
+    "message" : "px",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.width.help_text" : {
+    "message" : "Element width with filter content option",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.width.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.width.label" : {
+    "message" : "Width",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.filter_content.width.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.alignment.default.horizontal_align" : {
+    "message" : "LEFT",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.inline_alignment.choices.center" : {
+    "message" : "Center",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.inline_alignment.choices.flex-end" : {
+    "message" : "End",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.inline_alignment.choices.flex-start" : {
+    "message" : "Start",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.inline_alignment.choices.space-around" : {
+    "message" : "Space around",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.inline_alignment.choices.space-between" : {
+    "message" : "Space between",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.inline_alignment.choices.space-evenly" : {
+    "message" : "Space evenly",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.inline_alignment.help_text" : {
+    "message" : "Align inline elements if 'inline' is enabled. For links and buttons.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.inline_alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.inline_alignment.label" : {
+    "message" : "Inline alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.inline_alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.border.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.border.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.border.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.border.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.border.border_radius.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.border.border_radius.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.border.border_radius.label" : {
+    "message" : "Border radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.border.border_radius.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.custom_theme_overrides.color.help_text" : {
+    "message" : "Text color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.custom_theme_overrides.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.custom_theme_overrides.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.custom_theme_overrides.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the whole module",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.help_text" : {
+    "message" : "General styling of the whole module",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.label" : {
+    "message" : "General module styling",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.presets.custom_preset.choices.preset1" : {
+    "message" : "Preset 1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.presets.custom_preset.choices.preset2" : {
+    "message" : "Preset 2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.presets.custom_preset.choices.preset3" : {
+    "message" : "Preset 3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.presets.custom_preset.help_text" : {
+    "message" : "Custom presets to globally restyle module",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.presets.custom_preset.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.presets.custom_preset.label" : {
+    "message" : "Custom preset",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.presets.custom_preset.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.presets.help_text" : {
+    "message" : "General module presets",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.presets.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.presets.label" : {
+    "message" : "Presets",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.presets.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.general.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.alignment.alignment.default.horizontal_align" : {
+    "message" : "LEFT",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.alignment.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.alignment.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.alignment.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.alignment.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.custom_theme_overrides.color.help_text" : {
+    "message" : "Text color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.custom_theme_overrides.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.custom_theme_overrides.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.custom_theme_overrides.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.custom_theme_overrides.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.custom_theme_overrides.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.custom_theme_overrides.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.custom_theme_overrides.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.border_radius.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.border_radius.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.border_radius.label" : {
+    "message" : "Border radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.border_radius.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.size.help_text" : {
+    "message" : "Icon size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.size.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.size.label" : {
+    "message" : "Size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.size.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.custom_theme_overrides.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.help_text" : {
+    "message" : "Heading icon styling",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.label" : {
+    "message" : "Heading",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.heading.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.alignment.alignment.default.horizontal_align" : {
+    "message" : "LEFT",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.alignment.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.alignment.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.alignment.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.alignment.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.border_radius.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.border_radius.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.border_radius.label" : {
+    "message" : "Border radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.border_radius.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.size.help_text" : {
+    "message" : "Icon size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.size.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.size.label" : {
+    "message" : "Size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.size.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.custom_theme_overrides.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_color.choices.primary" : {
+    "message" : "Primary",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_color.choices.secondary" : {
+    "message" : "Secondary",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_color.label" : {
+    "message" : "Icon color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_shape.choices.circle" : {
+    "message" : "Circle",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_shape.choices.square" : {
+    "message" : "Square",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_shape.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_shape.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_shape.label" : {
+    "message" : "Icon shape",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_shape.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_size.choices.large" : {
+    "message" : "Large",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_size.choices.regular" : {
+    "message" : "Regular",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_size.choices.small" : {
+    "message" : "Small",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_size.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_size.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_size.label" : {
+    "message" : "Icon size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.icon_size.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.label" : {
+    "message" : "Presets",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.presets.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.icon.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.alignment.alignment.default.horizontal_align" : {
+    "message" : "LEFT",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.alignment.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.alignment.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.alignment.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.alignment.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.border.border_radius.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.border.border_radius.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.border.border_radius.label" : {
+    "message" : "Border radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.border.border_radius.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.choices.1.91/1" : {
+    "message" : "1.91/1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.choices.1/1" : {
+    "message" : "1/1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.choices.16/9" : {
+    "message" : "16/9",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.choices.2/1" : {
+    "message" : "2/1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.choices.3/2" : {
+    "message" : "3/2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.choices.4/3" : {
+    "message" : "4/3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.choices.4/5" : {
+    "message" : "4/5",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.choices.5/4" : {
+    "message" : "5/4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.choices.9/16" : {
+    "message" : "9/16",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.label" : {
+    "message" : "Image aspect ratio",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_aspect_ratio.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_fit.choices.contain" : {
+    "message" : "Contain",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_fit.choices.cover" : {
+    "message" : "Cover",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_fit.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_fit.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_fit.label" : {
+    "message" : "Image fit",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.image_fit.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.inline_help_text" : {
+    "message" : "If it is not possible to manually crop all images to the same size and aspect ratio, then you can adjust the image fit settings, but this may result in incorrect image cropping. Be careful with these settings.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.label" : {
+    "message" : "Custom image fit",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.custom_image_fit.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.label" : {
+    "message" : "Image",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.image.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.label" : {
+    "message" : "Style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.alignment.default.horizontal_align" : {
+    "message" : "LEFT",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.inline.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.inline.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.inline.label" : {
+    "message" : "Inline",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.inline.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.font.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.font.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.font.label" : {
+    "message" : "Font",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.font.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.color.help_text" : {
+    "message" : "Text color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.help_text" : {
+    "message" : "Hover settings",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.label" : {
+    "message" : "Hover",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.underline.choices.none" : {
+    "message" : "None",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.underline.choices.underline" : {
+    "message" : "Underline",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.underline.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.underline.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.underline.label" : {
+    "message" : "Underline",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.hover.underline.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.underline.choices.none" : {
+    "message" : "None",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.underline.choices.underline" : {
+    "message" : "Underline",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.underline.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.underline.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.underline.label" : {
+    "message" : "Underline",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.custom_theme_overrides.underline.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.border_radius.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.border_radius.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.border_radius.label" : {
+    "message" : "Border radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.border_radius.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.size.help_text" : {
+    "message" : "Icon size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.size.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.size.label" : {
+    "message" : "Size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.size.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.custom_theme_overrides.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.help_text" : {
+    "message" : "Heading icon styling",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.link.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.label" : {
+    "message" : "Rich text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.richtext.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.alignment.default.horizontal_align" : {
+    "message" : "LEFT",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.full_width.help_text" : {
+    "message" : "Button full width",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.full_width.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.full_width.label" : {
+    "message" : "Full width",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.full_width.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.inline.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.inline.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.inline.label" : {
+    "message" : "Inline",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.inline.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.border_radius.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.border_radius.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.border_radius.label" : {
+    "message" : "Border radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.border_radius.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.font.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.font.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.font.label" : {
+    "message" : "Font",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.font.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.border_color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.border_color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.border_color.label" : {
+    "message" : "Border color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.border_color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.color.help_text" : {
+    "message" : "Text color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.help_text" : {
+    "message" : "Hover settings",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.label" : {
+    "message" : "Hover",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.hover.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.custom_theme_overrides.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.border_radius.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.border_radius.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.border_radius.label" : {
+    "message" : "Border radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.border_radius.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.size.help_text" : {
+    "message" : "Icon size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.size.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.size.label" : {
+    "message" : "Size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.size.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.custom_theme_overrides.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.help_text" : {
+    "message" : "Button icon styling",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.label" : {
+    "message" : "Secondary button",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.help_text" : {
+    "message" : "Button presets",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.label" : {
+    "message" : "Presets",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.size.choices.btn-large" : {
+    "message" : "Large",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.size.choices.btn-regular" : {
+    "message" : "Medium",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.size.choices.btn-small" : {
+    "message" : "Small",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.size.help_text" : {
+    "message" : "Button size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.size.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.size.label" : {
+    "message" : "Size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.size.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.style.choices.btn-primary" : {
+    "message" : "Primary",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.style.choices.btn-secondary1" : {
+    "message" : "Secondary 1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.style.choices.btn-secondary2" : {
+    "message" : "Secondary 2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.style.choices.btn-secondary3" : {
+    "message" : "Secondary 3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.style.help_text" : {
+    "message" : "Button style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.style.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.style.label" : {
+    "message" : "Style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.presets.style.placeholder" : {
+    "message" : "Button style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_button.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.alignment.default.horizontal_align" : {
+    "message" : "LEFT",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.inline.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.inline.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.inline.label" : {
+    "message" : "Inline",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.inline.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.font.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.font.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.font.label" : {
+    "message" : "Font",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.font.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.color.help_text" : {
+    "message" : "Text color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.help_text" : {
+    "message" : "Hover settings",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.label" : {
+    "message" : "Hover",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.underline.choices.none" : {
+    "message" : "None",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.underline.choices.underline" : {
+    "message" : "Underline",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.underline.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.underline.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.underline.label" : {
+    "message" : "Underline",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.hover.underline.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.underline.choices.none" : {
+    "message" : "None",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.underline.choices.underline" : {
+    "message" : "Underline",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.underline.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.underline.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.underline.label" : {
+    "message" : "Underline",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.custom_theme_overrides.underline.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.border_radius.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.border_radius.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.border_radius.label" : {
+    "message" : "Border radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.border_radius.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.size.help_text" : {
+    "message" : "Icon size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.size.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.size.label" : {
+    "message" : "Size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.size.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.custom_theme_overrides.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.help_text" : {
+    "message" : "Heading icon styling",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.label" : {
+    "message" : "Secondary link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.secondary_link.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.alignment.alignment.default.horizontal_align" : {
+    "message" : "LEFT",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.alignment.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.alignment.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.alignment.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.alignment.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.custom_theme_overrides.color.help_text" : {
+    "message" : "Text color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.custom_theme_overrides.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.custom_theme_overrides.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.custom_theme_overrides.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.custom_theme_overrides.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.custom_theme_overrides.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.custom_theme_overrides.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.custom_theme_overrides.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.border.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.border.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.border.label" : {
+    "message" : "Border",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.border.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.border_radius.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.border_radius.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.border_radius.label" : {
+    "message" : "Border radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.border_radius.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.size.help_text" : {
+    "message" : "Icon size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.size.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.size.label" : {
+    "message" : "Size",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.size.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.custom_theme_overrides.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.help_text" : {
+    "message" : "Heading icon styling",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.label" : {
+    "message" : "Subheading",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.subheading.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.alignment.alignment.default.horizontal_align" : {
+    "message" : "LEFT",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.alignment.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.alignment.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.alignment.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.alignment.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.alignment.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.alignment.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.alignment.label" : {
+    "message" : "Alignment",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.alignment.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.background.color.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.background.color.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.background.color.label" : {
+    "message" : "Color",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.background.color.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.background.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.background.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.background.label" : {
+    "message" : "Background",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.background.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.font.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.font.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.font.label" : {
+    "message" : "Font",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.font.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.help_text" : {
+    "message" : "Override global theme settings for the current component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.label" : {
+    "message" : "Custom theme overrides",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.custom_theme_overrides.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.label" : {
+    "message" : "Text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.spacing.spacing.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.spacing.spacing.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.spacing.spacing.label" : {
+    "message" : "Spacing",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text.spacing.spacing.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.choices.display-1" : {
+    "message" : "Heading display 1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.choices.display-2" : {
+    "message" : "Heading display 2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.choices.display-3" : {
+    "message" : "Heading display 3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.choices.display-4" : {
+    "message" : "Heading display 4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.choices.display-5" : {
+    "message" : "Heading display 5",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.choices.display-6" : {
+    "message" : "Heading display 6",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.choices.h1" : {
+    "message" : "Heading 1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.choices.h2" : {
+    "message" : "Heading 2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.choices.h3" : {
+    "message" : "Heading 3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.choices.h4" : {
+    "message" : "Heading 4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.choices.h5" : {
+    "message" : "Heading 5",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.choices.h6" : {
+    "message" : "Heading 6",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.help_text" : {
+    "message" : "Display different heading styles not related to semantic heading type (tag h1-h6)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.inline_help_text" : {
+    "message" : "Display different heading style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.label" : {
+    "message" : "Display",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.display.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.heading_tag.choices.h1" : {
+    "message" : "Heading 1 (H1)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.heading_tag.choices.h2" : {
+    "message" : "Heading 2 (H2)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.heading_tag.choices.h3" : {
+    "message" : "Heading 3 (H3)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.heading_tag.choices.h4" : {
+    "message" : "Heading 4 (H4)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.heading_tag.choices.h5" : {
+    "message" : "Heading 5 (H5)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.heading_tag.choices.h6" : {
+    "message" : "Heading 6 (H6)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.heading_tag.help_text" : {
+    "message" : "Semantic heading tag (h1-h6)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.heading_tag.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.heading_tag.label" : {
+    "message" : "Tag",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.heading_tag.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.label" : {
+    "message" : "Accessibility options",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.purpose.choices.decorative" : {
+    "message" : "Ignored by screen reader (Decorative images)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.purpose.choices.semantic" : {
+    "message" : "Read by screen reader (Informative images)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.purpose.help_text" : {
+    "message" : "Categorize the purpose of this icon for screen readers. <a href='https://www.w3.org/WAI/tutorials/images/' target='blank' rel='noopener noreferrer'>Learn More</a>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.purpose.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.purpose.label" : {
+    "message" : "Purpose",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.purpose.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.title.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.title.help_text" : {
+    "message" : "This text will be read by screen readers to describe the icon.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.title.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.title.label" : {
+    "message" : "Title",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.title.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.accessibility_options.title.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.help_text" : {
+    "message" : "Heading icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.icon.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.icon_position.choices.left" : {
+    "message" : "Left",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.icon_position.choices.right" : {
+    "message" : "Right",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.icon_position.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.icon_position.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.icon_position.label" : {
+    "message" : "Icon position",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.icon_position.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.label" : {
+    "message" : "Icon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.icon.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.label" : {
+    "message" : "Subheading",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.link.accessible_link.help_text" : {
+    "message" : "Accessible link. Inform when a link opens a new window.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.link.accessible_link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.link.accessible_link.label" : {
+    "message" : "Accessible link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.link.accessible_link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.link.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.link.link.help_text" : {
+    "message" : "Heading link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.link.link.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.link.link.label" : {
+    "message" : "Link",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.link.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.link.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.text.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.text.help_text" : {
+    "message" : "Heading text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.text.label" : {
+    "message" : "Text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "subheading.text.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.component.default" : {
+    "message" : "Image",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.component.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.component.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.component.label" : {
+    "message" : "Component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.component.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.component.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.label" : {
+    "message" : "Template components",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.show.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.show.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.show.label" : {
+    "message" : "Show component",
+    "description" : "",
+    "placeholders" : null
+  },
+  "template_components.show.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "text.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "text.label" : {
+    "message" : "Text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "text.text.default" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "text.text.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "text.text.inline_help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "text.text.label" : {
+    "message" : "Text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "text.text.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "text.text.validation_regex" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  }
+}
