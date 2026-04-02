@@ -11,6 +11,12 @@
   --font-size: 60;
 } */
 
+{% if theme.layout.maximum_content_width == 'custom' %}
+  {% set container_width = theme.layout.custom_maximum_content_width %}
+{% else %}
+  {% set container_width = theme.layout.maximum_content_width %}
+{% endif %}
+
 h1,
 h2,
 h3,
@@ -34,7 +40,7 @@ h6,
     calc(
       ((20 + ((var(--font-size) - 20) / 10)) / 16 * 1rem)
       +
-      (((var(--font-size) - (20 + ((var(--font-size) - 20) / 10)) ) * 100 / 1200) * 1vw)
+      (((var(--font-size) - (20 + ((var(--font-size) - 20) / 10)) ) * 100 / {{ container_width }}) * 1vw)
     );
   --hub-font-size-to-rem: calc(var(--font-size) / 16 * 1rem);
 
@@ -47,7 +53,7 @@ h6,
 }
 
 /* for 1200px screen and bigger */
-@media (min-width: 1200px) {
+@media (min-width: {{container_width ~ 'px'}}) {
   h1,
   h2,
   h3,
