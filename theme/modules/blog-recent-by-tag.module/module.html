@@ -277,6 +277,55 @@
   </div>
 {%- endmacro -%}
 
+{# Schema helper: render one ItemList entry for each related-by-tag post #}
+{%- macro related_by_tag_json_item(post, position, total) -%}
+  {% set author_name = site_settings.company_name %}
+  {% if not author_name %}
+    {% set author_name = 'Resultify' %}
+  {% endif %}
+  {% set author_url = post.absolute_url %}
+  {% if post.blog_author %}
+    {% if post.blog_author.display_name %}
+      {% set author_name = post.blog_author.display_name %}
+    {% endif %}
+  {% endif %}
+  {% if post.blog_post_author %}
+    {% if post.blog_post_author.slug %}
+      {% if group and group.id %}
+        {% set author_url = blog_author_url(group.id, post.blog_post_author.slug) %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+  {% set image_url = post.featured_image %}
+  {% if not image_url %}
+    {% set image_url = site_settings.logo_src %}
+  {% endif %}
+  {% if not image_url %}
+    {% set image_url = '' %}
+  {% endif %}
+  {% set description_text = post.post_list_content|striptags %}
+  {% if not description_text %}
+    {% set description_text = '' %}
+  {% endif %}
+  {
+    "@type": "ListItem",
+    "position": {{position}},
+    "url": {{post.absolute_url|tojson}},
+    "item": {
+      "@type": "BlogPosting",
+      "headline": {{post.name|tojson}},
+      "url": {{post.absolute_url|tojson}},
+      "author": {
+        "@type": "Person",
+        "name": {{author_name|tojson}},
+        "url": {{author_url|tojson}}
+      },
+      "description": {{description_text|tojson}},
+      "image": {{image_url|tojson}}
+    }
+  }{% if position != total %},{% endif %}
+{%- endmacro -%}
+
 
 {%- macro related_posts(post) -%}
   <div class="blog-recent-by-tag-module__article_wrp">
@@ -324,6 +373,47 @@
       {% if recent_by_tag__posts|length > posts_amount %}
         {% do recent_by_tag__posts.pop(posts_amount) %}
       {% endif %}
+
+      {# Schema config: list name and stable identifier for this module instance #}
+      {% set item_list_name = module.general_heading.text %}
+      {% if not item_list_name %}
+        {% set item_list_name = 'Related blog posts by tag' %}
+      {% endif %}
+      {% set item_list_identifier = 'hubspot-blog-recent-by-tag-' ~ module_id %}
+      {% if group and group.id %}
+        {% set item_list_identifier = item_list_identifier ~ '-blog-' ~ group.id %}
+      {% endif %}
+      {% set item_list_blog_url = '' %}
+      {% if group and group.absolute_url %}
+        {% set item_list_blog_url = group.absolute_url %}
+      {% endif %}
+
+      {# Schema output: CollectionPage containing an ItemList of related-by-tag posts #}
+      {% if recent_by_tag__posts|length %}
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",{% if item_list_blog_url %}
+            "about": {
+              "@type": "Blog",
+              "url": {{item_list_blog_url|tojson}}
+            },
+            "isPartOf": {{item_list_blog_url|tojson}},{% endif %}
+            "mainEntity": {
+              "@type": "ItemList",
+              "name": {{item_list_name|tojson}},
+              "identifier": {{item_list_identifier|tojson}},
+              "numberOfItems": {{recent_by_tag__posts|length}},
+              "itemListElement": [
+                {% for tag_post in recent_by_tag__posts %}
+                  {{related_by_tag_json_item(tag_post, loop.index, recent_by_tag__posts|length)}}
+                {% endfor %}
+              ]
+            }
+          }
+        </script>
+      {% endif %}
+
       {% for tag_post in recent_by_tag__posts %}
         {{related_posts(tag_post)}}
       {% endfor %}
