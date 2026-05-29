@@ -327,8 +327,11 @@
 {# Schema helper: render one ItemList entry for each listing post #}
 {%- macro listing_posts_json_item(post, position, total) -%}
   {% set author_name = site_settings.company_name %}
+  {% if not author_name and group and group.html_title %}
+    {% set author_name = group.html_title %}
+  {% endif %}
   {% if not author_name %}
-    {% set author_name = 'Resultify' %}
+    {% set author_name = request.domain %}
   {% endif %}
   {% set author_url = post.absolute_url %}
   {% if post.blog_author %}

@@ -308,8 +308,11 @@
 {# Schema helper: render one ItemList entry for each recent page post #}
 {%- macro recent_page_posts_json_item(post, position, total, blog_id) -%}
   {% set author_name = site_settings.company_name %}
+  {% if not author_name and group and group.html_title %}
+    {% set author_name = group.html_title %}
+  {% endif %}
   {% if not author_name %}
-    {% set author_name = 'Resultify' %}
+    {% set author_name = request.domain %}
   {% endif %}
   {% set author_url = post.absolute_url %}
   {% if post.blog_author %}
@@ -353,7 +356,6 @@
     }
   }{% if position != total %},{% endif %}
 {%- endmacro -%}
-
 
 <div class="blog-recent_wrp blog-recent-page-module">
   <div class="blog-recent blog-recent--{{module_id}} {{module.layout.layout}} {{module.style.general.presets.custom_preset}}">

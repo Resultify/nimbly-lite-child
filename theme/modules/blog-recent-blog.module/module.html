@@ -280,8 +280,11 @@
 {# Schema helper: render one ItemList entry for each related-by-tag post #}
 {%- macro related_by_tag_json_item(post, position, total) -%}
   {% set author_name = site_settings.company_name %}
+  {% if not author_name and group and group.html_title %}
+    {% set author_name = group.html_title %}
+  {% endif %}
   {% if not author_name %}
-    {% set author_name = 'Resultify' %}
+    {% set author_name = request.domain %}
   {% endif %}
   {% set author_url = post.absolute_url %}
   {% if post.blog_author %}
@@ -325,7 +328,6 @@
     }
   }{% if position != total %},{% endif %}
 {%- endmacro -%}
-
 
 {%- macro related_posts(post) -%}
   <div class="blog-recent__article_wrp">
