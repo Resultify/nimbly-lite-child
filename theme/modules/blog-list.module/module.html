@@ -324,6 +324,58 @@
   </div>
 {%- endmacro -%}
 
+{# Schema helper: render one ItemList entry for each listing post #}
+{%- macro listing_posts_json_item(post, position, total) -%}
+  {% set author_name = site_settings.company_name %}
+  {% if not author_name and group and group.html_title %}
+    {% set author_name = group.html_title %}
+  {% endif %}
+  {% if not author_name %}
+    {% set author_name = request.domain %}
+  {% endif %}
+  {% set author_url = post.absolute_url %}
+  {% if post.blog_author %}
+    {% if post.blog_author.display_name %}
+      {% set author_name = post.blog_author.display_name %}
+    {% endif %}
+  {% endif %}
+  {% if post.blog_post_author %}
+    {% if post.blog_post_author.slug %}
+      {% if group and group.id %}
+        {% set author_url = blog_author_url(group.id, post.blog_post_author.slug) %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+  {% set image_url = post.featured_image %}
+  {% if not image_url %}
+    {% set image_url = site_settings.logo_src %}
+  {% endif %}
+  {% if not image_url %}
+    {% set image_url = '' %}
+  {% endif %}
+  {% set description_text = post.post_list_content|striptags %}
+  {% if not description_text %}
+    {% set description_text = '' %}
+  {% endif %}
+  {
+    "@type": "ListItem",
+    "position": {{position}},
+    "url": {{post.absolute_url|tojson}},
+    "item": {
+      "@type": "BlogPosting",
+      "headline": {{post.name|tojson}},
+      "url": {{post.absolute_url|tojson}},
+      "author": {
+        "@type": "Person",
+        "name": {{author_name|tojson}},
+        "url": {{author_url|tojson}}
+      },
+      "description": {{description_text|tojson}},
+      "image": {{image_url|tojson}}
+    }
+  }{% if position != total %},{% endif %}
+{%- endmacro -%}
+
 <div class="blog-listing-module_wrp">
   <div class="blog-listing-module blog-listing-module--{{module_id}} {{module.style.general.presets.custom_preset}}">
 
@@ -369,6 +421,60 @@
 
     {# Blog post listing #}
     <div class="blog-listing-module__articles {{module.layout.layout}}">
+      {# Schema config: list name based on listing context #}
+      {% set item_list_name = 'Blog posts' %}
+      {% if blog_author %}
+        {% set item_list_name = module.author_listing_header.text ~ ' ' ~ blog_author.display_name %}
+      {% elif tag %}
+        {% set item_list_name = module.tag_listing_header.text ~ ' ' ~ page_meta.html_title|split(' | ')|last %}
+      {% endif %}
+
+      {# Schema config: stable identifier for this module instance #}
+      {% set item_list_identifier = 'hubspot-blog-list-' ~ module_id %}
+      {% if group and group.id %}
+        {% set item_list_identifier = item_list_identifier ~ '-blog-' ~ group.id %}
+      {% endif %}
+
+      {# Schema config: resolve blog listing URL automatically #}
+      {% set item_list_blog_url = '' %}
+      {% if group and group.absolute_url %}
+        {% set item_list_blog_url = group.absolute_url %}
+      {% elif contents|length and contents[0].absolute_url %}
+        {% set item_list_blog_url = contents[0].absolute_url|regex_replace('/[^/]+/?$', '') %}
+      {% endif %}
+      {% if item_list_blog_url %}
+        {% unless (item_list_blog_url is string_containing "//") %}
+          {% set item_list_blog_url = "/" ~ item_list_blog_url %}
+        {% endunless %}
+        {% set item_list_blog_url = item_list_blog_url|regex_replace("http:", "") %}
+      {% endif %}
+
+      {# Schema output: CollectionPage containing an ItemList of listing posts #}
+      {% if contents|length %}
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",{% if item_list_blog_url %}
+            "about": {
+              "@type": "Blog",
+              "url": {{item_list_blog_url|tojson}}
+            },
+            "isPartOf": {{item_list_blog_url|tojson}},{% endif %}
+            "mainEntity": {
+              "@type": "ItemList",
+              "name": {{item_list_name|tojson}},
+              "identifier": {{item_list_identifier|tojson}},
+              "numberOfItems": {{contents|length}},
+              "itemListElement": [
+                {% for content in contents %}
+                  {{listing_posts_json_item(content, loop.index, contents|length)}}
+                {% endfor %}
+              ]
+            }
+          }
+        </script>
+      {% endif %}
+
       {% for content in contents %}
         {% set content_index = loop.index %}
         {% set content_last = loop.last %}

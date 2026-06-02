@@ -305,6 +305,57 @@
   </div>
 {%- endmacro -%}
 
+{# Schema helper: render one ItemList entry for each recent page post #}
+{%- macro recent_page_posts_json_item(post, position, total, blog_id) -%}
+  {% set author_name = site_settings.company_name %}
+  {% if not author_name and group and group.html_title %}
+    {% set author_name = group.html_title %}
+  {% endif %}
+  {% if not author_name %}
+    {% set author_name = request.domain %}
+  {% endif %}
+  {% set author_url = post.absolute_url %}
+  {% if post.blog_author %}
+    {% if post.blog_author.display_name %}
+      {% set author_name = post.blog_author.display_name %}
+    {% endif %}
+  {% endif %}
+  {% if post.blog_post_author %}
+    {% if post.blog_post_author.slug %}
+      {% if blog_id %}
+        {% set author_url = blog_author_url(blog_id, post.blog_post_author.slug) %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+  {% set image_url = post.featured_image %}
+  {% if not image_url %}
+    {% set image_url = site_settings.logo_src %}
+  {% endif %}
+  {% if not image_url %}
+    {% set image_url = '' %}
+  {% endif %}
+  {% set description_text = post.post_list_content|striptags %}
+  {% if not description_text %}
+    {% set description_text = '' %}
+  {% endif %}
+  {
+    "@type": "ListItem",
+    "position": {{position}},
+    "url": {{post.absolute_url|tojson}},
+    "item": {
+      "@type": "BlogPosting",
+      "headline": {{post.name|tojson}},
+      "url": {{post.absolute_url|tojson}},
+      "author": {
+        "@type": "Person",
+        "name": {{author_name|tojson}},
+        "url": {{author_url|tojson}}
+      },
+      "description": {{description_text|tojson}},
+      "image": {{image_url|tojson}}
+    }
+  }{% if position != total %},{% endif %}
+{%- endmacro -%}
 
 <div class="blog-recent_wrp blog-recent-page-module">
   <div class="blog-recent blog-recent--{{module_id}} {{module.layout.layout}} {{module.style.general.presets.custom_preset}}">
@@ -321,14 +372,79 @@
       {% set blog_id = module.select_blog if module.select_blog else group.id if group.id else null %}
       
       {% if blog_id %}
+        {% set item_list_name = module.general_heading.text %}
+        {% if not item_list_name %}
+          {% set item_list_name = 'Blog posts' %}
+        {% endif %}
+        {% set item_list_identifier = 'hubspot-blog-recent-page-' ~ module_id %}
+        {% set item_list_identifier = item_list_identifier ~ '-blog-' ~ blog_id %}
+        {% set item_list_blog_url = blog_url(blog_id) %}
+        {% if not item_list_blog_url and group and group.absolute_url %}
+          {% set item_list_blog_url = group.absolute_url %}
+        {% endif %}
+        {% if item_list_blog_url %}
+          {% unless (item_list_blog_url is string_containing "//") %}
+            {% set item_list_blog_url = "/" ~ item_list_blog_url %}
+          {% endunless %}
+          {% set item_list_blog_url = item_list_blog_url|regex_replace("http:", "") %}
+        {% endif %}
+
         {% if module.recent_posts_type == 'recent_posts' %}
           {% set recent_posts = blog_recent_posts(blog_id, module.layout.number_of_posts) %}
+          {% if recent_posts|length %}
+            <script type="application/ld+json">
+              {
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",{% if item_list_blog_url %}
+                "about": {
+                  "@type": "Blog",
+                  "url": {{item_list_blog_url|tojson}}
+                },
+                "isPartOf": {{item_list_blog_url|tojson}},{% endif %}
+                "mainEntity": {
+                  "@type": "ItemList",
+                  "name": {{item_list_name|tojson}},
+                  "identifier": {{item_list_identifier|tojson}},
+                  "numberOfItems": {{recent_posts|length}},
+                  "itemListElement": [
+                    {% for post in recent_posts %}
+                      {{recent_page_posts_json_item(post, loop.index, recent_posts|length, blog_id)}}
+                    {% endfor %}
+                  ]
+                }
+              }
+            </script>
+          {% endif %}
           {% for post in recent_posts %}
             {{blog_posts(post, blog_id)}}
           {% endfor %}
         {% elif module.recent_posts_type == 'recent_posts_by_tag' %}
           {% if module.select_tag %}
             {% set tag_posts = blog_recent_tag_posts(blog_id, module.select_tag, module.layout.number_of_posts) %}
+            {% if tag_posts|length %}
+              <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "CollectionPage",{% if item_list_blog_url %}
+                  "about": {
+                    "@type": "Blog",
+                    "url": {{item_list_blog_url|tojson}}
+                  },
+                  "isPartOf": {{item_list_blog_url|tojson}},{% endif %}
+                  "mainEntity": {
+                    "@type": "ItemList",
+                    "name": {{item_list_name|tojson}},
+                    "identifier": {{item_list_identifier|tojson}},
+                    "numberOfItems": {{tag_posts|length}},
+                    "itemListElement": [
+                      {% for tag_post in tag_posts %}
+                        {{recent_page_posts_json_item(tag_post, loop.index, tag_posts|length, blog_id)}}
+                      {% endfor %}
+                    ]
+                  }
+                }
+              </script>
+            {% endif %}
             
             {# Show message if no posts found and not filling #}
             {% if tag_posts|length == 0 and not module.fill_with_other_posts %}
