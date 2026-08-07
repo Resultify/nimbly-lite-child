@@ -296,6 +296,7 @@
             "min": 1,
             "required": false,
             "placeholder": "e.g. 24",
+            "default": 24,
             "inline_help_text": "The size content editors should choose in the RTE (Format → Font size). Used to match p/span[style*=\"font-size:…\"].",
             "help_text": "Example: 24 → styles any main p/span whose inline style includes font-size:24px (with or without a space after the colon)."
           },
@@ -3298,7 +3299,7 @@
         },
         "default": {
           "color": null,
-          "opacity": null
+          "opacity": 50
         }
       },
       {

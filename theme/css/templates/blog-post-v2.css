@@ -4,7 +4,6 @@
 {% import '../macros.css' %}
 
 {# global blog variables #}
-.blog-post-header,
 .blog-post-header-wrp.blog-post-header-wrp-featured-image:before {
   background-color: {{theme.blog.header_background_color.css}};
 }
