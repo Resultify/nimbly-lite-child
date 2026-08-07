@@ -1,10 +1,15 @@
 {% set main_text_font = theme.typography.text.font %}
+{% set main_text_line_height = theme.typography.text.line_height %}
 
 body {
   overflow-wrap: break-word;
   color: {{main_text_font.color}};
   background-color: {{theme.typography.text.background.color}};
-  line-height: 1.5;
+  {% if main_text_line_height and main_text_font.size %}
+    line-height: calc({{ main_text_line_height }} / {{ main_text_font.size }});
+  {% else %}
+    line-height: 1.5;
+  {% endif %}
   font-size: {{main_text_font.size ~ main_text_font.size_unit}};
 
   {% if main_text_font.font == null %}

@@ -229,6 +229,20 @@
             }
           },
           {
+            "label": "Line height",
+            "name": "line_height",
+            "type": "number",
+            "display": "text",
+            "display_width": null,
+            "locked": false,
+            "step": 1,
+            "suffix": "px",
+            "required": false,
+            "placeholder": "e.g. 30",
+            "inline_help_text": "Figma-style body line height in px. Rendered as calc(line-height / font-size) on body (inherits into paragraphs and rich text).",
+            "help_text": "Example: font size 18 and line height 30 → line-height: calc(30 / 18). Leave empty to keep the theme default (1.5)."
+          },
+          {
             "label": "Secondary global font",
             "name": "secondary_global_font",
             "type": "font",
