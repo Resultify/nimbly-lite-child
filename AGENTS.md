@@ -70,6 +70,7 @@ Patterns from real client polish:
 
 - Brand tokens and global type live in `theme/fields.json`; avoid hardcoding fonts that should inherit.
 - **Heading line-height:** define line-height on **every** pair `h1`/`.h1` … `h6`/`.h6` together (same value on the tag and the class). Unicard often uses a semantic tag (e.g. `h2`) with a display class (e.g. `.h6`); if `.h6` has no line-height, the `h2` rule wins and the visual size looks wrong. Never use **px** line-heights — headings resize responsively; use unitless multipliers or `calc(n/d)` (comment the Figma ratio when useful).
+- **Ingress / preamble:** HubSpot has no lead style. Use Typography → Ingress: set the RTE font size editors should pick + Figma line height. Theme CSS targets `main p/span[style*="font-size:…"]` and `.ingress` with `calc(line-height / font-size)`. Prefer that over one-off rules in `custom.css`.
 - Scope page-specific chrome (e.g. transparent header) with a template/body class + `theme/js/custom.js` measuring CSS vars — don’t apply sitewide without opt-in.
 - Hide empty optional UI in HubL (flag + data check) rather than leaving empty headings/modules.
 - Localize editor-facing defaults and system templates with `html_lang` (`sv` / `da` / `en`).

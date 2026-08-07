@@ -1,0 +1,40 @@
+{% set ingress_font_size = theme.typography.ingress.font_size %}
+{% set ingress_line_height = theme.typography.ingress.line_height %}
+{% set ingress_font = theme.typography.ingress.font %}
+
+{#
+  Ingress / preamble workaround:
+  HubSpot RTE has no dedicated lead style. Editors pick a font size in the toolbar;
+  we match that inline style (and .ingress) and apply theme line-height / font.
+#}
+{% if ingress_font_size %}
+  .ingress,
+  main p[style*='font-size:{{ ingress_font_size }}px'],
+  main p[style*='font-size: {{ ingress_font_size }}px'],
+  main span[style*='font-size:{{ ingress_font_size }}px'],
+  main span[style*='font-size: {{ ingress_font_size }}px'] {
+    {% if ingress_line_height %}
+      line-height: calc({{ ingress_line_height }} / {{ ingress_font_size }});
+    {% endif %}
+
+    {% if ingress_font.style %}
+      {{ ingress_font.style }};
+    {% endif %}
+
+    {% if ingress_font.color %}
+      color: {{ ingress_font.color }};
+    {% endif %}
+
+    {% if ingress_font.font %}
+      {% if ingress_font.fallback %}
+        font-family: {{ ingress_font.font ~ ',' ~ ingress_font.fallback }};
+      {% else %}
+        font-family: {{ ingress_font.font }};
+      {% endif %}
+    {% endif %}
+  }
+
+  .ingress {
+    font-size: {{ ingress_font_size }}px;
+  }
+{% endif %}

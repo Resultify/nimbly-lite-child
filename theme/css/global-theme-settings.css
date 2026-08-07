@@ -40,6 +40,7 @@
 {% include './global-theme-settings/general.css' %}
 {% include './flex-system-v2/index.css' %}
 {% include './global-theme-settings/typography/page.css' %}
+{% include './global-theme-settings/typography/ingress.css' %}
 {% include './global-theme-settings/typography/headings.css' %}
 {% include './global-theme-settings/typography/links.css' %}
 {% include './global-theme-settings/typography/blockquotes.css' %}

@@ -265,6 +265,65 @@
         "required": false
       },
       {
+        "label": "Ingress / preamble",
+        "name": "ingress",
+        "type": "group",
+        "inline_help_text": "Workaround for lead/ingress text: set the font size editors should pick in the rich text toolbar, plus Figma line height. Theme CSS targets that inline font-size (and .ingress).",
+        "children": [
+          {
+            "label": "Font size",
+            "name": "font_size",
+            "type": "number",
+            "display": "text",
+            "display_width": null,
+            "locked": false,
+            "step": 1,
+            "suffix": "px",
+            "min": 1,
+            "required": false,
+            "placeholder": "e.g. 24",
+            "inline_help_text": "The size content editors should choose in the RTE (Format → Font size). Used to match p/span[style*=\"font-size:…\"].",
+            "help_text": "Example: 24 → styles any main p/span whose inline style includes font-size:24px (with or without a space after the colon)."
+          },
+          {
+            "label": "Line height",
+            "name": "line_height",
+            "type": "number",
+            "display": "text",
+            "display_width": null,
+            "locked": false,
+            "step": 1,
+            "suffix": "px",
+            "required": false,
+            "placeholder": "e.g. 32",
+            "inline_help_text": "Figma-style line height in px for this ingress size. Rendered as calc(line-height / font-size).",
+            "help_text": "Example: font size 24 and line height 32 → line-height: calc(32 / 24). Leave empty to only rely on browser/default line-height for those elements."
+          },
+          {
+            "label": "Font",
+            "name": "font",
+            "type": "font",
+            "inline_help_text": "Optional family/weight/color for ingress (size is controlled by Font size above).",
+            "help_text": "Applied to matching RTE text and .ingress. Font size in this picker is ignored — use Font size above so it stays in sync with the RTE size hook.",
+            "visibility": {
+              "hidden_subfields": {
+                "size": true
+              }
+            },
+            "display_width": null,
+            "load_external_fonts": true,
+            "locked": false,
+            "required": false,
+            "default": {}
+          }
+        ],
+        "display_width": null,
+        "locked": false,
+        "tab": "CONTENT",
+        "expanded": false,
+        "required": false
+      },
+      {
         "label": "Headings global",
         "name": "headings",
         "type": "group",
