@@ -142,9 +142,11 @@
   
   {# Extract unique industries for filter dropdown #}
   {% set industries = [] %}
+  {% set industry_names = [] %}
   {% for case in sorted_case_studies %}
-    {% if case.summary_industry and case.summary_industry.name not in industries %}
-      {% do industries.append(case.summary_industry.name) %}
+    {% if case.summary_industry and case.summary_industry.name not in industry_names %}
+      {% do industry_names.append(case.summary_industry.name) %}
+      {% do industries.append(case.summary_industry) %}
     {% endif %}
   {% endfor %}
   
@@ -186,7 +188,7 @@
           <select id="case-study-industry-filter" class="case-study-list__filter-dropdown">
             <option value="all">{{ all_industries }}</option>
             {% for industry in industries %}
-              <option value="{{ industry }}">{{ industry|replace('_', ' ')|title }}</option>
+              <option value="{{ industry.name }}">{{ industry.label }}</option>
             {% endfor %}
           </select>
         </div>
@@ -197,7 +199,7 @@
           <ul class="case-study-list__filter-buttons">
             <li><button class="case-study-list__filter-btn btn-link {{ module.content.active_button_style }} btn-regular" data-filter="all">{{ all_industries }}</button></li>
             {% for industry in industries %}
-              <li><button class="case-study-list__filter-btn btn-link {{ module.content.inactive_button_style }} btn-regular" data-filter="{{ industry }}">{{ industry|replace('_', ' ')|title }}</button></li>
+              <li><button class="case-study-list__filter-btn btn-link {{ module.content.inactive_button_style }} btn-regular" data-filter="{{ industry.name }}">{{ industry.label }}</button></li>
             {% endfor %}
           </ul>
         </div>

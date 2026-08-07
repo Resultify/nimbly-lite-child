@@ -10,6 +10,9 @@
 
 {% block body %}
 
+  {# true = hide related section when empty; false = always show the section #}
+  {% set hide_empty_related_case_studies = true %}
+
   {% if html_lang == "sv" %}
     {% set website = 'Webbplats' %}
     {% set related_case_studies = 'Relaterade fallstudier' %}
@@ -216,22 +219,36 @@
           {% endif %}
         </article>
 
-        <div class="case-study__related-case-studies-wrp">
-          <div class="case-study__related-case-studies">
-            <h2 class="case-study__related-case-studies-title">{{ related_case_studies }}</h2>
-            <div class="case-study__related-case-studies-container">
+        {# Check for other visible cases in the same industry #}
+        {% set related_case_studies_found = [] %}
+        {% if dynamic_page_hubdb_row.summary_industry %}
+          {% set related_cases_check = hubdb_table_rows('case_study', "summary_industry=" ~ dynamic_page_hubdb_row.summary_industry.name) %}
+          {% for case in related_cases_check %}
+            {% if case.hs_id != dynamic_page_hubdb_row.hs_id and not case.hide %}
+              {% do related_case_studies_found.append(true) %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
 
-              {% module 'related-case-studies'
-                path="../modules/case-study-list",
-                offset=0,
-                width=12,
-                content={
-                  "mode" : "related"
-                }
-              %}
+        {% if hide_empty_related_case_studies == false or related_case_studies_found|length > 0 %}
+          <div class="case-study__related-case-studies-wrp">
+            <div class="case-study__related-case-studies">
+              <h2 class="case-study__related-case-studies-title">{{ related_case_studies }}</h2>
+              <div class="case-study__related-case-studies-container">
+
+                {% module 'related-case-studies'
+                  path="../modules/case-study-list",
+                  offset=0,
+                  width=12,
+                  content={
+                    "mode" : "related"
+                  }
+                %}
+              </div>
             </div>
           </div>
-        </div>
+        {% endif %}
 
       </div>
     </div>
