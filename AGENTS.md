@@ -35,6 +35,7 @@ Prefer `rh` / `npm run …` scripts over inventing a second toolchain.
 | `npm run validate` | Marketplace validation (**theme must already exist on the portal**) |
 | `npm run lighthouse` | Lighthouse via HubSpot |
 | `npm run fetchDb` / `uploadDb` | HubDB sync |
+| `npm run generateBlogCsv` | Write `blog/hubspot-blog-import.csv` for HubSpot blog CSV import |
 
 `theme.json` `name` must match `package.json` `name` and the Design Manager folder path.
 

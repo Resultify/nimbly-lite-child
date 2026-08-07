@@ -18,6 +18,7 @@ A fully self-contained HubSpot CMS theme that can be used as a base for any new 
 - `rh build` - builds the project
 - `rh uploadDb` - uploads HubDb database to the HubSpot portal
 - `rh fetchDb` - fetches HubDb database from the HubSpot portal
+- `npm run generateBlogCsv` - writes `blog/hubspot-blog-import.csv` for HubSpot’s blog CSV import
 - `rh browsers` - list of supported browsers for the project
 
 ***
@@ -163,3 +164,29 @@ To setup the database tables in your Hub portal, start by uploading "Success Met
    - You should now have 2 new tables in your HubDb (in your portal) complete with some example content. You will still need to hook up some of the Success Metrics to each row in the Case Study table manually, if you want to use them.
 
 **Note:** In HubDB, for the `case_study` table, please check the Actions > Manage settings. Make sure **Meta description column** is set to `meta_description` and **Featured image column** is set to `summary_featured_image` (or whatever image you like). In our testing, these fields seems to not be selected properly when uploaded.
+
+***
+
+## Sample blog posts
+
+To seed lots of test articles for blog templates and modules, generate a HubSpot-ready CSV and import it in the UI (no API scopes needed):
+
+```bash
+npm run generateBlogCsv          # 25 posts → blog/hubspot-blog-import.csv
+npm run generateBlogCsv -- 100   # or any count
+```
+
+Optional flags: `--author="Demo Author"` · `--base-url="https://www.example.com/blog"`
+
+Headers match HubSpot’s sample CSV (`POST_URL`, `TITLE`, `SEO_TITLE`, `PUBLISH_DATE`, `AUTHOR`, `META_DESCRIPTION`, `FEATURED_IMAGE`, `POST_BODY`, `TAGS`) so mapping should auto-detect. Featured images use public `picsum.photos` URLs. Each post body starts with `<p class="ingress">…</p>` so size/line-height come from Typography → Ingress.
+
+Then in HubSpot:
+
+1. Settings → Content → Blog → **Import blog**
+2. Choose **CSV file upload**, pick your blog, upload `blog/hubspot-blog-import.csv`
+3. For “Which blog platform…?”, choose **Other** or **I am not sure**
+4. Confirm columns auto-mapped; import as **drafts**
+
+Docs: https://knowledge.hubspot.com/blog/import-your-blog-into-hubspot-as-a-csv-file
+
+Edit `scripts/generate-blog-csv.js` if you want different titles, tags, or body HTML. Re-running overwrites the CSV; HubSpot import creates new posts (unless you choose override by URL).
