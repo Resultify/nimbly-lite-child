@@ -14,6 +14,13 @@ export default defineConfig([
     },
   },
   {
+    name: "node scripts",
+    files: ["scripts/**/*.{js,mjs}"],
+    languageOptions: {
+      globals: { ...globals.node },
+    },
+  },
+  {
     name: "global linter options",
     files: ["**/*.{js,mjs}"],
     linterOptions: {

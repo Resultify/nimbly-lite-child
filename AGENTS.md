@@ -103,7 +103,7 @@ Patterns from real client polish:
 ## CI / validate pitfalls
 
 - Default branch: `master`.
-- PR validate workflow: **`ciUpload` → `validate` → `lighthouse`** against the CI portal.
+- PR validate workflow: **rename to unique `*-ci-{run_id}-{attempt}` path → `ciUpload` → `validate` → `lighthouse` → delete path** against the CI portal (`HUBSPOT_CI_*` secrets → `HUBSPOT_PORTAL_ID` / `HUBSPOT_PERSONAL_ACCESS_KEY` only; not `.env` `hub_*`).
 - Marketplace validate downloads the theme **from the portal** by `theme.json` `name`. If that folder is missing/empty → `DOWNLOAD_EMPTY`. Upload first.
 - Bulk `ciUpload` can hit **Cloudflare 403** under HubSpot’s fixed upload concurrency (~10). Single-file `watch` often works; empty `ciUploadTheme error:` usually means a 403 HTML body. Retry or patch concurrency upstream — not a theme logic bug.
 - Commit subject prefix: `[FEATURE|BUGFIX|TASK|TEST|DOC|WIP]` (optional `[!!!]`).
