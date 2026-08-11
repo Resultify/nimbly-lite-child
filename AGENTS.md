@@ -35,6 +35,7 @@ Prefer `rh` / `npm run …` scripts over inventing a second toolchain.
 | `npm run validate` | Marketplace validation (**theme must already exist on the portal**) |
 | `npm run lighthouse` | Lighthouse via HubSpot |
 | `npm run fetchDb` / `uploadDb` | HubDB sync |
+| `npm run generateBlogCsv` | Write `blog/hubspot-blog-import.csv` for HubSpot blog CSV import |
 
 `theme.json` `name` must match `package.json` `name` and the Design Manager folder path.
 
@@ -69,7 +70,9 @@ Edit `fields.js` / `src/`, then regenerate.
 Patterns from real client polish:
 
 - Brand tokens and global type live in `theme/fields.json`; avoid hardcoding fonts that should inherit.
-- **Heading line-height:** define line-height on **every** pair `h1`/`.h1` … `h6`/`.h6` together (same value on the tag and the class). Unicard often uses a semantic tag (e.g. `h2`) with a display class (e.g. `.h6`); if `.h6` has no line-height, the `h2` rule wins and the visual size looks wrong. Never use **px** line-heights — headings resize responsively; use unitless multipliers or `calc(n/d)` (comment the Figma ratio when useful).
+- **Body line-height:** use Typography → Page global → Line height (px). CSS emits `calc(line-height / font-size)` on `body` (inherits into paragraphs / rich text); empty keeps `1.5`. Prefer that over one-off `main p` / module richtext rules in `custom.css`.
+- **Heading line-height:** use theme Typography → Headings separately → Line height (px). CSS emits `calc(line-height / font-size)` on every `h1`/`.h1` … `h6`/`.h6` and `.display-*` pair (or `normal` if unset) so Unicard semantic tag + display class stays correct. Never hardcode px line-heights in `custom.css` for those styles.
+- **Ingress / preamble:** HubSpot has no lead style. Use Typography → Ingress: set the RTE font size editors should pick + Figma line height. Theme CSS targets `main p/span[style*="font-size:…"]` and `.ingress` with `calc(line-height / font-size)`. Prefer that over one-off rules in `custom.css`.
 - Scope page-specific chrome (e.g. transparent header) with a template/body class + `theme/js/custom.js` measuring CSS vars — don’t apply sitewide without opt-in.
 - Hide empty optional UI in HubL (flag + data check) rather than leaving empty headings/modules.
 - Localize editor-facing defaults and system templates with `html_lang` (`sv` / `da` / `en`).

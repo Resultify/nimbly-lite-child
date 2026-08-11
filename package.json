@@ -24,7 +24,8 @@
     "lighthouse": "cmslib --lighthouse",
     "fields": "cmslib --fields",
     "fetchDb": "cmslib --fetchDb",
-    "uploadDb": "cmslib --uploadDb"
+    "uploadDb": "cmslib --uploadDb",
+    "generateBlogCsv": "node scripts/generate-blog-csv.js"
   },
   "dependencies": {
     "@lottiefiles/dotlottie-web": "~0.42.0",

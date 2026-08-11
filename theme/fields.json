@@ -8,7 +8,9 @@
         "label": "Primary color",
         "name": "primary",
         "type": "color",
-        "alternate_names": ["primary_color"],
+        "alternate_names": [
+          "primary_color"
+        ],
         "inline_help_text": "Primary Brand color, Primary button color, Primary Icon color, Border color and hover background for Secondary2-3 buttons",
         "visibility": {
           "hidden_subfields": {
@@ -31,7 +33,9 @@
         "label": "Secondary color 1",
         "name": "secondary1",
         "type": "color",
-        "alternate_names": ["secondary_color"],
+        "alternate_names": [
+          "secondary_color"
+        ],
         "inline_help_text": "Secondary 1 Brand color, Secondary 1 button color, Secondary Icon color",
         "visibility": {
           "hidden_subfields": {
@@ -202,7 +206,9 @@
             "label": "Font",
             "name": "font",
             "type": "font",
-            "alternate_names": ["body_font"],
+            "alternate_names": [
+              "body_font"
+            ],
             "inline_help_text": "If no font is selected, the system font will be used",
             "help_text": "Instead of (slowly) downloading external fonts that sometimes don’t take advantage of newer, high DPI screens or dynamic font rendering, just skip this option and we will serve the best system font possible based on your operating system or device.",
             "visibility": {
@@ -221,6 +227,20 @@
               "size_unit": "px",
               "color": "#1d1d1d"
             }
+          },
+          {
+            "label": "Line height",
+            "name": "line_height",
+            "type": "number",
+            "display": "text",
+            "display_width": null,
+            "locked": false,
+            "step": 1,
+            "suffix": "px",
+            "required": false,
+            "placeholder": "e.g. 30",
+            "inline_help_text": "Figma-style body line height in px. Rendered as calc(line-height / font-size) on body (inherits into paragraphs and rich text).",
+            "help_text": "Example: font size 18 and line height 30 → line-height: calc(30 / 18). Leave empty to keep the theme default (1.5)."
           },
           {
             "label": "Secondary global font",
@@ -259,6 +279,66 @@
         "required": false
       },
       {
+        "label": "Ingress / preamble",
+        "name": "ingress",
+        "type": "group",
+        "inline_help_text": "Workaround for lead/ingress text: set the font size editors should pick in the rich text toolbar, plus Figma line height. Theme CSS targets that inline font-size (and .ingress).",
+        "children": [
+          {
+            "label": "Font size",
+            "name": "font_size",
+            "type": "number",
+            "display": "text",
+            "display_width": null,
+            "locked": false,
+            "step": 1,
+            "suffix": "px",
+            "min": 1,
+            "required": false,
+            "placeholder": "e.g. 24",
+            "default": 24,
+            "inline_help_text": "The size content editors should choose in the RTE (Format → Font size). Used to match p/span[style*=\"font-size:…\"].",
+            "help_text": "Example: 24 → styles any main p/span whose inline style includes font-size:24px (with or without a space after the colon)."
+          },
+          {
+            "label": "Line height",
+            "name": "line_height",
+            "type": "number",
+            "display": "text",
+            "display_width": null,
+            "locked": false,
+            "step": 1,
+            "suffix": "px",
+            "required": false,
+            "placeholder": "e.g. 32",
+            "inline_help_text": "Figma-style line height in px for this ingress size. Rendered as calc(line-height / font-size).",
+            "help_text": "Example: font size 24 and line height 32 → line-height: calc(32 / 24). Leave empty to only rely on browser/default line-height for those elements."
+          },
+          {
+            "label": "Font",
+            "name": "font",
+            "type": "font",
+            "inline_help_text": "Optional family/weight/color for ingress (size is controlled by Font size above).",
+            "help_text": "Applied to matching RTE text and .ingress. Font size in this picker is ignored — use Font size above so it stays in sync with the RTE size hook.",
+            "visibility": {
+              "hidden_subfields": {
+                "size": true
+              }
+            },
+            "display_width": null,
+            "load_external_fonts": true,
+            "locked": false,
+            "required": false,
+            "default": {}
+          }
+        ],
+        "display_width": null,
+        "locked": false,
+        "tab": "CONTENT",
+        "expanded": false,
+        "required": false
+      },
+      {
         "label": "Headings global",
         "name": "headings",
         "type": "group",
@@ -267,7 +347,9 @@
             "label": "Font",
             "name": "font",
             "type": "font",
-            "alternate_names": ["heading_font"],
+            "alternate_names": [
+              "heading_font"
+            ],
             "inline_help_text": "If no font is selected, the system font will be used",
             "help_text": "Instead of (slowly) downloading external fonts that sometimes don’t take advantage of newer, high DPI screens or dynamic font rendering, just skip this option and we will serve the best system font possible based on your operating system or device.",
             "visibility": {
@@ -401,6 +483,20 @@
                   "size": 40,
                   "size_unit": "px"
                 }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "text",
+                "display_width": null,
+                "locked": false,
+                "step": 1,
+                "suffix": "px",
+                "required": false,
+                "inline_help_text": "Figma-style line height in px for this heading size. Rendered as calc(line-height / font-size) so it stays proportional when fluid font sizes scale.",
+                "help_text": "Example: font size 75 and line height 90 → line-height: calc(90 / 75). Leave empty to use line-height: normal (avoids a semantic tag like h2 overriding a display class like .h5 when that style has no custom line height).",
+                "placeholder": "normal"
               }
             ],
             "display_width": null,
@@ -428,6 +524,20 @@
                   "size": 32,
                   "size_unit": "px"
                 }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "text",
+                "display_width": null,
+                "locked": false,
+                "step": 1,
+                "suffix": "px",
+                "required": false,
+                "inline_help_text": "Figma-style line height in px for this heading size. Rendered as calc(line-height / font-size) so it stays proportional when fluid font sizes scale.",
+                "help_text": "Example: font size 75 and line height 90 → line-height: calc(90 / 75). Leave empty to use line-height: normal (avoids a semantic tag like h2 overriding a display class like .h5 when that style has no custom line height).",
+                "placeholder": "normal"
               }
             ],
             "display_width": null,
@@ -455,6 +565,20 @@
                   "size": 28,
                   "size_unit": "px"
                 }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "text",
+                "display_width": null,
+                "locked": false,
+                "step": 1,
+                "suffix": "px",
+                "required": false,
+                "inline_help_text": "Figma-style line height in px for this heading size. Rendered as calc(line-height / font-size) so it stays proportional when fluid font sizes scale.",
+                "help_text": "Example: font size 75 and line height 90 → line-height: calc(90 / 75). Leave empty to use line-height: normal (avoids a semantic tag like h2 overriding a display class like .h5 when that style has no custom line height).",
+                "placeholder": "normal"
               }
             ],
             "display_width": null,
@@ -482,6 +606,20 @@
                   "size": 24,
                   "size_unit": "px"
                 }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "text",
+                "display_width": null,
+                "locked": false,
+                "step": 1,
+                "suffix": "px",
+                "required": false,
+                "inline_help_text": "Figma-style line height in px for this heading size. Rendered as calc(line-height / font-size) so it stays proportional when fluid font sizes scale.",
+                "help_text": "Example: font size 75 and line height 90 → line-height: calc(90 / 75). Leave empty to use line-height: normal (avoids a semantic tag like h2 overriding a display class like .h5 when that style has no custom line height).",
+                "placeholder": "normal"
               }
             ],
             "display_width": null,
@@ -509,6 +647,20 @@
                   "size": 20,
                   "size_unit": "px"
                 }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "text",
+                "display_width": null,
+                "locked": false,
+                "step": 1,
+                "suffix": "px",
+                "required": false,
+                "inline_help_text": "Figma-style line height in px for this heading size. Rendered as calc(line-height / font-size) so it stays proportional when fluid font sizes scale.",
+                "help_text": "Example: font size 75 and line height 90 → line-height: calc(90 / 75). Leave empty to use line-height: normal (avoids a semantic tag like h2 overriding a display class like .h5 when that style has no custom line height).",
+                "placeholder": "normal"
               }
             ],
             "display_width": null,
@@ -536,6 +688,20 @@
                   "size": 18,
                   "size_unit": "px"
                 }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "text",
+                "display_width": null,
+                "locked": false,
+                "step": 1,
+                "suffix": "px",
+                "required": false,
+                "inline_help_text": "Figma-style line height in px for this heading size. Rendered as calc(line-height / font-size) so it stays proportional when fluid font sizes scale.",
+                "help_text": "Example: font size 75 and line height 90 → line-height: calc(90 / 75). Leave empty to use line-height: normal (avoids a semantic tag like h2 overriding a display class like .h5 when that style has no custom line height).",
+                "placeholder": "normal"
               }
             ],
             "display_width": null,
@@ -564,6 +730,20 @@
                   "size": 80,
                   "size_unit": "px"
                 }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "text",
+                "display_width": null,
+                "locked": false,
+                "step": 1,
+                "suffix": "px",
+                "required": false,
+                "inline_help_text": "Figma-style line height in px for this heading size. Rendered as calc(line-height / font-size) so it stays proportional when fluid font sizes scale.",
+                "help_text": "Example: font size 75 and line height 90 → line-height: calc(90 / 75). Leave empty to use line-height: normal (avoids a semantic tag like h2 overriding a display class like .h5 when that style has no custom line height).",
+                "placeholder": "normal"
               }
             ],
             "display_width": null,
@@ -592,6 +772,20 @@
                   "size": 70,
                   "size_unit": "px"
                 }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "text",
+                "display_width": null,
+                "locked": false,
+                "step": 1,
+                "suffix": "px",
+                "required": false,
+                "inline_help_text": "Figma-style line height in px for this heading size. Rendered as calc(line-height / font-size) so it stays proportional when fluid font sizes scale.",
+                "help_text": "Example: font size 75 and line height 90 → line-height: calc(90 / 75). Leave empty to use line-height: normal (avoids a semantic tag like h2 overriding a display class like .h5 when that style has no custom line height).",
+                "placeholder": "normal"
               }
             ],
             "display_width": null,
@@ -620,6 +814,20 @@
                   "size": 64,
                   "size_unit": "px"
                 }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "text",
+                "display_width": null,
+                "locked": false,
+                "step": 1,
+                "suffix": "px",
+                "required": false,
+                "inline_help_text": "Figma-style line height in px for this heading size. Rendered as calc(line-height / font-size) so it stays proportional when fluid font sizes scale.",
+                "help_text": "Example: font size 75 and line height 90 → line-height: calc(90 / 75). Leave empty to use line-height: normal (avoids a semantic tag like h2 overriding a display class like .h5 when that style has no custom line height).",
+                "placeholder": "normal"
               }
             ],
             "display_width": null,
@@ -648,6 +856,20 @@
                   "size": 60,
                   "size_unit": "px"
                 }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "text",
+                "display_width": null,
+                "locked": false,
+                "step": 1,
+                "suffix": "px",
+                "required": false,
+                "inline_help_text": "Figma-style line height in px for this heading size. Rendered as calc(line-height / font-size) so it stays proportional when fluid font sizes scale.",
+                "help_text": "Example: font size 75 and line height 90 → line-height: calc(90 / 75). Leave empty to use line-height: normal (avoids a semantic tag like h2 overriding a display class like .h5 when that style has no custom line height).",
+                "placeholder": "normal"
               }
             ],
             "display_width": null,
@@ -676,6 +898,20 @@
                   "size": 54,
                   "size_unit": "px"
                 }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "text",
+                "display_width": null,
+                "locked": false,
+                "step": 1,
+                "suffix": "px",
+                "required": false,
+                "inline_help_text": "Figma-style line height in px for this heading size. Rendered as calc(line-height / font-size) so it stays proportional when fluid font sizes scale.",
+                "help_text": "Example: font size 75 and line height 90 → line-height: calc(90 / 75). Leave empty to use line-height: normal (avoids a semantic tag like h2 overriding a display class like .h5 when that style has no custom line height).",
+                "placeholder": "normal"
               }
             ],
             "display_width": null,
@@ -704,6 +940,20 @@
                   "size": 50,
                   "size_unit": "px"
                 }
+              },
+              {
+                "label": "Line height",
+                "name": "line_height",
+                "type": "number",
+                "display": "text",
+                "display_width": null,
+                "locked": false,
+                "step": 1,
+                "suffix": "px",
+                "required": false,
+                "inline_help_text": "Figma-style line height in px for this heading size. Rendered as calc(line-height / font-size) so it stays proportional when fluid font sizes scale.",
+                "help_text": "Example: font size 75 and line height 90 → line-height: calc(90 / 75). Leave empty to use line-height: normal (avoids a semantic tag like h2 overriding a display class like .h5 when that style has no custom line height).",
+                "placeholder": "normal"
               }
             ],
             "display_width": null,
@@ -3049,7 +3299,7 @@
         },
         "default": {
           "color": null,
-          "opacity": null
+          "opacity": 50
         }
       },
       {
