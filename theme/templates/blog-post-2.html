@@ -31,7 +31,7 @@
   <div class="blog-post-template">
 
     <div class="blog-post_wrp">
-      <div class="blog-post-header-wrp {{"blog-post-header-wrp-featured-image" if content.featured_image }}">
+      <div class="blog-post-header-wrp {{ "blog-post-header-wrp-featured-image" if content.featured_image else "blog-post-header-wrp-no-featured-image" }}">
         <div class="blog-post-header">
           <div class="blog-post__all-posts">
             <a href="{{ group.absolute_url }}">{{ content.parentBlog.htmlTitle }}</a>
@@ -62,14 +62,14 @@
               </time>
             </div>
           </div>
-        </div>
-        {% if content.tag_list %}
-          <div class="blog-post__tags">
+          {% if content.tag_list %}
+            <div class="blog-post__tags">
             {% for tag in content.tag_list %}
               <a class="blog-post__tag-link" href="{{blog_tag_url(group.id, tag.slug)}}" rel="tag">{{tag.name|escape_html}}</a>
             {% endfor %}
-          </div>
-        {% endif %}
+            </div>
+          {% endif %}
+        </div>
 
         {% if content.featured_image %}
           <div class="blog-post-featured-image-wrp">

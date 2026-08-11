@@ -4,7 +4,8 @@
 {% import '../macros.css' %}
 
 {# global blog variables #}
-.blog-post-header-wrp.blog-post-header-wrp-featured-image:before {
+.blog-post-header-wrp-no-featured-image,
+.blog-post-header-wrp-featured-image:before {
   background-color: {{theme.blog.header_background_color.css}};
 }
 
@@ -58,7 +59,7 @@
  .blog-post__tags,
  .blog-post__heading,
  .blog-post__meta {
-  margin-bottom: 28px;
+  padding-bottom: 28px;
 }
 
 .blog-post__meta {
