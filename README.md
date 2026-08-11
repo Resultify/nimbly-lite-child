@@ -163,3 +163,4 @@ To setup the database tables in your Hub portal, start by uploading "Success Met
    - You should now have 2 new tables in your HubDb (in your portal) complete with some example content. You will still need to hook up some of the Success Metrics to each row in the Case Study table manually, if you want to use them.
 
 **Note:** In HubDB, for the `case_study` table, please check the Actions > Manage settings. Make sure **Meta description column** is set to `meta_description` and **Featured image column** is set to `summary_featured_image` (or whatever image you like). In our testing, these fields seems to not be selected properly when uploaded.
+
