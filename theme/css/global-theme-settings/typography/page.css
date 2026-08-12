@@ -1,5 +1,6 @@
 {% set main_text_font = theme.typography.text.font %}
 {% set main_text_line_height = theme.typography.text.line_height %}
+{% set space_after_paragraph = theme.typography.text.space_after_paragraph %}
 
 body {
   overflow-wrap: break-word;
@@ -30,3 +31,16 @@ body {
 .secondary-global-font {
   {{theme.typography.text.secondary_global_font.style}};
 }
+
+{% if space_after_paragraph or space_after_paragraph == 0 %}
+/* Natural space when a heading (or paragraph after ingress) follows a paragraph */
+main p + h1,
+main p + h2,
+main p + h3,
+main p + h4,
+main p + h5,
+main p + h6,
+main .ingress + p {
+  margin-top: {{ space_after_paragraph }}px;
+}
+{% endif %}

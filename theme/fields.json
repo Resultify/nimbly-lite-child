@@ -243,6 +243,22 @@
             "help_text": "Example: font size 18 and line height 30 → line-height: calc(30 / 18). Leave empty to keep the theme default (1.5)."
           },
           {
+            "label": "Space after paragraph",
+            "name": "space_after_paragraph",
+            "type": "number",
+            "display": "text",
+            "display_width": null,
+            "locked": false,
+            "step": 1,
+            "suffix": "px",
+            "min": 0,
+            "required": false,
+            "placeholder": "e.g. 32",
+            "default": 32,
+            "inline_help_text": "Extra top margin when a heading (or paragraph after ingress) follows a paragraph in main content.",
+            "help_text": "Applied to main p + h1–h6 and main .ingress + p. Leave empty to disable."
+          },
+          {
             "label": "Secondary global font",
             "name": "secondary_global_font",
             "type": "font",
