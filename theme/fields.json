@@ -994,8 +994,8 @@
             "label": "Font",
             "name": "font",
             "type": "font",
-            "inline_help_text": "If no font is selected, the system font will be used",
-            "help_text": "Instead of (slowly) downloading external fonts that sometimes don’t take advantage of newer, high DPI screens or dynamic font rendering, just skip this option and we will serve the best system font possible based on your operating system or device.",
+            "inline_help_text": "Color, family, and decoration for text links. Leave font size empty so links inherit from surrounding text.",
+            "help_text": "Font size is optional. Empty (recommended) → font-size: inherit, so links in headings/ingress keep that size. Setting a size forces every non-button link to that size site-wide.",
             "visibility": {
               "hidden_subfields": {}
             },
@@ -1009,8 +1009,6 @@
               }
             },
             "default": {
-              "size": 16,
-              "size_unit": "px",
               "styles": {
                 "text-decoration": "underline"
               }
