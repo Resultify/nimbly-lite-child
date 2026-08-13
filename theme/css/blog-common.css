@@ -1,13 +1,11 @@
-{# blog recent, listing, related and recent-by-tag general styling #}
+{# blog recent, listing, and recent-by-tag general styling #}
 
 {% import './macros.css' %}
 
 {# blog - expand horizontally when in dnd-section #}
 
-.dnd-section .blog-recent__article_wrp,
-.dnd-section .blog-recent-module_wrp,
+.dnd-section .blog-recent_wrp,
 .dnd-section .blog-listing-module_wrp,
-.dnd-section .blog-related-module_wrp,
 .dnd-section .blog-recent-by-tag-module_wrp {
   margin-left: -12px;
   margin-right: -12px;
@@ -16,7 +14,6 @@
 {# blog tag links container (all blog modules, blog-post, blog-tag-filter) #}
 .blog-recent__article-tags,
 .blog-recent-by-tag-module__article-tags,
-.blog-recent-module__article-tags,
 .blog-listing-module__article-tags,
 .blog-post__tags,
 .blog-tag-filter {
@@ -30,7 +27,6 @@
 {# blog tag links - primary button style (all blog modules, blog-post) #}
 .blog-recent__article-tags a,
 .blog-recent-by-tag-module__article-tags a,
-.blog-recent-module__article-tags a,
 .blog-listing-module__article-tags a,
 .blog-post__tags a {
   display: flex;
@@ -55,12 +51,10 @@
 
 .blog-recent__article-tags a:hover,
 .blog-recent-by-tag-module__article-tags a:hover,
-.blog-recent-module__article-tags a:hover,
 .blog-listing-module__article-tags a:hover,
 .blog-post__tags a:hover,
 .blog-recent__article-tags a:focus,
 .blog-recent-by-tag-module__article-tags a:focus,
-.blog-recent-module__article-tags a:focus,
 .blog-listing-module__article-tags a:focus,
 .blog-post__tags a:focus {
   {% if btn_primary_hover_color %}
