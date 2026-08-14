@@ -48,24 +48,27 @@
 .form-wrapper {
   --_form-label-color: var(--form-label-color, inherit);
   --_form-help-text-color: var(--form-help-text-color, #394047);
+  --_form-input-color: var(--form-input-color, inherit);
   --_form-placeholder-color: var(--form-placeholder-color, rgb(57 64 71 / 70%));
   --_form-error-color: var(--form-error-color, #f2545b);
+  --_form-choice-color: var(--form-input-border-color, var(--form-label-color, currentColor));
 }
 
 {# form styling - submit button - add spacing #}
 .form-wrapper .hs-submit {
-  margin-top: 1.5rem;
+  margin-top: var(--form-submit-spacing, 1.5rem);
 }
 
 {# form styling - form field - more spacing #}
 .form-wrapper .hs-form-field {
-  margin-bottom: 1.5rem;
+  align-self: flex-start;
+  margin-bottom: var(--form-field-spacing, 1.5rem);
 }
 
 .form-wrapper :where(.form-columns-2,
 .form-columns-3) {
   display: flex;
-  gap: 10px;
+  gap: normal var(--form-column-gap, 10px);
   justify-content: center;
   align-items: flex-end;
   flex-wrap: wrap;
@@ -113,6 +116,7 @@
   display: block;
   width: 100%;
   padding: 0.375rem 0.5rem;
+  color: var(--_form-input-color);
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
@@ -161,6 +165,33 @@
   padding: 0;
 }
 
+{# Equal vertical rhythm between richtext and consent checkboxes.
+   Use a tighter gap than field spacing — consent copy is prose, not labeled inputs. #}
+.form-wrapper .legal-consent-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-wrapper .legal-consent-container > *,
+.form-wrapper .legal-consent-container .hs-dependent-field,
+.form-wrapper .legal-consent-container .hs-form-field,
+.form-wrapper .legal-consent-container .inputs-list,
+.form-wrapper .legal-consent-container :where(.hs-form-checkbox-display,
+.hs-form-booleancheckbox-display,
+.hs-form-radio-display) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.form-wrapper .legal-consent-container .hs-richtext > :first-child {
+  margin-top: 0;
+}
+
+.form-wrapper .legal-consent-container .hs-richtext > :last-child {
+  margin-bottom: 0;
+}
+
 .form-wrapper .hs-error-msg,
 .form-wrapper .hs-error-msgs .hs-main-font-element {
   margin-top: 0.25rem;
@@ -186,11 +217,57 @@
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-.form-wrapper input[type="radio"],
-/* stylelint-disable-next-line no-descending-specificity */
 .form-wrapper input[type="checkbox"] {
-  width: 1.2em;
-  height: 1.2em;
+  position: relative;
+  appearance: none; /* stylelint-disable-line */
+  -webkit-appearance: none;
+  justify-content: center;
+  border: 1px solid var(--_form-choice-color);
+  border-radius: 0;
+  background-color: transparent;
+  height: 16px !important;
+  width: 16px !important;
+  flex: 0 0 16px !important;
+  margin-right: 8px;
+}
+
+.form-wrapper input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--_form-choice-color);
+  border-radius: 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.form-wrapper input[type="radio"] {
+  position: relative;
+  appearance: none; /* stylelint-disable-line */
+  -webkit-appearance: none;
+  justify-content: center;
+  border: 1px solid var(--_form-choice-color);
+  border-radius: 50%;
+  background-color: transparent;
+  height: 16px !important;
+  width: 16px !important;
+  flex: 0 0 16px !important;
+  margin-right: 8px;
+}
+
+.form-wrapper input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--_form-choice-color);
+  border-radius: 50%;
 }
 
 .form-wrapper input[type="file"]:not(:disabled) {
@@ -220,7 +297,12 @@
     {% if theme.forms.help_text.font.color %}
     --form-help-text-color: {{theme.forms.help_text.font.color}};
     {% endif %}
-    {% if theme.forms.placeholder.font.color %}
+    {% if theme.forms.input_field.font.color %}
+    --form-input-color: {{theme.forms.input_field.font.color}};
+    {% endif %}
+    {% if theme.forms.placeholder.color.css %}
+    --form-placeholder-color: {{theme.forms.placeholder.color.css}};
+    {% elif theme.forms.placeholder.font.color %}
     --form-placeholder-color: {{theme.forms.placeholder.font.color}};
     {% endif %}
     {% if theme.forms.error.font.color %}
@@ -228,6 +310,18 @@
     {% endif %}
     {% if theme.forms.focus.color.css %}
     --form-focus-color: {{theme.forms.focus.color.css}};
+    {% endif %}
+    {% if theme.forms.spacing.column_gap != null %}
+    --form-column-gap: {{theme.forms.spacing.column_gap ~ 'px'}};
+    {% endif %}
+    {% if theme.forms.spacing.field_spacing != null %}
+    --form-field-spacing: {{theme.forms.spacing.field_spacing ~ 'px'}};
+    {% endif %}
+    {% if theme.forms.spacing.submit_spacing != null %}
+    --form-submit-spacing: {{theme.forms.spacing.submit_spacing ~ 'px'}};
+    {% endif %}
+    {% if theme.forms.input_field.border.top.color %}
+    --form-input-border-color: {{theme.forms.input_field.border.top.color}};
     {% endif %}
     {% if theme.forms.background.color.css %}
     background-color: {{theme.forms.background.color.css}};
@@ -291,10 +385,24 @@
     {% if theme.forms.input_field.background.css %}
     background-color: {{theme.forms.input_field.background.css}};
     {% endif %}
+    {% if theme.forms.input_field.font.color %}
+    color: {{theme.forms.input_field.font.color}};
+    {% endif %}
+    {% if theme.forms.input_field.font.style %}
+    {{theme.forms.input_field.font.style}};
+    {% endif %}
+    {% if theme.forms.input_field.font.size %}
+    font-size: {{theme.forms.input_field.font.size ~ 'px'}};
+    {% endif %}
     {% if theme.forms.input_field.border_radius != null %}
     border-radius: {{theme.forms.input_field.border_radius ~ 'px'}};
     {% endif %}
     {{theme.forms.input_field.border.css}}
+    {% if theme.forms.input_field.border_style == 'underline' %}
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    {% endif %}
     {{theme.forms.input_field.spacing.css}}
 }
 
@@ -341,7 +449,11 @@
     {% endif %}
 }
 
-.form-wrapper .hs-error-msg {
+.form-wrapper .hs-error-msg,
+.form-wrapper .hs-error-msgs .hs-main-font-element {
+    {% if theme.forms.error.font.color %}
+    color: {{theme.forms.error.font.color}};
+    {% endif %}
     {% if theme.forms.error.font.style %}
     {{theme.forms.error.font.style}};
     {% endif %}
@@ -509,31 +621,6 @@
 }
 
 {# custom.css #}
-
-{# form styling -  align form fields (when requirement message are shown) #}
-.form-wrapper .hs-form-field {
-  align-self: flex-start;
-}
-
-{# form styling - regular input, textarea, select font - based on placeholder font-style since that's what's available in theme settings #}
-.form-wrapper input,
-.form-wrapper textarea,
-.form-wrapper select {
-  {% if theme.forms.placeholder.font.style %}
-    {{theme.forms.placeholder.font.style}};
-  {% endif %}
-  {% if theme.forms.placeholder.font.size %}
-    font-size: {{theme.forms.placeholder.font.size ~ 'px'}};
-  {% endif %}
-}
-
-{# form styling - set error message font size based on input label #}
-.form-wrapper .hs-error-msg,
-.form-wrapper .hs-error-msgs .hs-main-font-element {
-  {% if theme.forms.input_label.font.size %}
-    font-size: {{theme.forms.input_label.font.size ~ 'px'}} !important;
-  {% endif %}
-}
 
 .form-wrapper .hs_submit {
   text-align: left !important;

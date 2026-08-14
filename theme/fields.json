@@ -2738,9 +2738,10 @@
     "required": false
   },
   {
-    "label": "Forms",
+    "label": "Forms / Membership forms",
     "name": "forms",
     "type": "group",
+    "inline_help_text": "These settings style both regular site forms and membership login/register/reset forms.",
     "children": [
       {
         "label": "Spacing",
@@ -2755,6 +2756,54 @@
             "locked": false,
             "required": false,
             "default": {}
+          },
+          {
+            "label": "Column gap",
+            "name": "column_gap",
+            "type": "number",
+            "display": "slider",
+            "min": 0,
+            "max": 200,
+            "display_width": null,
+            "locked": false,
+            "step": 1,
+            "suffix": "px",
+            "required": false,
+            "default": 18,
+            "inline_help_text": "Horizontal space between fields in 2- and 3-column form rows.",
+            "help_text": "Applies to HubSpot form fieldsets with form-columns-2 / form-columns-3. Does not change vertical spacing between stacked fields."
+          },
+          {
+            "label": "Field spacing",
+            "name": "field_spacing",
+            "type": "number",
+            "display": "slider",
+            "min": 0,
+            "max": 200,
+            "display_width": null,
+            "locked": false,
+            "step": 1,
+            "suffix": "px",
+            "required": false,
+            "default": 24,
+            "inline_help_text": "Vertical space below each form field (margin-bottom).",
+            "help_text": "Space between stacked fields. Default 24px ≈ 1.5rem."
+          },
+          {
+            "label": "Submit spacing",
+            "name": "submit_spacing",
+            "type": "number",
+            "display": "slider",
+            "min": 0,
+            "max": 200,
+            "display_width": null,
+            "locked": false,
+            "step": 1,
+            "suffix": "px",
+            "required": false,
+            "default": 24,
+            "inline_help_text": "Space above the submit button (margin-top).",
+            "help_text": "Default 24px ≈ 1.5rem."
           }
         ],
         "display_width": null,
@@ -2997,6 +3046,30 @@
             "default": {}
           },
           {
+            "label": "Border style",
+            "name": "border_style",
+            "type": "choice",
+            "display": "select",
+            "inline_help_text": "Box uses the Border control on all sides. Underline keeps the bottom border and clears top, right, and left.",
+            "help_text": "Underline mode still uses the Border control for width, style, and color on the remaining bottom edge.",
+            "reordering_enabled": false,
+            "display_width": null,
+            "locked": false,
+            "multiple": false,
+            "choices": [
+              [
+                "box",
+                "Box (all sides)"
+              ],
+              [
+                "underline",
+                "Underline (bottom only)"
+              ]
+            ],
+            "required": false,
+            "default": "box"
+          },
+          {
             "label": "Border radius",
             "name": "border_radius",
             "type": "number",
@@ -3007,6 +3080,28 @@
             "step": 1,
             "suffix": "px",
             "required": false
+          },
+          {
+            "label": "Font",
+            "name": "font",
+            "type": "font",
+            "inline_help_text": "Color and typography for typed input, textarea, and select values (not placeholders).",
+            "help_text": "Use this for readable text when the field background is transparent on a dark form area. Placeholder styling stays under Forms → Placeholder.",
+            "display_width": null,
+            "load_external_fonts": true,
+            "locked": false,
+            "required": false,
+            "default": {
+              "size": null,
+              "styles": null,
+              "fallback": null,
+              "size_unit": null,
+              "color": null,
+              "variant": null,
+              "font": null,
+              "style": null,
+              "font_set": "DEFAULT"
+            }
           }
         ],
         "display_width": null,
@@ -3021,9 +3116,28 @@
         "type": "group",
         "children": [
           {
+            "label": "Color",
+            "name": "color",
+            "type": "color",
+            "inline_help_text": "Placeholder text color (supports opacity). Prefer this over Font → Color when you need transparency.",
+            "display_width": null,
+            "locked": false,
+            "required": false,
+            "default": {
+              "color": null,
+              "opacity": null
+            }
+          },
+          {
             "label": "Font",
             "name": "font",
             "type": "font",
+            "inline_help_text": "Family, weight, and size for placeholder text. Color is under Color above so opacity is available.",
+            "visibility": {
+              "hidden_subfields": {
+                "color": true
+              }
+            },
             "display_width": null,
             "load_external_fonts": true,
             "locked": false,
@@ -3135,6 +3249,7 @@
         "label": "Error",
         "name": "error",
         "type": "group",
+        "inline_help_text": "Validation messages under fields (.hs-error-msg and list errors).",
         "children": [
           {
             "label": "Spacing",
@@ -3149,6 +3264,7 @@
             "label": "Font",
             "name": "font",
             "type": "font",
+            "inline_help_text": "Color and size for form validation messages (not the required asterisk).",
             "display_width": null,
             "load_external_fonts": true,
             "locked": false,
