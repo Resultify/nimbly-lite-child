@@ -15,7 +15,6 @@
     }
   ],
   "hidden_modules": [
-    "@hubspot/rich_text",
     "@hubspot/button",
     "@hubspot/form",
     "@hubspot/linked_image",

@@ -21,7 +21,12 @@
   {% if theme.forms.help_text.font.color %}
     --form-help-text-color: {{theme.forms.help_text.font.color}};
   {% endif %}
-  {% if theme.forms.placeholder.font.color %}
+  {% if theme.forms.input_field.font.color %}
+    --form-input-color: {{theme.forms.input_field.font.color}};
+  {% endif %}
+  {% if theme.forms.placeholder.color.css %}
+    --form-placeholder-color: {{theme.forms.placeholder.color.css}};
+  {% elif theme.forms.placeholder.font.color %}
     --form-placeholder-color: {{theme.forms.placeholder.font.color}};
   {% endif %}
   {% if theme.forms.error.font.color %}
@@ -29,6 +34,18 @@
   {% endif %}
   {% if theme.forms.focus.color.css %}
     --form-focus-color: {{theme.forms.focus.color.css}};
+  {% endif %}
+  {% if theme.forms.spacing.column_gap != null %}
+    --form-column-gap: {{theme.forms.spacing.column_gap ~ 'px'}};
+  {% endif %}
+  {% if theme.forms.spacing.field_spacing != null %}
+    --form-field-spacing: {{theme.forms.spacing.field_spacing ~ 'px'}};
+  {% endif %}
+  {% if theme.forms.spacing.submit_spacing != null %}
+    --form-submit-spacing: {{theme.forms.spacing.submit_spacing ~ 'px'}};
+  {% endif %}
+  {% if theme.forms.input_field.border.top.color %}
+    --form-input-border-color: {{theme.forms.input_field.border.top.color}};
   {% endif %}
   {% if theme.forms.background.color.css %}
     background-color: {{theme.forms.background.color.css}};
@@ -92,10 +109,24 @@
   {% if theme.forms.input_field.background.css %}
     background-color: {{theme.forms.input_field.background.css}};
   {% endif %}
+  {% if theme.forms.input_field.font.color %}
+    color: {{theme.forms.input_field.font.color}};
+  {% endif %}
+  {% if theme.forms.input_field.font.style %}
+    {{theme.forms.input_field.font.style}};
+  {% endif %}
+  {% if theme.forms.input_field.font.size %}
+    font-size: {{theme.forms.input_field.font.size ~ 'px'}};
+  {% endif %}
   {% if theme.forms.input_field.border_radius != null %}
     border-radius: {{theme.forms.input_field.border_radius ~ 'px'}};
   {% endif %}
   {{theme.forms.input_field.border.css}}
+  {% if theme.forms.input_field.border_style == 'underline' %}
+    border-top: none;
+    border-right: none;
+    border-left: none;
+  {% endif %}
   {{theme.forms.input_field.spacing.css}}
 }
 
@@ -142,7 +173,11 @@
   {% endif %}
 }
 
-.form-default .hs-error-msg {
+.form-default .hs-error-msg,
+.form-default .hs-error-msgs .hs-main-font-element {
+  {% if theme.forms.error.font.color %}
+    color: {{theme.forms.error.font.color}};
+  {% endif %}
   {% if theme.forms.error.font.style %}
     {{theme.forms.error.font.style}};
   {% endif %}

@@ -43,18 +43,25 @@
 .form-default {
   --_form-label-color: var(--form-label-color, inherit);
   --_form-help-text-color: var(--form-help-text-color, #394047);
+  --_form-input-color: var(--form-input-color, inherit);
   --_form-placeholder-color: var(--form-placeholder-color, rgb(57 64 71 / 70%));
   --_form-error-color: var(--form-error-color, #f2545b);
+  --_form-choice-color: var(--form-input-border-color, var(--form-label-color, currentColor));
 }
 
 .form-default .hs-form-field {
-  margin-bottom: 1rem;
+  align-self: flex-start;
+  margin-bottom: var(--form-field-spacing, 1rem);
+}
+
+.form-default .hs-submit {
+  margin-top: var(--form-submit-spacing, 1.5rem);
 }
 
 .form-default :where(.form-columns-2,
 .form-columns-3) {
   display: flex;
-  gap: 10px;
+  gap: normal var(--form-column-gap, 10px);
   justify-content: center;
   align-items: flex-end;
   flex-wrap: wrap;
@@ -102,6 +109,7 @@
   display: block;
   width: 100%;
   padding: 0.375rem 0.5rem;
+  color: var(--_form-input-color);
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
@@ -150,6 +158,33 @@
   padding: 0;
 }
 
+/* Equal vertical rhythm between richtext and consent checkboxes.
+   Use a tighter gap than field spacing — consent copy is prose, not labeled inputs. */
+.form-default .legal-consent-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-default .legal-consent-container > *,
+.form-default .legal-consent-container .hs-dependent-field,
+.form-default .legal-consent-container .hs-form-field,
+.form-default .legal-consent-container .inputs-list,
+.form-default .legal-consent-container :where(.hs-form-checkbox-display,
+.hs-form-booleancheckbox-display,
+.hs-form-radio-display) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.form-default .legal-consent-container .hs-richtext > :first-child {
+  margin-top: 0;
+}
+
+.form-default .legal-consent-container .hs-richtext > :last-child {
+  margin-bottom: 0;
+}
+
 .form-default .hs-error-msg,
 .form-default .hs-error-msgs .hs-main-font-element {
   margin-top: 0.25rem;
@@ -175,11 +210,57 @@
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-.form-default input[type="radio"],
-/* stylelint-disable-next-line no-descending-specificity */
 .form-default input[type="checkbox"] {
-  width: 1.2em;
-  height: 1.2em;
+  position: relative;
+  appearance: none; /* stylelint-disable-line */
+  -webkit-appearance: none;
+  justify-content: center;
+  border: 1px solid var(--_form-choice-color);
+  border-radius: 0;
+  background-color: transparent;
+  height: 16px !important;
+  width: 16px !important;
+  flex: 0 0 16px !important;
+  margin-right: 8px;
+}
+
+.form-default input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--_form-choice-color);
+  border-radius: 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.form-default input[type="radio"] {
+  position: relative;
+  appearance: none; /* stylelint-disable-line */
+  -webkit-appearance: none;
+  justify-content: center;
+  border: 1px solid var(--_form-choice-color);
+  border-radius: 50%;
+  background-color: transparent;
+  height: 16px !important;
+  width: 16px !important;
+  flex: 0 0 16px !important;
+  margin-right: 8px;
+}
+
+.form-default input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--_form-choice-color);
+  border-radius: 50%;
 }
 
 .form-default input[type="file"]:not(:disabled) {

@@ -1,11 +1,17 @@
 :where(a:not(.btn-link)) {
   --_color: var(--color, blue);
 
+  /* inline so multi-word links wrap in prose (blogs, rich text). */
+  display: inline;
+  color: var(--_color);
+}
+
+/* Keep flex alignment/gap only when the link contains an icon. */
+:where(a:not(.btn-link):has(.icon)) {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: 0.5ch;
-  color: var(--_color);
 }
 
 :where(a:not(.btn-link):hover) {

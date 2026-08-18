@@ -16,7 +16,14 @@
   {% if link_font.style %}
     {{link_font.style}};
   {% endif %}
-  font-size: {{link_font.size ~ 'px'}};
+  {# Inherit by default so links match surrounding text (headings, ingress, etc.).
+     Only set an explicit size when the theme font field has one — empty size used to
+     emit a broken value (e.g. "px") and a body-sized default locked all links to 16px. #}
+  {% if link_font.size %}
+    font-size: {{ link_font.size ~ (link_font.size_unit or 'px') }};
+  {% else %}
+    font-size: inherit;
+  {% endif %}
   --color: {{link_font.color}};
 }
 
