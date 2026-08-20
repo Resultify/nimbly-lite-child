@@ -17,6 +17,7 @@ Prefer `rh` / `npm run …` scripts over inventing a second toolchain.
 - Put domain CSS in the matching file (`theme/css/blog-common.css`, `theme/css/templates/*`, `theme/css/sections/*-section.css`) — do not dump everything into `custom.css`.
 - Prefer tuning **section/template DnD defaults** and Unicard field props over adding new modules.
 - When adjusting section spacing, set both `default` and `mobile` padding on `dnd_section`. **Vertical** mobile padding (top/bottom) should usually be about **half** of desktop/default (e.g. `100px` → `50px`); horizontal padding is often left as-is unless the design says otherwise.
+- Prefer `padding` / `margin` on `dnd_column` (or `dnd_section`) over `dnd_row` when either works. In the HubSpot page editor, rows are often hidden unless there is a reason to show them (e.g. more than one column in the row), so spacing on rows is harder for editors to find and change.
 - Use **relative** module paths (`../modules/...`), never `/<theme-name>/modules/...`.
 - Do not commit secrets (`.env`, `hubspot.config.yml`) or regenerable build output.
 - Do not strip `{# [rmstart] #}` / `{# [rmend] #}` markers.
@@ -82,7 +83,7 @@ Patterns from real client polish:
 
 ## New section checklist
 
-1. `theme/sections/{name}.html` — label, description, `screenshotPath`, sensible DnD defaults (desktop **and** mobile; vertical padding ≈ half of desktop). Give `dnd_section` a distinctive `class` (e.g. `tipsa-section-wrp`) so section CSS can target it without brittle selectors.
+1. `theme/sections/{name}.html` — label, description, `screenshotPath`, sensible DnD defaults (desktop **and** mobile; vertical padding ≈ half of desktop). Prefer column/section spacing over row spacing so editors can see it in the UI. Give `dnd_section` a distinctive `class` (e.g. `tipsa-section-wrp`) so section CSS can target it without brittle selectors.
 2. `theme/css/sections/{name}-section.css`
 3. `{% include %}` in `theme/css/sections.css`
 4. Preview image under `theme/images/section-previews/`
