@@ -1,0 +1,6 @@
+.hero-video-wrp video,
+.hero-video-wrp img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
