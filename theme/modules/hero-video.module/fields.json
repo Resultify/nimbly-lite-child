@@ -14,7 +14,7 @@
     "name" : "image",
     "label" : "Hero image",
     "help_text" : "Used as the video poster while the video loads, or as the full background when no video is selected.",
-    "inline_help_text" : "For best performance, use a compressed JPG or WebP at roughly viewport width.",
+    "inline_help_text" : "Upload a JPG (roughly viewport width). HubSpot serves an optimized WebP to supporting browsers automatically.",
     "required" : false,
     "locked" : false,
     "type" : "file",
