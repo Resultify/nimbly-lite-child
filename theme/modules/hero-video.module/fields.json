@@ -1,0 +1,33 @@
+[
+  {
+    "picker" : "video",
+    "name" : "file_field",
+    "label" : "Hero video",
+    "help_text" : "Optional background video (MP4 recommended). Leave empty to show the hero image only.",
+    "required" : false,
+    "locked" : false,
+    "type" : "file",
+    "display_width" : null
+  },
+  {
+    "picker" : "image",
+    "name" : "image",
+    "label" : "Hero image",
+    "help_text" : "Used as the video poster while the video loads, or as the full background when no video is selected.",
+    "inline_help_text" : "For best performance, use a compressed JPG or WebP at roughly viewport width.",
+    "required" : false,
+    "locked" : false,
+    "type" : "file",
+    "display_width" : null
+  },
+  {
+    "name" : "image_alt",
+    "label" : "Hero image alt text",
+    "help_text" : "Describe the hero image for screen readers and SEO.",
+    "required" : false,
+    "locked" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  }
+]

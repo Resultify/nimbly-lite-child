@@ -1,0 +1,37 @@
+{# Supports file URL (current), image object (legacy image field values). #}
+{% if module.image.src %}
+  {% set image_src = module.image.src %}
+  {% set image_alt = module.image_alt|default(module.image.alt|default('')) %}
+{% elif module.image %}
+  {% set image_src = module.image %}
+  {% set image_alt = module.image_alt|default('') %}
+{% endif %}
+
+{% if image_src %}
+  {% require_head %}
+    <link rel="preload" as="image" href="{{ image_src }}" fetchpriority="high">
+  {% end_require_head %}
+{% endif %}
+
+<div class="hero-video-wrp" data-hero-media="{{ 'video' if module.file_field else 'image' }}">
+  {% if module.file_field %}
+    {% set video_extension = module.file_field|split('?')|first|split('.')|last|lower %}
+    {% if video_extension == 'webm' %}
+      {% set video_mime = 'video/webm' %}
+    {% elif video_extension == 'ogg' or video_extension == 'ogv' %}
+      {% set video_mime = 'video/ogg' %}
+    {% else %}
+      {% set video_mime = 'video/mp4' %}
+    {% endif %}
+    <video autoplay loop muted playsinline preload="auto"{% if image_src %} poster="{{ image_src }}"{% endif %}>
+      <source src="{{ module.file_field }}" type="{{ video_mime }}">
+    </video>
+  {% elif image_src %}
+    <img
+      src="{{ image_src }}"
+      alt="{{ image_alt }}"
+      loading="eager"
+      fetchpriority="high"
+    >
+  {% endif %}
+</div>
