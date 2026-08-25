@@ -7,9 +7,28 @@
   {% set image_alt = module.image_alt|default('') %}
 {% endif %}
 
-{% if image_src %}
+{#
+  Video poster cannot take fetchpriority — preload it in <head>.
+  Plain <img> LCP is graded on the image request itself; put fetchpriority on the <img>
+  (preload alone is unnecessary when the image is already in the HTML).
+#}
+{% if module.file_field and image_src %}
+  {% set image_extension = image_src|split('?')|first|split('.')|last|lower %}
+  {% if image_extension == 'png' %}
+    {% set image_mime = 'image/png' %}
+  {% elif image_extension == 'webp' %}
+    {% set image_mime = 'image/webp' %}
+  {% elif image_extension == 'gif' %}
+    {% set image_mime = 'image/gif' %}
+  {% elif image_extension == 'avif' %}
+    {% set image_mime = 'image/avif' %}
+  {% elif image_extension == 'svg' %}
+    {% set image_mime = 'image/svg+xml' %}
+  {% else %}
+    {% set image_mime = 'image/jpeg' %}
+  {% endif %}
   {% require_head %}
-    <link rel="preload" as="image" href="{{ image_src }}" fetchpriority="high">
+    <link rel="preload" as="image" href="{{ image_src }}" type="{{ image_mime }}" fetchpriority="high">
   {% end_require_head %}
 {% endif %}
 
@@ -32,6 +51,7 @@
       alt="{{ image_alt }}"
       loading="eager"
       fetchpriority="high"
+      decoding="async"
     >
   {% endif %}
 </div>
