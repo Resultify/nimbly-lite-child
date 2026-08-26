@@ -5,7 +5,7 @@
   isAvailableForNewContent: true
   screenshotPath: ../images/section-previews/startpage-video-hero.jpg
 -->
-{% set hero_bg_image = "https://8310787.fs1.hubspotusercontent-na1.net/hubfs/8310787/18855819-bg.video-example.jpg" %}
+{% set hero_bg_image = "https://8310787.fs1.hubspotusercontent-na1.net/hubfs/8310787/18855819-bg.video-example.webp" %}
 {% set hero_video = "https://8310787.fs1.hubspotusercontent-na1.net/hubfs/8310787/18855819-bg.video-example.mp4" %}
 {% dnd_section
   class="startpage-video-hero-wrp",
@@ -35,8 +35,10 @@
         offset=0,
         width=12,
         file_field="{{ hero_video }}",
-        image="{{ hero_bg_image }}",
-        image_alt="Video example poster image"
+        image={
+          "src" : hero_bg_image,
+          "alt" : "Video example poster image"
+        }
       %}
       {% end_dnd_module %}
     {% end_dnd_row %}

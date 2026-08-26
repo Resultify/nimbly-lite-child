@@ -1,15 +1,36 @@
-{# Supports file URL (current), image object (legacy image field values). #}
+{# Image field (object) or legacy file-field URL string. #}
 {% if module.image.src %}
   {% set image_src = module.image.src %}
-  {% set image_alt = module.image_alt|default(module.image.alt|default('')) %}
-{% elif module.image %}
+  {% set image_alt = module.image.alt|default('') %}
+{% elif module.image and '://' in module.image %}
   {% set image_src = module.image %}
-  {% set image_alt = module.image_alt|default('') %}
+  {% set image_alt = '' %}
 {% endif %}
 
-{% if image_src %}
+{#
+  Video poster cannot take fetchpriority — preload it in <head>.
+  For a plain <img>, discovery usually comes from the markup itself; put fetchpriority
+  on the <img>. A head preload can still help if the <img> is late in the document,
+  but for an above-the-fold hero the img + fetchpriority is enough (and avoids a
+  redundant preload request).
+#}
+{% if module.file_field and image_src %}
+  {% set image_extension = image_src|split('?')|first|split('.')|last|lower %}
+  {% if image_extension == 'png' %}
+    {% set image_mime = 'image/png' %}
+  {% elif image_extension == 'webp' %}
+    {% set image_mime = 'image/webp' %}
+  {% elif image_extension == 'gif' %}
+    {% set image_mime = 'image/gif' %}
+  {% elif image_extension == 'avif' %}
+    {% set image_mime = 'image/avif' %}
+  {% elif image_extension == 'svg' %}
+    {% set image_mime = 'image/svg+xml' %}
+  {% else %}
+    {% set image_mime = 'image/jpeg' %}
+  {% endif %}
   {% require_head %}
-    <link rel="preload" as="image" href="{{ image_src }}" fetchpriority="high">
+    <link rel="preload" as="image" href="{{ image_src }}" type="{{ image_mime }}" fetchpriority="high">
   {% end_require_head %}
 {% endif %}
 
@@ -32,6 +53,7 @@
       alt="{{ image_alt }}"
       loading="eager"
       fetchpriority="high"
+      decoding="async"
     >
   {% endif %}
 </div>
