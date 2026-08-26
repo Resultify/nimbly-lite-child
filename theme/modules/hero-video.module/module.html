@@ -1,16 +1,18 @@
-{# Supports file URL (current), image object (legacy image field values). #}
+{# Image field (object) or legacy file-field URL string. #}
 {% if module.image.src %}
   {% set image_src = module.image.src %}
-  {% set image_alt = module.image_alt|default(module.image.alt|default('')) %}
-{% elif module.image %}
+  {% set image_alt = module.image.alt|default('') %}
+{% elif module.image and '://' in module.image %}
   {% set image_src = module.image %}
-  {% set image_alt = module.image_alt|default('') %}
+  {% set image_alt = '' %}
 {% endif %}
 
 {#
   Video poster cannot take fetchpriority — preload it in <head>.
-  Plain <img> LCP is graded on the image request itself; put fetchpriority on the <img>
-  (preload alone is unnecessary when the image is already in the HTML).
+  For a plain <img>, discovery usually comes from the markup itself; put fetchpriority
+  on the <img>. A head preload can still help if the <img> is late in the document,
+  but for an above-the-fold hero the img + fetchpriority is enough (and avoids a
+  redundant preload request).
 #}
 {% if module.file_field and image_src %}
   {% set image_extension = image_src|split('?')|first|split('.')|last|lower %}

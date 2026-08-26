@@ -10,24 +10,21 @@
     "display_width" : null
   },
   {
-    "picker" : "image",
+    "id" : "hero_image",
     "name" : "image",
     "label" : "Hero image",
     "help_text" : "Used as the video poster while the video loads, or as the full background when no video is selected.",
-    "inline_help_text" : "Upload a JPG (roughly viewport width). HubSpot serves an optimized WebP to supporting browsers automatically.",
+    "inline_help_text" : "Prefer JPG or PNG at roughly viewport width. HubSpot serves an optimized WebP to supporting browsers automatically.",
     "required" : false,
     "locked" : false,
-    "type" : "file",
-    "display_width" : null
-  },
-  {
-    "name" : "image_alt",
-    "label" : "Hero image alt text",
-    "help_text" : "Describe the hero image for screen readers and SEO.",
-    "required" : false,
-    "locked" : false,
-    "type" : "text",
+    "responsive" : false,
+    "resizable" : false,
+    "show_loading" : false,
+    "type" : "image",
     "display_width" : null,
-    "default" : ""
+    "default" : {
+      "src" : "",
+      "alt" : ""
+    }
   }
 ]
