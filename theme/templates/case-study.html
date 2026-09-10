@@ -16,18 +16,94 @@
   {% if html_lang == "sv" %}
     {% set website = 'Webbplats' %}
     {% set related_case_studies = 'Relaterade fallstudier' %}
+    {% set home_label = 'Hem' %}
+    {% set case_studies_label = 'Kundcase' %}
   {% elif html_lang == "da" %}
     {% set website = 'Hjemmeside' %}
     {% set related_case_studies = 'Relaterede casestudier' %}
+    {% set home_label = 'Hjem' %}
+    {% set case_studies_label = 'Cases' %}
   {% else %}
     {% set website = 'Website' %}
     {% set related_case_studies = 'Related case studies' %}
+    {% set home_label = 'Home' %}
+    {% set case_studies_label = 'Case studies' %}
   {% endif %}
 
   {% if dynamic_page_hubdb_row %}
     <div class="case-study-template case-study-template__detail">
 
       <div class="case-study_wrp">
+
+        {# JSON-LD: BreadcrumbList + Article describing this case study #}
+        {# request.domain/path used instead of content.absolute_url, which resolves incorrectly on dynamic HubDB pages #}
+        {% set site_root = 'https://' ~ request.domain %}
+        {% set page_url = site_root ~ request.path %}
+        {% set home_url = site_root ~ '/' %}
+        {% set case_studies_list_url = site_root ~ (request.path|regex_replace('/[^/]+/?$', '')) %}
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  { "@type": "ListItem", "position": 1, "name": {{ home_label|tojson }}, "item": {{ home_url|tojson }} },
+                  { "@type": "ListItem", "position": 2, "name": {{ case_studies_label|tojson }}, "item": {{ case_studies_list_url|tojson }} },
+                  { "@type": "ListItem", "position": 3, "name": {{ dynamic_page_hubdb_row.title|tojson }}, "item": {{ page_url|tojson }} }
+                ]
+              },
+              {
+                "@type": "Article",
+                "@id": {{ (page_url ~ '#case-study')|tojson }},
+                "mainEntityOfPage": {{ page_url|tojson }},
+                "url": {{ page_url|tojson }},
+                "inLanguage": {{ html_lang|tojson }}
+                {% if dynamic_page_hubdb_row.title %},"headline": {{ dynamic_page_hubdb_row.title|tojson }}{% endif %}
+                {% if dynamic_page_hubdb_row.meta_description %},"description": {{ dynamic_page_hubdb_row.meta_description|tojson }}{% endif %}
+                {% if dynamic_page_hubdb_row.summary_featured_image %},"image": {{ dynamic_page_hubdb_row.summary_featured_image.url|tojson }}{% endif %}
+                {% if dynamic_page_hubdb_row.summary_industry %},"keywords": {{ dynamic_page_hubdb_row.summary_industry.label|tojson }}{% endif %}
+                {% if dynamic_page_hubdb_row.company_name %}
+                ,"about": {
+                  "@type": "Organization",
+                  "name": {{ dynamic_page_hubdb_row.company_name|tojson }}
+                  {% if dynamic_page_hubdb_row.company_summary %},"description": {{ dynamic_page_hubdb_row.company_summary|striptags|trim|tojson }}{% endif %}
+                  {% if dynamic_page_hubdb_row.company_logo %},"logo": {{ dynamic_page_hubdb_row.company_logo.url|tojson }}{% endif %}
+                  {% if dynamic_page_hubdb_row.summary_company_website %},"url": {{ dynamic_page_hubdb_row.summary_company_website|tojson }}{% endif %}
+                }
+                {% endif %}
+                {# "Thing" (not "Product") - these are name-only mentions with no offers/reviews, so avoid Google's Product rich-result validation #}
+                {% if dynamic_page_hubdb_row.summary_key_products %}
+                ,"mentions": [
+                  {% for product in dynamic_page_hubdb_row.summary_key_products %}
+                    { "@type": "Thing", "name": {{ product.label|tojson }} }{% if not loop.last %},{% endif %}
+                  {% endfor %}
+                ]
+                {% endif %}
+                {% if dynamic_page_hubdb_row.testimonial_quote %}
+                ,"comment": {
+                  "@type": "Comment",
+                  "text": {{ dynamic_page_hubdb_row.testimonial_quote|striptags|trim|tojson }}
+                  {% if dynamic_page_hubdb_row.testimonial_author_name %}
+                  ,"author": {
+                    "@type": "Person",
+                    "name": {{ dynamic_page_hubdb_row.testimonial_author_name|tojson }}
+                    {% if dynamic_page_hubdb_row.testimonial_author_role %},"jobTitle": {{ dynamic_page_hubdb_row.testimonial_author_role|tojson }}{% endif %}
+                  }
+                  {% endif %}
+                }
+                {% endif %}
+                {% if dynamic_page_hubdb_row.success_metrics %}
+                ,"additionalProperty": [
+                  {% for metric in dynamic_page_hubdb_row.success_metrics %}
+                    { "@type": "PropertyValue", "name": {{ metric.name|tojson }}, "value": {{ metric.value|tojson }} }{% if not loop.last %},{% endif %}
+                  {% endfor %}
+                ]
+                {% endif %}
+              }
+            ]
+          }
+        </script>
 
         {# Header - includes company logo and title #}
         <div class="case-study__header">
