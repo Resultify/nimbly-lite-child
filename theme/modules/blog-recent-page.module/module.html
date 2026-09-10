@@ -307,37 +307,26 @@
 
 {# Schema helper: render one ItemList entry for each recent page post #}
 {%- macro recent_page_posts_json_item(post, position, total, blog_id) -%}
-  {% set author_name = site_settings.company_name %}
-  {% if not author_name and group and group.html_title %}
-    {% set author_name = group.html_title %}
-  {% endif %}
-  {% if not author_name %}
-    {% set author_name = request.domain %}
-  {% endif %}
-  {% set author_url = post.absolute_url %}
-  {% if post.blog_author %}
-    {% if post.blog_author.display_name %}
-      {% set author_name = post.blog_author.display_name %}
-    {% endif %}
-  {% endif %}
-  {% if post.blog_post_author %}
-    {% if post.blog_post_author.slug %}
-      {% if blog_id %}
-        {% set author_url = blog_author_url(blog_id, post.blog_post_author.slug) %}
-      {% endif %}
-    {% endif %}
-  {% endif %}
-  {% set image_url = post.featured_image %}
-  {% if not image_url %}
-    {% set image_url = site_settings.logo_src %}
-  {% endif %}
-  {% if not image_url %}
-    {% set image_url = '' %}
-  {% endif %}
-  {% set description_text = post.post_list_content|striptags %}
-  {% if not description_text %}
-    {% set description_text = '' %}
-  {% endif %}
+  {%- set author_name = site_settings.company_name -%}
+  {%- if not author_name and group and group.html_title -%}
+    {%- set author_name = group.html_title -%}
+  {%- endif -%}
+  {%- if not author_name -%}
+    {%- set author_name = request.domain -%}
+  {%- endif -%}
+  {%- set author_url = post.absolute_url -%}
+  {%- if post.blog_author -%}
+    {%- if post.blog_author.display_name -%}
+      {%- set author_name = post.blog_author.display_name -%}
+    {%- endif -%}
+  {%- endif -%}
+  {%- if post.blog_post_author -%}
+    {%- if post.blog_post_author.slug -%}
+      {%- if blog_id -%}
+        {%- set author_url = blog_author_url(blog_id, post.blog_post_author.slug) -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
   {
     "@type": "ListItem",
     "position": {{position}},
@@ -350,9 +339,8 @@
         "@type": "Person",
         "name": {{author_name|tojson}},
         "url": {{author_url|tojson}}
-      },
-      "description": {{description_text|tojson}},
-      "image": {{image_url|tojson}}
+      }{% if post.featured_image %},
+      "image": {{post.featured_image|tojson}}{% endif %}
     }
   }{% if position != total %},{% endif %}
 {%- endmacro -%}
@@ -407,9 +395,9 @@
                   "identifier": {{item_list_identifier|tojson}},
                   "numberOfItems": {{recent_posts|length}},
                   "itemListElement": [
-                    {% for post in recent_posts %}
+                    {%- for post in recent_posts -%}
                       {{recent_page_posts_json_item(post, loop.index, recent_posts|length, blog_id)}}
-                    {% endfor %}
+                    {%- endfor -%}
                   ]
                 }
               }
@@ -437,9 +425,9 @@
                     "identifier": {{item_list_identifier|tojson}},
                     "numberOfItems": {{tag_posts|length}},
                     "itemListElement": [
-                      {% for tag_post in tag_posts %}
+                      {%- for tag_post in tag_posts -%}
                         {{recent_page_posts_json_item(tag_post, loop.index, tag_posts|length, blog_id)}}
-                      {% endfor %}
+                      {%- endfor -%}
                     ]
                   }
                 }
