@@ -5,7 +5,7 @@
   height: auto;
 }
 
-/* Editor-only warning shown by module.js when the selected video exceeds the size threshold. */
+/* Editor-only warning shown by the inline script in module.html when the selected video exceeds the size threshold. */
 .hero-video-wrp__size-warning {
   margin: 0 0 8px;
   padding: 8px 12px;
