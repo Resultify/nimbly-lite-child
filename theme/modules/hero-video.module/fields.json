@@ -4,6 +4,7 @@
     "name" : "file_field",
     "label" : "Hero video",
     "help_text" : "Optional background video (MP4 recommended). Leave empty to show the hero image only.",
+    "inline_help_text" : "Video too large or high-bitrate? Try <b>Replace</b>, hover a video, choose <b>Clone and edit</b>, then <b>Export</b> and select the result here. Exporting doesn't always shrink the file, so recheck the size/bitrate warning afterwards.",
     "required" : false,
     "locked" : false,
     "type" : "file",

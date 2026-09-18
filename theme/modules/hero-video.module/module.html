@@ -34,7 +34,11 @@
   {% end_require_head %}
 {% endif %}
 
-<div class="hero-video-wrp" data-hero-media="{{ 'video' if module.file_field else 'image' }}">
+<div class="hero-video-wrp" data-hero-media="{{ 'video' if module.file_field else 'image' }}"{% if is_in_editor and module.file_field %} data-check-file-size="{{ module.file_field }}"{% endif %}>
+  {% if is_in_editor and module.file_field %}
+    {# Editor-only hint; front-end JS fills this in if the video exceeds the size threshold. #}
+    <p class="hero-video-wrp__size-warning" hidden></p>
+  {% endif %}
   {% if module.file_field %}
     {% set video_extension = module.file_field|split('?')|first|split('.')|last|lower %}
     {% if video_extension == 'webm' %}
@@ -57,3 +61,88 @@
     >
   {% endif %}
 </div>
+
+{% if is_in_editor and module.file_field %}
+  {# Inlined (not module.js) so this never ships to published pages: is_in_editor is false there, so HubL drops the whole block. #}
+  {% require_js %}
+  <script>
+    (function () {
+      var MAX_BITRATE_MBPS = 2.5
+      var FALLBACK_MAX_BYTES = 10 * 1024 * 1024 // used only when duration can't be read
+
+      function formatMb (bytes) {
+        return (bytes / (1024 * 1024)).toFixed(1)
+      }
+
+      function getBytes (url) {
+        return fetch(url, { method: 'HEAD' }).then(function (res) {
+          return Number(res.headers.get('content-length')) || null
+        })
+      }
+
+      // Reading duration only needs metadata, not the file body, so it works cross-origin without CORS headers.
+      function getDuration (url) {
+        return new Promise(function (resolve, reject) {
+          var video = document.createElement('video')
+          video.preload = 'metadata'
+          video.muted = true
+          video.src = url
+
+          function cleanup () {
+            video.removeAttribute('src')
+            video.load()
+          }
+
+          video.addEventListener('loadedmetadata', function () {
+            var duration = video.duration
+            cleanup()
+            isFinite(duration) && duration > 0 ? resolve(duration) : reject(new Error('Unreadable duration'))
+          })
+
+          video.addEventListener('error', function () {
+            cleanup()
+            reject(new Error('Could not load video metadata'))
+          })
+        })
+      }
+
+      function checkVideo (wrap) {
+        var url = wrap.dataset.checkFileSize
+        var warning = wrap.querySelector('.hero-video-wrp__size-warning')
+        if (!url || !warning) return
+
+        Promise.all([getBytes(url), getDuration(url).catch(function () { return null })])
+          .then(function (results) {
+            var bytes = results[0]
+            var duration = results[1]
+            if (!bytes) return
+
+            var fixTip = 'Try: click Replace, hover the video, choose Clone and edit, then Export and select the result here. This doesn\u2019t always shrink the file, so recheck this warning afterwards.'
+
+            if (duration) {
+              var bitrateMbps = (bytes * 8) / duration / 1000000
+              if (bitrateMbps > MAX_BITRATE_MBPS) {
+                warning.textContent = 'Heads up: this video is ' + formatMb(bytes) + ' MB over ' + duration.toFixed(1) + 's (~' + bitrateMbps.toFixed(1) + ' Mbps). Consider re-encoding it below ' + MAX_BITRATE_MBPS + ' Mbps for faster page loads. ' + fixTip
+                warning.hidden = false
+              }
+              return
+            }
+
+            // Duration unavailable (e.g. metadata failed to load) — fall back to a flat size check.
+            if (bytes > FALLBACK_MAX_BYTES) {
+              warning.textContent = 'Heads up: this video is ' + formatMb(bytes) + ' MB. Consider compressing it below 10 MB for faster page loads. ' + fixTip
+              warning.hidden = false
+            }
+          })
+          .catch(function () {
+            // Size/duration couldn't be read (e.g. missing CORS headers) — fail silently.
+          })
+      }
+
+      window.addEventListener('load', function () {
+        document.querySelectorAll('.hero-video-wrp[data-check-file-size]').forEach(checkVideo)
+      })
+    })()
+  </script>
+  {% end_require_js %}
+{% endif %}
