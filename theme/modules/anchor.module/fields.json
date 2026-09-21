@@ -8,7 +8,7 @@
     "type": "text",
     "validation_regex": "^#?[a-zA-Z][a-zA-Z0-9_-]*$",
     "validation_error_message": "Start with a letter. Use only letters, numbers, hyphens and underscores.",
-    "help_text": "Link to this with #your-id (e.g. #contact). Must be unique on the page.",
+    "help_text": "Link to this with #your-id (e.g. #contact). Case-sensitive and must be unique on the page.",
     "placeholder": "contact",
     "default": ""
   },

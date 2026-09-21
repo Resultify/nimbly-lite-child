@@ -1,4 +1,4 @@
-{%- set raw_id = module.anchor_id|trim|replace('#', '')|lower|replace(' ', '-') -%}
+{%- set raw_id = module.anchor_id|trim|replace('#', '')|replace(' ', '-') -%}
 {%- set offset = module.offset|default(0) -%}
 {%- set show_editor_ui = is_in_editor or is_in_previewer -%}
 
