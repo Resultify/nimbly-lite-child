@@ -1,0 +1,20 @@
+{%- set raw_id = module.anchor_id|trim|replace('#', '')|lower|replace(' ', '-') -%}
+{%- set offset = module.offset|default(0) -%}
+{%- set show_editor_ui = is_in_editor or is_in_previewer -%}
+
+{%- if raw_id -%}
+  <div
+    id="{{ raw_id|escape_attr }}"
+    class="anchor-module{% if show_editor_ui %} anchor-module--editor{% endif %}"
+    style="scroll-margin-top: calc(var(--header-height, 0px) + {{ offset }}px);"
+    {% if not show_editor_ui %}aria-hidden="true"{% endif %}
+  >
+    {%- if show_editor_ui -%}
+      <span class="anchor-module__label">Anchor: #{{ raw_id }}</span>
+    {%- endif -%}
+  </div>
+{%- elif show_editor_ui -%}
+  <div class="anchor-module anchor-module--editor anchor-module--empty">
+    <span class="anchor-module__label">Anchor: set an ID</span>
+  </div>
+{%- endif -%}

@@ -1,0 +1,15 @@
+{
+  "global": false,
+  "content_types": ["LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST"],
+  "master_language": "en",
+  "placeholder": {
+    "show_module_icon": true,
+    "title": "Anchor",
+    "description": "Invisible scroll target. Link to it with #your-id"
+  },
+  "icon": "fontawesome-5.14.0:Anchor:SOLID",
+  "host_template_types": ["PAGE", "BLOG_LISTING", "BLOG_POST"],
+  "label": "Anchor",
+  "is_available_for_new_content": true,
+  "help_text": "Place above a section and link to it with #your-anchor-id"
+}

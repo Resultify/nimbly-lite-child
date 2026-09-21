@@ -1,0 +1,62 @@
+/* Live: remove module from layout flow so gap/padding before & after disappear */
+.dnd-module:has(.anchor-module:not(.anchor-module--editor)),
+.hs_cos_wrapper_type_module:has(> .anchor-module:not(.anchor-module--editor)) {
+  display: contents;
+}
+
+.anchor-module:not(.anchor-module--editor) {
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Editor / preview helper only */
+.anchor-module--editor {
+  position: static;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 2rem;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  overflow: visible;
+  pointer-events: auto;
+  border: 1px dashed #94a3b8;
+  background: repeating-linear-gradient(
+    -45deg,
+    #f8fafc,
+    #f8fafc 8px,
+    #e2e8f0 8px,
+    #e2e8f0 16px
+  );
+  color: #475569;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+}
+
+.anchor-module--empty {
+  border-color: #f59e0b;
+  color: #92400e;
+}
+
+.anchor-module--duplicate {
+  border-color: #ef4444;
+  color: #991b1b;
+  background: repeating-linear-gradient(
+    -45deg,
+    #fef2f2,
+    #fef2f2 8px,
+    #fecaca 8px,
+    #fecaca 16px
+  );
+}
+
+.anchor-module__label {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
