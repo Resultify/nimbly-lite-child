@@ -15,14 +15,14 @@
   {
     "id": "offset",
     "name": "offset",
-    "label": "Extra scroll offset (px)",
+    "label": "Scroll offset (px)",
     "required": false,
     "locked": false,
     "type": "number",
     "display": "text",
     "step": 1,
     "min": 0,
-    "help_text": "Extra space above the target when scrolling. Sticky header height is already included via --header-height.",
+    "help_text": "Space above the target when scrolling. Increase this if a sticky header covers the section.",
     "default": 0
   }
 ]

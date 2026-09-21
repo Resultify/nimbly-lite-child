@@ -1,5 +1,5 @@
 function getElementsWithId (id) {
-  // querySelectorAll('#id') / getElementById only return the first match
+  // Use an attribute selector to find every match without CSS identifier escaping
   return document.querySelectorAll('[id="' + id.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"]')
 }
 
@@ -15,9 +15,10 @@ function checkDuplicateAnchorIds () {
     el.classList.toggle('anchor-module--duplicate', isDuplicate)
 
     if (label) {
-      label.textContent = isDuplicate
+      const labelText = isDuplicate
         ? 'Anchor: #' + id + ' — already used on this page (' + matches.length + ')'
         : 'Anchor: #' + id
+      if (label.textContent !== labelText) label.textContent = labelText
     }
   })
 }

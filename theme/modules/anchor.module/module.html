@@ -6,7 +6,7 @@
   <div
     id="{{ raw_id|escape_attr }}"
     class="anchor-module{% if show_editor_ui %} anchor-module--editor{% endif %}"
-    style="scroll-margin-top: calc(var(--header-height, 0px) + {{ offset }}px);"
+    style="scroll-margin-top: {{ offset }}px;"
     {% if not show_editor_ui %}aria-hidden="true"{% endif %}
   >
     {%- if show_editor_ui -%}
