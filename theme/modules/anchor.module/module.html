@@ -7,7 +7,7 @@
     id="{{ raw_id|escape_attr }}"
     class="anchor-module{% if show_editor_ui %} anchor-module--editor{% endif %}"
     style="scroll-margin-top: {{ offset }}px;"
-    {% if not show_editor_ui %}aria-hidden="true"{% endif %}
+    {% if not show_editor_ui %}tabindex="-1"{% endif %}
   >
     {%- if show_editor_ui -%}
       <span class="anchor-module__label">Anchor: #{{ raw_id }}</span>

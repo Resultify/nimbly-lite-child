@@ -6,13 +6,17 @@
 
 .anchor-module:not(.anchor-module--editor) {
   position: absolute;
-  width: 0;
-  height: 0;
+  width: 1px;
+  height: 1px;
   margin: 0;
   padding: 0;
   border: 0;
   overflow: hidden;
   pointer-events: none;
+}
+
+.anchor-module:not(.anchor-module--editor):focus {
+  outline: none;
 }
 
 /* Editor / preview helper only */

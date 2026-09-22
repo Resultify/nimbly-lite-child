@@ -44,8 +44,33 @@ function initAnchorDuplicateCheck () {
   })
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initAnchorDuplicateCheck)
-} else {
+function focusHashAnchor () {
+  const hash = window.location.hash
+  if (!hash || hash.length < 2) return
+
+  const el = document.getElementById(hash.slice(1))
+  if (!el || !el.classList.contains('anchor-module')) return
+  if (el.classList.contains('anchor-module--editor')) return
+
+  el.focus({ preventScroll: true })
+}
+
+function initAnchorHashFocus () {
+  if (window.__anchorHashFocusInit) return
+  if (!document.querySelector('.anchor-module[id]:not(.anchor-module--editor)')) return
+
+  window.__anchorHashFocusInit = true
+  focusHashAnchor()
+  window.addEventListener('hashchange', focusHashAnchor)
+}
+
+function initAnchorModule () {
+  initAnchorHashFocus()
   initAnchorDuplicateCheck()
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAnchorModule)
+} else {
+  initAnchorModule()
 }
