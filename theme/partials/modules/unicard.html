@@ -81,7 +81,7 @@
           --scope-color: {{data.card_style.text_color.css if data.card_style.text_color.css}};
         {% endif %}
         --scope-alignment: {{css_alignment_macro(style.alignment.horizontal_align)}};
-        --scope-border-radius: {{style.border_radius is truthy ? style.border_radius ~ "px" : 0 }};
+        --scope-border-radius: {{style.border_radius is truthy ? style.border_radius ~ "px" : '0px' }};
         {% if style.alignment.vertical_align %}
           --scope-vertical-alignment: {{css_vertical_alignment_macro(style.alignment.vertical_align)}};
         {% endif %}
@@ -101,14 +101,14 @@
         {% elif data.card_style.background_type == 'background_image' and data.card_style.background_image %}
           {{css_complex_image_background_macro(data.card_style)}}
         {% endif %}
-        --scope-content-gap: {{style.content_gap is truthy ? style.content_gap ~ 'px' : 0 }};
+        --scope-content-gap: {{style.content_gap is truthy ? style.content_gap ~ 'px' : '0px' }};
         --scope-border: {{style.border.css && style.border.top.width.value is truthy ? style.border.css|cut('border:') : 'none' }};
         --scope-border-width: {{style.border.css && style.border.top.width.value is truthy ? style.border.top.width.value ~ style.border.top.width.units : '0px' }};
         --scope-shadow: {{style.shadow is truthy ? 'var(--' ~ style.shadow ~ ')' : 'var(--shadow-)' }};
-        --scope-padding-top: {{style.spacing.padding.top.value is truthy ? style.spacing.padding.top.value ~ style.spacing.padding.top.units : 0 }};
-        --scope-padding-bottom: {{style.spacing.padding.bottom.value is truthy ? style.spacing.padding.bottom.value ~ style.spacing.padding.bottom.units : 0 }};
-        --scope-padding-left: {{style.spacing.padding.left.value is truthy ? style.spacing.padding.left.value ~ style.spacing.padding.left.units : 0 }};
-        --scope-padding-right: {{style.spacing.padding.right.value is truthy ? style.spacing.padding.right.value ~ style.spacing.padding.right.units : 0 }};
+        --scope-padding-top: {{style.spacing.padding.top.value is truthy ? style.spacing.padding.top.value ~ style.spacing.padding.top.units : '0px' }};
+        --scope-padding-bottom: {{style.spacing.padding.bottom.value is truthy ? style.spacing.padding.bottom.value ~ style.spacing.padding.bottom.units : '0px' }};
+        --scope-padding-left: {{style.spacing.padding.left.value is truthy ? style.spacing.padding.left.value ~ style.spacing.padding.left.units : '0px' }};
+        --scope-padding-right: {{style.spacing.padding.right.value is truthy ? style.spacing.padding.right.value ~ style.spacing.padding.right.units : '0px' }};
         --scope-padding: {{style.spacing.padding.top.value ~ style.spacing.padding.top.units if style.spacing.css|length <= 17 }};
       }
 
