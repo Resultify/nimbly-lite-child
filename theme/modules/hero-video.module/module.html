@@ -64,11 +64,10 @@
 
 {% if is_in_editor and module.file_field %}
   {# Inlined (not module.js) so this never ships to published pages: is_in_editor is false there, so HubL drops the whole block. #}
-  {% require_js %}
   <script>
     (function () {
       var MAX_BITRATE_MBPS = 2.5
-      var FALLBACK_MAX_BYTES = 10 * 1024 * 1024 // used only when duration can't be read
+      var MAX_BYTES = 10 * 1024 * 1024 // under this size, skip the suggestion even if bitrate is high
 
       function formatMb (bytes) {
         return (bytes / (1024 * 1024)).toFixed(1)
@@ -115,7 +114,7 @@
           .then(function (results) {
             var bytes = results[0]
             var duration = results[1]
-            if (!bytes) return
+            if (!bytes || bytes < MAX_BYTES) return
 
             var fixTip = 'Try: click Replace, hover the video, choose Clone and edit, then Export and select the result here. This doesn\u2019t always shrink the file, so recheck this warning afterwards.'
 
@@ -129,7 +128,7 @@
             }
 
             // Duration unavailable (e.g. metadata failed to load) — fall back to a flat size check.
-            if (bytes > FALLBACK_MAX_BYTES) {
+            if (bytes > MAX_BYTES) {
               warning.textContent = 'Heads up: this video is ' + formatMb(bytes) + ' MB. Consider compressing it below 10 MB for faster page loads. ' + fixTip
               warning.hidden = false
             }
@@ -144,5 +143,4 @@
       })
     })()
   </script>
-  {% end_require_js %}
 {% endif %}
