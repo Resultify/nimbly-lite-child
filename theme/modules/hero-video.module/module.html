@@ -7,6 +7,10 @@
   {% set image_alt = '' %}
 {% endif %}
 
+{% set focal_x = module.focal_point_x is number ? module.focal_point_x : 50 %}
+{% set focal_y = module.focal_point_y is number ? module.focal_point_y : 50 %}
+{% set show_focal_picker = is_in_editor and (module.file_field or image_src) %}
+
 {#
   Video poster cannot take fetchpriority — preload it in <head>.
   For a plain <img>, discovery usually comes from the markup itself; put fetchpriority
@@ -34,40 +38,145 @@
   {% end_require_head %}
 {% endif %}
 
-<div class="hero-video-wrp" data-hero-media="{{ 'video' if module.file_field else 'image' }}"{% if is_in_editor and module.file_field %} data-check-file-size="{{ module.file_field }}"{% endif %}>
+<div class="hero-video-wrp" style="--hero-focal-x: {{ focal_x }}%; --hero-focal-y: {{ focal_y }}%;" data-hero-media="{{ 'video' if module.file_field else 'image' }}"{% if is_in_editor and module.file_field %} data-check-file-size="{{ module.file_field }}"{% endif %}{% if show_focal_picker %} data-focal-picker{% endif %}>
   {% if is_in_editor and module.file_field %}
     {# Editor-only hint; front-end JS fills this in if the video exceeds the size threshold. #}
     <p class="hero-video-wrp__size-warning" hidden></p>
   {% endif %}
-  {% if module.file_field %}
-    {% set video_extension = module.file_field|split('?')|first|split('.')|last|lower %}
-    {% if video_extension == 'webm' %}
-      {% set video_mime = 'video/webm' %}
-    {% elif video_extension == 'ogg' or video_extension == 'ogv' %}
-      {% set video_mime = 'video/ogg' %}
-    {% else %}
-      {% set video_mime = 'video/mp4' %}
-    {% endif %}
-    <video autoplay loop muted playsinline preload="auto"{% if image_src %} poster="{{ image_src }}"{% endif %}>
-      <source src="{{ module.file_field }}" type="{{ video_mime }}">
-    </video>
-  {% elif image_src %}
-    <img
-      src="{{ image_src }}"
-      alt="{{ image_alt }}"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-    >
+  {% if show_focal_picker %}
+    <p class="hero-video-wrp__focal-readout" data-focal-readout>
+      Click the important spot on the media. Then set the <strong>Focal point</strong> sliders to
+      <strong data-focal-x>{{ focal_x }}</strong>% /
+      <strong data-focal-y>{{ focal_y }}</strong>% and save.
+    </p>
   {% endif %}
+  <div class="hero-video-wrp__media{{ ' hero-video-wrp__media--picker' if show_focal_picker }}">
+    {% if module.file_field %}
+      {% set video_extension = module.file_field|split('?')|first|split('.')|last|lower %}
+      {% if video_extension == 'webm' %}
+        {% set video_mime = 'video/webm' %}
+      {% elif video_extension == 'ogg' or video_extension == 'ogv' %}
+        {% set video_mime = 'video/ogg' %}
+      {% else %}
+        {% set video_mime = 'video/mp4' %}
+      {% endif %}
+      <video autoplay loop muted playsinline preload="auto"{% if image_src %} poster="{{ image_src }}"{% endif %}>
+        <source src="{{ module.file_field }}" type="{{ video_mime }}">
+      </video>
+    {% elif image_src %}
+      <img
+        src="{{ image_src }}"
+        alt="{{ image_alt }}"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      >
+    {% endif %}
+    {% if show_focal_picker %}
+      <div class="hero-video-wrp__focal-surface" data-focal-surface>
+        <span class="hero-video-wrp__focal-marker" data-focal-marker style="left: {{ focal_x }}%; top: {{ focal_y }}%;"></span>
+      </div>
+    {% endif %}
+  </div>
 </div>
 
-{% if is_in_editor and module.file_field %}
-  {# Inlined (not module.js) so this never ships to published pages: is_in_editor is false there, so HubL drops the whole block. #}
+{% if is_in_editor %}
+  {# Editor-only CSS — kept out of module.css so visitors do not download it. #}
+  {% require_css %}
+    <style>
+      /* Sticky focal readout needs a non-clipping ancestor in the editor. */
+      html.hs-inline-edit .startpage-video-hero-wrp {
+        overflow: visible;
+      }
+
+      /* Only the editor picker needs a positioning context; live cover crop must
+         keep absolute video/img relative to the section, not this wrapper. */
+      .hero-video-wrp__media--picker {
+        position: relative;
+      }
+
+      .hero-video-wrp__media--picker video,
+      .hero-video-wrp__media--picker img {
+        pointer-events: none;
+      }
+
+      .hero-video-wrp__focal-readout,
+      .hero-video-wrp__size-warning {
+        margin: 0 0 8px;
+        padding: 8px 12px;
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      .hero-video-wrp__focal-readout {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        background: #e7f1ff;
+        border: 1px solid #b6d4fe;
+        color: #084298;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .hero-video-wrp__focal-readout--preview {
+        background: #f8d7da;
+        border-color: #f1aeb5;
+        color: #842029;
+      }
+
+      .hero-video-wrp__focal-surface {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        cursor: crosshair;
+        touch-action: none;
+      }
+
+      .hero-video-wrp__focal-marker {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        margin: -9px 0 0 -9px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        /* Blue = saved / driven by Focal X·Y sliders (HubL field values). */
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(13, 110, 253, 0.5);
+        background: rgba(13, 110, 253, 0.4);
+        pointer-events: none;
+      }
+
+      /* Red = click/drag preview on the media (not yet matched by sliders). */
+      .hero-video-wrp__focal-marker--preview {
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(220, 53, 69, 0.5);
+        background: rgba(220, 53, 69, 0.4);
+      }
+
+      .hero-video-wrp__size-warning {
+        background: #fff3cd;
+        border: 1px solid #ffe69c;
+        color: #664d03;
+      }
+
+      .hero-video-wrp__size-warning[hidden] {
+        display: none;
+      }
+    </style>
+  {% end_require_css %}
+
+  {#
+    Always load editor helpers while editing — not only when media is present.
+    HubSpot re-renders module HTML on field changes without re-running injected
+    <script> tags, so we keep one long-lived bootstrap (guarded) that watches
+    the DOM and uses event delegation.
+  #}
   <script>
     (function () {
-      var MAX_BITRATE_MBPS = 2.5
-      var MAX_BYTES = 10 * 1024 * 1024 // under this size, skip the suggestion even if bitrate is high
+      if (window.__heroVideoEditorHelpers) return
+      window.__heroVideoEditorHelpers = true
+
+      const MAX_BITRATE_MBPS = 2.5
+      const MAX_BYTES = 10 * 1024 * 1024
+      let focalDrag = null
 
       function formatMb (bytes) {
         return (bytes / (1024 * 1024)).toFixed(1)
@@ -79,10 +188,9 @@
         })
       }
 
-      // Reading duration only needs metadata, not the file body, so it works cross-origin without CORS headers.
       function getDuration (url) {
         return new Promise(function (resolve, reject) {
-          var video = document.createElement('video')
+          const video = document.createElement('video')
           video.preload = 'metadata'
           video.muted = true
           video.src = url
@@ -93,7 +201,7 @@
           }
 
           video.addEventListener('loadedmetadata', function () {
-            var duration = video.duration
+            const duration = video.duration
             cleanup()
             isFinite(duration) && duration > 0 ? resolve(duration) : reject(new Error('Unreadable duration'))
           })
@@ -105,21 +213,45 @@
         })
       }
 
+      function mediaKey (wrap) {
+        const video = wrap.querySelector('video source, video')
+        const img = wrap.querySelector('img')
+        const videoSrc = video && (video.getAttribute('src') || video.currentSrc || '')
+        const imgSrc = (img && img.getAttribute('src')) || ''
+        return (wrap.dataset.checkFileSize || videoSrc || '') + '|' + imgSrc
+      }
+
       function checkVideo (wrap) {
-        var url = wrap.dataset.checkFileSize
-        var warning = wrap.querySelector('.hero-video-wrp__size-warning')
+        const url = wrap.dataset.checkFileSize
+        const warning = wrap.querySelector('.hero-video-wrp__size-warning')
         if (!url || !warning) return
+        if (wrap.dataset.sizeCheckFor === url) return
+        wrap.dataset.sizeCheckFor = url
+        warning.hidden = true
+        warning.textContent = ''
 
-        Promise.all([getBytes(url), getDuration(url).catch(function () { return null })])
-          .then(function (results) {
-            var bytes = results[0]
-            var duration = results[1]
-            if (!bytes || bytes < MAX_BYTES) return
+        getBytes(url)
+          .then(function (bytes) {
+            // Module may have been replaced while the request was in flight.
+            if (!wrap.isConnected || wrap.dataset.checkFileSize !== url) return null
+            if (!bytes || bytes < MAX_BYTES) return null
 
-            var fixTip = 'Try: click Replace, hover the video, choose Clone and edit, then Export and select the result here. This doesn\u2019t always shrink the file, so recheck this warning afterwards.'
+            // Only load media metadata when the file is already over the size budget.
+            return getDuration(url)
+              .catch(function () { return null })
+              .then(function (duration) {
+                return { bytes: bytes, duration: duration }
+              })
+          })
+          .then(function (result) {
+            if (!result || !wrap.isConnected || wrap.dataset.checkFileSize !== url) return
+
+            const bytes = result.bytes
+            const duration = result.duration
+            const fixTip = 'Try: click Replace, hover the video, choose Clone and edit, then Export and select the result here. This doesn\u2019t always shrink the file, so recheck this warning afterwards.'
 
             if (duration) {
-              var bitrateMbps = (bytes * 8) / duration / 1000000
+              const bitrateMbps = (bytes * 8) / duration / 1000000
               if (bitrateMbps > MAX_BITRATE_MBPS) {
                 warning.textContent = 'Heads up: this video is ' + formatMb(bytes) + ' MB over ' + duration.toFixed(1) + 's (~' + bitrateMbps.toFixed(1) + ' Mbps). Consider re-encoding it below ' + MAX_BITRATE_MBPS + ' Mbps for faster page loads. ' + fixTip
                 warning.hidden = false
@@ -127,20 +259,116 @@
               return
             }
 
-            // Duration unavailable (e.g. metadata failed to load) — fall back to a flat size check.
-            if (bytes > MAX_BYTES) {
-              warning.textContent = 'Heads up: this video is ' + formatMb(bytes) + ' MB. Consider compressing it below 10 MB for faster page loads. ' + fixTip
-              warning.hidden = false
-            }
+            warning.textContent = 'Heads up: this video is ' + formatMb(bytes) + ' MB. Consider compressing it below 10 MB for faster page loads. ' + fixTip
+            warning.hidden = false
           })
-          .catch(function () {
-            // Size/duration couldn't be read (e.g. missing CORS headers) — fail silently.
-          })
+          .catch(function () {})
       }
 
-      window.addEventListener('load', function () {
+      function clampPct (value) {
+        return Math.round(Math.min(100, Math.max(0, value)))
+      }
+
+      function syncFocalReadout (wrap, x, y, isPreview, refs) {
+        const marker = (refs && refs.marker) || wrap.querySelector('[data-focal-marker]')
+        const readout = (refs && refs.readout) || wrap.querySelector('[data-focal-readout]')
+        const readoutX = (refs && refs.readoutX) || wrap.querySelector('[data-focal-x]')
+        const readoutY = (refs && refs.readoutY) || wrap.querySelector('[data-focal-y]')
+        wrap.style.setProperty('--hero-focal-x', x + '%')
+        wrap.style.setProperty('--hero-focal-y', y + '%')
+        if (marker) {
+          marker.style.left = x + '%'
+          marker.style.top = y + '%'
+          marker.classList.toggle('hero-video-wrp__focal-marker--preview', !!isPreview)
+        }
+        if (readout) {
+          readout.classList.toggle('hero-video-wrp__focal-readout--preview', !!isPreview)
+        }
+        if (readoutX) readoutX.textContent = String(x)
+        if (readoutY) readoutY.textContent = String(y)
+      }
+
+      function focalRefs (wrap) {
+        return {
+          marker: wrap.querySelector('[data-focal-marker]'),
+          readout: wrap.querySelector('[data-focal-readout]'),
+          readoutX: wrap.querySelector('[data-focal-x]'),
+          readoutY: wrap.querySelector('[data-focal-y]')
+        }
+      }
+
+      function prepareFocalPicker (wrap) {
+        const key = mediaKey(wrap)
+        if (wrap.dataset.focalReady === key) return
+        wrap.dataset.focalReady = key
+
+        // New/replaced media: start from the HubL-rendered CSS vars (field defaults).
+        let x = parseInt(wrap.style.getPropertyValue('--hero-focal-x'), 10)
+        let y = parseInt(wrap.style.getPropertyValue('--hero-focal-y'), 10)
+        if (!isFinite(x)) x = 50
+        if (!isFinite(y)) y = 50
+        syncFocalReadout(wrap, x, y, false)
+      }
+
+      function applyFocalFromEvent (drag, event) {
+        const rect = drag.surface.getBoundingClientRect()
+        if (!rect.width || !rect.height) return
+        const x = clampPct(((event.clientX - rect.left) / rect.width) * 100)
+        const y = clampPct(((event.clientY - rect.top) / rect.height) * 100)
+        syncFocalReadout(drag.wrap, x, y, true, drag.refs)
+      }
+
+      function scanEditorModules () {
         document.querySelectorAll('.hero-video-wrp[data-check-file-size]').forEach(checkVideo)
-      })
+        document.querySelectorAll('.hero-video-wrp[data-focal-picker]').forEach(prepareFocalPicker)
+      }
+
+      document.addEventListener('pointerdown', function (event) {
+        const surface = event.target.closest && event.target.closest('[data-focal-surface]')
+        if (!surface) return
+        const wrap = surface.closest('[data-focal-picker]')
+        if (!wrap) return
+        event.preventDefault()
+        event.stopPropagation()
+        focalDrag = {
+          wrap: wrap,
+          surface: surface,
+          pointerId: event.pointerId,
+          refs: focalRefs(wrap)
+        }
+        try { surface.setPointerCapture(event.pointerId) } catch (err) {}
+        applyFocalFromEvent(focalDrag, event)
+      }, true)
+
+      document.addEventListener('pointermove', function (event) {
+        if (!focalDrag || event.pointerId !== focalDrag.pointerId) return
+        event.preventDefault()
+        applyFocalFromEvent(focalDrag, event)
+      }, true)
+
+      function endFocalDrag (event) {
+        if (!focalDrag || event.pointerId !== focalDrag.pointerId) return
+        try { focalDrag.surface.releasePointerCapture(event.pointerId) } catch (err) {}
+        focalDrag = null
+      }
+
+      document.addEventListener('pointerup', endFocalDrag, true)
+      document.addEventListener('pointercancel', endFocalDrag, true)
+
+      scanEditorModules()
+
+      if (window.MutationObserver) {
+        let scheduled = false
+        const observer = new MutationObserver(function () {
+          if (scheduled) return
+          scheduled = true
+          window.requestAnimationFrame(function () {
+            scheduled = false
+            scanEditorModules()
+          })
+        })
+        observer.observe(document.documentElement, { childList: true, subtree: true })
+      }
     })()
   </script>
 {% endif %}

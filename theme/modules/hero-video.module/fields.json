@@ -27,5 +27,33 @@
       "src" : "",
       "alt" : ""
     }
+  },
+  {
+    "name" : "focal_point_x",
+    "label" : "Focal point X",
+    "help_text" : "Horizontal focus when the hero crops (0 = left, 100 = right). Keeps a person or object visible across viewports.",
+    "required" : false,
+    "locked" : false,
+    "display" : "slider",
+    "min" : 0,
+    "max" : 100,
+    "step" : 1,
+    "suffix" : "%",
+    "type" : "number",
+    "default" : 50
+  },
+  {
+    "name" : "focal_point_y",
+    "label" : "Focal point Y",
+    "help_text" : "Vertical focus when the hero crops (0 = top, 100 = bottom).",
+    "required" : false,
+    "locked" : false,
+    "display" : "slider",
+    "min" : 0,
+    "max" : 100,
+    "step" : 1,
+    "suffix" : "%",
+    "type" : "number",
+    "default" : 50
   }
 ]
