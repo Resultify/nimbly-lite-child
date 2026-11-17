@@ -12,13 +12,12 @@
 {% set show_focal_picker = is_in_editor and (module.file_field or image_src) %}
 
 {#
-  Video poster cannot take fetchpriority — preload it in <head>.
-  For a plain <img>, discovery usually comes from the markup itself; put fetchpriority
-  on the <img>. A head preload can still help if the <img> is late in the document,
-  but for an above-the-fold hero the img + fetchpriority is enough (and avoids a
-  redundant preload request).
+  Hero image/poster is often late in the HTML (after header chrome), so preload it
+  in <head> for LCP. Covers image-only and video+poster. Video poster cannot use
+  fetchpriority on its own — the preload is the early hint; the <img> still gets
+  fetchpriority="high" as well (same URL is coalesced by the browser).
 #}
-{% if module.file_field and image_src %}
+{% if image_src %}
   {% set image_extension = image_src|split('?')|first|split('.')|last|lower %}
   {% if image_extension == 'png' %}
     {% set image_mime = 'image/png' %}
@@ -60,7 +59,8 @@
       {% else %}
         {% set video_mime = 'video/mp4' %}
       {% endif %}
-      <video autoplay loop muted playsinline preload="auto"{% if image_src %} poster="{{ image_src }}"{% endif %}>
+      {# With a poster, keep video preload light so the poster can win LCP; video-only still uses auto. #}
+      <video autoplay loop muted playsinline preload="{{ 'metadata' if image_src else 'auto' }}"{% if image_src %} poster="{{ image_src }}"{% endif %}>
         <source src="{{ module.file_field }}" type="{{ video_mime }}">
       </video>
     {% elif image_src %}
