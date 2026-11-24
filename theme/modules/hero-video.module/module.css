@@ -3,4 +3,5 @@
   display: block;
   width: 100%;
   height: auto;
+  object-position: var(--hero-focal-x, 50%) var(--hero-focal-y, 50%);
 }
